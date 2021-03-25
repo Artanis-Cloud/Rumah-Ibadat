@@ -13,10 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//landing page
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/selamat-datang', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 
+
+
+//need-access-from-here
 Auth::routes();
 
+//home-user
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//home-admin
