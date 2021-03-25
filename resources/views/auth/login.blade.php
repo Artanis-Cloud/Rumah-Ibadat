@@ -8,10 +8,21 @@
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </a>
                 <div class="card-body">
-                    @if(\Session::has('message'))
+                    {{-- @if(\Session::has('message'))
                         <p class="alert alert-info">
                             {{ \Session::get('message') }}
                         </p>
+                    @endif --}}
+                    @if (count($errors) > 0)
+                    <div id="alert">
+                        <div class="alert alert-card  alert-danger" role="alert">
+                            <strong>Ralat! </strong>
+                            Kad pengenalan / Passport atau Kata Laluan tidak tepat
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            {{-- <span aria-hidden="true">&times;</span> --}}
+                            </button>
+                        </div>
+                    </div>
                     @endif
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
@@ -24,12 +35,14 @@
                                     <i class="fa fa-envelope"></i>
                                 </span>
                             </div>
-                            <input name="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus placeholder="Email" value="{{ old('email', null) }}">
-                            @if($errors->has('email'))
+                            <input name="email" type="text" class="form-control" required autofocus placeholder="Email" value="{{ old('email', null) }}">
+
+                            {{-- <input name="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus placeholder="Email" value="{{ old('email', null) }}"> --}}
+                            {{-- @if($errors->has('email'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('email') }}
                                 </div>
-                            @endif
+                            @endif --}}
                         </div>
 
                         <div class="input-group mb-3">
@@ -74,4 +87,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+$("document").ready(function(){
+  setTimeout(function(){
+     $("div.alert").remove();
+  }, 5000 ); // 5 secs
+
+});
+</script>
 @endsection
