@@ -1,40 +1,65 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card-group">
+            <div class="card text-center p-3">
+                <a href="{{ route('login') }}" style="text-align: right;">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    {{-- @if (session()->has('status'))
+                    <div class="alert alert-success">{{ session()->get('status') }}</div>
+                    @endif    --}}
+
+                    @if (session()->has('status'))
+                    <div id="alert">
+
+                        <div class="alert alert-card  alert-success" role="alert">
+                            <strong>Berjaya! </strong>
+                            {{ session()->get('status') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            {{-- <span aria-hidden="true">&times;</span> --}}
+                            </button>
                         </div>
+                    </div>
+                    @elseif (session()->has('error'))
+                    <div id="alert">
+                        <div class="alert alert-card  alert-danger" role="alert">
+                            <strong>Ralat! </strong>
+                            {{ session()->get('error') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            {{-- <span aria-hidden="true">&times;</span> --}}
+                            </button>
+                        </div>
+                    </div>
                     @endif
-
                     <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        {{ csrf_field() }}
+                        <h1>
+                            <div class="login-logo">
+                                {{-- <a href="#">
+                                    {{ env('APP_NAME', 'Permissions Manager') }}
+                                </a> --}}
+                                Set Semula Kata Laluan
+                            </div>
+                        </h1>
+                        {{-- <p class="text-muted">Sila masukkan email yang berdaftar</p> --}}
+                        <div>
+                            {{ csrf_field() }}
+                            <div class="form-group has-feedback">
+                                <input type="email" name="email" class="form-control" required="autofocus" placeholder="Email Berdaftar">
+                                @if($errors->has('email'))
+                                    <em class="invalid-feedback">
+                                        {{ $errors->first('email') }}
+                                    </em>
+                                @endif
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                        <div class="row">
+                            <div class="col-md">
+                                <button type="submit" class="btn btn-primary px-4" style="width: 50%;">
+                                    Set Semula Kata Laluan
                                 </button>
                             </div>
                         </div>
@@ -44,4 +69,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+$("document").ready(function(){
+  setTimeout(function(){
+     $("div.alert").remove();
+  }, 5000 ); // 5 secs
+
+});
+</script>
 @endsection
