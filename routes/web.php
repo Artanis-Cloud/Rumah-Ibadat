@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\SuperAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 //landing page
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/selamat-datang', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 
-
-
-//need-access-from-here
 Auth::routes();
 
-//home-user
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//home-admin
+//USER ROUTE
+Route::middleware([User::class])->group(function(){
+    Route::get('/pengguna/halaman-utama', [App\Http\Controllers\HomeController::class, 'index_user'])->name('user.halaman-utama');
+});
+
+
+//ADMIN ROUTE
+Route::middleware([Admin::class])->group(function () {
+    Route::get('/admin/halaman-utama', [App\Http\Controllers\HomeController::class, 'index_admin'])->name('admin.halaman-utama');
+});
+
+
+//SUPER ADMIN ROUTE
+Route::middleware([SuperAdmin::class])->group(function () {
+
+});
+
+

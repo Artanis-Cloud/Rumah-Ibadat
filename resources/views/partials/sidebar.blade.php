@@ -2,7 +2,7 @@
   <div class="sidebar-scroll">
     <nav>
       <ul class="nav">
-        <li><a href="{{route('home')}}" class="{{ request()->is('admin/home')? 'active' : '' }}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="#" class="{{ request()->is('admin/home')? 'active' : '' }}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
         <li>
           <a href="#userManagement" data-toggle="collapse" class="
           {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : 'collapsed' }} 

@@ -28,21 +28,35 @@
                             <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus placeholder="Name" value="{{ old('name', null) }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                             @if($errors->has('name'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('name') }}
+                                    {{ strtoupper($errors->first('name')) }}
                                 </div>
                             @endif
                         </div>
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">
+                                <span class="input-group-text p-2">
                                     <i class="fa fa-envelope"></i>
                                 </span>
                             </div>
                             <input name="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus placeholder="Email" value="{{ old('email', null) }}">
                             @if($errors->has('email'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('email') }}
+                                    {{ strtoupper($errors->first('email')) }}
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text p-2">
+                                    <i class="fa fa-id-card"></i>
+                                </span>
+                            </div>
+                            <input name="ic_number" type="text" class="form-control{{ $errors->has('ic_number') ? ' is-invalid' : '' }}" required autofocus placeholder="Kad Pengenalan" value="{{ old('ic_number', null) }}" minlength="12" maxlength="12" onkeypress="return onlyNumberKey(event)">
+                            @if($errors->has('ic_number'))
+                                <div class="invalid-feedback">
+                                    {{ strtoupper($errors->first('ic_number')) }}
                                 </div>
                             @endif
                         </div>
@@ -54,7 +68,7 @@
                             <input name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="Password">
                             @if($errors->has('password'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('password') }}
+                                    {{ strtoupper($errors->first('password')) }}
                                 </div>
                             @endif
                         </div>
@@ -63,10 +77,10 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
                             </div>
-                            <input name="password_confirmation" type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" required placeholder="Password Confirmation">
-                            @if($errors->has('password_confirmation'))
+                            <input name="password_confirmation" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="Password Confirmation">
+                            @if($errors->has('password'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('password_confirmation') }}
+                                    {{ strtoupper($errors->first('password')) }}
                                 </div>
                             @endif
                         </div>
@@ -84,4 +98,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    function onlyNumberKey(evt) {
+
+        // Only ASCII charactar in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+</script>
 @endsection
