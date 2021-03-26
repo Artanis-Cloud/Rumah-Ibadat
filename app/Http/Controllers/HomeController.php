@@ -21,8 +21,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index_user()
     {
-        return view('home');
+        return view('users.halaman-utama');
+    }
+
+    public function index_admin()
+    {
+        return view('admins.halaman-utama');
     }
 }
