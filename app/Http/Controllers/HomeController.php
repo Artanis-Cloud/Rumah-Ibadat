@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('admins.halaman-utama');
     }
+
+    public function index_super_admin()
+    {
+        return view('super-admins.halaman-utama');
+    }
 }

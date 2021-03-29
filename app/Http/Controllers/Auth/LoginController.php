@@ -45,7 +45,7 @@ class LoginController extends Controller
         // dd(request()->all());
         switch (auth()->user()->role) {
             case 0:
-                $this->redirectTo = '/login';
+                $this->redirectTo = '/super-admin/halaman-utama';
                 return $this->redirectTo;
                 break;
             case 1:
