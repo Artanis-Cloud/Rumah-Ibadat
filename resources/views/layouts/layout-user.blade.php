@@ -73,7 +73,7 @@
 	<div class="wrapper">
 
 		{{-- SIDE BAR --}}
-        <div class="sidebar" data-color="orange">
+        <div class="sidebar" data-color="green">
         
             {{-- Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow" --}}
         
@@ -86,54 +86,19 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                <li class="active ">
-                    <a href="./dashboard.html">
-                    <i class="now-ui-icons design_app"></i>
-                    <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./icons.html">
-                    <i class="now-ui-icons education_atom"></i>
-                    <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./map.html">
-                    <i class="now-ui-icons location_map-big"></i>
-                    <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./notifications.html">
-                    <i class="now-ui-icons ui-1_bell-53"></i>
-                    <p>Notifications</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./user.html">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>User Profile</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./tables.html">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
-                    <p>Table List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./typography.html">
-                    <i class="now-ui-icons text_caps-small"></i>
-                    <p>Typography</p>
-                    </a>
-                </li>
-                <li class="active-pro">
-                    <a href="./upgrade.html">
-                    <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-                    <p>Upgrade to PRO</p>
-                    </a>
-                </li>
+                    <li class="{{ Request::is('pengguna/halaman-utama') ? 'active' : '' }}">
+                        <a href="{{ route('user.halaman-utama') }}">
+                        <i class="now-ui-icons shopping_shop"></i>
+                        <p>Halaman Utama</p>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('pengguna/permohonan/baru') ? 'active' : '' }}">
+                        <a href="{{ route('users.permohonan.baru') }}">
+                        <i class="now-ui-icons education_paper"></i>
+                        <p>Permohonan Baru</p>
+                        </a>
+                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -182,12 +147,12 @@
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="now-ui-icons users_single-02"></i>
                         <p>
-                            <span class="d-lg-none d-md-block">Some Actions</span>
+                            <span class="d-lg-none d-md-block">Pengguna</span>
                         </p>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#"><i class="fa fa-user p-1" aria-hidden="true"></i>Kemaskini Profil</a>
-                        <a class="dropdown-item" href="#"><i class="fa fa-lock p-1" aria-hidden="true"></i>Tukar Kata Laluan</a>
+                        <a class="dropdown-item" href="{{ route('tukar-kata-laluan') }}"><i class="fa fa-lock p-1" aria-hidden="true"></i>Tukar Kata Laluan</a>
                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"><i class="fa fa-power-off p-1" aria-hidden="true"></i>Log Keluar</a>
                         </div>
                     </li>
