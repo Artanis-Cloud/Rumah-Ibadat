@@ -38,7 +38,7 @@ Route::middleware([Admin::class])->group(function () {
 
 //SUPER ADMIN ROUTE
 Route::middleware([SuperAdmin::class])->group(function () {
-
+    Route::get('/super-admin/halaman-utama', [App\Http\Controllers\HomeController::class, 'index_super_admin'])->name('super-admin.halaman-utama');
 });
 
 
