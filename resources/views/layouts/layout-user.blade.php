@@ -78,12 +78,11 @@
             {{-- Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow" --}}
         
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                CT
-                </a>
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                Creative Tim
-                </a>
+                <center>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="height: 120px;" alt="Kerajaan Selangor">
+                
+                </center>   
+                <span style="font-size: 18px;">Sistem Bantuan Kewangan Rumah Ibadat</span>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
@@ -160,7 +159,7 @@
                     <span class="navbar-toggler-bar navbar-kebab"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                    <form>
+                    {{-- <form>
                     <div class="input-group no-border">
                         <input type="text" value="" class="form-control" placeholder="Search...">
                         <div class="input-group-append">
@@ -169,7 +168,7 @@
                         </div>
                         </div>
                     </div>
-                    </form>
+                    </form> --}}
                     <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="#pablo">
@@ -181,26 +180,32 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="now-ui-icons location_world"></i>
+                        <i class="now-ui-icons users_single-02"></i>
                         <p>
                             <span class="d-lg-none d-md-block">Some Actions</span>
                         </p>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-user p-1" aria-hidden="true"></i>Kemaskini Profil</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-lock p-1" aria-hidden="true"></i>Tukar Kata Laluan</a>
+                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"><i class="fa fa-power-off p-1" aria-hidden="true"></i>Log Keluar</a>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#pablo">
                         <i class="now-ui-icons users_single-02"></i>
                         <p>
                             <span class="d-lg-none d-md-block">Account</span>
                         </p>
                         </a>
-                    </li>
+                    </li> --}}
                     </ul>
+                    
+                    {{-- LOGOUT FORM --}}
+                    <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+
                 </div>
                 </div>
             </nav>
