@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
         return view('super-admins.halaman-utama');
     }
+
+    public function change_password()
+    {
+        return view('tukar-kata-laluan');
+    }
 }
