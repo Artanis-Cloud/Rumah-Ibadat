@@ -23,9 +23,7 @@ class HomeController extends Controller
      */
     public function index_user()
     {
-        // return view('users.halaman-utama');
-        return view('users.dashboard');
-
+        return view('users.halaman-utama');
     }
 
     public function index_admin()
