@@ -110,12 +110,14 @@ h1, h2, h3, h4, h5, h6 {
 
 #header.header-transparent {
   background: transparent;
+  padding-right: 3%;
 }
 
 #header.header-scrolled {
   background: rgba(52, 59, 64, 0.9);
   height: 70px;
   transition: all 0.5s;
+  padding-right: 3%;
 }
 
 .scrolled-offset {

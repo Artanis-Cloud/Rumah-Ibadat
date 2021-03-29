@@ -36,6 +36,63 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .charts_orb {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: arial;
+  color: white;
+}
+.charts_orb .orb {
+  padding: 20px;
+}
+.charts_orb .orb .orb_graphic {
+  position: relative;
+}
+.charts_orb .orb .orb_graphic .orb_value {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+.charts_orb .orb .orb_label {
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 1em;
+}
+.charts_orb svg {
+  width: 110px;
+  height: 110px;
+}
+.charts_orb svg circle {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  stroke-dasharray: 314.16, 314.16;
+  stroke-width: 2;
+  fill: transparent;
+  r: 50;
+  cx: 55;
+  cy: 55;
+}
+.charts_orb svg circle.fill {
+  stroke: #D3D3D3;
+}
+.charts_orb svg circle.progress {
+  stroke: #ff0000;
+  transition: stroke-dashoffset 0.35s;
+  stroke-dashoffset: 214.16;
+  -webkit-animation: NAME-YOUR-ANIMATION 1.5s forwards;
+  -webkit-animation-timing-function: linear;
+}
+  </style>
 </head>
 
 <body>
@@ -75,7 +132,7 @@
                   <li><a href="#">Deep Drop Down 2</a></li>
                   <li><a href="#">Deep Drop Down 3</a></li>
                   <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>header
                 </ul>
               </li>
               <li><a href="#">Drop Down 2</a></li>
@@ -88,13 +145,19 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
     </div>
+    @auth
+        <a href="{{ route('logout') }}" class="btn btn-primary"> LOG KELUAR </a>
+    @endauth
+    @guest
+        <a href="{{ route('login') }}" class="btn btn-primary"> LOG MASUK </a>
+    @endguest
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="10">
       <h2>Selamat Datang ke</h2>
-      <h1>PORTAL RASMI KERAJAAN SELANGOR</h1>
+      <h1>PORTAL RASMI RUMAH IBADAT SELANGOR</h1>
       <a href="#about" class="btn-get-started">Layari</a>
     </div>
   </section><!-- End Hero Section -->
@@ -145,29 +208,26 @@
     <section id="facts">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
-          <h3 class="section-title">Facts</h3>
-          <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+          <h3 class="section-title">Perutusan Dewan Negeri Selangor</h3>
+          <p class="section-description">Y.B. Dato’ Teng Chang Khim</p>
         </div>
         <div class="row counters">
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Clients</p>
+            <img src="http://dewan.selangor.gov.my/wp-content/uploads/2019/01/N45-YB-BANDAR-BARU-KLANG-200x300.jpg" alt="New york" style="width:100%;">
           </div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="534" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Projects</p>
-          </div>
+          <div class="col-lg-9 col-6 text-center">
+            {{-- <span data-purecounter-start="0" data-purecounter-end="534" data-purecounter-duration="1" class="purecounter"></span> --}}
+            <p>Alamat: Pusat Khidmat Dun Bandar Baru Klang LG-4, 1E Jalan Pekan Baru 34, 41010 Klang, Selangor
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Support</p>
-          </div>
+                Portfolio: Pengerusi Jawatankuasa Tetap Pelaburan, Perdagangan & Perindustrian dan Industri Kecil Dan Sederhana (IKS)
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hard Workers</p>
+                Tempat: N45 Bandar Baru Klang
+
+                Tel: 03-3341 4982
+
+                E-mel: khim@selangor.gov.my</p>
           </div>
 
         </div>
@@ -176,63 +236,80 @@
     </section><!-- End Facts Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services">
-      <div class="container" data-aos="fade-up">
-        <div class="section-header">
-          <h3 class="section-title">Services</h3>
-          <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href=""><i class="bi bi-briefcase"></i></a></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href=""><i class="bi bi-card-checklist"></i></a></div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href=""><i class="bi bi-bar-chart"></i></a></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href=""><i class="bi bi-binoculars"></i></a></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href=""><i class="bi bi-brightness-high"></i></a></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-            <div class="box">
-              <div class="icon"><a href=""><i class="bi bi-calendar4-week"></i></a></div>
-              <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-            </div>
-          </div>
-        </div>
-
+    <section id="services" style="background: #a7a7a7;">
+      <div class="section-header">
+        <h3 class="section-title">Statistik</h3>
       </div>
+      <section class="charts_orb">
+        <article class="orb">
+          <div class="orb_graphic">
+            <svg>
+              <circle class="fill"></circle>
+              <circle class="progress"></circle>
+            </svg>
+            <div class="orb_value count">306</div>
+          </div>
+          <div class="orb_label">
+             Rumah Ibadat
+          </div>
+        </article>
+
+        <article class="orb">
+          <div class="orb_graphic">
+            <svg>
+              <circle class="fill"></circle>
+              <circle class="progress"></circle>
+            </svg>
+            <div class="orb_value count">136</div>
+          </div>
+          <div class="orb_label">
+            Rumah Ibadat
+          </div>
+        </article>
+
+        <article class="orb">
+          <div class="orb_graphic">
+            <svg>
+              <circle class="fill"></circle>
+              <circle class="progress"></circle>
+            </svg>
+            <div class="orb_value count">41</div>
+          </div>
+          <div class="orb_label">
+            Rumah Ibadat
+          </div>
+        </article>
+
+        <article class="orb">
+          <div class="orb_graphic">
+            <svg>
+              <circle class="fill"></circle>
+              <circle class="progress"></circle>
+            </svg>
+            <div class="orb_value count">52</div>
+          </div>
+          <div class="orb_label">
+            Rumah Ibadat
+          </div>
+        </article>
+
+        <article class="orb">
+          <div class="orb_graphic">
+            <svg>
+              <circle class="fill"></circle>
+              <circle class="progress"></circle>
+            </svg>
+            <div class="orb_value count">72</div>
+          </div>
+          <div class="orb_label">
+            Rumah Ibadat
+          </div>
+        </article>
+      </section>
     </section><!-- End Services Section -->
 
     <!-- ======= Call To Action Section ======= -->
-    <section id="call-to-action">
+    {{-- <section id="call-to-action">
       <div class="container">
         <div class="row" data-aos="zoom-in">
           <div class="col-lg-9 text-center text-lg-start">
@@ -245,10 +322,10 @@
         </div>
 
       </div>
-    </section><!-- End Call To Action Section -->
+    </section><!-- End Call To Action Section --> --}}
 
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
+    {{-- <section id="portfolio" class="portfolio">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h3 class="section-title">Portfolio</h3>
@@ -361,10 +438,10 @@
         </div>
 
       </div>
-    </section><!-- End Portfolio Section -->
+    </section><!-- End Portfolio Section --> --}}
 
     <!-- ======= Team Section ======= -->
-    <section id="team">
+    {{-- <section id="team">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h3 class="section-title">Team</h3>
@@ -429,19 +506,20 @@
         </div>
 
       </div>
-    </section><!-- End Team Section -->
+    </section><!-- End Team Section --> --}}
 
     <!-- ======= Contact Section ======= -->
     <section id="contact">
       <div class="container">
         <div class="section-header">
-          <h3 class="section-title">Contact</h3>
-          <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+          <h3 class="section-title">HUBUNGI KAMI</h3>
+          {{-- <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>SS --}}
         </div>
       </div>
 
       <!-- Uncomment below if you wan to use dynamic maps -->
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+      {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe> --}}
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1408.5708968627134!2d101.51493494527995!3d3.083964365674007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc527b95eee3a1%3A0x24e4c8f62b39ec0f!2sSUK%20Selangor!5e0!3m2!1sms!2smy!4v1616987474576!5m2!1sms!2smy" width="100%" height="380" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
       <div class="container mt-5">
         <div class="row justify-content-center">
@@ -451,7 +529,10 @@
             <div class="info">
               <div>
                 <i class="bi bi-geo-alt"></i>
-                <p>A108 Adam Street<br>New York, NY 535022</p>
+                <p>Pejabat Setiausaha Kerajaan Negeri Selangor,
+                    Bangunan Sultan Salahuddin Abdul Aziz Shah,
+                    40503 Shah Alam,
+                    Selangor Darul Ehsan.</p>
               </div>
 
               <div>
@@ -461,16 +542,17 @@
 
               <div>
                 <i class="bi bi-phone"></i>
-                <p>+1 5589 55488 55s</p>
+                <p>(6)03-55447000
+                </p>
               </div>
             </div>
 
             <div class="social-links">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              {{-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
               <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> --}}
             </div>
 
           </div>
@@ -479,23 +561,23 @@
             <div class="form">
               <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                 <div class="form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nama" required>
                 </div>
                 <div class="form-group mt-3">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                 </div>
                 <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subjek" required>
                 </div>
                 <div class="form-group mt-3">
-                  <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                  <textarea class="form-control" name="message" rows="5" placeholder="Mesej" required></textarea>
                 </div>
                 <div class="my-3">
-                  <div class="loading">Loading</div>
+                  <div class="loading">Memuat...</div>
                   <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                  <div class="sent-message">Mesej anda telah dihantar. Terima Kasih!</div>
                 </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
+                <div class="text-center"><button type="submit">Hantar</button></div>
               </form>
             </div>
           </div>
@@ -546,5 +628,18 @@
   <script src="{{ asset('Regna/assets/js/main.js') }}"></script>
 
 </body>
+<script>
+  $('.count').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 1500,
+        easing: 'linear',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
+    });
+});
+</script>
 
 </html>
