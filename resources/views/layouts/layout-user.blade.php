@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>Halaman Utama</title>
+    @livewireStyles
     {{-- <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
     
@@ -178,7 +179,7 @@
 
             
             @yield('content')
-            
+            @livewireScripts
 
             {{-- FOOTER --}}
             <footer class="footer">
@@ -218,14 +219,13 @@
 	</div>
 
     {{-- SCRIPT --}}
-
     <!--   Core JS Files   -->
     <script src="{{asset('assets-creativetim/js/core/jquery.min.js')}}"></script>
     <script src="{{asset('assets-creativetim/js/core/popper.min.js')}}"></script>
     <script src="{{asset('assets-creativetim/js/core/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets-creativetim/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
     <!-- Chart JS -->
     <script src="{{asset('assets-creativetim/js/plugins/chartjs.min.js')}}"></script>
     <!--  Notifications Plugin    -->
