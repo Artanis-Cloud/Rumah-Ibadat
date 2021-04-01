@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index_user()
     {
-        return view('users.halaman-utama');
+        // dd( Auth::user()->name );
+        return view('users.halaman-utama-nicepage');
     }
 
     public function index_admin()
