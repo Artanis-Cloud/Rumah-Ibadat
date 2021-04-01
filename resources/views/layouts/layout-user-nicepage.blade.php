@@ -53,13 +53,13 @@
                     <!-- Logo -->
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
-                        <a href="index.html" class="logo">
+                        <a href="{{ route('user.halaman-utama') }}" class="logo">
                             <!-- Logo icon -->
                             <b class="logo-icon">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
 
-                                <img src="{{asset('nice-admin/assets/images/logo-icon.png')}}" alt="homepage" class="dark-logo" />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="height: 50px;" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo icon -->
                                 <img src="{{asset('nice-admin/assets/images/logo-light-icon.png')}}" alt="homepage" class="light-logo" />
                             </b>
@@ -67,7 +67,7 @@
                             <!-- Logo text -->
                             <span class="logo-text">
                                 <!-- dark Logo text -->
-                                <img src="{{asset('nice-admin/assets/images/logo-text.png')}}" alt="homepage" class="dark-logo" />
+                                <img src="https://upload.wikimedia.org/wikipedia/ms/archive/9/93/20090423144020%21Coat_of_arms_of_Malaysia.png" style="height: 40px;" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo text -->
                                 <img src="{{asset('nice-admin/assets/images/logo-light-text.png')}}" class="light-logo" alt="homepage" />
                             </span>
@@ -100,7 +100,8 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item search-box">
+                        
+                        {{-- <li class="nav-item search-box">
                             <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
                                 <div class="d-flex align-items-center">
                                     <i class="mr-1 mdi mdi-magnify font-20"></i>
@@ -115,7 +116,9 @@
                                     <i class="ti-close"></i>
                                 </a>
                             </form>
-                        </li>
+                        </li> --}}
+                        <p class="font-10 m-b-5">Sistem Bantuan Kewangan Rumah Ibadat </p>
+
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -124,7 +127,7 @@
                         <!-- ============================================================== -->
                         <!-- Messages -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="font-22 mdi mdi-email-outline"></i>
 
@@ -201,7 +204,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         <!-- ============================================================== -->
                         <!-- End Messages -->
                         <!-- ============================================================== -->
@@ -221,7 +224,7 @@
                                     <li>
                                         <div class="text-white drop-title bg-primary">
                                             <h4 class="m-b-0 m-t-5">4 New</h4>
-                                            <span class="font-light">Notifications</span>
+                                            <span class="font-light">Notifikasi</span>
                                         </div>
                                     </li>
                                     <li>
