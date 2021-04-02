@@ -1,112 +1,134 @@
 @extends('layouts.app')
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card-group">
-            <div class="card text-center p-3">
-                <a href="{{ route('welcome') }}" style="text-align: right;">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </a>
-                <div class="card-body p-2">
-                    @if(\Session::has('message'))
-                        <p class="alert alert-info">
-                            {{ \Session::get('message') }}
-                        </p>
-                    @endif
-                    <form method="POST" action="{{ route('register') }}">
+
+<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="mb-5 text-center col-md-6">
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="p-4 wrap p-lg-5" style="background: white;">
+                        <div class="d-flex">
+                            <div class="w-100" style="text-align-last: center;">
+                                <h3 class="mb-4">Daftar Masuk</h3>
+                            </div>
+                        </div>
+                        @if(\Session::has('message'))
+                            <p class="alert alert-info">
+                                {{ \Session::get('message') }}
+                            </p>
+                        @endif
+                        <form method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
-                        {{-- <h1>{{ env('APP_NAME', 'Permissions Manager') }}</h1> --}}
-                        <h1>Daftar</h1>
-                        <p class="text-muted">Sila isi bahagian ini</p>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fa fa-user"></i>
-                                </span>
-                            </div>
-                            <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus placeholder="Name" value="{{ old('name', null) }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-                            @if($errors->has('name'))
-                                <div class="invalid-feedback">
-                                    {{ strtoupper($errors->first('name')) }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text p-2">
-                                    <i class="fa fa-envelope"></i>
-                                </span>
-                            </div>
-                            <input name="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus placeholder="Email" value="{{ old('email', null) }}">
-                            @if($errors->has('email'))
-                                <div class="invalid-feedback">
-                                    {{ strtoupper($errors->first('email')) }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text p-2">
-                                    <i class="fa fa-id-card"></i>
-                                </span>
-                            </div>
-                            <input name="ic_number" type="text" class="form-control{{ $errors->has('ic_number') ? ' is-invalid' : '' }}" required autofocus placeholder="Kad Pengenalan" value="{{ old('ic_number', null) }}" minlength="12" maxlength="12" onkeypress="return onlyNumberKey(event)">
-                            @if($errors->has('ic_number'))
-                                <div class="invalid-feedback">
-                                    {{ strtoupper($errors->first('ic_number')) }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                            </div>
-                            <input name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="Password">
-                            @if($errors->has('password'))
-                                <div class="invalid-feedback">
-                                    {{ strtoupper($errors->first('password')) }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                            </div>
-                            <input name="password_confirmation" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="Password Confirmation">
-                            @if($errors->has('password'))
-                                <div class="invalid-feedback">
-                                    {{ strtoupper($errors->first('password')) }}
-                                </div>
-                            @endif
-                        </div>
-
                         <div class="row">
-                            <div class="col-md">
-                                <button type="submit" class="btn btn-primary px-4" style="width: 100%;">
-                                    Daftar
-                                </button>
+                            <div class="col md-6">
+                                <div class="mb-3 input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus placeholder="Nama" value="{{ old('name', null) }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                                    @if($errors->has('name'))
+                                        <div class="invalid-feedback">
+                                            {{ strtoupper($errors->first('name')) }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col md-6">
+                                <div class="mb-3 input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="p-2 input-group-text">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                    </div>
+                                    <input name="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus placeholder="Emel" value="{{ old('email', null) }}">
+                                    @if($errors->has('email'))
+                                        <div class="invalid-feedback">
+                                            {{ strtoupper($errors->first('email')) }}
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        <div class="row">
+                            <div class="col md-6">
+                                <div class="mb-3 input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="p-2 input-group-text">
+                                            <i class="fa fa-id-card"></i>
+                                        </span>
+                                    </div>
+                                    <input name="ic_number" type="text" class="form-control{{ $errors->has('ic_number') ? ' is-invalid' : '' }}" required autofocus placeholder="Kad Pengenalan" value="{{ old('ic_number', null) }}" minlength="12" maxlength="12" onkeypress="return onlyNumberKey(event)">
+                                    @if($errors->has('ic_number'))
+                                        <div class="invalid-feedback">
+                                            {{ strtoupper($errors->first('ic_number')) }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col md-6">
+                                <div class="mb-3 input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-home"></i>
+                                        </span>
+                                    </div>
+                                    <input name="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" required autofocus placeholder="Alamat" value="{{ old('address', null) }}">
+                                    @if($errors->has('address'))
+                                        <div class="invalid-feedback">
+                                            {{ strtoupper($errors->first('address')) }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col md-6">
+                                <div class="mb-3 input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                    </div>
+                                    <input name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="Kata Laluan">
+                                    @if($errors->has('password'))
+                                        <div class="invalid-feedback">
+                                            {{ strtoupper($errors->first('password')) }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col md-6">
+                                <div class="mb-3 input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                    </div>
+                                    <input name="password_confirmation" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="Sahkan Kata Laluan">
+                                    @if($errors->has('password'))
+                                        <div class="invalid-feedback">
+                                            {{ strtoupper($errors->first('password')) }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <button type="submit" class="px-3 form-control btn btn-primary submit">Daftar</button>
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-100 text-md-center">
+                                    <a href="{{ route('login') }}"> Sudah mempunyai akaun? Log Masuk Disini.</a>
+                                </div>
+                            </div>
 
-<script>
-    function onlyNumberKey(evt) {
-
-        // Only ASCII charactar in that range allowed
-        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-            return false;
-        return true;
-    }
-</script>
+		                </form>
+		            </div>
+		      </div>
+			</div>
+		</div>
+	</section>
+</body>
 @endsection
