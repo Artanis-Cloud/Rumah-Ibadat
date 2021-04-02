@@ -5,7 +5,7 @@
     @livewireStyles
     {{-- <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
-    
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -75,14 +75,15 @@
 
 		{{-- SIDE BAR --}}
         <div class="sidebar" data-color="green">
-        
+
+
             {{-- Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow" --}}
-        
+
             <div class="logo">
                 <center>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="height: 120px;" alt="Kerajaan Selangor">
-                
-                </center>   
+
+                </center>
                 <span style="font-size: 18px;">Sistem Bantuan Kewangan Rumah Ibadat</span>
             </div>
             <div class="sidebar-wrapper">
@@ -99,7 +100,7 @@
                         <p>Permohonan Baru</p>
                         </a>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -107,7 +108,7 @@
         <div class="main-panel">
 
             {{-- NAVIGATION BAR --}}
-            <nav class="navbar navbar-expand-lg fixed-top navbar-transparent  bg-primary  navbar-absolute">
+            <nav class="navbar navbar-expand-lg fixed-top navbar-transparent bg-primary navbar-absolute">
                 <div class="container-fluid">
                 <div class="navbar-wrapper">
                     <div class="navbar-toggle">
@@ -152,9 +153,9 @@
                         </p>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#"><i class="fa fa-user p-1" aria-hidden="true"></i>Kemaskini Profil</a>
-                        <a class="dropdown-item" href="{{ route('tukar-kata-laluan') }}"><i class="fa fa-lock p-1" aria-hidden="true"></i>Tukar Kata Laluan</a>
-                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"><i class="fa fa-power-off p-1" aria-hidden="true"></i>Log Keluar</a>
+                        <a class="dropdown-item" href="#"><i class="p-1 fa fa-user" aria-hidden="true"></i>Kemaskini Profil</a>
+                        <a class="dropdown-item" href="{{ route('tukar-kata-laluan') }}"><i class="p-1 fa fa-lock" aria-hidden="true"></i>Tukar Kata Laluan</a>
+                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"><i class="p-1 fa fa-power-off" aria-hidden="true"></i>Log Keluar</a>
                         </div>
                     </li>
                     {{-- <li class="nav-item">
@@ -166,7 +167,7 @@
                         </a>
                     </li> --}}
                     </ul>
-                    
+
                     {{-- LOGOUT FORM --}}
                     <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
@@ -177,9 +178,12 @@
             </nav>
             {{-- END OF NAVIGATION BAR --}}
 
-            
+
             @yield('content')
             @livewireScripts
+
+
+
 
             {{-- FOOTER --}}
             <footer class="footer">

@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
 
@@ -132,3 +133,4 @@
 	</section>
 </body>
 @endsection
+

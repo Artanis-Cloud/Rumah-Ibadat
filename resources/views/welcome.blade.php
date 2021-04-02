@@ -146,7 +146,10 @@
       </nav><!-- .navbar -->
     </div>
     @auth
-        <a href="{{ route('logout') }}" class="btn btn-primary"> LOG KELUAR </a>
+        <a href="#" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"> LOG KELUAR </a>
+        <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
     @endauth
     @guest
         <a href="{{ route('login') }}" class="btn btn-primary"> LOG MASUK </a>
@@ -157,7 +160,7 @@
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="10">
       <h2>Selamat Datang ke</h2>
-      <h1>PORTAL RASMI RUMAH IBADAT SELANGOR</h1>
+      <h1>Sistem Bantuan Kewangan Rumah Ibadat</h1>
       <a href="#about" class="btn-get-started">Layari</a>
     </div>
   </section><!-- End Hero Section -->
@@ -219,7 +222,7 @@
 
           <div class="col-lg-9 col-6 text-center">
             {{-- <span data-purecounter-start="0" data-purecounter-end="534" data-purecounter-duration="1" class="purecounter"></span> --}}
-            <p>Alamat: Pusat Khidmat Dun Bandar Baru Klang LG-4, 1E Jalan Pekan Baru 34, 41010 Klang, Selangor
+            <p>"Alamat: Pusat Khidmat Dun Bandar Baru Klang LG-4, 1E Jalan Pekan Baru 34, 41010 Klang, Selangor
 
                 Portfolio: Pengerusi Jawatankuasa Tetap Pelaburan, Perdagangan & Perindustrian dan Industri Kecil Dan Sederhana (IKS)
 
@@ -227,7 +230,8 @@
 
                 Tel: 03-3341 4982
 
-                E-mel: khim@selangor.gov.my</p>
+                E-mel: khim@selangor.gov.my"</p>
+                <p class="">(Y.B. Dato’ Teng Chang Khim, 2021)</p>
           </div>
 
         </div>
@@ -599,7 +603,7 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Regna</strong>. All Rights Reserved
+        &copy; Hak Cipta Terpelihara.
       </div>
       <div class="credits">
         <!--
@@ -608,7 +612,7 @@
         Licensing information: https://bootstrapmade.com/license/
         Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
       -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        {{-- Designed by <a href="https://bootstrapmade.com/">Arghhdann</a> --}}
       </div>
     </div>
   </footer><!-- End Footer -->

@@ -3,7 +3,7 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card-group">
-            <div class="card text-center p-3">
+            <div class="p-3 text-center card">
                 <a href="{{ route('welcome') }}" style="text-align: right;">
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </a>
@@ -15,7 +15,7 @@
                     @endif --}}
                     @if (count($errors) > 0)
                     <div id="alert">
-                        <div class="alert alert-card  alert-danger" role="alert">
+                        <div class="alert alert-card alert-danger" role="alert">
                             <strong>Ralat! </strong>
                             Kad pengenalan / Passport atau Kata Laluan tidak tepat
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -29,7 +29,7 @@
                         <h1>Log Masuk</h1>
                         {{-- <p class="text-muted">Log Masuk disini</p> --}}
 
-                        <div class="input-group mb-3">
+                        <div class="mb-3 input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fa fa-envelope"></i>
@@ -45,7 +45,7 @@
                             @endif --}}
                         </div>
 
-                        <div class="input-group mb-3">
+                        <div class="mb-3 input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
                             </div>
@@ -57,7 +57,7 @@
                             @endif
                         </div>
 
-                        {{-- <div class="input-group mb-4">
+                        {{-- <div class="mb-4 input-group">
                             <div class="form-check checkbox">
                                 <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
                                 <label class="form-check-label" for="remember" style="vertical-align: middle;">
@@ -68,15 +68,15 @@
 
                         <div class="row">
                             <div class="col-md">
-                                <button type="submit" class="btn btn-primary px-4" style="width: 50%;">
+                                <button type="submit" class="px-4 btn btn-primary" style="width: 50%;">
                                     Log Masuk
                                 </button>
                             </div>
                         </div>
 
                         <div class="row" style="padding-top: 10px;">
-                            <div class="col-md text-right">
-                                <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                            <div class="text-right col-md">
+                                <a class="px-0 btn btn-link" href="{{ route('password.request') }}">
                                     Lupa Kata Laluan?
                                 </a>
                             </div>
