@@ -2,6 +2,37 @@
 
 @section('content')
 <!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-5 align-self-center">
+            <h4 class="page-title">Dashboard</h4>
+        </div>
+        <div class="col-7 align-self-center">
+            <div class="d-flex align-items-center justify-content-end">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+
+<!-- ============================================================== -->
 <!-- Sales chart -->
 <!-- ============================================================== -->
 <div class="card-group">
@@ -363,7 +394,7 @@
                 <!-- Comment Row -->
                 <div class="flex-row d-flex comment-row m-t-0">
                     <div class="p-2">
-                        <img src="../../assets/images/users/1.jpg" alt="user" width="50" class="rounded-circle">
+                        <img src="{{asset('nice-admin/assets/images/users/1.jpg')}}" alt="user" width="50" class="rounded-circle">
                     </div>
                     <div class="comment-text w-100">
                         <h6 class="font-medium">James Anderson</h6>
@@ -388,7 +419,7 @@
                 <!-- Comment Row -->
                 <div class="flex-row d-flex comment-row">
                     <div class="p-2">
-                        <img src="../../assets/images/users/4.jpg" alt="user" width="50" class="rounded-circle">
+                        <img src="{{asset('nice-admin/assets/images/users/4.jpg')}}" alt="user" width="50" class="rounded-circle">
                     </div>
                     <div class="comment-text active w-100">
                         <h6 class="font-medium">Michael Jorden</h6>
@@ -413,7 +444,7 @@
                 <!-- Comment Row -->
                 <div class="flex-row d-flex comment-row">
                     <div class="p-2">
-                        <img src="../../assets/images/users/5.jpg" alt="user" width="50" class="rounded-circle">
+                        <img src="{{asset('nice-admin/assets/images/users/5.jpg')}}" alt="user" width="50" class="rounded-circle">
                     </div>
                     <div class="comment-text w-100">
                         <h6 class="font-medium">Johnathan Doeting</h6>
@@ -438,7 +469,7 @@
                 <!-- Comment Row -->
                 <div class="flex-row d-flex comment-row m-t-0">
                     <div class="p-2">
-                        <img src="../../assets/images/users/2.jpg" alt="user" width="50" class="rounded-circle">
+                        <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" width="50" class="rounded-circle">
                     </div>
                     <div class="comment-text w-100">
                         <h6 class="font-medium">Steve Jobs</h6>
@@ -550,5 +581,10 @@
 </div>
 <!-- ============================================================== -->
 <!-- Recent comment and chats -->
+<!-- ============================================================== -->
+
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
 <!-- ============================================================== -->
 @endsection
