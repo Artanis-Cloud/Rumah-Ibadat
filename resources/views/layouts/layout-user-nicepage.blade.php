@@ -559,7 +559,46 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
-
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-5 align-self-center">
+                        {{-- <h4 class="page-title">Tukar Kata Laluan</h4> --}}
+                        @for($i = 1; $i <= count(Request::segments()); $i++)
+                            @if(!($i < count(Request::segments()) & $i > 0))
+                            <h4 class="page-title">{{ucwords(str_replace('-',' ',Request::segment($i)))}}</h4>
+                            @endif
+                        @endfor
+                    </div>
+                    <div class="col-7 align-self-center">
+                        <div class="d-flex align-items-center justify-content-end">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    {{-- <li class="breadcrumb-item">
+                                        <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a>
+                                    </li>
+                                    <li class="breadcrumb-item"> Profil </li>
+                                    <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
+                                    <a href="{{ route('user.halaman-utama') }}">Home</a> &nbsp>&nbsp                
+                                    <?php $link = "" ?>
+                                    @for($i = 1; $i <= count(Request::segments()); $i++)
+                                        @if($i < count(Request::segments()) & $i > 0)
+                                        <?php $link .= "/" . Request::segment($i); ?>
+                                        <a href="<?= $link ?>">{{ ucwords(str_replace('-',' ',Request::segment($i)))}}</a>  &nbsp>
+                                        @else {{ucwords(str_replace('-',' ',Request::segment($i)))}}
+                                        @endif
+                                    @endfor
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
             @yield('content')
             @livewireScripts
 
@@ -617,6 +656,19 @@
     <script src="{{asset('nice-admin/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js')}}"></script>
     <script src="{{asset('nice-admin/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js')}}"></script>
     <script src="{{asset('nice-admin/dist/js/pages/dashboards/dashboard1.js')}}"></script>
+
+    <script type="text/javascript">
+        $("document").ready(function(){
+            setTimeout(function(){
+                // $("div.alert").remove();
+                $("div.alert").removeClass("alert-success border border-success");
+                $("div.alert").removeClass("alert-danger border border-danger");
+                // $("div.alert").empty();
+                $("div.alert").css({ 'color': 'white'});
+                $("div.alert").addClass("alert-white");
+            }, 5000 ); // 5 secs  (1 sec = 1000)
+        });
+    </script>
     <!-- ============================================================== -->
     <!-- END Jquery NICE PAGE -->
     <!-- ============================================================== -->

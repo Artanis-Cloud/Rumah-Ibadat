@@ -10,10 +10,15 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Validator;
+
 class GeneralController extends Controller
 {
     public function update_password(Request $request){
-        // dd($request->all());
+
+        // Validate change password form
+        $this->validator($request->all())->validate();
+
         $user = User::findOrFail(Auth::user()->id);
 
         if (!(Hash::check($request->get('old_password'), Auth::user()->password))) {
@@ -22,18 +27,12 @@ class GeneralController extends Controller
 
         if (strcmp($request->get('old_password'), $request->get('password')) == 0) {
             return redirect()->back()->with("error", "Kata laluan terdahulu tidak boleh sama dengan kata laluan sekarang.");
-            //dd('password lama sama dgn pass baru');
         }
 
         if (strcmp($request->get('password'), $request->get('password_confirmation')) == 1) {
             return redirect()->back()->with("error", "Kata laluan baru tidak sama.");
-            //dd('password baru tak sama');
         }
 
-        $validatedData = $request->validate([
-            'old_password' => 'required',
-            'password' => 'required|string|min:8',
-        ]);
 
         $hashed_random_password = Hash::make($request->get('password'));
 
@@ -42,5 +41,14 @@ class GeneralController extends Controller
         $user->save();
 
         return redirect()->route('tukar-kata-laluan')->with("success", "Kata laluan telah ditukar.");
+    }
+
+    public function validator(array $data)
+    {
+        return Validator::make($data, [
+            'old_password' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required', 'string'],
+        ]);
     }
 }
