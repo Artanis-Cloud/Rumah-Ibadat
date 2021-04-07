@@ -574,6 +574,9 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
+                            @if(Request::is('pengguna/halaman-utama'))
+
+                            @else
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     {{-- <li class="breadcrumb-item">
@@ -581,7 +584,7 @@
                                     </li>
                                     <li class="breadcrumb-item"> Profil </li>
                                     <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
-                                    <a href="{{ route('user.halaman-utama') }}">Home</a> &nbsp>&nbsp                
+                                    <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a> &nbsp>&nbsp                
                                     <?php $link = "" ?>
                                     @for($i = 1; $i <= count(Request::segments()); $i++)
                                         @if($i < count(Request::segments()) & $i > 0)
@@ -592,6 +595,7 @@
                                     @endfor
                                 </ol>
                             </nav>
+                            @endif
                         </div>
                     </div>
                 </div>
