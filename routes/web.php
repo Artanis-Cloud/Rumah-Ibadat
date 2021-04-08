@@ -25,6 +25,7 @@ Auth::routes();
 
 //AUTHENTICATE ROUTE
 Route::middleware(['auth'])->group(function () {
+    Route::get('/profil-rumah-ibadat', [App\Http\Controllers\HomeController::class, 'profil_rumah_ibadat'])->name('profil-rumah-ibadat');
     Route::get('/profil/tukar-kata-laluan', [App\Http\Controllers\HomeController::class, 'change_password'])->name('tukar-kata-laluan');
     Route::post('/tukar-kata-laluan/kemaskini', [App\Http\Controllers\GeneralController::class, 'update_password'])->name('tukar-kata-laluan.kemaskini');
 });

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('2');                 //(0 = Super Admin) (1 = Admin) (2 = User)
             $table->string('status')->default('1');               //(1 = Active) (0 = Deactive)
             $table->string('is_firstime')->default('1');          //(1 = Firstimer) (0 = Not Firstimer)
+            $table->string('is_rumah_ibadat')->default('0');      //(1 = Exist) (0 = Not Exist)
 
             $table->string('name');
             $table->string('email')->unique();
