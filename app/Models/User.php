@@ -17,9 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'role',         //(0 = Super Admin) (1 = Admin) (2 = User)
-        'status',       //(1 = Active) (0 = Deactive)
-        'is_firstime',  //(1 = Firstimer) (0 = Not Firstimer)
+        'role',             //(0 = Super Admin) (1 = Admin) (2 = User)
+        'status',           //(1 = Active) (0 = Deactive)
+        'is_firstime',      //(1 = Firstimer) (0 = Not Firstimer)
+        'is_rumah_ibadat',  //(1 = Exist) (0 = Not Exist)
 
         'name',
         'email',

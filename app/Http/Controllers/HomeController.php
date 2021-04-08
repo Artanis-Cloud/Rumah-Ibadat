@@ -42,4 +42,9 @@ class HomeController extends Controller
     {
         return view('tukar-kata-laluan');
     }
+
+    public function profil_rumah_ibadat()
+    {
+        return view('users.profil.profil-rumah-ibadat');
+    }
 }

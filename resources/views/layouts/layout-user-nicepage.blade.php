@@ -14,6 +14,13 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('nice-admin/assets/images/favicon.png')}}">
 
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="{{asset('nice-admin/icon/css/all.css')}}">
+    <link rel="stylesheet" href="{{asset('nice-admin/icon/css/fontawesome.css')}}">
+    <link rel="stylesheet" href="{{asset('nice-admin/icon/css/brands.css')}}">
+    <link rel="stylesheet" href="{{asset('nice-admin/icon/css/solid.css')}}">
+
+
     <!-- Custom CSS -->
     <link href="{{asset('nice-admin/assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link href="{{asset('nice-admin/assets/extra-libs/c3/c3.min.css')}}" rel="stylesheet">
@@ -301,7 +308,7 @@
                                 <span class="with-arrow">
                                     <span class="bg-primary"></span>
                                 </span>
-                                <div class="text-white d-flex no-block align-items-center p-15 bg-primary m-b-10">
+                                <div class="text-white d-flex no-block align-items-center p-15 bg-primary m-b-10" style="padding: 10px;">
                                     <div class="">
                                         <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="60">
                                     </div>
@@ -312,18 +319,28 @@
                                 </div>
                                 <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+
                                 <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+
+                                <a class="dropdown-item" href="{{ route('profil-rumah-ibadat') }}">
+                                    <i class="fas fa-torii-gate"></i> Kemaskini Profil Rumah Ibadat</a>
+
+
                                 <div class="dropdown-divider"></div>
+
+
                                 <a class="dropdown-item" href="{{ route('tukar-kata-laluan') }}">
                                     <i class="ti-settings m-r-5 m-l-5"></i> Tukar Kata Laluan</a>
+
+
                                 <div class="dropdown-divider"></div>
+
+
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                                     <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                                 <div class="dropdown-divider"></div>
-                                <div class="p-10 p-l-30">
+                                <div class="p-10 p-l-30" style="padding: 10px;">
                                     <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
                                 </div>
                             </div>
@@ -660,6 +677,12 @@
     <script src="{{asset('nice-admin/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js')}}"></script>
     <script src="{{asset('nice-admin/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js')}}"></script>
     <script src="{{asset('nice-admin/dist/js/pages/dashboards/dashboard1.js')}}"></script>
+    {{-- font-awesome icon --}}
+    <script src="{{asset('nice-admin/icon/js/all.js')}}"></script>
+    <script src="{{asset('nice-admin/icon/js/brands.js')}}"></script>
+    <script src="{{asset('nice-admin/icon/js/solid.js')}}"></script>
+    <script src="{{asset('nice-admin/icon/js/fontawesome.js')}}"></script>
+
 
     <script type="text/javascript">
         $("document").ready(function(){
