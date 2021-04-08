@@ -4,6 +4,7 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteBase "/rumah-ibadat/"
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
