@@ -32,7 +32,7 @@
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus placeholder="Nama" value="{{ old('name', null) }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                                    <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus placeholder="Nama" value="{{ old('name') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                                     @if($errors->has('name'))
                                         <div class="invalid-feedback">
                                             {{ strtoupper($errors->first('name')) }}
@@ -47,7 +47,7 @@
                                             <i class="fa fa-envelope"></i>
                                         </span>
                                     </div>
-                                    <input name="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus placeholder="Emel" value="{{ old('email', null) }}">
+                                    <input name="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus placeholder="Emel" value="{{ old('email') }}">
                                     @if($errors->has('email'))
                                         <div class="invalid-feedback">
                                             {{ strtoupper($errors->first('email')) }}
@@ -64,7 +64,7 @@
                                             <i class="fa fa-id-card"></i>
                                         </span>
                                     </div>
-                                    <input name="ic_number" type="text" class="form-control{{ $errors->has('ic_number') ? ' is-invalid' : '' }}" required autofocus placeholder="Kad Pengenalan" value="{{ old('ic_number', null) }}" minlength="12" maxlength="12" onkeypress="return onlyNumberKey(event)">
+                                    <input name="ic_number" type="text" class="form-control{{ $errors->has('ic_number') ? ' is-invalid' : '' }}" required autofocus placeholder="Kad Pengenalan" value="{{ old('ic_number') }}" minlength="12" maxlength="12" onkeypress="return onlyNumberKey(event)">
                                     @if($errors->has('ic_number'))
                                         <div class="invalid-feedback">
                                             {{ strtoupper($errors->first('ic_number')) }}
@@ -76,10 +76,10 @@
                                 <div class="mb-3 input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fa fa-home"></i>
+                                            <i class="fa fa-mobile"></i>
                                         </span>
                                     </div>
-                                    <input name="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" required autofocus placeholder="Alamat" value="{{ old('address', null) }}">
+                                    <input name="mobile_phone" type="text" class="form-control{{ $errors->has('mobile_phone') ? ' is-invalid' : '' }}" required autofocus placeholder="Nombor Telefon Bimbit" value="{{ old('mobile_phone') }}">
                                     @if($errors->has('address'))
                                         <div class="invalid-feedback">
                                             {{ strtoupper($errors->first('address')) }}
