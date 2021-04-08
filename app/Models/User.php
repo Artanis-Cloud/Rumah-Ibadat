@@ -18,12 +18,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'role',         //(0 = Super Admin) (1 = Admin) (2 = User)
+        'status',       //(1 = Active) (0 = Deactive)
+        'is_firstime',  //(1 = Firstimer) (0 = Not Firstimer)
+
         'name',
         'email',
         'ic_number',
         'password',
-        'status',       //(1 = Active) (0 = Deactive)
-        'is_firstime',  //(1 = Firstimer) (0 = Not Firstimer)
+        'mobile_phone',
+        
     ];
 
     /**
@@ -44,4 +47,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Table Relation
+
+    public function rumah_ibadat()
+    {
+        return $this->hasOne('App\Models\RumahIbadat');
+    }
 }

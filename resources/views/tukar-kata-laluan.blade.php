@@ -63,13 +63,13 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label>Kata Laluan Baru</label>
+                      <label>Sahkan Kata Laluan Baru</label>
                       <div class="input-group mb-3">
-                          <input class="form-control @error('password_confirmation') is-invalid @else border-dark @enderror" id="password_confirmation" name="password_confirmation" type="password">
+                          <input class="form-control @error('password') is-invalid @else border-dark @enderror" id="password_confirmation" name="password_confirmation" type="password">
                           <div class="input-group-append">
                               <button class="btn btn-secondary" type="button" id="password_confirmation_button" onclick="visiblePassword('password_confirmation')"><i id="password_confirmation_icon" class="fa fa-eye-slash" aria-hidden="true"></i></button>
                           </div>
-                          @error('password_confirmation')
+                          @error('password')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
