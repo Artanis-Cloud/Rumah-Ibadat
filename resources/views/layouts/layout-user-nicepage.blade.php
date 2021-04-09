@@ -331,7 +331,7 @@
 
 
                                 <a class="dropdown-item" href="{{ route('tukar-kata-laluan') }}">
-                                    <i class="ti-settings m-r-5 m-l-5"></i> Tukar Kata Laluan</a>
+                                    <i class="fas fa-unlock-alt"></i> Tukar Kata Laluan</a>
 
 
                                 <div class="dropdown-divider"></div>

@@ -158,22 +158,22 @@
                           <label class="mr-sm-2" for="inlineFormCustomSelect">Daerah</label>
                           <select class="custom-select mr-sm-2 @error('state') is-invalid @else border-dark @enderror" id="state" name="state">
                               <option selected disabled hidden>PILIH NEGERI</option>
-                              <option value="Johor"           {{ old('state') == "Johor"            ? 'selected' : '' }}>Johor</option>
-                              <option value="Kedah"           {{ old('state') == "Kedah"            ? 'selected' : '' }}>Kedah</option>
-                              <option value="Kelantan"        {{ old('state') == "Kelantan"         ? 'selected' : '' }}>Kelantan</option>
-                              <option value="Melaka"          {{ old('state') == "Melaka"           ? 'selected' : '' }}>Melaka</option>
-                              <option value="Negeri Sembilan" {{ old('state') == "Negeri Sembilan"  ? 'selected' : '' }}>Negeri Sembilan</option>
-                              <option value="Pahang"          {{ old('state') == "Pahang"           ? 'selected' : '' }}>Pahang</option>
-                              <option value="Pulau Pinang"    {{ old('state') == "Pulau Pinang"     ? 'selected' : '' }}>Pulau Pinang</option>
-                              <option value="Perak"           {{ old('state') == "Perak"            ? 'selected' : '' }}>Perak</option>
-                              <option value="Perlis"          {{ old('state') == "Perlis"           ? 'selected' : '' }}>Perlis</option>
-                              <option value="Sabah"           {{ old('state') == "Sabah"            ? 'selected' : '' }}>Sabah</option>
-                              <option value="Sarawak"         {{ old('state') == "Sarawak"          ? 'selected' : '' }}>Sarawak</option>
-                              <option value="Selangor"        {{ old('state') == "Selangor"         ? 'selected' : '' }}>Selangor</option>
-                              <option value="Terengganu"      {{ old('state') == "Terengganu"       ? 'selected' : '' }}>Terengganu</option>
-                              <option value="WP Kuala Lumpur" {{ old('state') == "WP Kuala Lumpur"  ? 'selected' : '' }}>WP Kuala Lumpur</option>
-                              <option value="WP Putrajaya"    {{ old('state') == "WP Putrajaya"     ? 'selected' : '' }}>WP Putrajaya</option>
-                              <option value="WP Labuan"       {{ old('state') == "WP Labuan"        ? 'selected' : '' }}>WP Labuan</option>
+                              <option value="JOHOR"           {{ old('state') == "JOHOR"            ? 'selected' : '' }}>JOHOR</option>
+                              <option value="KEDAH"           {{ old('state') == "KEDAH"            ? 'selected' : '' }}>KEDAH</option>
+                              <option value="KELANTAN"        {{ old('state') == "KELANTAN"         ? 'selected' : '' }}>KELANTAN</option>
+                              <option value="MELAKA"          {{ old('state') == "MELAKA"           ? 'selected' : '' }}>MELAKA</option>
+                              <option value="NEGERI SEMBILAN" {{ old('state') == "NEGERI SEMBILAN"  ? 'selected' : '' }}>NEGERI SEMBILAN</option>
+                              <option value="PAHANG"          {{ old('state') == "PAHANG"           ? 'selected' : '' }}>PAHANG</option>
+                              <option value="PULAU PINANG"    {{ old('state') == "PULAU PINANG"     ? 'selected' : '' }}>PULAU PINANG</option>
+                              <option value="PERAK"           {{ old('state') == "PERAK"            ? 'selected' : '' }}>PERAK</option>
+                              <option value="PERLIS"          {{ old('state') == "PERLIS"           ? 'selected' : '' }}>PERLIS</option>
+                              <option value="SABAH"           {{ old('state') == "SABAH"            ? 'selected' : '' }}>SABAH</option>
+                              <option value="SARAWAK"         {{ old('state') == "SARAWAK"          ? 'selected' : '' }}>SARAWAK</option>
+                              <option value="SELANGOR"        {{ old('state') == "SELANGOR"         ? 'selected' : '' }}>SELANGOR</option>
+                              <option value="TERENGGANU"      {{ old('state') == "TERENGGANU"       ? 'selected' : '' }}>TERENGGANU</option>
+                              <option value="WP KUALA LUMPUR" {{ old('state') == "WP KUALA LUMPUR"  ? 'selected' : '' }}>WP KUALA LUMPUR</option>
+                              <option value="WP PUTRAJAYA"    {{ old('state') == "WP PUTRAJAYA"     ? 'selected' : '' }}>WP PUTRAJAYA</option>
+                              <option value="WP LABUAN"       {{ old('state') == "WP LABUAN"        ? 'selected' : '' }}>WP LABUAN</option>
                           </select>
                           @error('state')
                           <span class="invalid-feedback" role="alert">
@@ -192,21 +192,21 @@
                           <label class="mr-sm-2" for="inlineFormCustomSelect">Nama Bank</label>
                           <select class="custom-select mr-sm-2 @error('bank_name') is-invalid @else border-dark @enderror" id="bank_name" name="bank_name">
                               <option selected disabled hidden>PILIH BANK</option>
-                              <option value="Affin Bank" >Affin Bank</option>
-                              <option value="Agrobank" >Agrobank</option>
-                              <option value="Alliance Bank Malaysia">Alliance Bank Malaysia</option>
-                              <option value="AmBank">AmBank</option>
-                              <option value="Bank Islam Malaysia" >Bank Islam Malaysia</option>
-                              <option value="Bank Muamalat Malaysia Berhad" >Bank Muamalat Malaysia Berhad</option>
-                              <option value="Bank Rakyat" >Bank Rakyat</option>
-                              <option value="Bank Simpanan Nasional (BSN)" >Bank Simpanan Nasional (BSN)</option>
-                              <option value="CIMB Bank">CIMB Bank</option>
-                              <option value="Citibank" >Citibank</option>
-                              <option value="HSBC Bank" >HSBC Bank</option>
-                              <option value="Hong Leong Bank" >Hong Leong Bank</option>
-                              <option value="Maybank" >Maybank</option>
-                              <option value="Public Bank" >Public Bank</option>
-                              <option value="RHB Bank">RHB Bank</option>
+                              <option value="AFFIN BANK" >AFFIN BANK</option>
+                              <option value="AGROBANK" >AGROBANK</option>
+                              <option value="ALLIANCE BANK MALAYSIA">ALLIANCE BANK MALAYSIA</option>
+                              <option value="AMBANK">AMBANK</option>
+                              <option value="BANK ISLAM MALAYSIA" >BANK ISLAM MALAYSIA</option>
+                              <option value="BANK MUAMALAT MALAYSIA BERHAD" >BANK MUAMALAT MALAYSIA BERHAD</option>
+                              <option value="BANK RAKYAT" >BANK RAKYAT</option>
+                              <option value="BANK SIMPANAN NASIONAL (BSN)" >BANK SIMPANAN NASIONAL (BSN)</option>
+                              <option value="CIMB BANK">CIMB BANK</option>
+                              <option value="CITIBANK" >CITIBANK</option>
+                              <option value="HSBC BANK" >HSBC BANK</option>
+                              <option value="HONG LEONG BANK" >HONG LEONG BANK</option>
+                              <option value="MAYBANK" >MAYBANK</option>
+                              <option value="PUBLIC BANK" >PUBLIC BANK</option>
+                              <option value="RHB BANK">RHB BANK</option>
                           </select>
                           @error('bank_name')
                           <span class="invalid-feedback" role="alert">
