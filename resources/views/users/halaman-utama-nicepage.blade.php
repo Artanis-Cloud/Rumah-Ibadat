@@ -9,96 +9,62 @@
 <!-- ============================================================== -->
 <!-- Sales chart -->
 <!-- ============================================================== -->
-<div class="card-group">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="d-flex no-block align-items-center">
-                        <div>
-                            <i class="mdi mdi-emoticon font-20 text-muted"></i>
-                            <p class="font-16 m-b-5">New Clients</p>
-                        </div>
-                        <div class="ml-auto">
-                            <h1 class="font-light text-right">23</h1>
-                        </div>
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="card bg-info">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div class="text-white">
+                        <h2>120</h2>
+                        <h6>Permohonan <br>Baru</h6>
                     </div>
-                </div>
-                <div class="col-12">
-                    <div class="progress">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 75%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="ml-auto">
+                        <span class="text-white display-6"><i class="fas fa-clipboard"></i></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Column -->
-    <!-- Column -->
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="d-flex no-block align-items-center">
-                        <div>
-                            <i class="mdi mdi-image font-20 text-muted"></i>
-                            <p class="font-16 m-b-5">New Projects</p>
-                        </div>
-                        <div class="ml-auto">
-                            <h1 class="font-light text-right">169</h1>
-                        </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card bg-warning">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div class="text-white">
+                        <h2>150</h2>
+                        <h6>Permohonan <br>Sedang Diproses</h6>
                     </div>
-                </div>
-                <div class="col-12">
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="ml-auto">
+                        <span class="text-white display-6"><i class="fas fa-sync-alt"></i></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Column -->
-    <!-- Column -->
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="d-flex no-block align-items-center">
-                        <div>
-                            <i class="mdi mdi-currency-eur font-20 text-muted"></i>
-                            <p class="font-16 m-b-5">New Invoices</p>
-                        </div>
-                        <div class="ml-auto">
-                            <h1 class="font-light text-right">157</h1>
-                        </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card bg-success">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div class="text-white">
+                        <h2>450</h2>
+                        <h6>Permohonan <br>Lulus</h6>
                     </div>
-                </div>
-                <div class="col-12">
-                    <div class="progress">
-                        <div class="progress-bar bg-purple" role="progressbar" style="width: 65%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="ml-auto">
+                        <span class="text-white display-6"><i class="fas fa-clipboard-check"></i></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Column -->
-    <!-- Column -->
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="d-flex no-block align-items-center">
-                        <div>
-                            <i class="mdi mdi-poll font-20 text-muted"></i>
-                            <p class="font-16 m-b-5">New Sales</p>
-                        </div>
-                        <div class="ml-auto">
-                            <h1 class="font-light text-right">236</h1>
-                        </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card bg-danger">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div class="text-white">
+                        <h2>100</h2>
+                        <h6>Permohonan <br>Tidak Lulus</h6>
                     </div>
-                </div>
-                <div class="col-12">
-                    <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 70%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="ml-auto">
+                        <span class="text-white display-6"><i class="fas fa-times-circle"></i></span>
                     </div>
                 </div>
             </div>
@@ -255,42 +221,42 @@
                     </thead>
                     <tbody>
                         <tr>
-                            
+
                             <td class="txt-oflo">Elite admin</td>
                             <td><span class="label label-success label-rounded">SALE</span> </td>
                             <td class="txt-oflo">April 18, 2017</td>
                             <td><span class="font-medium">$24</span></td>
                         </tr>
                         <tr>
-                            
+
                             <td class="txt-oflo">Real Homes WP Theme</td>
                             <td><span class="label label-info label-rounded">EXTENDED</span></td>
                             <td class="txt-oflo">April 19, 2017</td>
                             <td><span class="font-medium">$1250</span></td>
                         </tr>
                         <tr>
-                            
+
                             <td class="txt-oflo">Ample Admin</td>
                             <td><span class="label label-purple label-rounded">Tax</span></td>
                             <td class="txt-oflo">April 19, 2017</td>
                             <td><span class="font-medium">$1250</span></td>
                         </tr>
                         <tr>
-                            
+
                             <td class="txt-oflo">Medical Pro WP Theme</td>
                             <td><span class="label label-success label-rounded">Sale</span></td>
                             <td class="txt-oflo">April 20, 2017</td>
                             <td><span class="font-medium">-$24</span></td>
                         </tr>
                         <tr>
-                            
+
                             <td class="txt-oflo">Hosting press html</td>
                             <td><span class="label label-success label-rounded">SALE</span></td>
                             <td class="txt-oflo">April 21, 2017</td>
                             <td><span class="font-medium">$24</span></td>
                         </tr>
                         <tr>
-                            
+
                             <td class="txt-oflo">Digital Agency PSD</td>
                             <td><span class="label label-danger label-rounded">Tax</span> </td>
                             <td class="txt-oflo">April 23, 2017</td>
@@ -504,7 +470,7 @@
                                     <span class="todo-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</span><span class="float-right badge badge-pill badge-danger">Project</span>
                                 </label>
                             </div>
-                            
+
                         </li>
                         <li class="list-group-item todo-item" data-role="task">
                             <div class="custom-control custom-checkbox">
@@ -513,7 +479,7 @@
                                     <span class="todo-desc">Ipsum is simply dummy text of the printing</span> <span class="float-right badge badge-pill badge-info">Project</span>
                                 </label>
                             </div>
-                            
+
                         </li>
                         <li class="list-group-item todo-item" data-role="task">
                             <div class="custom-control custom-checkbox">

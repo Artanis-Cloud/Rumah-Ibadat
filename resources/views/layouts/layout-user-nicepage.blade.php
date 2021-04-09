@@ -62,21 +62,21 @@
                     <div class="navbar-brand">
                         <a href="{{ route('user.halaman-utama') }}" class="logo">
                             <!-- Logo icon -->
-                            <b class="logo-icon">
+                            <span class="logo-icon">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
+                                <img src="https://upload.wikimedia.org/wikipedia/ms/archive/9/93/20090423144020%21Coat_of_arms_of_Malaysia.png" style="height: 50px;" alt="homepage" class="dark-logo" />
+                                <!-- Light Logo text -->
+                                <img src="{{asset('nice-admin/assets/images/logo-light-text.png')}}" class="light-logo" alt="homepage" />
 
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="height: 50px;" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo icon -->
-                                <img src="{{asset('nice-admin/assets/images/logo-light-icon.png')}}" alt="homepage" class="light-logo" />
-                            </b>
+                            </span>
                             <!--End Logo icon -->
                             <!-- Logo text -->
                             <span class="logo-text">
                                 <!-- dark Logo text -->
-                                <img src="https://upload.wikimedia.org/wikipedia/ms/archive/9/93/20090423144020%21Coat_of_arms_of_Malaysia.png" style="height: 40px;" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo text -->
-                                <img src="{{asset('nice-admin/assets/images/logo-light-text.png')}}" class="light-logo" alt="homepage" />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="height: 50px; padding-left: 20%;" alt="homepage" class="dark-logo" />
+                                <!-- Light Logo icon -->
+                                <img src="{{asset('nice-admin/assets/images/logo-light-icon.png')}}" alt="homepage" class="light-logo" />
                             </span>
                         </a>
                     </div>
@@ -98,7 +98,7 @@
                     <!-- ============================================================== -->
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="float-left mr-auto navbar-nav">
+                    <ul class="mr-auto navbar-nav" style="padding-left: 5%;">
                         <!-- <li class="nav-item d-none d-md-block">
                             <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar">
                                 <i class="mdi mdi-menu font-24"></i>
@@ -107,25 +107,12 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        
-                        <li class="nav-item search-box">
-                            {{-- <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                                <div class="d-flex align-items-center">
-                                    <i class="mr-1 mdi mdi-magnify font-20"></i>
-                                    <div class="ml-1 d-none d-sm-block">
-                                        <span>Search</span>
-                                    </div>
-                                </div>
-                            </a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter">
-                                <a class="srh-btn">
-                                    <i class="ti-close"></i>
-                                </a>
-                            </form> --}}
-                        <p class="font-10 m-b-5" style="text-align: center;">Sistem Bantuan Kewangan Rumah Ibadat </p>
+                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Rumah Ibadat </h1>
+                        {{-- <li class="nav-item search-box">
 
-                        </li>
+
+
+                        </li> --}}
 
                     </ul>
 
@@ -168,7 +155,7 @@
                                             </a>
                                             <!-- Message -->
                                             <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img"> 
+                                                <span class="user-img">
 
                                                     <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle">
                                                     <span class="profile-status busy pull-right"></span>
@@ -366,7 +353,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <!-- User Profile-->
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Personal</span></li>
+                        {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Personal</span></li> --}}
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('user.halaman-utama') }}" aria-expanded="false"><i class="icon-home"></i><span class="hide-menu">Halaman Utama </span></a></li>
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Permohonan</span></li>
                         <li class="sidebar-item"> <a class="sidebar-link two-column has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-inbox-arrow-down"></i><span class="hide-menu">Permohonan </span></a>
@@ -380,20 +367,13 @@
                                 <li class="sidebar-item"><a href="app-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-range"></i><span class="hide-menu"> Permohonan Batal </span></a></li>
                             </ul>
                         </li> --}}
+
+
                         <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Permohonan</span></li>
-                        <li class="sidebar-item mega-dropdown"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-widgets"></i><span class="hide-menu">Permohonan </span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-collage"></i><span class="hide-menu">Permohonan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="ui-buttons.html" class="sidebar-link"><i class="mdi mdi-toggle-switch"></i><span class="hide-menu"> Permohonan Baru</span></a></li>
-                                <li class="sidebar-item"><a href="ui-modals.html" class="sidebar-link"><i class="mdi mdi-tablet"></i><span class="hide-menu"> Permohonan Sedang Diproses</span></a></li>
-                                <li class="sidebar-item"><a href="ui-modals.html" class="sidebar-link"><i class="mdi mdi-tablet"></i><span class="hide-menu"> Permohonan Sedang Lulus</span></a></li>
-                                <li class="sidebar-item"><a href="ui-modals.html" class="sidebar-link"><i class="mdi mdi-tablet"></i><span class="hide-menu"> Permohonan Sedang Tidak Lulus</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Forms</span></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-collage"></i><span class="hide-menu">Forms</span></a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-collage"></i><span class="hide-menu">Form Elements</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
+                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-collage"></i><span class="hide-menu">Permohonan Baru</span></a>
+                                    {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-inputs.html" class="sidebar-link"><i class="mdi mdi-priority-low"></i><span class="hide-menu"> Forms Input</span></a></li>
                                         <li class="sidebar-item"><a href="form-input-groups.html" class="sidebar-link"><i class="mdi mdi-rounded-corner"></i><span class="hide-menu"> Input Groups</span></a></li>
                                         <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><i class="mdi mdi-select-all"></i><span class="hide-menu"> Input Grid</span></a></li>
@@ -402,10 +382,10 @@
                                         <li class="sidebar-item"><a href="form-bootstrap-switch.html" class="sidebar-link"><i class="mdi mdi-toggle-switch-off"></i><span class="hide-menu"> Bootstrap Switch</span></a></li>
                                         <li class="sidebar-item"><a href="form-select2.html" class="sidebar-link"><i class="mdi mdi-relative-scale"></i><span class="hide-menu"> Select2</span></a></li>
                                         <li class="sidebar-item"><a href="form-dual-listbox.html" class="sidebar-link"><i class="mdi mdi-tab-unselected"></i><span class="hide-menu"> Dual Listbox</span></a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Form Layouts</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
+                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Permohonan Sedang Diproses</span></a>
+                                    {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-vector-difference-ba"></i><span class="hide-menu"> Basic Forms</span></a></li>
                                         <li class="sidebar-item"><a href="form-horizontal.html" class="sidebar-link"><i class="mdi mdi-file-document-box"></i><span class="hide-menu"> Form Horizontal</span></a></li>
                                         <li class="sidebar-item"><a href="form-actions.html" class="sidebar-link"><i class="mdi mdi-code-greater-than"></i><span class="hide-menu"> Form Actions</span></a></li>
@@ -413,91 +393,50 @@
                                         <li class="sidebar-item"><a href="form-bordered.html" class="sidebar-link"><i class="mdi mdi-flip-to-front"></i><span class="hide-menu"> Form Bordered</span></a></li>
                                         <li class="sidebar-item"><a href="form-striped-row.html" class="sidebar-link"><i class="mdi mdi-content-duplicate"></i><span class="hide-menu"> Striped Rows</span></a></li>
                                         <li class="sidebar-item"><a href="form-detail.html" class="sidebar-link"><i class="mdi mdi-cards-outline"></i><span class="hide-menu"> Form Detail</span></a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-code-equal"></i><span class="hide-menu">Form Addons</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
+                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-code-equal"></i><span class="hide-menu">Permohonan Lulus</span></a>
+                                    {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-paginator.html" class="sidebar-link"><i class="mdi mdi-export"></i><span class="hide-menu"> Paginator</span></a></li>
                                         <li class="sidebar-item"><a href="form-img-cropper.html" class="sidebar-link"><i class="mdi mdi-crop"></i><span class="hide-menu"> Image Cropper</span></a></li>
                                         <li class="sidebar-item"><a href="form-dropzone.html" class="sidebar-link"><i class="mdi mdi-crosshairs-gps"></i><span class="hide-menu"> Dropzone</span></a></li>
                                         <li class="sidebar-item"><a href="form-mask.html" class="sidebar-link"><i class="mdi mdi-box-shadow"></i><span class="hide-menu"> Form Mask</span></a></li>
                                         <li class="sidebar-item"><a href="form-typeahead.html" class="sidebar-link"><i class="mdi mdi-cards-variant"></i><span class="hide-menu"> Form Typehead</span></a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-alert-box"></i><span class="hide-menu">Form Validation</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
+                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-alert-box"></i><span class="hide-menu">Permohonan Tidak Lulus</span></a>
+                                    {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-bootstrap-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-scan"></i><span class="hide-menu"> Bootstrap Validation</span></a></li>
                                         <li class="sidebar-item"><a href="form-custom-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-plus"></i><span class="hide-menu"> Custom Validation</span></a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pencil-box-outline"></i><span class="hide-menu">Form Pickers</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-picker-colorpicker.html" class="sidebar-link"><i class="mdi mdi-calendar-plus"></i><span class="hide-menu"> Colorpicker</span></a></li>
-                                        <li class="sidebar-item"><a href="form-picker-datetimepicker.html" class="sidebar-link"><i class="mdi mdi-calendar-clock"></i><span class="hide-menu">  Datetimepicker</span></a></li>
-                                        <li class="sidebar-item"><a href="form-picker-bootstrap-rangepicker.html" class="sidebar-link"><i class="mdi mdi-calendar-range"></i><span class="hide-menu"> BT Rangepicker</span></a></li>
-                                        <li class="sidebar-item"><a href="form-picker-bootstrap-datepicker.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> BT Datepicker</span></a></li>
-                                        <li class="sidebar-item"><a href="form-picker-material-datepicker.html" class="sidebar-link"><i class="mdi mdi-calendar-text"></i><span class="hide-menu">  Material Datepicker</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-dns"></i><span class="hide-menu">Form Editor</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-editor-ckeditor.html" class="sidebar-link"><i class="mdi mdi-drawing"></i><span class="hide-menu">Ck Editor</span></a></li>
-                                        <li class="sidebar-item"><a href="form-editor-quill.html" class="sidebar-link"><i class="mdi mdi-drupal"></i><span class="hide-menu">Quill Editor</span></a></li>
-                                        <li class="sidebar-item"><a href="form-editor-summernote.html" class="sidebar-link"><i class="mdi mdi-brightness-6"></i><span class="hide-menu">Summernote Editor</span></a></li>
-                                        <li class="sidebar-item"><a href="form-editor-tinymce.html" class="sidebar-link"><i class="mdi mdi-bowling"></i><span class="hide-menu">Tinymce Edtor</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="form-wizard.html" aria-expanded="false"><i class="mdi mdi-cube-send"></i><span class="hide-menu">Form Wizard</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="form-repeater.html" aria-expanded="false"><i class="mdi mdi-creation"></i><span class="hide-menu">Form Repeater</span></a></li>
+
+
+
                             </ul>
                         </li>
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Tables</span></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-border-none"></i><span class="hide-menu">Tables</span></a>
+                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Rumah Ibadat</span></li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-border-none"></i><span class="hide-menu">Rumah Ibadat</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-border-none"></i><span class="hide-menu">Bootstrap Tables</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
+                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-border-none"></i><span class="hide-menu">Pendaftaran Rumah Ibadat</span></a>
+                                    {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="table-basic.html" class="sidebar-link"><i class="mdi mdi-border-all"></i><span class="hide-menu">Basic Table </span></a></li>
                                         <li class="sidebar-item"><a href="table-dark-basic.html" class="sidebar-link"><i class="mdi mdi-border-left"></i><span class="hide-menu">Dark Basic Table </span></a></li>
                                         <li class="sidebar-item"><a href="table-sizing.html" class="sidebar-link"><i class="mdi mdi-border-outside"></i><span class="hide-menu">Sizing Table </span></a></li>
                                         <li class="sidebar-item"><a href="table-layout-coloured.html" class="sidebar-link"><i class="mdi mdi-border-bottom"></i><span class="hide-menu">Coloured Table Layout</span></a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Datatables</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
+                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Kemaskini Rumah Ibadat</span></a>
+                                    {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="table-datatable-basic.html" class="sidebar-link"><i class="mdi mdi-border-vertical"></i><span class="hide-menu"> Basic Initialisation</span></a></li>
                                         <li class="sidebar-item"><a href="table-datatable-api.html" class="sidebar-link"><i class="mdi mdi-blur-linear"></i><span class="hide-menu"> API</span></a></li>
                                         <li class="sidebar-item"><a href="table-datatable-advanced.html" class="sidebar-link"><i class="mdi mdi-border-style"></i><span class="hide-menu"> Advanced Initialisation</span></a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="table-jsgrid.html" aria-expanded="false"><i class="mdi mdi-border-top"></i><span class="hide-menu">Table Jsgrid</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="table-responsive.html" aria-expanded="false"><i class="mdi mdi-border-style"></i><span class="hide-menu">Table Responsive</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="table-footable.html" aria-expanded="false"><i class="mdi mdi-tab-unselected"></i><span class="hide-menu">Table Footable</span></a></li>
+
                             </ul>
                         </li>
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Charts</span></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-image-filter-tilt-shift"></i><span class="hide-menu"> Charts</span></a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="chart-morris.html" aria-expanded="false"><i class="mdi mdi-image-filter-tilt-shift"></i><span class="hide-menu"> Morris Chart</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="chart-chart-js.html" aria-expanded="false"><i class="mdi mdi-svg"></i><span class="hide-menu">Chartjs</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="chart-sparkline.html" aria-expanded="false"><i class="mdi mdi-chart-histogram"></i><span class="hide-menu">Sparkline Chart</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="chart-chartist.html" aria-expanded="false"><i class="mdi mdi-blur"></i><span class="hide-menu">Chartis Chart</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-chemical-weapon"></i><span class="hide-menu">C3 Charts</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="chart-c3-axis.html" class="sidebar-link"><i class="mdi mdi-arrange-bring-to-front"></i> <span class="hide-menu">Axis Chart</span></a></li>
-                                        <li class="sidebar-item"><a href="chart-c3-bar.html" class="sidebar-link"><i class="mdi mdi-arrange-send-to-back"></i> <span class="hide-menu">Bar Chart</span></a></li>
-                                        <li class="sidebar-item"><a href="chart-c3-data.html" class="sidebar-link"><i class="mdi mdi-backup-restore"></i> <span class="hide-menu">Data Chart</span></a></li>
-                                        <li class="sidebar-item"><a href="chart-c3-line.html" class="sidebar-link"><i class="mdi mdi-backburger"></i> <span class="hide-menu">Line Chart</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i><span class="hide-menu">Echarts</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="chart-echart-basic.html" class="sidebar-link"><i class="mdi mdi-chart-line"></i> <span class="hide-menu">Basic Charts</span></a></li>
-                                        <li class="sidebar-item"><a href="chart-echart-bar.html" class="sidebar-link"><i class="mdi mdi-chart-scatterplot-hexbin"></i> <span class="hide-menu">Bar Chart</span></a></li>
-                                        <li class="sidebar-item"><a href="chart-echart-pie-doughnut.html" class="sidebar-link"><i class="mdi mdi-chart-pie"></i> <span class="hide-menu">Pie &amp; Doughnut Chart</span></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Sample Pages</span></li>
                         <li class="sidebar-item mega-dropdown"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Pages </span></a>
                             <ul aria-expanded="false" class="collapse first-level">
@@ -547,21 +486,7 @@
                                 <li class="sidebar-item"><a href="eco-products-checkout.html" class="sidebar-link"><i class="mdi mdi-clipboard-check"></i> <span class="hide-menu">Eco- Products Checkout</span></a></li>
                             </ul>
                         </li> --}}
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-notification-clear-all"></i><span class="hide-menu">DD</span></a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.1</span></a></li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.2</span></a></li>
-                                <li class="sidebar-item"> <a class="has-arrow sidebar-link" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-playlist-plus"></i> <span class="hide-menu">Menu 1.3</span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.3.1</span></a></li>
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.3.2</span></a></li>
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.3.3</span></a></li>
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.3.4</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-playlist-check"></i><span class="hide-menu"> item 1.4</span></a></li>
-                            </ul>
-                        </li>
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -601,7 +526,7 @@
                                     </li>
                                     <li class="breadcrumb-item"> Profil </li>
                                     <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
-                                    <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a> &nbsp>&nbsp                
+                                    <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a> &nbsp>&nbsp
                                     <?php $link = "" ?>
                                     @for($i = 1; $i <= count(Request::segments()); $i++)
                                         @if($i < count(Request::segments()) & $i > 0)
@@ -623,18 +548,18 @@
             @yield('content')
             @livewireScripts
 
-            
-                
-                {{-- BODY CONTENT IS HERE!!!!!!! --}}
-                
 
-            
+
+                {{-- BODY CONTENT IS HERE!!!!!!! --}}
+
+
+
 
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="text-center footer">
-                Hakcipta Terpelihara 2021 © Pejabat Setiausaha Kerajaan Negeri Selangor. Designed and Developed by 
+                Hakcipta Terpelihara 2021 © Pejabat Setiausaha Kerajaan Negeri Selangor. Designed and Developed by
                 <a href="https://www.artaniscloud.com/">Artanis Cloud Sdn. Bhd.</a>.
             </footer>
             <!-- ============================================================== -->
