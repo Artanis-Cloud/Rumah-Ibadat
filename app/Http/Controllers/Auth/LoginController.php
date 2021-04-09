@@ -54,7 +54,7 @@ class LoginController extends Controller
                 break;
             case 2:
                 if(auth()->user()->is_firstime == 1){
-                    $this->redirectTo = '/profil-rumah-ibadat';
+                    $this->redirectTo = '/rumah-ibadat';
                 }elseif(auth()->user()->is_firstime == 0){
                     $this->redirectTo = '/pengguna/halaman-utama';
                 }
