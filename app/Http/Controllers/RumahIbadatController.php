@@ -84,7 +84,8 @@ class RumahIbadatController extends Controller
 
         //unique validator
 
-        return redirect()->back()->withInput();;
+        return redirect()->back()->withInput();
+    }
 
     public function menukar_rumah_ibadat()
     {
