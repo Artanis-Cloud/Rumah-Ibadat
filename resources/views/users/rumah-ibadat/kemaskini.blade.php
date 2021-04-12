@@ -7,7 +7,7 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
@@ -15,24 +15,24 @@
             <form method="POST" action="{{ route('users.rumah-ibadat.kemaskini.update') }}">
             {{ csrf_field() }}
 
-              <div class="card-body border border-dark">
+              <div class="border card-body border-dark">
 
                   {{-- Flash Message --}}
                   @if ($message = Session::get('success'))
-                    <div class="alert alert-success border border-success" style="text-align: center;">{{$message}}</div>
+                    <div class="border alert alert-success border-success" style="text-align: center;">{{$message}}</div>
                   @elseif ($message = Session::get('error'))
-                    <div class="alert alert-danger border border-danger" style="text-align: center;">{{$message}}</div>
+                    <div class="border alert alert-danger border-danger" style="text-align: center;">{{$message}}</div>
                   @else
                     {{-- Hidden Gap - Just Ignore --}}
                     <div class="alert alert-white" style="text-align: center;"></div>
                     {{-- <div style="padding: 23px;"></div> --}}
                   @endif
 
-                  <div class="row"> 
+                  <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label>ID Rumah Ibadat</label>
-                      <div class="input-group mb-3">
+                      <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('id_rumah_ibadat') is-invalid @else border-dark @enderror" id="id_rumah_ibadat" name="id_rumah_ibadat" type="text" value="{{ $rumah_ibadat->getRumahIbadatID() }}" disabled>
                           @error('id_rumah_ibadat')
                           <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                     <div class="col-md-2"></div>
                   </div>
 
-                  <div class="row"> 
+                  <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-md">
                       <label>Nama Rumah Ibadat</label>
-                      <div class="input-group mb-3">
+                      <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ $rumah_ibadat->name }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                           @error('name')
                           <span class="invalid-feedback" role="alert">
@@ -80,7 +80,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label>Nombor ROS</label>
-                      <div class="input-group mb-3">
+                      <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('ros_number') is-invalid @else border-dark @enderror" id="ros_number" name="ros_number" type="text" value="{{ $rumah_ibadat->ros_number }}">
                           @error('ros_number')
                           <span class="invalid-feedback" role="alert">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-md">
                       <label>Nombor Telefon Pejabat</label>
-                      <div class="input-group mb-3">
+                      <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ $rumah_ibadat->office_phone }}" placeholder="Contoh: 0312345678" minlength="10" maxlength="11" onkeypress="return onlyNumberKey(event)">
                           @error('office_phone')
                           <span class="invalid-feedback" role="alert">
@@ -118,7 +118,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label>Poskod</label>
-                      <div class="input-group mb-3">
+                      <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('postcode') is-invalid @else border-dark @enderror" id="postcode" name="postcode" type="text" value="{{ $rumah_ibadat->postcode }}" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)">
                           @error('ros_number')
                           <span class="invalid-feedback" role="alert">
@@ -150,30 +150,30 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-                  
+
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
-                          <label class="mr-sm-2" for="inlineFormCustomSelect">Daerah</label>
+                          <label class="mr-sm-2" for="inlineFormCustomSelect">Negeri</label>
                           <select class="custom-select mr-sm-2 @error('state') is-invalid @else border-dark @enderror" id="state" name="state">
                               <option selected disabled hidden>PILIH NEGERI</option>
-                              <option value="JOHOR"           {{ $rumah_ibadat->state == "JOHOR"            ? 'selected' : '' }}>JOHOR</option>
-                              <option value="KEDAH"           {{ $rumah_ibadat->state == "KEDAH"            ? 'selected' : '' }}>KEDAH</option>
-                              <option value="KELANTAN"        {{ $rumah_ibadat->state == "KELANTAN"         ? 'selected' : '' }}>KELANTAN</option>
-                              <option value="MELAKA"          {{ $rumah_ibadat->state == "MELAKA"           ? 'selected' : '' }}>MELAKA</option>
-                              <option value="NEGERI SEMBILAN" {{ $rumah_ibadat->state == "NEGERI SEMBILAN"  ? 'selected' : '' }}>NEGERI SEMBILAN</option>
-                              <option value="PAHANG"          {{ $rumah_ibadat->state == "PAHANG"           ? 'selected' : '' }}>PAHANG</option>
-                              <option value="PULAU PINANG"    {{ $rumah_ibadat->state == "PULAU PINANG"     ? 'selected' : '' }}>PULAU PINANG</option>
-                              <option value="PERAK"           {{ $rumah_ibadat->state == "PERAK"            ? 'selected' : '' }}>PERAK</option>
-                              <option value="PERLIS"          {{ $rumah_ibadat->state == "PERLIS"           ? 'selected' : '' }}>PERLIS</option>
-                              <option value="SABAH"           {{ $rumah_ibadat->state == "SABAH"            ? 'selected' : '' }}>SABAH</option>
-                              <option value="SARAWAK"         {{ $rumah_ibadat->state == "SARAWAK"          ? 'selected' : '' }}>SARAWAK</option>
+                              {{-- <option value="JOHOR"           {{ $rumah_ibadat->state == "JOHOR"            ? 'selected' : '' }}>JOHOR</option> --}}
+                              {{-- <option value="KEDAH"           {{ $rumah_ibadat->state == "KEDAH"            ? 'selected' : '' }}>KEDAH</option> --}}
+                              {{-- <option value="KELANTAN"        {{ $rumah_ibadat->state == "KELANTAN"         ? 'selected' : '' }}>KELANTAN</option> --}}
+                              {{-- <option value="MELAKA"          {{ $rumah_ibadat->state == "MELAKA"           ? 'selected' : '' }}>MELAKA</option> --}}
+                              {{-- <option value="NEGERI SEMBILAN" {{ $rumah_ibadat->state == "NEGERI SEMBILAN"  ? 'selected' : '' }}>NEGERI SEMBILAN</option> --}}
+                              {{-- <option value="PAHANG"          {{ $rumah_ibadat->state == "PAHANG"           ? 'selected' : '' }}>PAHANG</option> --}}
+                              {{-- <option value="PULAU PINANG"    {{ $rumah_ibadat->state == "PULAU PINANG"     ? 'selected' : '' }}>PULAU PINANG</option> --}}
+                              {{-- <option value="PERAK"           {{ $rumah_ibadat->state == "PERAK"            ? 'selected' : '' }}>PERAK</option> --}}
+                              {{-- <option value="PERLIS"          {{ $rumah_ibadat->state == "PERLIS"           ? 'selected' : '' }}>PERLIS</option> --}}
+                              {{-- <option value="SABAH"           {{ $rumah_ibadat->state == "SABAH"            ? 'selected' : '' }}>SABAH</option> --}}
+                              {{-- <option value="SARAWAK"         {{ $rumah_ibadat->state == "SARAWAK"          ? 'selected' : '' }}>SARAWAK</option> --}}
                               <option value="SELANGOR"        {{ $rumah_ibadat->state == "SELANGOR"         ? 'selected' : '' }}>SELANGOR</option>
-                              <option value="TERENGGANU"      {{ $rumah_ibadat->state == "TERENGGANU"       ? 'selected' : '' }}>TERENGGANU</option>
-                              <option value="WP KUALA LUMPUR" {{ $rumah_ibadat->state == "WP KUALA LUMPUR"  ? 'selected' : '' }}>WP KUALA LUMPUR</option>
-                              <option value="WP PUTRAJAYA"    {{ $rumah_ibadat->state == "WP PUTRAJAYA"     ? 'selected' : '' }}>WP PUTRAJAYA</option>
-                              <option value="WP LABUAN"       {{ $rumah_ibadat->state == "WP LABUAN"        ? 'selected' : '' }}>WP LABUAN</option>
+                              {{-- <option value="TERENGGANU"      {{ $rumah_ibadat->state == "TERENGGANU"       ? 'selected' : '' }}>TERENGGANU</option> --}}
+                              {{-- <option value="WP KUALA LUMPUR" {{ $rumah_ibadat->state == "WP KUALA LUMPUR"  ? 'selected' : '' }}>WP KUALA LUMPUR</option> --}}
+                              {{-- <option value="WP PUTRAJAYA"    {{ $rumah_ibadat->state == "WP PUTRAJAYA"     ? 'selected' : '' }}>WP PUTRAJAYA</option> --}}
+                              {{-- <option value="WP LABUAN"       {{ $rumah_ibadat->state == "WP LABUAN"        ? 'selected' : '' }}>WP LABUAN</option> --}}
                           </select>
                           @error('state')
                           <span class="invalid-feedback" role="alert">
@@ -217,7 +217,7 @@
                     </div>
                     <div class="col-md">
                       <label>Nombor Akaun</label>
-                      <div class="input-group mb-3">
+                      <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('bank_account') is-invalid @else border-dark @enderror" id="bank_account" name="bank_account" type="text" value="{{ $rumah_ibadat->bank_account }}" onkeypress="return onlyNumberKey(event)">
                           @error('bank_account')
                           <span class="invalid-feedback" role="alert">
@@ -230,7 +230,7 @@
                   </div>
 
                   {{-- Submit Button --}}
-                  <div class="row" style="padding-top: 15px;"> 
+                  <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md" style="text-align: center;">
                       <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation">Kemaskini Profil Rumah Ibadat</button>
