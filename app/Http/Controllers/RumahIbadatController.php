@@ -24,6 +24,7 @@ class RumahIbadatController extends Controller
         return view('users.rumah-ibadat.daftar');
     }
 
+
     public function tambah_rumah_ibadat(Request $request)
     {
         // validate rumah ibadat registration
@@ -84,5 +85,10 @@ class RumahIbadatController extends Controller
         //unique validator
 
         return redirect()->back()->withInput();;
+
+    public function menukar_rumah_ibadat()
+    {
+        return view('users.rumah-ibadat.menukar');
+
     }
 }
