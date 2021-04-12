@@ -14,5 +14,10 @@ class RumahIbadatController extends Controller
     public function daftar_rumah_ibadat()
     {
         return view('users.rumah-ibadat.daftar');
-    }   
+    }
+
+    public function menukar_rumah_ibadat()
+    {
+        return view('users.rumah-ibadat.menukar');
+    }
 }
