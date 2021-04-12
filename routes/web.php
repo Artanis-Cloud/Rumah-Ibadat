@@ -25,7 +25,6 @@ Auth::routes();
 
 //AUTHENTICATE ROUTE
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profil-rumah-ibadat', [App\Http\Controllers\HomeController::class, 'profil_rumah_ibadat'])->name('profil-rumah-ibadat');
     Route::get('/profil/tukar-kata-laluan', [App\Http\Controllers\HomeController::class, 'change_password'])->name('tukar-kata-laluan');
     Route::post('/tukar-kata-laluan/kemaskini', [App\Http\Controllers\GeneralController::class, 'update_password'])->name('tukar-kata-laluan.kemaskini');
 });
@@ -38,6 +37,13 @@ Route::middleware([User::class])->group(function(){
     Route::get('/rumah-ibadat', [App\Http\Controllers\RumahIbadatController::class, 'pilih_rumah_ibadat'])->name('users.rumah-ibadat.pilih');
 
     Route::get('/rumah-ibadat/daftar-rumah-ibadat', [App\Http\Controllers\RumahIbadatController::class, 'daftar_rumah_ibadat'])->name('users.rumah-ibadat.daftar');
+
+    Route::post('/rumah-ibadat/daftar-rumah-ibadat/daftar', [App\Http\Controllers\RumahIbadatController::class, 'tambah_rumah_ibadat'])->name('users.rumah-ibadat.daftar.tambah');
+
+    Route::get('/rumah-ibadat/profil-rumah-ibadat', [App\Http\Controllers\RumahIbadatController::class, 'profil_rumah_ibadat'])->name('users.rumah-ibadat.kemaskini');
+
+    Route::post('/rumah-ibadat/profil-rumah-ibadat/kemaskini', [App\Http\Controllers\RumahIbadatController::class, 'update_rumah_ibadat'])->name('users.rumah-ibadat.kemaskini.update');
+    
 
     //Permohonan
     Route::get('/pengguna/permohonan/baru', [App\Http\Controllers\PermohonanController::class, 'permohonan_baru'])->name('users.permohonan.baru');

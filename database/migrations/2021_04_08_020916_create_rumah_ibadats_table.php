@@ -15,10 +15,14 @@ class CreateRumahIbadatsTable extends Migration
     {
         Schema::create('rumah_ibadats', function (Blueprint $table) {
 
-            $table->id();                                       //default
+            $table->id();                                                   //default
 
-            $table->string('category');                         //(Cina)(India)(Kristian)
+            $table->bigInteger('user_id')->unsigned()->nullable();          //user id
+            $table->foreign('user_id')->references('id')->on('users');      //user id
 
+            $table->string('verified')->default('0');;                      //(1 = Verified) (0 = Not Verified)
+
+            $table->string('category');                                     //(Cina)(India)(Kristian)
             $table->string('name')->unique();
             $table->string('address');
             $table->string('postcode');
@@ -29,10 +33,7 @@ class CreateRumahIbadatsTable extends Migration
             $table->string('office_phone');
             $table->string('ros_number')->unique();
 
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-
-            $table->timestamps();                               //default
+            $table->timestamps();                                           //default
         });
     }
 
