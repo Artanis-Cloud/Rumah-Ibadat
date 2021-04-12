@@ -11,7 +11,10 @@ class RumahIbadat extends Model
 
     protected $fillable = [
 
-        'category',     //(Cina)(India)(Kristian)
+        'user_id',          //user id
+        'verified',         //(1 = Verified) (0 = Not Verified)
+
+        'category',         //(Cina)(India)(Kristian)
         'name',
         'address',
         'postcode',
@@ -21,9 +24,13 @@ class RumahIbadat extends Model
         'bank_account',
         'office_phone',
         'ros_number',
-        'user_id',
-
     ];
+
+    //front code id
+    public function getRumahIbadatID()
+    {
+        return sprintf('RMH%06d', $this->id);
+    }
 
     public function user()
     {

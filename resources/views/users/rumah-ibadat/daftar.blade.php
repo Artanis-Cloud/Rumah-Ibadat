@@ -12,7 +12,7 @@
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('users.rumah-ibadat.daftar.tambah') }}">
             {{ csrf_field() }}
 
               <div class="card-body border border-dark">
@@ -49,7 +49,7 @@
                     <div class="col-md">
                       <label>Nama Rumah Ibadat</label>
                       <div class="input-group mb-3">
-                          <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ old('name') }}">
+                          <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ old('name') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                           @error('name')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -92,8 +92,13 @@
                     <div class="col-md">
                       <label>Alamat Rumah Ibadat</label>
                       <div class="form-group">
-                          <textarea class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="address" name="address" rows="2">{{ old('address') }}</textarea>
-                      </div>
+                          <textarea class="form-control text-uppercase @error('address') is-invalid @else border-dark @enderror" id="address" name="address" rows="2" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ old('address') }}</textarea>
+                          @error('address')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </div>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -169,6 +174,8 @@
                     <div class="col-md-2"></div>
                   </div>
 
+                  <hr>
+
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
@@ -231,18 +238,23 @@
               <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
-                    <div class="modal-header">
+                    {{-- <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                    </div>
-                    <div class="modal-body">
-                      Anda pasti mahu mengemaskini profil rumah ibadat?
+                    </div> --}}
+                    <div class="modal-body text-center">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <img src="https://lh3.googleusercontent.com/proxy/ogthMk7k4uGarnPI94HH-yGqrnTtZwl06-QS3HSUvu28KXKlNPKTW2MmPZwJB0OF7p5ASyxIwOFQLlO7Za52jsupEN9OoSaYmRIPrM-Tcsg8XO3AZ9v1wPQgntGCRBw" style="height: 200px;" alt="alert" class="dark-logo">
+                      <br><br>
+                      <h4>Anda pasti maklumat ini tepat?</h4>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                      <button type="submit" class="btn btn-success">Kemaskini Profil Rumah Ibadat</button>
+                      <button type="submit" class="btn btn-success">Daftar Rumah Ibadat</button>
                     </div>
                   </div>
                 </div>

@@ -288,29 +288,30 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40">
+                                {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
                                 <span class="font-medium m-l-5 d-none d-sm-inline-block">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow">
                                     <span class="bg-primary"></span>
                                 </span>
-                                <div class="text-white d-flex no-block align-items-center p-15 bg-primary m-b-10" style="padding: 10px;">
-                                    <div class="">
+                                <div class="text-white d-flex no-block align-items-center p-15 bg-primary m-b-10" style="padding: 15px;">
+                                    {{-- <div class="">
                                         <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="60">
-                                    </div>
+                                    </div> --}}
                                     <div class="m-l-10">
                                         <h4 class="m-b-0">{{ Auth::user()->name }}</h4>
-                                        <p class=" m-b-0">jon@gmail.com</p>
+                                        <p class=" m-b-0">{{ Auth::user()->email }}</p>
+                                        <p class=" m-b-0">Pemohon</p>
                                     </div>
                                 </div>
                                 <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                                    <i class="ti-user m-r-5 m-l-5"></i> Kemaskini Profil Pengguna</a>
 
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
+                                {{-- <a class="dropdown-item" href="javascript:void(0)">
+                                    <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a> --}}
 
-                                <a class="dropdown-item" href="{{ route('profil-rumah-ibadat') }}">
+                                <a class="dropdown-item" href="{{ route('users.rumah-ibadat.kemaskini') }}">
                                     <i class="fas fa-torii-gate"></i> Kemaskini Profil Rumah Ibadat</a>
 
 
@@ -524,7 +525,7 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
-                            @if(Request::is('pengguna/halaman-utama'))
+                            @if(Request::is('pengguna/halaman-utama') || Request::is('rumah-ibadat'))
 
                             @else
                             <nav aria-label="breadcrumb">
@@ -534,7 +535,15 @@
                                     </li>
                                     <li class="breadcrumb-item"> Profil </li>
                                     <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
-                                    <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a> &nbsp>&nbsp
+                                    @if(Request::is('pengguna/halaman-utama'))
+                                        
+                                    @else
+                                        @if(Request::is('rumah-ibadat/daftar-rumah-ibadat'))
+
+                                        @else
+                                        <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a> &nbsp>&nbsp
+                                        @endif
+                                    @endif
                                     <?php $link = "" ?>
                                     @for($i = 1; $i <= count(Request::segments()); $i++)
                                         @if($i < count(Request::segments()) & $i > 0)
