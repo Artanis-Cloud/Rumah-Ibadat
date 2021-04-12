@@ -24,6 +24,11 @@ class RumahIbadatController extends Controller
         return view('users.rumah-ibadat.daftar');
     }
 
+    public function menukar_rumah_ibadat()
+    {
+        return view('users.rumah-ibadat.menukar');
+
+    }
 
     public function tambah_rumah_ibadat(Request $request)
     {
@@ -75,9 +80,10 @@ class RumahIbadatController extends Controller
     {
         //fetch user's rumah ibadat
         $rumah_ibadat = RumahIbadat::where('user_id', auth()->user()->id)->first();
-        
+
         return view('users.rumah-ibadat.kemaskini', compact('rumah_ibadat'));
     }
+
 
     public function update_rumah_ibadat(Request $request){
 
@@ -158,4 +164,5 @@ class RumahIbadatController extends Controller
         return view('users.rumah-ibadat.menukar');
 
     }
+
 }

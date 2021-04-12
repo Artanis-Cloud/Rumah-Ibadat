@@ -305,7 +305,7 @@
                                         <p class=" m-b-0">Pemohon</p>
                                     </div>
                                 </div>
-                                <a class="dropdown-item" href="javascript:void(0)">
+                                <a class="dropdown-item" href="{{ route('users.kemaskini-profil') }}">
                                     <i class="ti-user m-r-5 m-l-5"></i> Kemaskini Profil Pengguna</a>
 
                                 {{-- <a class="dropdown-item" href="javascript:void(0)">
@@ -537,7 +537,7 @@
                                     <li class="breadcrumb-item"> Profil </li>
                                     <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
                                     @if(Request::is('pengguna/halaman-utama'))
-                                        
+
                                     @else
                                         @if(Request::is('rumah-ibadat/daftar-rumah-ibadat'))
 

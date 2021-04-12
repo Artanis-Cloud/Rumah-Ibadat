@@ -77,7 +77,8 @@
 <!-- ============================================================== -->
 <!-- Email campaign chart -->
 <!-- ============================================================== -->
-<div class="row">
+{{-- Graph --}}
+{{-- <div class="row">
     <div class="col-lg-3 col-md-6">
         <div class="card">
             <div class="card-body">
@@ -174,7 +175,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- ============================================================== -->
 <!-- Email campaign chart -->
 <!-- ============================================================== -->
@@ -188,7 +189,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h4 class="mb-0 card-title">Latest Sales</h4>
+                        <h4 class="mb-0 card-title">Laporan Rumah Ibadat</h4>
                     </div>
                     <div class="ml-auto">
                         <select class="border-0 custom-select text-muted">
@@ -270,46 +271,106 @@
     <div class="col-lg-6 col-md-12">
         <div class="card">
             <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <h4 class="card-title m-b-0">Top Region Sales</h4>
+                <h4 class="card-title">Recent Comments</h4>
+            </div>
+            <div class="comment-widgets scrollable" style="height:490px;">
+                <!-- Comment Row -->
+                <div class="flex-row d-flex comment-row m-t-0">
+                    <div class="p-2">
+                        <img src="{{asset('nice-admin/assets/images/users/1.jpg')}}" alt="user" width="50" class="rounded-circle">
                     </div>
-                    <div class="ml-auto">
-                        <div class="dl">
-                            <select class="border-0 custom-select text-muted">
-                                <option value="0" selected="">August 2018</option>
-                                <option value="1">May 2018</option>
-                                <option value="2">March 2018</option>
-                                <option value="3">June 2018</option>
-                            </select>
+                    <div class="comment-text w-100">
+                        <h6 class="font-medium">James Anderson</h6>
+                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                        <div class="comment-footer">
+                            <span class="float-right text-muted">April 14, 2016</span>
+                            <span class="label label-rounded label-primary">Pending</span>
+                            <span class="action-icons">
+                                <a href="javascript:void(0)">
+                                    <i class="ti-pencil-alt"></i>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="ti-check"></i>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="ti-heart"></i>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div id="visitfromworld" style="height: 365px"></div>
-                <!-- row -->
-                <div class="text-center row m-t-40 text-lg-left">
-                    <!-- column -->
-                    <div class="col-xs-12 col-md-4">
-                        <div class="mt-2 mb-2">
-                            <span class="label label-success label-rounded">+23%</span>
-                            <h5 class="font-normal text-muted m-t-10 m-b-5">United States</h5>
-                            <span class="font-medium font-20">3234 <span class="font-normal font-14 text-muted">($3549.54)</span></span>
+                <!-- Comment Row -->
+                <div class="flex-row d-flex comment-row">
+                    <div class="p-2">
+                        <img src="{{asset('nice-admin/assets/images/users/4.jpg')}}" alt="user" width="50" class="rounded-circle">
+                    </div>
+                    <div class="comment-text active w-100">
+                        <h6 class="font-medium">Michael Jorden</h6>
+                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                        <div class="comment-footer ">
+                            <span class="float-right text-muted">April 14, 2016</span>
+                            <span class="label label-success label-rounded">Approved</span>
+                            <span class="action-icons active">
+                                <a href="javascript:void(0)">
+                                    <i class="ti-pencil-alt"></i>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="icon-close"></i>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="ti-heart text-danger"></i>
+                                </a>
+                            </span>
                         </div>
                     </div>
-                    <!-- column -->
-                    <div class="col-xs-12 col-md-4">
-                        <div class="mt-2 mb-2">
-                            <span class="label label-info label-rounded">+0.5%</span>
-                            <h5 class="font-normal text-muted m-t-10 m-b-5">Europe</h5>
-                            <span class="font-medium font-20">2548 <span class="font-normal font-14 text-muted">($3549.54)</span></span>
+                </div>
+                <!-- Comment Row -->
+                <div class="flex-row d-flex comment-row">
+                    <div class="p-2">
+                        <img src="{{asset('nice-admin/assets/images/users/5.jpg')}}" alt="user" width="50" class="rounded-circle">
+                    </div>
+                    <div class="comment-text w-100">
+                        <h6 class="font-medium">Johnathan Doeting</h6>
+                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                        <div class="comment-footer">
+                            <span class="float-right text-muted">April 14, 2016</span>
+                            <span class="label label-rounded label-danger">Rejected</span>
+                            <span class="action-icons">
+                                <a href="javascript:void(0)">
+                                    <i class="ti-pencil-alt"></i>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="ti-check"></i>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="ti-heart"></i>
+                                </a>
+                            </span>
                         </div>
                     </div>
-                    <!-- column -->
-                    <div class="col-xs-12 col-md-4">
-                        <div class="mt-2 mb-2">
-                            <span class="label label-danger label-rounded">-18%</span>
-                            <h5 class="font-normal text-muted m-t-10 m-b-5">Australia</h5>
-                            <span class="font-medium font-20">1476 <span class="font-normal font-14 text-muted">($3549.54)</span></span>
+                </div>
+                <!-- Comment Row -->
+                <div class="flex-row d-flex comment-row m-t-0">
+                    <div class="p-2">
+                        <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" width="50" class="rounded-circle">
+                    </div>
+                    <div class="comment-text w-100">
+                        <h6 class="font-medium">Steve Jobs</h6>
+                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                        <div class="comment-footer">
+                            <span class="float-right text-muted">April 14, 2016</span>
+                            <span class="label label-rounded label-primary">Pending</span>
+                            <span class="action-icons">
+                                <a href="javascript:void(0)">
+                                    <i class="ti-pencil-alt"></i>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="ti-check"></i>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="ti-heart"></i>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>
