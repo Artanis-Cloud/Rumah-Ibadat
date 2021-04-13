@@ -159,10 +159,4 @@ class RumahIbadatController extends Controller
         ]);
     }
 
-    public function menukar_rumah_ibadat()
-    {
-        return view('users.rumah-ibadat.menukar');
-
-    }
-
 }
