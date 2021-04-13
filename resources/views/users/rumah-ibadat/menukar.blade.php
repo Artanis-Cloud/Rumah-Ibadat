@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
@@ -31,37 +30,19 @@
                   <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md">
-                        <div class="form-group">
-                            <label>Nama Rumah Ibadat</label>
-                            <select class="form-group" id="select2-language" style="width: 100%;height: 36px;" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox">
-                                <option value="CT">Sila Pilih</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="CT">ALALALALALAL</option>
-                            </select>
-                            @error('category')
-                            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                      <label>Nama Rumah Ibadat</label>
+                      <div class="input-group mb-3">
+                          <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ old('name') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                          @error('name')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
                       </div>
-                      <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
-
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
+                    </div>
                     <div class="col-md">
                       <label>Nombor ROS</label>
-                      <div class="mb-3 input-group">
+                      <div class="input-group mb-3">
                           <input class="form-control text-uppercase @error('ros_number') is-invalid @else border-dark @enderror" id="ros_number" name="ros_number" type="text" value="{{ old('ros_number') }}">
                           @error('ros_number')
                           <span class="invalid-feedback" role="alert">
@@ -70,46 +51,29 @@
                           @enderror
                       </div>
                     </div>
-
                     <div class="col-md-2"></div>
                   </div>
 
                   <div class="row">
                     <div class="col-md-2"></div>
-
+                    <div class="col-md-8">
+                      <label>Dokumen-dokumen pengesahan rumah ibadat</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="attachment1" name="attachment1">
+                        <label class="custom-file-label" for="attachment1">Muat Naik Fail</label>
+                      </div>
+                    </div>
                     <div class="col-md-2"></div>
                   </div>
 
-                  <div class="row">
+                  <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
-
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
-
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
-                   <div class="col-md">
-
-                        <label>Muatnaik Gambar</label>
-                        <form>
-                            <div class="mb-3 input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Muatnaik</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" multiple>
-                                    <label class="custom-file-label">Pilih Gambar</label>
-                                </div>
-                            </div>
-                        </form>
-
-                   </div>
+                    <div class="col-md-8">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="attachment2" name="attachment2">
+                        <label class="custom-file-label" for="attachment2">Muat Naik Fail</label>
+                      </div>
+                    </div>
                     <div class="col-md-2"></div>
                   </div>
 
@@ -138,11 +102,11 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      Anda pasti mahu menukar hak milik rumah ibadat?
+                      Anda pasti maklumat ini sah?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                      <button type="submit" class="btn btn-success">Tukar Hak Milik Rumah Ibadat</button>
+                      <button type="submit" class="btn btn-success">Hantar Permohonan</button>
                     </div>
                   </div>
                 </div>
@@ -153,31 +117,18 @@
   </div>
 
 </div>
-<!-- ============================================================== -->
-<!-- End Container fluid  -->
-<!-- ============================================================== -->
-<!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="../../assets/libs/jquery/dist/jquery.min.js "></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="../../assets/libs/popper.js/dist/umd/popper.min.js "></script>
-    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js "></script>
-    <!-- apps -->
-    <script src="../../dist/js/app.min.js "></script>
-    <script src="../../dist/js/app.init.horizontal.js"></script>
-    <script src="../../dist/js/app-style-switcher.horizontal.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js "></script>
-    <script src="../../assets/extra-libs/sparkline/sparkline.js "></script>
-    <!--Wave Effects -->
-    <script src="../../dist/js/waves.js "></script>
-    <!--Menu sidebar -->
-    <script src="../../dist/js/sidebarmenu.js "></script>
-    <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js "></script>
-<script>
-  function onlyNumberKey(evt) {
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+  // Display file name in input upload
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+
+  //function for all input number only
+  function onlyNumberKey(evt) {
         // Only ASCII charactar in that range allowed
         var ASCIICode = (evt.which) ? evt.which : evt.keyCode
         if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
