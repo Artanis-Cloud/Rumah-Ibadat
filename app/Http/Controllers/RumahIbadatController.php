@@ -89,9 +89,9 @@ class RumahIbadatController extends Controller
 
         //fetch user's rumah ibadat
         $rumah_ibadat = RumahIbadat::where('user_id', auth()->user()->id)->first();
-        
+
         //unique validator for name
-        if($request->name != $rumah_ibadat->name){ //cheking either rumah ibadat name has been changed or not 
+        if($request->name != $rumah_ibadat->name){ //cheking either rumah ibadat name has been changed or not
 
             //checking rumah ibadat name either been registered or not
             $checkName = RumahIbadat::where('name', $request->name)->count();
@@ -103,7 +103,7 @@ class RumahIbadatController extends Controller
         }
 
         //unique validator for ROS number
-        if ($request->ros_number != $rumah_ibadat->ros_number) { //cheking either ros number has been changed or not 
+        if ($request->ros_number != $rumah_ibadat->ros_number) { //cheking either ros number has been changed or not
 
             //checking ros number either been registered or not
             $checkRosNumber = RumahIbadat::where('ros_number', $request->ros_number)->count();
@@ -114,7 +114,7 @@ class RumahIbadatController extends Controller
         }
 
         //unique validator for account number
-        if ($request->bank_account != $rumah_ibadat->bank_account) { //cheking either account number has been changed or not 
+        if ($request->bank_account != $rumah_ibadat->bank_account) { //cheking either account number has been changed or not
 
             //checking account number either been registered or not
             $checkAccountNumber = RumahIbadat::where('bank_account', $request->bank_account)->count();
@@ -142,7 +142,7 @@ class RumahIbadatController extends Controller
         //save information
         $rumah_ibadat->save();
 
-        //redirect to 
+        //redirect to
         return redirect()->route('users.rumah-ibadat.kemaskini')->with('success', 'Maklumat rumah ibadat berjaya dikemaskini.');
     }
 

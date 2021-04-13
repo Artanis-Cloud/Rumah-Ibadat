@@ -189,14 +189,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h4 class="mb-0 card-title">Laporan Rumah Ibadat</h4>
+                        <h4 class="mb-0 card-title">Laporan Perbelanjaan Rumah Ibadat</h4>
                     </div>
                     <div class="ml-auto">
                         <select class="border-0 custom-select text-muted">
-                            <option value="0" selected="">August 2018</option>
-                            <option value="1">May 2018</option>
+                            <option value="0" selected="">Mei 2021</option>
+                            {{-- <option value="1">May 2018</option>
                             <option value="2">March 2018</option>
-                            <option value="3">June 2018</option>
+                            <option value="3">June 2018</option> --}}
                         </select>
                     </div>
                 </div>
@@ -204,64 +204,43 @@
             <div class="card-body bg-light">
                 <div class="row align-items-center">
                     <div class="col-xs-12 col-md-6">
-                        <h3 class="font-light m-b-0">August 2018</h3>
-                        <span class="font-14 text-muted">Sales Report</span>
+                        <h3 class="font-light m-b-0">Mei 2021</h3>
+                        <span class="font-14 text-muted">Laporan</span>
                     </div>
-                    <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-info">$3,690</div>
+                    <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-info">RM 50000</div>
                 </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive" style="overflow-y: scroll;height: 395px;">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="border-top-0">NAME</th>
-                            <th class="border-top-0">STATUS</th>
-                            <th class="border-top-0">DATE</th>
-                            <th class="border-top-0">PRICE</th>
+                            <th class="border-top-0">NAMA RUMAH IBADAT</th>
+                            {{-- <th class="border-top-0">STATUS</th> --}}
+                            <th class="border-top-0">TARIKH</th>
+                            <th class="border-top-0">JUMLAH</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
 
-                            <td class="txt-oflo">Elite admin</td>
-                            <td><span class="label label-success label-rounded">SALE</span> </td>
-                            <td class="txt-oflo">April 18, 2017</td>
-                            <td><span class="font-medium">$24</span></td>
+                            <td class="txt-oflo">Persatuan Pendidikan Buddha Jing Xin</td>
+                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
+                            <td class="txt-oflo">April 10, 2021</td>
+                            <td><span class="font-medium">RM 20000</span></td>
                         </tr>
                         <tr>
 
-                            <td class="txt-oflo">Real Homes WP Theme</td>
-                            <td><span class="label label-info label-rounded">EXTENDED</span></td>
-                            <td class="txt-oflo">April 19, 2017</td>
-                            <td><span class="font-medium">$1250</span></td>
+                            <td class="txt-oflo">Persatuan Penganut Na Du Gong Kwan Tong</td>
+                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
+                            <td class="txt-oflo">Mac 15, 2021</td>
+                            <td><span class="font-medium">RM 10000</span></td>
                         </tr>
                         <tr>
 
-                            <td class="txt-oflo">Ample Admin</td>
-                            <td><span class="label label-purple label-rounded">Tax</span></td>
-                            <td class="txt-oflo">April 19, 2017</td>
-                            <td><span class="font-medium">$1250</span></td>
-                        </tr>
-                        <tr>
-
-                            <td class="txt-oflo">Medical Pro WP Theme</td>
-                            <td><span class="label label-success label-rounded">Sale</span></td>
-                            <td class="txt-oflo">April 20, 2017</td>
-                            <td><span class="font-medium">-$24</span></td>
-                        </tr>
-                        <tr>
-
-                            <td class="txt-oflo">Hosting press html</td>
-                            <td><span class="label label-success label-rounded">SALE</span></td>
-                            <td class="txt-oflo">April 21, 2017</td>
-                            <td><span class="font-medium">$24</span></td>
-                        </tr>
-                        <tr>
-
-                            <td class="txt-oflo">Digital Agency PSD</td>
-                            <td><span class="label label-danger label-rounded">Tax</span> </td>
-                            <td class="txt-oflo">April 23, 2017</td>
-                            <td><span class="font-medium">-$14</span></td>
+                            <td class="txt-oflo">Persatuan Penganut Dewa Fatt Goon Ten</td>
+                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
+                            <td class="txt-oflo">Februari 22, 2021</td>
+                            <td><span class="font-medium">RM 20000</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -271,106 +250,53 @@
     <div class="col-lg-6 col-md-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Recent Comments</h4>
+                <h4 class="card-title">Permohonan Terkini</h4>
             </div>
             <div class="comment-widgets scrollable" style="height:490px;">
                 <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row m-t-0">
-                    <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/1.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div>
-                    <div class="comment-text w-100">
-                        <h6 class="font-medium">James Anderson</h6>
-                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                        <div class="comment-footer">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-rounded label-primary">Pending</span>
-                            <span class="action-icons">
-                                <a href="javascript:void(0)">
-                                    <i class="ti-pencil-alt"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-check"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-heart"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comment Row -->
                 <div class="flex-row d-flex comment-row">
-                    <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/4.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div>
                     <div class="comment-text active w-100">
-                        <h6 class="font-medium">Michael Jorden</h6>
-                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                        <h6 class="font-medium">Mr Choo</h6>
+                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Irsan</span>
                         <div class="comment-footer ">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-success label-rounded">Approved</span>
-                            <span class="action-icons active">
-                                <a href="javascript:void(0)">
-                                    <i class="ti-pencil-alt"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="icon-close"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-heart text-danger"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row">
-                    <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/5.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div>
-                    <div class="comment-text w-100">
-                        <h6 class="font-medium">Johnathan Doeting</h6>
-                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                        <div class="comment-footer">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-rounded label-danger">Rejected</span>
-                            <span class="action-icons">
-                                <a href="javascript:void(0)">
-                                    <i class="ti-pencil-alt"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-check"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-heart"></i>
-                                </a>
-                            </span>
+                            <span class="float-right text-muted">April 13, 2021</span>
+                            <span class="label label-success label-primary">Sedang Diproses</span>
                         </div>
                     </div>
                 </div>
                 <!-- Comment Row -->
                 <div class="flex-row d-flex comment-row m-t-0">
-                    <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div>
+                    {{-- <div class="p-2">
+                        <img src="{{asset('nice-admin/assets/images/users/1.jpg')}}" alt="user" width="50" class="rounded-circle">
+                    </div> --}}
                     <div class="comment-text w-100">
-                        <h6 class="font-medium">Steve Jobs</h6>
-                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                        <h6 class="font-medium">Toh Khim Hwa</h6>
+                        <span class="m-b-15 d-block">Permohonan Bantuan Kewangan Persatuan Rumah Ibadat Kaum Tionghoa</span>
                         <div class="comment-footer">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-rounded label-primary">Pending</span>
-                            <span class="action-icons">
-                                <a href="javascript:void(0)">
-                                    <i class="ti-pencil-alt"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-check"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-heart"></i>
-                                </a>
-                            </span>
+                            <span class="float-right text-muted">April 10, 2021</span>
+                            <span class="label label-success label-rounded">Diluluskan</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Comment Row -->
+                <div class="flex-row d-flex comment-row">
+                    <div class="comment-text active w-100">
+                        <h6 class="font-medium">Lim Thian Ser</h6>
+                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Tin Hong See</span>
+                        <div class="comment-footer ">
+                            <span class="float-right text-muted">Mac 15, 2021</span>
+                            <span class="label label-success label-rounded">Diluluskan</span>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Comment Row -->
+                 <div class="flex-row d-flex comment-row">
+                    <div class="comment-text active w-100">
+                        <h6 class="font-medium">Kiang Chew Choy</h6>
+                        <span class="m-b-15 d-block">Permohonan Naiktaraf Temple Dewa Kuan Yin Ting</span>
+                        <div class="comment-footer ">
+                            <span class="float-right text-muted">Februari 22, 2021</span>
+                            <span class="label label-success label-rounded">Diluluskan</span>
                         </div>
                     </div>
                 </div>
@@ -386,199 +312,46 @@
 <!-- ============================================================== -->
 <div class="row">
     <!-- column -->
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Recent Comments</h4>
-            </div>
-            <div class="comment-widgets scrollable" style="height:430px;">
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row m-t-0">
-                    <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/1.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div>
-                    <div class="comment-text w-100">
-                        <h6 class="font-medium">James Anderson</h6>
-                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                        <div class="comment-footer">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-rounded label-primary">Pending</span>
-                            <span class="action-icons">
-                                <a href="javascript:void(0)">
-                                    <i class="ti-pencil-alt"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-check"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-heart"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row">
-                    <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/4.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div>
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Michael Jorden</h6>
-                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-success label-rounded">Approved</span>
-                            <span class="action-icons active">
-                                <a href="javascript:void(0)">
-                                    <i class="ti-pencil-alt"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="icon-close"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-heart text-danger"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row">
-                    <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/5.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div>
-                    <div class="comment-text w-100">
-                        <h6 class="font-medium">Johnathan Doeting</h6>
-                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                        <div class="comment-footer">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-rounded label-danger">Rejected</span>
-                            <span class="action-icons">
-                                <a href="javascript:void(0)">
-                                    <i class="ti-pencil-alt"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-check"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-heart"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row m-t-0">
-                    <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div>
-                    <div class="comment-text w-100">
-                        <h6 class="font-medium">Steve Jobs</h6>
-                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                        <div class="comment-footer">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-rounded label-primary">Pending</span>
-                            <span class="action-icons">
-                                <a href="javascript:void(0)">
-                                    <i class="ti-pencil-alt"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-check"></i>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <i class="ti-heart"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="col-lg">
+      <div class="card">
+        <div class="table-responsive" style="padding: 1%;">
+            <table id="tablestatus" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sijil ROS</th>
+                        <th>Tokong</th>
+                        <th>Nama Pemohon</th>
+                        <th>Tarikh</th>
+                        <th>Tujuan Permohonan</th>
+                        <th>Kelulusan</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1862-04-5</th>
+                        <th>Persatuan Pendidikan Buddha Jing XinPersatuan Pendidikan Buddha Jing Xin</th>
+                        <th>Toh Khim Hwa</th>
+                        <th>25.10.18</th>
+                        <th>Pembaikan</th>
+                        <th>RM 5000</th>
+                        <th>Diluluskan</th>
+                    </tr>
+                    <tr>
+                        <th>PPM-018-10-06062017</th>
+                        <th>Persatuan Penganut Na Du Gong Kwan Tong</th>
+                        <th>Liam Thian Ser</th>
+                        <th>01.10.18</th>
+                        <th>Aktiviti Keagamaan</th>
+                        <th>RM 3000</th>
+                        <th>Diluluskan</th>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+      </div>
     </div>
-    <!-- column -->
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-center p-b-15">
-                    <div>
-                        <h4 class="card-title m-b-0">To Do List</h4>
-                    </div>
-                    <div class="ml-auto">
-                        <div class="dl">
-                            <select class="border-0 custom-select text-muted">
-                                <option value="0" selected="">August 2018</option>
-                                <option value="1">May 2018</option>
-                                <option value="2">March 2018</option>
-                                <option value="3">June 2018</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="todo-widget scrollable" style="height:422px;">
-                    <ul class="list-task todo-list list-group m-b-0" data-role="tasklist">
-                        <li class="list-group-item todo-item" data-role="task">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                <label class="custom-control-label todo-label" for="customCheck">
-                                    <span class="todo-desc">Simply dummy text of the printing and typesetting</span> <span class="float-right badge badge-pill badge-success">Project</span>
-                                </label>
-                            </div>
-                        </li>
-                        <li class="list-group-item todo-item" data-role="task">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label todo-label" for="customCheck1">
-                                    <span class="todo-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</span><span class="float-right badge badge-pill badge-danger">Project</span>
-                                </label>
-                            </div>
 
-                        </li>
-                        <li class="list-group-item todo-item" data-role="task">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                <label class="custom-control-label todo-label" for="customCheck2">
-                                    <span class="todo-desc">Ipsum is simply dummy text of the printing</span> <span class="float-right badge badge-pill badge-info">Project</span>
-                                </label>
-                            </div>
-
-                        </li>
-                        <li class="list-group-item todo-item" data-role="task">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                <label class="custom-control-label todo-label" for="customCheck3">
-                                    <span class="todo-desc">Simply dummy text of the printing and typesetting</span> <span class="float-right badge badge-pill badge-info">Project</span>
-                                </label>
-                            </div>
-                        </li>
-                        <li class="list-group-item todo-item" data-role="task">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                <label class="custom-control-label todo-label" for="customCheck4">
-                                    <span class="todo-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</span> <span class="float-right badge badge-pill badge-purple">Project</span>
-                                </label>
-                            </div>
-                        </li>
-                        <li class="list-group-item todo-item" data-role="task">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                <label class="custom-control-label todo-label" for="customCheck5">
-                                    <span class="todo-desc">Ipsum is simply dummy text of the printing</span> <span class="float-right badge badge-pill badge-success">Project</span>
-                                </label>
-                            </div>
-                        </li>
-                        <li class="list-group-item todo-item" data-role="task">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck6">
-                                <label class="custom-control-label todo-label" for="customCheck6">
-                                    <span class="todo-desc">Simply dummy text of the printing and typesetting</span> <span class="float-right badge badge-pill badge-primary">Project</span>
-                                </label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- ============================================================== -->
 <!-- Recent comment and chats -->
@@ -588,4 +361,26 @@
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
+<script>
+    $(document).ready( function () {
+    $('#tablestatus').DataTable({
+        "language": {
+            "lengthMenu": "Memaparkan _MENU_ rekod per halaman",
+            "zeroRecords": "Maaf, tiada rekod.",
+            "info": "Memaparkan halaman _PAGE_ dari _PAGES_",
+            "infoEmpty": "Tidak ada rekod yang tersedia",
+            "infoFiltered": "(Ditapis dari _MAX_ jumlah rekod)",
+            "search": "Carian",
+            "previous": "Sebelum",
+            "paginate": {
+                "first":      "Pertama",
+                "last":       "Terakhir",
+                "next":       "Seterusnya",
+                "previous":   "Sebelumnya"
+            },
+        },
+    });
+}
+);
+</script>
 @endsection

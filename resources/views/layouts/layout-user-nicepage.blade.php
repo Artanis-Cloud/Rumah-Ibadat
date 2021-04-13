@@ -29,10 +29,43 @@
     <!-- Custom CSS -->
     <link href="{{asset('nice-admin/dist/css/style.min.css')}}" rel="stylesheet">
 
+    <script src="{{asset('nice-admin/assets/libs/jquery/dist/jquery.min.js')}}"></script>
+
+    {{-- Datatables --}}
+    <link href="{{asset('nice-admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
+
+    {{-- Datatables --}}
+    <script src="{{asset('nice-admin/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+    <script src="{{asset('nice-admin/dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- NICE PAGE DEVELOPMENT END HERE!!! --}}
+
+    <style>
+            /* width */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey;
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(90, 90, 90);
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4b4b4b;
+    }
+    </style>
 </head>
 <body>
     <!-- ============================================================== -->
@@ -285,6 +318,7 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.menukar') }}" aria-expanded="false"><span class="hide-menu">Menukar Hak Milik</span></a>
                                     
                                 </li>
+
                             </ul>
                         </li>
 
@@ -481,7 +515,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery NICE PAGE -->
     <!-- ============================================================== -->
-    <script src="{{asset('nice-admin/assets/libs/jquery/dist/jquery.min.js')}}"></script>
+
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('nice-admin/assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{asset('nice-admin/assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
