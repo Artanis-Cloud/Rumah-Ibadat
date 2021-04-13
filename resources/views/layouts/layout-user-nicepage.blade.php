@@ -29,10 +29,37 @@
     <!-- Custom CSS -->
     <link href="{{asset('nice-admin/dist/css/style.min.css')}}" rel="stylesheet">
 
+    {{-- Datatables --}}
+    <link href="{{asset('nice-admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- NICE PAGE DEVELOPMENT END HERE!!! --}}
+
+    <style>
+            /* width */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey;
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(90, 90, 90);
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4b4b4b;
+    }
+    </style>
 </head>
 <body>
     <!-- ============================================================== -->
@@ -395,7 +422,7 @@
                                         <li class="sidebar-item"><a href="table-layout-coloured.html" class="sidebar-link"><i class="mdi mdi-border-bottom"></i><span class="hide-menu">Coloured Table Layout</span></a></li>
                                     </ul> --}}
                                 </li>
-                                
+
 
                             </ul>
                         </li>
@@ -625,6 +652,10 @@
     <script src="{{asset('nice-admin/icon/js/brands.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/solid.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/fontawesome.js')}}"></script>
+
+    {{-- Datatables --}}
+    <script src="{{asset('nice-admin/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+    <script src="{{asset('nice-admin/dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
 
 
     <script type="text/javascript">
