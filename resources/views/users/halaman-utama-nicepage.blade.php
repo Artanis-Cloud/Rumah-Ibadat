@@ -207,68 +207,40 @@
                         <h3 class="font-light m-b-0">Mei 2021</h3>
                         <span class="font-14 text-muted">Laporan</span>
                     </div>
-                    <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-info">$3,690</div>
+                    <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-info">RM 50000</div>
                 </div>
             </div>
             <div class="table-responsive" style="overflow-y: scroll;height: 395px;">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="border-top-0">NAME</th>
-                            <th class="border-top-0">STATUS</th>
-                            <th class="border-top-0">DATE</th>
-                            <th class="border-top-0">PRICE</th>
+                            <th class="border-top-0">NAMA RUMAH IBADAT</th>
+                            {{-- <th class="border-top-0">STATUS</th> --}}
+                            <th class="border-top-0">TARIKH</th>
+                            <th class="border-top-0">JUMLAH</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
 
-                            <td class="txt-oflo">Elite admin</td>
-                            <td><span class="label label-success label-rounded">SALE</span> </td>
-                            <td class="txt-oflo">April 18, 2017</td>
-                            <td><span class="font-medium">$24</span></td>
+                            <td class="txt-oflo">Persatuan Pendidikan Buddha Jing Xin</td>
+                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
+                            <td class="txt-oflo">April 10, 2021</td>
+                            <td><span class="font-medium">RM 20000</span></td>
                         </tr>
                         <tr>
 
-                            <td class="txt-oflo">Real Homes WP Theme</td>
-                            <td><span class="label label-info label-rounded">EXTENDED</span></td>
-                            <td class="txt-oflo">April 19, 2017</td>
-                            <td><span class="font-medium">$1250</span></td>
+                            <td class="txt-oflo">Persatuan Penganut Na Du Gong Kwan Tong</td>
+                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
+                            <td class="txt-oflo">Mac 15, 2021</td>
+                            <td><span class="font-medium">RM 10000</span></td>
                         </tr>
                         <tr>
 
-                            <td class="txt-oflo">Ample Admin</td>
-                            <td><span class="label label-purple label-rounded">Tax</span></td>
-                            <td class="txt-oflo">April 19, 2017</td>
-                            <td><span class="font-medium">$1250</span></td>
-                        </tr>
-                        <tr>
-
-                            <td class="txt-oflo">Medical Pro WP Theme</td>
-                            <td><span class="label label-success label-rounded">Sale</span></td>
-                            <td class="txt-oflo">April 20, 2017</td>
-                            <td><span class="font-medium">-$24</span></td>
-                        </tr>
-                        <tr>
-
-                            <td class="txt-oflo">Hosting press html</td>
-                            <td><span class="label label-success label-rounded">SALE</span></td>
-                            <td class="txt-oflo">April 21, 2017</td>
-                            <td><span class="font-medium">$24</span></td>
-                        </tr>
-                        <tr>
-
-                            <td class="txt-oflo">Digital Agency PSD</td>
-                            <td><span class="label label-danger label-rounded">Tax</span> </td>
-                            <td class="txt-oflo">April 23, 2017</td>
-                            <td><span class="font-medium">-$14</span></td>
-                        </tr>
-                        <tr>
-
-                            <td class="txt-oflo">Digital Agency PSD</td>
-                            <td><span class="label label-danger label-rounded">Tax</span> </td>
-                            <td class="txt-oflo">April 23, 2017</td>
-                            <td><span class="font-medium">-$14</span></td>
+                            <td class="txt-oflo">Persatuan Penganut Dewa Fatt Goon Ten</td>
+                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
+                            <td class="txt-oflo">Februari 22, 2021</td>
+                            <td><span class="font-medium">RM 20000</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -282,27 +254,49 @@
             </div>
             <div class="comment-widgets scrollable" style="height:490px;">
                 <!-- Comment Row -->
+                <div class="flex-row d-flex comment-row">
+                    <div class="comment-text active w-100">
+                        <h6 class="font-medium">Mr Choo</h6>
+                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Irsan</span>
+                        <div class="comment-footer ">
+                            <span class="float-right text-muted">April 13, 2021</span>
+                            <span class="label label-success label-primary">Sedang Diproses</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Comment Row -->
                 <div class="flex-row d-flex comment-row m-t-0">
                     {{-- <div class="p-2">
                         <img src="{{asset('nice-admin/assets/images/users/1.jpg')}}" alt="user" width="50" class="rounded-circle">
                     </div> --}}
                     <div class="comment-text w-100">
-                        <h6 class="font-medium">James Anderson</h6>
-                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat</span>
+                        <h6 class="font-medium">Toh Khim Hwa</h6>
+                        <span class="m-b-15 d-block">Permohonan Bantuan Kewangan Persatuan Rumah Ibadat Kaum Tionghoa</span>
                         <div class="comment-footer">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-rounded label-primary">Pending</span>
+                            <span class="float-right text-muted">April 10, 2021</span>
+                            <span class="label label-success label-rounded">Diluluskan</span>
                         </div>
                     </div>
                 </div>
                 <!-- Comment Row -->
                 <div class="flex-row d-flex comment-row">
                     <div class="comment-text active w-100">
-                        <h6 class="font-medium">Michael Jorden</h6>
-                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat</span>
+                        <h6 class="font-medium">Lim Thian Ser</h6>
+                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Tin Hong See</span>
                         <div class="comment-footer ">
-                            <span class="float-right text-muted">April 14, 2016</span>
-                            <span class="label label-success label-rounded">Approved</span>
+                            <span class="float-right text-muted">Mac 15, 2021</span>
+                            <span class="label label-success label-rounded">Diluluskan</span>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Comment Row -->
+                 <div class="flex-row d-flex comment-row">
+                    <div class="comment-text active w-100">
+                        <h6 class="font-medium">Kiang Chew Choy</h6>
+                        <span class="m-b-15 d-block">Permohonan Naiktaraf Temple Dewa Kuan Yin Ting</span>
+                        <div class="comment-footer ">
+                            <span class="float-right text-muted">Februari 22, 2021</span>
+                            <span class="label label-success label-rounded">Diluluskan</span>
                         </div>
                     </div>
                 </div>
@@ -321,189 +315,38 @@
     <div class="col-lg">
       <div class="card">
         <div class="table-responsive" style="padding: 1%;">
-            <table id="zero_config" class="table table-striped table-bordered">
+            <table id="tablestatus" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Sijil ROS</th>
+                        <th>Tokong</th>
+                        <th>Nama Pemohon</th>
+                        <th>Tarikh</th>
+                        <th>Tujuan Permohonan</th>
+                        <th>Kelulusan</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <th>1862-04-5</th>
+                        <th>Persatuan Pendidikan Buddha Jing XinPersatuan Pendidikan Buddha Jing Xin</th>
+                        <th>Toh Khim Hwa</th>
+                        <th>25.10.18</th>
+                        <th>Pembaikan</th>
+                        <th>RM 5000</th>
+                        <th>Diluluskan</th>
                     </tr>
                     <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                    </tr>
-                    <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009/01/12</td>
-                        <td>$86,000</td>
-                    </tr>
-                    <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012/03/29</td>
-                        <td>$433,060</td>
-                    </tr>
-                    <tr>
-                        <td>Airi Satou</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>33</td>
-                        <td>2008/11/28</td>
-                        <td>$162,700</td>
-                    </tr>
-                    <tr>
-                        <td>Brielle Williamson</td>
-                        <td>Integration Specialist</td>
-                        <td>New York</td>
-                        <td>61</td>
-                        <td>2012/12/02</td>
-                        <td>$372,000</td>
-                    </tr>
-                    <tr>
-                        <td>Herrod Chandler</td>
-                        <td>Sales Assistant</td>
-                        <td>San Francisco</td>
-                        <td>59</td>
-                        <td>2012/08/06</td>
-                        <td>$137,500</td>
-                    </tr>
-                    <tr>
-                        <td>Rhona Davidson</td>
-                        <td>Integration Specialist</td>
-                        <td>Tokyo</td>
-                        <td>55</td>
-                        <td>2010/10/14</td>
-                        <td>$327,900</td>
-                    </tr>
-                    <tr>
-                        <td>Colleen Hurst</td>
-                        <td>Javascript Developer</td>
-                        <td>San Francisco</td>
-                        <td>39</td>
-                        <td>2009/09/15</td>
-                        <td>$205,500</td>
-                    </tr>
-                    <tr>
-                        <td>Sonya Frost</td>
-                        <td>Software Engineer</td>
-                        <td>Edinburgh</td>
-                        <td>23</td>
-                        <td>2008/12/13</td>
-                        <td>$103,600</td>
-                    </tr>
-                    <tr>
-                        <td>Jena Gaines</td>
-                        <td>Office Manager</td>
-                        <td>London</td>
-                        <td>30</td>
-                        <td>2008/12/19</td>
-                        <td>$90,560</td>
-                    </tr>
-                    <tr>
-                        <td>Quinn Flynn</td>
-                        <td>Support Lead</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2013/03/03</td>
-                        <td>$342,000</td>
-                    </tr>
-                    <tr>
-                        <td>Charde Marshall</td>
-                        <td>Regional Director</td>
-                        <td>San Francisco</td>
-                        <td>36</td>
-                        <td>2008/10/16</td>
-                        <td>$470,600</td>
-                    </tr>
-                    <tr>
-                        <td>Haley Kennedy</td>
-                        <td>Senior Marketing Designer</td>
-                        <td>London</td>
-                        <td>43</td>
-                        <td>2012/12/18</td>
-                        <td>$313,500</td>
-                    </tr>
-                    <tr>
-                        <td>Tatyana Fitzpatrick</td>
-                        <td>Regional Director</td>
-                        <td>London</td>
-                        <td>19</td>
-                        <td>2010/03/17</td>
-                        <td>$385,750</td>
-                    </tr>
-                    <tr>
-                        <td>Michael Silva</td>
-                        <td>Marketing Designer</td>
-                        <td>London</td>
-                        <td>66</td>
-                        <td>2012/11/27</td>
-                        <td>$198,500</td>
-                    </tr>
-                    <tr>
-                        <td>Paul Byrd</td>
-                        <td>Chief Financial Officer (CFO)</td>
-                        <td>New York</td>
-                        <td>64</td>
-                        <td>2010/06/09</td>
-                        <td>$725,000</td>
-                    </tr>
-                    <tr>
-                        <td>Gloria Little</td>
-                        <td>Systems Administrator</td>
-                        <td>New York</td>
-                        <td>59</td>
-                        <td>2009/04/10</td>
-                        <td>$237,500</td>
-                    </tr>
-                    <tr>
-                        <td>Bradley Greer</td>
-                        <td>Software Engineer</td>
-                        <td>London</td>
-                        <td>41</td>
-                        <td>2012/10/13</td>
-                        <td>$132,000</td>
-                    </tr>
-                    <tr>
-                        <td>Dai Rios</td>
-                        <td>Personnel Lead</td>
-                        <td>Edinburgh</td>
-                        <td>35</td>
-                        <td>2012/09/26</td>
-                        <td>$217,500</td>
+                        <th>PPM-018-10-06062017</th>
+                        <th>Persatuan Penganut Na Du Gong Kwan Tong</th>
+                        <th>Liam Thian Ser</th>
+                        <th>01.10.18</th>
+                        <th>Aktiviti Keagamaan</th>
+                        <th>RM 3000</th>
+                        <th>Diluluskan</th>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
       </div>
@@ -518,4 +361,26 @@
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
+<script>
+    $(document).ready( function () {
+    $('#tablestatus').DataTable({
+        "language": {
+            "lengthMenu": "Memaparkan _MENU_ rekod per halaman",
+            "zeroRecords": "Maaf, tiada rekod.",
+            "info": "Memaparkan halaman _PAGE_ dari _PAGES_",
+            "infoEmpty": "Tidak ada rekod yang tersedia",
+            "infoFiltered": "(Ditapis dari _MAX_ jumlah rekod)",
+            "search": "Carian",
+            "previous": "Sebelum",
+            "paginate": {
+                "first":      "Pertama",
+                "last":       "Terakhir",
+                "next":       "Seterusnya",
+                "previous":   "Sebelumnya"
+            },
+        },
+    });
+}
+);
+</script>
 @endsection
