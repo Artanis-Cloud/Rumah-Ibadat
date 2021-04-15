@@ -166,4 +166,17 @@
         </main>
     </div>
 </body> --}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+        $("document").ready(function(){
+            setTimeout(function(){
+                // $("div.alert").remove();
+                $("div.alert").removeClass("alert-success border border-success");
+                $("div.alert").removeClass("alert-danger border border-danger");
+                // $("div.alert").empty();
+                $("div.alert").css({ 'color': 'white'});
+                $("div.alert").addClass("alert-white");
+            }, 5000 ); // 5 secs  (1 sec = 1000)
+        });
+    </script>
 </html>

@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 //landing page
 Route::get('/', function () {
     return view('welcome');
@@ -23,11 +22,13 @@ Route::get('/selamat-datang', [App\Http\Controllers\WelcomeController::class, 'w
 
 Auth::routes();
 
+
 //AUTHENTICATE ROUTE
 Route::middleware(['auth'])->group(function () {
     Route::get('/profil/tukar-kata-laluan', [App\Http\Controllers\HomeController::class, 'change_password'])->name('tukar-kata-laluan');
     Route::post('/tukar-kata-laluan/kemaskini', [App\Http\Controllers\GeneralController::class, 'update_password'])->name('tukar-kata-laluan.kemaskini');
 });
+
 
 //USER ROUTE
 Route::middleware([User::class])->group(function(){

@@ -19,33 +19,46 @@
 								<a href="{{ route('register') }}" class="btn btn-white btn-outline-white">Daftar Masuk</a>
 							</div>
 			      </div>
-						<div class="p-4 login-wrap p-lg-5">
-			      	<div class="d-flex">
-			      		<div class="w-100">
-			      			<h3 class="mb-4">Log Masuk</h3>
-                          </div>
-			      	</div>
-                      <form method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-			      		<div class="mb-3 form-group">
-			      			<label class="label" for="name">Emel</label>
-			      			<input type="text" name="email" class="form-control" placeholder="Emel" required>
-			      		</div>
-		            <div class="mb-3 form-group">
-		            	<label class="label" for="password">Kata Laluan</label>
-		              <input type="password" name="password" class="form-control" placeholder="Kata Laluan" required>
-		            </div>
-		            <div class="form-group">
-		            	<button type="submit" class="px-3 form-control btn btn-primary submit">Log Masuk</button>
-		            </div>
-		            <div class="form-group d-md-flex">
-		            	<div class="text-left w-50">
-                        </div>
-                        <div class="w-50 text-md-right">
-                            <a href="{{ route('password.request') }}">Terlupa Kata Laluan?</a>
-                        </div>
-		            </div>
-		          </form>
+					<div class="p-4 login-wrap p-lg-5">
+						{{-- Flash Message --}}
+						@if ($message = Session::get('success'))
+							<div class="border alert alert-success border-success" style="text-align: center;">{{$message}}</div>
+						@elseif ($message = Session::get('error'))
+							<div class="border alert alert-danger border-danger" style="text-align: center;">{{$message}}</div>
+						@else
+							{{-- Hidden Gap - Just Ignore --}}
+							<div class="alert alert-white" style="text-align: center;"></div>
+							{{-- <div style="padding: 23px;"></div> --}}
+						@endif
+
+						<div class="d-flex">
+							<div class="w-100">
+								<h3 class="mb-4">Log Masuk</h3>
+							</div>
+						</div>
+						<form method="POST" action="{{ route('login') }}">
+							{{ csrf_field() }}
+							<div class="mb-3 form-group">
+								<label class="label" for="name">Kad Pengenalan</label>
+								<input type="text" name="ic_number" class="form-control" placeholder="Kad Pengenalan" minlength="12" maxlength="12" required>
+							</div>
+						<div class="mb-3 form-group">
+							<label class="label" for="password">Kata Laluan</label>
+						<input type="password" name="password" class="form-control" placeholder="Kata Laluan" required>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="px-3 form-control btn btn-primary submit">Log Masuk</button>
+						</div>
+						<div class="form-group d-md-flex">
+							<div class="text-left w-50">
+							</div>
+							<div class="w-50 text-md-right">
+								<a href="{{ route('password.request') }}">Terlupa Kata Laluan?</a>
+							</div>
+							{{-- Hidden Gap - Just Ignore --}}
+							<div class="alert alert-white" style="text-align: center;"></div>
+						</div>
+					</form>
 		        </div>
 		      </div>
 				</div>
