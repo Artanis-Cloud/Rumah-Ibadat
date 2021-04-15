@@ -35,9 +35,9 @@
                           <label class="mr-sm-2" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
                           <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ old('category') }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
-                              <option value="BUDDHA"    {{ old('category') == "BUDDHA"    ? 'selected' : '' }} >BUDDHA</option>
-                              <option value="HINDU"     {{ old('category') == "HINDU"     ? 'selected' : '' }} >HINDU</option>
-                              <option value="KRISTIAN"  {{ old('category') == "KRISTIAN"  ? 'selected' : '' }} >KRISTIAN</option>
+                              <option value="TOKONG"    {{ old('category') == "TOKONG"    ? 'selected' : '' }} >TOKONG</option>
+                              <option value="KUIL"     {{ old('category') == "KUIL"     ? 'selected' : '' }} >KUIL</option>
+                              <option value="GEREJA"  {{ old('category') == "GEREJA"  ? 'selected' : '' }} >GEREJA</option>
                           </select>
                           @error('category')
                           <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md">
                       <label>Nama Rumah Ibadat</label>
-                      <div class="input-group mb-3">
+                      <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ old('name') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                           @error('name')
                           <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label>Nombor ROS</label>
-                      <div class="input-group mb-3">
+                      <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('ros_number') is-invalid @else border-dark @enderror" id="ros_number" name="ros_number" type="text" value="{{ old('ros_number') }}">
                           @error('ros_number')
                           <span class="invalid-feedback" role="alert">
@@ -75,8 +75,9 @@
                     </div>
                     <div class="col-md">
                       <label>Nombor Telefon Pejabat</label>
-                      <div class="input-group mb-3">
-                          <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ old('office_phone') }}" placeholder="Contoh: 0312345678" minlength="10" maxlength="11" onkeypress="return onlyNumberKey(event)">
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ old('office_phone') }}" minlength="10" maxlength="11" onkeypress="return onlyNumberKey(event)">
+                          <small class="form-text text-muted">Contoh: 0312345678</small>
                           @error('office_phone')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -107,7 +108,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label>Poskod</label>
-                      <div class="input-group mb-3">
+                      <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('postcode') is-invalid @else border-dark @enderror" id="postcode" name="postcode" type="text" value="{{ old('postcode') }}" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)">
                           @error('ros_number')
                           <span class="invalid-feedback" role="alert">
@@ -144,8 +145,9 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
-                          <label class="mr-sm-2" for="inlineFormCustomSelect">Daerah</label>
-                          <select class="custom-select mr-sm-2 @error('state') is-invalid @else border-dark @enderror" id="state" name="state" value="{{ old('state') }}">
+                          <label class="mr-sm-2" for="inlineFormCustomSelect">Negeri</label>
+                          <input class="form-control text-uppercase @error('state') is-invalid @else border-dark @enderror" id="state" name="state" type="text" value="SELANGOR" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" readonly>
+                          {{-- <select class="custom-select mr-sm-2 @error('state') is-invalid @else border-dark @enderror" id="state" name="state" value="{{ old('state') }}">
                               <option selected disabled hidden>PILIH NEGERI</option>
                               <option value="JOHOR"           {{ old('state') == "JOHOR"            ? 'selected' : '' }}>JOHOR</option>
                               <option value="KEDAH"           {{ old('state') == "KEDAH"            ? 'selected' : '' }}>KEDAH</option>
@@ -163,7 +165,7 @@
                               <option value="WP KUALA LUMPUR" {{ old('state') == "WP KUALA LUMPUR"  ? 'selected' : '' }}>WP KUALA LUMPUR</option>
                               <option value="WP PUTRAJAYA"    {{ old('state') == "WP PUTRAJAYA"     ? 'selected' : '' }}>WP PUTRAJAYA</option>
                               <option value="WP LABUAN"       {{ old('state') == "WP LABUAN"        ? 'selected' : '' }}>WP LABUAN</option>
-                          </select>
+                          </select> --}}
                           @error('state')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -208,7 +210,7 @@
                     </div>
                     <div class="col-md">
                       <label>Nombor Akaun</label>
-                      <div class="input-group mb-3">
+                      <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('bank_account') is-invalid @else border-dark @enderror" id="bank_account" name="bank_account" type="text" value="{{ old('bank_account') }}" onkeypress="return onlyNumberKey(event)">
                           @error('bank_account')
                           <span class="invalid-feedback" role="alert">
