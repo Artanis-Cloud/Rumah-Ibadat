@@ -47,8 +47,17 @@
                         {{-- <p class="text-muted">Sila masukkan email yang berdaftar</p> --}}
                         <div>
                             {{ csrf_field() }}
+                            {{-- <div class="form-group has-feedback">
+                                <input type="text" name="ic_number" class="form-control" required="autofocus" placeholder="Kad Pengenalan">
+                                @if($errors->has('ic_number'))
+                                    <em class="invalid-feedback">
+                                        {{ $errors->first('ic_number') }}
+                                    </em>
+                                @endif
+                            </div> --}}
+
                             <div class="form-group has-feedback">
-                                <input type="email" name="email" class="form-control" required="autofocus" placeholder="Email Berdaftar">
+                                <input type="email" name="email" class="form-control" required="autofocus" placeholder="Email">
                                 @if($errors->has('email'))
                                     <em class="invalid-feedback">
                                         {{ $errors->first('email') }}

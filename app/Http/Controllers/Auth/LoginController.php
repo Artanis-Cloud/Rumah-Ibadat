@@ -40,6 +40,11 @@ class LoginController extends Controller
 
     protected $redirectTo;
 
+    public function username()
+    {
+        return 'ic_number';
+    }
+
     public function redirectTo()
     {
         // dd(request()->all());
