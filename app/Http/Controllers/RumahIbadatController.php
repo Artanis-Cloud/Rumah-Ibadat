@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Toastr;
+use Auth;
+
 use App\Models\User;
 
 use App\Models\RumahIbadat;
@@ -21,13 +24,22 @@ class RumahIbadatController extends Controller
 
     public function daftar_rumah_ibadat()
     {
+        //check if user has register rumah ibadat
+        if(auth()->user()->is_rumah_ibadat == 1){
+            return redirect()->back()->with('error', 'Anda telah mendaftar rumah ibadat');
+        }
+
         return view('users.rumah-ibadat.daftar');
     }
 
     public function menukar_rumah_ibadat()
     {
-        return view('users.rumah-ibadat.menukar');
+        //check if user has register rumah ibadat
+        if (auth()->user()->is_rumah_ibadat == 1) {
+            return redirect()->back()->with('error', 'Anda telah mendaftar rumah ibadat');
+        }
 
+        return view('users.rumah-ibadat.menukar');
     }
 
     public function tambah_rumah_ibadat(Request $request)
