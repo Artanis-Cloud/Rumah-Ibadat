@@ -24,9 +24,9 @@ class CreateUsersTable extends Migration
             $table->string('is_rumah_ibadat')->default('0');      //(1 = Exist) (0 = Not Exist)
 
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('ic_number')->unique();
-            $table->string('mobile_phone')->unique();
+            $table->string('mobile_phone');
             $table->string('password');
 
             $table->timestamp('email_verified_at')->nullable();  //default

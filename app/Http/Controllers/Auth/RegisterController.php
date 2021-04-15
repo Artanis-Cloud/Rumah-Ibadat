@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::LOGIN;
 
     /**
      * Create a new controller instance.
@@ -89,6 +89,6 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        return redirect($this->redirectPath())->with('message', 'Your message');
+        return redirect($this->redirectPath())->with('success', 'Pendaftaran Berjaya!');
     }
 }
