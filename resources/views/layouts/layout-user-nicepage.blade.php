@@ -547,7 +547,7 @@
     <script src="{{asset('nice-admin/icon/js/brands.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/solid.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/fontawesome.js')}}"></script>
-
+    
     <script type="text/javascript">
         $("document").ready(function(){
             setTimeout(function(){

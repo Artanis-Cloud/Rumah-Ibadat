@@ -20,18 +20,19 @@ class CreateRumahIbadatsTable extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();          //user id
             $table->foreign('user_id')->references('id')->on('users');      //user id
 
-            $table->string('verified')->default('0');;                      //(1 = Verified) (0 = Not Verified)
+            $table->string('verified')->default('0');                       //(1 = Verified Rumah Ibadat) (0 = Not Verified Rumah Ibadat)
 
-            $table->string('category');                                     //(Cina)(India)(Kristian)
+            $table->string('category');                                     //(Gereja (Kristian))(Tokong (Budha & Tao))(Kuil (Hindu & Gurdwara))
             $table->string('name')->unique();
             $table->string('address');
             $table->string('postcode');
             $table->string('district');
-            $table->string('state');
+            $table->string('state')->default('Selangor');;                  //All rumah ibadat is in Selangor
             $table->string('bank_name');
             $table->string('bank_account')->unique();
             $table->string('office_phone');
             $table->string('ros_number')->unique();
+
 
             $table->timestamps();                                           //default
         });

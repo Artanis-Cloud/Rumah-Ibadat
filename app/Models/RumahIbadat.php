@@ -14,12 +14,12 @@ class RumahIbadat extends Model
         'user_id',          //user id
         'verified',         //(1 = Verified) (0 = Not Verified)
 
-        'category',         //(Cina)(India)(Kristian)
+        'category',         //(Gereja (Kristian))(Tokong (Budha & Tao))(Kuil (Hindu & Gurdwara))
         'name',
         'address',
         'postcode',
         'district',
-        'state',
+        'state',            //All rumah ibadat in Selangor
         'bank_name',
         'bank_account',
         'office_phone',
@@ -29,11 +29,16 @@ class RumahIbadat extends Model
     //front code id
     public function getRumahIbadatID()
     {
-        return sprintf('RMH%06d', $this->id);
+        return sprintf('RMH-%06d', $this->id);
     }
 
     public function user()
     {
         return $this->belongsTo('\App\Models\User', 'user_id');
+    }
+
+    public function permohonan()
+    {
+        return $this->hasMany('App\Models\Permohonan');
     }
 }
