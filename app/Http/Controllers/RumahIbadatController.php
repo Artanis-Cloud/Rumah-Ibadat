@@ -46,7 +46,6 @@ class RumahIbadatController extends Controller
     {
         // validate rumah ibadat registration
         $this->validator($request->all())->validate();
-
         //fetch current user details
         $user = User::findorfail(auth()->user()->id);
 
@@ -54,8 +53,9 @@ class RumahIbadatController extends Controller
         $rumah_ibadat = RumahIbadat::create([
             'category' => $request->category,
             'name' => $request->name,
-            'ros_number' => $request->ros_number,
             'office_phone' => $request->office_phone,
+            'registration_type' => $request->registration_type,
+            'registration_number' => $request->registration_number,
             'address' => $request->address,
             'postcode' => $request->postcode,
             'district' => $request->district,
@@ -77,12 +77,12 @@ class RumahIbadatController extends Controller
         return Validator::make($data, [
             'category' => ['required','string'],
             'name' => ['required', 'string','max:255', 'unique:rumah_ibadats'],
-            'ros_number' => ['required', 'string', 'unique:rumah_ibadats'],
-            // 'office_phone' => ['required', 'string', 'max:11', 'min:10'],
+            'office_phone' => ['nullable', 'string', 'min:10', 'max:11'],
+            'registration_type' => ['required'],
+            'registration_number' => ['required', 'string', 'unique:rumah_ibadats'],
             'address' => ['required', 'string', 'max:255'],
             'postcode' => ['required', 'string', 'max:5', 'min:5'],
             'district' => ['required', 'string', 'max:255'],
-            // 'state' => ['required', 'string'],
             'bank_name' => ['required', 'string'],
             'bank_account' => ['required', 'string', 'unique:rumah_ibadats'],
         ]);

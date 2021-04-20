@@ -24,6 +24,8 @@ class CreateRumahIbadatsTable extends Migration
 
             $table->string('category');                                     //(Gereja (Kristian))(Tokong (Budha & Tao))(Kuil (Hindu & Gurdwara))
             $table->string('name')->unique();
+            $table->string('registration_type');
+            $table->string('registration_number')->unique();
             $table->string('address');
             $table->string('postcode');
             $table->string('district');
@@ -31,7 +33,6 @@ class CreateRumahIbadatsTable extends Migration
             $table->string('bank_name');
             $table->string('bank_account')->unique();
             $table->string('office_phone');
-            $table->string('ros_number')->unique();
 
 
             $table->timestamps();                                           //default
