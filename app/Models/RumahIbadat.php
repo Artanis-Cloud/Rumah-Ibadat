@@ -16,6 +16,8 @@ class RumahIbadat extends Model
 
         'category',         //(Gereja (Kristian))(Tokong (Budha & Tao))(Kuil (Hindu & Gurdwara))
         'name',
+        'registration_type',
+        'registration_number',
         'address',
         'postcode',
         'district',
@@ -23,7 +25,6 @@ class RumahIbadat extends Model
         'bank_name',
         'bank_account',
         'office_phone',
-        'ros_number',
     ];
 
     //front code id
