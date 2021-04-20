@@ -32,12 +32,12 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
-                          <label class="mr-sm-2" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
+                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
                           <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ old('category') }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
-                              <option value="TOKONG"    {{ old('category') == "TOKONG"    ? 'selected' : '' }} >TOKONG</option>
-                              <option value="KUIL"     {{ old('category') == "KUIL"     ? 'selected' : '' }} >KUIL</option>
-                              <option value="GEREJA"  {{ old('category') == "GEREJA"  ? 'selected' : '' }} >GEREJA</option>
+                              <option value="TOKONG"    {{ old('category') == "TOKONG"  ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
+                              <option value="KUIL"      {{ old('category') == "KUIL"    ? 'selected' : '' }} >KUIL (HINDU & GURDWARA)</option>
+                              <option value="GEREJA"    {{ old('category') == "GEREJA"  ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
                           </select>
                           @error('category')
                           <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label>Nama Rumah Ibadat</label>
+                      <label class="required">Nama Rumah Ibadat</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ old('name') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                           @error('name')
@@ -62,18 +62,7 @@
 
                   <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md">
-                      <label>Nombor ROS</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('ros_number') is-invalid @else border-dark @enderror" id="ros_number" name="ros_number" type="text" value="{{ old('ros_number') }}">
-                          @error('ros_number')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                      </div>
-                    </div>
-                    <div class="col-md">
+                    <div class="col-md-4">
                       <label>Nombor Telefon Pejabat</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ old('office_phone') }}" minlength="10" maxlength="11" onkeypress="return onlyNumberKey(event)">
@@ -88,10 +77,72 @@
                     <div class="col-md-2"></div>
                   </div>
 
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Jenis Pendaftaran</label>
+                          <select class="custom-select mr-sm-2 @error('registration_type') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" value="{{ old('registration_type') }}" onchange="changeRegistration()">
+                              <option selected disabled hidden>PILIH JENIS PENDAFTARAN</option>
+                              <option value="INDUK"    {{ old('registration_type') == "INDUK"     ? 'selected' : '' }} >INDUK</option>
+                              <option value="CAWANGAN" {{ old('registration_type') == "CAWANGAN"  ? 'selected' : '' }} >CAWANGAN</option>
+                          </select>
+                          @error('category')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
+                    <div class="col-md-4" id="main_div">
+                      <label class="required">Nombor Sijil Pendaftaran</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number" name="registration_number" type="text" value="{{ old('registration_number') }}">
+                          @error('registration_number')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" id="branch_div_1" style="display: none;">
+                      <label class="required">Nombor Pendaftaran Induk</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase @error('registration_number_main') is-invalid @else border-dark @enderror" id="registration_number_main" name="registration_number_main" type="text" value="{{ old('registration_number_main') }}">
+                          @error('registration_number_main')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
+                    <div class="col-md-4" id="branch_div_2" style="display: none;">
+                      <label class="required">Nombor Pendaftaran Cawangan</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase @error('registration_number_branch') is-invalid @else border-dark @enderror" id="registration_number_branch" name="registration_number_branch" type="text" value="{{ old('registration_number_branch') }}">
+                          @error('registration_number_branch')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <hr>
+
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      <label>Alamat Rumah Ibadat</label>
+                      <label class="required">Alamat Rumah Ibadat</label>
                       <div class="form-group">
                           <textarea class="form-control text-uppercase @error('address') is-invalid @else border-dark @enderror" id="address" name="address" rows="2" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ old('address') }}</textarea>
                           @error('address')
@@ -107,7 +158,7 @@
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      <label>Poskod</label>
+                      <label class="required">Poskod</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('postcode') is-invalid @else border-dark @enderror" id="postcode" name="postcode" type="text" value="{{ old('postcode') }}" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)">
                           @error('ros_number')
@@ -119,7 +170,7 @@
                     </div>
                     <div class="col-md">
                       <div class="form-group">
-                          <label class="mr-sm-2" for="inlineFormCustomSelect">Daerah</label>
+                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Daerah</label>
                           <select class="custom-select mr-sm-2 @error('district') is-invalid @else border-dark @enderror" id="district" name="district" value="{{ old('district') }}">
                               <option selected disabled hidden>PILIH DAERAH</option>
                               <option value="GOMBAK"          {{ old('district') == "GOMBAK"          ? 'selected' : '' }} >GOMBAK</option>
@@ -182,7 +233,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
-                          <label class="mr-sm-2" for="inlineFormCustomSelect">Nama Bank</label>
+                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Nama Bank</label>
                           <select class="custom-select mr-sm-2 @error('bank_name') is-invalid @else border-dark @enderror" id="bank_name" name="bank_name" value="{{ old('bank_name') }}">
                               <option selected disabled hidden>PILIH BANK</option>
                               <option value="AFFIN BANK"                    {{ old('bank_name') == "AFFIN BANK"                     ? 'selected' : '' }}>AFFIN BANK</option>
@@ -209,7 +260,7 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label>Nombor Akaun</label>
+                      <label class="required">Nombor Akaun</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('bank_account') is-invalid @else border-dark @enderror" id="bank_account" name="bank_account" type="text" value="{{ old('bank_account') }}" onkeypress="return onlyNumberKey(event)">
                           @error('bank_account')
@@ -240,19 +291,14 @@
               <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
-                    {{-- <div class="modal-header">
+                    <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                    </div> --}}
-                    <div class="modal-body text-center">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      <img src="https://lh3.googleusercontent.com/proxy/ogthMk7k4uGarnPI94HH-yGqrnTtZwl06-QS3HSUvu28KXKlNPKTW2MmPZwJB0OF7p5ASyxIwOFQLlO7Za52jsupEN9OoSaYmRIPrM-Tcsg8XO3AZ9v1wPQgntGCRBw" style="height: 200px;" alt="alert" class="dark-logo">
-                      <br><br>
-                      <h4>Anda pasti maklumat ini tepat?</h4>
+                    </div>
+                    <div class="modal-body">
+                      Anda pasti maklumat ini tepat?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -271,6 +317,47 @@
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
 <script>
+  //run function when page reload
+  window.addEventListener('load', changeRegistration);
+
+  //function change input on registration type
+  function changeRegistration(){
+    //fetch data from dropdown
+    var registration_type = $('#registration_type').val();
+
+    //display or hide the input
+    if(registration_type == 'INDUK'){
+      document.getElementById('main_div').style.display = "block";
+      document.getElementById('branch_div_1').style.display = "none";
+      document.getElementById('branch_div_2').style.display = "none";
+
+      //change input condition
+      document.getElementById("registration_number").disabled = false;
+      document.getElementById("registration_number_main").disabled = true;
+      document.getElementById("registration_number_branch").disabled = true;
+
+      //clear input condition
+      document.getElementById("registration_number").value = "";
+      document.getElementById("registration_number_main").value = "";
+      document.getElementById("registration_number_branch").value = "";
+    }else if(registration_type == 'CAWANGAN'){
+      document.getElementById('main_div').style.display = "none";
+      document.getElementById('branch_div_1').style.display = "block";
+      document.getElementById('branch_div_2').style.display = "block";
+
+      //change input condition
+      document.getElementById("registration_number").disabled = true;
+      document.getElementById("registration_number_main").disabled = false;
+      document.getElementById("registration_number_branch").disabled = false;
+
+      //clear input condition
+      document.getElementById("registration_number").value = "";
+      document.getElementById("registration_number_main").value = "";
+      document.getElementById("registration_number_branch").value = "";
+    }
+  }
+
+  //function insert number only
   function onlyNumberKey(evt) {
 
         // Only ASCII charactar in that range allowed

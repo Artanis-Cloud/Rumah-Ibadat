@@ -16,8 +16,8 @@ class CreateLampiransTable extends Migration
         Schema::create('lampirans', function (Blueprint $table) {
             $table->id();                                                       //default
 
-            $table->bigInteger('tujuan_id')->unsigned()->nullable();            //user id
-            $table->foreign('tujuan_id')->references('id')->on('tujuans');      //user id
+            $table->bigInteger('tujuan_id')->unsigned()->nullable();            //tujuan id
+            $table->foreign('tujuan_id')->references('id')->on('tujuans');      //tujuan id
 
             $table->string('data_type');                                        //(1-Image)(2-PDF)
             $table->string('url');                                              //attachment

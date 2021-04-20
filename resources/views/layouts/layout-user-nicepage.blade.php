@@ -65,7 +65,13 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #4b4b4b;
     }
+
+    .required:after {
+    content:" *";
+    color: red;
+    }
     </style>
+    
 </head>
 <body>
     <!-- ============================================================== -->

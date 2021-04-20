@@ -78,11 +78,11 @@ class RumahIbadatController extends Controller
             'category' => ['required','string'],
             'name' => ['required', 'string','max:255', 'unique:rumah_ibadats'],
             'ros_number' => ['required', 'string', 'unique:rumah_ibadats'],
-            'office_phone' => ['required', 'string', 'max:11', 'min:10'],
+            // 'office_phone' => ['required', 'string', 'max:11', 'min:10'],
             'address' => ['required', 'string', 'max:255'],
             'postcode' => ['required', 'string', 'max:5', 'min:5'],
             'district' => ['required', 'string', 'max:255'],
-            'state' => ['required', 'string'],
+            // 'state' => ['required', 'string'],
             'bank_name' => ['required', 'string'],
             'bank_account' => ['required', 'string', 'unique:rumah_ibadats'],
         ]);
