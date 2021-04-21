@@ -98,7 +98,7 @@ class RumahIbadatController extends Controller
 
 
     public function update_rumah_ibadat(Request $request){
-
+        // dd($request->all());
         //fetch user's rumah ibadat
         $rumah_ibadat = RumahIbadat::where('user_id', auth()->user()->id)->first();
 
@@ -114,14 +114,14 @@ class RumahIbadatController extends Controller
 
         }
 
-        //unique validator for ROS number
-        if ($request->ros_number != $rumah_ibadat->ros_number) { //cheking either ros number has been changed or not
+        //unique validator for registration number
+        if ($request->registration_number != $rumah_ibadat->registration_number) { //cheking either ros number has been changed or not
 
-            //checking ros number either been registered or not
-            $checkRosNumber = RumahIbadat::where('ros_number', $request->ros_number)->count();
+            //checking registration number either been registered or not
+            $checkRegistraionNumber = RumahIbadat::where('registration_number', $request->registration_number)->count();
 
-            if ($checkRosNumber > 0) { //if the ros number exist, return back and display error message
-                return redirect()->back()->with('error', 'Nombor ROS ini telah didaftar.');
+            if ($checkRegistraionNumber > 0) { //if the ros number exist, return back and display error message
+                return redirect()->back()->with('error', 'Nombor pendaftaran ini telah didaftar.');
             }
         }
 
@@ -142,8 +142,9 @@ class RumahIbadatController extends Controller
         //update information
         $rumah_ibadat->category = $request->category;
         $rumah_ibadat->name = $request->name;
-        $rumah_ibadat->ros_number = $request->ros_number;
         $rumah_ibadat->office_phone = $request->office_phone;
+        $rumah_ibadat->registration_type = $request->registration_type;
+        $rumah_ibadat->registration_number = $request->registration_number;
         $rumah_ibadat->address = $request->address;
         $rumah_ibadat->postcode = $request->postcode;
         $rumah_ibadat->district = $request->district;
@@ -162,12 +163,15 @@ class RumahIbadatController extends Controller
     {
         return Validator::make($data, [
             'category' => ['required', 'string'],
-            'office_phone' => ['required', 'string', 'max:11', 'min:10'],
+            'name' => ['required', 'string', 'max:255'],
+            'office_phone' => ['nullable', 'string', 'min:10', 'max:11'],
+            'registration_type' => ['required'],
+            'registration_number' => ['required', 'string'],
             'address' => ['required', 'string', 'max:255'],
             'postcode' => ['required', 'string', 'max:5', 'min:5'],
             'district' => ['required', 'string', 'max:255'],
-            'state' => ['required', 'string'],
             'bank_name' => ['required', 'string'],
+            'bank_account' => ['required', 'string'],
         ]);
     }
 

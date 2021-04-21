@@ -33,7 +33,7 @@
                     <div class="col-md">
                       <label>ID Rumah Ibadat</label>
                       <div class="mb-3 input-group">
-                          <input class="form-control text-uppercase @error('id_rumah_ibadat') is-invalid @else border-dark @enderror" id="id_rumah_ibadat" name="id_rumah_ibadat" type="text" value="{{ $rumah_ibadat->getRumahIbadatID() }}" disabled>
+                          <input class="form-control text-uppercase @error('id_rumah_ibadat') is-invalid @else border-dark @enderror" id="id_rumah_ibadat" name="id_rumah_ibadat" type="text" value="{{ $rumah_ibadat->getRumahIbadatID() }}" readonly>
                           @error('id_rumah_ibadat')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
-                          <label class="mr-sm-2" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
+                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
                           <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ $rumah_ibadat->category }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
                               <option value="TOKONG"    {{ $rumah_ibadat->category == "TOKONG"    ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
@@ -63,7 +63,7 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label>Nama Rumah Ibadat</label>
+                      <label class="required">Nama Rumah Ibadat</label>
                       <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ $rumah_ibadat->name }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                           @error('name')
@@ -136,7 +136,7 @@
                     <div class="col-md-4" id="branch_div_1" style="display: none;">
                       <label class="required">Nombor Pendaftaran Induk</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_main" name="registration_number_main" type="text" value="{{ explode("%", $rumah_ibadat->registration_number, 2)[0] }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
+                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_main" name="registration_number_main" type="text" value="{{ $rumah_ibadat->registration_type == "CAWANGAN" ? explode("%", $rumah_ibadat->registration_number, 2)[0] : '' }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -147,7 +147,7 @@
                     <div class="col-md-4" id="branch_div_2" style="display: none;">
                       <label class="required">Nombor Pendaftaran Cawangan</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_branch" name="registration_number_branch" type="text" value="{{ explode("%", $rumah_ibadat->registration_number, 2)[1] }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
+                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_branch" name="registration_number_branch" type="text" value="{{ $rumah_ibadat->registration_type == "CAWANGAN" ? explode("%", $rumah_ibadat->registration_number, 2)[1] : '' }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -164,7 +164,7 @@
                     <div class="col-md">
                       <label class="required">Nombor Pendaftaran Checker</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number" name="registration_number" type="text" value="{{ old('registration_number') }}" readonly>
+                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number" name="registration_number" type="text" value="{{ $rumah_ibadat->registration_number }}" readonly>
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -186,7 +186,7 @@
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      <label>Alamat Rumah Ibadat</label>
+                      <label class="required">Alamat Rumah Ibadat</label>
                       <div class="form-group">
                           <textarea class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="address" name="address" rows="2" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ $rumah_ibadat->address }}</textarea>
                       </div>
@@ -197,7 +197,7 @@
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      <label>Poskod</label>
+                      <label class="required">Poskod</label>
                       <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('postcode') is-invalid @else border-dark @enderror" id="postcode" name="postcode" type="text" value="{{ $rumah_ibadat->postcode }}" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)">
                           @error('ros_number')
@@ -209,7 +209,7 @@
                     </div>
                     <div class="col-md">
                       <div class="form-group">
-                          <label class="mr-sm-2" for="inlineFormCustomSelect">Daerah</label>
+                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Daerah</label>
                           <select class="custom-select mr-sm-2 @error('district') is-invalid @else border-dark @enderror" id="district" name="district">
                               <option selected disabled hidden>PILIH DAERAH</option>
                               <option value="GOMBAK"          {{ $rumah_ibadat->district == "GOMBAK"          ? 'selected' : '' }} >GOMBAK</option>
@@ -269,7 +269,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
-                          <label class="mr-sm-2" for="inlineFormCustomSelect">Nama Bank</label>
+                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Nama Bank</label>
                           <select class="custom-select mr-sm-2 @error('bank_name') is-invalid @else border-dark @enderror" id="bank_name" name="bank_name" value="{{ $rumah_ibadat->bank_name }}">
                               <option selected disabled hidden>PILIH BANK</option>
                               <option value="AFFIN BANK"                    {{ $rumah_ibadat->bank_name == "AFFIN BANK"                     ? 'selected' : '' }}>AFFIN BANK</option>
@@ -296,7 +296,7 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label>Nombor Akaun</label>
+                      <label class="required">Nombor Akaun</label>
                       <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('bank_account') is-invalid @else border-dark @enderror" id="bank_account" name="bank_account" type="text" value="{{ $rumah_ibadat->bank_account }}" onkeypress="return onlyNumberKey(event)">
                           @error('bank_account')
@@ -353,7 +353,7 @@
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
 <script>
-  //run function when page reload
+  //run these function when page reload
   window.addEventListener('load', changeRegistrationReload);
 
   //function change input on registration during reload (will not clear old input)
