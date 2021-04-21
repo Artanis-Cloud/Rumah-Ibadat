@@ -331,7 +331,7 @@
                         <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Permohonan</span></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
                                     {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-inputs.html" class="sidebar-link"><i class="mdi mdi-priority-low"></i><span class="hide-menu"> Forms Input</span></a></li>
                                         <li class="sidebar-item"><a href="form-input-groups.html" class="sidebar-link"><i class="mdi mdi-rounded-corner"></i><span class="hide-menu"> Input Groups</span></a></li>

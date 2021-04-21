@@ -10,4 +10,8 @@ class PermohonanController extends Controller
     {
         return view('users.permohonan.baru');
     }
+
+    public function permohonan_hantar(Request $request){
+        dd($request->all());
+    }
 }
