@@ -54,7 +54,9 @@ Route::middleware([User::class])->group(function(){
 
 
     //Permohonan
-    Route::get('/pengguna/permohonan/baru', [App\Http\Controllers\PermohonanController::class, 'permohonan_baru'])->name('users.permohonan.baru');
+    Route::get('/permohonan/permohonan-baru', [App\Http\Controllers\PermohonanController::class, 'permohonan_baru'])->name('users.permohonan.baru');
+
+    Route::post('/permohonan/permohonan-baru/hantar', [App\Http\Controllers\PermohonanController::class, 'permohonan_hantar'])->name('users.permohonan.baru.hantar');
 });
 
 
