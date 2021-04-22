@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\RumahIbadat');
     }
+
+    public function permohonan_khas()
+    {
+        return $this->hasMany('App\Models\PermohonanKhas');
+    }
 }

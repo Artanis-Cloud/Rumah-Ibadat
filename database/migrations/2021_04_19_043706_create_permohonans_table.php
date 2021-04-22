@@ -31,7 +31,7 @@ class CreatePermohonansTable extends Migration
             $table->string('support_letter');                                               //attachment
             $table->string('account_statement');                                            //attachment
             $table->string('spending_statement');                                           //attachment
-            $table->string('payment_method')->default('1');;                                //(1-Check)(2-EFT)
+            $table->string('payment_method')->default('1');                                //(1-Check)(2-EFT)
 
 
             //after 

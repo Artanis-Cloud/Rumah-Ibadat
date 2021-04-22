@@ -509,7 +509,7 @@
             <!-- ============================================================== -->
             <footer class="text-center footer">
                 Hakcipta Terpelihara 2021 © Pejabat Setiausaha Kerajaan Negeri Selangor. Designed and Developed by
-                <a href="https://www.artaniscloud.com/">Artanis Cloud Sdn. Bhd.</a>.
+                <a href="https://www.artaniscloud.com/">Artanis Cloud Sdn. Bhd.</a>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
