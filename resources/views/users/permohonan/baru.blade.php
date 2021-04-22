@@ -65,7 +65,7 @@
                     <div class="col-md-2"></div>
                   </div>
 
-                  <div class="row">
+                  <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <hr>
@@ -87,14 +87,14 @@
                       <label class="required">Surat Permohonan</label>
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="application_letter" name="application_letter">
-                        <label class="custom-file-label" for="application_letter">Muat Naik Fail</label>
+                        <label class="custom-file-label border-dark" for="application_letter">Muat Naik Fail</label>
                       </div>
                     </div>
                     <div class="col-md">
                       <label class="required">Surat Sokongan</label>
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="support_letter" name="support_letter">
-                        <label class="custom-file-label" for="support_letter">Muat Naik Fail</label>
+                        <label class="custom-file-label border-dark" for="support_letter">Muat Naik Fail</label>
                       </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -106,14 +106,14 @@
                       <label class="required">Penyata Bank Terkini</label>
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="account_statement" name="account_statement">
-                        <label class="custom-file-label" for="account_statement">Muat Naik Fail</label>
+                        <label class="custom-file-label border-dark" for="account_statement">Muat Naik Fail</label>
                       </div>
                     </div>
                     <div class="col-md">
                       <label class="required">Penyata Perbelanjaan Terkini</label>
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="spending_statement" name="spending_statement">
-                        <label class="custom-file-label" for="spending_statement">Muat Naik Fail</label>
+                        <label class="custom-file-label border-dark" for="spending_statement">Muat Naik Fail</label>
                       </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -122,13 +122,13 @@
                   {{-- TUJUAN FORM --}}
                   <div id="tujuan_1_div" style="display: none;">
 
-                    <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <hr>
-                      </div>
-                      <div class="col-md-2"></div>
+                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <hr>
                     </div>
+                    <div class="col-md-2"></div>
+                  </div>
 
                     <div class="row">
                       <div class="col-md-2"></div>
@@ -144,14 +144,14 @@
                         <label class="required">Foto bangunan atau aktiviti persatuan agama</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_1_photo_1" name="opt_1_photo_1">
-                          <label class="custom-file-label" for="opt_1_photo_1">Gambar 1</label>
+                          <label class="custom-file-label border-dark" for="opt_1_photo_1">Gambar 1</label>
                         </div>
                       </div>
                       <div class="col-md">
                         <label>&nbsp</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_1_photo_2" name="opt_1_photo_2">
-                          <label class="custom-file-label" for="opt_1_photo_2">Gambar 2</label>
+                          <label class="custom-file-label border-dark" for="opt_1_photo_2">Gambar 2</label>
                         </div>
                       </div>
                       <div class="col-md-2"></div>
@@ -163,14 +163,14 @@
                         <label>&nbsp</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_1_photo_3" name="opt_1_photo_3">
-                          <label class="custom-file-label" for="opt_1_photo_3">Gambar 3</label>
+                          <label class="custom-file-label border-dark" for="opt_1_photo_3">Gambar 3</label>
                         </div>
                       </div>
                       <div class="col-md">
                         <label>&nbsp</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_1_photo_4" name="opt_1_photo_4">
-                          <label class="custom-file-label" for="opt_1_photo_4">Gambar 4</label>
+                          <label class="custom-file-label border-dark" for="opt_1_photo_4">Gambar 4</label>
                         </div>
                       </div>
                       <div class="col-md-2"></div>
@@ -180,7 +180,7 @@
 
                   <div id="tujuan_2_div" style="display: none;">
 
-                    <div class="row">
+                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
                       <div class="col-md-2"></div>
                       <div class="col-md">
                         <hr>
@@ -202,7 +202,7 @@
                         <label class="required">Senarai nama murid, kad pengenalan, jantina dan umur murid</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_2_file_1" name="opt_2_file_1">
-                          <label class="custom-file-label" for="opt_2_file_1">Muat Naik Fail</label>
+                          <label class="custom-file-label border-dark" for="opt_2_file_1">Muat Naik Fail</label>
                         </div>
                       </div>
                       <div class="col-md-2"></div>
@@ -212,7 +212,7 @@
 
                   <div id="tujuan_3_div" style="display: none;">
 
-                    <div class="row">
+                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
                       <div class="col-md-2"></div>
                       <div class="col-md">
                         <hr>
@@ -234,7 +234,7 @@
                         <label class="required">Salinan sebutharga alat perkakas kontraktor</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_2_file_1" name="opt_2_file_1">
-                          <label class="custom-file-label" for="opt_2_file_1">Muat Naik Fail</label>
+                          <label class="custom-file-label border-dark" for="opt_2_file_1">Muat Naik Fail</label>
                         </div>
                       </div>
                       <div class="col-md-2"></div>
@@ -246,14 +246,14 @@
                         <label class="required">Foto alat perkakas</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_3_photo_1" name="opt_3_photo_1">
-                          <label class="custom-file-label" for="opt_3_photo_1">Gambar 1</label>
+                          <label class="custom-file-label border-dark" for="opt_3_photo_1">Gambar 1</label>
                         </div>
                       </div>
                       <div class="col-md">
                         <label>&nbsp</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_3_photo_2" name="opt_3_photo_2">
-                          <label class="custom-file-label" for="opt_3_photo_2">Gambar 2</label>
+                          <label class="custom-file-label border-dark" for="opt_3_photo_2">Gambar 2</label>
                         </div>
                       </div>
                       <div class="col-md-2"></div>
@@ -261,6 +261,129 @@
 
                   </div>
 
+                  <div id="tujuan_4_div" style="display: none;">
+
+                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <hr>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <h3>Baik Pulih/Penyelenggaraan Bangunan</h3>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <label class="required">Salinan sebutharga daripada kontraktor</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="opt_4_file_1" name="opt_4_file_1">
+                          <label class="custom-file-label border-dark" for="opt_4_file_1">Muat Naik Fail</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <label class="required">Foto bahagian tokong</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="opt_4_photo_1" name="opt_4_photo_1">
+                          <label class="custom-file-label border-dark" for="opt_4_photo_1">Gambar 1</label>
+                        </div>
+                      </div>
+                      <div class="col-md">
+                        <label>&nbsp</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="opt_4_photo_2" name="opt_4_photo_2">
+                          <label class="custom-file-label border-dark" for="opt_4_photo_2">Gambar 2</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                  </div>
+
+                  
+
+                  <div id="tujuan_5_div" style="display: none;">
+
+                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <hr>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <h3>Pemindahan/Pembinaan Baru Rumah Ibadat</h3>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label class="required">Sebutharga kontraktor</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="opt_5_file_1" name="opt_5_file_1">
+                        <label class="custom-file-label border-dark" for="opt_5_file_1">Muat Naik Fail</label>
+                      </div>
+                    </div>
+                    <div class="col-md">
+                      <label class="required">Salinan Kebenaran Merancang</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="opt_5_file_2" name="opt_5_file_2">
+                        <label class="custom-file-label border-dark" for="opt_5_file_2">Muat Naik Fail</label>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label class="required">Salinan Pelan Bangunan</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="opt_5_file_3" name="opt_5_file_3">
+                        <label class="custom-file-label border-dark" for="opt_5_file_3">Muat Naik Fail</label>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <label class="required">Foto bangunan</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="opt_5_photo_1" name="opt_5_photo_1">
+                          <label class="custom-file-label border-dark" for="opt_5_photo_1">Gambar 1</label>
+                        </div>
+                      </div>
+                      <div class="col-md">
+                        <label>&nbsp</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="opt_5_photo_2" name="opt_5_photo_2">
+                          <label class="custom-file-label border-dark" for="opt_5_photo_2">Gambar 2</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                  </div>
+                  
                   {{-- Submit Button --}}
                   <div class="row" style="padding-top: 25px;"> 
                     <div class="col-md-3"></div>
@@ -344,6 +467,30 @@
     } else {
         //hide form
         document.getElementById('tujuan_3_div').style.display = "none";
+    }
+  });
+
+  //checkbox display - option 4
+  $("#tujuan_4").on('change', function() {
+
+    if ($(this).is(':checked')) {
+        //display form
+        document.getElementById('tujuan_4_div').style.display = "block";
+    } else {
+        //hide form
+        document.getElementById('tujuan_4_div').style.display = "none";
+    }
+  });
+
+  //checkbox display - option 5
+  $("#tujuan_5").on('change', function() {
+
+    if ($(this).is(':checked')) {
+        //display form
+        document.getElementById('tujuan_5_div').style.display = "block";
+    } else {
+        //hide form
+        document.getElementById('tujuan_5_div').style.display = "none";
     }
   });
 </script>
