@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->id();                                         //default
 
             //user-attribute
-            $table->string('role')->default('2');                 //(0 = Super Admin) (1 = Admin) (2 = User)
+            $table->string('role')->default('2');                 //(0 = Admin) (1 = Admin) (2 = User) || (0 - User)(1 - Exco)(2 - YB)(3 - UPEN)(4 - Admin)
             $table->string('status')->default('1');               //(1 = Active) (0 = Deactive)
             $table->string('is_firstime')->default('1');          //(1 = Firstimer) (0 = Not Firstimer)
             $table->string('is_rumah_ibadat')->default('0');      //(1 = Exist) (0 = Not Exist) (2 = Processing for tukar wakil)
