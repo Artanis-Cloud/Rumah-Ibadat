@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\PasswordReset;
 
 class User extends Authenticatable
 {
@@ -60,5 +61,12 @@ class User extends Authenticatable
     public function permohonan_khas()
     {
         return $this->hasMany('App\Models\PermohonanKhas');
+    }
+
+    //forget password email custom
+    public function sendPasswordResetNotification($token)
+    {
+        // Your your own implementation.
+        $this->notify(new PasswordReset($token, $this->ic_number));
     }
 }
