@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index_user()
     {
         // dd( Auth::user()->name );
-        return view('users.halaman-utama-nicepage');
+        return view('users.halaman-utama');
     }
 
     public function index_admin()
