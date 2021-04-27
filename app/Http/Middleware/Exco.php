@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Auth;
 use Closure;
 use Illuminate\Http\Request;
 
-class Admin
+class Exco
 {
     /**
      * Handle an incoming request.
@@ -17,6 +16,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
+        // return $next($request);
         //checking either user has authentication or not
         if (!Auth::check()) {
             return redirect()->route('login');
@@ -29,7 +29,7 @@ class Admin
         }
 
         //checking user role is correct or not
-        if (Auth::user()->role == 4) {
+        if (Auth::user()->role == 1) {
             return $next($request);
         } else {
             Auth::logout();

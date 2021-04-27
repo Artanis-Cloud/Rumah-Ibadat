@@ -64,8 +64,12 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         //middleware custom
-        'User' => \App\Http\Middleware\User::class,
-        'Admin' => \App\Http\Middleware\Admin::class,
-        'SuperAdmin' => \App\Http\Middleware\SuperAdmin::class,
+        'User' => \App\Http\Middleware\User::class,             //Level 0
+        'Exco' => \App\Http\Middleware\Exco::class,             //Level 1
+        'Yb' => \App\Http\Middleware\Yb::class,                 //Level 2
+        'Upen' => \App\Http\Middleware\Upen::class,             //Level 3
+        'Admin' => \App\Http\Middleware\Admin::class,           //Level 4
+
+        'SuperAdmin' => \App\Http\Middleware\SuperAdmin::class, //Level 5 (not used)
     ];
 }

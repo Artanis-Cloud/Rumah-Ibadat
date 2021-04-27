@@ -30,6 +30,7 @@ class CreateRumahIbadatsTable extends Migration
             $table->string('postcode');
             $table->string('district');
             $table->string('state')->default('Selangor');;                  //All rumah ibadat is in Selangor
+            $table->string('pbt_area');
             $table->string('bank_name');
             $table->string('bank_account')->unique();
             $table->string('office_phone');

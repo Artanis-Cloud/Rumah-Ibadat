@@ -64,6 +64,21 @@ Route::middleware([User::class])->group(function(){
 
 });
 
+//EXCO ROUTE
+Route::middleware([Exco::class])->group(function () {
+
+});
+
+//YB ROUTE
+Route::middleware([Yb::class])->group(function () {
+
+});
+
+//UPEN ROUTE
+Route::middleware([Upen::class])->group(function () {
+
+});
+
 
 //ADMIN ROUTE
 Route::middleware([Admin::class])->group(function () {
@@ -71,7 +86,7 @@ Route::middleware([Admin::class])->group(function () {
 });
 
 
-//SUPER ADMIN ROUTE
+//SUPER ADMIN ROUTE (not used)
 Route::middleware([SuperAdmin::class])->group(function () {
     Route::get('/super-admin/halaman-utama', [App\Http\Controllers\HomeController::class, 'index_super_admin'])->name('super-admin.halaman-utama');
 });

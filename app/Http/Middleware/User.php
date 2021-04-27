@@ -25,11 +25,11 @@ class User
         //checking either user are being disabled by admin or not
         if (Auth::user()->status == 0) {
             Auth::logout();
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error', 'Akaun anda telah dinyahaktif. Sila hubungi Sistem Admin.');
         }
 
         //checking user role is correct or not
-        if (Auth::user()->role == 2) {
+        if (Auth::user()->role == 0) {
             return $next($request);
         }else{
             Auth::logout();
