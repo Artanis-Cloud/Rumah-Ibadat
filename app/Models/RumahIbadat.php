@@ -22,6 +22,7 @@ class RumahIbadat extends Model
         'postcode',
         'district',
         'state',            //All rumah ibadat in Selangor
+        'pbt_area',
         'bank_name',
         'bank_account',
         'office_phone',

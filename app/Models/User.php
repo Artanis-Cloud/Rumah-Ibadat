@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'role',             //(0 = Super Admin) (1 = Admin) (2 = User)
+        'role',             //(0 - User)(1 - Exco)(2 - YB)(3 - UPEN)(4 - Admin)
         'status',           //(1 = Active) (0 = Deactive)
         'is_firstime',      //(1 = Firstimer) (0 = Not Firstimer)
         'is_rumah_ibadat',  //(1 = Exist) (0 = Not Exist) (2 = Processing for tukar wakil)
