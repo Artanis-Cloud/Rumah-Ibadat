@@ -43,23 +43,32 @@ class RumahIbadatController extends Controller
     }
 
     public function tambah_rumah_ibadat(Request $request)
-    {
+    {   
         // validate rumah ibadat registration
         $this->validator($request->all())->validate();
+
+        //validate the main registration_id
+        if($request->category != "GEREJA" && $request->registration_type == "INDUK"){
+            $this->validatorNonGereja($request->all())->validate();
+        }
+
         //fetch current user details
         $user = User::findorfail(auth()->user()->id);
 
         //register rumah ibadat
         $rumah_ibadat = RumahIbadat::create([
             'category' => $request->category,
-            'name' => $request->name,
+            'name_association' => $request->name_association,
             'office_phone' => $request->office_phone,
+            'name_association_bank' => $request->name_association_bank,
             'registration_type' => $request->registration_type,
+            'name_association_main' => $request->name_association_main,
             'registration_number' => $request->registration_number,
             'address' => $request->address,
             'postcode' => $request->postcode,
             'district' => $request->district,
             'state' => $request->state,
+            'pbt_area' => $request->pbt_area,
             'bank_name' => $request->bank_name,
             'bank_account' => $request->bank_account,
             'user_id' => $user->id,
@@ -76,15 +85,24 @@ class RumahIbadatController extends Controller
     protected function validator(array $data){
         return Validator::make($data, [
             'category' => ['required','string'],
-            'name' => ['required', 'string','max:255', 'unique:rumah_ibadats'],
+            'name_association' => ['required', 'string','max:255', 'unique:rumah_ibadats'],
             'office_phone' => ['nullable', 'string', 'min:10', 'max:11'],
+            'name_association_bank' => ['required', 'string', 'max:255'],
             'registration_type' => ['required'],
             'registration_number' => ['required', 'string', 'unique:rumah_ibadats'],
             'address' => ['required', 'string', 'max:255'],
             'postcode' => ['required', 'string', 'max:5', 'min:5'],
             'district' => ['required', 'string', 'max:255'],
+            'pbt_area' => ['required', 'string', 'max:255'],
             'bank_name' => ['required', 'string'],
             'bank_account' => ['required', 'string', 'unique:rumah_ibadats'],
+        ]);
+    }
+
+    protected function validatorNonGereja(array $data)
+    {
+        return Validator::make($data, [
+            'registration_number_main' => ['required', 'string', 'max:255'],
         ]);
     }
 

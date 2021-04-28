@@ -22,9 +22,12 @@ class CreateRumahIbadatsTable extends Migration
 
             $table->string('verified')->default('0');                       //(1 = Verified Rumah Ibadat) (0 = Not Verified Rumah Ibadat)
 
-            $table->string('category');                                     //(Gereja (Kristian))(Tokong (Budha & Tao))(Kuil (Hindu & Gurdwara))
-            $table->string('name')->unique();
-            $table->string('registration_type');
+            $table->string('category');                                     //(Gereja (Kristian))(Tokong (Budha & Tao))(Kuil (Hindu))(Kuil (Gurdwara))
+            $table->string('name_association')->unique();
+            $table->string('office_phone')->nullable();
+            $table->string('name_association_bank');
+            $table->string('registration_type');                            //(MEMPUNYAI PENDAFTARAN SENDIRI)(MEMPUNYAI PENDAFTARAN DI BAWAH PERSATUAN INDUK/CAWANGAN)
+            $table->string('name_association_main')->nullable();
             $table->string('registration_number')->unique();
             $table->string('address');
             $table->string('postcode');
@@ -33,7 +36,6 @@ class CreateRumahIbadatsTable extends Migration
             $table->string('pbt_area');
             $table->string('bank_name');
             $table->string('bank_account')->unique();
-            $table->string('office_phone');
 
 
             $table->timestamps();                                           //default

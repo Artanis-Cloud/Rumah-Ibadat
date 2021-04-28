@@ -36,7 +36,8 @@
                           <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ old('category') }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
                               <option value="TOKONG"    {{ old('category') == "TOKONG"  ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
-                              <option value="KUIL"      {{ old('category') == "KUIL"    ? 'selected' : '' }} >KUIL (HINDU & GURDWARA)</option>
+                              <option value="KUIL_H"      {{ old('category') == "KUIL_H"    ? 'selected' : '' }} >KUIL (HINDU)</option>
+                              <option value="KUIL_G"      {{ old('category') == "KUIL_G"    ? 'selected' : '' }} >KUIL (GURDWARA)</option>
                               <option value="GEREJA"    {{ old('category') == "GEREJA"  ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
                           </select>
                           @error('category')
@@ -47,10 +48,10 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label class="required">Nama Rumah Ibadat</label>
+                      <label class="required">Nama Persatuan Rumah Ibadat</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ old('name') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-                          @error('name')
+                          <input class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror" id="name_association" name="name_association" type="text" value="{{ old('name_association') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                          @error('name_association')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
@@ -74,6 +75,17 @@
                           @enderror
                       </div>
                     </div>
+                    <div class="col-md">
+                      <label class="required">Nama Persatuan Rumah Ibadat Mengikut Bank</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" type="text" value="{{ old('name_association_bank') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                          @error('name_association_bank')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
                     <div class="col-md-2"></div>
                   </div>
 
@@ -87,13 +99,13 @@
 
                   <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md-4">
+                    <div class="col-md">
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Jenis Pendaftaran</label>
-                          <select class="custom-select mr-sm-2 @error('registration_type') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" value="{{ old('registration_type') }}" onchange="changeRegistration()">
+                          <select class="custom-select mr-sm-2 @error('registration_type') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" value="{{ old('registration_type') }}" onchange="changeRegistration()" disabled>
                               <option selected disabled hidden>PILIH JENIS PENDAFTARAN</option>
-                              <option value="INDUK"    {{ old('registration_type') == "INDUK"     ? 'selected' : '' }} >INDUK</option>
-                              <option value="CAWANGAN" {{ old('registration_type') == "CAWANGAN"  ? 'selected' : '' }} >CAWANGAN</option>
+                              <option value="SENDIRI"    {{ old('registration_type') == "SENDIRI"     ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN SENDIRI</option>
+                              <option value="INDUK"      {{ old('registration_type') == "INDUK"       ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN DI BAWAH PERSATUAN INDUK/CAWANGAN</option>
                           </select>
                           @error('category')
                           <span class="invalid-feedback" role="alert">
@@ -102,8 +114,14 @@
                           @enderror
                       </div>
                     </div>
-                    <div class="col-md-4" id="main_div">
-                      <label class="required">Nombor Sijil Pendaftaran</label>
+                    
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md" id="main_div">
+                      <label class="required">Nombor Sijil Pendaftaran / Nombor ROS</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_single" name="registration_number_single" type="text" value="{{ old('registration_number_single') }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_single.value">
                           @error('registration_number')
@@ -118,8 +136,24 @@
 
                   <div class="row">
                     <div class="col-md-2"></div>
+                    <div class="col-md" id="branch_div_0" style="display: none;">
+                      <label class="required">Nama Persatuan Rumah Ibadat Induk</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase @error('name_association_main') is-invalid @else border-dark @enderror" id="name_association_main" name="name_association_main" type="text" value="{{ old('name_association_main') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                          @error('name_association_main')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
                     <div class="col-md-4" id="branch_div_1" style="display: none;">
-                      <label class="required">Nombor Pendaftaran Induk</label>
+                      <label class="required" id="registration_number_label">Nombor Pendaftaran Induk</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_main" name="registration_number_main" type="text" value="{{ old('registration_number_main') }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
                           @error('registration_number')
@@ -207,6 +241,7 @@
                               <option value="HULU SELANGOR"   {{ old('district') == "HULU SELANGOR"   ? 'selected' : '' }} >HULU SELANGOR</option>
                               <option value="KLANG"           {{ old('district') == "KLANG"           ? 'selected' : '' }} >KLANG</option>
                               <option value="KUALA SELANGOR"  {{ old('district') == "KUALA SELANGOR"  ? 'selected' : '' }} >KUALA SELANGOR</option>
+                              <option value="KUALA LANGAT"    {{ old('district') == "KUALA LANGAT"    ? 'selected' : '' }} >KUALA LANGAT</option>
                               <option value="PETALING"        {{ old('district') == "PETALING"        ? 'selected' : '' }} >PETALING</option>
                               <option value="SABAK BERNAM"    {{ old('district') == "SABAK BERNAM"    ? 'selected' : '' }} >SABAK BERNAM</option>
                               <option value="SEPANG"          {{ old('district') == "SEPANG"          ? 'selected' : '' }} >SEPANG</option>
@@ -227,26 +262,29 @@
                       <div class="form-group">
                           <label class="mr-sm-2" for="inlineFormCustomSelect">Negeri</label>
                           <input class="form-control text-uppercase @error('state') is-invalid @else border-dark @enderror" id="state" name="state" type="text" value="SELANGOR" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" readonly>
-                          {{-- <select class="custom-select mr-sm-2 @error('state') is-invalid @else border-dark @enderror" id="state" name="state" value="{{ old('state') }}">
-                              <option selected disabled hidden>PILIH NEGERI</option>
-                              <option value="JOHOR"           {{ old('state') == "JOHOR"            ? 'selected' : '' }}>JOHOR</option>
-                              <option value="KEDAH"           {{ old('state') == "KEDAH"            ? 'selected' : '' }}>KEDAH</option>
-                              <option value="KELANTAN"        {{ old('state') == "KELANTAN"         ? 'selected' : '' }}>KELANTAN</option>
-                              <option value="MELAKA"          {{ old('state') == "MELAKA"           ? 'selected' : '' }}>MELAKA</option>
-                              <option value="NEGERI SEMBILAN" {{ old('state') == "NEGERI SEMBILAN"  ? 'selected' : '' }}>NEGERI SEMBILAN</option>
-                              <option value="PAHANG"          {{ old('state') == "PAHANG"           ? 'selected' : '' }}>PAHANG</option>
-                              <option value="PULAU PINANG"    {{ old('state') == "PULAU PINANG"     ? 'selected' : '' }}>PULAU PINANG</option>
-                              <option value="PERAK"           {{ old('state') == "PERAK"            ? 'selected' : '' }}>PERAK</option>
-                              <option value="PERLIS"          {{ old('state') == "PERLIS"           ? 'selected' : '' }}>PERLIS</option>
-                              <option value="SABAH"           {{ old('state') == "SABAH"            ? 'selected' : '' }}>SABAH</option>
-                              <option value="SARAWAK"         {{ old('state') == "SARAWAK"          ? 'selected' : '' }}>SARAWAK</option>
-                              <option value="SELANGOR"        {{ old('state') == "SELANGOR"         ? 'selected' : '' }}>SELANGOR</option>
-                              <option value="TERENGGANU"      {{ old('state') == "TERENGGANU"       ? 'selected' : '' }}>TERENGGANU</option>
-                              <option value="WP KUALA LUMPUR" {{ old('state') == "WP KUALA LUMPUR"  ? 'selected' : '' }}>WP KUALA LUMPUR</option>
-                              <option value="WP PUTRAJAYA"    {{ old('state') == "WP PUTRAJAYA"     ? 'selected' : '' }}>WP PUTRAJAYA</option>
-                              <option value="WP LABUAN"       {{ old('state') == "WP LABUAN"        ? 'selected' : '' }}>WP LABUAN</option>
-                          </select> --}}
                           @error('state')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
+                    <div class="col-md">
+                      <div class="form-group">
+                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kawasan PBT</label>
+                          <select class="custom-select mr-sm-2 @error('pbt_area') is-invalid @else border-dark @enderror" id="pbt_area" name="pbt_area" value="{{ old('pbt_area') }}">
+                              <option selected disabled hidden>PILIH DAERAH</option>
+                              <option value="GOMBAK"          {{ old('pbt_area') == "GOMBAK"          ? 'selected' : '' }} >KAWASAN GOMBAK</option>
+                              <option value="HULU LANGAT"     {{ old('pbt_area') == "HULU LANGAT"     ? 'selected' : '' }} >KAWASAN HULU LANGAT</option>
+                              <option value="HULU SELANGOR"   {{ old('pbt_area') == "HULU SELANGOR"   ? 'selected' : '' }} >KAWASAN HULU SELANGOR</option>
+                              <option value="KLANG"           {{ old('pbt_area') == "KLANG"           ? 'selected' : '' }} >KAWASAN KLANG</option>
+                              <option value="KUALA SELANGOR"  {{ old('pbt_area') == "KUALA SELANGOR"  ? 'selected' : '' }} >KAWASAN KUALA SELANGOR</option>
+                              <option value="KUALA LANGAT"    {{ old('pbt_area') == "KUALA LANGAT"    ? 'selected' : '' }} >KAWASAN KUALA LANGAT</option>
+                              <option value="PETALING"        {{ old('pbt_area') == "PETALING"        ? 'selected' : '' }} >KAWASAN PETALING</option>
+                              <option value="SABAK BERNAM"    {{ old('pbt_area') == "SABAK BERNAM"    ? 'selected' : '' }} >KAWASAN SABAK BERNAM</option>
+                              <option value="SEPANG"          {{ old('pbt_area') == "SEPANG"          ? 'selected' : '' }} >KAWASAN SEPANG</option>
+                          </select>
+                          @error('pbt_area')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
@@ -354,42 +392,76 @@
 <script>
   //run function when page reload
   window.addEventListener('load', changeRegistrationReload);
+  window.addEventListener('load', enableRegistrationTypeReload);
 
   //function change input on registration during reload (will not clear old input)
   function changeRegistrationReload(){
-    //fetch data from dropdown
+    //fetch data
+    var category = $('#category').val();
     var registration_type = $('#registration_type').val();
 
     //display or hide the input
-    if(registration_type == 'INDUK'){
+    if(registration_type == 'SENDIRI'){
       document.getElementById('main_div').style.display = "block";
+      document.getElementById('branch_div_0').style.display = "none";
       document.getElementById('branch_div_1').style.display = "none";
       document.getElementById('branch_div_2').style.display = "none";
 
       //change input condition
       document.getElementById("registration_number_single").disabled = false;
+      document.getElementById("name_association_main").disabled = true;
       document.getElementById("registration_number_main").disabled = true;
       document.getElementById("registration_number_branch").disabled = true;
-    }else if(registration_type == 'CAWANGAN'){
+    }else if(registration_type == 'INDUK'){
       document.getElementById('main_div').style.display = "none";
+      document.getElementById('branch_div_0').style.display = "block";
       document.getElementById('branch_div_1').style.display = "block";
       document.getElementById('branch_div_2').style.display = "block";
 
       //change input condition
       document.getElementById("registration_number_single").disabled = true;
+      document.getElementById("name_association_main").disabled = false;
       document.getElementById("registration_number_main").disabled = false;
       document.getElementById("registration_number_branch").disabled = false;
+
+      //required icon display
+      if(category == 'GEREJA'){
+        document.getElementById("registration_number_label").className = "";
+      }else if(category == 'TOKONG'){
+        document.getElementById("registration_number_label").className = "required";
+      }else{
+        document.getElementById("registration_number_label").className = "required";
+      }
     }
   }
+
+  function enableRegistrationTypeReload(){
+      var category = $('#category').val();
+
+      if(category != null){
+        document.getElementById("registration_type").disabled = false;
+      }
+  }
+
+  //enable 'Jenis Pendaftaran' if user choose 'Kategori Rumah Ibadat'
+  $('#category').on('change', function() {
+      //reset 'Jenis Pendaftaran'
+      $('#registration_type').prop('selectedIndex',0);
+
+      //enable
+      document.getElementById("registration_type").disabled = false;
+  });
 
   //function change input on registration type
   function changeRegistration(){
     //fetch data from dropdown
+    var category = $('#category').val();
     var registration_type = $('#registration_type').val();
 
     //display or hide the input
-    if(registration_type == 'INDUK'){
+    if(registration_type == 'SENDIRI'){
       document.getElementById('main_div').style.display = "block";
+      document.getElementById('branch_div_0').style.display = "none";
       document.getElementById('branch_div_1').style.display = "none";
       document.getElementById('branch_div_2').style.display = "none";
 
@@ -403,8 +475,9 @@
       document.getElementById("registration_number_main").value = "";
       document.getElementById("registration_number_branch").value = "";
       document.getElementById("registration_number").value = "";
-    }else if(registration_type == 'CAWANGAN'){
+    }else if(registration_type == 'INDUK'){
       document.getElementById('main_div').style.display = "none";
+      document.getElementById('branch_div_0').style.display = "block";
       document.getElementById('branch_div_1').style.display = "block";
       document.getElementById('branch_div_2').style.display = "block";
 
@@ -418,8 +491,34 @@
       document.getElementById("registration_number_main").value = "";
       document.getElementById("registration_number_branch").value = "";
       document.getElementById("registration_number").value = "";
+
+      //required icon display
+      if(category == 'GEREJA'){
+        document.getElementById("registration_number_label").className = "";
+      }else if(category == 'TOKONG'){
+        document.getElementById("registration_number_label").className = "required";
+      }else{
+        document.getElementById("registration_number_label").className = "required";
+      }
     }
   }
+
+  //jquery clear value in nombor pendaftaran checker
+  $('#registration_number_main').on('input', function() {
+      var registration_number_main_value = $('#registration_number_main').val();
+
+      if(registration_number_main_value == ""){
+      document.getElementById("registration_number").value = "";
+      }
+  });
+
+  $('#registration_number_branch').on('input', function() {
+      var registration_number_branch_value = $('#registration_number_branch').val();
+
+      if(registration_number_branch_value == ""){
+      document.getElementById("registration_number").value = "";
+      }
+  });
 
   //function insert number only
   function onlyNumberKey(evt) {
