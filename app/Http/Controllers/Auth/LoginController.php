@@ -58,16 +58,10 @@ class LoginController extends Controller
                 return $this->redirectTo;
                 break;
             case 1:
-                $this->redirectTo = '/admin/halaman-utama';
-                return $this->redirectTo;
                 break;
             case 2:
-                if(auth()->user()->is_firstime == 1){
-                    $this->redirectTo = '/rumah-ibadat';
-                }elseif(auth()->user()->is_firstime == 0){
-                    $this->redirectTo = '/pengguna/halaman-utama';
-                }
-                return $this->redirectTo;
+                break;
+            case 3:
                 break;
             case 4:
                 $this->redirectTo = '/super-admin/halaman-utama';
