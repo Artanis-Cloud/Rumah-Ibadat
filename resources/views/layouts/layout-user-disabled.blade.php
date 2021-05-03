@@ -99,7 +99,7 @@
                     <!-- Logo -->
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
-                        <a href="{{ route('user.halaman-utama') }}" class="logo">
+                        <a href="#" class="logo">
                             <!-- Logo icon -->
                             <span class="logo-icon">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -162,39 +162,41 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
+                        
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-light" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: solid black 1px;">
                                 {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
-                                <span class="font-medium m-l-5 d-none d-sm-inline-block">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i></span>
+                                {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block"><i class="fas fa-user-cog fa-2x"></i></span> --}}
+                                <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow">
                                     <span class="bg-primary"></span>
                                 </span>
-                                <div class="text-white d-flex no-block align-items-center p-15 bg-primary m-b-10" style="padding: 15px;">
+                                <div class="text-white d-flex no-block align-items-center p-15 bg-dark m-b-10" style="padding: 15px;">
                                     {{-- <div class="">
                                         <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="60">
                                     </div> --}}
                                     <div class="m-l-10">
-                                        <h4 class="m-b-0">{{ Auth::user()->name }}</h4>
-                                        <p class=" m-b-0">{{ Auth::user()->email }}</p>
-                                        <p class=" m-b-0">Pemohon</p>
+                                        <h5 style="margin-bottom: 0px !important;">{{ Auth::user()->name }}</h5>
+                                        <p style="margin-bottom: 0px !important;">{{ Auth::user()->email }}</p>
+                                        <p style="margin-bottom: 0px !important;">Pemohon</p>
                                     </div>
                                 </div>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="#" style="color: grey;">
                                     <i class="ti-user m-r-5 m-l-5"></i> Kemaskini Profil Pengguna</a>
 
                                 {{-- <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a> --}}
 
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-torii-gate"></i> Kemaskini Profil Rumah Ibadat</a>
+                                {{-- <a class="dropdown-item" href="#">
+                                    <i class="fas fa-torii-gate"></i> Kemaskini Profil Rumah Ibadat</a> --}}
 
 
                                 <div class="dropdown-divider"></div>
 
 
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="#" style="color: grey;">
                                     <i class="fas fa-unlock-alt"></i> Tukar Kata Laluan</a>
 
 
@@ -203,10 +205,10 @@
 
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                                     <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="p-10 p-l-30" style="padding: 10px;">
+                                {{-- <div class="dropdown-divider"></div> --}}
+                                {{-- <div class="p-10 p-l-30" style="padding: 10px;">
                                     <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
-                                </div>
+                                </div> --}}
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -230,12 +232,12 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('user.halaman-utama') }}" aria-expanded="false"><i class="icon-home"></i><span class="hide-menu">Halaman Utama </span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-home"></i><span class="hide-menu">Halaman Utama </span></a></li>
                         
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Rumah Ibadat</span></li> --}}
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
-                            <ul aria-expanded="false" class="collapse first-level">
+                            {{-- <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.daftar') }}" aria-expanded="false"><span class="hide-menu">Pendaftaran</span></a>
                                     
                                 </li>
@@ -246,57 +248,12 @@
                                     
                                 </li>
 
-                            </ul>
+                            </ul> --}}
                         </li>
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Permohonan</span></li> --}}
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
-
-                                    {{-- <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-inputs.html" class="sidebar-link"><i class="mdi mdi-priority-low"></i><span class="hide-menu"> Forms Input</span></a></li>
-                                        <li class="sidebar-item"><a href="form-input-groups.html" class="sidebar-link"><i class="mdi mdi-rounded-corner"></i><span class="hide-menu"> Input Groups</span></a></li>
-                                        <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><i class="mdi mdi-select-all"></i><span class="hide-menu"> Input Grid</span></a></li>
-                                        <li class="sidebar-item"><a href="form-checkbox-radio.html" class="sidebar-link"><i class="mdi mdi-shape-plus"></i><span class="hide-menu"> Checkboxes &amp; Radios</span></a></li>
-                                        <li class="sidebar-item"><a href="form-bootstrap-touchspin.html" class="sidebar-link"><i class="mdi mdi-switch"></i><span class="hide-menu"> Bootstrap Touchspin</span></a></li>
-                                        <li class="sidebar-item"><a href="form-bootstrap-switch.html" class="sidebar-link"><i class="mdi mdi-toggle-switch-off"></i><span class="hide-menu"> Bootstrap Switch</span></a></li>
-                                        <li class="sidebar-item"><a href="form-select2.html" class="sidebar-link"><i class="mdi mdi-relative-scale"></i><span class="hide-menu"> Select2</span></a></li>
-                                        <li class="sidebar-item"><a href="form-dual-listbox.html" class="sidebar-link"><i class="mdi mdi-tab-unselected"></i><span class="hide-menu"> Dual Listbox</span></a></li>
-                                    </ul> --}}
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a>
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
-                                    {{-- <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-vector-difference-ba"></i><span class="hide-menu"> Basic Forms</span></a></li>
-                                        <li class="sidebar-item"><a href="form-horizontal.html" class="sidebar-link"><i class="mdi mdi-file-document-box"></i><span class="hide-menu"> Form Horizontal</span></a></li>
-                                        <li class="sidebar-item"><a href="form-actions.html" class="sidebar-link"><i class="mdi mdi-code-greater-than"></i><span class="hide-menu"> Form Actions</span></a></li>
-                                        <li class="sidebar-item"><a href="form-row-separator.html" class="sidebar-link"><i class="mdi mdi-code-equal"></i><span class="hide-menu"> Row Separator</span></a></li>
-                                        <li class="sidebar-item"><a href="form-bordered.html" class="sidebar-link"><i class="mdi mdi-flip-to-front"></i><span class="hide-menu"> Form Bordered</span></a></li>
-                                        <li class="sidebar-item"><a href="form-striped-row.html" class="sidebar-link"><i class="mdi mdi-content-duplicate"></i><span class="hide-menu"> Striped Rows</span></a></li>
-                                        <li class="sidebar-item"><a href="form-detail.html" class="sidebar-link"><i class="mdi mdi-cards-outline"></i><span class="hide-menu"> Form Detail</span></a></li>
-                                    </ul> --}}
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Lulus</span></a>
-                                    {{-- <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-paginator.html" class="sidebar-link"><i class="mdi mdi-export"></i><span class="hide-menu"> Paginator</span></a></li>
-                                        <li class="sidebar-item"><a href="form-img-cropper.html" class="sidebar-link"><i class="mdi mdi-crop"></i><span class="hide-menu"> Image Cropper</span></a></li>
-                                        <li class="sidebar-item"><a href="form-dropzone.html" class="sidebar-link"><i class="mdi mdi-crosshairs-gps"></i><span class="hide-menu"> Dropzone</span></a></li>
-                                        <li class="sidebar-item"><a href="form-mask.html" class="sidebar-link"><i class="mdi mdi-box-shadow"></i><span class="hide-menu"> Form Mask</span></a></li>
-                                        <li class="sidebar-item"><a href="form-typeahead.html" class="sidebar-link"><i class="mdi mdi-cards-variant"></i><span class="hide-menu"> Form Typehead</span></a></li>
-                                    </ul> --}}
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
-                                    {{-- <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-bootstrap-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-scan"></i><span class="hide-menu"> Bootstrap Validation</span></a></li>
-                                        <li class="sidebar-item"><a href="form-custom-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-plus"></i><span class="hide-menu"> Custom Validation</span></a></li>
-                                    </ul> --}}
-                                </li>
-
-
-
-                            </ul>
+                            
                         </li>
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Sample Pages</span></li>
@@ -391,7 +348,7 @@
                                     @if(Request::is('pengguna/halaman-utama'))
 
                                     @else
-                                        @if(Request::is('rumah-ibadat/daftar-rumah-ibadat'))
+                                        @if(Request::is('rumah-ibadat/daftar-rumah-ibadat') || Request::is('rumah-ibadat/permohonan-tukar-hak-milik-rumah-ibadat'))
 
                                         @else
                                         <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a> &nbsp>&nbsp

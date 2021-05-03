@@ -1,4 +1,4 @@
-@extends('layouts.layout-user-nicepage')
+@extends('layouts.layout-user-disabled')
 
 @section('content')
 

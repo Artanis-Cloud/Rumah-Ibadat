@@ -20,10 +20,10 @@ class UserSeeder extends Seeder
         DB::table('users')->delete();
         DB::table('users')->insert(
             [
-                'role' => '0',
+                'role' => '4',
                 'status' => '1',
                 'is_firstime' => '0',
-                'is_rumah_ibadat' => '0',
+                'is_rumah_ibadat' => '1',
                 'name' => 'Admin',
                 'email' => 'admin@selangor.gov.my',
                 'ic_number' => '000000000000',
