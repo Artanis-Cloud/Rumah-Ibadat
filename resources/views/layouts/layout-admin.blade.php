@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>Halaman Utama Pengguna</title>
+    <title>Dashboard Admin</title>
     @livewireStyles
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -99,7 +99,7 @@
                     <!-- Logo -->
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
-                        <a href="{{ route('user.halaman-utama') }}" class="logo">
+                        <a href="{{ route('admins.dashboard') }}" class="logo">
                             <!-- Logo icon -->
                             <span class="logo-icon">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -125,11 +125,10 @@
                     <!-- ============================================================== -->
                     <!-- Toggle which is visible on mobile only -->
                     <!-- ============================================================== -->
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <a class="btn btn-light d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: solid black 1px;">
                         {{-- <i class="ti-more"></i> --}}
-                        <i class="fas fa-cogs"></i>
-
+                        <i class="fas fa-cogs fa-2x" style="color: black;"></i>
                     </a>
                 </div>
                 <!-- ============================================================== -->
@@ -243,13 +242,13 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown p-2">
                             <a class="btn btn-light" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: solid black 1px;">
                                 {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
                                 {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i></span> --}}
                                 <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
                             </a>
-                            <a class="btn btn-danger" href="" style="border: solid black 1px;">
+                            <a class="btn btn-danger" href="" data-toggle="modal" data-target="#confirmation" style="border: solid black 1px;">
                                 <i class="fas fa-power-off fa-2x"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -262,12 +261,12 @@
                                     </div> --}}
                                     <div class="m-l-10">
                                         <h5 style="margin-bottom: 0px !important;">{{ Auth::user()->name }}</h5>
-                                        <p style="margin-bottom: 0px !important;">{{ Auth::user()->email }}</p>
-                                        <p style="margin-bottom: 0px !important;">Pemohon</p>
+                                        <p style="margin-bottom: 0px !important;"><i class="fas fa-envelope"></i>&nbsp&nbsp&nbsp&nbsp{{ Auth::user()->email }}</p>
+                                        <p style="margin-bottom: 0px !important;"><i class="fas fa-crown"></i>&nbsp&nbsp&nbspAdmin Sistem</p>
                                     </div>
                                 </div>
-                                <a class="dropdown-item" href="{{ route('users.kemaskini-profil') }}">
-                                    <i class="ti-user m-r-5 m-l-5"></i> Kemaskini Profil Pengguna</a>
+                                {{-- <a class="dropdown-item" href="{{ route('users.kemaskini-profil') }}">
+                                    <i class="ti-user m-r-5 m-l-5"></i> Kemaskini Profil Pengguna</a> --}}
 
                                 {{-- <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a> --}}
@@ -287,7 +286,7 @@
 
 
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Log Keluar</a>
                                 {{-- <div class="dropdown-divider"></div> --}}
                                 {{-- <div class="p-10 p-l-30" style="padding: 10px;">
                                     <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
@@ -298,7 +297,7 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                     </ul>
-                    
+
                     <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
@@ -316,75 +315,53 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('user.halaman-utama') }}" aria-expanded="false"><i class="icon-home"></i><span class="hide-menu">Halaman Utama </span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.dashboard') }}" aria-expanded="false"><i class="fas fa-tachometer-alt"></i><span class="hide-menu" style="padding-left: 10px;">Dashboard </span></a></li>
                         
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Rumah Ibadat</span></li> --}}
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu" style="padding-left: 10px;">Pengguna</span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.pengguna.pemohon') }}" aria-expanded="false"><span class="hide-menu">Senarai Pemohon</span></a>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.pengguna.pengguna-dalaman') }}" aria-expanded="false"><span class="hide-menu">Senarai Pengguna Dalaman</span></a>
+                                
+                            </ul>
+                        </li>
+
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
+                                
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Permohonan Menukar Wakil<br>Rumah Ibadat</span></a>
+                                
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu" style="padding-left: 10px;">Audit Trail</span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Audit Trail Proses</span></a>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Audit Trail Log Akses</span></a>
+                                    
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-table"></i><span class="hide-menu" style="padding-left: 10px;">Laporan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.daftar') }}" aria-expanded="false"><span class="hide-menu">Pendaftaran</span></a> --}}
                                     
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.kemaskini') }}" aria-expanded="false"><span class="hide-menu">Kemaskini Rumah Ibadat</span></a>
-                                    
-                                </li>
-                                {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.menukar') }}" aria-expanded="false"><span class="hide-menu">Menukar Hak Milik</span></a> --}}
-                                    
-                                </li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Laporan Bilangan Keseluruhan<br>Permohonan</span></a>
 
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Laporan Bilangan Mengikut<br>Kategori Rumah Ibadat</span></a>
+                                    
                             </ul>
                         </li>
 
-                        {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Permohonan</span></li> --}}
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
-
-                                    {{-- <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-inputs.html" class="sidebar-link"><i class="mdi mdi-priority-low"></i><span class="hide-menu"> Forms Input</span></a></li>
-                                        <li class="sidebar-item"><a href="form-input-groups.html" class="sidebar-link"><i class="mdi mdi-rounded-corner"></i><span class="hide-menu"> Input Groups</span></a></li>
-                                        <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><i class="mdi mdi-select-all"></i><span class="hide-menu"> Input Grid</span></a></li>
-                                        <li class="sidebar-item"><a href="form-checkbox-radio.html" class="sidebar-link"><i class="mdi mdi-shape-plus"></i><span class="hide-menu"> Checkboxes &amp; Radios</span></a></li>
-                                        <li class="sidebar-item"><a href="form-bootstrap-touchspin.html" class="sidebar-link"><i class="mdi mdi-switch"></i><span class="hide-menu"> Bootstrap Touchspin</span></a></li>
-                                        <li class="sidebar-item"><a href="form-bootstrap-switch.html" class="sidebar-link"><i class="mdi mdi-toggle-switch-off"></i><span class="hide-menu"> Bootstrap Switch</span></a></li>
-                                        <li class="sidebar-item"><a href="form-select2.html" class="sidebar-link"><i class="mdi mdi-relative-scale"></i><span class="hide-menu"> Select2</span></a></li>
-                                        <li class="sidebar-item"><a href="form-dual-listbox.html" class="sidebar-link"><i class="mdi mdi-tab-unselected"></i><span class="hide-menu"> Dual Listbox</span></a></li>
-                                    </ul> --}}
-                                </li>
-                                {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a> --}}
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
-                                    {{-- <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-vector-difference-ba"></i><span class="hide-menu"> Basic Forms</span></a></li>
-                                        <li class="sidebar-item"><a href="form-horizontal.html" class="sidebar-link"><i class="mdi mdi-file-document-box"></i><span class="hide-menu"> Form Horizontal</span></a></li>
-                                        <li class="sidebar-item"><a href="form-actions.html" class="sidebar-link"><i class="mdi mdi-code-greater-than"></i><span class="hide-menu"> Form Actions</span></a></li>
-                                        <li class="sidebar-item"><a href="form-row-separator.html" class="sidebar-link"><i class="mdi mdi-code-equal"></i><span class="hide-menu"> Row Separator</span></a></li>
-                                        <li class="sidebar-item"><a href="form-bordered.html" class="sidebar-link"><i class="mdi mdi-flip-to-front"></i><span class="hide-menu"> Form Bordered</span></a></li>
-                                        <li class="sidebar-item"><a href="form-striped-row.html" class="sidebar-link"><i class="mdi mdi-content-duplicate"></i><span class="hide-menu"> Striped Rows</span></a></li>
-                                        <li class="sidebar-item"><a href="form-detail.html" class="sidebar-link"><i class="mdi mdi-cards-outline"></i><span class="hide-menu"> Form Detail</span></a></li>
-                                    </ul> --}}
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Lulus</span></a>
-                                    {{-- <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-paginator.html" class="sidebar-link"><i class="mdi mdi-export"></i><span class="hide-menu"> Paginator</span></a></li>
-                                        <li class="sidebar-item"><a href="form-img-cropper.html" class="sidebar-link"><i class="mdi mdi-crop"></i><span class="hide-menu"> Image Cropper</span></a></li>
-                                        <li class="sidebar-item"><a href="form-dropzone.html" class="sidebar-link"><i class="mdi mdi-crosshairs-gps"></i><span class="hide-menu"> Dropzone</span></a></li>
-                                        <li class="sidebar-item"><a href="form-mask.html" class="sidebar-link"><i class="mdi mdi-box-shadow"></i><span class="hide-menu"> Form Mask</span></a></li>
-                                        <li class="sidebar-item"><a href="form-typeahead.html" class="sidebar-link"><i class="mdi mdi-cards-variant"></i><span class="hide-menu"> Form Typehead</span></a></li>
-                                    </ul> --}}
-                                </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
-                                    {{-- <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="form-bootstrap-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-scan"></i><span class="hide-menu"> Bootstrap Validation</span></a></li>
-                                        <li class="sidebar-item"><a href="form-custom-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-plus"></i><span class="hide-menu"> Custom Validation</span></a></li>
-                                    </ul> --}}
-                                </li>
-
-
-
-                            </ul>
-                        </li>
-
+                        
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Sample Pages</span></li>
                         <li class="sidebar-item mega-dropdown"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Pages </span></a>
                             <ul aria-expanded="false" class="collapse first-level">
@@ -464,7 +441,7 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
-                            @if(Request::is('pengguna/halaman-utama') || Request::is('rumah-ibadat'))
+                            @if(Request::is('admin/dashboard'))
 
                             @else
                             <nav aria-label="breadcrumb">
@@ -474,15 +451,9 @@
                                     </li>
                                     <li class="breadcrumb-item"> Profil </li>
                                     <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
-                                    @if(Request::is('pengguna/halaman-utama'))
-
-                                    @else
-                                        @if(Request::is('rumah-ibadat/daftar-rumah-ibadat'))
-
-                                        @else
-                                        <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a> &nbsp>&nbsp
-                                        @endif
-                                    @endif
+                                    
+                                    <a href="{{ route('admins.dashboard') }}">Dashboard</a> &nbsp>&nbsp
+                                    
                                     <?php $link = "" ?>
                                     @for($i = 1; $i <= count(Request::segments()); $i++)
                                         @if($i < count(Request::segments()) & $i > 0)
@@ -500,6 +471,32 @@
             </div>
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+
+            <!-- ============================================================== -->
+            <!-- Log Out Confimation Modal -->
+            <!-- ============================================================== -->
+            <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    Anda pasti mahu log keluar sistem?
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Log Keluar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Log Out Confimation Modal -->
             <!-- ============================================================== -->
             @yield('content')
             @livewireScripts

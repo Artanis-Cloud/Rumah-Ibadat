@@ -127,7 +127,9 @@
                     <!-- ============================================================== -->
                     <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="ti-more"></i>
+                        {{-- <i class="ti-more"></i> --}}
+                        <i class="fas fa-cogs"></i>
+                        
                     </a>
                 </div>
                 <!-- ============================================================== -->
@@ -168,6 +170,9 @@
                                 {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
                                 {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block"><i class="fas fa-user-cog fa-2x"></i></span> --}}
                                 <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
+                            </a>
+                            <a class="btn btn-danger" href="" style="border: solid black 1px;">
+                                <i class="fas fa-power-off fa-2x"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow">
