@@ -64,7 +64,7 @@ class LoginController extends Controller
             case 3:
                 break;
             case 4:
-                $this->redirectTo = '/admin/halaman-utama';
+                $this->redirectTo = '/admin/dashboard';
                 return $this->redirectTo;
                 break;
             default:

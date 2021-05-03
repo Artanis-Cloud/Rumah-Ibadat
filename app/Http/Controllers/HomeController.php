@@ -29,11 +29,6 @@ class HomeController extends Controller
         return view('users.halaman-utama');
     }
 
-    public function index_admin()
-    {   
-        return view('users.halaman-utama-nicepage');
-    }
-
     public function index_super_admin()
     {
         return view('super-admins.halaman-utama');
