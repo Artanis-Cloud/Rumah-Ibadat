@@ -85,6 +85,13 @@ Route::middleware([Upen::class])->group(function () {
 //ADMIN ROUTE
 Route::middleware([Admin::class])->group(function () {
     Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admins.dashboard');
+
+    Route::get('/pengguna', [App\Http\Controllers\AdminController::class, 'pengguna'])->name('admins.pengguna.pilih');
+
+    Route::get('/pengguna/senarai-pemohon', [App\Http\Controllers\AdminController::class, 'pemohon'])->name('admins.pengguna.pemohon');
+
+    Route::get('/pengguna/senarai-pengguna-dalaman', [App\Http\Controllers\AdminController::class, 'pengguna_dalaman'])->name('admins.pengguna.pengguna-dalaman');
+
 });
 
 
