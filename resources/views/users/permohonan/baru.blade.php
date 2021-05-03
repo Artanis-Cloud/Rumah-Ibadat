@@ -133,7 +133,7 @@
                     <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md">
-                        <h3>Pendidikan Keagamaan</h3>
+                        <h3>Aktiviti Keagamaan</h3>
                       </div>
                       <div class="col-md-2"></div>
                     </div>
@@ -191,7 +191,7 @@
                     <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md">
-                        <h3>Aktiviti Keagamaan</h3>
+                        <h3>Pendidikan Keagamaan</h3>
                       </div>
                       <div class="col-md-2"></div>
                     </div>
@@ -231,7 +231,7 @@
                     <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md">
-                        <label class="required">Salinan sebutharga alat perkakas kontraktor</label>
+                        <label class="required">Salinan sebutharga daripada kontraktor</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_2_file_1" name="opt_2_file_1">
                           <label class="custom-file-label border-dark" for="opt_2_file_1">Muat Naik Fail</label>
@@ -294,7 +294,7 @@
                     <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md">
-                        <label class="required">Foto bahagian tokong</label>
+                        <label class="required">Foto bahagian bangunan</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_4_photo_1" name="opt_4_photo_1">
                           <label class="custom-file-label border-dark" for="opt_4_photo_1">Gambar 1</label>
@@ -342,7 +342,7 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label class="required">Salinan Kebenaran Merancang</label>
+                      <label>Salinan Kebenaran Merancang</label>
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="opt_5_file_2" name="opt_5_file_2">
                         <label class="custom-file-label border-dark" for="opt_5_file_2">Muat Naik Fail</label>

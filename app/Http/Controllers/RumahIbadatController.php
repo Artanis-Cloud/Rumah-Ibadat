@@ -79,7 +79,8 @@ class RumahIbadatController extends Controller
         $user->is_rumah_ibadat = "1";
         $user->update();
 
-        return redirect()->route('users.rumah-ibadat.kemaskini')->with('success', 'Rumah Ibadat berjaya didaftar.');
+        // return redirect()->route('users.rumah-ibadat.kemaskini')->with('success', 'Rumah Ibadat berjaya didaftar.');
+        return redirect()->route('user.halaman-utama')->with('success', 'Rumah Ibadat berjaya didaftar.');
     }
 
     protected function validator(array $data){

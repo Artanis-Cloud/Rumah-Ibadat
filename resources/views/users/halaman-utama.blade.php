@@ -130,10 +130,10 @@
             </div>
             <div class="card-body border border-dark">
               {{-- <h5 class="card-title m-b-5">Jumlah Dana Yang Diterima</h5> --}}
-              <h3 class="font-light">RM 5200.00</h3>
-              <div class="m-t-20 text-center">
+              <h3 class="font-light" style="text-align: center;">RM 5200.00</h3>
+              {{-- <div class="m-t-20 text-center">
                   <div id="earnings"><canvas width="196" height="40" style="display: inline-block; width: 196px; height: 40px; vertical-align: top;"></canvas></div>
-              </div>
+              </div> --}}
            </div>
           </div>
 
@@ -143,10 +143,10 @@
             </div>
             <div class="card-body border border-dark">
               {{-- <h5 class="card-title m-b-5">Permohonan Sedang Diproses</h5> --}}
-              <h3 class="font-light">RM 1,207,323.98</h3>
-              <div class="m-t-20 text-center">
+              <h3 class="font-light" style="text-align: center;">RM 1,207,323.98</h3>
+              {{-- <div class="m-t-20 text-center">
                   <div id="earnings"><canvas width="196" height="40" style="display: inline-block; width: 196px; height: 40px; vertical-align: top;"></canvas></div>
-              </div>
+              </div> --}}
            </div>
           </div>
         </div>
