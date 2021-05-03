@@ -84,7 +84,7 @@ Route::middleware([Upen::class])->group(function () {
 
 //ADMIN ROUTE
 Route::middleware([Admin::class])->group(function () {
-    Route::get('/admin/halaman-utama', [App\Http\Controllers\HomeController::class, 'index_admin'])->name('admin.halaman-utama');
+    Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admins.dashboard');
 });
 
 
