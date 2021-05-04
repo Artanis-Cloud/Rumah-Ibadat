@@ -53,9 +53,11 @@
 
                               <td>
                                 @if($data->is_rumah_ibadat == '0')
-                                  <i class="fas fa-times-circle fa-2x" style="color: red;"></i>
+                                  {{-- <i class="fas fa-times-circle fa-2x" style="color: red;"></i> --}}
+                                  <span class="badge badge-pill badge-danger" style="font-size: 13px;">Tidak Berdaftar</span>
                                 @elseif($data->is_rumah_ibadat == '1')
-                                  <i class="fas fa-check-circle fa-2x" style="color: green;"></i>
+                                  {{-- <i class="fas fa-check-circle fa-2x" style="color: green;"></i> --}}
+                                  <span class="badge badge-pill badge-success" style="font-size: 13px;">Berdaftar</span>
                                 @endif
                               </td>
 

@@ -243,14 +243,18 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown p-2">
-                            <a class="btn btn-light" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: solid black 1px;">
-                                {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
-                                {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i></span> --}}
-                                <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
-                            </a>
-                            <a class="btn btn-danger" href="" data-toggle="modal" data-target="#confirmation" style="border: solid black 1px;">
-                                <i class="fas fa-power-off fa-2x"></i>
-                            </a>
+                            <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tetapan">
+                                    {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
+                                    {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i></span> --}}
+                                    <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
+                                </a>
+                            </span>
+                            <span data-toggle="modal" data-target="#confirmation">
+                                <a class="btn btn-danger" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Log Keluar">
+                                    <i class="fas fa-power-off fa-2x"></i>
+                                </a>
+                            </span>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow">
                                     <span class="bg-primary"></span>
@@ -282,11 +286,12 @@
                                     <i class="fas fa-unlock-alt"></i> Tukar Kata Laluan</a>
 
 
-                                <div class="dropdown-divider"></div>
+                                {{-- <div class="dropdown-divider"></div> --}}
 
 
-                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Log Keluar</a>
+                                {{-- <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Log Keluar</a> --}}
+
                                 {{-- <div class="dropdown-divider"></div> --}}
                                 {{-- <div class="p-10 p-l-30" style="padding: 10px;">
                                     <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
@@ -512,7 +517,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="text-center footer">
-                Hakcipta Terpelihara 2021 © Pejabat Setiausaha Kerajaan Negeri Selangor. Designed and Developed by
+                Hakcipta Terpelihara 2021 © Unit Perancang Ekonomi Negeri Selangor. Designed and Developed by
                 <a href="https://www.artaniscloud.com/">Artanis Cloud Sdn. Bhd.</a>
             </footer>
             <!-- ============================================================== -->
