@@ -38,6 +38,9 @@ class HomeController extends Controller
 
     public function change_password()
     {
-        return view('tukar-kata-laluan');
+        $user = Auth::user();
+        // dd($user);
+
+        return view('tukar-kata-laluan', compact('user'));
     }
 }
