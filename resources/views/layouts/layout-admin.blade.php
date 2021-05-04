@@ -446,7 +446,7 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
-                            @if(Request::is('admin/dashboard'))
+                            @if(Request::is('dashboard-admin') || Request::is('tukar-kata-laluan'))
 
                             @else
                             <nav aria-label="breadcrumb">
@@ -457,13 +457,13 @@
                                     <li class="breadcrumb-item"> Profil </li>
                                     <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
                                     
-                                    <a href="{{ route('admins.dashboard') }}">Dashboard</a> &nbsp>&nbsp
+                                    {{-- <a href="{{ route('admins.dashboard') }}">Dashboard Admin</a> &nbsp>&nbsp --}}
                                     
                                     <?php $link = "" ?>
                                     @for($i = 1; $i <= count(Request::segments()); $i++)
                                         @if($i < count(Request::segments()) & $i > 0)
                                         <?php $link .= "/" . Request::segment($i); ?>
-                                        <a href="<?= $link ?>">{{ ucwords(str_replace('-',' ',Request::segment($i)))}}</a>  &nbsp>
+                                        <a href="<?= $link ?>">&nbsp {{ ucwords(str_replace('-',' ',Request::segment($i)))}}</a>  &nbsp>
                                         @else {{ucwords(str_replace('-',' ',Request::segment($i)))}}
                                         @endif
                                     @endfor
