@@ -68,7 +68,7 @@ Route::middleware([User::class])->group(function(){
 
 //EXCO ROUTE
 Route::middleware([Exco::class])->group(function () {
-
+    Route::get('/exco/dashboard', [App\Http\Controllers\ExcoController::class, 'dashboard'])->name('excos.dashboard');
 });
 
 //YB ROUTE
