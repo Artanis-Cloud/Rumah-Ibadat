@@ -12,4 +12,14 @@ class ExcoController extends Controller
     {
         return view('excos.dashboard');
     }
+
+    public function permohonan()
+    {
+        return view('excos.permohonan.pilih');
+    }
+
+    public function permohonan_baru()
+    {
+        return view('excos.permohonan.baru');
+    }
 }

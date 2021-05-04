@@ -166,26 +166,27 @@
                         <!-- ============================================================== -->
                         
                         <li class="nav-item dropdown">
-                            <a class="btn btn-light" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: solid black 1px;">
-                                {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
-                                {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block"><i class="fas fa-user-cog fa-2x"></i></span> --}}
-                                <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
-                            </a>
-                            <a class="btn btn-danger" href="" style="border: solid black 1px;">
-                                <i class="fas fa-power-off fa-2x"></i>
-                            </a>
+                            <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tetapan">
+                                    {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
+                                    {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i></span> --}}
+                                    <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
+                                </a>
+                            </span>
+                            <span data-toggle="modal" data-target="#confirmation">
+                                <a class="btn btn-danger" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Log Keluar">
+                                    <i class="fas fa-power-off fa-2x"></i>
+                                </a>
+                            </span>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow">
                                     <span class="bg-primary"></span>
                                 </span>
                                 <div class="text-white d-flex no-block align-items-center p-15 bg-dark m-b-10" style="padding: 15px;">
-                                    {{-- <div class="">
-                                        <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="60">
-                                    </div> --}}
                                     <div class="m-l-10">
                                         <h5 style="margin-bottom: 0px !important;">{{ Auth::user()->name }}</h5>
-                                        <p style="margin-bottom: 0px !important;">{{ Auth::user()->email }}</p>
-                                        <p style="margin-bottom: 0px !important;">Pemohon</p>
+                                        <p style="margin-bottom: 0px !important;"><i class="fas fa-envelope"></i>&nbsp&nbsp&nbsp{{ Auth::user()->email }}</p>
+                                        <p style="margin-bottom: 0px !important;"><i class="fas fa-certificate"></i>&nbsp&nbsp&nbspPemohon</p>
                                     </div>
                                 </div>
                                 <a class="dropdown-item" href="#" style="color: grey;">
@@ -205,11 +206,11 @@
                                     <i class="fas fa-unlock-alt"></i> Tukar Kata Laluan</a>
 
 
-                                <div class="dropdown-divider"></div>
+                                {{-- <div class="dropdown-divider"></div>
 
 
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a> --}}
                                 {{-- <div class="dropdown-divider"></div> --}}
                                 {{-- <div class="p-10 p-l-30" style="padding: 10px;">
                                     <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
@@ -241,7 +242,7 @@
                         
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Rumah Ibadat</span></li> --}}
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
                             {{-- <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.daftar') }}" aria-expanded="false"><span class="hide-menu">Pendaftaran</span></a>
                                     
@@ -257,7 +258,7 @@
                         </li>
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Permohonan</span></li> --}}
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
                             
                         </li>
 
@@ -340,36 +341,33 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
-                            @if(Request::is('pengguna/halaman-utama') || Request::is('rumah-ibadat'))
-
-                            @else
+                            
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    {{-- <li class="breadcrumb-item">
-                                        <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a>
-                                    </li>
-                                    <li class="breadcrumb-item"> Profil </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
-                                    @if(Request::is('pengguna/halaman-utama'))
+                                    
+                                    @if(Request::is('halaman-utama/rumah-ibadat'))
 
-                                    @else
-                                        @if(Request::is('rumah-ibadat/daftar-rumah-ibadat') || Request::is('rumah-ibadat/permohonan-tukar-hak-milik-rumah-ibadat'))
+                                    @else       
+                                        <?php $link = "" ?>
+                                        @for($i = 1; $i <= count(Request::segments()); $i++)
+                                            @if($i < count(Request::segments()) & $i > 0)
+                                            <?php $link .= "/" . Request::segment($i); ?>
+                                                @if($i!=1)
+                                                <a href="<?= $link ?>">&nbsp{{ ucwords(str_replace('-',' ',Request::segment($i)))}}</a> &nbsp>
+                                                @endif
+                                            @else 
+                                                @if($i == 1)
+                                                    {{-- {{ucwords(str_replace('-',' ',Request::segment($i)))}} >&nbsp --}}
+                                                @else 
+                                                    {{ucwords(str_replace('-',' ',Request::segment($i)))}} 
+                                                @endif
+                                            @endif
+                                        @endfor
 
-                                        @else
-                                        <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a> &nbsp>&nbsp
-                                        @endif
                                     @endif
-                                    <?php $link = "" ?>
-                                    @for($i = 1; $i <= count(Request::segments()); $i++)
-                                        @if($i < count(Request::segments()) & $i > 0)
-                                        <?php $link .= "/" . Request::segment($i); ?>
-                                        <a href="<?= $link ?>">{{ ucwords(str_replace('-',' ',Request::segment($i)))}}</a>  &nbsp>
-                                        @else {{ucwords(str_replace('-',' ',Request::segment($i)))}}
-                                        @endif
-                                    @endfor
                                 </ol>
                             </nav>
-                            @endif
+                            
                         </div>
                     </div>
                 </div>
@@ -377,6 +375,33 @@
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
+
+            <!-- ============================================================== -->
+            <!-- Log Out Confimation Modal -->
+            <!-- ============================================================== -->
+            <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    Anda pasti mahu log keluar sistem?
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Log Keluar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Log Out Confimation Modal -->
+            <!-- ============================================================== -->
+
             @yield('content')
             @livewireScripts
 

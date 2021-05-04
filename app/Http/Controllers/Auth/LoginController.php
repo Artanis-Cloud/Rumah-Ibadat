@@ -51,9 +51,9 @@ class LoginController extends Controller
         switch (auth()->user()->role) {
             case 0:
                 if (auth()->user()->is_firstime == 1) {
-                    $this->redirectTo = '/rumah-ibadat';
+                    $this->redirectTo = '/halaman-utama/rumah-ibadat';
                 } elseif (auth()->user()->is_firstime == 0) {
-                    $this->redirectTo = '/pengguna/halaman-utama';
+                    $this->redirectTo = '/halaman-utama';
                 }
                 return $this->redirectTo;
                 break;
@@ -66,7 +66,7 @@ class LoginController extends Controller
             case 3:
                 break;
             case 4:
-                $this->redirectTo = '/admin/dashboard';
+                $this->redirectTo = '/dashboard-admin';
                 return $this->redirectTo;
                 break;
             default:
