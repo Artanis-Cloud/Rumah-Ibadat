@@ -347,7 +347,7 @@
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Permohonan</span></li> --}}
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
 
                                     {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-inputs.html" class="sidebar-link"><i class="mdi mdi-priority-low"></i><span class="hide-menu"> Forms Input</span></a></li>
@@ -360,8 +360,7 @@
                                         <li class="sidebar-item"><a href="form-dual-listbox.html" class="sidebar-link"><i class="mdi mdi-tab-unselected"></i><span class="hide-menu"> Dual Listbox</span></a></li>
                                     </ul> --}}
                                 </li>
-                                {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a> --}}
-                                </li>
+                                
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
                                     {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-vector-difference-ba"></i><span class="hide-menu"> Basic Forms</span></a></li>
@@ -476,32 +475,21 @@
                             @if(Request::is('halaman-utama') || Request::is('rumah-ibadat') || Request::is('halaman-utama/kemaskini-profil') || Request::is('tukar-kata-laluan'))
 
                             @else
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    {{-- <li class="breadcrumb-item">
-                                        <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a>
-                                    </li>
-                                    <li class="breadcrumb-item"> Profil </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
-                                    @if(Request::is('pengguna/halaman-utama'))
 
-                                    @else
-                                        @if(Request::is('rumah-ibadat/daftar-rumah-ibadat'))
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        
+                                        <?php $link = "" ?>
+                                        @for($i = 1; $i <= count(Request::segments()); $i++)
+                                            @if($i < count(Request::segments()) & $i > 0)
+                                            <?php $link .= "/" . Request::segment($i); ?>
+                                            <a href="<?= $link ?>">&nbsp{{ ucwords(str_replace('-',' ',Request::segment($i)))}}</a>  &nbsp>
+                                            @else {{ucwords(str_replace('-',' ',Request::segment($i)))}}
+                                            @endif
+                                        @endfor
+                                    </ol>
+                                </nav>
 
-                                        @else
-                                        <a href="{{ route('user.halaman-utama') }}">Halaman Utama</a> &nbsp>&nbsp
-                                        @endif
-                                    @endif
-                                    <?php $link = "" ?>
-                                    @for($i = 1; $i <= count(Request::segments()); $i++)
-                                        @if($i < count(Request::segments()) & $i > 0)
-                                        <?php $link .= "/" . Request::segment($i); ?>
-                                        <a href="<?= $link ?>">{{ ucwords(str_replace('-',' ',Request::segment($i)))}}</a>  &nbsp>
-                                        @else {{ucwords(str_replace('-',' ',Request::segment($i)))}}
-                                        @endif
-                                    @endfor
-                                </ol>
-                            </nav>
                             @endif
                         </div>
                     </div>

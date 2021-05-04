@@ -1,4 +1,4 @@
-@extends('layouts.layout-user-disabled')
+@extends((Auth()->user()->is_rumah_ibadat == 0) ? 'layouts.layout-user-disabled' : ((Auth()->user()->is_rumah_ibadat == 1) ? 'layouts.layout-user-nicepage' : ''))
 
 @section('content')
 
@@ -32,7 +32,11 @@
                             <p class="card-text">Sekiranya rumah ibadat belum didaftar dalam <b>"Senarai Rumah Ibadat Berdaftar"</b>, sila pilih bahagian ini.</p>
                         </div>
                         <div class="card-footer">
-                          <a href="{{ route('users.rumah-ibadat.daftar') }}" class="btn btn-info">Daftar Baharu</a>
+                          @if(Auth()->user()->is_rumah_ibadat == 0)
+                            <a href="{{ route('users.rumah-ibadat.daftar') }}" class="btn btn-info">Daftar Baharu</a>
+                          @else 
+                            <a href="#" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Daftar Baharu</a>
+                          @endif
                         </div>
                       </div>
                     </div>
@@ -46,7 +50,11 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                          <a href="{{ route('users.rumah-ibadat.menukar') }}" class="btn btn-info">Mohon Tukar Wakil</a>
+                          @if(Auth()->user()->is_rumah_ibadat == 0)
+                            <a href="{{ route('users.rumah-ibadat.menukar') }}" class="btn btn-info">Mohon Tukar Wakil</a>
+                          @else 
+                            <a href="#" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Mohon Tukar Wakil</a>
+                          @endif
                         </div>
                       </div>
                     </div>
