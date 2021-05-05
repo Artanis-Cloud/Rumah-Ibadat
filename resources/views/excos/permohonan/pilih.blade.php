@@ -1,4 +1,4 @@
-@extends((Auth()->user()->is_rumah_ibadat == 0) ? 'layouts.layout-user-disabled' : ((Auth()->user()->is_rumah_ibadat == 1) ? 'layouts.layout-user-nicepage' : ''))
+@extends('layouts.layout-exco')
 
 @section('content')
 
@@ -28,47 +28,57 @@
                     <div class="col-md" style="padding-top: 20px;">
                       <div class="border card border-info h-100">
                         <div class="card-body">
-                            <h4 class="card-title" style="font-weight: bold;">Daftar Baharu Rumah Ibadat</h4>
-                            <p class="card-text">Sekiranya rumah ibadat belum didaftar dalam <b>"Senarai Rumah Ibadat Berdaftar"</b>, sila pilih bahagian ini.</p>
+                            <h4 class="card-title" style="font-weight: bold;">Permohonan Baru</h4>
+                            <p class="card-text">Senarai permohonan yang baru dihantar oleh pemohon.</p>
                         </div>
                         <div class="card-footer">
-                          @if(Auth()->user()->is_rumah_ibadat == 0)
-                            <a href="{{ route('users.rumah-ibadat.daftar') }}" class="btn btn-info">Daftar Baharu</a>
-                          @else 
-                            <a href="#" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Daftar Baharu</a>
-                          @endif
+                          <a href="{{ route('excos.permohonan.baru') }}" class="btn btn-info">Senarai Permohonan Baru</a>
                         </div>
                       </div>
                     </div>
                     <div class="col-md" style="padding-top: 20px;">
                       <div class="border card border-info h-100">
                         <div class="card-body">
-                            <h4 class="card-title" style="font-weight: bold;">Permohonan Menukar Wakil Rumah Ibadat</h4>
+                            <h4 class="card-title" style="font-weight: bold;">Permohonan Sedang Diproses</h4>
                             <p class="card-text">
-                              Sekiranya rumah ibadat telah didaftarkan dan ingin menukar wakil, sila pilih bahagian ini.
-                              Pengguna boleh membuat semakan rumah ibadat di ruangan <b>"Senarai Rumah Ibadat Berdaftar"</b>.
+                              Senarai permohonan yang telah diambil tindakan.
                             </p>
                         </div>
                         <div class="card-footer">
-                          @if(Auth()->user()->is_rumah_ibadat == 0)
-                            <a href="{{ route('users.rumah-ibadat.menukar') }}" class="btn btn-info">Mohon Tukar Wakil</a>
-                          @else 
-                            <a href="#" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Mohon Tukar Wakil</a>
-                          @endif
+                          <a href="#" class="btn btn-info">Senarai Sedang Diproses</a>
                         </div>
                       </div>
                     </div>
                     {{-- <div class="col-md-1"></div> --}}
                   </div>
 
-                  <div class="row" style="padding-top: 20px;">
-                    <div class="col-md">
-                      <div class="border card border-info">
+                  <div class="row">
+                    {{-- <div class="col-md-1"></div> --}}
+                    <div class="col-md" style="padding-top: 20px;">
+                      <div class="border card border-info h-100">
                         <div class="card-body">
-                            <h4 class="card-title" style="font-weight: bold;">Senarai Rumah Ibadat Berdaftar</h4>
+                            <h4 class="card-title" style="font-weight: bold;">Permohonan Lulus</h4>
+                            <p class="card-text">Senarai permohonan yang telah diluluskan oleh YB dan Kakitangan UPEN.</p>
+                        </div>
+                        <div class="card-footer">
+                          <a href="#" class="btn btn-info">Senarai Permohonan Lulus</a>
                         </div>
                       </div>
                     </div>
+                    <div class="col-md" style="padding-top: 20px;">
+                      <div class="border card border-info h-100">
+                        <div class="card-body">
+                            <h4 class="card-title" style="font-weight: bold;">Permohonan Tidak Lulus</h4>
+                            <p class="card-text">
+                              Senarai permohonan yang tidak diluluskan oleh YB dan Kakitangan UPEN.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                          <a href="#" class="btn btn-info">Senarai Permohonan Tidak Lulus</a>
+                        </div>
+                      </div>
+                    </div>
+                    {{-- <div class="col-md-1"></div> --}}
                   </div>
 
                   {{-- Hidden Gap - Just Ignore --}}

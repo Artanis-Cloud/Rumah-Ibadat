@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 class PermohonanController extends Controller
 {
 
+    public function pilih_permohonan()
+    {
+        return view('users.permohonan.pilih');
+    }
+
     public function permohonan_baru()
     {
         return view('users.permohonan.baru');

@@ -1,4 +1,4 @@
-@extends('layouts.layout-admin')
+@extends('layouts.layout-exco')
 
 @section('content')
 
@@ -33,53 +33,38 @@
                           <thead>
                               <tr>
                                 <th class="all">BIL</th>
-                                <th class="all">NAMA PENGGUNA</th>
-                                <th class="all">KAD PENGENALAN</th>
-                                <th class="all">EMAIL</th>
-                                <th class="all">DAFTAR RUMAH IBADAT</th>
-                                <th class="all">STATUS AKAUN</th>
-                                <th class="all">TINDAKAN</th>
+                                <th class="all">PERMOHONAN ID</th>
+                                <th class="all">TARIKH PERMOHONAN</th>
+                                <th class="all">NAMA RUMAH IBADAT</th>
+                                <th class="all">NAMA PEMOHON</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            @foreach($pengguna as $data)
                             <tr>
-                              <td></td>
-                              <td>{{ $data->name }}</td>
-                              <td>{{ $data->ic_number }}</td>
-                              <td>{{ $data->email }}</td>
-
-                              <td>
-                                @if($data->is_rumah_ibadat == '0')
-                                  {{-- <i class="fas fa-times-circle fa-2x" style="color: red;"></i> --}}
-                                  <span class="badge badge-pill badge-danger" style="font-size: 13px;">Tidak Berdaftar</span>
-                                @elseif($data->is_rumah_ibadat == '1')
-                                  {{-- <i class="fas fa-check-circle fa-2x" style="color: green;"></i> --}}
-                                  <span class="badge badge-pill badge-success" style="font-size: 13px;">Berdaftar</span>
-                                @endif
-                              </td>
-
-                              <td>
-                                @if($data->status == '0')
-                                  <span class="badge badge-pill badge-danger" style="font-size: 13px;">Tidak Aktif</span>
-                                @elseif($data->status == '1')
-                                  <span class="badge badge-pill badge-success" style="font-size: 13px;">Aktif</span>
-                                @endif
-                              </td>
-
-                              <td class="p-3">
-                                <div class="d-flex flex-row justify-content-around align-items-center">
-                                    {{-- <a href="" class="btn btn-success mr-1"><i class="fas fa-pencil-alt"></i></a> --}}
-
-                                    {{-- <a href="" class="btn btn-success"><i class="fa fa-check-circle"></i></a> --}}
-
-                                    <a href="" class="btn btn-danger"><i class="far fa-times-circle"></i></a>
-                                </div>
-                              </td>
+                              <td>1</td>
+                              <td>PMH-000432</td>
+                              <td>01-2-2021</td>
+                              <td>Persatuan Rumah Ibadat Kaum Tionghoa</td>
+                              <td>Toh Khim Hwa</td>
                             </tr>
-                            @endforeach
+
+                            <tr>
+                              <td>2</td>
+                              <td>PMH-000213</td>
+                              <td>08-3-2021</td>
+                              <td>Rumah Ibadat Tin Hong See</td>
+                              <td>Lim Thian Ser</td>
+                            </tr>
+
+                            <tr>
+                              <td>3</td>
+                              <td>PMH-000453</td>
+                              <td>04-4-2021</td>
+                              <td>Temple Dewa Kuan Yin Ting</td>
+                              <td>Kiang Chew Choy</td>
+                            </tr>
 
                           </tbody>
                         </table>

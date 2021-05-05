@@ -1,4 +1,9 @@
-@extends('layouts.layout-user-nicepage')
+{{-- Extends temporary --}}
+{{-- @extends(($user->role == '0') ? 'layouts.layout-user-nicepage' : (($user->role == '4') ? 'layouts.layout-admin' : '')) --}}
+
+{{-- Extends permanent --}}
+@extends(($user->role == '0') ? 'layouts.layout-user-nicepage' : (($user->role == '1') ? 'layouts.layout-exco' : (($user->role == '2') ? 'layouts.layout-yb' : (($user->role == '3') ? 'layouts.layout-upen' : (($user->role == '4') ? 'layouts.layout-admin' : '')))))
+
 
 @section('content')
 

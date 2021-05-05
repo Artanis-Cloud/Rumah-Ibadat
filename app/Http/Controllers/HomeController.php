@@ -24,12 +24,6 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index_user()
-    {
-        // dd( Auth::user()->name );
-        // return view('users.halaman-utama-nicepage');
-        return view('users.halaman-utama');
-    }
 
     public function index_super_admin()
     {
@@ -38,6 +32,9 @@ class HomeController extends Controller
 
     public function change_password()
     {
-        return view('tukar-kata-laluan');
+        $user = Auth::user();
+        // dd($user);
+
+        return view('tukar-kata-laluan', compact('user'));
     }
 }

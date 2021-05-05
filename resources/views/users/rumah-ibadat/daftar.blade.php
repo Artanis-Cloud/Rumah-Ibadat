@@ -350,7 +350,7 @@
                   <div class="row" style="padding-top: 15px;"> 
                     <div class="col-md-2"></div>
                     <div class="col-md" style="text-align: center;">
-                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation">Daftar Rumah Ibadat</button>
+                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation_submit">Daftar Rumah Ibadat</button>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -361,7 +361,7 @@
               </div>
 
               <!-- Modal Confirmation -->
-              <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal fade" id="confirmation_submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -380,6 +380,7 @@
                   </div>
                 </div>
               </div>
+
             </form>
           </div>
       </div>
