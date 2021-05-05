@@ -63,6 +63,12 @@ Route::middleware([User::class])->group(function(){
 
     Route::get('/permohonan/permohonan/permohonan-khas', [App\Http\Controllers\PermohonanController::class, 'permohonan_khas'])->name('users.permohonan.khas');
 
+    Route::get('/permohonan/permohonan-proses', [App\Http\Controllers\PermohonanController::class, 'permohonan_proses'])->name('users.permohonan.proses');
+
+    Route::get('/permohonan/permohonan-lulus', [App\Http\Controllers\PermohonanController::class, 'permohonan_lulus'])->name('users.permohonan.lulus');
+
+    Route::get('/permohonan/permohonan-gagal', [App\Http\Controllers\PermohonanController::class, 'permohonan_gagal'])->name('users.permohonan.gagal');
+
 });
 
 //EXCO ROUTE
