@@ -34,6 +34,18 @@
     <script src="{{asset('nice-admin/assets/libs/jquery/dist/jquery.min.js')}}"></script>
 
     {{-- Datatables --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.7/css/rowReorder.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
+
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+
+    {{-- <link rel="stylesheet" type="text/css" href="https://code.jquery.com/jquery-3.5.1.js">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> --}}
     <link href="{{asset('nice-admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
 
     {{-- Datatables --}}
@@ -73,7 +85,7 @@
     color: red;
     }
     </style>
-    
+
 </head>
 <body>
     <!-- ============================================================== -->
@@ -309,7 +321,7 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                     </ul>
-                    
+
                     <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
@@ -326,21 +338,21 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('user.halaman-utama') }}" aria-expanded="false"><i class="icon-home"></i><span class="hide-menu">Halaman Utama </span></a></li>
-                        
+
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Rumah Ibadat</span></li> --}}
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.daftar') }}" aria-expanded="false"><span class="hide-menu">Pendaftaran</span></a> --}}
-                                    
+
                                 </li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.kemaskini') }}" aria-expanded="false"><span class="hide-menu">Kemaskini Rumah Ibadat</span></a>
-                                    
+
                                 </li>
                                 {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.menukar') }}" aria-expanded="false"><span class="hide-menu">Menukar Hak Milik</span></a> --}}
-                                    
+
                                 </li>
 
                             </ul>
@@ -362,8 +374,11 @@
                                         <li class="sidebar-item"><a href="form-dual-listbox.html" class="sidebar-link"><i class="mdi mdi-tab-unselected"></i><span class="hide-menu"> Dual Listbox</span></a></li>
                                     </ul> --}}
                                 </li>
-                                
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
+
+                                {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a> --}}
+                                </li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.proses') }}" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
+
                                     {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-vector-difference-ba"></i><span class="hide-menu"> Basic Forms</span></a></li>
                                         <li class="sidebar-item"><a href="form-horizontal.html" class="sidebar-link"><i class="mdi mdi-file-document-box"></i><span class="hide-menu"> Form Horizontal</span></a></li>
@@ -374,7 +389,7 @@
                                         <li class="sidebar-item"><a href="form-detail.html" class="sidebar-link"><i class="mdi mdi-cards-outline"></i><span class="hide-menu"> Form Detail</span></a></li>
                                     </ul> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Lulus</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Lulus</span></a>
                                     {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-paginator.html" class="sidebar-link"><i class="mdi mdi-export"></i><span class="hide-menu"> Paginator</span></a></li>
                                         <li class="sidebar-item"><a href="form-img-cropper.html" class="sidebar-link"><i class="mdi mdi-crop"></i><span class="hide-menu"> Image Cropper</span></a></li>
@@ -383,7 +398,7 @@
                                         <li class="sidebar-item"><a href="form-typeahead.html" class="sidebar-link"><i class="mdi mdi-cards-variant"></i><span class="hide-menu"> Form Typehead</span></a></li>
                                     </ul> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.gagal') }}" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
                                     {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-bootstrap-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-scan"></i><span class="hide-menu"> Bootstrap Validation</span></a></li>
                                         <li class="sidebar-item"><a href="form-custom-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-plus"></i><span class="hide-menu"> Custom Validation</span></a></li>
@@ -589,10 +604,12 @@
     <script src="{{asset('nice-admin/icon/js/brands.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/solid.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/fontawesome.js')}}"></script>
+
     {{-- toaster --}}
     <script src="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.js')}}"></script>
     <script src="{{asset('nice-admin/assets/extra-libs/toastr/toastr-init.js')}}"></script>
     
+
     <script type="text/javascript">
         $("document").ready(function(){
             setTimeout(function(){
