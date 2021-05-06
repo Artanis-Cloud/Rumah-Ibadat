@@ -102,8 +102,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div id="logo">
-        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/ms/archive/9/93/20090423144020%21Coat_of_arms_of_Malaysia.png" style="height: 50px;" alt="Kerajaan Selangor"></a>
-        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="height: 50px;" alt="Kerajaan Selangor"></a>
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="width: 50px; height: 50px; margin-top: -50%;" alt="Kerajaan Selangor"></a>
       </div>
         <span style="color: #fff;">Portal Rasmi
             <h5 style="color: #fff;">KERAJAAN NEGERI SELANGOR</h5>
@@ -141,19 +140,22 @@
             </ul>
           </li> --}}
           <li><a class="nav-link scrollto" href="#contact">Hubungi</a></li>
+          <li>
+            @auth
+            <a href="#" class="nav-link scrollto" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"> LOG KELUAR </a>
+            <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @endauth
+            @guest
+                <a href="{{ route('login') }}" class="nav-link scrollto"> LOG MASUK </a>
+            @endguest
+          </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
     </div>
-    @auth
-        <a href="#" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"> LOG KELUAR </a>
-        <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
-            {{ csrf_field() }}
-        </form>
-    @endauth
-    @guest
-        <a href="{{ route('login') }}" class="btn btn-primary"> LOG MASUK </a>
-    @endguest
+
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
@@ -216,11 +218,11 @@
         </div>
         <div class="row counters">
 
-          <div class="col-lg-3 col-6 text-center">
+          <div class="text-center col-lg-3 col-6">
             <img src="http://dewan.selangor.gov.my/wp-content/uploads/2019/01/N45-YB-BANDAR-BARU-KLANG-200x300.jpg" alt="New york" style="width:100%;">
           </div>
 
-          <div class="col-lg-9 col-6 text-center">
+          <div class="text-center col-lg-9 col-6">
             {{-- <span data-purecounter-start="0" data-purecounter-end="534" data-purecounter-duration="1" class="purecounter"></span> --}}
             <p>"Alamat: Pusat Khidmat Dun Bandar Baru Klang LG-4, 1E Jalan Pekan Baru 34, 41010 Klang, Selangor
 
@@ -316,12 +318,12 @@
     {{-- <section id="call-to-action">
       <div class="container">
         <div class="row" data-aos="zoom-in">
-          <div class="col-lg-9 text-center text-lg-start">
+          <div class="text-center col-lg-9 text-lg-start">
             <h3 class="cta-title">Call To Action</h3>
             <p class="cta-text"> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
-          <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Call To Action</a>
+          <div class="text-center col-lg-3 cta-btn-container">
+            <a class="align-middle cta-btn" href="#">Call To Action</a>
           </div>
         </div>
 
@@ -567,13 +569,13 @@
                 <div class="form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Nama" required>
                 </div>
-                <div class="form-group mt-3">
+                <div class="mt-3 form-group">
                   <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                 </div>
-                <div class="form-group mt-3">
+                <div class="mt-3 form-group">
                   <input type="text" class="form-control" name="subject" id="subject" placeholder="Subjek" required>
                 </div>
-                <div class="form-group mt-3">
+                <div class="mt-3 form-group">
                   <textarea class="form-control" name="message" rows="5" placeholder="Mesej" required></textarea>
                 </div>
                 <div class="my-3">
