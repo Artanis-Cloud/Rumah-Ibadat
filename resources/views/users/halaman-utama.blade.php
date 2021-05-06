@@ -12,21 +12,10 @@
     {{-- <div class="col-2"></div> --}}
     <div class="col-12">
 
-      {{-- Flash Message --}}
-      @if ($message = Session::get('success'))
-        <div class="border alert alert-success border-success" style="text-align: center;">{{$message}}</div>
-      @elseif ($message = Session::get('error'))
-        <div class="border alert alert-danger border-danger" style="text-align: center;">{{$message}}</div>
-      {{-- @else --}}
-        {{-- Hidden Gap - Just Ignore --}}
-        <div class="alert alert-white" style="text-align: center;"></div>
-        {{-- <div style="padding: 23px;"></div> --}}
-      @endif
-
       <div class="row">
 
         <div class="col-md-4">
-          <a href="#">
+          <a href="{{ route('users.permohonan.baru') }}">
             <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
                 <div class="text-white border card-body bg-info border-dark">
                     <div class="row">
@@ -43,6 +32,7 @@
         </div>
 
         <div class="col-md-4">
+          <a href="{{ route('users.rumah-ibadat.pilih') }}">
             <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
               <div class="text-white border card-body bg-info border-dark">
                   <div class="row">
@@ -54,7 +44,8 @@
                     </div>
                   </div>
               </div>
-          </div>
+            </div>
+          </a>
         </div>
 
         <div class="col-md-4">

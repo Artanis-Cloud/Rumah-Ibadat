@@ -17,21 +17,10 @@
 
               <div class="border card-body border-dark">
 
-                  {{-- Flash Message --}}
-                  @if ($message = Session::get('success'))
-                    <div class="border alert alert-success border-success" style="text-align: center;">{{$message}}</div>
-                  @elseif ($message = Session::get('error'))
-                    <div class="border alert alert-danger border-danger" style="text-align: center;">{{$message}}</div>
-                  @else
-                    {{-- Hidden Gap - Just Ignore --}}
-                    <div class="alert alert-white" style="text-align: center;"></div>
-                    {{-- <div style="padding: 23px;"></div> --}}
-                  @endif
-
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      <label>Nama</label>
+                      <label class="required">Nama</label>
                       <div class="mb-3 input-group">
                         <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ $user->name }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                         @error('name')
@@ -47,46 +36,21 @@
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                        <label>Emel</label>
-                        <div class="mb-3 input-group">
-                            <input class="form-control text-uppercase @error('email') is-invalid @else border-dark @enderror" id="email" name="email" type="email" value="{{ $user->email }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-                          @error('email')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
+                      <label>Kad Pengenalan</label>
+                      <div class="mb-3 input-group">
+                          <input class="form-control text-uppercase @error('ic_number') is-invalid @else border-dark @enderror" id="ic_number" name="ic_number" type="text" value="{{ $user->ic_number }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" minlength="12" maxlength="12" onkeypress="return onlyNumberKey(event)" readonly>
+                        @error('ic_number')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div>
                     </div>
 
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
                     <div class="col-md">
-                        <label>Kad Pengenalan</label>
-                        <div class="mb-3 input-group">
-                            <input class="form-control text-uppercase @error('ic_number') is-invalid @else border-dark @enderror" id="ic_number" name="ic_number" type="text" value="{{ $user->ic_number }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" maxlength="12" onkeypress="return onlyNumberKey(event)">
-                          @error('ic_number')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
-                      </div>
-
-                    <div class="col-md-2"></div>
-                  </div>
-
-
-
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md">
-                      <label>Telefon Bimbit</label>
-                      <div class="mb-3 input-group">
-                        <div class="mb-3 input-group">
+                      <label class="required">Telefon Bimbit</label>
+                      <div class="input-group">
+                        <div class="input-group">
                             <input class="form-control text-uppercase @error('mobile_phone') is-invalid @else border-dark @enderror" id="mobile_phone" name="mobile_phone" type="text" value="{{ $user->mobile_phone }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" minlength="10" maxlength="11" onkeypress="return onlyNumberKey(event)">
                           @error('mobile_phone')
                           <span class="invalid-feedback" role="alert">
@@ -94,9 +58,24 @@
                           </span>
                           @enderror
                         </div>
+                      </div>
                     </div>
-                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
 
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                        <label class="required">Emel</label>
+                        <div class="mb-3 input-group">
+                            <input class="form-control @error('email') is-invalid @else border-dark @enderror" id="email" name="email" type="email" value="{{ $user->email }}"">
+                          @error('email')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </div>
+                    </div>
                     <div class="col-md-2"></div>
                   </div>
 
@@ -104,18 +83,15 @@
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md" style="text-align: center;">
-                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation">Kemaskini Profil Pengguna</button>
+                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation_submit">Kemaskini Profil Pengguna</button>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
 
-                  {{-- Hidden Gap - Just Ignore --}}
-                  <div class="alert alert-white" style="text-align: center;"></div>
-                  {{-- <div style="padding: 25px;"></div> --}}
               </div>
 
               <!-- Modal Confirmation -->
-              <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal fade" id="confirmation_submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
