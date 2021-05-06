@@ -247,11 +247,9 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tetapan">
-                                    {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
-                                    {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i></span> --}}
+                                <button class="btn btn-light" style="border: solid black 1px;" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tetapan">
                                     <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
-                                </a>
+                                </button>
                             </span>
                             <span data-toggle="modal" data-target="#confirmation">
                                 <a class="btn btn-danger" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Log Keluar">
@@ -336,7 +334,7 @@
                                 {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.daftar') }}" aria-expanded="false"><span class="hide-menu">Pendaftaran</span></a> --}}
                                     
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.kemaskini') }}" aria-expanded="false"><span class="hide-menu">Kemaskini Rumah Ibadat</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.kemaskini') }}" aria-expanded="false"><span class="hide-menu">Kemaskini Profil Rumah Ibadat</span></a>
                                     
                                 </li>
                                 {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.menukar') }}" aria-expanded="false"><span class="hide-menu">Menukar Hak Milik</span></a> --}}

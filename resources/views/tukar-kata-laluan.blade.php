@@ -82,9 +82,6 @@
                     <div class="col-md-3"></div>
                   </div>
 
-                  {{-- Hidden Gap - Just Ignore --}}
-                  <div class="alert alert-white" style="text-align: center;"></div>
-                  {{-- <div style="padding: 25px;"></div> --}}
               </div>
 
               <!-- Modal Confirmation -->

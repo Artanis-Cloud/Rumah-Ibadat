@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
 
+use Illuminate\Support\Facades\Validator;
+
+
 class UserController extends Controller
 {
     public function index_user()
@@ -21,11 +24,23 @@ class UserController extends Controller
         $user = auth()->user();
         return view('users.kemaskini-profil', compact('user'));
     }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'ic_number' => ['required', 'string', 'min:12', 'max:12'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'mobile_phone' => ['required', 'string', 'max:11', 'min:10'],
+        ]);
+    }
     
     public function update_profile(Request $request){
+        // dd($request->all());
+        
 
         // Validate change password form
-        // $this->validator($request->all())->validate();
+        $this->validator($request->all())->validate();
 
         $user = User::findOrFail(Auth::user()->id);
 
@@ -40,7 +55,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with("success", "Berjaya kemaskini profil.");
+        return redirect()->back()->with("success", "Profil anda berjaya dikemaskini.");
     }
 
 }

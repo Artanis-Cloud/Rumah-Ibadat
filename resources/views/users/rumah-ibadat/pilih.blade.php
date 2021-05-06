@@ -35,7 +35,7 @@
                           @if(Auth()->user()->is_rumah_ibadat == 0)
                             <a href="{{ route('users.rumah-ibadat.daftar') }}" class="btn btn-info">Daftar Baharu</a>
                           @else 
-                            <a href="#" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Daftar Baharu</a>
+                            <button class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Daftar Baharu</button>
                           @endif
                         </div>
                       </div>
@@ -53,14 +53,32 @@
                           @if(Auth()->user()->is_rumah_ibadat == 0)
                             <a href="{{ route('users.rumah-ibadat.menukar') }}" class="btn btn-info">Mohon Tukar Wakil</a>
                           @else 
-                            <a href="#" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Mohon Tukar Wakil</a>
+                            <button class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Mohon Tukar Wakil</button>
                           @endif
                         </div>
                       </div>
                     </div>
+
+                    @if(Auth()->user()->is_rumah_ibadat == 1)
+                    <div class="col-md" style="padding-top: 20px;">
+                      <div class="border card border-info h-100">
+                        <div class="card-body">
+                            <h4 class="card-title" style="font-weight: bold;">Kemaskini Maklumat Rumah Ibadat</h4>
+                            <p class="card-text">
+                              Sekiranya rumah ibadat telah didaftarkan dan ingin mengemakini maklumat rumah ibadat, sila pilih bahagian ini.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                          <a href="{{ route('users.rumah-ibadat.kemaskini') }}" class="btn btn-info">Kemaskini Rumah Ibadat</a>
+
+                        </div>
+                      </div>
+                    </div>
+                    @endif
                     {{-- <div class="col-md-1"></div> --}}
                   </div>
 
+                  @if(Auth()->user()->is_rumah_ibadat == 0)
                   <div class="row" style="padding-top: 20px;">
                     <div class="col-md">
                       <div class="border card border-info">
@@ -70,6 +88,7 @@
                       </div>
                     </div>
                   </div>
+                  @endif
 
                   {{-- Hidden Gap - Just Ignore --}}
                   <div class="alert alert-white" style="text-align: center;"></div>
