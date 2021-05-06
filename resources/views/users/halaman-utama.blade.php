@@ -49,6 +49,7 @@
         </div>
 
         <div class="col-md-4">
+          <a href="{{ route('users.permohonan.pilih') }}">
             <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
               <div class="text-white border card-body bg-info border-dark">
                   <div class="row">
@@ -61,6 +62,7 @@
                   </div>
               </div>
           </div>
+        </a>
         </div>
 
       </div>
