@@ -44,7 +44,9 @@
 
                             <tr>
                               <td>1</td>
-                              <td>PMH-000432</td>
+                              <td>
+                                <a href="{{ route('excos.permohonan.papar') }}">PMH-000432</a>
+                              </td>
                               <td>01-2-2021</td>
                               <td>Persatuan Rumah Ibadat Kaum Tionghoa</td>
                               <td>Toh Khim Hwa</td>
@@ -52,7 +54,9 @@
 
                             <tr>
                               <td>2</td>
-                              <td>PMH-000213</td>
+                              <td>
+                                <a href="{{ route('excos.permohonan.papar') }}">PMH-000534</a>
+                              </td>
                               <td>08-3-2021</td>
                               <td>Rumah Ibadat Tin Hong See</td>
                               <td>Lim Thian Ser</td>
@@ -60,7 +64,9 @@
 
                             <tr>
                               <td>3</td>
-                              <td>PMH-000453</td>
+                              <td>
+                                <a href="{{ route('excos.permohonan.papar') }}">PMH-000876</a>
+                              </td>
                               <td>04-4-2021</td>
                               <td>Temple Dewa Kuan Yin Ting</td>
                               <td>Kiang Chew Choy</td>

@@ -14,6 +14,13 @@ class UserController extends Controller
         // return view('users.halaman-utama-nicepage');
         return view('users.halaman-utama');
     }
+
+    public function update_profile_pengguna()
+    {
+        // return redirect()->back()->withInput();
+        $user = auth()->user();
+        return view('users.kemaskini-profil', compact('user'));
+    }
     
     public function update_profile(Request $request){
 
@@ -36,10 +43,4 @@ class UserController extends Controller
         return redirect()->back()->with("success", "Berjaya kemaskini profil.");
     }
 
-    public function update_profile_pengguna()
-    {
-        // return redirect()->back()->withInput();
-        $user = auth()->user();
-        return view('users.kemaskini-profil', compact('user'));
-    }
 }
