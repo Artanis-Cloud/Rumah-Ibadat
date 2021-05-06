@@ -21,17 +21,6 @@
             {{ csrf_field() }}
 
               <div class="card-body border border-dark">
-
-                  {{-- Flash Message --}}
-                  @if ($message = Session::get('success'))
-                    <div class="alert alert-success border border-success" style="text-align: center;">{{$message}}</div>
-                  @elseif ($message = Session::get('error'))
-                    <div class="alert alert-danger border border-danger" style="text-align: center;">{{$message}}</div>
-                  @else
-                    {{-- Hidden Gap - Just Ignore --}}
-                    <div class="alert alert-white" style="text-align: center;"></div>
-                    {{-- <div style="padding: 23px;"></div> --}}
-                  @endif
                   <div class="row"> 
                     <div class="col-md-3"></div>
                     <div class="col-md">
@@ -88,7 +77,7 @@
                   <div class="row"> 
                     <div class="col-md-3"></div>
                     <div class="col-md-6" style="text-align: center;">
-                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation">Tukar Kata laluan</button>
+                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation_submit">Tukar Kata laluan</button>
                     </div>
                     <div class="col-md-3"></div>
                   </div>
@@ -99,7 +88,7 @@
               </div>
 
               <!-- Modal Confirmation -->
-              <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal fade" id="confirmation_submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">

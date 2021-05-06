@@ -36,9 +36,9 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware([User::class])->group(function(){
     Route::get('/halaman-utama', [App\Http\Controllers\UserController::class, 'index_user'])->name('user.halaman-utama');
 
-    Route::post('/halaman-utama/kemaskini-profil-update', [App\Http\Controllers\UserController::class, 'update_profile'])->name('users.kemaskini-profil-update');
-
     Route::get('/halaman-utama/kemaskini-profil', [App\Http\Controllers\UserController::class, 'update_profile_pengguna'])->name('users.kemaskini-profil');
+
+    Route::post('/halaman-utama/kemaskini-profil-update', [App\Http\Controllers\UserController::class, 'update_profile'])->name('users.kemaskini-profil-update');
 
 
     //Rumah Ibadat
@@ -67,11 +67,15 @@ Route::middleware([User::class])->group(function(){
 
 //EXCO ROUTE
 Route::middleware([Exco::class])->group(function () {
-    Route::get('/exco/dashboard', [App\Http\Controllers\ExcoController::class, 'dashboard'])->name('excos.dashboard');
+    Route::get('/dashboard-exco', [App\Http\Controllers\ExcoController::class, 'dashboard'])->name('excos.dashboard');
 
-    Route::get('/exco/permohonan', [App\Http\Controllers\ExcoController::class, 'permohonan'])->name('excos.permohonan.pilih');
+    // Permohonan
+    Route::get('/dashboard-exco/permohonan', [App\Http\Controllers\ExcoController::class, 'permohonan'])->name('excos.permohonan.pilih');
 
-    Route::get('/exco/permohonan/permohonan-baru', [App\Http\Controllers\ExcoController::class, 'permohonan_baru'])->name('excos.permohonan.baru');
+    Route::get('/dashboard-exco/permohonan/permohonan-baru', [App\Http\Controllers\ExcoController::class, 'permohonan_baru'])->name('excos.permohonan.baru');
+
+    Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan'])->name('excos.permohonan.papar');
+
 
 
 });
@@ -89,10 +93,10 @@ Route::middleware([Upen::class])->group(function () {
 
 //ADMIN ROUTE
 Route::middleware([Admin::class])->group(function () {
-    // Route::get('/admin', function () { return view('admins.dashboard'); });
 
     Route::get('/dashboard-admin', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admins.dashboard');
 
+    // Pengguna
     Route::get('/dashboard-admin/pengguna', [App\Http\Controllers\AdminController::class, 'pengguna'])->name('admins.pengguna.pilih');
 
     Route::get('/dashboard-admin/pengguna/senarai-pemohon', [App\Http\Controllers\AdminController::class, 'pemohon'])->name('admins.pengguna.pemohon');

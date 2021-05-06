@@ -22,4 +22,9 @@ class ExcoController extends Controller
     {
         return view('excos.permohonan.baru');
     }
+
+    public function papar_permohonan()
+    {
+        return view('excos.permohonan.papar');
+    }
 }

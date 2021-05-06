@@ -34,12 +34,12 @@
                       <label class="required" style="padding-bottom: 10px;">Pilih Tujuan Permohonan</label>
                       <fieldset class="checkbox">
                           <label>
-                              <input type="checkbox" value="PENDIDIKAN KEAGAMAAN" id="tujuan_1" name="tujuan_1"> Pendidikan Keagamaan
+                              <input type="checkbox" value="AKTIVITI KEAGAMAAN" id="tujuan_1" name="tujuan_1"> Aktiviti Keagamaan
                           </label>
                       </fieldset>
                       <fieldset class="checkbox">
                           <label>
-                              <input type="checkbox" value="AKTIVITI KEAGAMAAN" id="tujuan_2" name="tujuan_2"> Aktiviti Keagamaan
+                              <input type="checkbox" value="PENDIDIKAN KEAGAMAAN" id="tujuan_2" name="tujuan_2"> Pendidikan Keagamaan
                           </label>
                       </fieldset>
                       <fieldset class="checkbox">
