@@ -26,9 +26,11 @@ class CreateRumahIbadatsTable extends Migration
             $table->string('name_association')->unique();
             $table->string('office_phone')->nullable();
             $table->string('name_association_bank');
+
             $table->string('registration_type');                            //(MEMPUNYAI PENDAFTARAN SENDIRI)(MEMPUNYAI PENDAFTARAN DI BAWAH PERSATUAN INDUK/CAWANGAN)
             $table->string('name_association_main')->nullable();
             $table->string('registration_number')->unique();
+            
             $table->string('address');
             $table->string('postcode');
             $table->string('district');
