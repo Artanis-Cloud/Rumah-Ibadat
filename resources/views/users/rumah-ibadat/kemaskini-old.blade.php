@@ -1,4 +1,4 @@
-@extends('layouts.layout-user-disabled')
+@extends('layouts.layout-user-nicepage')
 
 @section('content')
 
@@ -7,7 +7,7 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
@@ -15,14 +15,41 @@
             <form method="POST" action="{{ route('users.rumah-ibadat.kemaskini.update') }}">
             {{ csrf_field() }}
 
-              <div class="card-body border border-dark">
+              <div class="border card-body border-dark">
 
-                  <div class="row"> 
+                  {{-- Flash Message --}}
+                  @if ($message = Session::get('success'))
+                    <div class="border alert alert-success border-success" style="text-align: center;">{{$message}}</div>
+                  @elseif ($message = Session::get('error'))
+                    <div class="border alert alert-danger border-danger" style="text-align: center;">{{$message}}</div>
+                  @else
+                    {{-- Hidden Gap - Just Ignore --}}
+                    <div class="alert alert-white" style="text-align: center;"></div>
+                    {{-- <div style="padding: 23px;"></div> --}}
+                  @endif
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label>ID Rumah Ibadat</label>
+                      <div class="mb-3 input-group">
+                          <input class="form-control text-uppercase @error('id_rumah_ibadat') is-invalid @else border-dark @enderror" id="id_rumah_ibadat" name="id_rumah_ibadat" type="text" value="{{ $rumah_ibadat->getRumahIbadatID() }}" readonly>
+                          @error('id_rumah_ibadat')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
-                          <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ old('category') }}">
+                          <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ $rumah_ibadat->category }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
                               <option value="TOKONG" {{ $rumah_ibadat->category == "TOKONG"    ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
                               <option value="KUIL_H" {{ $rumah_ibadat->category == "KUIL_H"    ? 'selected' : '' }} >KUIL (HINDU)</option>
@@ -37,10 +64,10 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label class="required">Nama Persatuan Rumah Ibadat</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror" id="name_association" name="name_association" type="text" value="{{ $rumah_ibadat->name_association }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-                          @error('name_association')
+                      <label class="required">Nama Rumah Ibadat</label>
+                      <div class="mb-3 input-group">
+                          <input class="form-control text-uppercase @error('name') is-invalid @else border-dark @enderror" id="name" name="name" type="text" value="{{ $rumah_ibadat->name }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                          @error('name')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
@@ -54,21 +81,9 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                       <label>Nombor Telefon Pejabat</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ $rumah_ibadat->office_phone }}" maxlength="11" onkeypress="return onlyNumberKey(event)">
-                          <small class="form-text text-muted">Contoh: 0312345678</small>
+                      <div class="mb-3 input-group">
+                          <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ $rumah_ibadat->office_phone }}" placeholder="Contoh: 0312345678" minlength="10" maxlength="11" onkeypress="return onlyNumberKey(event)">
                           @error('office_phone')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                      </div>
-                    </div>
-                    <div class="col-md">
-                      <label class="required">Nama Persatuan Rumah Ibadat Mengikut Bank</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" type="text" value="{{ $rumah_ibadat->name_association_bank }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-                          @error('name_association_bank')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
@@ -88,13 +103,13 @@
 
                   <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md">
+                    <div class="col-md-4">
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Jenis Pendaftaran</label>
-                          <select class="custom-select mr-sm-2 @error('registration_type') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" value="{{ $rumah_ibadat->registration_type }}" onchange="changeRegistration()" disabled>
+                          <select class="custom-select mr-sm-2 @error('registration_type') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" value="{{ $rumah_ibadat->registration_type }}" onchange="changeRegistration()">
                               <option selected disabled hidden>PILIH JENIS PENDAFTARAN</option>
-                              <option value="SENDIRI"    {{ $rumah_ibadat->registration_type == "SENDIRI"     ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN SENDIRI</option>
-                              <option value="INDUK"      {{ $rumah_ibadat->registration_type == "INDUK"       ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN DI BAWAH PERSATUAN INDUK/CAWANGAN</option>
+                              <option value="INDUK"    {{ $rumah_ibadat->registration_type == "INDUK"     ? 'selected' : '' }} >INDUK</option>
+                              <option value="CAWANGAN" {{ $rumah_ibadat->registration_type == "CAWANGAN"  ? 'selected' : '' }} >CAWANGAN</option>
                           </select>
                           @error('category')
                           <span class="invalid-feedback" role="alert">
@@ -103,33 +118,11 @@
                           @enderror
                       </div>
                     </div>
-                    
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md" id="main_div">
-                      <label class="required">Nombor Sijil Pendaftaran / Nombor ROS</label>
+                    <div class="col-md-4" id="main_div">
+                      <label class="required">Nombor Sijil Pendaftaran</label>
                       <div class="form-group mb-3">
-                          <input class="form-control  @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_single" name="registration_number_single" type="text" value="{{ $rumah_ibadat->registration_number }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_single.value">
+                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_single" name="registration_number_single" type="text" value="{{ $rumah_ibadat->registration_number }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_single.value">
                           @error('registration_number')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                      </div>
-                    </div>
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md" id="branch_div_0" style="display: none;">
-                      <label class="required">Nama Persatuan Rumah Ibadat Induk</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name_association_main') is-invalid @else border-dark @enderror" id="name_association_main" name="name_association_main" type="text" value="{{ $rumah_ibadat->name_association_main }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-                          @error('name_association_main')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
@@ -142,9 +135,9 @@
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-4" id="branch_div_1" style="display: none;">
-                      <label class="required" id="registration_number_label">Nombor Pendaftaran Induk</label>
+                      <label class="required">Nombor Pendaftaran Induk</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_main" name="registration_number_main" type="text" value="{{ $rumah_ibadat->registration_type == "INDUK" ? explode("%", $rumah_ibadat->registration_number, 2)[0] : '' }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
+                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_main" name="registration_number_main" type="text" value="{{ $rumah_ibadat->registration_type == "CAWANGAN" ? explode("%", $rumah_ibadat->registration_number, 2)[0] : '' }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -155,7 +148,7 @@
                     <div class="col-md-4" id="branch_div_2" style="display: none;">
                       <label class="required">Nombor Pendaftaran Cawangan</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_branch" name="registration_number_branch" type="text" value="{{ $rumah_ibadat->registration_type == "INDUK" ? explode("%", $rumah_ibadat->registration_number, 2)[1] : '' }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
+                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_branch" name="registration_number_branch" type="text" value="{{ $rumah_ibadat->registration_type == "CAWANGAN" ? explode("%", $rumah_ibadat->registration_number, 2)[1] : '' }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -190,19 +183,14 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-
+                  
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label class="required">Alamat Rumah Ibadat</label>
                       <div class="form-group">
-                          <textarea class="form-control text-uppercase @error('address') is-invalid @else border-dark @enderror" id="address" name="address" rows="2" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ $rumah_ibadat->address }}</textarea>
-                          @error('address')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
+                          <textarea class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="address" name="address" rows="2" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ $rumah_ibadat->address }}</textarea>
+                      </div>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -211,9 +199,9 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label class="required">Poskod</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('postcode') is-invalid @else border-dark @enderror" id="postcode" name="postcode" type="text" value="{{ $rumah_ibadat->postcode }}" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)">
-                          @error('postcode')
+                          @error('ros_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
@@ -223,14 +211,13 @@
                     <div class="col-md">
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Daerah</label>
-                          <select class="custom-select mr-sm-2 @error('district') is-invalid @else border-dark @enderror" id="district" name="district" value="{{ $rumah_ibadat->district }}">
+                          <select class="custom-select mr-sm-2 @error('district') is-invalid @else border-dark @enderror" id="district" name="district">
                               <option selected disabled hidden>PILIH DAERAH</option>
                               <option value="GOMBAK"          {{ $rumah_ibadat->district == "GOMBAK"          ? 'selected' : '' }} >GOMBAK</option>
                               <option value="HULU LANGAT"     {{ $rumah_ibadat->district == "HULU LANGAT"     ? 'selected' : '' }} >HULU LANGAT</option>
                               <option value="HULU SELANGOR"   {{ $rumah_ibadat->district == "HULU SELANGOR"   ? 'selected' : '' }} >HULU SELANGOR</option>
                               <option value="KLANG"           {{ $rumah_ibadat->district == "KLANG"           ? 'selected' : '' }} >KLANG</option>
                               <option value="KUALA SELANGOR"  {{ $rumah_ibadat->district == "KUALA SELANGOR"  ? 'selected' : '' }} >KUALA SELANGOR</option>
-                              <option value="KUALA LANGAT"    {{ $rumah_ibadat->district == "KUALA LANGAT"    ? 'selected' : '' }} >KUALA LANGAT</option>
                               <option value="PETALING"        {{ $rumah_ibadat->district == "PETALING"        ? 'selected' : '' }} >PETALING</option>
                               <option value="SABAK BERNAM"    {{ $rumah_ibadat->district == "SABAK BERNAM"    ? 'selected' : '' }} >SABAK BERNAM</option>
                               <option value="SEPANG"          {{ $rumah_ibadat->district == "SEPANG"          ? 'selected' : '' }} >SEPANG</option>
@@ -244,49 +231,37 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-                  
+
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
                           <label class="mr-sm-2" for="inlineFormCustomSelect">Negeri</label>
-                          <input class="form-control text-uppercase @error('state') is-invalid @else border-dark @enderror" id="state" name="state" type="text" value="SELANGOR" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" readonly>
+                          <select class="custom-select mr-sm-2 @error('state') is-invalid @else border-dark @enderror" id="state" name="state">
+                              <option selected disabled hidden>PILIH NEGERI</option>
+                              {{-- <option value="JOHOR"           {{ $rumah_ibadat->state == "JOHOR"            ? 'selected' : '' }}>JOHOR</option> --}}
+                              {{-- <option value="KEDAH"           {{ $rumah_ibadat->state == "KEDAH"            ? 'selected' : '' }}>KEDAH</option> --}}
+                              {{-- <option value="KELANTAN"        {{ $rumah_ibadat->state == "KELANTAN"         ? 'selected' : '' }}>KELANTAN</option> --}}
+                              {{-- <option value="MELAKA"          {{ $rumah_ibadat->state == "MELAKA"           ? 'selected' : '' }}>MELAKA</option> --}}
+                              {{-- <option value="NEGERI SEMBILAN" {{ $rumah_ibadat->state == "NEGERI SEMBILAN"  ? 'selected' : '' }}>NEGERI SEMBILAN</option> --}}
+                              {{-- <option value="PAHANG"          {{ $rumah_ibadat->state == "PAHANG"           ? 'selected' : '' }}>PAHANG</option> --}}
+                              {{-- <option value="PULAU PINANG"    {{ $rumah_ibadat->state == "PULAU PINANG"     ? 'selected' : '' }}>PULAU PINANG</option> --}}
+                              {{-- <option value="PERAK"           {{ $rumah_ibadat->state == "PERAK"            ? 'selected' : '' }}>PERAK</option> --}}
+                              {{-- <option value="PERLIS"          {{ $rumah_ibadat->state == "PERLIS"           ? 'selected' : '' }}>PERLIS</option> --}}
+                              {{-- <option value="SABAH"           {{ $rumah_ibadat->state == "SABAH"            ? 'selected' : '' }}>SABAH</option> --}}
+                              {{-- <option value="SARAWAK"         {{ $rumah_ibadat->state == "SARAWAK"          ? 'selected' : '' }}>SARAWAK</option> --}}
+                              <option value="SELANGOR"        {{ $rumah_ibadat->state == "SELANGOR"         ? 'selected' : '' }}>SELANGOR</option>
+                              {{-- <option value="TERENGGANU"      {{ $rumah_ibadat->state == "TERENGGANU"       ? 'selected' : '' }}>TERENGGANU</option> --}}
+                              {{-- <option value="WP KUALA LUMPUR" {{ $rumah_ibadat->state == "WP KUALA LUMPUR"  ? 'selected' : '' }}>WP KUALA LUMPUR</option> --}}
+                              {{-- <option value="WP PUTRAJAYA"    {{ $rumah_ibadat->state == "WP PUTRAJAYA"     ? 'selected' : '' }}>WP PUTRAJAYA</option> --}}
+                              {{-- <option value="WP LABUAN"       {{ $rumah_ibadat->state == "WP LABUAN"        ? 'selected' : '' }}>WP LABUAN</option> --}}
+                          </select>
                           @error('state')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
                           @enderror
                       </div>
-                    </div>
-                    <div class="col-md">
-                      <div class="form-group">
-                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kawasan PBT</label>
-                          <select class="custom-select mr-sm-2 @error('pbt_area') is-invalid @else border-dark @enderror" id="pbt_area" name="pbt_area" value="{{ $rumah_ibadat->pbt_area }}">
-                              <option selected disabled hidden>PILIH DAERAH</option>
-                              <option value="GOMBAK"          {{ $rumah_ibadat->pbt_area == "GOMBAK"          ? 'selected' : '' }} >KAWASAN GOMBAK</option>
-                              <option value="HULU LANGAT"     {{ $rumah_ibadat->pbt_area == "HULU LANGAT"     ? 'selected' : '' }} >KAWASAN HULU LANGAT</option>
-                              <option value="HULU SELANGOR"   {{ $rumah_ibadat->pbt_area == "HULU SELANGOR"   ? 'selected' : '' }} >KAWASAN HULU SELANGOR</option>
-                              <option value="KLANG"           {{ $rumah_ibadat->pbt_area == "KLANG"           ? 'selected' : '' }} >KAWASAN KLANG</option>
-                              <option value="KUALA SELANGOR"  {{ $rumah_ibadat->pbt_area == "KUALA SELANGOR"  ? 'selected' : '' }} >KAWASAN KUALA SELANGOR</option>
-                              <option value="KUALA LANGAT"    {{ $rumah_ibadat->pbt_area == "KUALA LANGAT"    ? 'selected' : '' }} >KAWASAN KUALA LANGAT</option>
-                              <option value="PETALING"        {{ $rumah_ibadat->pbt_area == "PETALING"        ? 'selected' : '' }} >KAWASAN PETALING</option>
-                              <option value="SABAK BERNAM"    {{ $rumah_ibadat->pbt_area == "SABAK BERNAM"    ? 'selected' : '' }} >KAWASAN SABAK BERNAM</option>
-                              <option value="SEPANG"          {{ $rumah_ibadat->pbt_area == "SEPANG"          ? 'selected' : '' }} >KAWASAN SEPANG</option>
-                          </select>
-                          @error('pbt_area')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                      </div>
-                    </div>
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md">
-                      <hr>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -323,7 +298,7 @@
                     </div>
                     <div class="col-md">
                       <label class="required">Nombor Akaun</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 input-group">
                           <input class="form-control text-uppercase @error('bank_account') is-invalid @else border-dark @enderror" id="bank_account" name="bank_account" type="text" value="{{ $rumah_ibadat->bank_account }}" onkeypress="return onlyNumberKey(event)">
                           @error('bank_account')
                           <span class="invalid-feedback" role="alert">
@@ -336,10 +311,10 @@
                   </div>
 
                   {{-- Submit Button --}}
-                  <div class="row" style="padding-top: 15px;"> 
+                  <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md" style="text-align: center;">
-                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation_submit">Kemaskini Profil Rumah Ibadat</button>
+                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation">Kemaskini Profil Rumah Ibadat</button>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -350,7 +325,7 @@
               </div>
 
               <!-- Modal Confirmation -->
-              <div class="modal fade" id="confirmation_submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -360,7 +335,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      Anda pasti maklumat ini tepat?
+                      Anda pasti mahu mengemaskini profil rumah ibadat?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -369,7 +344,6 @@
                   </div>
                 </div>
               </div>
-
             </form>
           </div>
       </div>
@@ -380,78 +354,44 @@
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
 <script>
-  //run function when page reload
+  //run these function when page reload
   window.addEventListener('load', changeRegistrationReload);
-  window.addEventListener('load', enableRegistrationTypeReload);
 
   //function change input on registration during reload (will not clear old input)
   function changeRegistrationReload(){
-    //fetch data
-    var category = $('#category').val();
+    //fetch data from dropdown
     var registration_type = $('#registration_type').val();
 
     //display or hide the input
-    if(registration_type == 'SENDIRI'){
+    if(registration_type == 'INDUK'){
       document.getElementById('main_div').style.display = "block";
-      document.getElementById('branch_div_0').style.display = "none";
       document.getElementById('branch_div_1').style.display = "none";
       document.getElementById('branch_div_2').style.display = "none";
 
       //change input condition
       document.getElementById("registration_number_single").disabled = false;
-      document.getElementById("name_association_main").disabled = true;
       document.getElementById("registration_number_main").disabled = true;
       document.getElementById("registration_number_branch").disabled = true;
-    }else if(registration_type == 'INDUK'){
+    }else if(registration_type == 'CAWANGAN'){
       document.getElementById('main_div').style.display = "none";
-      document.getElementById('branch_div_0').style.display = "block";
       document.getElementById('branch_div_1').style.display = "block";
       document.getElementById('branch_div_2').style.display = "block";
 
       //change input condition
       document.getElementById("registration_number_single").disabled = true;
-      document.getElementById("name_association_main").disabled = false;
       document.getElementById("registration_number_main").disabled = false;
       document.getElementById("registration_number_branch").disabled = false;
-
-      //required icon display
-      if(category == 'GEREJA'){
-        document.getElementById("registration_number_label").className = "";
-      }else if(category == 'TOKONG'){
-        document.getElementById("registration_number_label").className = "required";
-      }else{
-        document.getElementById("registration_number_label").className = "required";
-      }
     }
   }
-
-  function enableRegistrationTypeReload(){
-      var category = $('#category').val();
-
-      if(category != null){
-        document.getElementById("registration_type").disabled = false;
-      }
-  }
-
-  //enable 'Jenis Pendaftaran' if user choose 'Kategori Rumah Ibadat'
-  $('#category').on('change', function() {
-      //reset 'Jenis Pendaftaran'
-      $('#registration_type').prop('selectedIndex',0);
-
-      //enable
-      document.getElementById("registration_type").disabled = false;
-  });
 
   //function change input on registration type
   function changeRegistration(){
     //fetch data from dropdown
-    var category = $('#category').val();
     var registration_type = $('#registration_type').val();
 
     //display or hide the input
-    if(registration_type == 'SENDIRI'){
+    if(registration_type == 'INDUK'){
       document.getElementById('main_div').style.display = "block";
-      document.getElementById('branch_div_0').style.display = "none";
       document.getElementById('branch_div_1').style.display = "none";
       document.getElementById('branch_div_2').style.display = "none";
 
@@ -465,9 +405,8 @@
       document.getElementById("registration_number_main").value = "";
       document.getElementById("registration_number_branch").value = "";
       document.getElementById("registration_number").value = "";
-    }else if(registration_type == 'INDUK'){
+    }else if(registration_type == 'CAWANGAN'){
       document.getElementById('main_div').style.display = "none";
-      document.getElementById('branch_div_0').style.display = "block";
       document.getElementById('branch_div_1').style.display = "block";
       document.getElementById('branch_div_2').style.display = "block";
 
@@ -481,34 +420,8 @@
       document.getElementById("registration_number_main").value = "";
       document.getElementById("registration_number_branch").value = "";
       document.getElementById("registration_number").value = "";
-
-      //required icon display
-      if(category == 'GEREJA'){
-        document.getElementById("registration_number_label").className = "";
-      }else if(category == 'TOKONG'){
-        document.getElementById("registration_number_label").className = "required";
-      }else{
-        document.getElementById("registration_number_label").className = "required";
-      }
     }
   }
-
-  //jquery clear value in nombor pendaftaran checker
-  $('#registration_number_main').on('input', function() {
-      var registration_number_main_value = $('#registration_number_main').val();
-
-      if(registration_number_main_value == ""){
-      document.getElementById("registration_number").value = "";
-      }
-  });
-
-  $('#registration_number_branch').on('input', function() {
-      var registration_number_branch_value = $('#registration_number_branch').val();
-
-      if(registration_number_branch_value == ""){
-      document.getElementById("registration_number").value = "";
-      }
-  });
 
   //function insert number only
   function onlyNumberKey(evt) {
