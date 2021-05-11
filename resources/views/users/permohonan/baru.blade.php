@@ -119,6 +119,18 @@
                     <div class="col-md-2"></div>
                   </div>
 
+                  <div class="row" style="padding-top: 15px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label>Senarai Ahli Jawatan Kuasa Rumah Ibadat</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="committee_member" name="committee_member">
+                        <label class="custom-file-label border-dark" for="committee_member">Muat Naik Fail</label>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
                   {{-- TUJUAN FORM --}}
                   <div id="tujuan_1_div" style="display: none;">
 
@@ -139,6 +151,57 @@
                     </div>
 
                     <div class="row">
+                      <div class="col-md-3"></div>
+                      <div class="col-md">
+                        <label class="required">Foto bangunan atau aktiviti persatuan agama</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-success border-dark" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus fa-1x"></i></button>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input-image" id="opt_1_photo_1" name="opt_1_photo_1">
+                                <label class="custom-file-label border-dark" for="opt_1_photo_1">Muat Naik Gambar</label>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-3"></div>
+                      <div class="col-md">
+                        <label>&nbsp</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-danger border-dark" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-trash-alt fa-1x"></i></button>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input-image" id="opt_1_photo_2" name="opt_1_photo_2">
+                                <label class="custom-file-label border-dark" for="opt_1_photo_2">Muat Naik Gambar</label>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-3"></div>
+                      <div class="col-md">
+                        <label>&nbsp</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-danger border-dark" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-trash-alt fa-1x"></i></button>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input-image" id="opt_1_photo_3" name="opt_1_photo_3">
+                                <label class="custom-file-label border-dark" for="opt_1_photo_3">Muat Naik Gambar</label>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+
+                    {{-- <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md">
                         <label class="required">Foto bangunan atau aktiviti persatuan agama</label>
@@ -174,7 +237,7 @@
                         </div>
                       </div>
                       <div class="col-md-2"></div>
-                    </div>
+                    </div> --}}
 
                   </div>
 
@@ -243,7 +306,7 @@
                     <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md">
-                        <label class="required">Foto alat perkakas</label>
+                        <label class="required">Foto lampiran</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_3_photo_1" name="opt_3_photo_1">
                           <label class="custom-file-label border-dark" for="opt_3_photo_1">Gambar 1</label>
@@ -428,11 +491,6 @@
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
 <script>
-  // Display file name in input upload
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
 
   //checkbox display - option 1
   $("#tujuan_1").on('change', function() {
@@ -493,5 +551,124 @@
         document.getElementById('tujuan_5_div').style.display = "none";
     }
   });
+
+
+    // ================= UPLOAD INPUT FILE CHECKER =================
+
+  $(".custom-file-input").on("change", function() {
+
+    //---------- FILE SIZE CHECKER ----------
+    var numb = $(this)[0].files[0].size/2048 /2048 ;
+    console.log("Numb 1:" + numb);
+    numb = numb.toFixed(2);
+    console.log("Numb 2:" + numb);
+    if(numb > 2){
+    //change border color to black
+    $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
+    $(this).removeClass("is-valid");
+
+    //alert message
+    alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
+
+    //reset file value
+    $(this).val(null);
+
+    //reset file name
+    var fileName = "Muat Naik Fail";
+    $(this).next('.custom-file-label').html(fileName);
+
+    return false;
+    }
+
+    //---------- FILE TYPE CHECKER ----------
+    var filePath = $(this).val();
+    var allowedExtensions = /(\.pdf)$/i; // \.pdf|\.doc|\.docx|\.xls|\.xlsx|\.jpeg|\.jpg|\.png|\.zip|\.rar
+    if(!allowedExtensions.exec(filePath)){
+    //change border color to black
+    $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
+    $(this).removeClass("is-valid");
+
+    //alert message
+    alert('Sila muatnaik file dalam format .pdf sahaja.');
+
+    //reset file value
+    $(this).val(null);
+
+    //reset file name
+    var fileName = "Muat Naik Fail";
+    $(this).next('.custom-file-label').html(fileName);
+
+    return false;
+    }
+
+    //file name display
+    var fileName = $(this).val().split("\\").pop();
+
+    //change border color to green
+    $(this).siblings(".custom-file-label").removeClass( "border-dark" ).addClass("border-success").addClass("selected").html(fileName);
+    $(this).addClass("is-valid");
+  });
+
+  // ================= END OF UPLOAD FILE INPUT CHECKER =================
+
+
+
+
+  // ================= UPLOAD IMAGE INPUT CHECKER =================
+
+
+  $(".custom-file-input-image").on("change", function() {
+
+    //---------- FILE SIZE CHECKER ----------
+    var numb = $(this)[0].files[0].size/10240 /10240 ;
+    numb = numb.toFixed(2);
+    if(numb > 2){
+    //change border color to black
+    $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
+    $(this).removeClass("is-valid");
+
+    //alert message
+    alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
+
+    //reset file value
+    $(this).val(null);
+
+    //reset file name
+    var fileName = "Muat Naik Gambar";
+    $(this).next('.custom-file-label').html(fileName);
+
+    return false;
+    }
+
+    //---------- FILE TYPE CHECKER ----------
+    var filePath = $(this).val();
+    var allowedExtensions = /(\.jpeg|\.jpg|\.png)$/i; // \.pdf|\.doc|\.docx|\.xls|\.xlsx|\.jpeg|\.jpg|\.png|\.zip|\.rar
+    if(!allowedExtensions.exec(filePath)){
+    //change border color to black
+    $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
+    $(this).removeClass("is-valid");
+
+    //alert message
+    alert('Sila muatnaik file dalam format .jpeg , .jpg dan .png sahaja.');
+
+    //reset file value
+    $(this).val(null);
+
+    //reset file name
+    var fileName = "Muat Naik Gambar";
+    $(this).next('.custom-file-label').html(fileName);
+
+    return false;
+    }
+
+    //file name display
+    var fileName = $(this).val().split("\\").pop();
+
+    //change border color to green
+    $(this).siblings(".custom-file-label").removeClass( "border-dark" ).addClass("border-success").addClass("selected").html(fileName);
+    $(this).addClass("is-valid");
+  });
+
+  // ================= END OF UPLOAD IMAGE INPUT CHECKER =================
 </script>
 @endsection
