@@ -1,4 +1,4 @@
-@extends('layouts.layout-user-disabled')
+@extends('layouts.layout-user-nicepage')
 
 @section('content')
 
@@ -298,21 +298,27 @@
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Nama Bank</label>
                           <select class="custom-select mr-sm-2 @error('bank_name') is-invalid @else border-dark @enderror" id="bank_name" name="bank_name" value="{{ $rumah_ibadat->bank_name }}">
                               <option selected disabled hidden>PILIH BANK</option>
-                              <option value="AFFIN BANK"                    {{ $rumah_ibadat->bank_name == "AFFIN BANK"                     ? 'selected' : '' }}>AFFIN BANK</option>
-                              <option value="AGROBANK"                      {{ $rumah_ibadat->bank_name == "AGROBANK"                       ? 'selected' : '' }}>AGROBANK</option>
-                              <option value="ALLIANCE BANK MALAYSIA"        {{ $rumah_ibadat->bank_name == "ALLIANCE BANK MALAYSIA"         ? 'selected' : '' }}>ALLIANCE BANK MALAYSIA</option>
-                              <option value="AMBANK"                        {{ $rumah_ibadat->bank_name == "AMBANK"                         ? 'selected' : '' }}>AMBANK</option>
-                              <option value="BANK ISLAM MALAYSIA"           {{ $rumah_ibadat->bank_name == "BANK ISLAM MALAYSIA"            ? 'selected' : '' }}>BANK ISLAM MALAYSIA</option>
-                              <option value="BANK MUAMALAT MALAYSIA BERHAD" {{ $rumah_ibadat->bank_name == "BANK MUAMALAT MALAYSIA BERHAD"  ? 'selected' : '' }}>BANK MUAMALAT MALAYSIA BERHAD</option>
-                              <option value="BANK RAKYAT"                   {{ $rumah_ibadat->bank_name == "BANK RAKYAT"                    ? 'selected' : '' }}>BANK RAKYAT</option>
-                              <option value="BANK SIMPANAN NASIONAL (BSN)"  {{ $rumah_ibadat->bank_name == "BANK SIMPANAN NASIONAL (BSN)"   ? 'selected' : '' }}>BANK SIMPANAN NASIONAL (BSN)</option>
-                              <option value="CIMB BANK"                     {{ $rumah_ibadat->bank_name == "CIMB BANK"                      ? 'selected' : '' }}>CIMB BANK</option>
-                              <option value="CITIBANK"                      {{ $rumah_ibadat->bank_name == "CITIBANK"                       ? 'selected' : '' }}>CITIBANK</option>
-                              <option value="HSBC BANK"                     {{ $rumah_ibadat->bank_name == "HSBC BANK"                      ? 'selected' : '' }}>HSBC BANK</option>
-                              <option value="HONG LEONG BANK"               {{ $rumah_ibadat->bank_name == "HONG LEONG BANK"                ? 'selected' : '' }}>HONG LEONG BANK</option>
-                              <option value="MAYBANK"                       {{ $rumah_ibadat->bank_name == "MAYBANK"                        ? 'selected' : '' }}>MAYBANK</option>
-                              <option value="PUBLIC BANK"                   {{ $rumah_ibadat->bank_name == "PUBLIC BANK"                    ? 'selected' : '' }}>PUBLIC BANK</option>
-                              <option value="RHB BANK"                      {{ $rumah_ibadat->bank_name == "RHB BANK"                       ? 'selected' : '' }}>RHB BANK</option>
+                              <option value="AFFIN BANK"                      {{ $rumah_ibadat->bank_name == "AFFIN BANK"                       ? 'selected' : '' }}>AFFIN BANK</option>
+                              <option value="AGROBANK"                        {{ $rumah_ibadat->bank_name == "AGROBANK"                         ? 'selected' : '' }}>AGROBANK</option>
+                              <option value="AL-RAJHI BANK"                   {{ $rumah_ibadat->bank_name == "AL-RAJHI BANK"                    ? 'selected' : '' }}>AL-RAJHI BANK</option>
+                              <option value="ALLIANCE BANK MALAYSIA"          {{ $rumah_ibadat->bank_name == "ALLIANCE BANK MALAYSIA"           ? 'selected' : '' }}>ALLIANCE BANK MALAYSIA</option>
+                              <option value="AMBANK"                          {{ $rumah_ibadat->bank_name == "AMBANK"                           ? 'selected' : '' }}>AMBANK</option>
+                              <option value="BANK ISLAM MALAYSIA"             {{ $rumah_ibadat->bank_name == "BANK ISLAM MALAYSIA"              ? 'selected' : '' }}>BANK ISLAM MALAYSIA</option>
+                              <option value="BANK MUAMALAT MALAYSIA BERHAD"   {{ $rumah_ibadat->bank_name == "BANK MUAMALAT MALAYSIA BERHAD"    ? 'selected' : '' }}>BANK MUAMALAT MALAYSIA BERHAD</option>
+                              <option value="BANK RAKYAT"                     {{ $rumah_ibadat->bank_name == "BANK RAKYAT"                      ? 'selected' : '' }}>BANK RAKYAT</option>
+                              <option value="BANK SIMPANAN NASIONAL (BSN)"    {{ $rumah_ibadat->bank_name == "BANK SIMPANAN NASIONAL (BSN)"     ? 'selected' : '' }}>BANK SIMPANAN NASIONAL (BSN)</option>
+                              <option value="CIMB BANK"                       {{ $rumah_ibadat->bank_name == "CIMB BANK"                        ? 'selected' : '' }}>CIMB BANK</option>
+                              <option value="CITIBANK"                        {{ $rumah_ibadat->bank_name == "CITIBANK"                         ? 'selected' : '' }}>CITIBANK</option>
+                              <option value="CO-OP BANK PERTAMA"              {{ $rumah_ibadat->bank_name == "CO-OP BANK PERTAMA"               ? 'selected' : '' }}>CO-OP BANK PERTAMA</option>
+                              <option value="HSBC BANK"                       {{ $rumah_ibadat->bank_name == "HSBC BANK"                        ? 'selected' : '' }}>HSBC BANK</option>
+                              <option value="HONG LEONG BANK"                 {{ $rumah_ibadat->bank_name == "HONG LEONG BANK"                  ? 'selected' : '' }}>HONG LEONG BANK</option>
+                              <option value="MAYBANK"                         {{ $rumah_ibadat->bank_name == "MAYBANK"                          ? 'selected' : '' }}>MAYBANK</option>
+                              <option value="MBSB BANK BERHAD"                {{ $rumah_ibadat->bank_name == "MBSB BANK BERHAD"                 ? 'selected' : '' }}>MBSB BANK BERHAD</option>
+                              <option value="OCBC MALAYSIA BANK"              {{ $rumah_ibadat->bank_name == "OCBC MALAYSIA BANK"               ? 'selected' : '' }}>OCBC MALAYSIA BANK</option>
+                              <option value="PUBLIC BANK"                     {{ $rumah_ibadat->bank_name == "PUBLIC BANK"                      ? 'selected' : '' }}>PUBLIC BANK</option>
+                              <option value="RHB BANK"                        {{ $rumah_ibadat->bank_name == "RHB BANK"                         ? 'selected' : '' }}>RHB BANK</option>
+                              <option value="STANDARD CHARTERED BANK MALAYSIA"{{ $rumah_ibadat->bank_name == "STANDARD CHARTERED BANK MALAYSIA" ? 'selected' : '' }}>STANDARD CHARTERED BANK MALAYSIA</option>
+                              <option value="UOB MALAYSIA BANK"               {{ $rumah_ibadat->bank_name == "UOB MALAYSIA BANK"                ? 'selected' : '' }}>UOB MALAYSIA BANK</option>
                           </select>
                           @error('bank_name')
                           <span class="invalid-feedback" role="alert">
