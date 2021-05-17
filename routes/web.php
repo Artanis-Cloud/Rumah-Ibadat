@@ -88,11 +88,13 @@ Route::middleware([Exco::class])->group(function () {
 
 //YB ROUTE
 Route::middleware([Yb::class])->group(function () {
+    Route::get('/dashboard-yb', [App\Http\Controllers\YbController::class, 'dashboard'])->name('ybs.dashboard');
 
 });
 
 //UPEN ROUTE
 Route::middleware([Upen::class])->group(function () {
+    Route::get('/dashboard-upen', [App\Http\Controllers\UpenController::class, 'dashboard'])->name('upens.dashboard');
 
 });
 
