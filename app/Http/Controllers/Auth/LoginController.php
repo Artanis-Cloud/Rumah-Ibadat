@@ -103,8 +103,12 @@ class LoginController extends Controller
                 return $this->redirectTo;
                 break;
             case 2:
+                $this->redirectTo = '/dashboard-yb';
+                return $this->redirectTo;
                 break;
             case 3:
+                $this->redirectTo = '/dashboard-upen';
+                return $this->redirectTo;
                 break;
             case 4:
                 $this->redirectTo = '/dashboard-admin';

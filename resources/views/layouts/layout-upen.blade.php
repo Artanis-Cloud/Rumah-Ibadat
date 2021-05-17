@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>Dashboard Exco</title>
+    <title>Dashboard Upen</title>
     @livewireStyles
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -182,7 +182,7 @@
                                     <div class="m-l-10">
                                         <h5 style="margin-bottom: 0px !important;">{{ Auth::user()->name }}</h5>
                                         <p style="margin-bottom: 0px !important;"><i class="fas fa-envelope"></i>&nbsp&nbsp&nbsp&nbsp{{ Auth::user()->email }}</p>
-                                        <p style="margin-bottom: 0px !important;"><i class="fas fa-crown"></i>&nbsp&nbsp&nbspExco</p>
+                                        <p style="margin-bottom: 0px !important;"><i class="fas fa-crown"></i>&nbsp&nbsp&nbspUpen</p>
                                     </div>
                                 </div>
 
