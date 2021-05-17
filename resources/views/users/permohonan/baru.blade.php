@@ -558,11 +558,10 @@
   $(".custom-file-input").on("change", function() {
 
     //---------- FILE SIZE CHECKER ----------
-    var numb = $(this)[0].files[0].size/2048 /2048 ;
-    console.log("Numb 1:" + numb);
+    var numb = $(this)[0].files[0].size/1024 /1024 ;
     numb = numb.toFixed(2);
-    console.log("Numb 2:" + numb);
-    if(numb > 2){
+    
+    if(numb > 10.0){  //change file limit here (MB)
     //change border color to black
     $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
     $(this).removeClass("is-valid");
@@ -620,9 +619,9 @@
   $(".custom-file-input-image").on("change", function() {
 
     //---------- FILE SIZE CHECKER ----------
-    var numb = $(this)[0].files[0].size/10240 /10240 ;
+    var numb = $(this)[0].files[0].size/1024 /1024 ;
     numb = numb.toFixed(2);
-    if(numb > 2){
+    if(numb > 10.0){ //change file limit here (MB)
     //change border color to black
     $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
     $(this).removeClass("is-valid");
