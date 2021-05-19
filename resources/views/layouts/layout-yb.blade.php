@@ -99,7 +99,7 @@
                     <!-- Logo -->
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
-                        <a href="{{ route('excos.dashboard') }}" class="logo">
+                        <a href="{{ route('ybs.dashboard') }}" class="logo">
                             <!-- Logo icon -->
                             <span class="logo-icon">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -226,12 +226,12 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.dashboard') }}" aria-expanded="false"><i class="fas fa-tachometer-alt"></i><span class="hide-menu" style="padding-left: 10px;">Dashboard </span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.dashboard') }}" aria-expanded="false"><i class="fas fa-tachometer-alt"></i><span class="hide-menu" style="padding-left: 10px;">Dashboard </span></a></li>
                         
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
 
@@ -285,7 +285,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     
-                                    {{-- <a href="{{ route('excos.dashboard') }}">Dashboard</a> &nbsp>&nbsp --}}
+                                    {{-- <a href="{{ route('ybs.dashboard') }}">Dashboard</a> &nbsp>&nbsp --}}
                                     
                                     <?php $link = "" ?>
                                     @for($i = 1; $i <= count(Request::segments()); $i++)
