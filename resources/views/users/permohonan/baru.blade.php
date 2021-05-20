@@ -34,17 +34,17 @@
                       <label class="required" style="padding-bottom: 10px;">Pilih Tujuan Permohonan</label>
                       <fieldset class="checkbox">
                           <label>
-                              <input type="checkbox" value="AKTIVITI KEAGAMAAN" id="tujuan_1" name="tujuan_1"> Aktiviti Keagamaan
+                              <input type="checkbox" value="AKTIVITI KEAGAMAAN" id="tujuan_1" name="tujuan[]"> Aktiviti Keagamaan
                           </label>
                       </fieldset>
                       <fieldset class="checkbox">
                           <label>
-                              <input type="checkbox" value="PENDIDIKAN KEAGAMAAN" id="tujuan_2" name="tujuan_2"> Pendidikan Keagamaan
+                              <input type="checkbox" value="PENDIDIKAN KEAGAMAAN" id="tujuan_2" name="tujuan[]"> Pendidikan Keagamaan
                           </label>
                       </fieldset>
                       <fieldset class="checkbox">
                           <label>
-                              <input type="checkbox" value="PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN" id="tujuan_3" name="tujuan_3"> Pembelian Peralatan untuk kelas keagamaan
+                              <input type="checkbox" value="PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN" id="tujuan_3" name="tujuan[]"> Pembelian Peralatan untuk kelas keagamaan
                           </label>
                       </fieldset>
                       
@@ -53,12 +53,12 @@
                       <label style="padding-bottom: 10px;">&nbsp</label>
                       <fieldset class="checkbox">
                           <label>
-                              <input type="checkbox" value="BAIK PULIH/PENYELENGGARAAN BANGUNAN" id="tujuan_4" name="tujuan_4"> Baik Pulih/Penyelenggaraan Bangunan
+                              <input type="checkbox" value="BAIK PULIH/PENYELENGGARAAN BANGUNAN" id="tujuan_4" name="tujuan[]"> Baik Pulih/Penyelenggaraan Bangunan
                           </label>
                       </fieldset>
                       <fieldset class="checkbox">
                           <label>
-                              <input type="checkbox" value="PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT" id="tujuan_5" name="tujuan_5"> Pemindahan/Pembinaan Baru Rumah Ibadat
+                              <input type="checkbox" value="PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT" id="tujuan_5" name="tujuan[]"> Pemindahan/Pembinaan Baru Rumah Ibadat
                           </label>
                       </fieldset>
                     </div>
@@ -160,7 +160,7 @@
                                 <button class="btn btn-success border-dark" id="add_input_opt_1" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
                               </div>
                               <div class="custom-file">
-                                  <input type="file" class="custom-file-input-image" id="opt_1_photo1" name="opt_1_photo[]">
+                                  <input type="file" class="custom-file-input-image" id="opt_1_photo1" name="opt_1_photo[]" disabled>
                                   <label class="custom-file-label border-dark" for="opt_1_photo1">Muat Naik Gambar</label>
                               </div>
                           </div>
@@ -384,7 +384,7 @@
                   <div class="row" style="padding-top: 25px;"> 
                     <div class="col-md-3"></div>
                     <div class="col-md-6" style="text-align: center;">
-                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation">Hantar Permohonan</button>
+                      <button type="button" id="validation_button" class="btn waves-effect waves-light btn-info btn-block">Hantar Permohonan</button>
                     </div>
                     <div class="col-md-3"></div>
                   </div>
@@ -395,7 +395,7 @@
               </div>
 
               <!-- Modal Confirmation -->
-              <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal fade" id="confirmation_submit_permohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -410,6 +410,26 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                       <button type="submit" class="btn btn-success">Hantar Permohonan</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal Validation -->
+              <div class="modal fade" id="validation_submit_permohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPeringatan!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <span id="note_message"></span>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success" data-dismiss="modal">Okay</button>
                     </div>
                   </div>
                 </div>
@@ -548,57 +568,57 @@
   // ================= UPLOAD IMAGE INPUT CHECKER =================
 
 
-  $(".custom-file-input-image").on("change", function() {
-    console.log("checker general");
-    //---------- FILE TYPE CHECKER ----------
-    var filePath = $(this).val();
-    var allowedExtensions = /(\.jpeg|\.jpg|\.png)$/i; // \.pdf|\.doc|\.docx|\.xls|\.xlsx|\.jpeg|\.jpg|\.png|\.zip|\.rar
-    if(!allowedExtensions.exec(filePath)){
-    //change border color to black
-    $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
-    $(this).removeClass("is-valid");
+  // $(".custom-file-input-image").on("change", function() {
+  //   console.log("checker general");
+  //   //---------- FILE TYPE CHECKER ----------
+  //   var filePath = $(this).val();
+  //   var allowedExtensions = /(\.jpeg|\.jpg|\.png)$/i; // \.pdf|\.doc|\.docx|\.xls|\.xlsx|\.jpeg|\.jpg|\.png|\.zip|\.rar
+  //   if(!allowedExtensions.exec(filePath)){
+  //   //change border color to black
+  //   $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
+  //   $(this).removeClass("is-valid");
 
-    //alert message
-    alert('Sila muatnaik file dalam format .jpeg , .jpg dan .png sahaja.');
+  //   //alert message
+  //   alert('Sila muatnaik file dalam format .jpeg , .jpg dan .png sahaja.');
 
-    //reset file value
-    $(this).val(null);
+  //   //reset file value
+  //   $(this).val(null);
 
-    //reset file name
-    var fileName = "Muat Naik Gambar";
-    $(this).next('.custom-file-label').html(fileName);
+  //   //reset file name
+  //   var fileName = "Muat Naik Gambar";
+  //   $(this).next('.custom-file-label').html(fileName);
 
-    return false;
-    }
+  //   return false;
+  //   }
     
-    //---------- FILE SIZE CHECKER ----------
-    var numb = $(this)[0].files[0].size/1024 /1024 ;
-    numb = numb.toFixed(2);
-    if(numb > 10.0){ //change file limit here (MB)
-    //change border color to black
-    $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
-    $(this).removeClass("is-valid");
+  //   //---------- FILE SIZE CHECKER ----------
+  //   var numb = $(this)[0].files[0].size/1024 /1024 ;
+  //   numb = numb.toFixed(2);
+  //   if(numb > 10.0){ //change file limit here (MB)
+  //   //change border color to black
+  //   $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
+  //   $(this).removeClass("is-valid");
 
-    //alert message
-    alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
+  //   //alert message
+  //   alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
 
-    //reset file value
-    $(this).val(null);
+  //   //reset file value
+  //   $(this).val(null);
 
-    //reset file name
-    var fileName = "Muat Naik Gambar";
-    $(this).next('.custom-file-label').html(fileName);
+  //   //reset file name
+  //   var fileName = "Muat Naik Gambar";
+  //   $(this).next('.custom-file-label').html(fileName);
 
-    return false;
-    }
+  //   return false;
+  //   }
     
-    //file name display
-    var fileName = $(this).val().split("\\").pop();
+  //   //file name display
+  //   var fileName = $(this).val().split("\\").pop();
 
-    //change border color to green
-    $(this).siblings(".custom-file-label").removeClass( "border-dark" ).addClass("border-success").addClass("selected").html(fileName);
-    $(this).addClass("is-valid");
-  });
+  //   //change border color to green
+  //   $(this).siblings(".custom-file-label").removeClass( "border-dark" ).addClass("border-success").addClass("selected").html(fileName);
+  //   $(this).addClass("is-valid");
+  // });
 
   // ================= END OF UPLOAD IMAGE INPUT CHECKER =================
 </script>
@@ -796,5 +816,35 @@ $(document).ready(function(){
 });
 
 // ================= END OF DYNAMIC IMAGE UPLOAD FOR OPTION 1 =================
+
+// ================= Validation form before submit =================
+
+$(document).ready(function(){
+  $("#validation_button").click(function(){
+    
+    //fetch data
+    var application_letter = $('#application_letter').val();
+
+
+
+    //validation tujuan
+    if(!$('#tujuan_1').is(':checked') && !$('#tujuan_2').is(':checked') && !$('#tujuan_3').is(':checked') && !$('#tujuan_4').is(':checked') && !$('#tujuan_5').is(':checked')){
+      $('#note_message').html('Sila pilih sekurang-kurangnya 1 tujuan.');
+      $("#validation_submit_permohonan").modal();
+      return false;
+    }
+    
+    //validation surat permohonan
+    if(application_letter == ""){
+      $('#note_message').html('Sila muat naik surat permohonan');
+      $("#validation_submit_permohonan").modal();
+      return false;
+    }
+
+
+    //display confirmartion input
+    $("#confirmation_submit_permohonan").modal();
+  });
+});
 </script>
 @endsection
