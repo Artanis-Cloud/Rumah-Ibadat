@@ -17,8 +17,16 @@ class PermohonanController extends Controller
     }
 
     public function permohonan_baru()
-    {
-        return view('users.permohonan.baru');
+    {   
+        $user_id = auth()->user()->id;
+        $rumah_ibadat = RumahIbadat::where('user_id', $user_id )->get()->first();
+
+        $rumah_ibadat_checker = RumahIbadat::where('user_id', $user_id)->count();
+
+        if($rumah_ibadat_checker == 0){
+            return redirect()->back()->with('error', 'Sila daftar rumah ibadat untuk membuat permohonan');
+        }
+        return view('users.permohonan.baru', compact('rumah_ibadat'));
     }
 
     public function permohonan_hantar(Request $request){
