@@ -91,7 +91,7 @@
                     <div class="col-md">
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Jenis Pendaftaran</label>
-                          <select class="custom-select mr-sm-2 @error('registration_type') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" value="{{ $rumah_ibadat->registration_type }}" onchange="changeRegistration()" disabled>
+                          <select class="custom-select mr-sm-2 @error('registration_type') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" value="{{ $rumah_ibadat->registration_type }}" onchange="changeRegistration()">
                               <option selected disabled hidden>PILIH JENIS PENDAFTARAN</option>
                               <option value="SENDIRI"    {{ $rumah_ibadat->registration_type == "SENDIRI"     ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN SENDIRI</option>
                               <option value="INDUK"      {{ $rumah_ibadat->registration_type == "INDUK"       ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN DI BAWAH PERSATUAN INDUK/CAWANGAN</option>
@@ -452,13 +452,13 @@
   }
 
   //enable 'Jenis Pendaftaran' if user choose 'Kategori Rumah Ibadat'
-  $('#category').on('change', function() {
-      //reset 'Jenis Pendaftaran'
-      $('#registration_type').prop('selectedIndex',0);
+  // $('#category').on('change', function() {
+  //     //reset 'Jenis Pendaftaran'
+  //     $('#registration_type').prop('selectedIndex',0);
 
-      //enable
-      document.getElementById("registration_type").disabled = false;
-  });
+  //     //enable
+  //     document.getElementById("registration_type").disabled = false;
+  // });
 
   //function change input on registration type
   function changeRegistration(){

@@ -156,9 +156,9 @@ class RumahIbadatController extends Controller
         }
 
         //update validator
-        // $this->validatorUpdate($request->all())->validate();
+        $this->validatorUpdate($request->all())->validate();
 
-        //validate the if user catefory is gerea and registration type is induk
+        //validate the if user category is gereja and registration type is induk
         if ($request->category != "GEREJA" && $request->registration_type == "INDUK") {
             $this->validatorNonGereja($request->all())->validate();
         }
