@@ -228,7 +228,7 @@
                       <div class="col-md-2"></div>
                     </div>
 
-                  <div class="row">
+                  <div class="row" style="display: none;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label>Jumlah Gambar Aktiviti Keagamaan</label>
@@ -325,7 +325,7 @@
                       <div class="col-md-2"></div>
                     </div>
 
-                  <div class="row">
+                  <div class="row" style="display: none;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label>Jumlah Gambar Salinan Sebutharga daripada pembekal</label>
@@ -387,7 +387,7 @@
                       <div class="col-md-2"></div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" style="display: none;">
                       <div class="col-md-2"></div>
                       <div class="col-md">
                         <label>Jumlah Gambar Bahagian Bangunan</label>
@@ -417,7 +417,7 @@
                       </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" style="display: none;">
                       <div class="col-md-2"></div>
                       <div class="col-md">
                         <label>Jumlah Foto Pembaikan Dan Penyelenggaraan</label>
@@ -500,7 +500,7 @@
                     <div class="col-md-2"></div>
                   </div>
 
-                  <div class="row">
+                  <div class="row" style="display: none;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label>Jumlah Foto bangunan</label>
@@ -667,7 +667,9 @@
     $(this).removeClass("is-valid");
 
     //alert message
-    alert('Sila muatnaik file dalam format .pdf, .jpeg , .jpg dan .png sahaja.');
+    // alert('Sila muatnaik file dalam format .pdf, .jpeg , .jpg dan .png sahaja.');
+    $('#note_message').html('Sila muatnaik file dalam format <b>.pdf</b> , <b>.jpeg</b> , <b>.jpg</b> dan <b>.png</b> sahaja.');
+    $("#validation_submit_permohonan").modal();
 
     //reset file value
     $(this).val(null);
@@ -689,7 +691,9 @@
     $(this).removeClass("is-valid");
 
     //alert message
-    alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
+    // alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
+    $('#note_message').html('Ralat! Fail anda melebihi <b>10MB</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
+    $("#validation_submit_permohonan").modal();
 
     //reset file value
     $(this).val(null);
@@ -824,7 +828,9 @@ $(document).ready(function(){
             $('#total_opt_1_photo').val(x_opt1); //display counter
             $(wrapper_option1).append('<div class="row"><div class="col-md-2"></div><div class="col-md"><label>&nbsp</label><div class="input-group-prepend"><div class="input-group-prepend"><button class="btn btn-danger border-dark" id="remove_input_opt_1" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-times"></i></button></div><div class="custom-file"><input type="file" class="custom-file-input-image" id="opt_1_photo' + x_opt1 + '" name="opt_1_photo[]"><label class="custom-file-label border-dark" for="opt_1_photo' + x_opt1 + '">Muat Naik Gambar</label></div></div></div><div class="col-md-2"></div></div>'); //Add field html
         }else{
-          alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          // alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $('#note_message').html('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $("#validation_submit_permohonan").modal();
         }
     });
 
@@ -848,7 +854,9 @@ $(document).ready(function(){
             $('#total_opt_3_photo').val(x_opt3); //display counter
             $(wrapper_option3).append('<div class="row"><div class="col-md-2"></div><div class="col-md"><label>&nbsp</label><div class="input-group-prepend"><div class="input-group-prepend"><button class="btn btn-danger border-dark" id="remove_input_opt_3" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-times"></i></button></div><div class="custom-file"><input type="file" class="custom-file-input-image" id="opt_3_photo' + y_opt3 + '" name="opt_3_photo[]"><label class="custom-file-label border-dark" for="opt_3_photo' + y_opt3 + '">Muat Naik Gambar</label></div></div></div><div class="col-md-2"></div></div>'); //Add field html
         }else{
-          alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          // alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $('#note_message').html('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $("#validation_submit_permohonan").modal();
         }
     });
 
@@ -872,7 +880,9 @@ $(document).ready(function(){
             $('#total_opt_4_photo').val(x_opt4); //display counter
             $(wrapper_option4).append('<div class="row"><div class="col-md-2"></div><div class="col-md"><label>&nbsp</label><div class="input-group-prepend"><div class="input-group-prepend"><button class="btn btn-danger border-dark" id="remove_input_opt_4" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-times"></i></button></div><div class="custom-file"><input type="file" class="custom-file-input-image" id="opt_4_photo' + y_opt4 + '" name="opt_4_photo[]"><label class="custom-file-label border-dark" for="opt_4_photo' + y_opt4 + '">Muat Naik Gambar</label></div></div></div><div class="col-md-2"></div></div>'); //Add field html
         }else{
-          alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          // alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $('#note_message').html('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $("#validation_submit_permohonan").modal();
         }
     });
 
@@ -894,7 +904,9 @@ $(document).ready(function(){
             $('#total_opt_4_2_photo').val(x_opt4_2); //display counter
             $(wrapper_option4_2).append('<div class="row"><div class="col-md-2"></div><div class="col-md"><label>&nbsp</label><div class="input-group-prepend"><div class="input-group-prepend"><button class="btn btn-danger border-dark" id="remove_input_opt_4_2" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-times"></i></button></div><div class="custom-file"><input type="file" class="custom-file-input-image" id="opt_4_2_photo' + y_opt4_2 + '" name="opt_4_2_photo[]"><label class="custom-file-label border-dark" for="opt_4_2_photo' + y_opt4_2 + '">Muat Naik Gambar</label></div></div></div><div class="col-md-2"></div></div>'); //Add field html
         }else{
-          alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          // alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $('#note_message').html('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $("#validation_submit_permohonan").modal();
         }
     });
 
@@ -918,7 +930,9 @@ $(document).ready(function(){
             $('#total_opt_5_photo').val(x_opt5); //display counter
             $(wrapper_option5).append('<div class="row"><div class="col-md-2"></div><div class="col-md"><label>&nbsp</label><div class="input-group-prepend"><div class="input-group-prepend"><button class="btn btn-danger border-dark" id="remove_input_opt_5" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-times"></i></button></div><div class="custom-file"><input type="file" class="custom-file-input-image" id="opt_5_photo' + y_opt5 + '" name="opt_5_photo[]"><label class="custom-file-label border-dark" for="opt_5_photo' + y_opt5 + '">Muat Naik Gambar</label></div></div></div><div class="col-md-2"></div></div>'); //Add field html
         }else{
-          alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          // alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $('#note_message').html('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+          $("#validation_submit_permohonan").modal();
         }
     });
 
@@ -942,7 +956,9 @@ $(document).ready(function(){
         $(this).removeClass("is-valid");
 
         //alert message
-        alert('Sila muatnaik file dalam format .jpeg , .jpg dan .png sahaja.');
+        // alert('Sila muatnaik file dalam format .jpeg , .jpg dan .png sahaja.');
+        $('#note_message').html('Sila muatnaik file dalam format <b>.jpeg</b> , <b>.jpg</b> dan <b>.png</b> sahaja.');
+        $("#validation_submit_permohonan").modal();
 
         //reset file value
         $(this).val(null);
@@ -963,7 +979,9 @@ $(document).ready(function(){
         $(this).removeClass("is-valid");
 
         //alert message
-        alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
+        // alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
+        $('#note_message').html('Ralat! Fail anda melebihi <b>10MB</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
+        $("#validation_submit_permohonan").modal();
 
         //reset file value
         $(this).val(null);
@@ -1227,7 +1245,7 @@ $(document).ready(function(){
         }
       }
 
-      if(total_opt5_uploaded == 0){ //display alert modal if there is no image uploaded
+      if(total_opt5_uploaded == 0 && category != "GEREJA"){ //display alert modal if there is no image uploaded
         $('#note_message').html('Sila muat naik <b>Foto Bangunan</b>');
         $("#validation_submit_permohonan").modal();
         return false;
