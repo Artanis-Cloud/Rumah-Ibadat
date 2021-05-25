@@ -17,16 +17,20 @@
 
               <div class="card-body border border-dark">
 
-                  {{-- Flash Message --}}
-                  @if ($message = Session::get('success'))
-                    <div class="alert alert-success border border-success" style="text-align: center;">{{$message}}</div>
-                  @elseif ($message = Session::get('error'))
-                    <div class="alert alert-danger border border-danger" style="text-align: center;">{{$message}}</div>
-                  @else
-                    {{-- Hidden Gap - Just Ignore --}}
-                    <div class="alert alert-white" style="text-align: center;"></div>
-                    {{-- <div style="padding: 23px;"></div> --}}
-                  @endif
+                  <div class="row" style="padding-bottom: 35px;">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md">
+                      <div class="card-header" style="text-align: justify; text-justify: inter-word; border: 2px solid black;">
+                      <h5>Arahan:</h5>
+                      <span>- Bahagian yang bertanda <label class="required"></label> wajib di isi oleh pengguna.</span>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                  </div>
 
                   <div class="row"> 
                     <div class="col-md-2"></div>
@@ -48,7 +52,7 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label class="required">Nama Persatuan Rumah Ibadat</label>
+                      <label class="required">Nama Penuh Persatuan Rumah Ibadat</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror" id="name_association" name="name_association" type="text" value="{{ old('name_association') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                           @error('name_association')
@@ -64,7 +68,7 @@
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                      <label>Nombor Telefon Pejabat</label>
+                      <label>Nombor Telefon Wakil Rumah Ibadat (Jika Ada)</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ old('office_phone') }}" maxlength="11" onkeypress="return onlyNumberKey(event)">
                           <small class="form-text text-muted">Contoh: 0312345678</small>
@@ -75,17 +79,7 @@
                           @enderror
                       </div>
                     </div>
-                    <div class="col-md">
-                      <label class="required">Nama Persatuan Rumah Ibadat Mengikut Bank</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" type="text" value="{{ old('name_association_bank') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-                          @error('name_association_bank')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                      </div>
-                    </div>
+                    
                     <div class="col-md-2"></div>
                   </div>
 
@@ -273,16 +267,21 @@
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kawasan PBT</label>
                           <select class="custom-select mr-sm-2 @error('pbt_area') is-invalid @else border-dark @enderror" id="pbt_area" name="pbt_area" value="{{ old('pbt_area') }}">
-                              <option selected disabled hidden>PILIH DAERAH</option>
-                              <option value="GOMBAK"          {{ old('pbt_area') == "GOMBAK"          ? 'selected' : '' }} >KAWASAN GOMBAK</option>
-                              <option value="HULU LANGAT"     {{ old('pbt_area') == "HULU LANGAT"     ? 'selected' : '' }} >KAWASAN HULU LANGAT</option>
-                              <option value="HULU SELANGOR"   {{ old('pbt_area') == "HULU SELANGOR"   ? 'selected' : '' }} >KAWASAN HULU SELANGOR</option>
-                              <option value="KLANG"           {{ old('pbt_area') == "KLANG"           ? 'selected' : '' }} >KAWASAN KLANG</option>
-                              <option value="KUALA SELANGOR"  {{ old('pbt_area') == "KUALA SELANGOR"  ? 'selected' : '' }} >KAWASAN KUALA SELANGOR</option>
-                              <option value="KUALA LANGAT"    {{ old('pbt_area') == "KUALA LANGAT"    ? 'selected' : '' }} >KAWASAN KUALA LANGAT</option>
-                              <option value="PETALING"        {{ old('pbt_area') == "PETALING"        ? 'selected' : '' }} >KAWASAN PETALING</option>
-                              <option value="SABAK BERNAM"    {{ old('pbt_area') == "SABAK BERNAM"    ? 'selected' : '' }} >KAWASAN SABAK BERNAM</option>
-                              <option value="SEPANG"          {{ old('pbt_area') == "SEPANG"          ? 'selected' : '' }} >KAWASAN SEPANG</option>
+                              <option selected disabled hidden>PILIH KAWASAN PBT</option>
+
+                              <option value="MAJLIS BANDARAYA SHAH ALAM (MBSA)"       {{ old('pbt_area') == "MAJLIS BANDARAYA SHAH ALAM (MBSA)"      ? 'selected' : '' }} >MAJLIS BANDARAYA SHAH ALAM (MBSA)</option>
+                              <option value="MAJLIS BANDARAYA PETALING JAYA (MBPJ)"   {{ old('pbt_area') == "MAJLIS BANDARAYA PETALING JAYA (MBPJ)"  ? 'selected' : '' }} >MAJLIS BANDARAYA PETALING JAYA (MBPJ)</option>
+                              <option value="MAJLIS BANDARAYA SUBANG JAYA (MBSJ)"     {{ old('pbt_area') == "MAJLIS BANDARAYA SUBANG JAYA (MBSJ)"    ? 'selected' : '' }} >MAJLIS BANDARAYA SUBANG JAYA (MBSJ)</option>
+                              <option value="MAJLIS PERBANDARAN KLANG (MPK)"          {{ old('pbt_area') == "MAJLIS PERBANDARAN KLANG (MPK)"         ? 'selected' : '' }} >MAJLIS PERBANDARAN KLANG (MPK)</option>
+                              <option value="MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)"   {{ old('pbt_area') == "MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)"  ? 'selected' : '' }} >MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)</option>
+                              <option value="MAJLIS PERBANDARAN SELAYANG (MPS)"       {{ old('pbt_area') == "MAJLIS PERBANDARAN SELAYANG (MPS)"      ? 'selected' : '' }} >MAJLIS PERBANDARAN SELAYANG (MPS)</option>
+                              <option value="MAJLIS PERBANDARAN KAJANG (MPKj)"        {{ old('pbt_area') == "MAJLIS PERBANDARAN KAJANG (MPKj)"       ? 'selected' : '' }} >MAJLIS PERBANDARAN KAJANG (MPKj)</option>
+                              <option value="MAJLIS PERBANDARAN SEPANG (MPSp)"        {{ old('pbt_area') == "MAJLIS PERBANDARAN SEPANG (MPSp)"       ? 'selected' : '' }} >MAJLIS PERBANDARAN SEPANG (MPSp)</option>
+                              <option value="MAJLIS PERBANDARAN KUALA LANGAT (MPKL)"  {{ old('pbt_area') == "MAJLIS PERBANDARAN KUALA LANGAT (MPKL)" ? 'selected' : '' }} >MAJLIS PERBANDARAN KUALA LANGAT (MPKL)</option>
+                              <option value="MAJLIS DAERAH KUALA SELANGOR (MDKS)"     {{ old('pbt_area') == "MAJLIS DAERAH KUALA SELANGOR (MDKS)"    ? 'selected' : '' }} >MAJLIS DAERAH KUALA SELANGOR (MDKS)</option>
+                              <option value="MAJLIS DAERAH HULU SELANGOR (MDHS)"      {{ old('pbt_area') == "MAJLIS DAERAH HULU SELANGOR (MDHS)"     ? 'selected' : '' }} >MAJLIS DAERAH HULU SELANGOR (MDHS)</option>
+                              <option value="MAJLIS DAERAH SABAK BERNAM (MDSB)"       {{ old('pbt_area') == "MAJLIS DAERAH SABAK BERNAM (MDSB)"      ? 'selected' : '' }} >MAJLIS DAERAH SABAK BERNAM (MDSB)</option>
+                              
                           </select>
                           @error('pbt_area')
                           <span class="invalid-feedback" role="alert">
@@ -298,6 +297,22 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <hr>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label class="required">Nama Penuh Persatuan Rumah Ibadat Mengikut Pendaftaran Bank</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" type="text" value="{{ old('name_association_bank') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                          @error('name_association_bank')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -373,9 +388,6 @@
                     <div class="col-md-2"></div>
                   </div>
 
-                  {{-- Hidden Gap - Just Ignore --}}
-                  <div class="alert alert-white" style="text-align: center;"></div>
-                  {{-- <div style="padding: 25px;"></div> --}}
               </div>
 
               <!-- Modal Confirmation -->

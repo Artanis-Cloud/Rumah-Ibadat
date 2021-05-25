@@ -17,20 +17,24 @@
 
               <div class="card-body border border-dark">
 
-                  {{-- Flash Message --}}
-                  @if ($message = Session::get('success'))
-                    <div class="alert alert-success border border-success" style="text-align: center;">{{$message}}</div>
-                  @elseif ($message = Session::get('error'))
-                    <div class="alert alert-danger border border-danger" style="text-align: center;">{{$message}}</div>
-                  @else
-                    {{-- Hidden Gap - Just Ignore --}}
-                    <div class="alert alert-white" style="text-align: center;"></div>
-                    {{-- <div style="padding: 23px;"></div> --}}
-                  @endif
+                  <div class="row" style="padding-bottom: 35px;">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md">
+                      <div class="card-header" style="text-align: justify; text-justify: inter-word; border: 2px solid black;">
+                      <h5>Arahan:</h5>
+                      <span>- Bahagian yang bertanda (<label class="required"></label>) wajib di isi oleh pemohon.</span>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                  </div>
 
                   <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md">
+                    <div class="col-md" style="display: none;">
                       <label>Kategori Rumah Ibadat</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase text-white border-dark bg-danger" id="category" name="category" type="text" value="{{ $rumah_ibadat->category }}" disabled>
@@ -85,33 +89,25 @@
                   </div>
 
                   <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <h3>Dokumen-Dokumen Lampiran</h3>
-                      </div>
-                      <div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <h3>Dokumen-Dokumen Lampiran</h3>
                     </div>
+                    <div class="col-md-2"></div>
+                  </div>
 
                   <div class="row">
                     <div class="col-md-2"></div>
-
-                    @if($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G")
-
-                        <div class="col-md">
-                          <label class="required" >Surat Permohonan</label>
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="application_letter" name="application_letter">
-                            <label class="custom-file-label border-dark" for="application_letter">Muat Naik Fail</label>
-                          </div>
-                        </div>
-
-                    @endif
-
                     <div class="col-md">
-                      <label class="required">Surat Sokongan</label>
+                      @if($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G")
+                      <label class="required" >Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga</label>
+                      @else
+                      <label class="required" >Surat Permohonan Kepada Pengurusi Limas</label>
+                      @endif
+
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="support_letter" name="support_letter">
-                        <label class="custom-file-label border-dark" for="support_letter">Muat Naik Fail</label>
+                        <input type="file" class="custom-file-input" id="application_letter" name="application_letter">
+                        <label class="custom-file-label border-dark" for="application_letter">Muat Naik Fail</label>
                       </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -120,24 +116,56 @@
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      <label class="required">Penyata Bank Terkini</label>
+                      @if($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G")
+                      <label class="required" >Sijil Pendaftaran (Akta Pertubuhan 1966)</label>
+                      @else
+                      <label class="required" >Sijil Pendaftaran ROS</label>
+                      @endif
+
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="account_statement" name="account_statement">
-                        <label class="custom-file-label border-dark" for="account_statement">Muat Naik Fail</label>
-                      </div>
-                    </div>
-                    <div class="col-md">
-                      <label class="required">Penyata Perbelanjaan Terkini</label>
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="spending_statement" name="spending_statement">
-                        <label class="custom-file-label border-dark" for="spending_statement">Muat Naik Fail</label>
+                        <input type="file" class="custom-file-input" id="registration_certificate" name="registration_certificate">
+                        <label class="custom-file-label border-dark" for="registration_certificate">Muat Naik Fail</label>
                       </div>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
 
+                  <div class="row" style="padding-top: 15px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label class="required">Penyata Bank</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="account_statement" name="account_statement">
+                        <label class="custom-file-label border-dark" for="account_statement">Muat Naik Fail</label>
+                      </div>
+                    </div>
+
+                    @if($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G")
+                      <div class="col-md">
+                        <label class="required">Penyata Perbelanjaan</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="spending_statement" name="spending_statement">
+                          <label class="custom-file-label border-dark" for="spending_statement">Muat Naik Fail</label>
+                        </div>
+                      </div>
+                    @endif
+                      
+                    <div class="col-md-2"></div>
+                  </div>
+
                   @if($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G")
                   
+                    <div class="row" style="padding-top: 15px;">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <label class="required">Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="support_letter" name="support_letter">
+                          <label class="custom-file-label border-dark" for="support_letter">Muat Naik Fail</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
 
                     <div class="row" style="padding-top: 15px;">
                       <div class="col-md-2"></div>
@@ -146,6 +174,34 @@
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="committee_member" name="committee_member">
                           <label class="custom-file-label border-dark" for="committee_member">Muat Naik Fail</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="row" style="padding-top: 15px;">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        @if($rumah_ibadat->category == "KUIL_H")
+                        <label>Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram</label>
+                        @else 
+                        <label>Sijil/Surat Sokongan Majlis Gudwara Malaysia</label>
+                        @endif
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="certificate_or_letter_temple" name="certificate_or_letter_temple">
+                          <label class="custom-file-label border-dark" for="certificate_or_letter_temple">Muat Naik Fail</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="row" style="padding-top: 15px;">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <label>Surat Jemputan</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="invitation_letter" name="invitation_letter">
+                          <label class="custom-file-label border-dark" for="invitation_letter">Muat Naik Fail</label>
                         </div>
                       </div>
                       <div class="col-md-2"></div>
@@ -172,7 +228,7 @@
                       <div class="col-md-2"></div>
                     </div>
 
-                    <div class="row">
+                  <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label>Jumlah Gambar Aktiviti Keagamaan</label>
@@ -260,7 +316,7 @@
                     <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md">
-                        <label class="required">Salinan sebutharga daripada kontraktor</label>
+                        <label class="required">Salinan sebutharga daripada pembekal</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_3_file_1" name="opt_3_file_1">
                           <label class="custom-file-label border-dark" for="opt_3_file_1">Muat Naik Fail</label>
@@ -268,6 +324,17 @@
                       </div>
                       <div class="col-md-2"></div>
                     </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label>Jumlah Gambar Salinan Sebutharga daripada pembekal</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_3_photo" name="total_opt_3_photo" type="text" value="1" disabled>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
 
                     <div class="field_wrapper_option_3" style="padding-top: 10px;">
                       <div class="row">
@@ -311,10 +378,21 @@
                     <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md">
-                        <label class="required">Salinan sebutharga daripada kontraktor</label>
+                        <label class="required">Salinan sebutharga daripada pembekal</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" id="opt_4_file_1" name="opt_4_file_1">
                           <label class="custom-file-label border-dark" for="opt_4_file_1">Muat Naik Fail</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <label>Jumlah Gambar Bahagian Bangunan</label>
+                        <div class="form-group mb-3">
+                            <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_4_photo" name="total_opt_4_photo" type="text" value="1" disabled>
                         </div>
                       </div>
                       <div class="col-md-2"></div>
@@ -338,6 +416,36 @@
                         <div class="col-md-2"></div>
                       </div>
                     </div>
+
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <label>Jumlah Foto Pembaikan Dan Penyelenggaraan</label>
+                        <div class="form-group mb-3">
+                            <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_4_2_photo" name="total_opt_4_2_photo" type="text" value="1" disabled>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="field_wrapper_option_4_2" style="padding-top: 10px;">
+                        <div class="row">
+                          <div class="col-md-2"></div>
+                          <div class="col-md">
+                            <label class="required">Foto pembaikan dan penyelenggaraan</label>
+                            <div class="input-group-prepend">
+                                <div class="input-group-prepend">
+                                  <button class="btn btn-success border-dark" id="add_input_opt_4_2" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input-image" id="opt_4_2_photo1" name="opt_4_2_photo[]">
+                                    <label class="custom-file-label border-dark" for="opt_4_2_photo1">Muat Naik Gambar</label>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-2"></div>
+                        </div>
+                      </div>
 
                   </div>
 
@@ -364,7 +472,7 @@
                     <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      <label class="required">Sebutharga kontraktor</label>
+                      <label class="required">Sebutharga pembekal</label>
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="opt_5_file_1" name="opt_5_file_1">
                         <label class="custom-file-label border-dark" for="opt_5_file_1">Muat Naik Fail</label>
@@ -387,6 +495,17 @@
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="opt_5_file_3" name="opt_5_file_3">
                         <label class="custom-file-label border-dark" for="opt_5_file_3">Muat Naik Fail</label>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label>Jumlah Foto bangunan</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_5_photo" name="total_opt_5_photo" type="text" value="1" disabled>
                       </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -422,9 +541,6 @@
                     <div class="col-md-3"></div>
                   </div>
 
-                  {{-- Hidden Gap - Just Ignore --}}
-                  <div class="alert alert-white" style="text-align: center;"></div>
-                  {{-- <div style="padding: 25px;"></div> --}}
               </div>
 
               <!-- Modal Confirmation -->
@@ -519,7 +635,7 @@
 
     if ($(this).is(':checked')) {
         //display form
-        document.getElementById('tujuan_4_div').style.display = " ";
+        document.getElementById('tujuan_4_div').style.display = "block";
     } else {
         //hide form
         document.getElementById('tujuan_4_div').style.display = "none";
@@ -664,32 +780,37 @@ $(document).ready(function(){
 
     var maxField_option1 = number_of_image;
     var maxField_option3 = number_of_image; 
-    var maxField_option4 = number_of_image;  
+    var maxField_option4 = number_of_image;
+    var maxField_option4_2 = number_of_image;  
     var maxField_option5 = number_of_image; 
 
     //Add button selector
     var addButton_option1 = $("#add_input_opt_1");
     var addButton_option3 = $("#add_input_opt_3"); 
     var addButton_option4 = $("#add_input_opt_4"); 
+    var addButton_option4_2 = $("#add_input_opt_4_2"); 
     var addButton_option5 = $("#add_input_opt_5"); 
 
     //Input field wrapper
     var wrapper_option1 = $('.field_wrapper_option_1');
     var wrapper_option3 = $('.field_wrapper_option_3'); 
     var wrapper_option4 = $('.field_wrapper_option_4'); 
+    var wrapper_option4_2 = $('.field_wrapper_option_4_2'); 
     var wrapper_option5 = $('.field_wrapper_option_5'); 
-    var wrapper_general = $('.field_wrapper_option_1, .field_wrapper_option_3, .field_wrapper_option_4, .field_wrapper_option_5');
+    var wrapper_general = $('.field_wrapper_option_1, .field_wrapper_option_3, .field_wrapper_option_4, .field_wrapper_option_4_2, .field_wrapper_option_5');
 
     //increment
     var x_opt1 = 1;
     var x_opt3 = 1; 
     var x_opt4 = 1; 
+    var x_opt4_2 = 1; 
     var x_opt5 = 1; 
 
     //Initial field counter is 1
     var y_opt1 = 1; 
     var y_opt3 = 1; 
     var y_opt4 = 1; 
+    var y_opt4_2 = 1; 
     var y_opt5 = 1; 
 
     //***************************************** OPTION 1 *****************************************
@@ -724,6 +845,7 @@ $(document).ready(function(){
         if(y_opt3 < maxField_option3){ 
             x_opt3++;
             y_opt3++; //Increment field counter
+            $('#total_opt_3_photo').val(x_opt3); //display counter
             $(wrapper_option3).append('<div class="row"><div class="col-md-2"></div><div class="col-md"><label>&nbsp</label><div class="input-group-prepend"><div class="input-group-prepend"><button class="btn btn-danger border-dark" id="remove_input_opt_3" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-times"></i></button></div><div class="custom-file"><input type="file" class="custom-file-input-image" id="opt_3_photo' + y_opt3 + '" name="opt_3_photo[]"><label class="custom-file-label border-dark" for="opt_3_photo' + y_opt3 + '">Muat Naik Gambar</label></div></div></div><div class="col-md-2"></div></div>'); //Add field html
         }else{
           alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
@@ -747,6 +869,7 @@ $(document).ready(function(){
         if(y_opt4 < maxField_option4){ 
             x_opt4++;
             y_opt4++; //Increment field counter
+            $('#total_opt_4_photo').val(x_opt4); //display counter
             $(wrapper_option4).append('<div class="row"><div class="col-md-2"></div><div class="col-md"><label>&nbsp</label><div class="input-group-prepend"><div class="input-group-prepend"><button class="btn btn-danger border-dark" id="remove_input_opt_4" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-times"></i></button></div><div class="custom-file"><input type="file" class="custom-file-input-image" id="opt_4_photo' + y_opt4 + '" name="opt_4_photo[]"><label class="custom-file-label border-dark" for="opt_4_photo' + y_opt4 + '">Muat Naik Gambar</label></div></div></div><div class="col-md-2"></div></div>'); //Add field html
         }else{
           alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
@@ -760,6 +883,28 @@ $(document).ready(function(){
         y_opt4--; //Decrement field counter
     });
 
+    //***************************************** OPTION 4 - PART 2 *****************************************
+
+    //Once add button is clicked
+    $(addButton_option4_2).click(function(){
+        //Check maximum number of input fields
+        if(y_opt4_2 < maxField_option4_2){ 
+            x_opt4_2++;
+            y_opt4_2++; //Increment field counter
+            $('#total_opt_4_2_photo').val(x_opt4_2); //display counter
+            $(wrapper_option4_2).append('<div class="row"><div class="col-md-2"></div><div class="col-md"><label>&nbsp</label><div class="input-group-prepend"><div class="input-group-prepend"><button class="btn btn-danger border-dark" id="remove_input_opt_4_2" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-times"></i></button></div><div class="custom-file"><input type="file" class="custom-file-input-image" id="opt_4_2_photo' + y_opt4_2 + '" name="opt_4_2_photo[]"><label class="custom-file-label border-dark" for="opt_4_2_photo' + y_opt4_2 + '">Muat Naik Gambar</label></div></div></div><div class="col-md-2"></div></div>'); //Add field html
+        }else{
+          alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
+        }
+    });
+
+    //Once remove button is clicked
+    $(wrapper_option4_2).on('click', '#remove_input_opt_4_2', function(e){
+        e.preventDefault();
+        $(this).parent('div').parent('div').parent('div').remove(); //Remove field html
+        y_opt4_2--; //Decrement field counter
+    });
+
     //***************************************** END OF OPTION 4 *****************************************
 
     //***************************************** OPTION 5 *****************************************
@@ -770,6 +915,7 @@ $(document).ready(function(){
         if(y_opt5 < maxField_option5){ 
             x_opt5++;
             y_opt5++; //Increment field counter
+            $('#total_opt_5_photo').val(x_opt5); //display counter
             $(wrapper_option5).append('<div class="row"><div class="col-md-2"></div><div class="col-md"><label>&nbsp</label><div class="input-group-prepend"><div class="input-group-prepend"><button class="btn btn-danger border-dark" id="remove_input_opt_5" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buang Gambar"><i class="fas fa-times"></i></button></div><div class="custom-file"><input type="file" class="custom-file-input-image" id="opt_5_photo' + y_opt5 + '" name="opt_5_photo[]"><label class="custom-file-label border-dark" for="opt_5_photo' + y_opt5 + '">Muat Naik Gambar</label></div></div></div><div class="col-md-2"></div></div>'); //Add field html
         }else{
           alert('Muat naik gambar terhad kepada 5 gambar sahaja untuk satu bahagian.');
@@ -856,24 +1002,37 @@ $(document).ready(function(){
     //fetch data - GENERAL
     var category = $('#category').val();
     var application_letter = $('#application_letter').val();
-    var support_letter = $('#support_letter').val();
+    var registration_certificate = $('#registration_certificate').val();
     var account_statement = $('#account_statement').val();
+
+    //KUIL Category ONLY!!!
     var spending_statement = $('#spending_statement').val();
-    var committee_member = $('#committee_member').val();
+    var support_letter = $('#support_letter').val();
+    var committee_member = $('#committee_member').val(); // not required
+    var certificate_or_letter_temple = $('#certificate_or_letter_temple').val(); //not required
+    var invitation_letter = $('#invitation_letter').val(); // not required
+
 
 
     //fetch data - TUJUAN 1 
-    var total_opt_1_photo =  $('#total_opt_1_photo').val();
+    var total_opt_1_photo =  $('#total_opt_1_photo').val(); //image
 
     //fetch data - TUJUAN 2
-    var opt_2_file_1 = $('#opt_2_file_1').val();
+    var opt_2_file_1 = $('#opt_2_file_1').val(); //file
 
     //fetch data - TUJUAN 3
-    var opt_3_file_1 = $('#opt_3_file_1').val();
+    var opt_3_file_1 = $('#opt_3_file_1').val(); //file
+    var total_opt_3_photo =  $('#total_opt_3_photo').val(); //image
 
     //fetch data - TUJUAN 4
+    var opt_4_file_1 = $('#opt_4_file_1').val(); //file
+    var total_opt_4_photo =  $('#total_opt_4_photo').val(); //image
+    var total_opt_4_2_photo =  $('#total_opt_4_2_photo').val(); //image
 
     //fetch data - TUJUAN 5
+    var opt_5_file_1 = $('#opt_5_file_1').val(); //file
+    var opt_5_file_3 = $('#opt_5_file_3').val(); //file
+    var total_opt_5_photo =  $('#total_opt_5_photo').val(); //image
 
     
     // var application_letter = $('#application_letter').val();
@@ -893,36 +1052,48 @@ $(document).ready(function(){
     }
     
     //validation surat permohonan
-    if(application_letter == "" && (category == "TOKONG_H" || category == "TOKONG_H")){
-      $('#note_message').html('Sila muat naik <b>Surat Permohonan</b>');
+    if(application_letter == ""){
+
+      if(category == "TOKONG" || category == "GEREJA"){
+        $('#note_message').html('Sila muat naik <b>Surat Permohonan Kepada Pengurusi Limas</b>');
+      }else{
+        $('#note_message').html('Sila muat naik <b>Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga</b>');
+      }
+      
       $("#validation_submit_permohonan").modal();
       return false;
     }
 
     //validation surat sokongan
-    if(support_letter == "" ){
-      $('#note_message').html('Sila muat naik <b>Surat Sokongan</b>');
+    if(registration_certificate == "" ){
+
+      if(category == "TOKONG" || category == "GEREJA"){
+        $('#note_message').html('Sila muat naik <b>Sijil Pendaftaran ROS</b>');
+      }else{
+        $('#note_message').html('Sila muat naik <b>Sijil Pendaftaran (Akta Pertubuhan 1966)</b>');
+      }
+
       $("#validation_submit_permohonan").modal();
       return false;
     }
 
     //validation penyata bank terkini
     if(account_statement == "" ){
-      $('#note_message').html('Sila muat naik <b>Penyata Bank Terkini</b>');
+      $('#note_message').html('Sila muat naik <b>Penyata Bank</b>');
       $("#validation_submit_permohonan").modal();
       return false;
     }
 
     //validation penyata perbelanjaan terkini
-    if(spending_statement == "" ){
-      $('#note_message').html('Sila muat naik <b>Penyata Perbelanjaan Terkini</b>');
+    if(spending_statement == "" && (category == "KUIL_H" || category == "KUIL_G")){
+      $('#note_message').html('Sila muat naik <b>Penyata Perbelanjaan</b>');
       $("#validation_submit_permohonan").modal();
       return false;
     }
 
-    //validation penyata perbelanjaan terkini
-    if(committee_member == "" && (category == "TOKONG_H" || category == "TOKONG_H")){
-      $('#note_message').html('Sila muat naik <b>Senarai Ahli Jawatankuasa Rumah Ibadat</b>');
+    //validation surat sokongan
+    if(support_letter == "" && (category == "KUIL_H" || category == "KUIL_G")){
+      $('#note_message').html('Sila muat naik <b>Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India</b>');
       $("#validation_submit_permohonan").modal();
       return false;
     }
@@ -960,13 +1131,112 @@ $(document).ready(function(){
     //TUJUAN 3 VALIDATION
     if($('#tujuan_3').is(':checked')){
       if(opt_3_file_1 == "" ){
-        $('#note_message').html('Sila muat naik <b>Salinan Sebutharga Daripada Kontraktor</b>');
+        $('#note_message').html('Sila muat naik <b>Salinan Sebutharga Daripada Pembekal</b>');
+        $("#validation_submit_permohonan").modal();
+        return false;
+      }
+
+      var total_opt3_uploaded = 0;
+
+      for( var i = 1; i <= total_opt_3_photo; i++){
+        if($('#opt_3_photo' + i).length){ //check id exist or not
+        
+          if($('#opt_3_photo' + i).val() != ""){// check the image is null or not
+            total_opt3_uploaded++ //increment total uploaded file
+          }
+
+        }
+      }
+
+      if(total_opt3_uploaded == 0){ //display alert modal if there is no image uploaded
+        $('#note_message').html('Sila muat naik <b>Foto Lampiran</b>');
+        $("#validation_submit_permohonan").modal();
+        return false;
+      }
+
+    }
+
+    //TUJUAN 4 VALIDATION
+    if($('#tujuan_4').is(':checked')){
+      if(opt_4_file_1 == "" ){
+        $('#note_message').html('Sila muat naik <b>Salinan Sebutharga Daripada Pembekal</b>');
+        $("#validation_submit_permohonan").modal();
+        return false;
+      }
+
+      var total_opt4_uploaded = 0;
+      var total_opt4_2_uploaded = 0;
+
+
+      for( var i = 1; i <= total_opt_4_photo; i++){
+        if($('#opt_4_photo' + i).length){ //check id exist or not
+        
+          if($('#opt_4_photo' + i).val() != ""){// check the image is null or not
+            total_opt4_uploaded++ //increment total uploaded file
+          }
+
+        }
+      }
+
+      for( var i = 1; i <= total_opt_4_2_photo; i++){
+        if($('#opt_4_2_photo' + i).length){ //check id exist or not
+        
+          if($('#opt_4_2_photo' + i).val() != ""){// check the image is null or not
+            total_opt4_2_uploaded++ //increment total uploaded file
+          }
+
+        }
+      }
+
+      if(total_opt4_uploaded == 0){ //display alert modal if there is no image uploaded
+        $('#note_message').html('Sila muat naik <b>Foto Bahagian Bangunan</b>');
+        $("#validation_submit_permohonan").modal();
+        return false;
+      }
+
+      if(total_opt4_2_uploaded == 0){ //display alert modal if there is no image uploaded
+        $('#note_message').html('Sila muat naik <b>Foto Pembaikan Dan Penyelenggaraan</b>');
         $("#validation_submit_permohonan").modal();
         return false;
       }
     }
 
-    //display confirmartion input
+    //TUJUAN 5 VALIDATION
+    if($('#tujuan_5').is(':checked')){
+      if(opt_5_file_1 == "" ){
+        $('#note_message').html('Sila muat naik <b>Sebutharga pembekal</b>');
+        $("#validation_submit_permohonan").modal();
+        return false;
+      }
+
+      if(opt_5_file_3 == "" ){
+        $('#note_message').html('Sila muat naik <b>Salinan Pelan Bangunan</b>');
+        $("#validation_submit_permohonan").modal();
+        return false;
+      }
+
+      var total_opt5_uploaded = 0;
+
+      for( var i = 1; i <= total_opt_5_photo; i++){
+        if($('#opt_5_photo' + i).length){ //check id exist or not
+        
+          if($('#opt_5_photo' + i).val() != ""){// check the image is null or not
+            total_opt5_uploaded++ //increment total uploaded file
+          }
+
+        }
+      }
+
+      if(total_opt5_uploaded == 0){ //display alert modal if there is no image uploaded
+        $('#note_message').html('Sila muat naik <b>Foto Bangunan</b>');
+        $("#validation_submit_permohonan").modal();
+        return false;
+      }
+
+      
+    }
+
+    //display c5nfirmartion input
     $("#confirmation_submit_permohonan").modal();
   });
 });

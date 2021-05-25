@@ -51,7 +51,8 @@
                         </div>
                         <div class="card-footer">
                           @if(Auth()->user()->is_rumah_ibadat == 0)
-                            <a href="{{ route('users.rumah-ibadat.menukar') }}" class="btn btn-info">Mohon Tukar Wakil</a>
+                            {{-- <a href="{{ route('users.rumah-ibadat.menukar') }}" class="btn btn-info">Mohon Tukar Wakil</a> --}}
+                            <a href="#" class="btn btn-dark">Mohon Tukar Wakil</a>
                           @else 
                             <button class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Mohon Tukar Wakil</button>
                           @endif
