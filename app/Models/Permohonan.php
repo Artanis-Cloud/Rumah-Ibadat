@@ -19,12 +19,17 @@ class Permohonan extends Model
         'batch',                    //1 Batch can have 10 permohonan & batch start after...
 
         //before permohonan
-        'application_letter',       //attachment
-        'support_letter',           //attachment
-        'account_statement',        //attachment
-        'spending_statement',       //attachment
-        'ajk_list',                 //attachment
-        'payment_method',           //(1-Check)(2-EFT)
+        'application_letter',               //attachment
+        'registration_certificate',         //attachment
+        'account_statement',                //attachment
+
+        'spending_statement',               //attachment
+        'support_letter',                   //attachment
+        'committee_member',                 //attachment
+        'certificate_or_letter_temple',     //attachment
+        'invitation_letter',                //attachment
+
+        'payment_method',                   //(1-Check)(2-EFT)
 
     ];
 

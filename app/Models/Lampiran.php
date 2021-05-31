@@ -12,7 +12,7 @@ class Lampiran extends Model
     protected $fillable = [
 
         'tujuan_id',            //tujuan id
-        'data_type',            //(1-Image)(2-PDF)
+        'file_type',            //(pdf) (png) (jpg) (jpeg)
         'url',                  //attachment
         'description',
     ];

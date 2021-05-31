@@ -27,17 +27,24 @@ class CreatePermohonansTable extends Migration
             $table->string('batch')->nullable();                                            //1 Batch can have 10 permohonan & batch start after...
 
             //before permohonan
+
+            //general attachment
             $table->string('application_letter');                                           //attachment
-            $table->string('support_letter');                                               //attachment
+            $table->string('registration_certificate');                                     //attachment
             $table->string('account_statement');                                            //attachment
-            $table->string('spending_statement');                                           //attachment
-            $table->string('ajk_list')->nullable();                                         //attachment
+
+            $table->string('spending_statement')->nullable();                               //attachment
+            $table->string('support_letter')->nullable();                                   //attachment
+            $table->string('committee_member')->nullable();                                 //attachment
+            $table->string('certificate_or_letter_temple')->nullable();                     //attachment
+            $table->string('invitation_letter')->nullable();                                //attachment
+
+            //after exco
+
+            //after yb
             $table->string('payment_method')->default('1');                                //(1-Check)(2-EFT)
 
-
-            //after 
-
-
+            //after upen
 
             $table->timestamps();                                                           //default
         });

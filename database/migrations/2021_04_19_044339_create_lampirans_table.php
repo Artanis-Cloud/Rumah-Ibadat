@@ -19,7 +19,7 @@ class CreateLampiransTable extends Migration
             $table->bigInteger('tujuan_id')->unsigned()->nullable();            //tujuan id
             $table->foreign('tujuan_id')->references('id')->on('tujuans');      //tujuan id
 
-            $table->string('data_type');                                        //(1-Image)(2-PDF)
+            $table->string('file_type');                                        //(pdf) (png) (jpg) (jpeg)
             $table->string('url');                                              //attachment
             $table->string('description');
 
