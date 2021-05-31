@@ -12,7 +12,7 @@
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            <form method="POST" action="{{ route('users.permohonan.baru.hantar') }}">
+            <form method="POST" action="{{ route('users.permohonan.baru.hantar') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
               <div class="card-body border border-dark">
@@ -37,7 +37,7 @@
                     <div class="col-md" style="display: none;">
                       <label>Kategori Rumah Ibadat</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="category" name="category" type="text" value="{{ $rumah_ibadat->category }}" disabled>
+                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="category" name="category" type="text" value="{{ $rumah_ibadat->category }}" readonly>
                       </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -685,14 +685,14 @@
     var numb = $(this)[0].files[0].size/1024 /1024 ;
     numb = numb.toFixed(2);
     
-    if(numb > 10.0){  //change file limit HERE!!! (MB)
+    if(numb > 5.0){  //change file limit HERE!!! (MB)
     //change border color to black
     $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
     $(this).removeClass("is-valid");
 
     //alert message
-    // alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
-    $('#note_message').html('Ralat! Fail anda melebihi <b>10MB</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
+    // alert('Ralat! Fail anda melebihi 5mb. Saiz fail anda adalah: ' + numb +' MB');
+    $('#note_message').html('Ralat! Fail anda melebihi <b>5mb</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
     $("#validation_submit_permohonan").modal();
 
     //reset file value
@@ -746,13 +746,13 @@
   //   //---------- FILE SIZE CHECKER ----------
   //   var numb = $(this)[0].files[0].size/1024 /1024 ;
   //   numb = numb.toFixed(2);
-  //   if(numb > 10.0){ //change file limit here (MB)
+  //   if(numb > 5.0){ //change file limit here (MB)
   //   //change border color to black
   //   $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
   //   $(this).removeClass("is-valid");
 
   //   //alert message
-  //   alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
+  //   alert('Ralat! Fail anda melebihi 5mb. Saiz fail anda adalah: ' + numb +' MB');
 
   //   //reset file value
   //   $(this).val(null);
@@ -973,14 +973,14 @@ $(document).ready(function(){
         //---------- FILE SIZE CHECKER ----------
         var numb = $(this)[0].files[0].size/1024 /1024 ;
         numb = numb.toFixed(2);
-        if(numb > 10.0){ //change file limit here (MB)
+        if(numb > 5.0){ //change file limit here (MB)
         //change border color to black
         $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
         $(this).removeClass("is-valid");
 
         //alert message
-        // alert('Ralat! Fail anda melebihi 10MB. Saiz fail anda adalah: ' + numb +' MB');
-        $('#note_message').html('Ralat! Fail anda melebihi <b>10MB</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
+        // alert('Ralat! Fail anda melebihi 5mb. Saiz fail anda adalah: ' + numb +' MB');
+        $('#note_message').html('Ralat! Fail anda melebihi <b>5mb</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
         $("#validation_submit_permohonan").modal();
 
         //reset file value
@@ -1077,7 +1077,6 @@ $(document).ready(function(){
       }else{
         $('#note_message').html('Sila muat naik <b>Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga</b>');
       }
-      
       $("#validation_submit_permohonan").modal();
       return false;
     }
