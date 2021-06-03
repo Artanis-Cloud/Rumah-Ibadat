@@ -37,7 +37,24 @@ class PermohonanController extends Controller
         return view('users.permohonan.baru', compact('rumah_ibadat'));
     }
 
+    public function reference_number(){
+        $year = date('Y');
+        $month = date('m');
+        $date = date('d');
+        $random = mt_rand(0, 9999); // better than rand()
+        $reference_number = $year . $month . $date . $random;
+
+        //CHECK EITHER EXIST OR NOT
+        $reference_number_checker = Permohonan::where('reference_number', $reference_number)->count();
+        if($reference_number_checker != 0){
+            return $this->reference_number();
+        }
+
+        return $reference_number;
+    }
+
     public function permohonan_hantar(Request $request){
+
         // dd($request->all());
 
         //======================================================= FETCH DATA =======================================================
@@ -82,11 +99,14 @@ class PermohonanController extends Controller
 
 
         //======================================================= CREATE PERMOHONAN =======================================================
-        
+
+        $reference_number = $this->reference_number(); //generate reference number
+
         $permohonan = Permohonan::create([
+            'reference_number' => $reference_number,
+
             'rumah_ibadat_id' => $rumah_ibadat->id,
             'user_id' => $user_id,
-
             'application_letter' => $application_letter,
             'registration_certificate' => $registration_certificate,
             'account_statement' => $account_statement,
@@ -287,7 +307,7 @@ class PermohonanController extends Controller
 
         //======================================================= SUCCESSFULL AND REDIRECT =======================================================
 
-        return redirect()->route('user.halaman-utama')->with('success', 'Permohonan anda berjaya dihantar.');
+        return redirect()->route('users.permohonan.sedang-diproses')->with('success', 'Permohonan anda berjaya dihantar.');
 
         //======================================================= END OF SUCCESSFULL AND REDIRECT =======================================================
     }
@@ -299,16 +319,25 @@ class PermohonanController extends Controller
 
     public function permohonan_proses()
     {
-        return view('users.permohonan.proses');
+        //GET 'PERMOHONAN SEDANG DIPROSES' LIST
+        $prosessing_application = Permohonan::where('user_id', auth()->user()->id)->where('status', '1')->orWhere('status', '0')->get();
+
+        return view('users.permohonan.sedang-diproses', compact('prosessing_application'));
     }
 
     public function permohonan_lulus()
     {
-        return view('users.permohonan.lulus');
+        //GET 'PERMOHONAN LULUS' LIST
+        $passed_application = Permohonan::where('user_id', auth()->user()->id)->where('status', '2')->get();
+
+        return view('users.permohonan.lulus', compact('passed_application'));
     }
 
-    public function permohonan_gagal()
+    public function permohonan_tidak_lulus()
     {
-        return view('users.permohonan.gagal');
+        //GET 'PERMOHONAN TIDAK LULUS' LIST
+        $failed_application = Permohonan::where('user_id', auth()->user()->id)->where('status', '3')->get();
+
+        return view('users.permohonan.tidak-lulus', compact('failed_application'));
     }
 }

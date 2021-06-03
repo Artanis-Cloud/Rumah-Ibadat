@@ -15,6 +15,16 @@
             
               <div class="card-body border border-dark">
 
+                  <div class="row">
+                    <div class="col-md">
+                      <div class="card-header" style="text-align: justify; text-justify: inter-word; border: 1px solid black;">
+                        <h6 >Catatan:</h6>
+                        <span>Sila tekan butang <span class="badge badge-info" style="font-size: 13px;"><i class="far fa-edit"></i></span> dibawah kolum Tindakan sekiranya Status Permohonan anda <span class="badge badge-warning" style="font-size: 13px;">Semak Semula</span></span><br>
+
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md">
                       <div class="table-responsive">
@@ -24,18 +34,43 @@
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
                                 <th class="all">TARIKH PERMOHONAN</th>
+                                <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            @foreach( $passed_application as $data)
+                            @foreach( $prosessing_application as $data)
                                 <tr>
+                                    {{-- BIL --}}
                                     <td></td>
+
+                                    {{-- PERMOHONAN ID --}}
                                     <td>{{ $data->getPermohonanID() }}</td>
-                                    <td>{{ $data->created_at }}</td>
-                                    <td><button type="button" class="btn btn-info"><i class="far fa-edit"></i></button></td>
+
+                                    {{-- TARIKH PERMOHONAN --}}
+                                    <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+
+                                    {{-- STATUS PERMOHONAN --}}
+                                    <td>
+                                      @if($data->status == 1) 
+                                        <span class="badge badge-info" style="font-size: 13px;">Sedang Diproses</span>
+                                      @else 
+                                        <span class="badge badge-warning" style="font-size: 13px;">Semak Semula</span>
+                                      @endif
+                                    </td>
+
+                                    {{-- TINDAKAN --}}
+                                    <td>
+                                      @if($data->status == 1) 
+                                        {{-- disable edit button if sedang diproses --}}
+                                        <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="right" title="Status Sedang Diproses"><i class="far fa-edit"></i></button>
+                                      @else 
+                                        {{-- enable edit button if semak permohonan --}}
+                                        <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Kemaskini Permohonan"><i class="far fa-edit"></i></button>
+                                      @endif
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -55,6 +90,8 @@
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
+
+
 
 <script type="text/javascript">
 // Responsive Data Table

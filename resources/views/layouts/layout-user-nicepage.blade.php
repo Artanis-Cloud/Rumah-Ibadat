@@ -34,23 +34,19 @@
     <script src="{{asset('nice-admin/assets/libs/jquery/dist/jquery.min.js')}}"></script>
 
     {{-- Datatables --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.7/css/rowReorder.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
-
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-
-    {{-- <link rel="stylesheet" type="text/css" href="https://code.jquery.com/jquery-3.5.1.js">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> --}}
     <link href="{{asset('nice-admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
 
     {{-- Datatables --}}
     <script src="{{asset('nice-admin/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
     <script src="{{asset('nice-admin/dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -375,7 +371,7 @@
 
                                 {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.proses') }}" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.sedang-diproses') }}" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
 
                                     {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-vector-difference-ba"></i><span class="hide-menu"> Basic Forms</span></a></li>
@@ -396,7 +392,7 @@
                                         <li class="sidebar-item"><a href="form-typeahead.html" class="sidebar-link"><i class="mdi mdi-cards-variant"></i><span class="hide-menu"> Form Typehead</span></a></li>
                                     </ul> --}}
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.gagal') }}" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.tidak-lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
                                     {{-- <ul aria-expanded="false" class="collapse second-level">
                                         <li class="sidebar-item"><a href="form-bootstrap-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-scan"></i><span class="hide-menu"> Bootstrap Validation</span></a></li>
                                         <li class="sidebar-item"><a href="form-custom-validation.html" class="sidebar-link"><i class="mdi mdi-credit-card-plus"></i><span class="hide-menu"> Custom Validation</span></a></li>

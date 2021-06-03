@@ -11,11 +11,13 @@ class Permohonan extends Model
 
     protected $fillable = [
 
+        'reference_number',          //displayed id
+
         'rumah_ibadat_id',          //rumah ibadat id
         'user_id',                  //user id
 
         //remarks permohonan
-        'status',                   //(0-Tidak Lulus)(1-Sedang Diproses)(2-Lulus)
+        'status',                   //(0-Semak Semula)(1-Sedang Diproses)(2-Lulus)(3-Tidak Lulus)
         'batch',                    //1 Batch can have 10 permohonan & batch start after...
 
         //before permohonan
@@ -32,6 +34,25 @@ class Permohonan extends Model
         'payment_method',                   //(1-Check)(2-EFT)
 
     ];
+
+    public function getPermohonanID()
+    {
+        $rumah_ibadat = RumahIbadat::where('id', $this->rumah_ibadat_id)->first();
+
+        if($rumah_ibadat->category == "TOKONG"){
+
+            return sprintf('TKG-%06d', $this->reference_number);
+
+        }elseif($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G"){
+
+            return sprintf('KUL-%06d', $this->reference_number);
+
+        }elseif($rumah_ibadat->category == "GEREJA"){
+
+            return sprintf('GRG-%06d', $this->reference_number);
+
+        }
+    }
 
     public function user()
     {
