@@ -17,32 +17,17 @@
 
               <div class="card-body border border-dark">
 
-                  <div class="row" style="padding-bottom: 35px;">
-                    <div class="col-md-2">
-
-                    </div>
-                    <div class="col-md">
-                      <div class="card-header" style="text-align: justify; text-justify: inter-word; border: 2px solid black;">
-                      <h5>Arahan:</h5>
-                      <span>- Bahagian yang bertanda {<label class="required"></label>} wajib di isi oleh pengguna.</span>
-                      </div>
-                    </div>
-                    <div class="col-md-2">
-
-                    </div>
-                  </div>
-
                   <div class="row"> 
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
-                          <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ $rumah_ibadat->category }}">
+                          <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ old('category') }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
-                              <option value="TOKONG"    {{ $rumah_ibadat->category == "TOKONG"  ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
-                              <option value="KUIL_H"    {{ $rumah_ibadat->category == "KUIL_H"  ? 'selected' : '' }} >KUIL (HINDU)</option>
-                              <option value="KUIL_G"    {{ $rumah_ibadat->category == "KUIL_G"  ? 'selected' : '' }} >KUIL (GURDWARA)</option>
-                              <option value="GEREJA"    {{ $rumah_ibadat->category == "GEREJA"  ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
+                              <option value="TOKONG" {{ $rumah_ibadat->category == "TOKONG"    ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
+                              <option value="KUIL_H" {{ $rumah_ibadat->category == "KUIL_H"    ? 'selected' : '' }} >KUIL (HINDU)</option>
+                              <option value="KUIL_G" {{ $rumah_ibadat->category == "KUIL_G"    ? 'selected' : '' }} >KUIL (GURDWARA)</option>
+                              <option value="GEREJA" {{ $rumah_ibadat->category == "GEREJA"    ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
                           </select>
                           @error('category')
                           <span class="invalid-feedback" role="alert">
@@ -52,7 +37,7 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label class="required">Nama Penuh Persatuan Rumah Ibadat</label>
+                      <label class="required">Nama Persatuan Rumah Ibadat</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror" id="name_association" name="name_association" type="text" value="{{ $rumah_ibadat->name_association }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                           @error('name_association')
@@ -68,7 +53,7 @@
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                      <label>Nombor Telefon Wakil Rumah Ibadat (Jika Ada)</label>
+                      <label>Nombor Telefon Pejabat</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ $rumah_ibadat->office_phone }}" maxlength="11" onkeypress="return onlyNumberKey(event)">
                           <small class="form-text text-muted">Contoh: 0312345678</small>
@@ -79,7 +64,17 @@
                           @enderror
                       </div>
                     </div>
-                    
+                    <div class="col-md">
+                      <label class="required">Nama Persatuan Rumah Ibadat Mengikut Bank</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" type="text" value="{{ $rumah_ibadat->name_association_bank }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                          @error('name_association_bank')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
                     <div class="col-md-2"></div>
                   </div>
 
@@ -96,7 +91,7 @@
                     <div class="col-md">
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Jenis Pendaftaran</label>
-                          <select class="custom-select mr-sm-2 @error('registration_type') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" value="{{ $rumah_ibadat->registration_type }}" onchange="changeRegistration()" disabled>
+                          <select class="custom-select mr-sm-2 @error('registration_type') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" value="{{ $rumah_ibadat->registration_type }}" onchange="changeRegistration()">
                               <option selected disabled hidden>PILIH JENIS PENDAFTARAN</option>
                               <option value="SENDIRI"    {{ $rumah_ibadat->registration_type == "SENDIRI"     ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN SENDIRI</option>
                               <option value="INDUK"      {{ $rumah_ibadat->registration_type == "INDUK"       ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN DI BAWAH PERSATUAN INDUK/CAWANGAN</option>
@@ -117,7 +112,7 @@
                     <div class="col-md" id="main_div">
                       <label class="required">Nombor Sijil Pendaftaran / Nombor ROS</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_single" name="registration_number_single" type="text" value="{{ $rumah_ibadat->registration_number }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_single.value">
+                          <input class="form-control  @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_single" name="registration_number_single" type="text" value="{{ $rumah_ibadat->registration_number }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_single.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -133,7 +128,7 @@
                     <div class="col-md" id="branch_div_0" style="display: none;">
                       <label class="required">Nama Persatuan Rumah Ibadat Induk</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name_association_main') is-invalid @else border-dark @enderror" id="name_association_main" name="name_association_main" type="text" value="{{ $rumah_ibadat->registration_type == "INDUK" ? $rumah_ibadat->name_association_main : null }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                          <input class="form-control text-uppercase @error('name_association_main') is-invalid @else border-dark @enderror" id="name_association_main" name="name_association_main" type="text" value="{{ $rumah_ibadat->name_association_main }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                           @error('name_association_main')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -177,7 +172,7 @@
                     <div class="col-md">
                       <label class="required">Nombor Pendaftaran Checker</label>
                       <div class="form-group mb-3">
-                          <input class="form-control bg-danger text-white text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number" name="registration_number" type="text" value="{{ $rumah_ibadat->registration_number }}" readonly>
+                          <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number" name="registration_number" type="text" value="{{ $rumah_ibadat->registration_number }}" readonly>
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -267,21 +262,16 @@
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kawasan PBT</label>
                           <select class="custom-select mr-sm-2 @error('pbt_area') is-invalid @else border-dark @enderror" id="pbt_area" name="pbt_area" value="{{ $rumah_ibadat->pbt_area }}">
-                              <option selected disabled hidden>PILIH KAWASAN PBT</option>
-
-                              <option value="MAJLIS BANDARAYA SHAH ALAM (MBSA)"       {{ $rumah_ibadat->pbt_area == "MAJLIS BANDARAYA SHAH ALAM (MBSA)"      ? 'selected' : '' }} >MAJLIS BANDARAYA SHAH ALAM (MBSA)</option>
-                              <option value="MAJLIS BANDARAYA PETALING JAYA (MBPJ)"   {{ $rumah_ibadat->pbt_area == "MAJLIS BANDARAYA PETALING JAYA (MBPJ)"  ? 'selected' : '' }} >MAJLIS BANDARAYA PETALING JAYA (MBPJ)</option>
-                              <option value="MAJLIS BANDARAYA SUBANG JAYA (MBSJ)"     {{ $rumah_ibadat->pbt_area == "MAJLIS BANDARAYA SUBANG JAYA (MBSJ)"    ? 'selected' : '' }} >MAJLIS BANDARAYA SUBANG JAYA (MBSJ)</option>
-                              <option value="MAJLIS PERBANDARAN KLANG (MPK)"          {{ $rumah_ibadat->pbt_area == "MAJLIS PERBANDARAN KLANG (MPK)"         ? 'selected' : '' }} >MAJLIS PERBANDARAN KLANG (MPK)</option>
-                              <option value="MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)"   {{ $rumah_ibadat->pbt_area == "MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)"  ? 'selected' : '' }} >MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)</option>
-                              <option value="MAJLIS PERBANDARAN SELAYANG (MPS)"       {{ $rumah_ibadat->pbt_area == "MAJLIS PERBANDARAN SELAYANG (MPS)"      ? 'selected' : '' }} >MAJLIS PERBANDARAN SELAYANG (MPS)</option>
-                              <option value="MAJLIS PERBANDARAN KAJANG (MPKj)"        {{ $rumah_ibadat->pbt_area == "MAJLIS PERBANDARAN KAJANG (MPKj)"       ? 'selected' : '' }} >MAJLIS PERBANDARAN KAJANG (MPKj)</option>
-                              <option value="MAJLIS PERBANDARAN SEPANG (MPSp)"        {{ $rumah_ibadat->pbt_area == "MAJLIS PERBANDARAN SEPANG (MPSp)"       ? 'selected' : '' }} >MAJLIS PERBANDARAN SEPANG (MPSp)</option>
-                              <option value="MAJLIS PERBANDARAN KUALA LANGAT (MPKL)"  {{ $rumah_ibadat->pbt_area == "MAJLIS PERBANDARAN KUALA LANGAT (MPKL)" ? 'selected' : '' }} >MAJLIS PERBANDARAN KUALA LANGAT (MPKL)</option>
-                              <option value="MAJLIS DAERAH KUALA SELANGOR (MDKS)"     {{ $rumah_ibadat->pbt_area == "MAJLIS DAERAH KUALA SELANGOR (MDKS)"    ? 'selected' : '' }} >MAJLIS DAERAH KUALA SELANGOR (MDKS)</option>
-                              <option value="MAJLIS DAERAH HULU SELANGOR (MDHS)"      {{ $rumah_ibadat->pbt_area == "MAJLIS DAERAH HULU SELANGOR (MDHS)"     ? 'selected' : '' }} >MAJLIS DAERAH HULU SELANGOR (MDHS)</option>
-                              <option value="MAJLIS DAERAH SABAK BERNAM (MDSB)"       {{ $rumah_ibadat->pbt_area == "MAJLIS DAERAH SABAK BERNAM (MDSB)"      ? 'selected' : '' }} >MAJLIS DAERAH SABAK BERNAM (MDSB)</option>
-                              
+                              <option selected disabled hidden>PILIH DAERAH</option>
+                              <option value="GOMBAK"          {{ $rumah_ibadat->pbt_area == "GOMBAK"          ? 'selected' : '' }} >KAWASAN GOMBAK</option>
+                              <option value="HULU LANGAT"     {{ $rumah_ibadat->pbt_area == "HULU LANGAT"     ? 'selected' : '' }} >KAWASAN HULU LANGAT</option>
+                              <option value="HULU SELANGOR"   {{ $rumah_ibadat->pbt_area == "HULU SELANGOR"   ? 'selected' : '' }} >KAWASAN HULU SELANGOR</option>
+                              <option value="KLANG"           {{ $rumah_ibadat->pbt_area == "KLANG"           ? 'selected' : '' }} >KAWASAN KLANG</option>
+                              <option value="KUALA SELANGOR"  {{ $rumah_ibadat->pbt_area == "KUALA SELANGOR"  ? 'selected' : '' }} >KAWASAN KUALA SELANGOR</option>
+                              <option value="KUALA LANGAT"    {{ $rumah_ibadat->pbt_area == "KUALA LANGAT"    ? 'selected' : '' }} >KAWASAN KUALA LANGAT</option>
+                              <option value="PETALING"        {{ $rumah_ibadat->pbt_area == "PETALING"        ? 'selected' : '' }} >KAWASAN PETALING</option>
+                              <option value="SABAK BERNAM"    {{ $rumah_ibadat->pbt_area == "SABAK BERNAM"    ? 'selected' : '' }} >KAWASAN SABAK BERNAM</option>
+                              <option value="SEPANG"          {{ $rumah_ibadat->pbt_area == "SEPANG"          ? 'selected' : '' }} >KAWASAN SEPANG</option>
                           </select>
                           @error('pbt_area')
                           <span class="invalid-feedback" role="alert">
@@ -297,22 +287,6 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <hr>
-                    </div>
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md">
-                      <label class="required">Nama Penuh Persatuan Rumah Ibadat Mengikut Pendaftaran Bank</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" type="text" value="{{ $rumah_ibadat->name_association_bank }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-                          @error('name_association_bank')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                      </div>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -383,11 +357,14 @@
                   <div class="row" style="padding-top: 15px;"> 
                     <div class="col-md-2"></div>
                     <div class="col-md" style="text-align: center;">
-                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation_submit">Kemaskini Rumah Ibadat</button>
+                      <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation_submit">Kemaskini Profil Rumah Ibadat</button>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
 
+                  {{-- Hidden Gap - Just Ignore --}}
+                  <div class="alert alert-white" style="text-align: center;"></div>
+                  {{-- <div style="padding: 25px;"></div> --}}
               </div>
 
               <!-- Modal Confirmation -->
@@ -405,7 +382,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                      <button type="submit" class="btn btn-success">Kemaskini Rumah Ibadat</button>
+                      <button type="submit" class="btn btn-success">Kemaskini Profil Rumah Ibadat</button>
                     </div>
                   </div>
                 </div>
@@ -440,7 +417,7 @@
 
       //change input condition
       document.getElementById("registration_number_single").disabled = false;
-      // document.getElementById("name_association_main").disabled = true;
+      document.getElementById("name_association_main").disabled = true;
       document.getElementById("registration_number_main").disabled = true;
       document.getElementById("registration_number_branch").disabled = true;
     }else if(registration_type == 'INDUK'){

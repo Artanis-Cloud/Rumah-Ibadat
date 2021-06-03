@@ -16,6 +16,8 @@ class CreatePermohonansTable extends Migration
         Schema::create('permohonans', function (Blueprint $table) {
             $table->id();                                                                   //default
 
+            $table->string('reference_number');                                             //displayed id
+
             $table->bigInteger('rumah_ibadat_id')->unsigned()->nullable();                  //rumah ibadat id
             $table->foreign('rumah_ibadat_id')->references('id')->on('rumah_ibadats');      //rumah ibadat id
 
@@ -23,7 +25,7 @@ class CreatePermohonansTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');                      //user id
 
             //remarks permohonan
-            $table->string('status')->default('1');                                         //(0-Tidak Lulus)(1-Sedang Diproses)(2-Lulus)
+            $table->string('status')->default('1');                                         //(0-Semak Semula)(1-Sedang Diproses)(2-Lulus)(3-Tidak Lulus)
             $table->string('batch')->nullable();                                            //1 Batch can have 10 permohonan & batch start after...
 
             //before permohonan

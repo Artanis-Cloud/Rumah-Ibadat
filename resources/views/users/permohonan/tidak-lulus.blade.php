@@ -30,7 +30,7 @@
 
                           <tbody>
 
-                            @foreach( $passed_application as $data)
+                            @foreach( $failed_application as $data)
                                 <tr>
                                     <td></td>
                                     <td>{{ $data->getPermohonanID() }}</td>

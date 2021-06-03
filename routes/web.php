@@ -63,11 +63,11 @@ Route::middleware([User::class])->group(function(){
 
     Route::get('/permohonan/permohonan/permohonan-khas', [App\Http\Controllers\PermohonanController::class, 'permohonan_khas'])->name('users.permohonan.khas');
 
-    Route::get('/permohonan/permohonan-proses', [App\Http\Controllers\PermohonanController::class, 'permohonan_proses'])->name('users.permohonan.proses');
+    Route::get('/halaman-utama/permohonan/permohonan-sedang-diproses', [App\Http\Controllers\PermohonanController::class, 'permohonan_proses'])->name('users.permohonan.sedang-diproses');
 
-    Route::get('/permohonan/permohonan-lulus', [App\Http\Controllers\PermohonanController::class, 'permohonan_lulus'])->name('users.permohonan.lulus');
+    Route::get('/halaman-utama/permohonan/permohonan-lulus', [App\Http\Controllers\PermohonanController::class, 'permohonan_lulus'])->name('users.permohonan.lulus');
 
-    Route::get('/permohonan/permohonan-gagal', [App\Http\Controllers\PermohonanController::class, 'permohonan_gagal'])->name('users.permohonan.gagal');
+    Route::get('/halaman-utama/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\PermohonanController::class, 'permohonan_tidak_lulus'])->name('users.permohonan.tidak-lulus');
 
 });
 
