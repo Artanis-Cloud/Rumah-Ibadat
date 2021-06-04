@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Storage;
-use App\Models\Permohonan;
+
 use App\Models\User;
+use App\Models\Permohonan;
+use App\Models\Tujuan;
+use App\Models\Lampiran;
 
 use Illuminate\Http\Request;
 
@@ -39,13 +42,19 @@ class ExcoController extends Controller
 
     public function papar_permohonan(Request $request)
     {
-        $permohonan = Permohonan::where('id', $request->permohonan_id)->first();
+        $permohonan = Permohonan::findOrFail($request->permohonan_id);
+
+        $tujuan = Tujuan::where('permohonan_id', $permohonan->id)->get();
+
+        foreach($tujuan as $data){
+            $lampiran[] = Lampiran::where('tujuan_id', $data->id)->get();
+        }
 
         return view('excos.permohonan.papar', compact('permohonan'));
     }
 
     public function download_permohonan(Request $request){
-        // dd($request->all());
+
         $permohonan = Permohonan::findorfail($request->permohonan_id);
 
         if($request->file_type == "application_letter"){
