@@ -42,11 +42,17 @@ class CreatePermohonansTable extends Migration
             $table->string('invitation_letter')->nullable();                                //attachment
 
             //after exco
+            $table->string('exco_id')->nullable();                                          //flag_exco
+            $table->string('exco_date_time')->nullable();                                   //date-time
 
             //after yb
+            $table->string('yb_id')->nullable();                                          //flag_yb
+            $table->string('yb_date_time')->nullable();                                   //date-time
             $table->string('payment_method')->default('1');                                //(1-Check)(2-EFT)
 
             //after upen
+            $table->string('upen_id')->nullable();                                          //flag_upen
+            $table->string('upen_date_time')->nullable();                                   //date-time
 
             $table->timestamps();                                                           //default
         });

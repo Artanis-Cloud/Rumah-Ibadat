@@ -34,43 +34,42 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
-                                <th class="all">TARIKH PERMOHONAN</th>
+                                <th class="all">TARIKH PERMOHONAN DIBUAT</th>
+                                <th class="all">WAKTU PERMOHONAN DIBUAT</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
                                 <th class="all">NAMA PEMOHON</th>
+                                <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            <tr>
-                              <td>1</td>
-                              <td>
-                                <a href="{{ route('excos.permohonan.papar') }}">PMH-000432</a>
-                              </td>
-                              <td>01-2-2021</td>
-                              <td>Persatuan Rumah Ibadat Kaum Tionghoa</td>
-                              <td>Toh Khim Hwa</td>
-                            </tr>
+                            @foreach( $processing_application as $data)
+                              <tr>
+                                  {{-- BIL --}}
+                                  <td></td>
 
-                            <tr>
-                              <td>2</td>
-                              <td>
-                                <a href="{{ route('excos.permohonan.papar') }}">PMH-000534</a>
-                              </td>
-                              <td>08-3-2021</td>
-                              <td>Rumah Ibadat Tin Hong See</td>
-                              <td>Lim Thian Ser</td>
-                            </tr>
+                                  {{-- PERMOHONAN ID --}}
+                                  <td>{{ $data->getPermohonanID() }}</td>
 
-                            <tr>
-                              <td>3</td>
-                              <td>
-                                <a href="{{ route('excos.permohonan.papar') }}">PMH-000876</a>
-                              </td>
-                              <td>04-4-2021</td>
-                              <td>Temple Dewa Kuan Yin Ting</td>
-                              <td>Kiang Chew Choy</td>
-                            </tr>
+                                  {{-- TARIKH PERMOHONAN DIBUAT--}}
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+
+                                  {{-- WAKTU PERMOHONAN DIBUAT--}}
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('h:m:s') }}</td>
+
+                                  {{-- NAMA RUMAH IBADAT --}}
+                                  <td>{{ $data->rumah_ibadat->name_association }}</td>
+
+                                  {{-- NAMA RUMAH PEMOHON --}}
+                                  <td>{{ $data->user->name}}</td>
+
+                                  {{-- TINDAKAN --}}
+                                  <td>
+                                      <a href="{{ route('excos.permohonan.papar', $data->id) }}" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Papar Permohonan"><i class="far fa-eye"></i></a>
+                                  </td>
+                              </tr>
+                            @endforeach
 
                           </tbody>
                         </table>
@@ -112,13 +111,13 @@ var t = $(tablelaporan).DataTable({
           extend: 'pdfHtml5',
           orientation: 'landscape',
           pageSize: 'A4',
-          title: 'Senarai Pengguna Dalaman',
+          title: 'Senarai Permohonan Baru Diterima',
       },
       {
           extend: 'print',
           text: 'Cetak',
           pageSize: 'LEGAL',
-          title: 'Senarai Pengguna Dalaman',
+          title: 'Senarai Permohonan Baru Diterima',
           customize: function(win)
           {
 
