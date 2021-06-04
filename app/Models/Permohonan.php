@@ -31,7 +31,17 @@ class Permohonan extends Model
         'certificate_or_letter_temple',     //attachment
         'invitation_letter',                //attachment
 
+        'exco_id',                          //flag_exco
+        'exco_date_time',                   //date-time
+
+        'yb_id',                            //flag_yb
+        'yb_date_time',                     //date-time
+
         'payment_method',                   //(1-Check)(2-EFT)
+
+        'upen_id',                          //flag_upen
+        'upen_date_time',                   //date-time
+
 
     ];
 

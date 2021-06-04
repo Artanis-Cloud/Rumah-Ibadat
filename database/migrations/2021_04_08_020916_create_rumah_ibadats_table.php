@@ -25,7 +25,6 @@ class CreateRumahIbadatsTable extends Migration
             $table->string('category');                                     //(Gereja (Kristian))(Tokong (Budha & Tao))(Kuil (Hindu))(Kuil (Gurdwara))
             $table->string('name_association')->unique();
             $table->string('office_phone')->nullable();
-            $table->string('name_association_bank');
 
             $table->string('registration_type');                            //(MEMPUNYAI PENDAFTARAN SENDIRI)(MEMPUNYAI PENDAFTARAN DI BAWAH PERSATUAN INDUK/CAWANGAN)
             $table->string('name_association_main')->nullable();
@@ -36,6 +35,8 @@ class CreateRumahIbadatsTable extends Migration
             $table->string('district');
             $table->string('state')->default('Selangor');;                  //All rumah ibadat is in Selangor
             $table->string('pbt_area');
+
+            $table->string('name_association_bank');
             $table->string('bank_name');
             $table->string('bank_account')->unique();
 
