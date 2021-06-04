@@ -256,7 +256,7 @@
                   <div class="card">
                     <a href="" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="color: white;">
                       <div class="card-header bg-info" id="headingOne">
-                        <h4 class="mb-0">&nbsp<i class="fas fa-file"></i>&nbsp&nbsp&nbsp&nbspMaklumat Permohonan</h4>
+                        <h4 class="mb-0">&nbsp<i class="fas fa-file"></i>&nbsp&nbsp&nbsp&nbspMaklumat Permohonan (Nombor Rujukan : {{ $permohonan->getPermohonanID() }})</h4>
                       </div>
                     </a>
 
@@ -269,10 +269,118 @@
                           <div class="col-md-3"></div>
                           <div class="col-md">
                             <ul class="list-group">
-                                <li class="list-group-item border border-dark"><a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Klik sini untuk papar dokumen">Surat Permohonan</a></li>
-                                <li class="list-group-item border border-dark"><a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Klik sini untuk papar dokumen">Surat Sokongan</a></li>
-                                <li class="list-group-item border border-dark"><a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Klik sini untuk papar dokumen">Penyata Bank Terkini</a></li>
-                                <li class="list-group-item border border-dark"><a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Klik sini untuk papar dokumen">Penyata Perbelanjaan Terkini</a></li>
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                    <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                                    <input type="hidden" name="file_type" value="application_letter" readonly>
+                                    <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                      Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
+                                      @else 
+                                      Surat Permohonan Kepada Pengurusi Limas
+                                      @endif
+                                    </button>
+                                  </form>
+                                </li>
+
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                    <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                                    <input type="hidden" name="file_type" value="registration_certificate" readonly>
+                                    <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                      Sijil Pendaftaran (Akta Pertubuhan 1966)
+                                      @else 
+                                      Sijil Pendaftaran ROS
+                                      @endif
+                                    </button>
+                                  </form>
+                                </li>
+
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                    <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                                    <input type="hidden" name="file_type" value="account_statement" readonly>
+                                    <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                      Penyata Bank
+                                    </button>
+                                  </form>
+                                </li>
+
+                                @if($permohonan->spending_statement != null)
+
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                    <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                                    <input type="hidden" name="file_type" value="spending_statement" readonly>
+                                    <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                      Penyata Perbelanjaan
+                                    </button>
+                                  </form>
+                                </li>
+                                
+                                @endif 
+
+                                @if($permohonan->support_letter != null)
+
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                    <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                                    <input type="hidden" name="file_type" value="support_letter" readonly>
+                                    <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                      Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen <br> / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
+                                    </button>
+                                  </form>
+                                </li>
+                                
+                                @endif 
+
+                                @if($permohonan->committee_member != null)
+
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                    <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                                    <input type="hidden" name="file_type" value="committee_member" readonly>
+                                    <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                      Senarai Ahli Jawatan Kuasa Rumah Ibadat
+                                    </button>
+                                  </form>
+                                </li>
+                                
+                                @endif
+
+                                @if($permohonan->certificate_or_letter_temple != null)
+
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                    <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                                    <input type="hidden" name="file_type" value="certificate_or_letter_temple" readonly>
+                                    <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H")
+                                      Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
+                                      @elseIf($permohonan->rumah_ibadat->category == "KUIL_G")
+                                      Sijil/Surat Sokongan Majlis Gudwara Malaysia
+                                      @endif
+                                    </button>
+                                  </form>
+                                </li>
+                                
+                                @endif
+
+                                @if($permohonan->invitation_letter != null)
+
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                    <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                                    <input type="hidden" name="file_type" value="invitation_letter" readonly>
+                                    <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                      Surat Jemputan
+                                    </button>
+                                  </form>
+                                </li>
+                                
+                                @endif
+
                             </ul>
                           </div>
                           <div class="col-md-3"></div>

@@ -75,12 +75,15 @@ Route::middleware([User::class])->group(function(){
 Route::middleware([Exco::class])->group(function () {
     Route::get('/dashboard-exco', [App\Http\Controllers\ExcoController::class, 'dashboard'])->name('excos.dashboard');
 
+    //download API
+    Route::get('/dashboard-exco/muat-turun/permohonan', [App\Http\Controllers\ExcoController::class, 'download_permohonan'])->name('muat-turun.permohonan');
+
     // Permohonan
     Route::get('/dashboard-exco/permohonan', [App\Http\Controllers\ExcoController::class, 'permohonan'])->name('excos.permohonan.pilih');
 
     Route::get('/dashboard-exco/permohonan/permohonan-baru', [App\Http\Controllers\ExcoController::class, 'permohonan_baru'])->name('excos.permohonan.baru');
-
-    Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan/{permohonan_id}', [App\Http\Controllers\ExcoController::class, 'papar_permohonan'])->name('excos.permohonan.papar');
+    
+    Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan'])->name('excos.permohonan.papar');
 });
 
 //YB ROUTE

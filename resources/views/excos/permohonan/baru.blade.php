@@ -66,7 +66,10 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                      <a href="{{ route('excos.permohonan.papar', $data->id) }}" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Papar Permohonan"><i class="far fa-eye"></i></a>
+                                    <form action="{{ route('excos.permohonan.papar') }}">
+                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                      <button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Papar Permohonan"><i class="far fa-eye"></i></button>
+                                    </form>
                                   </td>
                               </tr>
                             @endforeach
