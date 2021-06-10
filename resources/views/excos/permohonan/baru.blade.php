@@ -68,7 +68,7 @@
                                   <td>
                                     <form action="{{ route('excos.permohonan.papar') }}">
                                       <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Papar Permohonan"><i class="far fa-eye"></i></button>
+                                      <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                     </form>
                                   </td>
                               </tr>

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
+use PDF;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ExcoController extends Controller
 {
     public function dashboard()
     {
-        $count_new_application = Permohonan::where('exco_id', null)->count();
+        $count_new_application = Permohonan::where('exco_id', null)->where('status', 1)->count();
 
         $count_processing_application = Permohonan::where('exco_id', '!=', null)->where('status', '1')->count();
 
@@ -44,21 +45,103 @@ class ExcoController extends Controller
     {
         $permohonan = Permohonan::findOrFail($request->permohonan_id);
 
-        $tujuan = Tujuan::where('permohonan_id', $permohonan->id)->get();
+        return view('excos.permohonan.papar', compact('permohonan'));
+    }
 
-        foreach($tujuan as $data){
-            $lampiran[] = Lampiran::where('tujuan_id', $data->id)->get();
+    public function permohonan_semak_semula(Request $request){
+        // dd($request->all());
+
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+        //remove or null data
+        foreach($request->review as $review){
+
+            if($review == "application_letter"){
+                $permohonan->application_letter = "x";
+            }
+
+            if ($review == "registration_certificate") {
+                $permohonan->registration_certificate = "x";
+            }
+
+            if ($review == "account_statement") {
+                $permohonan->account_statement = "x";
+            }
+
+            if ($review == "spending_statement") {
+                $permohonan->spending_statement = "x";
+            }
+
+            if ($review == "support_letter") {
+                $permohonan->support_letter = "x";
+            }
+
+            if ($review == "AKTIVITI KEAGAMAAN") {
+                foreach($permohonan->tujuan as $key => $tujuan){
+                    if($tujuan->tujuan == "AKTIVITI KEAGAMAAN"){
+                        $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
+                        $lampiran->each->delete();
+                    }
+                }
+            }
+
+            if ($review == "PENDIDIKAN KEAGAMAAN") {
+                foreach ($permohonan->tujuan as $key => $tujuan) {
+                    if ($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN") {
+                        $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
+                        $lampiran->each->delete();
+                    }
+                }
+            }
+
+            if ($review == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") {
+                foreach ($permohonan->tujuan as $key => $tujuan) {
+                    if ($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") {
+                        $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
+                        $lampiran->each->delete();
+                    }
+                }
+            }
+
+            if ($review == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") {
+                foreach ($permohonan->tujuan as $key => $tujuan) {
+                    if ($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") {
+                        $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
+                        $lampiran->each->delete();
+                    }
+                }
+            }
+
+            if ($review == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") {
+                foreach ($permohonan->tujuan as $key => $tujuan) {
+                    if ($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") {
+                        $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
+                        $lampiran->each->delete();
+                    }
+                }
+            }
         }
 
-        return view('excos.permohonan.papar', compact('permohonan'));
+        //update permohonan
+        $permohonan->review_to_applicant = $request->review_to_applicant;
+        $permohonan->status = 0;
+
+        $permohonan->save();
+
+        //redirect
+        return redirect()->route('excos.permohonan.baru')->with('success', 'Status permohonan telah dikemaskini.');
     }
 
     public function download_permohonan(Request $request){
 
         $permohonan = Permohonan::findorfail($request->permohonan_id);
-
+        
         if($request->file_type == "application_letter"){
-            return Storage::download($permohonan->application_letter);
+
+            $data["info"] = $permohonan;
+            // $pdf = PDF::loadView('mypdf.html', $data);
+            return $pdf->stream(basename($permohonan->application_letter));
+
+            // return Storage::download($permohonan->application_letter);
 
         } elseif($request->file_type == "registration_certificate"){
             return Storage::download($permohonan->registration_certificate);

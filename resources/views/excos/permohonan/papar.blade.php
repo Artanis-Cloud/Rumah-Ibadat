@@ -256,35 +256,63 @@
                   <div class="card">
                     <a href="" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="color: white;">
                       <div class="card-header bg-info" id="headingOne">
-                        <h4 class="mb-0">&nbsp<i class="fas fa-file"></i>&nbsp&nbsp&nbsp&nbspMaklumat Permohonan (Nombor Rujukan : {{ $permohonan->getPermohonanID() }})</h4>
+                        <h4 class="mb-0">&nbsp<i class="fas fa-file"></i>&nbsp&nbsp&nbsp&nbspMaklumat Permohonan</h4>
                       </div>
                     </a>
 
-                    <div id="collapseThree" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionThree">
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordionThree">
                       <div class="card-body  border border-info">
+
+                         <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+
+                            <label>No. Rujukan / Permohonan ID</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control  @error('reference_number') is-invalid @else border-dark @enderror" id="reference_number" name="reference_number" type="text" value="{{ $permohonan->getPermohonanID() }}" disabled>
+                            </div>
+
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
                         
                         <h3 style="text-align: center; padding-bottom: 15px;">Dokumen-dokumen lampiran</h3>
 
+                          {{-- <div class="row">
+                            <div class="col-md">
+                              <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->registration_certificate)) }}" target="_blank">Open the pdf!</a>
+                              <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" alt="test" style="height: 100px;">
+                            </div>
+                          </div> --}}
+
                         <div class="row">
-                          <div class="col-md-3"></div>
+                          <div class="col-md-1"></div>
                           <div class="col-md">
                             <ul class="list-group">
                                 <li class="list-group-item border border-dark" style="text-align: center;">
-                                  <form action="{{ route('muat-turun.permohonan') }}">
-                                    <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
-                                    <input type="hidden" name="file_type" value="application_letter" readonly>
-                                    <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                    {{-- <form action="{{ route('muat-turun.permohonan') }}">
+                                      <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                                      <input type="hidden" name="file_type" value="application_letter" readonly>
+                                      <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
+                                        @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                        Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
+                                        @else 
+                                        Surat Permohonan Kepada Pengurusi Limas
+                                        @endif
+                                      </button>
+                                      
+                                    </form> --}}
+                                  <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" target="_blank">
                                       @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
                                       Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                       @else 
                                       Surat Permohonan Kepada Pengurusi Limas
                                       @endif
-                                    </button>
-                                  </form>
+                                  </a>
                                 </li>
 
                                 <li class="list-group-item border border-dark" style="text-align: center;">
-                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                  {{-- <form action="{{ route('muat-turun.permohonan') }}">
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="registration_certificate" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
@@ -294,29 +322,43 @@
                                       Sijil Pendaftaran ROS
                                       @endif
                                     </button>
-                                  </form>
+                                  </form> --}}
+                                  <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->registration_certificate)) }}" target="_blank">
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                      Sijil Pendaftaran (Akta Pertubuhan 1966)
+                                      @else 
+                                      Sijil Pendaftaran ROS
+                                      @endif
+                                  </a>
                                 </li>
 
                                 <li class="list-group-item border border-dark" style="text-align: center;">
-                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                  {{-- <form action="{{ route('muat-turun.permohonan') }}">
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="account_statement" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
                                       Penyata Bank
                                     </button>
-                                  </form>
+                                  </form> --}}
+                                  <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->account_statement)) }}" target="_blank">
+                                      Penyata Bank
+                                  </a>
                                 </li>
 
                                 @if($permohonan->spending_statement != null)
 
                                 <li class="list-group-item border border-dark" style="text-align: center;">
-                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                  {{-- <form action="{{ route('muat-turun.permohonan') }}">
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="spending_statement" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
                                       Penyata Perbelanjaan
                                     </button>
-                                  </form>
+                                  </form> --}}
+
+                                  <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->spending_statement)) }}" target="_blank">
+                                      Penyata Perbelanjaan
+                                  </a>
                                 </li>
                                 
                                 @endif 
@@ -324,13 +366,17 @@
                                 @if($permohonan->support_letter != null)
 
                                 <li class="list-group-item border border-dark" style="text-align: center;">
-                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                  {{-- <form action="{{ route('muat-turun.permohonan') }}">
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="support_letter" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
                                       Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen <br> / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
                                     </button>
-                                  </form>
+                                  </form> --}}
+
+                                  <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->support_letter)) }}" target="_blank">
+                                      Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen <br> / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
+                                  </a>
                                 </li>
                                 
                                 @endif 
@@ -338,13 +384,17 @@
                                 @if($permohonan->committee_member != null)
 
                                 <li class="list-group-item border border-dark" style="text-align: center;">
-                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                  {{-- <form action="{{ route('muat-turun.permohonan') }}">
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="committee_member" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
                                       Senarai Ahli Jawatan Kuasa Rumah Ibadat
                                     </button>
-                                  </form>
+                                  </form> --}}
+
+                                  <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->committee_member)) }}" target="_blank">
+                                      Senarai Ahli Jawatan Kuasa Rumah Ibadat
+                                  </a>
                                 </li>
                                 
                                 @endif
@@ -352,7 +402,7 @@
                                 @if($permohonan->certificate_or_letter_temple != null)
 
                                 <li class="list-group-item border border-dark" style="text-align: center;">
-                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                  {{-- <form action="{{ route('muat-turun.permohonan') }}">
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="certificate_or_letter_temple" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
@@ -362,7 +412,15 @@
                                       Sijil/Surat Sokongan Majlis Gudwara Malaysia
                                       @endif
                                     </button>
-                                  </form>
+                                  </form> --}}
+
+                                  <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->certificate_or_letter_temple)) }}" target="_blank">
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H")
+                                      Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
+                                      @elseIf($permohonan->rumah_ibadat->category == "KUIL_G")
+                                      Sijil/Surat Sokongan Majlis Gudwara Malaysia
+                                      @endif
+                                  </a>
                                 </li>
                                 
                                 @endif
@@ -370,25 +428,37 @@
                                 @if($permohonan->invitation_letter != null)
 
                                 <li class="list-group-item border border-dark" style="text-align: center;">
-                                  <form action="{{ route('muat-turun.permohonan') }}">
+                                  {{-- <form action="{{ route('muat-turun.permohonan') }}">
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="invitation_letter" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
                                       Surat Jemputan
                                     </button>
-                                  </form>
+                                  </form> --}}
+
+                                  <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->invitation_letter)) }}" target="_blank">
+                                      Surat Jemputan
+                                  </a>
                                 </li>
                                 
                                 @endif
 
                             </ul>
                           </div>
-                          <div class="col-md-3"></div>
+                          <div class="col-md-1"></div>
                         </div>
+
+                        {{-- <span>{{ $permohonan->tujuan }}</span> --}}
+
+                        @foreach ( $permohonan->tujuan as $key => $data)
 
                         <hr>
 
-                        <h3 style="text-align: center; padding-bottom: 15px;">Aktiviti Keagamaan</h3>
+                        <h3 style="text-align: center; padding-bottom: 15px; ">Tujuan {{ ($key + 1) }} : {{ ucfirst(trans($data->tujuan)) }}</h3>
+
+                        {{-- ================================== AKTIVITI KEAGAMAAN ==================================--}}
+
+                        @if($data->tujuan == "AKTIVITI KEAGAMAAN")
 
                         <div class="row">
                           <div class="col-md-1"></div>
@@ -396,22 +466,149 @@
                           <div class="col-md">
                               <label>Foto bangunan atau aktiviti persatuan agama</label><br>
 
-                              <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                              <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
                                   <ol class="carousel-indicators">
-                                      <li data-target="#carouselExampleIndicators2" data-slide-to="0" class="active"></li>
-                                      <li data-target="#carouselExampleIndicators2" data-slide-to="1"></li>
-                                      <li data-target="#carouselExampleIndicators2" data-slide-to="2"></li>
+                                      @foreach ( $data->lampiran as $key => $data2)
+                                        @if ($loop->first)
+                                        <li data-target="#carouselExampleIndicators1" data-slide-to="{{ $key }}" class="active"></li>
+                                        @else
+                                        <li data-target="#carouselExampleIndicators1" data-slide-to="{{ $key }}"></li>
+                                        @endif
+                                      @endforeach
                                   </ol>
                                   <div class="carousel-inner" role="listbox">
-                                      <div class="carousel-item active">
-                                          <img class="img-fluid" src="https://images.pexels.com/photos/918778/pexels-photo-918778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="First slide">
+
+                                    @foreach ($data->lampiran as $key => $data2)
+
+                                        @if ($loop->first)
+                                        <div class="carousel-item active">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                        </div>
+                                        @else 
+                                        <div class="carousel-item">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                       </div>
-                                      <div class="carousel-item">
-                                          <img class="img-fluid" src="https://images.pexels.com/photos/236148/pexels-photo-236148.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Second slide">
-                                      </div>
-                                      <div class="carousel-item">
-                                          <img class="img-fluid" src="https://images.pexels.com/photos/460376/pexels-photo-460376.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Third slide">
-                                      </div>
+                                        @endif
+
+                                    @endforeach
+
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Next</span>
+                                  </a>
+                              </div>
+                            
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        @endif
+                        {{-- ================================== END OF AKTIVITI KEAGAMAAN ==================================--}}
+
+
+
+
+                        {{-- ================================== PENDIDIKAN KEAGAMAAN ==================================--}}
+
+                        @if($data->tujuan == "PENDIDIKAN KEAGAMAAN")
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <ul class="list-group">
+                                @foreach ( $data->lampiran as $key => $data2)
+                                  <li class="list-group-item border border-dark" style="text-align: center;">
+                                      <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
+                                          Senarai nama murid, kad pengenalan, jantina dan umur murid
+                                      </a>
+                                  </li>
+                                @endforeach
+                            </ul>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        @endif
+
+                        {{-- ================================== END OF PENDIDIKAN KEAGAMAAN ==================================--}}
+
+
+
+
+                        {{-- ================================== PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN ==================================--}}
+
+                        @if($data->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <ul class="list-group">
+                              @foreach ( $data->lampiran as $key => $data2)
+
+                                @if($data2->description == "opt_3_file_1")
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                      <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
+                                          Salinan sebutharga daripada pembekal 
+                                      </a>
+                                </li>
+                                @endif
+
+                              @endforeach
+                            </ul>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+
+                          <div class="col-md">
+                              <label>Foto lampiran</label><br>
+
+                              <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                                  <ol class="carousel-indicators">
+
+                                      <?php $flag_A = 0; ?>
+                                      @foreach ( $data->lampiran as $key => $data2)
+                                        @if($data2->description == "opt_3_file_1")
+                                          @continue
+                                        @endif
+
+                                        @if ($flag_A == 0)
+                                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $key }}" class="active"></li>
+                                        <?php $flag_A++; ?>
+                                        @else
+                                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $key }}"></li>
+                                        @endif
+                                      @endforeach
+                                  </ol>
+                                  <div class="carousel-inner" role="listbox">
+
+                                    <?php $flag_B = 0; ?>
+                                    @foreach ( $data->lampiran as $key => $data2)
+
+                                        @if($data2->description == "opt_3_file_1")
+                                          @continue
+                                        @endif
+
+                                        @if ($key == 2)
+                                        <div class="carousel-item active">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                        </div>
+                                        <?php $flag_B++; ?>
+                                        @else
+                                        <div class="carousel-item">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                        </div>
+                                        @endif
+
+                                    @endforeach
+
                                   </div>
                                   <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
                                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -427,56 +624,84 @@
                           <div class="col-md-1"></div>
                         </div>
 
-                        <hr>
+                            
+                        @endif
 
-                        <h3 style="text-align: center; padding-bottom: 15px;">Pendidikan Keagamaan</h3>
+                        {{-- ================================== END OF PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN ==================================--}}
 
-                        <div class="row">
-                          <div class="col-md-2"></div>
-                          <div class="col-md">
-                            <ul class="list-group">
-                                <li class="list-group-item border border-dark"><a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Klik sini untuk papar dokumen">Senarai nama murid, kad pengenalan, jantina dan umur murid</a></li>
-                            </ul>
-                          </div>
-                          <div class="col-md-2"></div>
-                        </div>
 
-                        <hr>
 
-                        <h3 style="text-align: center; padding-bottom: 15px;">Pembelian Peralatan untuk kelas keagamaan</h3>
+
+                        {{-- ================================== BAIK PULIH/PENYELENGGARAAN BANGUNAN ==================================--}}
+
+                        @if($data->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
 
                         <div class="row">
-                          <div class="col-md-2"></div>
+                          <div class="col-md-1"></div>
                           <div class="col-md">
                             <ul class="list-group">
-                                <li class="list-group-item border border-dark"><a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Klik sini untuk papar dokumen">Salinan sebutharga daripada kontraktor</a></li>
+                              
+                              @foreach ( $data->lampiran as $key => $data2)
+
+                                @if($data2->description == "opt_4_file_1")
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                      <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
+                                          Salinan sebutharga daripada pembekal 
+                                      </a>
+                                </li>
+                                @endif
+
+                              @endforeach
                             </ul>
                           </div>
-                          <div class="col-md-2"></div>
+                          <div class="col-md-1"></div>
                         </div>
 
-                        <div class="row" style="padding-top: 15px;">
+                        <div class="row">
                           <div class="col-md-1"></div>
 
                           <div class="col-md">
-                              <label>Foto alat peralatan</label><br>
+                              <label>Foto bahagian bangunan</label><br>
 
                               <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
                                   <ol class="carousel-indicators">
-                                      <li data-target="#carouselExampleIndicators3" data-slide-to="0" class="active"></li>
-                                      <li data-target="#carouselExampleIndicators3" data-slide-to="1"></li>
-                                      <li data-target="#carouselExampleIndicators3" data-slide-to="2"></li>
+
+                                      <?php $flag_C = 0; ?> 
+                                      @foreach ( $data->lampiran as $key => $data2)
+                                        @if($data2->description != "opt_4_photo")
+                                          @continue
+                                        @endif
+
+                                        @if($flag_C == 0)
+                                        <li data-target="#carouselExampleIndicators3" data-slide-to="{{ $key }}" class="active"></li>
+                                        <?php $flag_C++; ?> 
+                                        @else
+                                        <li data-target="#carouselExampleIndicators3" data-slide-to="{{ $key }}"></li>
+                                        @endif
+                                      @endforeach
                                   </ol>
                                   <div class="carousel-inner" role="listbox">
-                                      <div class="carousel-item active">
-                                          <img class="img-fluid" src="https://images.pexels.com/photos/1152665/pexels-photo-1152665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="First slide">
-                                      </div>
-                                      <div class="carousel-item">
-                                          <img class="img-fluid" src="https://images.pexels.com/photos/159519/back-to-school-paper-colored-paper-stationery-159519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Second slide">
-                                      </div>
-                                      <div class="carousel-item">
-                                          <img class="img-fluid" src="https://images.pexels.com/photos/459799/pexels-photo-459799.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Third slide">
-                                      </div>
+
+                                    <?php $flag_D = 0; ?> 
+                                    @foreach ( $data->lampiran as $key => $data2)
+
+                                        @if($data2->description != "opt_4_photo")
+                                          @continue
+                                        @endif
+
+                                        @if($flag_D == 0)
+                                        <div class="carousel-item active">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                        </div>
+                                        <?php $flag_D++; ?> 
+                                        @else
+                                        <div class="carousel-item">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                        </div>
+                                        @endif
+
+                                    @endforeach
+
                                   </div>
                                   <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button" data-slide="prev">
                                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -491,6 +716,183 @@
                           </div>
                           <div class="col-md-1"></div>
                         </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+
+                          <div class="col-md">
+                              <label>Foto pembaikan dan penyelenggaraan</label><br>
+
+                              <div id="carouselExampleIndicators4" class="carousel slide" data-ride="carousel">
+                                  <ol class="carousel-indicators">
+
+                                      <?php $flag_E = 0; ?> 
+                                      @foreach ( $data->lampiran as $key => $data2)
+                                        @if($data2->description != "opt_4_2_photo")
+                                          @continue
+                                        @endif
+
+                                        @if($flag_E == 0)
+                                        <li data-target="#carouselExampleIndicators4" data-slide-to="{{ $key }}" class="active"></li>
+                                        <?php $flag_E++; ?> 
+                                        @else
+                                        <li data-target="#carouselExampleIndicators4" data-slide-to="{{ $key }}"></li>
+                                        @endif
+                                      @endforeach
+                                  </ol>
+                                  <div class="carousel-inner" role="listbox">
+
+                                    <?php $flag_F = 0; ?> 
+                                    @foreach ( $data->lampiran as $key => $data2)
+
+                                        @if($data2->description != "opt_4_2_photo")
+                                          @continue
+                                        @endif
+
+                                        @if($flag_F == 0)
+                                        <div class="carousel-item active">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                        </div>
+                                        <?php $flag_F++; ?> 
+                                        @else
+                                        <div class="carousel-item">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                        </div>
+                                        @endif
+
+                                    @endforeach
+
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselExampleIndicators4" role="button" data-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselExampleIndicators4" role="button" data-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Next</span>
+                                  </a>
+                              </div>
+                            
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        @endif
+
+                        {{-- ================================== END OF BAIK PULIH/PENYELENGGARAAN BANGUNAN ==================================--}}
+
+
+
+
+                        {{-- ================================== PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT ==================================--}}
+
+                        @if($data->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <ul class="list-group">
+                              
+                              @foreach ( $data->lampiran as $key => $data2)
+
+                                @if($data2->description == "opt_5_file_1")
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                      <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
+                                          Sebutharga pembekal
+                                      </a>
+                                </li>
+                                @elseif($data2->description == "opt_5_file_2")
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                      <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
+                                          Salinan Kebenaran Merancang
+                                      </a>
+                                </li>
+                                @elseif($data2->description == "opt_5_file_3")
+                                <li class="list-group-item border border-dark" style="text-align: center;">
+                                      <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
+                                          Salinan Pelan Bangunan
+                                      </a>
+                                </li>
+                                @endif
+
+                              @endforeach
+                            </ul>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+
+                          <div class="col-md">
+                              <label>Foto bangunan</label><br>
+
+                              <div id="carouselExampleIndicators5" class="carousel slide" data-ride="carousel">
+                                  <ol class="carousel-indicators">
+
+                                      <?php $flag_G = 0; ?> 
+                                      @foreach ( $data->lampiran as $key => $data2)
+                                        @if($data2->description != "opt_5_photo")
+                                          @continue
+                                        @endif
+
+                                        @if($flag_G == 0)
+                                        <li data-target="#carouselExampleIndicators5" data-slide-to="{{ $key }}" class="active"></li>
+                                        <?php $flag_G++; ?> 
+                                        @else
+                                        <li data-target="#carouselExampleIndicators5" data-slide-to="{{ $key }}"></li>
+                                        @endif
+                                      @endforeach
+                                  </ol>
+                                  <div class="carousel-inner" role="listbox">
+
+                                    <?php $flag_H = 0; ?> 
+                                    @foreach ( $data->lampiran as $key => $data2)
+
+                                        @if($data2->description != "opt_5_photo")
+                                          @continue
+                                        @endif
+
+                                        @if($flag_H == 0)
+                                        <div class="carousel-item active">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                        </div>
+                                        <?php $flag_H++; ?> 
+                                        @else
+                                        <div class="carousel-item">
+                                          <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                        </div>
+                                        @endif
+
+                                    @endforeach
+
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselExampleIndicators5" role="button" data-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselExampleIndicators5" role="button" data-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Next</span>
+                                  </a>
+                              </div>
+                            
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        @endif
+
+                        {{-- ================================== END OF PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT ==================================--}}
+
+
+                          {{-- @foreach ( $data->lampiran as $key => $data2)
+                              <h4>{{ $data2->description }}</h4>
+                          @endforeach --}}
+
+                        @endforeach
+
+
 
                       </div>
                     </div>
@@ -578,13 +980,14 @@
                       </div>
                     </a>
 
-                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionFive">
+                    <div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionFive">
                       <div class="card-body border border-info">
 
-                        <h3 style="text-align: center; padding-bottom: 15px;">Ulasan</h3>
-                        
+                        {{-- <h3 style="text-align: center; padding-bottom: 15px;">Bahagian Ulasan</h3>
+
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
                             <div class="card text-white">
                                 <div class="card-header bg-dark">
                                     <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Exco</h4></div>
@@ -593,34 +996,14 @@
                                 </div>
                             </div>
                           </div>
-                          <div class="col-md-6">
-                            <div class="card text-white">
-                                <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan YB</h4></div>
-                                <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
-                                </div>
-                            </div>
-                          </div>
+                          <div class="col-md-1"></div>
                         </div>
 
-                        <div class="row">
-                          <div class="col-md">
-                            <div class="card text-white">
-                                <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan UPEN</h4></div>
-                                <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
+                        <hr> --}}
 
-                        <hr>
+                        <h3 style="text-align: center; padding-bottom: 15px;">Keputusan Permohonan</h3> 
 
-                        <h3 style="text-align: center; padding-bottom: 15px;">Keputusan</h3>
-
-                        <div class="row">
+                        {{-- <div class="row">
                           <div class="col-md-2"></div>
                           <div class="col-md">
                             <label>Status Permohonan</label><br>
@@ -649,12 +1032,15 @@
                             </fieldset>
                           </div>
                           <div class="col-md-2"></div>
-                        </div>
+                        </div> --}}
 
-                        <div class="row" style="padding-top: 40px;">
+                        <div class="row">
                           <div class="col-md-2"></div>
-                          <div class="col-md">
-                            <button type="button" class="btn waves-effect waves-light btn-info btn-block">Sahkan Permohonan</button>
+                          <div class="col-md" style="padding-top: 5px;">
+                            <button type="button" class="btn waves-effect waves-light btn-warning text-dark btn-block" id="semak_semula_button" data-toggle="modal" data-target="#confirmation_review_application">Semak Semula Permohonan</button>
+                          </div>
+                          <div class="col-md" style="padding-top: 5px;">
+                            <button type="button" class="btn waves-effect waves-light btn-info btn-block" id="sahkan_button">Sahkan Permohonan</button>
                           </div>
                           <div class="col-md-2"></div>
                         </div>
@@ -664,6 +1050,187 @@
                   </div>
 
                 </div>
+
+                {{-- ========================================================= MODAL ========================================================= --}}
+
+                <div class="modal fade" id="confirmation_review_application" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <form action="{{ route('excos.permohonan.papar.semak-semula') }}">
+
+                    <div class="modal-body">
+
+
+                      <div class="row">
+                        <div class="col-md">Sila pilih <b>(Minimum 1)</b> bahagian yang perlu disemak semula oleh pemohon?</div>
+                      </div>
+
+                      <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
+
+                      {{-- <hr>
+
+                      <div class="row" style="padding-top: 10px;">
+                        <div class="col-md">
+                          <label style="padding-bottom: 10px;">Rumah ibadat</label>
+                          <fieldset class="checkbox">
+                              <label>
+                                  <input type="checkbox" value="rumah_ibadat" id="review_1" name="review[]" onclick="semak_semula_validation()"> 
+                                  Maklumat Rumah Ibadat Tidak Sah
+                              </label>
+                          </fieldset>
+                        </div>
+                      </div> --}}
+
+                      <hr>
+
+                      <div class="row">
+                        <div class="col-md">
+                          <label style="padding-bottom: 10px;">Dokumen-dokumen lampiran</label>
+                          <fieldset class="checkbox">
+                              <label>
+                                  <input type="checkbox" value="application_letter" id="review_2" name="review[]" onclick="semak_semula_validation()"> 
+                                  @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                  Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
+                                  @else
+                                  Surat Permohonan Kepada Pengurusi Limas
+                                  @endif 
+                              </label>
+                          </fieldset>
+
+                          <fieldset class="checkbox">
+                              <label>
+                                  <input type="checkbox" value="registration_certificate" id="review_3" name="review[]" onclick="semak_semula_validation()"> 
+                                  @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                  Sijil Pendaftaran (Akta Pertubuhan 1966)
+                                  @else
+                                  Sijil Pendaftaran ROS
+                                  @endif 
+                              </label>
+                          </fieldset>
+
+                          <fieldset class="checkbox">
+                              <label>
+                                  <input type="checkbox" value="account_statement" id="review_4" name="review[]" onclick="semak_semula_validation()"> 
+                                  Penyata Bank
+                              </label>
+                          </fieldset>
+
+                          @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                            <fieldset class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="spending_statement" id="review_5" name="review[]" onclick="semak_semula_validation()"> 
+                                    Penyata Perbelanjaan
+                                </label>
+                            </fieldset>
+
+                            <fieldset class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="support_letter" id="review_6" name="review[]" onclick="semak_semula_validation()"> 
+                                    Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
+                                </label>
+                            </fieldset>
+                          @endif
+                        </div>
+                      </div>
+
+                      <hr>
+
+                      <div class="row">
+                        <div class="col-md">
+                          <label style="padding-bottom: 10px;">Tujuan Permohonan</label>
+
+                          @foreach ( $permohonan->tujuan as  $key => $tujuan)
+                          
+                          @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
+                          <fieldset class="checkbox">
+                              <label>
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_7" name="review[]" onclick="semak_semula_validation()"> 
+                                  {{ $tujuan->tujuan }}
+                              </label>
+                          </fieldset>
+                          @endif
+
+                          @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN")
+                          <fieldset class="checkbox">
+                              <label>
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_8" name="review[]" onclick="semak_semula_validation()"> 
+                                  {{ $tujuan->tujuan }}
+                              </label>
+                          </fieldset>
+                          @endif
+
+                          @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
+                          <fieldset class="checkbox">
+                              <label>
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_9" name="review[]" onclick="semak_semula_validation()"> 
+                                  {{ $tujuan->tujuan }}
+                              </label>
+                          </fieldset>
+                          @endif
+
+                          @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
+                          <fieldset class="checkbox">
+                              <label>
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_10" name="review[]" onclick="semak_semula_validation()"> 
+                                  {{ $tujuan->tujuan }}
+                              </label>
+                          </fieldset>
+                          @endif
+
+                          @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
+                          <fieldset class="checkbox">
+                              <label>
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_11" name="review[]" onclick="semak_semula_validation()"> 
+                                  {{ $tujuan->tujuan }}
+                              </label>
+                          </fieldset>
+                          @endif
+
+
+                              
+                          @endforeach
+
+                        </div>
+                      </div>
+
+                      <hr>
+
+                      <div class="row">
+                        <div class="col-md">
+                          <div class="card text-white">
+                                <div class="card-header bg-dark">
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Kepada Pemohon</h4></div>
+                                <div class="card-body border border-dark">
+                                    <textarea class="form-control text-uppercase  border-dark " id="review_to_applicant" name="review_to_applicant" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                      
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                      <button type="submit" class="btn btn-success" id="semak_semula_enable" style="display: none">Semak Semula</button>
+                      <button type="button" class="btn btn-dark" id="semak_semula_disable" style="display: block" data-toggle="tooltip" data-placement="top" title="Sila tandakan bahagian yang perlu disemak">Semak Semula</button>
+                    </div>
+
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+
+                {{-- ========================================================= END OF MODAL ========================================================= --}}
+
 
               </div>
               <div class="col-md-2"></div>
@@ -677,7 +1244,95 @@
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
+
 <script>
+  function semak_semula_validation() {
+    // var checkBox1 = document.getElementById("review_1");  
+    var checkBox2 = document.getElementById("review_2");
+    var checkBox3 = document.getElementById("review_3");
+    var checkBox4 = document.getElementById("review_4");
+    var checkBox5 = document.getElementById("review_5");
+    var checkBox6 = document.getElementById("review_6");
+    var checkBox7 = document.getElementById("review_7");
+    var checkBox8 = document.getElementById("review_8");
+    var checkBox9 = document.getElementById("review_9");
+    var checkBox10 = document.getElementById("review_10");
+    var checkBox11 = document.getElementById("review_11");
+
+    var counter_checkbox_true = 0;
+
+    if(checkBox2){
+      if(checkBox2.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(checkBox3){
+      if(checkBox3.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(checkBox4){
+      if(checkBox4.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(checkBox5){
+      if(checkBox5.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(checkBox6){
+      if(checkBox6.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(checkBox7){
+      if(checkBox7.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(checkBox8){
+      if(checkBox8.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(checkBox9){
+      if(checkBox9.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(checkBox10){
+      if(checkBox10.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(checkBox11){
+      if(checkBox11.checked == true){
+        counter_checkbox_true++;
+      }
+    }
+
+    if(counter_checkbox_true != 0){
+      document.getElementById("semak_semula_enable").style.display = "block";
+      document.getElementById("semak_semula_disable").style.display = "none";
+
+    } else{
+      document.getElementById("semak_semula_enable").style.display = "none";
+      document.getElementById("semak_semula_disable").style.display = "block";
+    }
+  }
+</script>
+
+{{-- <script>
   //show or hide payment method
   function showPaymentMethod(){
     if(document.getElementById('LULUS').checked){
@@ -686,5 +1341,5 @@
       document.getElementById('payment_div').style.display = "none";
     }
   }
-</script>
+</script> --}}
 @endsection
