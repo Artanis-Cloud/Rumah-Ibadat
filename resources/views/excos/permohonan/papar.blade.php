@@ -1040,7 +1040,7 @@
                             <button type="button" class="btn waves-effect waves-light btn-warning text-dark btn-block" id="semak_semula_button" data-toggle="modal" data-target="#confirmation_review_application">Semak Semula Permohonan</button>
                           </div>
                           <div class="col-md" style="padding-top: 5px;">
-                            <button type="button" class="btn waves-effect waves-light btn-info btn-block" id="sahkan_button">Sahkan Permohonan</button>
+                            <button type="button" class="btn waves-effect waves-light btn-info btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_luluskan_permohonan">Sahkan Permohonan</button>
                           </div>
                           <div class="col-md-2"></div>
                         </div>
@@ -1051,8 +1051,53 @@
 
                 </div>
 
-                {{-- ========================================================= MODAL ========================================================= --}}
+                {{-- ========================================================= MODAL ========================================================= --}} 
 
+                <!-- Modal Confirmation -->
+              <div class="modal fade" id="confirmation_luluskan_permohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <form action="{{ route('excos.permohonan.papar.sahkan') }}">
+
+                    <div class="modal-body">
+                      Anda pasti mahu mengesahkan permohonan ini?
+
+                      <hr>
+
+
+                      <div class="row">
+                        <div class="col-md">
+                          <div class="card text-white">
+                                <div class="card-header bg-dark">
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Exco</h4></div>
+                                <div class="card-body border border-dark">
+                                    <textarea class="form-control text-uppercase  border-dark " id="review_exco" name="review_exco" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                      <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
+                      <button type="submit" class="btn btn-success">Sahkan Permohonan</button>
+                    </div>
+
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+
+                {{-- Modal Semak Semula --}}
                 <div class="modal fade" id="confirmation_review_application" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">

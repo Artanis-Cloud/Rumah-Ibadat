@@ -90,6 +90,8 @@ Route::middleware([Exco::class])->group(function () {
     Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan'])->name('excos.permohonan.papar');
 
     Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan/semak-semula', [App\Http\Controllers\ExcoController::class, 'permohonan_semak_semula'])->name('excos.permohonan.papar.semak-semula');
+
+    Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan/sahkan', [App\Http\Controllers\ExcoController::class, 'permohonan_pengesahan'])->name('excos.permohonan.papar.sahkan');
 });
 
 //YB ROUTE

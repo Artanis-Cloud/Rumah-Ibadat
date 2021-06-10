@@ -131,6 +131,22 @@ class ExcoController extends Controller
         return redirect()->route('excos.permohonan.baru')->with('success', 'Status permohonan telah dikemaskini.');
     }
 
+    public function permohonan_pengesahan(Request $request){
+
+        $user_id = auth()->user()->id; //current user id
+        $current_date = date('Y-m-d H:i:s'); //get current date
+        $permohonan = Permohonan::findorfail($request->permohonan_id);//look current permohonan
+
+        $permohonan->exco_id = $user_id;
+        $permohonan->exco_date_time = $current_date;
+        $permohonan->review_exco = $request->review_exco;
+
+        $permohonan->save();
+
+        //redirect
+        return redirect()->route('excos.permohonan.baru')->with('success', 'Status permohonan telah disahkan.');
+    }
+
     public function download_permohonan(Request $request){
 
         $permohonan = Permohonan::findorfail($request->permohonan_id);
