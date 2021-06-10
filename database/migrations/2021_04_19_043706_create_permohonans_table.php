@@ -41,13 +41,19 @@ class CreatePermohonansTable extends Migration
             $table->string('certificate_or_letter_temple')->nullable();                     //attachment
             $table->string('invitation_letter')->nullable();                                //attachment
 
+            //semak semula
+            $table->string('review_to_applicant')->nullable();                              
+
             //after exco
             $table->string('exco_id')->nullable();                                          //flag_exco
             $table->string('exco_date_time')->nullable();                                   //date-time
+            $table->string('review_exco')->nullable();                              
+
 
             //after yb
             $table->string('yb_id')->nullable();                                          //flag_yb
             $table->string('yb_date_time')->nullable();                                   //date-time
+            $table->string('review_yb')->nullable();                              
             $table->string('payment_method')->default('1');                                //(1-Check)(2-EFT)
 
             //after upen

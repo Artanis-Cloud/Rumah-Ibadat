@@ -68,7 +68,10 @@
                                         <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="right" title="Status Sedang Diproses"><i class="far fa-edit"></i></button>
                                       @else 
                                         {{-- enable edit button if semak permohonan --}}
-                                        <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Kemaskini Permohonan"><i class="far fa-edit"></i></button>
+                                        <form action="{{ route("users.permohonan.semak-semula") }}">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Kemaskini Permohonan"><i class="far fa-edit"></i></button>
+                                        </form>
                                       @endif
                                     </td>
                                 </tr>

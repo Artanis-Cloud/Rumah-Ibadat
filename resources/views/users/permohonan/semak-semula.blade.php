@@ -7,17 +7,38 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            <form method="POST" action="{{ route('users.permohonan.baru.hantar') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('users.permohonan.semak-semula.hantar') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
-
               <div class="card-body border border-dark">
 
-                  <div class="row" style="padding-bottom: 35px;">
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <div class="card text-white">
+                            <div class="card-header bg-dark">
+                                <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Kepada Pemohon</h4></div>
+                            <div class="card-body border border-dark">
+                                <textarea class="form-control text-uppercase  border-dark " id="review_to_applicant" name="review_to_applicant" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_to_applicant }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <hr>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2">
 
                     </div>
@@ -35,9 +56,9 @@
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md" style="display: none;">
-                      <label>Kategori Rumah Ibadat</label>
+                      <label>Permohonan ID</label>
                       <div class="form-group mb-3">
-                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="category" name="category" type="text" value="{{ $rumah_ibadat->category }}" readonly>
+                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="permohonan_id" name="permohonan_id" type="text" value="{{ $permohonan->id }}" readonly>
                       </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -45,61 +66,28 @@
 
                   <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md-4">
-                      <label class="required" style="padding-bottom: 10px;">Pilih Tujuan Permohonan</label>
-                      <fieldset class="checkbox">
-                          <label>
-                              <input type="checkbox" value="AKTIVITI KEAGAMAAN" id="tujuan_1" name="tujuan[]"> Aktiviti Keagamaan
-                          </label>
-                      </fieldset>
-                      <fieldset class="checkbox">
-                          <label>
-                              <input type="checkbox" value="PENDIDIKAN KEAGAMAAN" id="tujuan_2" name="tujuan[]"> Pendidikan Keagamaan
-                          </label>
-                      </fieldset>
-                      <fieldset class="checkbox">
-                          <label>
-                              <input type="checkbox" value="PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN" id="tujuan_3" name="tujuan[]"> Pembelian Peralatan untuk kelas keagamaan
-                          </label>
-                      </fieldset>
-                      
-                    </div>
-                    <div class="col-md-4">
-                      <label style="padding-bottom: 10px;">&nbsp</label>
-                      <fieldset class="checkbox">
-                          <label>
-                              <input type="checkbox" value="BAIK PULIH/PENYELENGGARAAN BANGUNAN" id="tujuan_4" name="tujuan[]"> Baik Pulih/Penyelenggaraan Bangunan
-                          </label>
-                      </fieldset>
-                      <fieldset class="checkbox">
-                          <label>
-                              <input type="checkbox" value="PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT" id="tujuan_5" name="tujuan[]"> Pemindahan/Pembinaan Baru Rumah Ibadat
-                          </label>
-                      </fieldset>
+                    <div class="col-md" style="display: none;">
+                      <label>Kategori Rumah Ibadat</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="category" name="category" type="text" value="{{ $permohonan->rumah_ibadat->category }}" readonly>
+                      </div>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
 
-                  <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
-                    <div class="col-md-2"></div>
-                    <div class="col-md">
-                      <hr>
-                    </div>
-                    <div class="col-md-2"></div>
+                <div class="row" style="padding-top: 25px;">
+                  <div class="col-md-2"></div>
+                  <div class="col-md">
+                    <h3>Dokumen-Dokumen Lampiran</h3>
                   </div>
+                  <div class="col-md-2"></div>
+                </div>
 
-                  <div class="row">
+                @if($permohonan->application_letter == "x")
+                  <div class="row" style="padding-top: 5px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      <h3>Dokumen-Dokumen Lampiran</h3>
-                    </div>
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md">
-                      @if($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G")
+                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
                       <label class="required" >Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga</label>
                       @else
                       <label class="required" >Surat Permohonan Kepada Pengurusi Limas</label>
@@ -112,11 +100,13 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
+                @endif
 
+                @if($permohonan->registration_certificate == "x")
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      @if($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G")
+                       @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
                       <label class="required" >Sijil Pendaftaran (Akta Pertubuhan 1966)</label>
                       @else
                       <label class="required" >Sijil Pendaftaran ROS</label>
@@ -129,18 +119,21 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
+                @endif
 
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
-                    <div class="col-md">
-                      <label class="required">Penyata Bank</label>
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="account_statement" name="account_statement">
-                        <label class="custom-file-label border-dark" for="account_statement">Muat Naik Fail</label>
+                    @if($permohonan->account_statement == "x")
+                      <div class="col-md">
+                        <label class="required">Penyata Bank</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="account_statement" name="account_statement">
+                          <label class="custom-file-label border-dark" for="account_statement">Muat Naik Fail</label>
+                        </div>
                       </div>
-                    </div>
+                    @endif
 
-                    @if($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G")
+                    @if($permohonan->spending_statement == "x" && ($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G") )  
                       <div class="col-md">
                         <label class="required">Penyata Perbelanjaan</label>
                         <div class="custom-file">
@@ -149,84 +142,44 @@
                         </div>
                       </div>
                     @endif
-                      
                     <div class="col-md-2"></div>
                   </div>
 
-                  @if($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G")
-                  
-                    <div class="row" style="padding-top: 15px;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <label class="required">Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India</label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="support_letter" name="support_letter">
-                          <label class="custom-file-label border-dark" for="support_letter">Muat Naik Fail</label>
-                        </div>
+                @if($permohonan->support_letter == "x" && ($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G") )  
+                  <div class="row" style="padding-top: 15px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label class="required">Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="support_letter" name="support_letter">
+                        <label class="custom-file-label border-dark" for="support_letter">Muat Naik Fail</label>
                       </div>
-                      <div class="col-md-2"></div>
                     </div>
+                    <div class="col-md-2"></div>
+                  </div>
+                @endif
 
-                    <div class="row" style="padding-top: 15px;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <label>Senarai Ahli Jawatan Kuasa Rumah Ibadat</label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="committee_member" name="committee_member">
-                          <label class="custom-file-label border-dark" for="committee_member">Muat Naik Fail</label>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
+                @foreach($permohonan->tujuan as $key => $tujuan)
+
+                  @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
+
+                  <input type="hidden" id="tujuan_1" name="tujuan_1" value="AKTIVITI KEAGAMAAN" disabled>
+
+                  <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <hr>
                     </div>
+                    <div class="col-md-2"></div>
+                  </div>
 
-                    <div class="row" style="padding-top: 15px;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        @if($rumah_ibadat->category == "KUIL_H")
-                        <label>Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram</label>
-                        @else 
-                        <label>Sijil/Surat Sokongan Majlis Gudwara Malaysia</label>
-                        @endif
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="certificate_or_letter_temple" name="certificate_or_letter_temple">
-                          <label class="custom-file-label border-dark" for="certificate_or_letter_temple">Muat Naik Fail</label>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <h3>Aktiviti Keagamaan</h3>
                     </div>
-
-                    <div class="row" style="padding-top: 15px;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <label>Surat Jemputan</label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="invitation_letter" name="invitation_letter">
-                          <label class="custom-file-label border-dark" for="invitation_letter">Muat Naik Fail</label>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                  @endif
-
-                  {{-- TUJUAN FORM --}}
-                  <div id="tujuan_1_div" style="display: none;">
-
-                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <hr>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <h3>Aktiviti Keagamaan</h3>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
 
                   <div class="row" style="display: none;">
                     <div class="col-md-2"></div>
@@ -239,221 +192,224 @@
                     <div class="col-md-2"></div>
                   </div>
 
-                    <div class="field_wrapper_option_1">
-                      <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                          <label class="required">Foto bangunan atau aktiviti persatuan agama</label>
-                          <div class="input-group-prepend">
-                              <div class="input-group-prepend">
-                                <button class="btn btn-success border-dark" id="add_input_opt_1" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
-                              </div>
-                              <div class="custom-file">
-                                  <input type="file" class="custom-file-input-image" id="opt_1_photo1" name="opt_1_photo[]">
-                                  <label class="custom-file-label border-dark" for="opt_1_photo1">Muat Naik Gambar</label>
-                              </div>
-                          </div>
-                          
-                          {{-- display upload image --}}
-                          {{-- <br><img id="output" style="width: 400px; margin-left: auto; margin-right: auto; display: block;"/> --}}
-                        </div>
-                        <div class="col-md-2"></div>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div id="tujuan_2_div" style="display: none;">
-
-                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <hr>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
+                  <div class="field_wrapper_option_1">
                     <div class="row">
                       <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <h3>Pendidikan Keagamaan</h3>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <label class="required">Senarai nama murid, kad pengenalan, jantina dan umur murid</label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="opt_2_file_1" name="opt_2_file_1">
-                          <label class="custom-file-label border-dark" for="opt_2_file_1">Muat Naik Fail</label>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                  </div>
-
-                  <div id="tujuan_3_div" style="display: none;">
-
-                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <hr>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <h3>Pembelian Peralatan untuk kelas keagamaan</h3>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <label class="required">Salinan sebutharga daripada pembekal</label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="opt_3_file_1" name="opt_3_file_1">
-                          <label class="custom-file-label border-dark" for="opt_3_file_1">Muat Naik Fail</label>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row" style="display: none;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <label>Jumlah Gambar Salinan Sebutharga daripada pembekal</label>
-                        <div class="form-group mb-3">
-                            <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_3_photo" name="total_opt_3_photo" type="text" value="1" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="field_wrapper_option_3" style="padding-top: 10px;">
-                      <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md">
-                          <label class="required">Foto lampiran</label>
-                          <div class="input-group-prepend">
-                              <div class="input-group-prepend">
-                                <button class="btn btn-success border-dark" id="add_input_opt_3" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
-                              </div>
-                              <div class="custom-file">
-                                  <input type="file" class="custom-file-input-image" id="opt_3_photo1" name="opt_3_photo[]">
-                                  <label class="custom-file-label border-dark" for="opt_3_photo1">Muat Naik Gambar</label>
-                              </div>
-                          </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div id="tujuan_4_div" style="display: none;">
-
-                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <hr>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <h3>Baik Pulih/Penyelenggaraan Bangunan</h3>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <label class="required">Salinan sebutharga daripada pembekal</label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="opt_4_file_1" name="opt_4_file_1">
-                          <label class="custom-file-label border-dark" for="opt_4_file_1">Muat Naik Fail</label>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row" style="display: none;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <label>Jumlah Gambar Bahagian Bangunan</label>
-                        <div class="form-group mb-3">
-                            <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_4_photo" name="total_opt_4_photo" type="text" value="1" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="field_wrapper_option_4" style="padding-top: 10px;">
-                      <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md">
-                          <label class="required">Foto bahagian bangunan</label>
-                          <div class="input-group-prepend">
-                              <div class="input-group-prepend">
-                                <button class="btn btn-success border-dark" id="add_input_opt_4" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
-                              </div>
-                              <div class="custom-file">
-                                  <input type="file" class="custom-file-input-image" id="opt_4_photo1" name="opt_4_photo[]">
-                                  <label class="custom-file-label border-dark" for="opt_4_photo1">Muat Naik Gambar</label>
-                              </div>
-                          </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                      </div>
-                    </div>
-
-                    <div class="row" style="display: none;">
-                      <div class="col-md-2"></div>
-                      <div class="col-md">
-                        <label>Jumlah Foto Pembaikan Dan Penyelenggaraan</label>
-                        <div class="form-group mb-3">
-                            <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_4_2_photo" name="total_opt_4_2_photo" type="text" value="1" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="field_wrapper_option_4_2" style="padding-top: 10px;">
-                        <div class="row">
-                          <div class="col-md-2"></div>
-                          <div class="col-md">
-                            <label class="required">Foto pembaikan dan penyelenggaraan</label>
+                      <div class="col-md-8">
+                        <label class="required">Foto bangunan atau aktiviti persatuan agama</label>
+                        <div class="input-group-prepend">
                             <div class="input-group-prepend">
-                                <div class="input-group-prepend">
-                                  <button class="btn btn-success border-dark" id="add_input_opt_4_2" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input-image" id="opt_4_2_photo1" name="opt_4_2_photo[]">
-                                    <label class="custom-file-label border-dark" for="opt_4_2_photo1">Muat Naik Gambar</label>
-                                </div>
+                              <button class="btn btn-success border-dark" id="add_input_opt_1" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
                             </div>
-                          </div>
-                          <div class="col-md-2"></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input-image" id="opt_1_photo1" name="opt_1_photo[]">
+                                <label class="custom-file-label border-dark" for="opt_1_photo1">Muat Naik Gambar</label>
+                            </div>
                         </div>
                       </div>
-
+                      <div class="col-md-2"></div>
+                    </div>
                   </div>
 
-                  
+                  @endif
 
-                  <div id="tujuan_5_div" style="display: none;">
+                  @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN")
 
-                    <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                  <input type="hidden" id="tujuan_2" name="tujuan_2" value="PENDIDIKAN KEAGAMAAN" disabled>
+
+                  <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <hr>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <h3>Pendidikan Keagamaan</h3>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label class="required">Senarai nama murid, kad pengenalan, jantina dan umur murid</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="opt_2_file_1" name="opt_2_file_1">
+                        <label class="custom-file-label border-dark" for="opt_2_file_1">Muat Naik Fail</label>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  @endif
+
+                  @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
+
+                  <input type="hidden" id="tujuan_3" name="tujuan_3" value="PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN" disabled>
+
+                  <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <hr>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <h3>Pembelian Peralatan untuk kelas keagamaan</h3>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label class="required">Salinan sebutharga daripada pembekal</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="opt_3_file_1" name="opt_3_file_1">
+                        <label class="custom-file-label border-dark" for="opt_3_file_1">Muat Naik Fail</label>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row" style="display: none;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label>Jumlah Gambar Salinan Sebutharga daripada pembekal</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_3_photo" name="total_opt_3_photo" type="text" value="1" disabled>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="field_wrapper_option_3" style="padding-top: 10px;">
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <label class="required">Foto lampiran</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-prepend">
+                              <button class="btn btn-success border-dark" id="add_input_opt_3" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input-image" id="opt_3_photo1" name="opt_3_photo[]">
+                                <label class="custom-file-label border-dark" for="opt_3_photo1">Muat Naik Gambar</label>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+                  </div>
+
+                  @endif
+
+                  @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
+
+                  <input type="hidden" id="tujuan_4" name="tujuan_4" value="BAIK PULIH/PENYELENGGARAAN BANGUNAN" disabled>
+
+                  <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <hr>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <h3>Baik Pulih/Penyelenggaraan Bangunan</h3>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label class="required">Salinan sebutharga daripada pembekal</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="opt_4_file_1" name="opt_4_file_1">
+                        <label class="custom-file-label border-dark" for="opt_4_file_1">Muat Naik Fail</label>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row" style="display: none;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label>Jumlah Gambar Bahagian Bangunan</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_4_photo" name="total_opt_4_photo" type="text" value="1" disabled>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="field_wrapper_option_4" style="padding-top: 10px;">
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md">
+                        <label class="required">Foto bahagian bangunan</label>
+                        <div class="input-group-prepend">
+                            <div class="input-group-prepend">
+                              <button class="btn btn-success border-dark" id="add_input_opt_4" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input-image" id="opt_4_photo1" name="opt_4_photo[]">
+                                <label class="custom-file-label border-dark" for="opt_4_photo1">Muat Naik Gambar</label>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+                  </div>
+
+                  <div class="row" style="display: none;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md">
+                      <label>Jumlah Foto Pembaikan Dan Penyelenggaraan</label>
+                      <div class="form-group mb-3">
+                          <input class="form-control text-uppercase text-white border-dark bg-danger" id="total_opt_4_2_photo" name="total_opt_4_2_photo" type="text" value="1" disabled>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="field_wrapper_option_4_2" style="padding-top: 10px;">
+                      <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md">
+                          <label class="required">Foto pembaikan dan penyelenggaraan</label>
+                          <div class="input-group-prepend">
+                              <div class="input-group-prepend">
+                                <button class="btn btn-success border-dark" id="add_input_opt_4_2" type="button" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tambah Gambar"><i class="fas fa-plus"></i></button>
+                              </div>
+                              <div class="custom-file">
+                                  <input type="file" class="custom-file-input-image" id="opt_4_2_photo1" name="opt_4_2_photo[]">
+                                  <label class="custom-file-label border-dark" for="opt_4_2_photo1">Muat Naik Gambar</label>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                      </div>
+                    </div>
+
+                  @endif
+
+                  @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
+
+                  <input type="hidden" id="tujuan_5" name="tujuan_5" value="PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT" disabled>
+
+                  <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
                       <div class="col-md-2"></div>
                       <div class="col-md">
                         <hr>
@@ -530,17 +486,19 @@
                         </div>
                       </div>
 
-                  </div>
-                  
-                  {{-- Submit Button --}}
-                  <div class="row" style="padding-top: 25px;"> 
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6" style="text-align: center;">
-                      <button type="button" id="validation_button" class="btn waves-effect waves-light btn-info btn-block">Hantar Permohonan</button>
-                    </div>
-                    <div class="col-md-3"></div>
-                  </div>
+                  @endif
+ 
+                @endforeach
 
+                {{-- Submit Button --}}
+                <div class="row" style="padding-top: 25px;"> 
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6" style="text-align: center;">
+                    <button type="button" id="validation_button" class="btn waves-effect waves-light btn-info btn-block">Hantar Semula Permohonan</button>
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+                  
               </div>
 
               <!-- Modal Confirmation -->
@@ -593,68 +551,6 @@
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
 <script>
-
-  //checkbox display - option 1
-  $("#tujuan_1").on('change', function() {
-
-    if ($(this).is(':checked')) {
-        //display form
-        document.getElementById('tujuan_1_div').style.display = "block";
-    } else {
-        //hide form
-        document.getElementById('tujuan_1_div').style.display = "none";
-    }
-  });
-
-  //checkbox display - option 2
-  $("#tujuan_2").on('change', function() {
-
-    if ($(this).is(':checked')) {
-        //display form
-        document.getElementById('tujuan_2_div').style.display = "block";
-    } else {
-        //hide form
-        document.getElementById('tujuan_2_div').style.display = "none";
-    }
-  });
-
-  //checkbox display - option 3
-  $("#tujuan_3").on('change', function() {
-
-    if ($(this).is(':checked')) {
-        //display form
-        document.getElementById('tujuan_3_div').style.display = "block";
-    } else {
-        //hide form
-        document.getElementById('tujuan_3_div').style.display = "none";
-    }
-  });
-
-  //checkbox display - option 4
-  $("#tujuan_4").on('change', function() {
-
-    if ($(this).is(':checked')) {
-        //display form
-        document.getElementById('tujuan_4_div').style.display = "block";
-    } else {
-        //hide form
-        document.getElementById('tujuan_4_div').style.display = "none";
-    }
-  });
-
-  //checkbox display - option 5
-  $("#tujuan_5").on('change', function() {
-
-    if ($(this).is(':checked')) {
-        //display form
-        document.getElementById('tujuan_5_div').style.display = "block";
-    } else {
-        //hide form
-        document.getElementById('tujuan_5_div').style.display = "none";
-    }
-  });
-
-
   // ================= UPLOAD INPUT FILE CHECKER =================
 
   $(".custom-file-input").on("change", function() {
@@ -715,69 +611,7 @@
 
   // ================= END OF UPLOAD FILE INPUT CHECKER =================
 
-
-
-
-  // ================= UPLOAD IMAGE INPUT CHECKER =================
-
-
-  // $(".custom-file-input-image").on("change", function() {
-  //   //---------- FILE TYPE CHECKER ----------
-  //   var filePath = $(this).val();
-  //   var allowedExtensions = /(\.jpeg|\.jpg|\.png)$/i; // \.pdf|\.doc|\.docx|\.xls|\.xlsx|\.jpeg|\.jpg|\.png|\.zip|\.rar
-  //   if(!allowedExtensions.exec(filePath)){
-  //   //change border color to black
-  //   $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
-  //   $(this).removeClass("is-valid");
-
-  //   //alert message
-  //   alert('Sila muatnaik file dalam format .jpeg , .jpg dan .png sahaja.');
-
-  //   //reset file value
-  //   $(this).val(null);
-
-  //   //reset file name
-  //   var fileName = "Muat Naik Gambar";
-  //   $(this).next('.custom-file-label').html(fileName);
-
-  //   return false;
-  //   }
-    
-  //   //---------- FILE SIZE CHECKER ----------
-  //   var numb = $(this)[0].files[0].size/1024 /1024 ;
-  //   numb = numb.toFixed(2);
-  //   if(numb > 5.0){ //change file limit here (MB)
-  //   //change border color to black
-  //   $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
-  //   $(this).removeClass("is-valid");
-
-  //   //alert message
-  //   alert('Ralat! Fail anda melebihi 5mb. Saiz fail anda adalah: ' + numb +' MB');
-
-  //   //reset file value
-  //   $(this).val(null);
-
-  //   //reset file name
-  //   var fileName = "Muat Naik Gambar";
-  //   $(this).next('.custom-file-label').html(fileName);
-
-  //   return false;
-  //   }
-    
-  //   //file name display
-  //   var fileName = $(this).val().split("\\").pop();
-
-  //   //change border color to green
-  //   $(this).siblings(".custom-file-label").removeClass( "border-dark" ).addClass("border-success").addClass("selected").html(fileName);
-  //   $(this).addClass("is-valid");
-  // });
-
-  // ================= END OF UPLOAD IMAGE INPUT CHECKER =================
-</script>
-
-
-<script type="text/javascript">
-// ================= DYNAMIC IMAGE UPLOAD =================
+  // ================= DYNAMIC IMAGE UPLOAD =================
 
 $(document).ready(function(){
     var number_of_image = 5 //Input fields increment limitation
@@ -1026,11 +860,6 @@ $(document).ready(function(){
     //KUIL Category ONLY!!!
     var spending_statement = $('#spending_statement').val();
     var support_letter = $('#support_letter').val();
-    var committee_member = $('#committee_member').val(); // not required
-    var certificate_or_letter_temple = $('#certificate_or_letter_temple').val(); //not required
-    var invitation_letter = $('#invitation_letter').val(); // not required
-
-
 
     //fetch data - TUJUAN 1 
     var total_opt_1_photo =  $('#total_opt_1_photo').val(); //image
@@ -1051,23 +880,6 @@ $(document).ready(function(){
     var opt_5_file_1 = $('#opt_5_file_1').val(); //file
     var opt_5_file_3 = $('#opt_5_file_3').val(); //file
     var total_opt_5_photo =  $('#total_opt_5_photo').val(); //image
-
-    
-    // var application_letter = $('#application_letter').val();
-    // var application_letter = $('#application_letter').val();
-    // var application_letter = $('#application_letter').val();
-    // var application_letter = $('#application_letter').val();
-
-
-
-
-
-    //validation tujuan
-    if(!$('#tujuan_1').is(':checked') && !$('#tujuan_2').is(':checked') && !$('#tujuan_3').is(':checked') && !$('#tujuan_4').is(':checked') && !$('#tujuan_5').is(':checked')){
-      $('#note_message').html('Sila pilih sekurang-kurangnya <b>1 Tujuan Permohonan</b>.');
-      $("#validation_submit_permohonan").modal();
-      return false;
-    }
     
     //validation surat permohonan
     if(application_letter == ""){
@@ -1116,7 +928,7 @@ $(document).ready(function(){
     }
 
     //TUJUAN 1 VALIDATION
-    if($('#tujuan_1').is(':checked')){
+    if($('#tujuan_1').val() == "AKTIVITI KEAGAMAAN"){
       var total_opt1_uploaded = 0;
 
       for( var i = 1; i <= total_opt_1_photo; i++){
@@ -1137,7 +949,7 @@ $(document).ready(function(){
     }
 
     //TUJUAN 2 VALIDATION
-    if($('#tujuan_2').is(':checked')){
+    if($('#tujuan_2').val() == "PENDIDIKAN KEAGAMAAN"){
       if(opt_2_file_1 == "" ){
         $('#note_message').html('Sila muat naik <b>Senarai Nama Murid, Kad Pengenalan, Jantina dan Umur Murid</b>');
         $("#validation_submit_permohonan").modal();
@@ -1146,7 +958,7 @@ $(document).ready(function(){
     }
 
     //TUJUAN 3 VALIDATION
-    if($('#tujuan_3').is(':checked')){
+    if($('#tujuan_3').val() == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN"){
       if(opt_3_file_1 == "" ){
         $('#note_message').html('Sila muat naik <b>Salinan Sebutharga Daripada Pembekal</b>');
         $("#validation_submit_permohonan").modal();
@@ -1174,7 +986,7 @@ $(document).ready(function(){
     }
 
     //TUJUAN 4 VALIDATION
-    if($('#tujuan_4').is(':checked')){
+    if($('#tujuan_4').val() == "BAIK PULIH/PENYELENGGARAAN BANGUNAN"){
       if(opt_4_file_1 == "" ){
         $('#note_message').html('Sila muat naik <b>Salinan Sebutharga Daripada Pembekal</b>');
         $("#validation_submit_permohonan").modal();
@@ -1219,7 +1031,7 @@ $(document).ready(function(){
     }
 
     //TUJUAN 5 VALIDATION
-    if($('#tujuan_5').is(':checked')){
+    if($('#tujuan_5').val() == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT"){
       if(opt_5_file_1 == "" ){
         $('#note_message').html('Sila muat naik <b>Sebutharga pembekal</b>');
         $("#validation_submit_permohonan").modal();
@@ -1257,5 +1069,8 @@ $(document).ready(function(){
     $("#confirmation_submit_permohonan").modal();
   });
 });
+
+// ================= End Of Validation form before submit =================
 </script>
+
 @endsection

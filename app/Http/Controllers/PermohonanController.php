@@ -68,9 +68,9 @@ class PermohonanController extends Controller
 
         //======================================================= UPLOAD DOCUMENT LAMPIRAN =======================================================
 
-        $application_letter = $request->file('application_letter')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
-        $registration_certificate = $request->file('registration_certificate')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);  // required
-        $account_statement = $request->file('account_statement')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);   // required
+        $application_letter = $request->file('application_letter')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+        $registration_certificate = $request->file('registration_certificate')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);  // required
+        $account_statement = $request->file('account_statement')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);   // required
 
         $spending_statement = null;
         $support_letter = null;
@@ -79,19 +79,19 @@ class PermohonanController extends Controller
         $invitation_letter = null;
 
         if($request->category == "KUIL_H" || $request->category == "KUIL_G"){
-            $spending_statement = $request->file('spending_statement')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
-            $support_letter = $request->file('support_letter')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+            $spending_statement = $request->file('spending_statement')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+            $support_letter = $request->file('support_letter')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
 
             if ($request->file('committee_member') != null) { //not required
-                $committee_member = $request->file('committee_member')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $committee_member = $request->file('committee_member')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
             }
 
             if ($request->file('certificate_or_letter_temple') != null) { //not required
-                $certificate_or_letter_temple = $request->file('certificate_or_letter_temple')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $certificate_or_letter_temple = $request->file('certificate_or_letter_temple')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
             }
 
             if ($request->file('invitation_letter') != null) { //not required
-                $invitation_letter = $request->file('invitation_letter')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $invitation_letter = $request->file('invitation_letter')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
             }
         }
 
@@ -135,7 +135,7 @@ class PermohonanController extends Controller
                 foreach($files_opt_1_photo as $opt_1_photo){
 
                     $file_type = $opt_1_photo->extension();
-                    $saved_photo_url = $opt_1_photo->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                    $saved_photo_url = $opt_1_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_1_photo";
 
                     $lampiran = Lampiran::create([
@@ -148,7 +148,7 @@ class PermohonanController extends Controller
 
             } elseif($data == "PENDIDIKAN KEAGAMAAN"){ //-------------------- OPTION 2 --------------------
 
-                $saved_photo_url = $request->file('opt_2_file_1')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $saved_photo_url = $request->file('opt_2_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
                 $file_type = $request->file('opt_2_file_1')->extension();
                 $descripton = "opt_2_file_1";
 
@@ -162,7 +162,7 @@ class PermohonanController extends Controller
             } elseif ($data == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") { //-------------------- OPTION 3 --------------------
 
                 //save file
-                $saved_photo_url = $request->file('opt_3_file_1')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $saved_photo_url = $request->file('opt_3_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
                 $file_type = $request->file('opt_3_file_1')->extension();
                 $descripton = "opt_3_file_1";
 
@@ -180,7 +180,7 @@ class PermohonanController extends Controller
 
                     // dd($opt_3_photo);    
                     $file_type = $opt_3_photo->extension();
-                    $saved_photo_url = $opt_3_photo->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                    $saved_photo_url = $opt_3_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_3_photo";
 
                     $lampiran = Lampiran::create([
@@ -194,7 +194,7 @@ class PermohonanController extends Controller
             } elseif ($data == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") { //-------------------- OPTION 4 --------------------
 
                 //save file
-                $saved_photo_url = $request->file('opt_4_file_1')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $saved_photo_url = $request->file('opt_4_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
                 $file_type = $request->file('opt_4_file_1')->extension();
                 $descripton = "opt_4_file_1";
 
@@ -211,7 +211,7 @@ class PermohonanController extends Controller
 
                     // dd($opt_3_photo);    
                     $file_type = $opt_4_photo->extension();
-                    $saved_photo_url = $opt_4_photo->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                    $saved_photo_url = $opt_4_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_4_photo";
 
                     $lampiran = Lampiran::create([
@@ -228,7 +228,7 @@ class PermohonanController extends Controller
 
                     // dd($opt_3_photo);    
                     $file_type = $opt_4_2_photo->extension();
-                    $saved_photo_url = $opt_4_2_photo->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                    $saved_photo_url = $opt_4_2_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_4_2_photo";
 
                     $lampiran = Lampiran::create([
@@ -242,7 +242,7 @@ class PermohonanController extends Controller
             } elseif ($data == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") { //-------------------- OPTION 5 --------------------
 
                 //save file 1
-                $saved_photo_url = $request->file('opt_5_file_1')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $saved_photo_url = $request->file('opt_5_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
                 $file_type = $request->file('opt_5_file_1')->extension();
                 $descripton = "opt_5_file_1";
 
@@ -255,7 +255,7 @@ class PermohonanController extends Controller
 
                 //save file 2
                 if ($request->hasFile('opt_5_file_2')) { // not required
-                    $saved_photo_url = $request->file('opt_5_file_2')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                    $saved_photo_url = $request->file('opt_5_file_2')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
                     $file_type = $request->file('opt_5_file_2')->extension();
                     $descripton = "opt_5_file_2";
 
@@ -269,7 +269,7 @@ class PermohonanController extends Controller
 
 
                 //save file 3
-                $saved_photo_url = $request->file('opt_5_file_3')->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $saved_photo_url = $request->file('opt_5_file_3')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
                 $file_type = $request->file('opt_5_file_3')->extension();
                 $descripton = "opt_5_file_3";
 
@@ -287,7 +287,7 @@ class PermohonanController extends Controller
 
                         // dd($opt_3_photo);    
                         $file_type = $opt_5_photo->extension();
-                        $saved_photo_url = $opt_5_photo->store('muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                        $saved_photo_url = $opt_5_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                         $descripton = "opt_5_photo";
 
                         $lampiran = Lampiran::create([
@@ -323,6 +323,243 @@ class PermohonanController extends Controller
         $prosessing_application = Permohonan::where('user_id', auth()->user()->id)->where('status', '1')->orWhere('status', '0')->get();
 
         return view('users.permohonan.sedang-diproses', compact('prosessing_application'));
+    }
+
+    public function permohonan_semakan_semula(Request $request)
+    {
+        // dd($request->all());
+
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        return view('users.permohonan.semak-semula', compact('permohonan'));
+    }
+
+    public function hantar_permohonan_semakan_semula(Request $request)
+    {
+        // dd($request->all());
+
+        $permohonan = Permohonan::findorfail($request->permohonan_id);// find current permohonan
+        $user_id = auth()->user()->id;  //find user id
+        $rumah_ibadat = RumahIbadat::where('user_id', $user_id)->get()->first(); //find current user rumah ibadat
+        $current_date = date('d-m-Y'); //get current date
+
+        //======================================================= UPLOAD DOCUMENT LAMPIRAN AND UPDATE PERMOHONAN =======================================================
+
+        if($request->application_letter){
+            $application_letter = $request->file('application_letter')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+            $permohonan->application_letter = $application_letter;
+        }
+
+        if ($request->registration_certificate) {
+            $registration_certificate = $request->file('registration_certificate')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+            $permohonan->registration_certificate = $registration_certificate;
+        }
+
+        if ($request->account_statement) {
+            $account_statement = $request->file('account_statement')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+            $permohonan->account_statement = $account_statement;
+        }
+
+        if ($request->category == "KUIL_H" || $request->category == "KUIL_G") {
+
+            if ($request->spending_statement) {
+                $spending_statement = $request->file('spending_statement')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $permohonan->spending_statement = $spending_statement;
+            }
+
+            if ($request->application_letter) {
+                $support_letter = $request->file('support_letter')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $permohonan->support_letter = $support_letter;
+            }
+        }
+
+        $permohonan->status = 1;
+
+        $permohonan->save(); //save permohonan
+
+        //======================================================= END OF UPLOAD DOCUMENT LAMPIRAN AND UPDATE PERMOHONAN =======================================================
+
+
+        //======================================================= CREATE TUJUAN AND LAMPIRAN =======================================================
+
+        foreach ($permohonan->tujuan as $data) {
+
+            if ($data->tujuan == "AKTIVITI KEAGAMAAN") {  //-------------------- OPTION 1 --------------------
+
+                $files_opt_1_photo = $request->file('opt_1_photo');
+                foreach ($files_opt_1_photo as $opt_1_photo) {
+
+                    $file_type = $opt_1_photo->extension();
+                    $saved_photo_url = $opt_1_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                    $descripton = "opt_1_photo";
+
+                    $lampiran = Lampiran::create([
+                        'tujuan_id' => $data->id,
+                        'file_type' => $file_type,
+                        'url' => $saved_photo_url,
+                        'description' => $descripton,
+                    ]);
+                }
+            } elseif ($data->tujuan == "PENDIDIKAN KEAGAMAAN") { //-------------------- OPTION 2 --------------------
+
+                $saved_photo_url = $request->file('opt_2_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $file_type = $request->file('opt_2_file_1')->extension();
+                $descripton = "opt_2_file_1";
+
+                $lampiran = Lampiran::create([
+                    'tujuan_id' => $data->id,
+                    'file_type' => $file_type,
+                    'url' => $saved_photo_url,
+                    'description' => $descripton,
+                ]);
+            } elseif ($data->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") { //-------------------- OPTION 3 --------------------
+
+                //save file
+                $saved_photo_url = $request->file('opt_3_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $file_type = $request->file('opt_3_file_1')->extension();
+                $descripton = "opt_3_file_1";
+
+                $lampiran = Lampiran::create([
+                    'tujuan_id' => $data->id,
+                    'file_type' => $file_type,
+                    'url' => $saved_photo_url,
+                    'description' => $descripton,
+                ]);
+
+
+                //save images
+                $files_opt_3_photo = $request->file('opt_3_photo');
+                foreach ($files_opt_3_photo as $opt_3_photo) {
+
+                    // dd($opt_3_photo);    
+                    $file_type = $opt_3_photo->extension();
+                    $saved_photo_url = $opt_3_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                    $descripton = "opt_3_photo";
+
+                    $lampiran = Lampiran::create([
+                        'tujuan_id' => $data->id,
+                        'file_type' => $file_type,
+                        'url' => $saved_photo_url,
+                        'description' => $descripton,
+                    ]);
+                }
+            } elseif ($data->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") { //-------------------- OPTION 4 --------------------
+
+                //save file
+                $saved_photo_url = $request->file('opt_4_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $file_type = $request->file('opt_4_file_1')->extension();
+                $descripton = "opt_4_file_1";
+
+                $lampiran = Lampiran::create([
+                    'tujuan_id' => $data->id,
+                    'file_type' => $file_type,
+                    'url' => $saved_photo_url,
+                    'description' => $descripton,
+                ]);
+
+                //save image 1
+                $files_opt_4_photo = $request->file('opt_4_photo');
+                foreach ($files_opt_4_photo as $opt_4_photo) {
+
+                    // dd($opt_3_photo);    
+                    $file_type = $opt_4_photo->extension();
+                    $saved_photo_url = $opt_4_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                    $descripton = "opt_4_photo";
+
+                    $lampiran = Lampiran::create([
+                        'tujuan_id' => $data->id,
+                        'file_type' => $file_type,
+                        'url' => $saved_photo_url,
+                        'description' => $descripton,
+                    ]);
+                }
+
+                //save image 2
+                $files_opt_4_2_photo = $request->file('opt_4_2_photo');
+                foreach ($files_opt_4_2_photo as $opt_4_2_photo) {
+
+                    // dd($opt_3_photo);    
+                    $file_type = $opt_4_2_photo->extension();
+                    $saved_photo_url = $opt_4_2_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                    $descripton = "opt_4_2_photo";
+
+                    $lampiran = Lampiran::create([
+                        'tujuan_id' => $data->id,
+                        'file_type' => $file_type,
+                        'url' => $saved_photo_url,
+                        'description' => $descripton,
+                    ]);
+                }
+            } elseif ($data->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") { //-------------------- OPTION 5 --------------------
+
+                //save file 1
+                $saved_photo_url = $request->file('opt_5_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $file_type = $request->file('opt_5_file_1')->extension();
+                $descripton = "opt_5_file_1";
+
+                $lampiran = Lampiran::create([
+                    'tujuan_id' => $data->id,
+                    'file_type' => $file_type,
+                    'url' => $saved_photo_url,
+                    'description' => $descripton,
+                ]);
+
+                //save file 2
+                if ($request->hasFile('opt_5_file_2')) { // not required
+                    $saved_photo_url = $request->file('opt_5_file_2')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                    $file_type = $request->file('opt_5_file_2')->extension();
+                    $descripton = "opt_5_file_2";
+
+                    $lampiran = Lampiran::create([
+                        'tujuan_id' => $data->id,
+                        'file_type' => $file_type,
+                        'url' => $saved_photo_url,
+                        'description' => $descripton,
+                    ]);
+                }
+
+
+                //save file 3
+                $saved_photo_url = $request->file('opt_5_file_3')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
+                $file_type = $request->file('opt_5_file_3')->extension();
+                $descripton = "opt_5_file_3";
+
+                $lampiran = Lampiran::create([
+                    'tujuan_id' => $data->id,
+                    'file_type' => $file_type,
+                    'url' => $saved_photo_url,
+                    'description' => $descripton,
+                ]);
+
+                if ($request->hasFile('opt_5_photo')) { // not required for GEREJA
+                    //save image 1
+                    $files_opt_5_photo = $request->file('opt_5_photo');
+                    foreach ($files_opt_5_photo as $opt_5_photo) {
+
+                        // dd($opt_3_photo);    
+                        $file_type = $opt_5_photo->extension();
+                        $saved_photo_url = $opt_5_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
+                        $descripton = "opt_5_photo";
+
+                        $lampiran = Lampiran::create([
+                            'tujuan_id' => $data->id,
+                            'file_type' => $file_type,
+                            'url' => $saved_photo_url,
+                            'description' => $descripton,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        //======================================================= END OF CREATE TUJUAN AND LAMPIRAN =======================================================
+
+
+        //======================================================= SUCCESSFULL AND REDIRECT =======================================================
+
+        return redirect()->route('users.permohonan.sedang-diproses')->with('success', 'Permohonan anda berjaya dihantar.');
+
+        //======================================================= END OF SUCCESSFULL AND REDIRECT =======================================================
     }
 
     public function permohonan_lulus()

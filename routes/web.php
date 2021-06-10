@@ -65,6 +65,10 @@ Route::middleware([User::class])->group(function(){
 
     Route::get('/halaman-utama/permohonan/permohonan-sedang-diproses', [App\Http\Controllers\PermohonanController::class, 'permohonan_proses'])->name('users.permohonan.sedang-diproses');
 
+    Route::get('/halaman-utama/permohonan/permohonan-sedang-diproses/semakan-semula-permohonan', [App\Http\Controllers\PermohonanController::class, 'permohonan_semakan_semula'])->name('users.permohonan.semak-semula');
+
+    Route::post('/halaman-utama/permohonan/permohonan-sedang-diproses/semakan-semula-permohonan/hantar', [App\Http\Controllers\PermohonanController::class, 'hantar_permohonan_semakan_semula'])->name('users.permohonan.semak-semula.hantar');
+
     Route::get('/halaman-utama/permohonan/permohonan-lulus', [App\Http\Controllers\PermohonanController::class, 'permohonan_lulus'])->name('users.permohonan.lulus');
 
     Route::get('/halaman-utama/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\PermohonanController::class, 'permohonan_tidak_lulus'])->name('users.permohonan.tidak-lulus');
@@ -84,6 +88,8 @@ Route::middleware([Exco::class])->group(function () {
     Route::get('/dashboard-exco/permohonan/permohonan-baru', [App\Http\Controllers\ExcoController::class, 'permohonan_baru'])->name('excos.permohonan.baru');
     
     Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan'])->name('excos.permohonan.papar');
+
+    Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan/semak-semula', [App\Http\Controllers\ExcoController::class, 'permohonan_semak_semula'])->name('excos.permohonan.papar.semak-semula');
 });
 
 //YB ROUTE
