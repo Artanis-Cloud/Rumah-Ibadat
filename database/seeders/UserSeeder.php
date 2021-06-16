@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
         DB::table('users')->delete();
         DB::table('users')->insert(
             [
+                'id' => '1',
                 'role' => '4',
                 'status' => '1',
                 'is_firstime' => '0',
@@ -34,6 +35,7 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert(
             [
+                'id' => '2',
                 'role' => '3',
                 'status' => '1',
                 'is_firstime' => '0',
@@ -48,6 +50,7 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert(
             [
+                'id' => '3',
                 'role' => '2',
                 'status' => '1',
                 'is_firstime' => '0',
@@ -60,8 +63,20 @@ class UserSeeder extends Seeder
             ]
         );
 
+        DB::table('user_roles')->insert(
+            [
+                'user_id' => '3',
+
+                'tokong' => '1',
+                'kuil_h' => '0',
+                'kuil_g' => '0',
+                'gereja' => '0',
+            ]
+        );
+
         DB::table('users')->insert(
             [
+                'id' => '4',
                 'role' => '1',
                 'status' => '1',
                 'is_firstime' => '0',
@@ -73,5 +88,17 @@ class UserSeeder extends Seeder
                 'password' => $hashed_random_password,
             ]
         );
+
+        DB::table('user_roles')->insert(
+            [
+                'user_id' => '4',
+
+                'tokong' => '1',
+                'kuil_h' => '0',
+                'kuil_g' => '0',
+                'gereja' => '0',
+            ]
+        );
+        
     }
 }

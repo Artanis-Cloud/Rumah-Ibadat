@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Storage;
 
 use App\Models\User;
+use App\Models\UserRole;
+use App\Models\RumahIbadat;
 use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
 use PDF;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -25,7 +28,7 @@ class ExcoController extends Controller
         $count_failed_application = Permohonan::where('status', '3')->count();
 
         $new_application = Permohonan::where('exco_id', null)->get();
-
+        
         return view('excos.dashboard', compact('count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application'));
     }
 
@@ -78,6 +81,12 @@ class ExcoController extends Controller
             if ($review == "AKTIVITI KEAGAMAAN") {
                 foreach($permohonan->tujuan as $key => $tujuan){
                     if($tujuan->tujuan == "AKTIVITI KEAGAMAAN"){
+
+                        //update status tujuan
+                        $tujuan->status = 2;
+                        $tujuan->save();
+
+                        //delete all attachment
                         $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
                         $lampiran->each->delete();
                     }
@@ -87,6 +96,12 @@ class ExcoController extends Controller
             if ($review == "PENDIDIKAN KEAGAMAAN") {
                 foreach ($permohonan->tujuan as $key => $tujuan) {
                     if ($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN") {
+
+                        //update status tujuan
+                        $tujuan->status = 2;
+                        $tujuan->save();
+
+                        //delete all attachment
                         $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
                         $lampiran->each->delete();
                     }
@@ -96,6 +111,12 @@ class ExcoController extends Controller
             if ($review == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") {
                 foreach ($permohonan->tujuan as $key => $tujuan) {
                     if ($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") {
+
+                        //update status tujuan
+                        $tujuan->status = 2;
+                        $tujuan->save();
+
+                        //delete all attachment
                         $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
                         $lampiran->each->delete();
                     }
@@ -105,6 +126,12 @@ class ExcoController extends Controller
             if ($review == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") {
                 foreach ($permohonan->tujuan as $key => $tujuan) {
                     if ($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") {
+
+                        //update status tujuan
+                        $tujuan->status = 2;
+                        $tujuan->save();
+
+                        //delete all attachment
                         $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
                         $lampiran->each->delete();
                     }
@@ -114,6 +141,12 @@ class ExcoController extends Controller
             if ($review == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") {
                 foreach ($permohonan->tujuan as $key => $tujuan) {
                     if ($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") {
+
+                        //update status tujuan
+                        $tujuan->status = 2;
+                        $tujuan->save();
+
+                        //delete all attachment
                         $lampiran = Lampiran::where('tujuan_id', $tujuan->id)->get();
                         $lampiran->each->delete();
                     }
@@ -133,6 +166,7 @@ class ExcoController extends Controller
 
     public function permohonan_pengesahan(Request $request){
 
+        // dd($request->all());
         $user_id = auth()->user()->id; //current user id
         $current_date = date('Y-m-d H:i:s'); //get current date
         $permohonan = Permohonan::findorfail($request->permohonan_id);//look current permohonan
@@ -143,8 +177,49 @@ class ExcoController extends Controller
 
         $permohonan->save();
 
+        //save peruntukan value
+        foreach($permohonan->tujuan as $tujuan){
+
+            if($tujuan->tujuan == "AKTIVITI KEAGAMAAN"){
+                $tujuan->peruntukan = $request->peruntukan_1;
+                $tujuan->save();
+            }
+
+            if ($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN") {
+                $tujuan->peruntukan = $request->peruntukan_2;
+                $tujuan->save();
+            }
+
+            if ($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") {
+                $tujuan->peruntukan = $request->peruntukan_3;
+                $tujuan->save();
+            }
+
+            if ($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") {
+                $tujuan->peruntukan = $request->peruntukan_4;
+                $tujuan->save();
+            }
+
+            if ($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") {
+                $tujuan->peruntukan = $request->peruntukan_5;
+                $tujuan->save();
+            }
+        }
+
         //redirect
         return redirect()->route('excos.permohonan.baru')->with('success', 'Status permohonan telah disahkan.');
+    }
+
+    public function permohonan_pembatalan(Request $request)
+    {
+        //find current permohonan
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        //update status permohonan
+        $permohonan->status = 3;
+        $permohonan->save();
+
+        return redirect()->route('excos.permohonan.baru')->with('success', 'Permohonan telah dibatalkan.');
     }
 
     public function download_permohonan(Request $request){

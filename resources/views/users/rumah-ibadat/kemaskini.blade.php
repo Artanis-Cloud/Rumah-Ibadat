@@ -24,7 +24,7 @@
                     <div class="col-md">
                       <div class="card-header" style="text-align: justify; text-justify: inter-word; border: 2px solid black;">
                       <h5>Arahan:</h5>
-                      <span>- Bahagian yang bertanda {<label class="required"></label>} wajib di isi oleh pengguna.</span>
+                      <span>- Bahagian yang bertanda (<label class="required"></label>) wajib di isi oleh pengguna.</span>
                       </div>
                     </div>
                     <div class="col-md-2">
@@ -39,10 +39,10 @@
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
                           <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ $rumah_ibadat->category }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
-                              <option value="TOKONG"    {{ $rumah_ibadat->category == "TOKONG"  ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
-                              <option value="KUIL_H"    {{ $rumah_ibadat->category == "KUIL_H"  ? 'selected' : '' }} >KUIL (HINDU)</option>
-                              <option value="KUIL_G"    {{ $rumah_ibadat->category == "KUIL_G"  ? 'selected' : '' }} >KUIL (GURDWARA)</option>
-                              <option value="GEREJA"    {{ $rumah_ibadat->category == "GEREJA"  ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
+                              <option value="TOKONG"    {{ $rumah_ibadat->category == "TOKONG"    ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
+                              <option value="KUIL"      {{ $rumah_ibadat->category == "KUIL"      ? 'selected' : '' }} >KUIL (HINDU)</option>
+                              <option value="GURDWARA"  {{ $rumah_ibadat->category == "GURDWARA"  ? 'selected' : '' }} >GURDWARA (SIKH)</option>
+                              <option value="GEREJA"    {{ $rumah_ibadat->category == "GEREJA"    ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
                           </select>
                           @error('category')
                           <span class="invalid-feedback" role="alert">
@@ -52,7 +52,7 @@
                       </div>
                     </div>
                     <div class="col-md">
-                      <label class="required">Nama Penuh Persatuan Rumah Ibadat</label>
+                      <label class="required">Nama Penuh Persatuan Rumah Ibadat Mengikut Sijil</label>
                       <div class="form-group mb-3">
                           <input class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror" id="name_association" name="name_association" type="text" value="{{ $rumah_ibadat->name_association }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                           @error('name_association')

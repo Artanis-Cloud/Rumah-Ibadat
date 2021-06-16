@@ -1,4 +1,4 @@
-@extends('layouts.layout-exco')
+@extends('layouts.layout-yb')
 @section('content')
 
 
@@ -995,7 +995,36 @@
                     <div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionFive">
                       <div class="card-body border border-info">
 
-                        {{-- <h3 style="text-align: center; padding-bottom: 15px;">Bahagian Ulasan</h3>
+                        <h3 style="text-align: center; padding-bottom: 15px;">Bahagian Ulasan</h3>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <label>Exco yang menyokong:</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('exco_name') is-invalid @else border-dark @enderror" id="exco_name" name="exco_name" type="text" value="{{ $exco->name }}" disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <label>Tarikh disokong:</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('exco_date') is-invalid @else border-dark @enderror" id="exco_date" name="exco_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('d-m-Y') }}" disabled>
+                            </div>
+                          </div>
+
+                          <div class="col-md">
+                            <label>Waktu disokong:</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('exco_time') is-invalid @else border-dark @enderror" id="exco_time" name="exco_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('h:m:s') }}" disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
 
                         <div class="row">
                           <div class="col-md-1"></div>
@@ -1004,14 +1033,14 @@
                                 <div class="card-header bg-dark">
                                     <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Exco</h4></div>
                                 <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
+                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_exco }}</textarea>
                                 </div>
                             </div>
                           </div>
                           <div class="col-md-1"></div>
                         </div>
 
-                        <hr> --}}
+                        <hr>
 
                         <h3 style="text-align: center; padding-bottom: 15px;">Keputusan Permohonan</h3> 
 
@@ -1084,10 +1113,10 @@
                       </button>
                     </div>
 
-                    <form action="{{ route('excos.permohonan.papar.sahkan') }}">
+                    <form action="{{ route('ybs.permohonan.papar.sahkan') }}">
 
                     <div class="modal-body">
-                      Anda pasti mahu mengesahkan permohonan ini?
+                      Anda pasti mahu menyokong permohonan ini?
 
                       <hr>
 
@@ -1104,35 +1133,35 @@
                                   @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
                                     <tr>
                                         <td>AKTIVITI KEAGAMAAN</td>
-                                        <td><input type="text" id="peruntukan_1" name="peruntukan_1" class="form-control form-control-sm" placeholder="Masukkan Nilai" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
+                                        <td><input type="text" id="peruntukan_1" name="peruntukan_1" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
                                     </tr>
                                   @endif
 
                                   @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN")
                                     <tr>
                                         <td>PENDIDIKAN KEAGAMAAN</td>
-                                        <td><input type="text" id="peruntukan_2" name="peruntukan_2" class="form-control form-control-sm" placeholder="Masukkan Nilai" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
+                                        <td><input type="text" id="peruntukan_2" name="peruntukan_2" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
                                     </tr>
                                   @endif
 
                                   @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
                                     <tr>
                                         <td>PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN</td>
-                                        <td><input type="text" id="peruntukan_3" name="peruntukan_3" class="form-control form-control-sm" placeholder="Masukkan Nilai" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
+                                        <td><input type="text" id="peruntukan_3" name="peruntukan_3" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
                                     </tr>
                                   @endif
 
                                   @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
                                     <tr>
                                         <td>BAIK PULIH/PENYELENGGARAAN BANGUNAN</td>
-                                        <td><input type="text" id="peruntukan_4" name="peruntukan_4" class="form-control form-control-sm" placeholder="Masukkan Nilai" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
+                                        <td><input type="text" id="peruntukan_4" name="peruntukan_4" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
                                     </tr>
                                   @endif
 
                                   @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
                                     <tr>
                                         <td>PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT</td>
-                                        <td><input type="text" id="peruntukan_5" name="peruntukan_5" class="form-control form-control-sm" placeholder="Masukkan Nilai" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
+                                        <td><input type="text" id="peruntukan_5" name="peruntukan_5" class="form-control form-control-sm" placeholder="Masukkan Nilai" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
                                     </tr>
                                   @endif
 
@@ -1144,16 +1173,33 @@
                           </table>
                       </div>
 
+                      <hr>
 
+                      <div class="row">
+                        <div class="col-md">
+                          <label>Kaedah Pembayaran</label><br>
+                            <fieldset class="radio">
+                                <label>
+                                    <input type="radio" name="payment" value="CEK" checked> Cek
+                                </label>
+                            </fieldset>
+                            <fieldset class="radio">
+                                <label>
+                                    <input type="radio" name="payment" value="EFT"> EFT
+                                </label>
+                            </fieldset>
+                        </div>
+                      </div>
+                      
                       <hr>
 
                       <div class="row">
                         <div class="col-md">
                           <div class="card text-white">
                                 <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Exco</h4></div>
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Yb</h4></div>
                                 <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="review_exco" name="review_exco" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
+                                    <textarea class="form-control text-uppercase  border-dark " id="review_yb" name="review_yb" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -1163,7 +1209,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                       <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
-                      <button type="submit" class="btn btn-success">Sahkan Permohonan</button>
+                      <button type="submit" class="btn btn-success">Permohonan Disokong</button>
                     </div>
 
                     </form>
@@ -1171,6 +1217,7 @@
                   </div>
                 </div>
               </div>
+
 
                 <!-- Modal Rejection -->
               <div class="modal fade" id="confirmation_batal_permohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1183,7 +1230,7 @@
                       </button>
                     </div>
 
-                    <form action="{{ route('excos.permohonan.papar.batalkan') }}">
+                    <form action="{{ route('ybs.permohonan.papar.batalkan') }}">
 
                     <div class="modal-body">
                       Anda pasti tidak menyokong permohonan ini?
@@ -1212,7 +1259,7 @@
                       </button>
                     </div>
 
-                    <form action="{{ route('excos.permohonan.papar.semak-semula') }}">
+                    <form action="{{ route('ybs.permohonan.papar.semak-semula') }}">
 
                     <div class="modal-body">
 
@@ -1479,112 +1526,7 @@
       document.getElementById("semak_semula_disable").style.display = "block";
     }
   }
-
-  //================================== INPUT NUMBER AND DOTS ONLY ==================================
-
-  function fun_AllowOnlyAmountAndDot(txt)
-  {
-      if(event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 46)
-      {
-          var txtbx=document.getElementById(txt);
-          var amount = document.getElementById(txt).value;
-          var present=0;
-          var count=0;
-
-          if(amount.indexOf(".",present)||amount.indexOf(".",present+1));
-          {
-        // alert('0');
-          }
-
-        /*if(amount.length==2)
-        {
-          if(event.keyCode != 46)
-          return false;
-        }*/
-          do
-          {
-          present=amount.indexOf(".",present);
-          if(present!=-1)
-          {
-            count++;
-            present++;
-            }
-          }
-          while(present!=-1);
-          if(present==-1 && amount.length==0 && event.keyCode == 46)
-          {
-              event.keyCode=0;
-              //alert("Wrong position of decimal point not  allowed !!");
-              return false;
-          }
-
-          if(count>=1 && event.keyCode == 46)
-          {
-
-              event.keyCode=0;
-              //alert("Only one decimal point is allowed !!");
-              return false;
-          }
-          if(count==1)
-          {
-          var lastdigits=amount.substring(amount.indexOf(".")+1,amount.length);
-          if(lastdigits.length>=2)
-                      {
-                        //alert("Two decimal places only allowed");
-                        event.keyCode=0;
-                        return false;
-                        }
-          }
-              return true;
-      }
-      else
-      {
-              event.keyCode=0;
-              //alert("Only Numbers with dot allowed !!");
-              return false;
-      }
-
-  }
 </script>
-
-{{-- <script>
-//================================== INPUT NUMBER AND DOTS ONLY ==================================
-
-var currencyInput = document.querySelector('input[type="text"]')
-var currency = 'MYR' // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
-
- // format inital value
-onBlur({target:currencyInput})
-
-// bind event listeners
-currencyInput.addEventListener('focus', onFocus)
-currencyInput.addEventListener('blur', onBlur)
-
-
-function localStringToNumber( s ){
-  return Number(String(s).replace(/[^0-9.-]+/g,""))
-}
-
-function onFocus(e){
-  var value = e.target.value;
-  e.target.value = value ? localStringToNumber(value) : ''
-}
-
-function onBlur(e){
-  var value = e.target.value
-
-  var options = {
-      maximumFractionDigits : 2,
-      currency              : currency,
-      style                 : "currency",
-      currencyDisplay       : "symbol"
-  }
-  
-  e.target.value = (value || value === 0) 
-    ? localStringToNumber(value).toLocaleString(undefined, options)
-    : ''
-}
-</script> --}}
 
 {{-- <script>
   //show or hide payment method

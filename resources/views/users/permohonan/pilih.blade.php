@@ -33,7 +33,7 @@
                       <p class="card-text">Sekiranya permohonan anda sedang diproses, sila pilih bahagian ini.</p>
                   </div>
                   <div class="card-footer">
-                    <a href="javacript:void(0)" class="btn btn-info">Senarai Permohonan Sedang Diproses</a>
+                    <a href="{{ route('users.permohonan.sedang-diproses') }}" class="btn btn-info">Senarai Permohonan Sedang Diproses</a>
                   </div>
                 </div>
               </div>
@@ -47,7 +47,7 @@
                       <p class="card-text">Sekiranya permohonan anda lulus, sila pilih bahagian ini.</p>
                   </div>
                   <div class="card-footer">
-                    <a href="javacript:void(0)" class="btn btn-info">Senarai Permohonan Lulus</a>
+                    <a href="{{ route('users.permohonan.lulus') }}" class="btn btn-info">Senarai Permohonan Lulus</a>
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                       <p class="card-text">Sekiranya permohonan anda tidak lulus, sila pilih bahagian ini.</p>
                   </div>
                   <div class="card-footer">
-                    <a href="javacript:void(0)" class="btn btn-info">Senarai Permohonan Tidak Lulus</a>
+                    <a href="{{ route('users.permohonan.tidak-lulus') }}" class="btn btn-info">Senarai Permohonan Tidak Lulus</a>
                   </div>
                 </div>
               </div>

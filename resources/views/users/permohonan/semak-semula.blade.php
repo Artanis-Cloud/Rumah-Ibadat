@@ -161,7 +161,7 @@
 
                 @foreach($permohonan->tujuan as $key => $tujuan)
 
-                  @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
+                  @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN" && $tujuan->status == 2)
 
                   <input type="hidden" id="tujuan_1" name="tujuan_1" value="AKTIVITI KEAGAMAAN" disabled>
 
@@ -213,7 +213,7 @@
 
                   @endif
 
-                  @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN")
+                  @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN" && $tujuan->status == 2)
 
                   <input type="hidden" id="tujuan_2" name="tujuan_2" value="PENDIDIKAN KEAGAMAAN" disabled>
 
@@ -247,7 +247,7 @@
 
                   @endif
 
-                  @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
+                  @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN" && $tujuan->status == 2)
 
                   <input type="hidden" id="tujuan_3" name="tujuan_3" value="PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN" disabled>
 
@@ -311,7 +311,7 @@
 
                   @endif
 
-                  @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
+                  @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN" && $tujuan->status == 2)
 
                   <input type="hidden" id="tujuan_4" name="tujuan_4" value="BAIK PULIH/PENYELENGGARAAN BANGUNAN" disabled>
 
@@ -405,7 +405,7 @@
 
                   @endif
 
-                  @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
+                  @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT" && $tujuan->status == 2)
 
                   <input type="hidden" id="tujuan_5" name="tujuan_5" value="PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT" disabled>
 

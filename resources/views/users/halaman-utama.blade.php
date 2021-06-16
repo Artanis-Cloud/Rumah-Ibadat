@@ -15,54 +15,54 @@
       <div class="row">
 
         <div class="col-md-4">
-          <a href="{{ route('users.permohonan.baru') }}">
-            <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-                <div class="text-white border card-body bg-info border-dark">
-                    <div class="row">
-                      <div class="col-4" style="text-align: center;">
-                        <i class="fas fa-file fa-5x"></i>
-                      </div>
-                      <div class="col-8">
-                        <h3>Permohonan<br> Baru</h3>
-                      </div>
+          <a class="card bg-info" href="{{ route('users.permohonan.baru') }}">
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center">
+                        <div class="row">
+                          <div class="col-4" style="text-align: center;">
+                            <i class="fas fa-file fa-5x" style="color: white;"></i>
+                          </div>
+                          <div class="col-8">
+                            <h3 class="text-light">Permohonan Baru</h3>
+                          </div>
+                        </div>
                     </div>
                 </div>
-            </div>
           </a>
         </div>
 
         <div class="col-md-4">
-          <a href="{{ route('users.rumah-ibadat.pilih') }}">
-            <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-              <div class="text-white border card-body bg-info border-dark">
-                  <div class="row">
-                    <div class="col-4" style="text-align: center;">
-                      <i class="fas fa-place-of-worship fa-5x"></i>
+          <a class="card bg-info" href="{{ route('users.rumah-ibadat.pilih') }}">
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center">
+                        <div class="row">
+                          <div class="col-4" style="text-align: center;">
+                            <i class="fas fa-place-of-worship fa-5x" style="color: white;"></i>
+                          </div>
+                          <div class="col-8">
+                            <h3 class="text-light">Rumah Ibadat</h3>
+                          </div>
+                        </div>
                     </div>
-                    <div class="col-8">
-                      <h3>Rumah<br> Ibadat</h3>
-                    </div>
-                  </div>
-              </div>
-            </div>
+                </div>
           </a>
         </div>
 
         <div class="col-md-4">
-          <a href="{{ route('users.permohonan.pilih') }}">
-            <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-              <div class="text-white border card-body bg-info border-dark">
-                  <div class="row">
-                    <div class="col-4" style="text-align: center;">
-                      <i class="fas fa-clipboard-list fa-5x"></i>
+          <a class="card bg-info" href="{{ route('users.permohonan.pilih') }}">
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center">
+                        <div class="row">
+                          <div class="col-4" style="text-align: center;">
+                            <i class="fas fa-clipboard-list fa-5x" style="color: white;"></i>
+                          </div>
+                          <div class="col-8">
+                            <h3 class="text-light">Senarai Permohonan</h3>
+                          </div>
+                        </div>
                     </div>
-                    <div class="col-8">
-                      <h3>Senarai Permohonan</h3>
-                    </div>
-                  </div>
-              </div>
-          </div>
-        </a>
+                </div>
+          </a>
         </div>
 
       </div>

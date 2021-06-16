@@ -17,7 +17,7 @@ class Permohonan extends Model
         'user_id',                  //user id
 
         //remarks permohonan
-        'status',                   //(0-Semak Semula)(1-Sedang Diproses)(2-Lulus)(3-Tidak Lulus)
+        'status',                   //(0-Semak Semula)(1-Sedang Diproses)(2-Lulus)(3-Tidak Lulus)(4-Batal)
         'batch',                    //1 Batch can have 10 permohonan & batch start after...
 
         //before permohonan
@@ -55,16 +55,19 @@ class Permohonan extends Model
 
         if($rumah_ibadat->category == "TOKONG"){
 
-            return sprintf('TKG-%06d', $this->reference_number);
+            return sprintf('T%06d', $this->reference_number);
 
-        }elseif($rumah_ibadat->category == "KUIL_H" || $rumah_ibadat->category == "KUIL_G"){
+        }elseif($rumah_ibadat->category == "KUIL" ){
 
-            return sprintf('KUL-%06d', $this->reference_number);
+            return sprintf('K%06d', $this->reference_number);
 
-        }elseif($rumah_ibadat->category == "GEREJA"){
+        }elseif($rumah_ibadat->category == "GURDWARA"){
 
-            return sprintf('GRG-%06d', $this->reference_number);
+            return sprintf('G%06d', $this->reference_number);
 
+        }elseif ($rumah_ibadat->category == "GEREJA") {
+
+            return sprintf('C%06d', $this->reference_number);
         }
     }
 

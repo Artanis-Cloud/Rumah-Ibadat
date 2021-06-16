@@ -24,7 +24,9 @@ class CreateTujuansTable extends Migration
                                                                                         //(3-Pembelian Peralatan Untuk Kelas Keagamaan)
                                                                                         //(4-Baik Pulih/Penyelenggaraan Bangunan)
                                                                                         //(5-Pemindahan/Pembinaan Baru Rumah Ibadat)
-            $table->string('status')->default('0');                                     //(0- Tidak Lulus)(1- Lulus)
+            
+            $table->string('peruntukan')->default('0.00'); 
+            $table->string('status')->default('0');                                     //(0- Tidak Lulus)(1- Lulus)(2- Semak Semula)
 
             $table->timestamps();//default
         });

@@ -65,6 +65,8 @@ Route::middleware([User::class])->group(function(){
 
     Route::get('/halaman-utama/permohonan/permohonan-sedang-diproses', [App\Http\Controllers\PermohonanController::class, 'permohonan_proses'])->name('users.permohonan.sedang-diproses');
 
+    Route::get('/halaman-utama/permohonan/permohonan-sedang-diproses/batal', [App\Http\Controllers\PermohonanController::class, 'batal_permohonan'])->name('users.permohonan.sedang-diproses.batal');
+
     Route::get('/halaman-utama/permohonan/permohonan-sedang-diproses/semakan-semula-permohonan', [App\Http\Controllers\PermohonanController::class, 'permohonan_semakan_semula'])->name('users.permohonan.semak-semula');
 
     Route::post('/halaman-utama/permohonan/permohonan-sedang-diproses/semakan-semula-permohonan/hantar', [App\Http\Controllers\PermohonanController::class, 'hantar_permohonan_semakan_semula'])->name('users.permohonan.semak-semula.hantar');
@@ -92,11 +94,25 @@ Route::middleware([Exco::class])->group(function () {
     Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan/semak-semula', [App\Http\Controllers\ExcoController::class, 'permohonan_semak_semula'])->name('excos.permohonan.papar.semak-semula');
 
     Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan/sahkan', [App\Http\Controllers\ExcoController::class, 'permohonan_pengesahan'])->name('excos.permohonan.papar.sahkan');
+
+    Route::get('/dashboard-exco/permohonan/permohonan-baru/maklumat-permohonan/batalkan', [App\Http\Controllers\ExcoController::class, 'permohonan_pembatalan'])->name('excos.permohonan.papar.batalkan');
 });
 
 //YB ROUTE
 Route::middleware([Yb::class])->group(function () {
     Route::get('/dashboard-yb', [App\Http\Controllers\YbController::class, 'dashboard'])->name('ybs.dashboard');
+
+    Route::get('/dashboard-yb/permohonan', [App\Http\Controllers\YbController::class, 'permohonan'])->name('ybs.permohonan.pilih');
+
+    Route::get('/dashboard-yb/permohonan/permohonan-baru', [App\Http\Controllers\YbController::class, 'permohonan_baru'])->name('ybs.permohonan.baru');
+
+    Route::get('/dashboard-yb/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\YbController::class, 'papar_permohonan'])->name('ybs.permohonan.papar');
+
+    Route::get('/dashboard-yb/permohonan/permohonan-baru/maklumat-permohonan/semak-semula', [App\Http\Controllers\YbController::class, 'permohonan_semak_semula'])->name('ybs.permohonan.papar.semak-semula');
+
+    Route::get('/dashboard-yb/permohonan/permohonan-baru/maklumat-permohonan/sahkan', [App\Http\Controllers\YbController::class, 'permohonan_pengesahan'])->name('ybs.permohonan.papar.sahkan');
+
+    Route::get('/dashboard-yb/permohonan/permohonan-baru/maklumat-permohonan/batalkan', [App\Http\Controllers\YbController::class, 'permohonan_pembatalan'])->name('ybs.permohonan.papar.batalkan');
 
 });
 
@@ -118,6 +134,8 @@ Route::middleware([Admin::class])->group(function () {
     Route::get('/dashboard-admin/pengguna/senarai-pemohon', [App\Http\Controllers\AdminController::class, 'pemohon'])->name('admins.pengguna.pemohon');
 
     Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman', [App\Http\Controllers\AdminController::class, 'pengguna_dalaman'])->name('admins.pengguna.pengguna-dalaman');
+
+
 
 });
 

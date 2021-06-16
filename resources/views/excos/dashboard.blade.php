@@ -11,17 +11,15 @@
 <!-- ============================================================== -->
 <div class="row">
     <div class="col-lg-3 col-md-6">
-        <a href="{{ route('excos.permohonan.baru') }}">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <div class="d-flex no-block align-items-center">
-                        <div class="text-white">
-                            <h2>{{ $count_new_application }}</h2>
-                            <h6>Permohonan <br>Baru</h6>
-                        </div>
-                        <div class="ml-auto">
-                            <span class="text-white display-6"><i class="fas fa-clipboard"></i></span>
-                        </div>
+        <a class="card bg-info" href="{{ route('excos.permohonan.baru') }}">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div class="text-white">
+                        <h2>{{ $count_new_application }}</h2>
+                        <h6>Permohonan <br>Baru</h6> 
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-white display-6"><i class="fas fa-clipboard"></i></span>
                     </div>
                 </div>
             </div>
@@ -250,7 +248,7 @@
         </div>
     </div>
     <div class="col-lg-6 col-md-12">
-        <div class="card">
+        <div class="card" style="border: 1px solid black">
             <div class="card-body">
                 <h4 class="card-title">Permohonan Terkini</h4>
             </div>
@@ -258,17 +256,17 @@
 
                 @foreach($new_application as $data)
                     <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">{{ $data->rumah_ibadat->name_association }}</h6>
-                        <span class="m-b-15 d-block">{{ $data->user->name }}</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</span>
-                            <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span>
+                        <div class="comment-text active w-100">
+                            <h6 class="font-medium">{{ $data->rumah_ibadat->name_association }}</h6>
+                            <span class="m-b-15 d-block">{{ $data->user->name }}</span>
+                            <div class="comment-footer ">
+                                <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
+                                <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
-                
+
             </div>
         </div>
     </div>
