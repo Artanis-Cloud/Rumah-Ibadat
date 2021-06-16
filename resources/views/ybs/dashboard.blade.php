@@ -11,26 +11,28 @@
 <!-- ============================================================== -->
 <div class="row">
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-info">
-            <div class="card-body">
-                <div class="d-flex no-block align-items-center">
-                    <div class="text-white">
-                        <h2>120</h2>
-                        <h6>Permohonan <br>Baru</h6>
-                    </div>
-                    <div class="ml-auto">
-                        <span class="text-white display-6"><i class="fas fa-clipboard"></i></span>
+        <a class="card bg-info" href="{{ route('ybs.permohonan.baru') }}">
+            {{-- <div class="card bg-info"> --}}
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center">
+                        <div class="text-white">
+                            <h2>{{ $count_new_application }}</h2>
+                            <h6>Permohonan <br>Baru</h6>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="text-white display-6"><i class="fas fa-clipboard"></i></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            {{-- </div> --}}
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
         <div class="card bg-warning">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>150</h2>
+                        <h2>{{ $count_processing_application }}</h2>
                         <h6>Permohonan <br>Sedang Diproses</h6>
                     </div>
                     <div class="ml-auto">
@@ -45,7 +47,7 @@
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>450</h2>
+                        <h2>{{ $count_passed_application }}</h2>
                         <h6>Permohonan <br>Lulus</h6>
                     </div>
                     <div class="ml-auto">
@@ -60,7 +62,7 @@
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>100</h2>
+                        <h2>{{ $count_failed_application }}</h2>
                         <h6>Permohonan <br>Tidak Lulus</h6>
                     </div>
                     <div class="ml-auto">
@@ -248,58 +250,25 @@
         </div>
     </div>
     <div class="col-lg-6 col-md-12">
-        <div class="card">
+        <div class="card" style="border: 1px solid black">
             <div class="card-body">
                 <h4 class="card-title">Permohonan Terkini</h4>
             </div>
             <div class="comment-widgets scrollable" style="height:490px;">
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Mr Choo</h6>
-                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Irsan</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">April 13, 2021</span>
-                            <span class="label label-success label-primary">Sedang Diproses</span>
+
+                @foreach($new_application as $data)
+                    <div class="flex-row d-flex comment-row">
+                        <div class="comment-text active w-100">
+                            <h6 class="font-medium">{{ $data->rumah_ibadat->name_association }}</h6>
+                            <span class="m-b-15 d-block">{{ $data->user->name }}</span>
+                            <div class="comment-footer ">
+                                <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
+                                <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row m-t-0">
-                    {{-- <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/1.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div> --}}
-                    <div class="comment-text w-100">
-                        <h6 class="font-medium">Toh Khim Hwa</h6>
-                        <span class="m-b-15 d-block">Permohonan Bantuan Kewangan Persatuan Rumah Ibadat Kaum Tionghoa</span>
-                        <div class="comment-footer">
-                            <span class="float-right text-muted">April 10, 2021</span>
-                            <span class="label label-success label-rounded">Diluluskan</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Lim Thian Ser</h6>
-                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Tin Hong See</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">Mac 15, 2021</span>
-                            <span class="label label-success label-rounded">Diluluskan</span>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Comment Row -->
-                 <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Kiang Chew Choy</h6>
-                        <span class="m-b-15 d-block">Permohonan Naiktaraf Temple Dewa Kuan Yin Ting</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">Februari 22, 2021</span>
-                            <span class="label label-success label-rounded">Diluluskan</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </div>

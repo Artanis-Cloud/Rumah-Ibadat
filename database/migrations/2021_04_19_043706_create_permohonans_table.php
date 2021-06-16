@@ -25,7 +25,7 @@ class CreatePermohonansTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');                      //user id
 
             //remarks permohonan
-            $table->string('status')->default('1');                                         //(0-Semak Semula)(1-Sedang Diproses)(2-Lulus)(3-Tidak Lulus)
+            $table->string('status')->default('1');                                         //(0-Semak Semula)(1-Sedang Diproses)(2-Lulus)(3-Tidak Lulus)(4-Batal)
             $table->string('batch')->nullable();                                            //1 Batch can have 10 permohonan & batch start after...
 
             //before permohonan

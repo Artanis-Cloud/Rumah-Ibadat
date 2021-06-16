@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/brands.css')}}">
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/solid.css')}}">
 
+    <!-- Toaster CSS -->
+    <link href="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{asset('nice-admin/assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
@@ -180,9 +182,35 @@
                                 </span>
                                 <div class="text-white d-flex no-block align-items-center p-15 bg-dark m-b-10" style="padding: 15px;">
                                     <div class="m-l-10">
+
                                         <h5 style="margin-bottom: 0px !important;">{{ Auth::user()->name }}</h5>
+
                                         <p style="margin-bottom: 0px !important;"><i class="fas fa-envelope"></i>&nbsp&nbsp&nbsp&nbsp{{ Auth::user()->email }}</p>
-                                        <p style="margin-bottom: 0px !important;"><i class="fas fa-crown"></i>&nbsp&nbsp&nbspExco</p>
+
+                                        <p style="margin-bottom: 0px !important;">
+                                            <i class="fas fa-crown"></i>&nbsp&nbsp&nbspExco
+                                        </p>
+
+                                        <p style="margin-bottom: 0px !important;">
+                                            <i class="fas fa-place-of-worship"></i>&nbsp&nbsp
+
+                                            @if(Auth::user()->user_role->tokong == "1")
+                                                    <span class="badge badge-info">TOKONG</span>
+                                            @endif
+
+                                            @if(Auth::user()->user_role->kuil_h == "1")
+                                                    <span class="badge badge-info">KUIL HINDU</span>
+                                            @endif
+
+                                            @if(Auth::user()->user_role->kuil_g == "1")
+                                                    <span class="badge badge-info">KUIL GURDWARA</span>
+                                            @endif
+
+                                            @if(Auth::user()->user_role->gereja == "1")
+                                                    <span class="badge badge-info">GEREJA</span>
+                                            @endif
+                                            
+                                        </p>
                                     </div>
                                 </div>
 
@@ -393,8 +421,12 @@
     <script src="{{asset('nice-admin/icon/js/brands.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/solid.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/fontawesome.js')}}"></script>
+
+    {{-- toaster --}}
+    <script src="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.js')}}"></script>
+    <script src="{{asset('nice-admin/assets/extra-libs/toastr/toastr-init.js')}}"></script>
     
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $("document").ready(function(){
             setTimeout(function(){
                 // $("div.alert").remove();
@@ -405,6 +437,14 @@
                 $("div.alert").addClass("alert-white");
             }, 5000 ); // 5 secs  (1 sec = 1000)
         });
+    </script> --}}
+
+    <script>
+        @if (Session::get('success'))
+            toastr.success('{{ session('success') }}', 'Berjaya', { "progressBar": true });
+        @elseif ($message = Session::get('error'))
+            toastr.error('{{ session('error') }}', 'Ralat', { "progressBar": true });
+        @endif
     </script>
     <!-- ============================================================== -->
     <!-- END Jquery NICE PAGE -->

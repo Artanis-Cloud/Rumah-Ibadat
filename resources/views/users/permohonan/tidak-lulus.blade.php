@@ -24,7 +24,7 @@
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
                                 <th class="all">TARIKH PERMOHONAN</th>
-                                <th class="all">TINDAKAN</th>
+                                <th class="all">SEBAB TIDAK LULUS</th>
                               </tr>
                           </thead>
 
@@ -35,7 +35,13 @@
                                     <td></td>
                                     <td>{{ $data->getPermohonanID() }}</td>
                                     <td>{{ $data->created_at }}</td>
-                                    <td><button type="button" class="btn btn-info"><i class="far fa-edit"></i></button></td>
+                                    <td>
+                                      @if($data->status == 3)
+                                      <span>Tidak Disokong</span>
+                                      @elseif($data->status == 4)
+                                      <span>Dibatalkan oleh pemohon</span>
+                                      @endif
+                                    </td>
                                 </tr>
                             @endforeach
 

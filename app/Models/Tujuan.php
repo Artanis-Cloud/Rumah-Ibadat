@@ -18,7 +18,9 @@ class Tujuan extends Model
                             //(3-Pembelian Peralatan Untuk Kelas Keagamaan)
                             //(4-Baik Pulih/Penyelenggaraan Bangunan)
                             //(5-Pemindahan/Pembinaan Baru Rumah Ibadat)
-        'status',
+                            
+        'peruntukan',                 
+        'status',           //(0- Tidak Lulus)(1- Lulus)(2- Semak Semula)
     ];
 
     public function permohonan()

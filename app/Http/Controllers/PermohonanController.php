@@ -38,7 +38,7 @@ class PermohonanController extends Controller
     }
 
     public function reference_number(){
-        $year = date('Y');
+        $year = substr(date('Y'), -2);
         $month = date('m');
         $date = date('d');
         $random = mt_rand(0, 9999); // better than rand()
@@ -325,6 +325,15 @@ class PermohonanController extends Controller
         return view('users.permohonan.sedang-diproses', compact('prosessing_application'));
     }
 
+    public function batal_permohonan(Request $request){
+
+        $permohonan = Permohonan::findorfail($request->permohonan_id_batal);
+        $permohonan->status = 4; 
+        $permohonan->save();
+
+        return redirect()->route('users.permohonan.tidak-lulus')->with('success', 'Permohonan anda berjaya dibatalkan.');
+    }
+
     public function permohonan_semakan_semula(Request $request)
     {
         // dd($request->all());
@@ -383,8 +392,12 @@ class PermohonanController extends Controller
         //======================================================= CREATE TUJUAN AND LAMPIRAN =======================================================
 
         foreach ($permohonan->tujuan as $data) {
+            // dd($data);
+            if ($data->tujuan == "AKTIVITI KEAGAMAAN" && $data->status == 2) {  //-------------------- OPTION 1 --------------------
 
-            if ($data->tujuan == "AKTIVITI KEAGAMAAN") {  //-------------------- OPTION 1 --------------------
+                //update status tujuan
+                $data->status = 2;
+                $data->save();
 
                 $files_opt_1_photo = $request->file('opt_1_photo');
                 foreach ($files_opt_1_photo as $opt_1_photo) {
@@ -400,7 +413,10 @@ class PermohonanController extends Controller
                         'description' => $descripton,
                     ]);
                 }
-            } elseif ($data->tujuan == "PENDIDIKAN KEAGAMAAN") { //-------------------- OPTION 2 --------------------
+            } elseif ($data->tujuan == "PENDIDIKAN KEAGAMAAN" && $data->status == 2) { //-------------------- OPTION 2 --------------------
+                //update status tujuan
+                $data->status = 2;
+                $data->save();
 
                 $saved_photo_url = $request->file('opt_2_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
                 $file_type = $request->file('opt_2_file_1')->extension();
@@ -412,7 +428,11 @@ class PermohonanController extends Controller
                     'url' => $saved_photo_url,
                     'description' => $descripton,
                 ]);
-            } elseif ($data->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") { //-------------------- OPTION 3 --------------------
+            } elseif ($data->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN" && $data->status == 2) { //-------------------- OPTION 3 --------------------
+
+                //update status tujuan
+                $data->status = 2;
+                $data->save();
 
                 //save file
                 $saved_photo_url = $request->file('opt_3_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
@@ -443,7 +463,11 @@ class PermohonanController extends Controller
                         'description' => $descripton,
                     ]);
                 }
-            } elseif ($data->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") { //-------------------- OPTION 4 --------------------
+            } elseif ($data->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN" && $data->status == 2) { //-------------------- OPTION 4 --------------------
+
+                //update status tujuan
+                $data->status = 2;
+                $data->save();
 
                 //save file
                 $saved_photo_url = $request->file('opt_4_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
@@ -490,7 +514,11 @@ class PermohonanController extends Controller
                         'description' => $descripton,
                     ]);
                 }
-            } elseif ($data->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") { //-------------------- OPTION 5 --------------------
+            } elseif ($data->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT" && $data->status == 2) { //-------------------- OPTION 5 --------------------
+
+                //update status tujuan
+                $data->status = 2;
+                $data->save();
 
                 //save file 1
                 $saved_photo_url = $request->file('opt_5_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
@@ -573,7 +601,7 @@ class PermohonanController extends Controller
     public function permohonan_tidak_lulus()
     {
         //GET 'PERMOHONAN TIDAK LULUS' LIST
-        $failed_application = Permohonan::where('user_id', auth()->user()->id)->where('status', '3')->get();
+        $failed_application = Permohonan::where('user_id', auth()->user()->id)->where('status', '3')->orWhere('status', '4')->get();
 
         return view('users.permohonan.tidak-lulus', compact('failed_application'));
     }
