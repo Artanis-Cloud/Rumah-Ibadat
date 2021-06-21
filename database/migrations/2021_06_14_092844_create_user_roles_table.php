@@ -20,8 +20,8 @@ class CreateUserRolesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');  //tujuan id
 
             $table->string('tokong')->default(0);                       //CINA
-            $table->string('kuil_h')->default(0);                       //HINDU                
-            $table->string('kuil_g')->default(0);                       //GURDWARA                
+            $table->string('kuil')->default(0);                       //HINDU                
+            $table->string('gurdwara')->default(0);                       //GURDWARA                
             $table->string('gereja')->default(0);                       //KRISTIAN                
 
             $table->timestamps();        

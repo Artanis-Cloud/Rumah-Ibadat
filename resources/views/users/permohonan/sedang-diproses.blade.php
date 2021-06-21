@@ -88,7 +88,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                      <form action="#">
+                                      <form action="{{ route('users.permohonan.papar-sedang-diproses') }}">
                                         <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                         <button class="btn btn-info"><i class="fas fa-eye"></i></button>
                                       </form>
@@ -121,7 +121,7 @@
                 <form action="{{ route('users.permohonan.sedang-diproses.batal') }}">
 
                 <div class="modal-body">
-                  Anda mahu membatalkan permohonan ini?
+                  <span id="message_cancellation"></span>
 
                 </div>
                 <div class="modal-footer">
@@ -146,6 +146,8 @@
 <script>
   function cancel_application(permohonan_id){
     $('#permohonan_id_batal').val(permohonan_id);//permohonan_id
+
+    $('#message_cancellation').html('Anda mahu membatalkan permohonan ini?');//modal message
 
     $("#confirmation_batal_permohonan").modal(); //display modal
   }

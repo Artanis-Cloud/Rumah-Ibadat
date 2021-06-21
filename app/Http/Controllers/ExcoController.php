@@ -39,7 +39,29 @@ class ExcoController extends Controller
 
     public function permohonan_baru()
     {
-        $processing_application = Permohonan::where('exco_id', null)->where('status', '1')->get();
+        if(auth()->user()->user_role->tokong == 1){
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('exco_id', null)->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('exco_id', null)->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('exco_id', null)->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('exco_id', null)->where('status', '1')->get();
+        }
         
         return view('excos.permohonan.baru', compact('processing_application'));
     }
@@ -222,6 +244,94 @@ class ExcoController extends Controller
         return redirect()->route('excos.permohonan.baru')->with('success', 'Permohonan telah dibatalkan.');
     }
 
+    public function permohonan_sedang_diproses()
+    {
+        if (auth()->user()->user_role->tokong == 1) {
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->get();
+        }
+
+        return view('excos.permohonan.sedang-diproses', compact('processing_application'));
+    }
+
+    public function papar_permohonan_sedang_diproses(Request $request)
+    {
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $exco = User::findorfail($permohonan->exco_id);
+
+        return view('excos.permohonan.papar-sedang-diproses', compact('permohonan', 'exco'));
+    }
+
+    public function permohonan_semakan_semula()
+    {
+        if (auth()->user()->user_role->tokong == 1) {
+            $review_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('exco_id', null)->where('yb_id', null)->where('status', '0')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $review_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('exco_id', null)->where('yb_id', null)->where('status', '0')->get();
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $review_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('exco_id', null)->where('yb_id', null)->where('status', '0')->get();
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $review_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('exco_id', null)->where('yb_id', null)->where('status', '0')->get();
+        }
+
+        return view('excos.permohonan.semak-semula', compact('review_application'));
+    }
+
+    public function papar_permohonan_semakan_semula(Request $request)
+    {
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        return view('excos.permohonan.papar-semak-semula', compact('permohonan'));
+    }
+
+    public function permohonan_lulus(Request $request)
+    {
+        $permohonan = Permohonan::where('status', '2')->get();
+
+        return view('excos.permohonan.lulus', compact('permohonan'));
+    }
+
+    public function permohonan_tidak_lulus(Request $request)
+    {
+        $permohonan = Permohonan::where('status', '3')->get();
+
+        return view('excos.permohonan.tidak-lulus', compact('permohonan'));
+    }
+
     public function download_permohonan(Request $request){
 
         $permohonan = Permohonan::findorfail($request->permohonan_id);
@@ -258,5 +368,25 @@ class ExcoController extends Controller
         } else{
             return redirect()->back()->with('error', 'file_type not exist!');  
         }
+    }
+
+    public function rumah_ibadat()
+    {
+        if (auth()->user()->user_role->tokong == 1) {
+            $rumah_ibadat = RumahIbadat::where('category', 'TOKONG')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $rumah_ibadat = RumahIbadat::where('category', 'KUIL')->get();
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $rumah_ibadat = RumahIbadat::where('category', 'GURDWARA')->get();
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $rumah_ibadat = RumahIbadat::where('category', 'GEREJA')->get();
+        }
+        return view('excos.rumah-ibadat.senarai', compact('rumah_ibadat'));
     }
 }

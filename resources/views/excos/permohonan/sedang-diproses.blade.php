@@ -45,7 +45,7 @@
                                   <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
 
                                   {{-- WAKTU PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('h:m:s') }}</td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->rumah_ibadat->name_association }}</td>
@@ -55,7 +55,7 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('excos.permohonan.papar') }}">
+                                    <form action="{{ route('excos.permohonan.sedang-diproses.papar') }}">
                                       <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                       <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                     </form>
@@ -99,13 +99,13 @@ var t = $(tablelaporan).DataTable({
           extend: 'pdfHtml5',
           orientation: 'landscape',
           pageSize: 'A4',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Senarai Permohonan Sedang Diproses',
       },
       {
           extend: 'print',
           text: 'Cetak',
           pageSize: 'LEGAL',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Senarai Permohonan Sedang Diproses',
           customize: function(win)
           {
 

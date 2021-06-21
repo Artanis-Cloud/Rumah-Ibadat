@@ -26,7 +26,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-warning">
+        <a class="card bg-warning" href="{{ route('excos.permohonan.sedang-diproses') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
@@ -38,10 +38,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-success">
+        <a class="card bg-success" href="{{ route('excos.permohonan.lulus') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
@@ -53,10 +53,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-danger">
+        <a class="card bg-danger" href="{{ route('excos.permohonan.tidak-lulus') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -185,26 +185,23 @@
 <div class="row">
     <!-- column -->
     <div class="col-lg-6 col-md-12">
-        <div class="card">
+        <div class="card border border-dark rounded">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
                         <h4 class="mb-0 card-title">Laporan Perbelanjaan Rumah Ibadat</h4>
                     </div>
-                    <div class="ml-auto">
+                    {{-- <div class="ml-auto">
                         <select class="border-0 custom-select text-muted">
                             <option value="0" selected="">Mei 2021</option>
-                            {{-- <option value="1">May 2018</option>
-                            <option value="2">March 2018</option>
-                            <option value="3">June 2018</option> --}}
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="card-body bg-light">
                 <div class="row align-items-center">
                     <div class="col-xs-12 col-md-6">
-                        <h3 class="font-light m-b-0">Mei 2021</h3>
+                        <h3 class="font-light m-b-0">Tahun 2021</h3>
                         <span class="font-14 text-muted">Laporan</span>
                     </div>
                     <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-info">RM 50000</div>
@@ -248,23 +245,27 @@
         </div>
     </div>
     <div class="col-lg-6 col-md-12">
-        <div class="card" style="border: 1px solid black">
+        <div class="card border border-dark">
             <div class="card-body">
                 <h4 class="card-title">Permohonan Terkini</h4>
             </div>
             <div class="comment-widgets scrollable" style="height:490px;">
 
                 @foreach($new_application as $data)
-                    <div class="flex-row d-flex comment-row">
+                <form action="{{ route('excos.permohonan.papar') }}" onclick="javascript:$(this).submit();">
+                    <div class="flex-row d-flex comment-row">   
                         <div class="comment-text active w-100">
                             <h6 class="font-medium">{{ $data->rumah_ibadat->name_association }}</h6>
                             <span class="m-b-15 d-block">{{ $data->user->name }}</span>
+                            <span class="m-b-15 d-block">{{ $data->getPermohonanID() }}</span>
+                            <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                             <div class="comment-footer ">
-                                <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
+                                <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }} | {{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
                                 <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span>
                             </div>
                         </div>
                     </div>
+                </form>
                 @endforeach
 
             </div>
@@ -273,55 +274,6 @@
 </div>
 <!-- ============================================================== -->
 <!-- Ravenue - page-view-bounce rate -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Recent comment and chats -->
-<!-- ============================================================== -->
-<div class="row">
-    <!-- column -->
-    <div class="col-lg">
-      <div class="card">
-        <div class="table-responsive" style="padding: 1%;">
-            <table id="tablestatus" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>Sijil ROS</th>
-                        <th>Tokong</th>
-                        <th>Nama Pemohon</th>
-                        <th>Tarikh</th>
-                        <th>Tujuan Permohonan</th>
-                        <th>Kelulusan</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>1862-04-5</th>
-                        <th>Persatuan Pendidikan Buddha Jing XinPersatuan Pendidikan Buddha Jing Xin</th>
-                        <th>Toh Khim Hwa</th>
-                        <th>25.10.18</th>
-                        <th>Pembaikan</th>
-                        <th>RM 5000</th>
-                        <th>Diluluskan</th>
-                    </tr>
-                    <tr>
-                        <th>PPM-018-10-06062017</th>
-                        <th>Persatuan Penganut Na Du Gong Kwan Tong</th>
-                        <th>Liam Thian Ser</th>
-                        <th>01.10.18</th>
-                        <th>Aktiviti Keagamaan</th>
-                        <th>RM 3000</th>
-                        <th>Diluluskan</th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-      </div>
-    </div>
-
-</div>
-<!-- ============================================================== -->
-<!-- Recent comment and chats -->
 <!-- ============================================================== -->
 
 </div>

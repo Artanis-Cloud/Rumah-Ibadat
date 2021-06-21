@@ -36,7 +36,7 @@
 
                             <label>Kategori Rumah Ibadat</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('category') is-invalid @else border-dark @enderror" id="category" name="category" type="text" value="{{ $permohonan->rumah_ibadat->category == "TOKONG" ? "TOKONG (BUDDHA & TAO)" : ( $permohonan->rumah_ibadat->category == "KUIL" ? "KUIL (HINDU)" : ( $permohonan->rumah_ibadat->category == "GURDWARA" ? "KUIL (GURDWARA)" : ( $permohonan->rumah_ibadat->category == "GEREJA" ? "GEREJA (KRISTIAN)" : "ERROR DATA" ) ) ) }}" disabled>
+                              <input class="form-control text-uppercase @error('category') is-invalid @else border-dark @enderror" id="category" name="category" type="text" value="{{ $permohonan->rumah_ibadat->category }}" disabled>
                             </div>
 
                           </div>
@@ -314,13 +314,6 @@
                         
                         <h3 style="text-align: center; padding-bottom: 15px;">Dokumen-dokumen lampiran</h3>
 
-                          {{-- <div class="row">
-                            <div class="col-md">
-                              <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->registration_certificate)) }}" target="_blank">Open the pdf!</a>
-                              <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" alt="test" style="height: 100px;">
-                            </div>
-                          </div> --}}
-
                         <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
@@ -330,7 +323,7 @@
                                       <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                       <input type="hidden" name="file_type" value="application_letter" readonly>
                                       <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
-                                        @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
+                                        @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
                                         Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                         @else 
                                         Surat Permohonan Kepada Pengurusi Limas
@@ -339,7 +332,7 @@
                                       
                                     </form> --}}
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" target="_blank">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
                                       Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                       @else 
                                       Surat Permohonan Kepada Pengurusi Limas
@@ -352,7 +345,7 @@
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="registration_certificate" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
                                       Sijil Pendaftaran (Akta Pertubuhan 1966)
                                       @else 
                                       Sijil Pendaftaran ROS
@@ -360,7 +353,7 @@
                                     </button>
                                   </form> --}}
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->registration_certificate)) }}" target="_blank">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
                                       Sijil Pendaftaran (Akta Pertubuhan 1966)
                                       @else 
                                       Sijil Pendaftaran ROS
@@ -442,18 +435,18 @@
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="certificate_or_letter_temple" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H")
                                       Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
-                                      @elseIf($permohonan->rumah_ibadat->category == "GURDWARA")
+                                      @elseIf($permohonan->rumah_ibadat->category == "KUIL_G")
                                       Sijil/Surat Sokongan Majlis Gudwara Malaysia
                                       @endif
                                     </button>
                                   </form> --}}
 
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->certificate_or_letter_temple)) }}" target="_blank">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL_H")
                                       Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
-                                      @elseIf($permohonan->rumah_ibadat->category == "GURDWARA")
+                                      @elseIf($permohonan->rumah_ibadat->category == "KUIL_G")
                                       Sijil/Surat Sokongan Majlis Gudwara Malaysia
                                       @endif
                                   </a>
@@ -948,483 +941,80 @@
 
                 </div>
 
-                <div id="accordionFour">
-
-                  <div class="card">
-                    <a href="" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseOne" style="color: white;">
-                      <div class="card-header bg-dark" id="headingOne">
-                        <h4 class="mb-0">&nbsp<i class="fas fa-history"></i>&nbsp&nbsp&nbspSejarah Permohonan</h4>
-                      </div>
-                    </a>
-
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordionFour">
-                      <div class="card-body  border border-dark">
-
-                        <div class="row" style="padding-top: 15px;">
-                    <div class="col-md">
-                      <div class="table-responsive">
-                        <table class="table table-bordered">
-                          <thead style="text-align: center;">
-                            <tr>
-                              <th scope="col">BIL</th>
-                              <th scope="col">TAHUN</th>
-                              <th scope="col">NAMA RUMAH IBADAT</th>
-                              <th scope="col">TUJUAN</th>
-                              <th scope="col">JUMLAH KELULUSAN (RM)</th>
-                            </tr>
-                          </thead>
-                          <tbody style="text-align: center;">
-
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>2020</td>
-                              <td>Persatuan A</td>
-                              <td>Aktiviti Keagamaan</td>
-                              <td>5,000.00</td>
-                            </tr>
-
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>2019</td>
-                              <td>Persatuan A</td>
-                              <td>Baik Pulih dan Aktivi Keagamaan</td>
-                              <td>25,000.00</td>
-                            </tr>
-
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>2018</td>
-                              <td>Persatuan A</td>
-                              <td>Aktiviti Keagamaan</td>
-                              <td>3,500.00</td>
-                            </tr>
-
-                            <tr>
-                              <th scope="row">4</th>
-                              <td>2017</td>
-                              <td>Persatuan A</td>
-                              <td>Aktiviti Keagamaan</td>
-                              <td>2,000.00</td>
-                            </tr>
-                            
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                        
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
                 <div id="accordionFive">
 
                   <div class="card">
                     <a href="" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="color: white;">
                       <div class="card-header bg-info" id="headingFive">
-                        <h4 class="mb-0">&nbsp<i class="fas fa-gavel"></i>&nbsp&nbsp&nbspUlasan & Keputusan</h4>
+                        <h4 class="mb-0">&nbsp<i class="fas fa-gavel"></i>&nbsp&nbsp&nbspUlasan</h4>
                       </div>
                     </a>
 
                     <div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionFive">
                       <div class="card-body border border-info">
 
-                        {{-- <h3 style="text-align: center; padding-bottom: 15px;">Bahagian Ulasan</h3>
+                        <h3 style="text-align: center; padding-bottom: 15px;">Bahagian Ulasan</h3>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <label>Pengesahan Wakil Pejabat Exco:</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('exco_name') is-invalid @else border-dark @enderror" id="exco_name" name="exco_name" type="text" value="{{ $exco->name }}" disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <label>Tarikh Pengesahan:</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('exco_date') is-invalid @else border-dark @enderror" id="exco_date" name="exco_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('d-m-Y') }}" disabled>
+                            </div>
+                          </div>
+
+                          <div class="col-md">
+                            <label>Waktu Pengesahan:</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('exco_time') is-invalid @else border-dark @enderror" id="exco_time" name="exco_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('h:m:s') }}" disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
 
                         <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
                             <div class="card text-white">
                                 <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Exco</h4></div>
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil Pejabat Exco</h4></div>
                                 <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
+                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_exco }}</textarea>
                                 </div>
                             </div>
                           </div>
                           <div class="col-md-1"></div>
                         </div>
 
-                        <hr> --}}
-
-                        <h3 style="text-align: center; padding-bottom: 15px;">Keputusan Permohonan</h3> 
-
-                        {{-- <div class="row">
-                          <div class="col-md-2"></div>
-                          <div class="col-md">
-                            <label>Status Permohonan</label><br>
-                            <fieldset class="radio">
-                                <label>
-                                    <input type="radio" id="LULUS" name="status" value="LULUS" onclick="showPaymentMethod();"> Lulus
-                                </label>
-                            </fieldset>
-                            <fieldset class="radio">
-                                <label>
-                                    <input type="radio" id="TIDAK LULUS" name="status" value="TIDAK LULUS" onclick="showPaymentMethod();"> Tidak Lulus
-                                </label>
-                            </fieldset>
-                          </div>
-                          <div class="col-md" id="payment_div" style="display: none;">
-                            <label>Kaedah Pembayaran</label><br>
-                            <fieldset class="radio">
-                                <label>
-                                    <input type="radio" name="payment" value="CEK" checked> Cek
-                                </label>
-                            </fieldset>
-                            <fieldset class="radio">
-                                <label>
-                                    <input type="radio" name="payment" value="EFT"> EFT
-                                </label>
-                            </fieldset>
-                          </div>
-                          <div class="col-md-2"></div>
-                        </div> --}}
-
-                        <div class="row">
-                          <div class="col-md-2"></div>
-                          <div class="col-md-4" style="padding-top: 15px;">
-                            <button type="button" class="btn waves-effect waves-light btn-warning text-dark btn-block" id="semak_semula_button" data-toggle="modal" data-target="#confirmation_review_application">Permohong Tidak Lengkap</button>
-                          </div>
-                          <div class="col-md-4" style="padding-top: 15px;">
-                            <button type="button" class="btn waves-effect waves-light btn-danger btn-block" id="batal_button" data-toggle="modal" data-target="#confirmation_batal_permohonan">Permohonan Tidak Disokong</button>
-                          </div>
-                          <div class="col-md-2"></div>
-                        </div>
-                        
-                        <div class="row" style="padding-top: 10px;">
-                          <div class="col-md-2"></div>
-                          <div class="col-md" style="padding-top: 5px;">
-                            <button type="button" class="btn waves-effect waves-light btn-success btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_luluskan_permohonan">Permohonan Disokong</button>
-                          </div>
-                          <div class="col-md-2"></div>
-                        </div>
 
                       </div>
                     </div>
                   </div>
 
                 </div>
-
-                {{-- ========================================================= MODAL ========================================================= --}} 
-
-                <!-- Modal Confirmation -->
-              <div class="modal fade" id="confirmation_luluskan_permohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-
-                    <form action="{{ route('excos.permohonan.papar.sahkan') }}">
-
-                    <div class="modal-body">
-                      Anda pasti mahu mengesahkan permohonan ini?
-
-                      <hr>
-
-                      <h4>Peruntukan Dana</h4>
-
-                      <div class="table-responsive m-t-20">
-                        <table class="table table-bordered table-responsive-lg">
-                              <thead>
-                                <tr>
-                                  <th>Tujuan</th>
-                                  <th>Sumbangan Dana (RM)</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-
-                                  @foreach ($permohonan->tujuan as  $key => $tujuan)
-                                      
-                                  
-
-                                  @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
-                                    <tr>
-                                        <td>AKTIVITI KEAGAMAAN</td>
-                                        <td><input type="text" id="peruntukan_1" name="peruntukan_1" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="0.00" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
-                                    </tr>
-                                  @endif
-
-                                  @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN")
-                                    <tr>
-                                        <td>PENDIDIKAN KEAGAMAAN</td>
-                                        <td><input type="text" id="peruntukan_2" name="peruntukan_2" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="0.00" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
-                                    </tr>
-                                  @endif
-
-                                  @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
-                                    <tr>
-                                        <td>PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN</td>
-                                        <td><input type="text" id="peruntukan_3" name="peruntukan_3" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="0.00" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
-                                    </tr>
-                                  @endif
-
-                                  @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
-                                    <tr>
-                                        <td>BAIK PULIH/PENYELENGGARAAN BANGUNAN</td>
-                                        <td><input type="text" id="peruntukan_4" name="peruntukan_4" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="0.00" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
-                                    </tr>
-                                  @endif
-
-                                  @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
-                                    <tr>
-                                        <td>PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT</td>
-                                        <td><input type="text" id="peruntukan_5" name="peruntukan_5" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="0.00" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);"></td>
-                                    </tr>
-                                  @endif
-
-                                  @endforeach
-                                  
-                                  
-                                  
-                              </tbody>
-                          </table>
-                      </div>
-
-
-                      <hr>
-
-                      <div class="row">
-                        <div class="col-md">
-                          <div class="card text-white">
-                                <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil Pejabat Exco</h4></div>
-                                <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="review_exco" name="review_exco" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                      <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
-                      <button type="submit" class="btn btn-success">Sahkan Permohonan</button>
-                    </div>
-
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-
-                <!-- Modal Rejection -->
-              <div class="modal fade" id="confirmation_batal_permohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-
-                    <form action="{{ route('excos.permohonan.papar.batalkan') }}">
-
-                    <div class="modal-body">
-                      Anda pasti tidak menyokong permohonan ini?
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                      <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
-                      <button type="submit" class="btn btn-success">Permohonan Tidak Disokong</button>
-                    </div>
-
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-
-                {{-- Modal Semak Semula --}}
-                <div class="modal fade" id="confirmation_review_application" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-
-                    <form action="{{ route('excos.permohonan.papar.semak-semula') }}">
-
-                    <div class="modal-body">
-
-
-                      <div class="row">
-                        <div class="col-md">Sila pilih <b>(Minimum 1)</b> bahagian yang perlu disemak semula oleh pemohon?</div>
-                      </div>
-
-                      <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
-
-                      {{-- <hr>
-
-                      <div class="row" style="padding-top: 10px;">
-                        <div class="col-md">
-                          <label style="padding-bottom: 10px;">Rumah ibadat</label>
-                          <fieldset class="checkbox">
-                              <label>
-                                  <input type="checkbox" value="rumah_ibadat" id="review_1" name="review[]" onclick="semak_semula_validation()"> 
-                                  Maklumat Rumah Ibadat Tidak Sah
-                              </label>
-                          </fieldset>
-                        </div>
-                      </div> --}}
-
-                      <hr>
-
-                      <div class="row">
-                        <div class="col-md">
-                          <label style="padding-bottom: 10px;">Dokumen-dokumen lampiran</label>
-                          <fieldset class="checkbox">
-                              <label>
-                                  <input type="checkbox" value="application_letter" id="review_2" name="review[]" onclick="semak_semula_validation()"> 
-                                  @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
-                                  Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
-                                  @else
-                                  Surat Permohonan Kepada Pengurusi Limas
-                                  @endif 
-                              </label>
-                          </fieldset>
-
-                          <fieldset class="checkbox">
-                              <label>
-                                  <input type="checkbox" value="registration_certificate" id="review_3" name="review[]" onclick="semak_semula_validation()"> 
-                                  @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
-                                  Sijil Pendaftaran (Akta Pertubuhan 1966)
-                                  @else
-                                  Sijil Pendaftaran ROS
-                                  @endif 
-                              </label>
-                          </fieldset>
-
-                          <fieldset class="checkbox">
-                              <label>
-                                  <input type="checkbox" value="account_statement" id="review_4" name="review[]" onclick="semak_semula_validation()"> 
-                                  Penyata Bank
-                              </label>
-                          </fieldset>
-
-                          @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
-                            <fieldset class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="spending_statement" id="review_5" name="review[]" onclick="semak_semula_validation()"> 
-                                    Penyata Perbelanjaan
-                                </label>
-                            </fieldset>
-
-                            <fieldset class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="support_letter" id="review_6" name="review[]" onclick="semak_semula_validation()"> 
-                                    Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
-                                </label>
-                            </fieldset>
-                          @endif
-                        </div>
-                      </div>
-
-                      <hr>
-
-                      <div class="row">
-                        <div class="col-md">
-                          <label style="padding-bottom: 10px;">Tujuan Permohonan</label>
-
-                          @foreach ( $permohonan->tujuan as  $key => $tujuan)
-                          
-                          @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
-                          <fieldset class="checkbox">
-                              <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_7" name="review[]" onclick="semak_semula_validation()"> 
-                                  {{ $tujuan->tujuan }}
-                              </label>
-                          </fieldset>
-                          @endif
-
-                          @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN")
-                          <fieldset class="checkbox">
-                              <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_8" name="review[]" onclick="semak_semula_validation()"> 
-                                  {{ $tujuan->tujuan }}
-                              </label>
-                          </fieldset>
-                          @endif
-
-                          @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
-                          <fieldset class="checkbox">
-                              <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_9" name="review[]" onclick="semak_semula_validation()"> 
-                                  {{ $tujuan->tujuan }}
-                              </label>
-                          </fieldset>
-                          @endif
-
-                          @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
-                          <fieldset class="checkbox">
-                              <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_10" name="review[]" onclick="semak_semula_validation()"> 
-                                  {{ $tujuan->tujuan }}
-                              </label>
-                          </fieldset>
-                          @endif
-
-                          @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
-                          <fieldset class="checkbox">
-                              <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_11" name="review[]" onclick="semak_semula_validation()"> 
-                                  {{ $tujuan->tujuan }}
-                              </label>
-                          </fieldset>
-                          @endif
-
-
-                              
-                          @endforeach
-
-                        </div>
-                      </div>
-
-                      <hr>
-
-                      <div class="row">
-                        <div class="col-md">
-                          <div class="card text-white">
-                                <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Kepada Pemohon</h4></div>
-                                <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="review_to_applicant" name="review_to_applicant" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-
-                      
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                      <button type="submit" class="btn btn-success" id="semak_semula_enable" style="display: none">Semak Semula</button>
-                      <button type="button" class="btn btn-dark" id="semak_semula_disable" style="display: block" data-toggle="tooltip" data-placement="top" title="Sila tandakan bahagian yang perlu disemak">Semak Semula</button>
-                    </div>
-
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-
-                {{-- ========================================================= END OF MODAL ========================================================= --}}
-
 
               </div>
               <div class="col-md-2"></div>
+            </div>
+
+            <div class="row" style="padding-bottom: 25px; padding-top: 25px;">
+              <div class="col-md-4"></div>
+              <div class="col-md">
+                <a href="{{ route('excos.permohonan.sedang-diproses') }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
+              </div>
+              <div class="col-md-4"></div>
             </div>
             
           </div>
@@ -1435,207 +1025,4 @@
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
-
-<script>
-  function semak_semula_validation() {
-    // var checkBox1 = document.getElementById("review_1");  
-    var checkBox2 = document.getElementById("review_2");
-    var checkBox3 = document.getElementById("review_3");
-    var checkBox4 = document.getElementById("review_4");
-    var checkBox5 = document.getElementById("review_5");
-    var checkBox6 = document.getElementById("review_6");
-    var checkBox7 = document.getElementById("review_7");
-    var checkBox8 = document.getElementById("review_8");
-    var checkBox9 = document.getElementById("review_9");
-    var checkBox10 = document.getElementById("review_10");
-    var checkBox11 = document.getElementById("review_11");
-
-    var counter_checkbox_true = 0;
-
-    if(checkBox2){
-      if(checkBox2.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(checkBox3){
-      if(checkBox3.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(checkBox4){
-      if(checkBox4.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(checkBox5){
-      if(checkBox5.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(checkBox6){
-      if(checkBox6.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(checkBox7){
-      if(checkBox7.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(checkBox8){
-      if(checkBox8.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(checkBox9){
-      if(checkBox9.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(checkBox10){
-      if(checkBox10.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(checkBox11){
-      if(checkBox11.checked == true){
-        counter_checkbox_true++;
-      }
-    }
-
-    if(counter_checkbox_true != 0){
-      document.getElementById("semak_semula_enable").style.display = "block";
-      document.getElementById("semak_semula_disable").style.display = "none";
-
-    } else{
-      document.getElementById("semak_semula_enable").style.display = "none";
-      document.getElementById("semak_semula_disable").style.display = "block";
-    }
-  }
-
-  //================================== INPUT NUMBER AND DOTS ONLY ==================================
-
-  function fun_AllowOnlyAmountAndDot(txt)
-  {
-      if(event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 46)
-      {
-          var txtbx=document.getElementById(txt);
-          var amount = document.getElementById(txt).value;
-          var present=0;
-          var count=0;
-
-          if(amount.indexOf(".",present)||amount.indexOf(".",present+1));
-          {
-        // alert('0');
-          }
-
-        /*if(amount.length==2)
-        {
-          if(event.keyCode != 46)
-          return false;
-        }*/
-          do
-          {
-          present=amount.indexOf(".",present);
-          if(present!=-1)
-          {
-            count++;
-            present++;
-            }
-          }
-          while(present!=-1);
-          if(present==-1 && amount.length==0 && event.keyCode == 46)
-          {
-              event.keyCode=0;
-              //alert("Wrong position of decimal point not  allowed !!");
-              return false;
-          }
-
-          if(count>=1 && event.keyCode == 46)
-          {
-
-              event.keyCode=0;
-              //alert("Only one decimal point is allowed !!");
-              return false;
-          }
-          if(count==1)
-          {
-          var lastdigits=amount.substring(amount.indexOf(".")+1,amount.length);
-          if(lastdigits.length>=2)
-                      {
-                        //alert("Two decimal places only allowed");
-                        event.keyCode=0;
-                        return false;
-                        }
-          }
-              return true;
-      }
-      else
-      {
-              event.keyCode=0;
-              //alert("Only Numbers with dot allowed !!");
-              return false;
-      }
-
-  }
-</script>
-
-{{-- <script>
-//================================== INPUT NUMBER AND DOTS ONLY ==================================
-
-var currencyInput = document.querySelector('input[type="text"]')
-var currency = 'MYR' // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
-
- // format inital value
-onBlur({target:currencyInput})
-
-// bind event listeners
-currencyInput.addEventListener('focus', onFocus)
-currencyInput.addEventListener('blur', onBlur)
-
-
-function localStringToNumber( s ){
-  return Number(String(s).replace(/[^0-9.-]+/g,""))
-}
-
-function onFocus(e){
-  var value = e.target.value;
-  e.target.value = value ? localStringToNumber(value) : ''
-}
-
-function onBlur(e){
-  var value = e.target.value
-
-  var options = {
-      maximumFractionDigits : 2,
-      currency              : currency,
-      style                 : "currency",
-      currencyDisplay       : "symbol"
-  }
-  
-  e.target.value = (value || value === 0) 
-    ? localStringToNumber(value).toLocaleString(undefined, options)
-    : ''
-}
-</script> --}}
-
-{{-- <script>
-  //show or hide payment method
-  function showPaymentMethod(){
-    if(document.getElementById('LULUS').checked){
-      document.getElementById('payment_div').style.display = "block";
-    }else{
-      document.getElementById('payment_div').style.display = "none";
-    }
-  }
-</script> --}}
 @endsection
