@@ -12,17 +12,6 @@
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
 
-                  {{-- Flash Message --}}
-                  @if ($message = Session::get('success'))
-                    <div class="border alert alert-success border-success" style="text-align: center;">{{$message}}</div>
-                  @elseif ($message = Session::get('error'))
-                    <div class="border alert alert-danger border-danger" style="text-align: center;">{{$message}}</div>
-                  @else
-                    {{-- Hidden Gap - Just Ignore --}}
-                    <div class="alert alert-white" style="text-align: center;"></div>
-                    {{-- <div style="padding: 23px;"></div> --}}
-                  @endif
-
                   <div class="row">
                     {{-- <div class="col-md-1"></div> --}}
                     <div class="col-md" style="padding-top: 20px;">
@@ -80,10 +69,6 @@
                     </div>
                     {{-- <div class="col-md-1"></div> --}}
                   </div>
-
-                  {{-- Hidden Gap - Just Ignore --}}
-                  <div class="alert alert-white" style="text-align: center;"></div>
-                  {{-- <div style="padding: 25px;"></div> --}}
 
       </div>
   </div>

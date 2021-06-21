@@ -68,8 +68,8 @@ class UserSeeder extends Seeder
                 'user_id' => '3',
 
                 'tokong' => '1',
-                'kuil_h' => '0',
-                'kuil_g' => '0',
+                'kuil' => '0',
+                'gurdwara' => '0',
                 'gereja' => '0',
             ]
         );
@@ -94,8 +94,8 @@ class UserSeeder extends Seeder
                 'user_id' => '4',
 
                 'tokong' => '1',
-                'kuil_h' => '0',
-                'kuil_g' => '0',
+                'kuil' => '0',
+                'gurdwara' => '0',
                 'gereja' => '0',
             ]
         );

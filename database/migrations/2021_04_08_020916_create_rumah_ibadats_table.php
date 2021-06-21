@@ -30,7 +30,7 @@ class CreateRumahIbadatsTable extends Migration
             $table->string('name_association_main')->nullable();
             $table->string('registration_number')->unique();
             
-            $table->string('address');
+            $table->text('address');
             $table->string('postcode');
             $table->string('district');
             $table->string('state')->default('Selangor');;                  //All rumah ibadat is in Selangor

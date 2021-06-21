@@ -188,7 +188,7 @@
                                         <p style="margin-bottom: 0px !important;"><i class="fas fa-envelope"></i>&nbsp&nbsp&nbsp&nbsp{{ Auth::user()->email }}</p>
 
                                         <p style="margin-bottom: 0px !important;">
-                                            <i class="fas fa-crown"></i>&nbsp&nbsp&nbspExco
+                                            <i class="fas fa-crown"></i>&nbsp&nbsp&nbspPejabat Exco
                                         </p>
 
                                         <p style="margin-bottom: 0px !important;">
@@ -198,12 +198,12 @@
                                                     <span class="badge badge-info">TOKONG</span>
                                             @endif
 
-                                            @if(Auth::user()->user_role->kuil_h == "1")
-                                                    <span class="badge badge-info">KUIL HINDU</span>
+                                            @if(Auth::user()->user_role->kuil == "1")
+                                                    <span class="badge badge-info">HINDU</span>
                                             @endif
 
-                                            @if(Auth::user()->user_role->kuil_g == "1")
-                                                    <span class="badge badge-info">KUIL GURDWARA</span>
+                                            @if(Auth::user()->user_role->gurdwara == "1")
+                                                    <span class="badge badge-info">GURDWARA</span>
                                             @endif
 
                                             @if(Auth::user()->user_role->gereja == "1")
@@ -256,16 +256,18 @@
                         
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.dashboard') }}" aria-expanded="false"><i class="fas fa-tachometer-alt"></i><span class="hide-menu" style="padding-left: 10px;">Dashboard </span></a></li>
                         
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="far fa-list-alt"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Baru</span></a>
 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.sedang-diproses') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Sedang Diproses</span></a>
 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Permohonan Lulus</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.semakan-semula') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Semakan Semula</span></a>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.lulus') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Lulus</span></a>
                                 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.tidak-lulus') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Tidak Lulus</span></a>
                                 
                             </ul>
                         </li>
@@ -273,7 +275,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.rumah-ibadat.senarai') }}" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
 
                             </ul>
                         </li>
@@ -307,7 +309,7 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
-                            @if(Request::is('dashboard-exco'))
+                            @if(Request::is('dashboard-pejabat-exco'))
 
                             @else
                             <nav aria-label="breadcrumb">

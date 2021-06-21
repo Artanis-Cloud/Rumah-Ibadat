@@ -334,6 +334,14 @@ class PermohonanController extends Controller
         return redirect()->route('users.permohonan.tidak-lulus')->with('success', 'Permohonan anda berjaya dibatalkan.');
     }
 
+    public function papar_permohonan_sedang_diproses(Request $request){
+        // dd($request->all());
+
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        return view('users.permohonan.papar-sedang-diproses', compact('permohonan'));
+    }
+
     public function permohonan_semakan_semula(Request $request)
     {
         // dd($request->all());
