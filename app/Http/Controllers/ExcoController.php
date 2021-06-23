@@ -177,6 +177,7 @@ class ExcoController extends Controller
         }
 
         //update permohonan
+        $permohonan->review_to_applicant_id = auth()->user()->id;
         $permohonan->review_to_applicant = $request->review_to_applicant;
         $permohonan->status = 0;
 
@@ -202,27 +203,27 @@ class ExcoController extends Controller
         //save peruntukan value
         foreach($permohonan->tujuan as $tujuan){
 
-            if($tujuan->tujuan == "AKTIVITI KEAGAMAAN"){
+            if($tujuan->tujuan == "AKTIVITI KEAGAMAAN" && $request->peruntukan_1 !=  null){
                 $tujuan->peruntukan = $request->peruntukan_1;
                 $tujuan->save();
             }
 
-            if ($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN") {
+            if ($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN" && $request->peruntukan_2 !=  null) {
                 $tujuan->peruntukan = $request->peruntukan_2;
                 $tujuan->save();
             }
 
-            if ($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") {
+            if ($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN" && $request->peruntukan_3 !=  null) {
                 $tujuan->peruntukan = $request->peruntukan_3;
                 $tujuan->save();
             }
 
-            if ($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") {
+            if ($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN" && $request->peruntukan_4 !=  null) {
                 $tujuan->peruntukan = $request->peruntukan_4;
                 $tujuan->save();
             }
 
-            if ($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") {
+            if ($tujuan->tujuan =="PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT" && $request->peruntukan_5 !=  null) {
                 $tujuan->peruntukan = $request->peruntukan_5;
                 $tujuan->save();
             }
@@ -238,6 +239,7 @@ class ExcoController extends Controller
         $permohonan = Permohonan::findorfail($request->permohonan_id);
 
         //update status permohonan
+        $permohonan->not_approved_id = auth()->user()->id;
         $permohonan->status = 3;
         $permohonan->save();
 
@@ -315,7 +317,9 @@ class ExcoController extends Controller
     {
         $permohonan = Permohonan::findorfail($request->permohonan_id);
 
-        return view('excos.permohonan.papar-semak-semula', compact('permohonan'));
+        $user_in_charge = User::findorfail($permohonan->review_to_applicant_id);
+
+        return view('excos.permohonan.papar-semak-semula', compact('permohonan', 'user_in_charge'));
     }
 
     public function permohonan_lulus(Request $request)
@@ -330,6 +334,16 @@ class ExcoController extends Controller
         $permohonan = Permohonan::where('status', '3')->get();
 
         return view('excos.permohonan.tidak-lulus', compact('permohonan'));
+    }
+
+    public function papar_permohonan_tidak_lulus(Request $request)
+    {
+        // dd($request->all());
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $exco = User::findorfail($permohonan->not_approved_id);
+
+        return view('excos.permohonan.papar-tidak-lulus', compact('permohonan','exco'));
     }
 
     public function download_permohonan(Request $request){
@@ -370,7 +384,12 @@ class ExcoController extends Controller
         }
     }
 
-    public function rumah_ibadat()
+    public function rumah_ibadat(){
+        
+        return view('excos.rumah-ibadat.pilih');
+    }
+
+    public function senarai_rumah_ibadat()
     {
         if (auth()->user()->user_role->tokong == 1) {
             $rumah_ibadat = RumahIbadat::where('category', 'TOKONG')->get();
@@ -388,5 +407,13 @@ class ExcoController extends Controller
             $rumah_ibadat = RumahIbadat::where('category', 'GEREJA')->get();
         }
         return view('excos.rumah-ibadat.senarai', compact('rumah_ibadat'));
+    }
+
+    public function papar_rumah_ibadat(Request $request){
+        // dd($request->all());
+
+        $rumah_ibadat = RumahIbadat::findorfail($request->rumah_ibadat_id);
+
+        return view('excos.rumah-ibadat.papar', compact('rumah_ibadat'));
     }
 }

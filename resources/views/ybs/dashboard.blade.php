@@ -12,7 +12,6 @@
 <div class="row">
     <div class="col-lg-3 col-md-6">
         <a class="card bg-info" href="{{ route('ybs.permohonan.baru') }}">
-            {{-- <div class="card bg-info"> --}}
                 <div class="card-body">
                     <div class="d-flex no-block align-items-center">
                         <div class="text-white">
@@ -24,11 +23,10 @@
                         </div>
                     </div>
                 </div>
-            {{-- </div> --}}
         </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-warning">
+        <a class="card bg-warning" href="{{ route('ybs.permohonan.sedang-diproses') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
@@ -40,10 +38,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-success">
+        <a class="card bg-success" href="{{ route('ybs.permohonan.lulus') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
@@ -55,10 +53,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-danger">
+        <a class="card bg-danger" href="{{ route('ybs.permohonan.tidak-lulus') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
@@ -70,7 +68,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -276,55 +274,7 @@
 <!-- ============================================================== -->
 <!-- Ravenue - page-view-bounce rate -->
 <!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Recent comment and chats -->
-<!-- ============================================================== -->
-<div class="row">
-    <!-- column -->
-    <div class="col-lg">
-      <div class="card">
-        <div class="table-responsive" style="padding: 1%;">
-            <table id="tablestatus" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>Sijil ROS</th>
-                        <th>Tokong</th>
-                        <th>Nama Pemohon</th>
-                        <th>Tarikh</th>
-                        <th>Tujuan Permohonan</th>
-                        <th>Kelulusan</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>1862-04-5</th>
-                        <th>Persatuan Pendidikan Buddha Jing XinPersatuan Pendidikan Buddha Jing Xin</th>
-                        <th>Toh Khim Hwa</th>
-                        <th>25.10.18</th>
-                        <th>Pembaikan</th>
-                        <th>RM 5000</th>
-                        <th>Diluluskan</th>
-                    </tr>
-                    <tr>
-                        <th>PPM-018-10-06062017</th>
-                        <th>Persatuan Penganut Na Du Gong Kwan Tong</th>
-                        <th>Liam Thian Ser</th>
-                        <th>01.10.18</th>
-                        <th>Aktiviti Keagamaan</th>
-                        <th>RM 3000</th>
-                        <th>Diluluskan</th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-      </div>
-    </div>
 
-</div>
-<!-- ============================================================== -->
-<!-- Recent comment and chats -->
-<!-- ============================================================== -->
 
 </div>
 <!-- ============================================================== -->

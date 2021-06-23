@@ -390,7 +390,9 @@ class PermohonanController extends Controller
             }
         }
 
-        $permohonan->status = 1;
+        $permohonan->review_to_applicant_id = null;
+
+        $permohonan->status = 1; //update status permohonan
 
         $permohonan->save(); //save permohonan
 

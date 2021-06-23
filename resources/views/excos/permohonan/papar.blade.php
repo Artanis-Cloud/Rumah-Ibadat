@@ -1131,12 +1131,13 @@
 
                       <div class="table-responsive m-t-20">
                         <table class="table table-bordered table-responsive-lg">
-                              <thead>
+                              <thead style="text-align: center;">
                                 <tr>
-                                  <th>Tujuan</th>
+                                  <th>Tujuan Permohonan</th>
                                   <th>Sumbangan Dana (RM)</th>
                                 </tr>
                               </thead>
+                              
                               <tbody>
 
                                   @foreach ($permohonan->tujuan as  $key => $tujuan)

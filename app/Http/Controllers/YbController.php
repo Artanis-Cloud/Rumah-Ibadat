@@ -35,7 +35,49 @@ class YbController extends Controller
 
     public function permohonan_baru()
     {
-        $processing_application = Permohonan::where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+            if(isset($processing_application)){
+                $processing_application = $processing_application->merge($kuil);
+            }else{
+                $processing_application = $kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($gurdwara);
+            } else {
+                $processing_application = $gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($gereja);
+            } else {
+                $processing_application = $gereja;
+            }
+        }
+        
 
         return view('ybs.permohonan.baru', compact('processing_application'));
     }
@@ -154,6 +196,7 @@ class YbController extends Controller
         }
 
         //update permohonan
+        $permohonan->review_to_applicant_id = auth()->user()->id;
         $permohonan->review_to_applicant = $request->review_to_applicant;
         $permohonan->status = 0;
 
@@ -211,18 +254,218 @@ class YbController extends Controller
         }
 
         //redirect
-        return redirect()->route('ybs.permohonan.baru')->with('success', 'Status permohonan telah disahkan.');
+        return redirect()->route('ybs.permohonan.baru')->with('success', 'Status permohonan telah disokong.');
     }
 
     public function permohonan_pembatalan(Request $request){
 
         //find current permohonan
-        $permohonan = Permohonan::findorfail($request->permohonan_id); 
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
 
         //update status permohonan
+        $permohonan->not_approved_id = auth()->user()->id;
         $permohonan->status = 3;
         $permohonan->save();
 
         return redirect()->route('ybs.permohonan.baru')->with('success', 'Permohonan telah dibatalkan.');
+    }
+
+    public function permohonan_sedang_diproses(){
+        // dd("masuk");
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('yb_id','!=', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($kuil);
+            } else {
+                $processing_application = $kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($gurdwara);
+            } else {
+                $processing_application = $gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($gereja);
+            } else {
+                $processing_application = $gereja;
+            }
+        }
+
+
+        return view('ybs.permohonan.sedang-diproses', compact('processing_application'));
+    }
+
+    public function permohonan_semakan_semula()
+    {
+        // dd("masuk");
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $review_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '0')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '0')->get();
+
+            if (isset($review_application)) {
+                $review_application = $review_application->merge($kuil);
+            } else {
+                $review_application = $kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '0')->get();
+
+            if (isset($review_application)) {
+                $review_application = $review_application->merge($gurdwara);
+            } else {
+                $review_application = $gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '0')->get();
+
+            if (isset($review_application)) {
+                $review_application = $review_application->merge($gereja);
+            } else {
+                $review_application = $gereja;
+            }
+        }
+
+
+        return view('ybs.permohonan.semak-semula', compact('review_application'));
+    }
+
+    public function permohonan_lulus()
+    {
+        // dd("masuk");
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $approved_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('status', '2')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('status', '2')->get();
+
+            if (isset($approved_application)) {
+                $approved_application = $approved_application->merge($kuil);
+            } else {
+                $approved_application = $kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('status', '2')->get();
+
+            if (isset($approved_application)) {
+                $approved_application = $approved_application->merge($gurdwara);
+            } else {
+                $approved_application = $gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('status', '2')->get();
+
+            if (isset($approved_application)) {
+                $approved_application = $approved_application->merge($gereja);
+            } else {
+                $approved_application = $gereja;
+            }
+        }
+
+
+        return view('ybs.permohonan.lulus', compact('approved_application'));
+    }
+
+    public function permohonan_tidak_lulus()
+    {
+        // dd("masuk");
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $rejected_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '3')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '3')->get();
+
+            if (isset($rejected_application)) {
+                $rejected_application = $rejected_application->merge($kuil);
+            } else {
+                $rejected_application = $kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '3')->get();
+
+            if (isset($rejected_application)) {
+                $rejected_application = $rejected_application->merge($gurdwara);
+            } else {
+                $rejected_application = $gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '3')->get();
+
+            if (isset($rejected_application)) {
+                $rejected_application = $rejected_application->merge($gereja);
+            } else {
+                $rejected_application = $gereja;
+            }
+        }
+
+
+        return view('ybs.permohonan.tidak-lulus', compact('rejected_application'));
     }
 }

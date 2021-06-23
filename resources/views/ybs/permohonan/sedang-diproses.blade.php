@@ -1,4 +1,4 @@
-@extends('layouts.layout-exco')
+@extends('layouts.layout-yb')
 
 @section('content')
 
@@ -22,37 +22,41 @@
                           <thead>
                               <tr>
                                 <th class="all">BIL</th>
-                                <th class="all">KETEGORI</th>
+                                <th class="all">PERMOHONAN ID</th>
+                                <th class="all">TARIKH PERMOHONAN DIBUAT</th>
+                                <th class="all">WAKTU PERMOHONAN DIBUAT</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
-                                <th class="all">TARIKH PENDAFTARAN</th>
-                                <th class="all">DAERAH</th>
+                                <th class="all">NAMA PEMOHON</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            @foreach( $rumah_ibadat as $data)
+                            @foreach( $processing_application as $data)
                               <tr>
                                   {{-- BIL --}}
                                   <td></td>
 
-                                  {{-- KETEGORI --}}
-                                  <td>{{ $data->category}}</td>
+                                  {{-- PERMOHONAN ID --}}
+                                  <td>{{ $data->getPermohonanID() }}</td>
 
-                                  {{-- NAMA RUMAH IBADAT --}}
-                                  <td>{{ $data->name_association }}</td>
-
-                                  {{-- TARIKH PENDAFTARAN --}}
+                                  {{-- TARIKH PERMOHONAN DIBUAT--}}
                                   <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
 
-                                  {{-- DAERAH --}}
-                                  <td>{{ $data->district}}</td>
+                                  {{-- WAKTU PERMOHONAN DIBUAT--}}
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('h:m:s') }}</td>
+
+                                  {{-- NAMA RUMAH IBADAT --}}
+                                  <td>{{ $data->rumah_ibadat->name_association }}</td>
+
+                                  {{-- NAMA RUMAH PEMOHON --}}
+                                  <td>{{ $data->user->name}}</td>
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('excos.rumah-ibadat.senarai.papar') }}">
-                                      <input type="hidden" name="rumah_ibadat_id" value="{{ $data->id }}" readonly>
+                                    <form action="{{ route('excos.permohonan.sedang-diproses.papar') }}">
+                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                       <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                     </form>
                                   </td>
@@ -95,13 +99,13 @@ var t = $(tablelaporan).DataTable({
           extend: 'pdfHtml5',
           orientation: 'landscape',
           pageSize: 'A4',
-          title: 'Senarai Rumah Ibadat',
+          title: 'Senarai Permohonan Sedang Diproses',
       },
       {
           extend: 'print',
           text: 'Cetak',
           pageSize: 'LEGAL',
-          title: 'Senarai Rumah Ibadat',
+          title: 'Senarai Permohonan Sedang Diproses',
           customize: function(win)
           {
 
