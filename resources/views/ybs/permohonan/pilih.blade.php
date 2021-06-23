@@ -34,7 +34,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                          <a href="#" class="btn btn-info">Senarai Sedang Diproses</a>
+                          <a href="{{ route('ybs.permohonan.sedang-diproses') }}" class="btn btn-info">Senarai Sedang Diproses</a>
                         </div>
                       </div>
                     </div>
@@ -46,15 +46,33 @@
                     <div class="col-md" style="padding-top: 20px;">
                       <div class="border card border-info h-100">
                         <div class="card-body">
-                            <h4 class="card-title" style="font-weight: bold;">Permohonan Lulus</h4>
-                            <p class="card-text">Senarai permohonan yang telah diluluskan oleh YB dan Kakitangan UPEN.</p>
+                            <h4 class="card-title" style="font-weight: bold;">Permohonan Semakan Semula</h4>
+                            <p class="card-text">
+                              Senarai permohonan yang memerlukan semakan semula daripada pemohon.
+                            </p>
                         </div>
                         <div class="card-footer">
-                          <a href="#" class="btn btn-info">Senarai Permohonan Lulus</a>
+                          <a href="{{ route('ybs.permohonan.semak-semula') }}" class="btn btn-info">Senarai Permohonan Semakan Semula</a>
                         </div>
                       </div>
                     </div>
                     <div class="col-md" style="padding-top: 20px;">
+                      <div class="border card border-info h-100">
+                        <div class="card-body">
+                            <h4 class="card-title" style="font-weight: bold;">Permohonan Lulus</h4>
+                            <p class="card-text">Senarai permohonan yang telah diluluskan oleh YB dan Kakitangan UPEN.</p>
+                        </div>
+                        <div class="card-footer">
+                          <a href="{{ route('ybs.permohonan.lulus') }}" class="btn btn-info">Senarai Permohonan Lulus</a>
+                        </div>
+                      </div>
+                    </div>
+                    {{-- <div class="col-md-1"></div> --}}
+                  </div>
+
+                  <div class="row">
+                    {{-- <div class="col-md-1"></div> --}}
+                    <div class="col-md-6" style="padding-top: 20px;">
                       <div class="border card border-info h-100">
                         <div class="card-body">
                             <h4 class="card-title" style="font-weight: bold;">Permohonan Tidak Lulus</h4>
@@ -63,7 +81,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                          <a href="#" class="btn btn-info">Senarai Permohonan Tidak Lulus</a>
+                          <a href="{{ route('ybs.permohonan.tidak-lulus') }}" class="btn btn-info">Senarai Permohonan Tidak Lulus</a>
                         </div>
                       </div>
                     </div>

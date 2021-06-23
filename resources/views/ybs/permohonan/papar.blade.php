@@ -1124,6 +1124,14 @@
 
                       <div class="table-responsive m-t-20">
                         <table class="table table-bordered table-responsive-lg">
+
+                              <thead style="text-align: center;">
+                                <tr>
+                                  <th>Tujuan Permohonan</th>
+                                  <th>Sumbangan Dana (RM)</th>
+                                </tr>
+                              </thead>
+
                               <tbody>
 
                                   @foreach ($permohonan->tujuan as  $key => $tujuan)
@@ -1197,7 +1205,7 @@
                         <div class="col-md">
                           <div class="card text-white">
                                 <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Yb</h4></div>
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Pejabat Yb Pengerusi</h4></div>
                                 <div class="card-body border border-dark">
                                     <textarea class="form-control text-uppercase  border-dark " id="review_yb" name="review_yb" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
                                 </div>

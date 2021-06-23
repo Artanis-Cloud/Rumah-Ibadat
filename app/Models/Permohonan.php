@@ -31,16 +31,19 @@ class Permohonan extends Model
         'certificate_or_letter_temple',     //attachment
         'invitation_letter',                //attachment
 
-        'review_to_applicant',                          
+        'review_to_applicant_id',           //to identify user who give this status "Semak Semula"
+        'review_to_applicant',
+
+        'not_approved_id',                  //to identify user who give this status "Tidak Lullus"                         
 
         'exco_id',                          //flag_exco
         'exco_date_time',                   //date-time
-        'review_yb',                          
+        'review_exco',                          
 
 
         'yb_id',                            //flag_yb
         'yb_date_time',                     //date-time
-        'review_to_applicant',                          
+        'review_yb',                          
         'payment_method',                   //(1-Check)(2-EFT)
 
         'upen_id',                          //flag_upen

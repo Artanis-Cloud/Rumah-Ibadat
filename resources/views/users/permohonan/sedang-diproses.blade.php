@@ -19,7 +19,7 @@
                     <div class="col-md">
                       <div class="card-header" style="text-align: justify; text-justify: inter-word; border: 1px solid black;">
                         <h6 >Catatan:</h6>
-                        <span>Pemohon hendaklah mengemaskini permohonan <span class="badge badge-info" style="font-size: 13px;"><i class="far fa-edit"></i></span> sekiranya status permohonan anda berstatus <span class="badge badge-warning" style="font-size: 13px;">Semak Semula</span></span>
+                        <span>Pemohon hendaklah mengemaskini permohonan <span class="badge badge-info" style="font-size: 13px;">Kemaskini</span> sekiranya status permohonan anda berstatus <span class="badge badge-warning" style="font-size: 13px;">Semak Semula</span></span>
 
                       </div>
                     </div>

@@ -111,8 +111,14 @@ Route::middleware([Exco::class])->group(function () {
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\ExcoController::class, 'permohonan_tidak_lulus'])->name('excos.permohonan.tidak-lulus');
 
+    Route::get('/dashboard-pejabat-exco/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan_tidak_lulus'])->name('excos.permohonan.tidak-lulus.papar');
+
     //  Rumah Ibadat
-    Route::get('/dashboard-pejabat-exco/rumah-ibadat/senarai-rumah-ibadat', [App\Http\Controllers\ExcoController::class, 'rumah_ibadat'])->name('excos.rumah-ibadat.senarai');
+    Route::get('/dashboard-pejabat-exco/rumah-ibadat', [App\Http\Controllers\ExcoController::class, 'rumah_ibadat'])->name('excos.rumah-ibadat');
+
+    Route::get('/dashboard-pejabat-exco/rumah-ibadat/senarai-rumah-ibadat', [App\Http\Controllers\ExcoController::class, 'senarai_rumah_ibadat'])->name('excos.rumah-ibadat.senarai');
+
+    Route::get('/dashboard-pejabat-exco/rumah-ibadat/senarai-rumah-ibadat/maklumat-rumah-ibadat', [App\Http\Controllers\ExcoController::class, 'papar_rumah_ibadat'])->name('excos.rumah-ibadat.senarai.papar');
 
 });
 
@@ -131,6 +137,14 @@ Route::middleware([Yb::class])->group(function () {
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-baru/maklumat-permohonan/sahkan', [App\Http\Controllers\YbController::class, 'permohonan_pengesahan'])->name('ybs.permohonan.papar.sahkan');
 
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-baru/maklumat-permohonan/batalkan', [App\Http\Controllers\YbController::class, 'permohonan_pembatalan'])->name('ybs.permohonan.papar.batalkan');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-sedang-diproses', [App\Http\Controllers\YbController::class, 'permohonan_sedang_diproses'])->name('ybs.permohonan.sedang-diproses');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-semakan-semula', [App\Http\Controllers\YbController::class, 'permohonan_semakan_semula'])->name('ybs.permohonan.semak-semula');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-lulus', [App\Http\Controllers\YbController::class, 'permohonan_lulus'])->name('ybs.permohonan.lulus');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\YbController::class, 'permohonan_tidak_lulus'])->name('ybs.permohonan.tidak-lulus');
 
 });
 

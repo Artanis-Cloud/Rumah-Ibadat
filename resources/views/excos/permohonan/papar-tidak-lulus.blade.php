@@ -303,7 +303,7 @@
 
                             <label>Status Permohonan</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control bg-warning text-dark @error('status') is-invalid @else border-dark @enderror" id="status" name="status" type="text" value="Semak Semula" disabled>
+                              <input class="form-control bg-danger text-light @error('status') is-invalid @else border-dark @enderror" id="status" name="status" type="text" value="Tidak Lulus" disabled>
                             </div>
 
                           </div>
@@ -958,9 +958,9 @@
                         <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
-                            <label>Status Semakan Semula Dibuat Oleh</label>
+                            <label>Tidak Diluluskan Oleh</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('exco_name') is-invalid @else border-dark @enderror" id="exco_name" name="exco_name" type="text" value="{{ $user_in_charge->name }}" disabled>
+                              <input class="form-control text-uppercase @error('exco_name') is-invalid @else border-dark @enderror" id="exco_name" name="exco_name" type="text" value="{{ $exco->name }}" disabled>
                             </div>
                           </div>
                           <div class="col-md-1"></div>
@@ -969,35 +969,20 @@
                         <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
-                            <label>Tarikh Status Semakan Semula</label>
+                            <label>Tarikh Permohonan Tidak Lulus</label>
                             <div class="mb-3 input-group">
                               <input class="form-control text-uppercase @error('exco_date') is-invalid @else border-dark @enderror" id="exco_date" name="exco_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->updated_at)->format('d-m-Y') }}" disabled>
                             </div>
                           </div>
 
                           <div class="col-md">
-                            <label>Waktu Status Semakan Semula</label>
+                            <label>Waktu Permohonan Tidak Lulus</label>
                             <div class="mb-3 input-group">
                               <input class="form-control text-uppercase @error('exco_time') is-invalid @else border-dark @enderror" id="exco_time" name="exco_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->updated_at)->format('g:i a') }}" disabled>
                             </div>
                           </div>
                           <div class="col-md-1"></div>
                         </div>
-
-                        <div class="row">
-                          <div class="col-md-1"></div>
-                          <div class="col-md">
-                            <div class="card text-white">
-                                <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Kepada Pemohon</h4></div>
-                                <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_to_applicant }}</textarea>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="col-md-1"></div>
-                        </div>
-
 
                       </div>
                     </div>
@@ -1012,7 +997,7 @@
             <div class="row" style="padding-bottom: 25px; padding-top: 25px;">
               <div class="col-md-4"></div>
               <div class="col-md">
-                <a href="{{ route('excos.permohonan.semakan-semula') }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
+                <a href="{{ route('excos.permohonan.tidak-lulus') }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
               </div>
               <div class="col-md-4"></div>
             </div>
