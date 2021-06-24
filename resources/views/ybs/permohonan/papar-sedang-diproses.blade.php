@@ -1,4 +1,4 @@
-@extends('layouts.layout-exco')
+@extends('layouts.layout-yb')
 @section('content')
 
 
@@ -303,7 +303,7 @@
 
                             <label>Status Permohonan</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control bg-danger text-light @error('status') is-invalid @else border-dark @enderror" id="status" name="status" type="text" value="{{ $permohonan->status == 3 ? "Tidak Lulus" : ($permohonan->status == 4 ? "Dibatalkan" : "") }}" disabled>
+                              <input class="form-control  @error('status') is-invalid @else border-dark @enderror" id="status" name="status" type="text" value="Sedang Diproses" disabled>
                             </div>
 
                           </div>
@@ -955,11 +955,10 @@
 
                         <h3 style="text-align: center; padding-bottom: 15px;">Bahagian Ulasan</h3>
 
-                        @if($permohonan->status == 3)
                         <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
-                            <label>Tidak Diluluskan Oleh</label>
+                            <label>Disahkan oleh</label>
                             <div class="mb-3 input-group">
                               <input class="form-control text-uppercase @error('exco_name') is-invalid @else border-dark @enderror" id="exco_name" name="exco_name" type="text" value="{{ $exco->name }}" disabled>
                             </div>
@@ -970,39 +969,158 @@
                         <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
-                            <label>Tarikh Permohonan Tidak Lulus</label>
+                            <label>Tarikh Pengesahan</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('exco_date') is-invalid @else border-dark @enderror" id="exco_date" name="exco_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->updated_at)->format('d-m-Y') }}" disabled>
+                              <input class="form-control text-uppercase @error('exco_date') is-invalid @else border-dark @enderror" id="exco_date" name="exco_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('d-m-Y') }}" disabled>
                             </div>
                           </div>
 
                           <div class="col-md">
-                            <label>Waktu Permohonan Tidak Lulus</label>
+                            <label>Waktu Pengesahan</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('exco_time') is-invalid @else border-dark @enderror" id="exco_time" name="exco_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->updated_at)->format('g:i a') }}" disabled>
+                              <input class="form-control text-uppercase @error('exco_time') is-invalid @else border-dark @enderror" id="exco_time" name="exco_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('g:i a') }}" disabled>
                             </div>
                           </div>
                           <div class="col-md-1"></div>
                         </div>
-                        @elseif($permohonan->status == 4)
-                          <div class="row">
+
+                        <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
-                            <label>Tarikh Pembatalan</label>
+                            <div class="card text-white">
+                                <div class="card-header bg-dark">
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil Pejabat Exco</h4></div>
+                                <div class="card-body border border-dark">
+                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_exco }}</textarea>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <label>Disokong oleh</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('cancellation_date') is-invalid @else border-dark @enderror" id="cancellation_date" name="cancellation_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->updated_at)->format('d-m-Y') }}" disabled>
+                              <input class="form-control text-uppercase @error('yb_name') is-invalid @else border-dark @enderror" id="yb_name" name="yb_name" type="text" value="{{ $yb->name }}" disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <label>Tarikh Disokong</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('yb_date') is-invalid @else border-dark @enderror" id="yb_date" name="yb_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->yb_date_time)->format('d-m-Y') }}" disabled>
                             </div>
                           </div>
 
                           <div class="col-md">
-                            <label>Waktu Pembatalan</label>
+                            <label>Waktu Disokong</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('cancellation_date') is-invalid @else border-dark @enderror" id="cancellation_date" name="cancellation_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->updated_at)->format('g:i a') }}" disabled>
+                              <input class="form-control text-uppercase @error('yb_time') is-invalid @else border-dark @enderror" id="yb_time" name="yb_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->yb_date_time)->format('g:i a') }}" disabled>
                             </div>
                           </div>
                           <div class="col-md-1"></div>
                         </div>
-                        @endif
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <div class="card text-white">
+                                <div class="card-header bg-dark">
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil Pejabat Yb Pengerusi</h4></div>
+                                <div class="card-body border border-dark">
+                                    <textarea class="form-control text-uppercase  border-dark " id="review_yb" name="review_yb" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_yb }}</textarea>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <hr>
+
+                        <h3 style="text-align: center; padding-bottom: 15px;">Bahagian Peruntukan</h3>
+
+                        <div class="row">
+                          <div class="col-md">
+                            <div class="table-responsive m-t-20">
+                              <table class="table table-bordered table-responsive-lg">
+
+                                    <thead style="text-align: center;">
+                                      <tr>
+                                        <th>Bil</th>
+                                        <th>Tujuan Permohonan</th>
+                                        <th>Peruntukan Yang Diluluskan</th>
+                                      </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach ($permohonan->tujuan as  $key => $tujuan)
+                                            
+                                        
+
+                                        @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
+                                          <tr>
+                                              <td>{{ ($key + 1) }}</td>
+                                              <td>AKTIVITI KEAGAMAAN</td>
+                                              <td><input type="text" id="peruntukan_1" name="peruntukan_1" class="form-control form-control"  value="RM {{ number_format($tujuan->peruntukan, 2) }}"  disabled></td>
+                                          </tr>
+                                        @endif
+
+                                        @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN")
+                                          <tr>
+                                              <td>{{ ($key + 1) }}</td>
+                                              <td>PENDIDIKAN KEAGAMAAN</td>
+                                              <td><input type="text" id="peruntukan_2" name="peruntukan_2" class="form-control form-control"  value="RM {{ number_format($tujuan->peruntukan, 2) }}"  disabled></td>
+                                          </tr>
+                                        @endif
+
+                                        @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
+                                          <tr>
+                                              <td>{{ ($key + 1) }}</td>
+                                              <td>PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN</td>
+                                              <td><input type="text" id="peruntukan_3" name="peruntukan_3" class="form-control form-control"  value="RM {{ number_format($tujuan->peruntukan, 2) }}"  disabled></td>
+                                          </tr>
+                                        @endif
+
+                                        @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
+                                          <tr>
+                                              <td>{{ ($key + 1) }}</td>
+                                              <td>BAIK PULIH/PENYELENGGARAAN BANGUNAN</td>
+                                              <td><input type="text" id="peruntukan_4" name="peruntukan_4" class="form-control form-control"  value="RM {{ number_format($tujuan->peruntukan, 2) }}"  disabled></td>
+                                          </tr>
+                                        @endif
+
+                                        @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
+                                          <tr>
+                                              <td>{{ ($key + 1) }}</td>
+                                              <td>PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT</td>
+                                              <td><input type="text" id="peruntukan_5" name="peruntukan_5" class="form-control form-control"  value="RM {{ number_format($tujuan->peruntukan, 2) }}"   disabled></td>
+                                          </tr>
+                                        @endif
+
+                                        @endforeach
+                                        
+                                        <tr style="background-color: #137eff !important;">
+                                          <td></td>
+                                          <th style="text-align: center; color: white;">Jumlah Peruntukan Yang Diluluskan</th>
+                                          <th><input type="text" id="total_fund" name="total_fund" class="form-control font-weight-bold"  value="RM {{ number_format($permohonan->total_fund, 2) }}"   disabled></th>
+                                        </tr>   
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                          </div>
+                        </div>
+
+
 
                       </div>
                     </div>
@@ -1017,7 +1135,7 @@
             <div class="row" style="padding-bottom: 25px; padding-top: 25px;">
               <div class="col-md-4"></div>
               <div class="col-md">
-                <a href="{{ route('excos.permohonan.tidak-lulus') }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
+                <a href="{{ route('ybs.permohonan.sedang-diproses') }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
               </div>
               <div class="col-md-4"></div>
             </div>

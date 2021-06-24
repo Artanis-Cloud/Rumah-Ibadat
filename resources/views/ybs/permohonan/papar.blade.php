@@ -275,6 +275,40 @@
                           </div>
                           <div class="col-md-1"></div>
                         </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+
+                            <label>Tarikh Permohonan</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control  @error('date') is-invalid @else border-dark @enderror" id="date" name="date" type="text" value="{{ Carbon\Carbon::parse($permohonan->created_at)->format('d-m-Y') }}" disabled>
+                            </div>
+
+                          </div>
+                          <div class="col-md">
+
+                            <label>Waktu Permohonan</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control  @error('time') is-invalid @else border-dark @enderror" id="time" name="time" type="text" value="{{ Carbon\Carbon::parse($permohonan->created_at)->format('g:i a') }}" disabled>
+                            </div>
+
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+
+                            <label>Status Permohonan</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control  @error('status') is-invalid @else border-dark @enderror" id="status" name="status" type="text" value="Sedang Diproses" disabled>
+                            </div>
+
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
                         
                         <h3 style="text-align: center; padding-bottom: 15px;">Dokumen-dokumen lampiran</h3>
 
@@ -1000,7 +1034,7 @@
                         <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
-                            <label>Exco yang menyokong:</label>
+                            <label>Disahkan oleh</label>
                             <div class="mb-3 input-group">
                               <input class="form-control text-uppercase @error('exco_name') is-invalid @else border-dark @enderror" id="exco_name" name="exco_name" type="text" value="{{ $exco->name }}" disabled>
                             </div>
@@ -1011,14 +1045,14 @@
                         <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
-                            <label>Tarikh disokong:</label>
+                            <label>Tarikh pengesahan</label>
                             <div class="mb-3 input-group">
                               <input class="form-control text-uppercase @error('exco_date') is-invalid @else border-dark @enderror" id="exco_date" name="exco_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('d-m-Y') }}" disabled>
                             </div>
                           </div>
 
                           <div class="col-md">
-                            <label>Waktu disokong:</label>
+                            <label>Waktu pengesahan</label>
                             <div class="mb-3 input-group">
                               <input class="form-control text-uppercase @error('exco_time') is-invalid @else border-dark @enderror" id="exco_time" name="exco_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('h:m:s') }}" disabled>
                             </div>
@@ -1031,7 +1065,7 @@
                           <div class="col-md">
                             <div class="card text-white">
                                 <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Exco</h4></div>
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Pejabat Exco</h4></div>
                                 <div class="card-body border border-dark">
                                     <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_exco }}</textarea>
                                 </div>
@@ -1078,10 +1112,10 @@
                         <div class="row">
                           <div class="col-md-2"></div>
                           <div class="col-md-4" style="padding-top: 15px;">
-                            <button type="button" class="btn waves-effect waves-light btn-warning text-dark btn-block" id="semak_semula_button" data-toggle="modal" data-target="#confirmation_review_application">Permohong Tidak Lengkap</button>
+                            <button type="button" class="btn waves-effect waves-light btn-warning text-dark btn-block" id="semak_semula_button" data-toggle="modal" data-target="#confirmation_review_application">Semak Semula</button>
                           </div>
                           <div class="col-md-4" style="padding-top: 15px;">
-                            <button type="button" class="btn waves-effect waves-light btn-danger btn-block" id="batal_button" data-toggle="modal" data-target="#confirmation_batal_permohonan">Permohonan Tidak Disokong</button>
+                            <button type="button" class="btn waves-effect waves-light btn-danger btn-block" id="batal_button" data-toggle="modal" data-target="#confirmation_batal_permohonan">Tidak Disokong</button>
                           </div>
                           <div class="col-md-2"></div>
                         </div>
@@ -1089,7 +1123,7 @@
                         <div class="row" style="padding-top: 10px;">
                           <div class="col-md-2"></div>
                           <div class="col-md" style="padding-top: 5px;">
-                            <button type="button" class="btn waves-effect waves-light btn-success btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_luluskan_permohonan">Permohonan Disokong</button>
+                            <button type="button" class="btn waves-effect waves-light btn-success btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_luluskan_permohonan">Disokong</button>
                           </div>
                           <div class="col-md-2"></div>
                         </div>
@@ -1169,7 +1203,7 @@
                                   @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
                                     <tr>
                                         <td>PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT</td>
-                                        <td><input type="text" id="peruntukan_5" name="peruntukan_5" class="form-control form-control-sm" placeholder="Masukkan Nilai" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
+                                        <td><input type="text" id="peruntukan_5" name="peruntukan_5" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
                                     </tr>
                                   @endif
 

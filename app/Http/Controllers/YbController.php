@@ -212,17 +212,9 @@ class YbController extends Controller
         $user_id = auth()->user()->id; //current user id
         $current_date = date('Y-m-d H:i:s'); //get current date
         $permohonan = Permohonan::findorfail($request->permohonan_id); //look current permohonan
+        $total_fund = 0.00;
 
-        //update permohonan
-        $permohonan->yb_id = $user_id;
-        $permohonan->yb_date_time = $current_date;
-        $permohonan->review_yb = $request->review_yb;
-
-        if($request->payment == "EFT"){
-            $permohonan->payment_method = 2;
-        }
-
-        $permohonan->save();
+        
 
         //save peruntukan value
         foreach ($permohonan->tujuan as $tujuan) {
@@ -230,28 +222,57 @@ class YbController extends Controller
             if ($tujuan->tujuan == "AKTIVITI KEAGAMAAN") {
                 $tujuan->peruntukan = $request->peruntukan_1;
                 $tujuan->save();
+
+                //count total fund
+                $total_fund = $total_fund + $request->peruntukan_1;
             }
 
             if ($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN") {
                 $tujuan->peruntukan = $request->peruntukan_2;
                 $tujuan->save();
+
+                //count total fund
+                $total_fund = $total_fund + $request->peruntukan_2;
             }
 
             if ($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") {
                 $tujuan->peruntukan = $request->peruntukan_3;
                 $tujuan->save();
+
+                //count total fund
+                $total_fund = $total_fund + $request->peruntukan_3;
             }
 
             if ($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") {
                 $tujuan->peruntukan = $request->peruntukan_4;
                 $tujuan->save();
+
+                //count total fund
+                $total_fund = $total_fund + $request->peruntukan_4;
             }
 
             if ($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") {
                 $tujuan->peruntukan = $request->peruntukan_5;
                 $tujuan->save();
+
+                //count total fund
+                $total_fund = $total_fund + $request->peruntukan_5;
             }
         }
+
+        //update permohonan
+        $permohonan->yb_id = $user_id;
+        $permohonan->yb_date_time = $current_date;
+        $permohonan->review_yb = $request->review_yb;
+
+        if ($request->payment == "EFT") {
+            $permohonan->payment_method = 2;
+        }
+        
+        $permohonan->total_fund = $total_fund;
+
+
+        $permohonan->save();
 
         //redirect
         return redirect()->route('ybs.permohonan.baru')->with('success', 'Status permohonan telah disokong.');
@@ -317,6 +338,17 @@ class YbController extends Controller
 
 
         return view('ybs.permohonan.sedang-diproses', compact('processing_application'));
+    }
+
+    public function papar_permohonan_sedang_diproses(Request $request)
+    {
+        $permohonan = Permohonan::findOrFail($request->permohonan_id);
+
+        $exco = User::findorfail($permohonan->exco_id);
+
+        $yb = User::findorfail($permohonan->yb_id);
+
+        return view('ybs.permohonan.papar-sedang-diproses', compact('permohonan', 'exco', 'yb'));
     }
 
     public function permohonan_semakan_semula()

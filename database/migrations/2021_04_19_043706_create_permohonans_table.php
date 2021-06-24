@@ -59,6 +59,7 @@ class CreatePermohonansTable extends Migration
             $table->string('yb_date_time')->nullable();                                   //date-time
             $table->text('review_yb')->nullable();                              
             $table->string('payment_method')->default('1');                                //(1-Check)(2-EFT)
+            $table->string('total_fund')->default('0.00');                                 //total fund apporved
 
             //after upen
             $table->string('upen_id')->nullable();                                          //flag_upen

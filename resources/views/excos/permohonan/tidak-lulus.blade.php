@@ -24,7 +24,8 @@
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                <th class="all">TARIKH PERMOHONAN TIDAK DILULUSKAN</th>
+                                <th class="all">TARIKH PERMOHONAN TIDAK DILULUSKAN / DIBATALKAN</th>
+                                <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
                                 <th class="all">NAMA PEMOHON</th>
                                 <th class="all">TINDAKAN</th>
@@ -46,6 +47,15 @@
 
                                   {{-- WAKTU PERMOHONAN DIBUAT--}}
                                   <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-Y') }}</td>
+
+                                  {{-- STATUS PERMOHONAN --}}
+                                  <td>
+                                    @if($data->status == 3)
+                                    <span class="badge badge-danger" style="font-size: 13px;">Tidak Lulus</span>
+                                    @elseif($data->status == 4)
+                                    <span class="badge badge-danger" style="font-size: 13px;">Dibatalkan</span>
+                                    @endif
+                                  </td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->rumah_ibadat->name_association }}</td>
