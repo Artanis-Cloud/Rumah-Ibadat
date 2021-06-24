@@ -45,6 +45,7 @@ class Permohonan extends Model
         'yb_date_time',                     //date-time
         'review_yb',                          
         'payment_method',                   //(1-Check)(2-EFT)
+        'total_fund',                       //total fund apporved
 
         'upen_id',                          //flag_upen
         'upen_date_time',                   //date-time

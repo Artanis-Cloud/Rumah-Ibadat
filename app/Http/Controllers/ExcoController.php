@@ -19,15 +19,256 @@ class ExcoController extends Controller
 {
     public function dashboard()
     {
-        $count_new_application = Permohonan::where('exco_id', null)->where('status', 1)->count();
 
-        $count_processing_application = Permohonan::where('exco_id', '!=', null)->where('status', '1')->count();
 
-        $count_passed_application = Permohonan::where('status', '2')->count();
 
-        $count_failed_application = Permohonan::where('status', '3')->count();
+        //==================================== DASHBOARD COUNTER TOKONG ====================================
 
-        $new_application = Permohonan::where('exco_id', null)->get();
+
+
+        if (auth()->user()->user_role->tokong == 1) {
+
+            //================== COUNT NEW APPLICATION ==================
+
+            $count_new_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('exco_id', null)->where('status', '1')->count();
+
+            //================== COUNT PROCESSING APPLICATION ==================
+
+            $count_processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->count();
+
+            //================== COUNT PASSED APPLICATION ==================
+
+            $count_passed_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('status', '2')->count();
+
+            //================== COUNT REJECTED APPLICATION ==================
+
+            $count_failed_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('status', '3')->orWhere('status', '4')->count();
+
+
+            //================== PERMOHONAN TERKINI LIST ==================
+
+            $new_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('exco_id', null)->where('status', '1')->get();
+
+        }
+
+
+
+        //==================================== DASHBOARD COUNTER KUIL ====================================
+
+
+
+        if (auth()->user()->user_role->kuil == 1) {
+
+            //================== COUNT NEW APPLICATION ==================
+
+            $count_new_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('exco_id', null)->where('status', '1')->count();
+
+            if (isset($count_new_application)) {
+                $count_new_application = $count_new_application + $count_new_application_kuil;
+            } else {
+                $processing_application = $count_new_application_kuil;
+            }
+
+            //================== COUNT PROCESSING APPLICATION ==================
+
+            $count_processing_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->count();
+
+            if (isset($count_processing_application)) {
+                $count_processing_application = $count_processing_application + $count_processing_application_kuil;
+            } else {
+                $count_processing_application = $count_processing_application_kuil;
+            }
+
+            //================== COUNT PASSED APPLICATION ==================
+
+            $count_passed_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('status', '2')->count();
+
+            if (isset($count_passed_application)) {
+                $count_passed_application = $count_passed_application + $count_passed_application_kuil;
+            } else {
+                $count_passed_application = $count_passed_application_kuil;
+            }
+
+            //================== COUNT REJECTED APPLICATION ==================
+
+            $count_failed_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('status', '3')->orWhere('status', '4')->count();
+
+            if (isset($count_failed_application)) {
+                $count_failed_application = $count_failed_application + $count_failed_application_kuil;
+            } else {
+                $count_failed_application = $count_failed_application_kuil;
+            }
+
+            //================== PERMOHONAN TERKINI LIST ==================
+
+            $new_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('exco_id', null)->where('status', '1')->get();
+
+            if (isset($new_application)) {
+                $new_application = $new_application + $new_application_kuil;
+            } else {
+                $new_application = $new_application_kuil;
+            }
+        }
+
+
+
+        //==================================== DASHBOARD COUNTER GURDWARA ====================================
+
+
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+
+            //================== COUNT NEW APPLICATION ==================
+
+            $count_new_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('exco_id', null)->where('status', '1')->count();
+
+            
+            if (isset($count_new_application)) {
+                $count_new_application = $count_new_application + $count_new_application_gurdwara;
+            } else {
+                $processing_application = $count_new_application_gurdwara;
+            }
+
+            //================== COUNT PROCESSING APPLICATION ==================
+
+            $count_processing_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->count();
+
+            if (isset($count_processing_application)) {
+                $count_processing_application = $count_processing_application + $count_processing_application_gurdwara;
+            } else {
+                $count_processing_application = $count_processing_application_gurdwara;
+            }
+
+            //================== COUNT PASSED APPLICATION ==================
+
+            $count_passed_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('status', '2')->count();
+
+            if (isset($count_passed_application)) {
+                $count_passed_application = $count_passed_application + $count_passed_application_gurdwara;
+            } else {
+                $count_passed_application = $count_passed_application_gurdwara;
+            }
+
+            //================== COUNT REJECTED APPLICATION ==================
+
+            $count_failed_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('status', '3')->orWhere('status', '4')->count();
+
+            if (isset($count_failed_application)) {
+                $count_failed_application = $count_failed_application + $count_failed_application_gurdwara;
+            } else {
+                $count_failed_application = $count_failed_application_gurdwara;
+            }
+
+            //================== PERMOHONAN TERKINI LIST ==================
+
+            $new_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('exco_id', null)->where('status', '1')->get();
+
+            if (isset($new_application)) {
+                $new_application = $new_application + $new_application_gurdwara;
+            } else {
+                $new_application = $new_application_gurdwara;
+            }
+        }
+
+
+        //==================================== DASHBOARD COUNTER GEREJA ====================================
+
+
+
+        if (auth()->user()->user_role->gereja == 1) {
+
+            //================== COUNT NEW APPLICATION ==================
+
+            $count_new_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('exco_id', null)->where('status', '1')->count();
+
+            if (isset($count_new_application)) {
+                $count_new_application = $count_new_application + $count_new_application_gereja;
+            } else {
+                $processing_application = $count_new_application_gereja;
+            }
+
+            //================== COUNT PROCESSING APPLICATION ==================
+
+            $count_processing_application_gereja = Permohonan::whereHas('rumah_ibadat',
+                function ($q) {
+                    $q->where('category', 'GEREJA');
+                }
+            )->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->count();
+
+            if (isset($count_processing_application)) {
+                $count_processing_application = $count_processing_application + $count_processing_application_gereja;
+            } else {
+                $count_processing_application = $count_processing_application_gereja;
+            }
+
+            //================== COUNT PASSED APPLICATION ==================
+
+            $count_passed_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('status', '2')->count();
+
+            if (isset($count_passed_application)) {
+                $count_passed_application = $count_passed_application + $count_passed_application_gereja;
+            } else {
+                $count_passed_application = $count_passed_application_gereja;
+            }
+
+            //================== COUNT REJECTED APPLICATION ==================
+
+            $count_failed_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('status', '3')->orWhere('status', '4')->count();
+
+            if (isset($count_failed_application)) {
+                $count_failed_application = $count_failed_application + $count_failed_application_gereja;
+            } else {
+                $count_failed_application = $count_failed_application_gereja;
+            }
+
+            //================== PERMOHONAN TERKINI LIST ==================
+
+            $new_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('exco_id', null)->where('status', '1')->get();
+
+            if (isset($new_application)) {
+                $new_application = $new_application + $new_application_gereja;
+            } else {
+                $new_application = $new_application_gereja;
+            }
+        }
         
         return view('excos.dashboard', compact('count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application'));
     }
@@ -46,21 +287,39 @@ class ExcoController extends Controller
         }
 
         if (auth()->user()->user_role->kuil == 1) {
-            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'KUIL');
             })->where('exco_id', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($kuil);
+            } else {
+                $processing_application = $kuil;
+            }
         }
 
         if (auth()->user()->user_role->gurdwara == 1) {
-            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GURDWARA');
             })->where('exco_id', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($gurdwara);
+            } else {
+                $processing_application = $gurdwara;
+            }
         }
 
         if (auth()->user()->user_role->gereja == 1) {
-            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GEREJA');
             })->where('exco_id', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($gereja);
+            } else {
+                $processing_application = $gereja;
+            }
         }
         
         return view('excos.permohonan.baru', compact('processing_application'));
@@ -255,21 +514,39 @@ class ExcoController extends Controller
         }
 
         if (auth()->user()->user_role->kuil == 1) {
-            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'KUIL');
             })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($kuil);
+            } else {
+                $processing_application = $kuil;
+            }
         }
 
         if (auth()->user()->user_role->gurdwara == 1) {
-            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GURDWARA');
             })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($gurdwara);
+            } else {
+                $processing_application = $gurdwara;
+            }
         }
 
         if (auth()->user()->user_role->gereja == 1) {
-            $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GEREJA');
             })->where('exco_id', '!=', null)->where('yb_id', null)->where('status', '1')->get();
+
+            if (isset($processing_application)) {
+                $processing_application = $processing_application->merge($gereja);
+            } else {
+                $processing_application = $gereja;
+            }
         }
 
         return view('excos.permohonan.sedang-diproses', compact('processing_application'));
@@ -293,21 +570,39 @@ class ExcoController extends Controller
         }
 
         if (auth()->user()->user_role->kuil == 1) {
-            $review_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'KUIL');
             })->where('exco_id', null)->where('yb_id', null)->where('status', '0')->get();
+
+            if (isset($review_application)) {
+                $review_application = $review_application->merge($kuil);
+            } else {
+                $review_application = $kuil;
+            }
         }
 
         if (auth()->user()->user_role->gurdwara == 1) {
-            $review_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GURDWARA');
             })->where('exco_id', null)->where('yb_id', null)->where('status', '0')->get();
+
+            if (isset($review_application)) {
+                $review_application = $review_application->merge($gurdwara);
+            } else {
+                $review_application = $gurdwara;
+            }
         }
 
         if (auth()->user()->user_role->gereja == 1) {
-            $review_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GEREJA');
             })->where('exco_id', null)->where('yb_id', null)->where('status', '0')->get();
+
+            if (isset($review_application)) {
+                $review_application = $review_application->merge($gereja);
+            } else {
+                $review_application = $gereja;
+            }
         }
 
         return view('excos.permohonan.semak-semula', compact('review_application'));
@@ -324,24 +619,107 @@ class ExcoController extends Controller
 
     public function permohonan_lulus(Request $request)
     {
-        $permohonan = Permohonan::where('status', '2')->get();
+        if (auth()->user()->user_role->tokong == 1) {
+            $permohonan = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('status', '2')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('status', '2')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($kuil);
+            } else {
+                $permohonan = $kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('status', '2')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($gurdwara);
+            } else {
+                $permohonan = $gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('status', '2')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($gereja);
+            } else {
+                $permohonan = $gereja;
+            }
+        }
 
         return view('excos.permohonan.lulus', compact('permohonan'));
     }
 
     public function permohonan_tidak_lulus(Request $request)
     {
-        $permohonan = Permohonan::where('status', '3')->get();
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $permohonan = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('status', '3')->orWhere('status', '4')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('status', '3')->orWhere('status', '4')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($kuil);
+            } else {
+                $permohonan = $kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('status', '3')->orWhere('status', '4')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($gurdwara);
+            } else {
+                $permohonan = $gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('status', '3')->orWhere('status', '4')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($gereja);
+            } else {
+                $permohonan = $gereja;
+            }
+        }
 
         return view('excos.permohonan.tidak-lulus', compact('permohonan'));
     }
 
     public function papar_permohonan_tidak_lulus(Request $request)
     {
-        // dd($request->all());
         $permohonan = Permohonan::findorfail($request->permohonan_id);
 
-        $exco = User::findorfail($permohonan->not_approved_id);
+        $exco = null;
+        if($permohonan->status == 3){
+            $exco = User::findorfail($permohonan->not_approved_id);
+        }
 
         return view('excos.permohonan.papar-tidak-lulus', compact('permohonan','exco'));
     }
@@ -391,26 +769,45 @@ class ExcoController extends Controller
 
     public function senarai_rumah_ibadat()
     {
+
         if (auth()->user()->user_role->tokong == 1) {
             $rumah_ibadat = RumahIbadat::where('category', 'TOKONG')->get();
         }
 
         if (auth()->user()->user_role->kuil == 1) {
-            $rumah_ibadat = RumahIbadat::where('category', 'KUIL')->get();
+            $kuil = RumahIbadat::where('category', 'KUIL')->get();
+
+            if (isset($rumah_ibadat)) {
+                $rumah_ibadat = $rumah_ibadat->merge($kuil);
+            } else {
+                $rumah_ibadat = $kuil;
+            }
         }
 
         if (auth()->user()->user_role->gurdwara == 1) {
-            $rumah_ibadat = RumahIbadat::where('category', 'GURDWARA')->get();
+            $gurdwara = RumahIbadat::where('category', 'GURDWARA')->get();
+
+            if (isset($rumah_ibadat)) {
+                $rumah_ibadat = $rumah_ibadat->merge($gurdwara);
+            } else {
+                $rumah_ibadat = $gurdwara;
+            }
         }
 
         if (auth()->user()->user_role->gereja == 1) {
-            $rumah_ibadat = RumahIbadat::where('category', 'GEREJA')->get();
+            $gereja = RumahIbadat::where('category', 'GEREJA')->get();
+
+            if (isset($rumah_ibadat)) {
+                $rumah_ibadat = $rumah_ibadat->merge($gereja);
+            } else {
+                $rumah_ibadat = $gereja;
+            }
         }
+
         return view('excos.rumah-ibadat.senarai', compact('rumah_ibadat'));
     }
 
     public function papar_rumah_ibadat(Request $request){
-        // dd($request->all());
 
         $rumah_ibadat = RumahIbadat::findorfail($request->rumah_ibadat_id);
 
