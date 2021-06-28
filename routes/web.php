@@ -163,7 +163,19 @@ Route::middleware([Yb::class])->group(function () {
 
 //UPEN ROUTE
 Route::middleware([Upen::class])->group(function () {
-    Route::get('/dashboard-upen', [App\Http\Controllers\UpenController::class, 'dashboard'])->name('upens.dashboard');
+    Route::get('/dashboard-pejabat-upen', [App\Http\Controllers\UpenController::class, 'dashboard'])->name('upens.dashboard');
+
+    Route::get('/dashboard-pejabat-upen/permohonan', [App\Http\Controllers\UpenController::class, 'permohonan'])->name('upens.permohonan.pilih');
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru', [App\Http\Controllers\UpenController::class, 'permohonan_baru'])->name('upens.permohonan.baru');
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan'])->name('upens.permohonan.papar');
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/semak-semula', [App\Http\Controllers\UpenController::class, 'permohonan_semak_semula'])->name('upens.permohonan.papar.semak-semula');
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/batalkan', [App\Http\Controllers\UpenController::class, 'permohonan_pembatalan'])->name('upens.permohonan.papar.batalkan');
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/sahkan', [App\Http\Controllers\UpenController::class, 'permohonan_pengesahan'])->name('upens.permohonan.papar.sahkan');
 
 });
 
@@ -179,9 +191,6 @@ Route::middleware([Admin::class])->group(function () {
     Route::get('/dashboard-admin/pengguna/senarai-pemohon', [App\Http\Controllers\AdminController::class, 'pemohon'])->name('admins.pengguna.pemohon');
 
     Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman', [App\Http\Controllers\AdminController::class, 'pengguna_dalaman'])->name('admins.pengguna.pengguna-dalaman');
-
-
-
 });
 
 

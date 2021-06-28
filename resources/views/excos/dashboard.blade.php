@@ -266,7 +266,7 @@
                         </div>
                     </div>
                 </form>
-                @endforeach
+                @endforeach 
 
             </div>
         </div>
