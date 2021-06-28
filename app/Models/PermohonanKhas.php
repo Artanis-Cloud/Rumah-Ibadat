@@ -20,6 +20,9 @@ class PermohonanKhas extends Model
         'supported_document_1',     //attachment
         'supported_document_2',     //attachment
         'requested_amount',         //money
+
+        'yb_id',                    //flag_yb
+        'yb_date_time',             //date-time
     ];
 
     public function user()

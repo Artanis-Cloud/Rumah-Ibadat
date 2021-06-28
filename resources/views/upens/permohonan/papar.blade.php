@@ -1200,7 +1200,7 @@
 
                         <div class="row">
                           <div class="col-md-1"></div>
-                          <div class="col-md">
+                          <div class="col-md-5">
                             <label>Kaedah Pembayaran</label>
                             <div class="mb-3 input-group">
                               <input class="form-control text-uppercase @error('payment_method') is-invalid @else border-dark @enderror" id="payment_method" name="payment_method" type="text" value="{{ $permohonan->payment_method == 1 ? "Cek" : ($permohonan->payment_method == 2 ? "EFT" : "") }}" disabled>

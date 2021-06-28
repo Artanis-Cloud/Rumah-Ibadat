@@ -312,11 +312,6 @@ class PermohonanController extends Controller
         //======================================================= END OF SUCCESSFULL AND REDIRECT =======================================================
     }
 
-    public function permohonan_khas()
-    {
-        return view('users.permohonan.khas');
-    }
-
     public function permohonan_proses()
     {
         //GET 'PERMOHONAN SEDANG DIPROSES' LIST

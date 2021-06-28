@@ -1,4 +1,4 @@
-@extends('layouts.layout-user-nicepage')
+@extends('layouts.layout-upen')
 
 @section('content')
 
@@ -30,14 +30,16 @@
 
                   <div class="row"> 
                     <div class="col-md-2"></div>
-                    <div class="col-md">
+                    <div class="col-md-4">
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
                           <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ old('category') }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
-                              <option value="TOKONG"    {{ old('category') == "TOKONG"  ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
-                              <option value="KUIL"      {{ old('category') == "KUIL"    ? 'selected' : '' }} >KUIL (HINDU & GURDWARA)</option>
-                              <option value="GEREJA"    {{ old('category') == "GEREJA"  ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
+                              <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
+                              <option value="TOKONG"    {{ old('category') == "TOKONG"    ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
+                              <option value="KUIL"      {{ old('category') == "KUIL"      ? 'selected' : '' }} >KUIL (HINDU)</option>
+                              <option value="GURDWARA"  {{ old('category') == "GURDWARA"  ? 'selected' : '' }} >GURDWARA (SIKH)</option>
+                              <option value="GEREJA"    {{ old('category') == "GEREJA"    ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
                           </select>
                           @error('category')
                           <span class="invalid-feedback" role="alert">
@@ -46,7 +48,7 @@
                           @enderror
                       </div>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-6"></div>
                   </div>
 
                   <div class="row">

@@ -1,4 +1,4 @@
-@extends('layouts.layout-exco')
+@extends('layouts.layout-upen')
 
 @section('content')
 
@@ -23,17 +23,17 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
-                                <th class="all">KATEGORI</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                <th class="all">WAKTU PERMOHONAN DIBUAT</th>
+                                <th class="all">TARIKH STATUS SEMAKAN SEMULA</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
-                                <th class="all">PAPAR</th>
+                                {{-- <th class="all">NAMA PEMOHON</th> --}}
+                                <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            @foreach( $processing_application as $data)
+                            @foreach( $review_application as $data)
                               <tr>
                                   {{-- BIL --}}
                                   <td></td>
@@ -41,31 +41,21 @@
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
 
-                                  {{-- KATEGORI --}}
-                                  <td>
-                                    @if($data->rumah_ibadat->category == "TOKONG")
-                                    <span class="label label-primary" style="font-size: 13px;">Tokong</span>
-                                    @elseif($data->rumah_ibadat->category == "KUIL")
-                                    <span class="label label-primary" style="font-size: 13px;">Kuil</span>
-                                    @elseif($data->rumah_ibadat->category == "GURDWARA")
-                                    <span class="label label-primary" style="font-size: 13px;">Gurdwara</span>
-                                    @elseif($data->rumah_ibadat->category == "GEREJA")
-                                    <span class="label label-primary" style="font-size: 13px;">Gereja</span>
-                                    @endif
-                                  </td>
-
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
                                   <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
 
                                   {{-- WAKTU PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-Y') }}</td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->rumah_ibadat->name_association }}</td>
 
+                                  {{-- NAMA RUMAH PEMOHON --}}
+                                  {{-- <td>{{ $data->user->name}}</td> --}}
+
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('excos.permohonan.papar') }}">
+                                    <form action="{{ route('excos.permohonan.semakan-semula.papar') }}">
                                       <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                       <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                     </form>
@@ -109,13 +99,13 @@ var t = $(tablelaporan).DataTable({
           extend: 'pdfHtml5',
           orientation: 'landscape',
           pageSize: 'A4',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Senarai Permohonan Semakan Semula',
       },
       {
           extend: 'print',
           text: 'Cetak',
           pageSize: 'LEGAL',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Senarai Permohonan Semakan Semula',
           customize: function(win)
           {
 

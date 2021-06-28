@@ -23,8 +23,11 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
+                                <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">TARIKH PERMOHONAN</th>
-                                <th class="all">TINDAKAN</th>
+                                <th class="all">TARIKH DILULUSKAN</th>
+                                <th class="all">Peruntukan Yang Diluluskan</th>
+                                <th class="all">JENIS PEMBAYARAN</th>
                               </tr>
                           </thead>
 
@@ -34,8 +37,20 @@
                                 <tr>
                                     <td></td>
                                     <td>{{ $data->getPermohonanID() }}</td>
-                                    <td>{{ $data->created_at }}</td>
-                                    <td><button type="button" class="btn btn-info"><i class="far fa-edit"></i></button></td>
+                                    <td>
+                                        <span class="badge badge-success" style="font-size: 13px;">Lulus</span>
+                                    </td>
+                                    <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                    <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-Y') }}</td>
+                                    <td>RM {{ number_format($data->total_fund, 2) }}</td>
+                                    <td>
+                                      @if($data->payment_method == 1)
+                                      Cek
+                                      @else 
+                                      EFT
+                                      @endif
+                                    </td>
+
                                 </tr>
                             @endforeach
 
