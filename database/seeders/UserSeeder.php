@@ -14,7 +14,26 @@ class UserSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
+
+        DB::table('batches')->insert(
+            [
+
+                'tokong_counter' => '0',
+                'tokong' => '1',
+
+                'kuil_counter' => '0',
+                'kuil' => '1',
+
+                'gurdwara_counter' => '0',
+                'gurdwara' => '1',
+
+                'gereja_counter' => '0',
+                'gereja' => '1',
+                
+            ]
+        );
+
         $hashed_random_password = Hash::make("1234567890");
 
         DB::table('users')->delete();

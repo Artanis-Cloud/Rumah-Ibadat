@@ -1,4 +1,4 @@
-@extends('layouts.layout-yb')
+@extends('layouts.layout-upen')
 
 @section('content')
 
@@ -23,18 +23,17 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
+                                {{-- <th class="all">BATCH</th> --}}
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                <th class="all">TARIKH PERMOHONAN TIDAK DILULUSKAN</th>
-                                <th class="all">STATUS PERMOHONAN</th>
+                                <th class="all">KATEGORI RUMAH IBADAT </th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
-                                <th class="all">NAMA PEMOHON</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            @foreach( $rejected_application as $data)
+                            @foreach( $permohonan as $data)
                               <tr>
                                   {{-- BIL --}}
                                   <td></td>
@@ -42,30 +41,39 @@
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
 
+                                  {{-- BATCH --}}
+                                  {{-- <td>{{ $data->batch }}</td> --}}
+
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
                                   <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
 
-                                  {{-- WAKTU PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-Y') }}</td>
-
-                                  {{-- STATUS PERMOHONAN --}}
+                                  {{-- KATEGORI--}}
                                   <td>
-                                    @if($data->status == 3)
-                                    <span class="badge badge-danger" style="font-size: 13px;">Tidak Lulus</span>
-                                    @elseif($data->status == 4)
-                                    <span class="badge badge-danger" style="font-size: 13px;">Dibatalkan</span>
+                                    @if($data->rumah_ibadat->category == "TOKONG")
+
+                                    <span class="badge badge-info" style="font-size: 13px;">Tokong</span>
+
+                                    @elseif($data->rumah_ibadat->category == "KUIL")
+
+                                    <span class="badge badge-info" style="font-size: 13px;">Kuil</span>
+
+                                    @elseif($data->rumah_ibadat->category == "GURDWARA")
+
+                                    <span class="badge badge-info" style="font-size: 13px;">Gurdwara</span>
+
+                                    @elseif($data->rumah_ibadat->category == "GEREJA")
+
+                                    <span class="badge badge-info" style="font-size: 13px;">Gereja</span>
+
                                     @endif
                                   </td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->rumah_ibadat->name_association }}</td>
 
-                                  {{-- NAMA RUMAH PEMOHON --}}
-                                  <td>{{ $data->user->name}}</td>
-
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('excos.permohonan.tidak-lulus.papar') }}">
+                                    <form action="{{ route('upens.permohonan.papar') }}">
                                       <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                       <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                     </form>

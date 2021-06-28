@@ -191,14 +191,11 @@
                     <div>
                         <h4 class="mb-0 card-title">Laporan Perbelanjaan Rumah Ibadat</h4>
                     </div>
-                    <div class="ml-auto">
+                    {{-- <div class="ml-auto">
                         <select class="border-0 custom-select text-muted">
                             <option value="0" selected="">Mei 2021</option>
-                            {{-- <option value="1">May 2018</option>
-                            <option value="2">March 2018</option>
-                            <option value="3">June 2018</option> --}}
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="card-body bg-light">
@@ -255,16 +252,20 @@
             <div class="comment-widgets scrollable" style="height:490px;">
 
                 @foreach($new_application as $data)
-                    <div class="flex-row d-flex comment-row">
-                        <div class="comment-text active w-100">
-                            <h6 class="font-medium">{{ $data->rumah_ibadat->name_association }}</h6>
-                            <span class="m-b-15 d-block">{{ $data->user->name }}</span>
-                            <div class="comment-footer ">
-                                <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
-                                <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span>
+                    <form action="{{ route('ybs.permohonan.papar') }}" onclick="javascript:$(this).submit();">
+                        <div class="flex-row d-flex comment-row">   
+                            <div class="comment-text active w-100">
+                                <h6 class="font-medium">{{ $data->rumah_ibadat->name_association }}</h6>
+                                <span class="m-b-15 d-block">{{ $data->user->name }}</span>
+                                <span class="m-b-15 d-block">{{ $data->getPermohonanID() }}</span>
+                                <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                <div class="comment-footer ">
+                                    <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }} | {{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
+                                    <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 @endforeach
 
             </div>

@@ -8,6 +8,7 @@ use App\Models\RumahIbadat;
 use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
+use App\Models\Batch;
 
 use Illuminate\Http\Request;
 
@@ -15,15 +16,251 @@ class YbController extends Controller
 {
     public function dashboard()
     {
-        $count_new_application = Permohonan::where('yb_id', null)->where('exco_id', '!=', null)->where('status', 1)->count();
+        //==================================== DASHBOARD COUNTER TOKONG ====================================
 
-        $count_processing_application = Permohonan::where('yb_id', '!=', null)->where('status', '1')->count();
 
-        $count_passed_application = Permohonan::where('status', '2')->count();
 
-        $count_failed_application = Permohonan::where('status', '3')->count();
+        if (auth()->user()->user_role->tokong == 1) {
 
-        $new_application = Permohonan::where('yb_id', null)->where('exco_id', '!=', null)->where('status', 1)->get();
+            //================== COUNT NEW APPLICATION ==================
+
+            $count_new_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->count();
+
+            //================== COUNT PROCESSING APPLICATION ==================
+
+            $count_processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->count();
+
+            //================== COUNT PASSED APPLICATION ==================
+
+            $count_passed_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('status', '2')->count();
+
+            //================== COUNT REJECTED APPLICATION ==================
+
+            $count_failed_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('status', '3')->orWhere('status', '4')->count();
+
+
+            //================== PERMOHONAN TERKINI LIST ==================
+
+            $new_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->orderBy('created_at', 'asc')->get();
+        }
+
+
+
+        //==================================== DASHBOARD COUNTER KUIL ====================================
+
+
+
+        if (auth()->user()->user_role->kuil == 1) {
+
+            //================== COUNT NEW APPLICATION ==================
+
+            $count_new_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->count();
+
+            if (isset($count_new_application)) {
+                $count_new_application = $count_new_application + $count_new_application_kuil;
+            } else {
+                $processing_application = $count_new_application_kuil;
+            }
+
+            //================== COUNT PROCESSING APPLICATION ==================
+
+            $count_processing_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->count();
+
+            if (isset($count_processing_application)) {
+                $count_processing_application = $count_processing_application + $count_processing_application_kuil;
+            } else {
+                $count_processing_application = $count_processing_application_kuil;
+            }
+
+            //================== COUNT PASSED APPLICATION ==================
+
+            $count_passed_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('status', '2')->count();
+
+            if (isset($count_passed_application)) {
+                $count_passed_application = $count_passed_application + $count_passed_application_kuil;
+            } else {
+                $count_passed_application = $count_passed_application_kuil;
+            }
+
+            //================== COUNT REJECTED APPLICATION ==================
+
+            $count_failed_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('status', '3')->orWhere('status', '4')->count();
+
+            if (isset($count_failed_application)) {
+                $count_failed_application = $count_failed_application + $count_failed_application_kuil;
+            } else {
+                $count_failed_application = $count_failed_application_kuil;
+            }
+
+            //================== PERMOHONAN TERKINI LIST ==================
+
+            $new_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+            if (isset($new_application)) {
+                $new_application = $new_application + $new_application_kuil;
+            } else {
+                $new_application = $new_application_kuil;
+            }
+        }
+
+
+
+        //==================================== DASHBOARD COUNTER GURDWARA ====================================
+
+
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+
+            //================== COUNT NEW APPLICATION ==================
+
+            $count_new_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->count();
+
+
+            if (isset($count_new_application)) {
+                $count_new_application = $count_new_application + $count_new_application_gurdwara;
+            } else {
+                $processing_application = $count_new_application_gurdwara;
+            }
+
+            //================== COUNT PROCESSING APPLICATION ==================
+
+            $count_processing_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->count();
+
+            if (isset($count_processing_application)) {
+                $count_processing_application = $count_processing_application + $count_processing_application_gurdwara;
+            } else {
+                $count_processing_application = $count_processing_application_gurdwara;
+            }
+
+            //================== COUNT PASSED APPLICATION ==================
+
+            $count_passed_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('status', '2')->count();
+
+            if (isset($count_passed_application)) {
+                $count_passed_application = $count_passed_application + $count_passed_application_gurdwara;
+            } else {
+                $count_passed_application = $count_passed_application_gurdwara;
+            }
+
+            //================== COUNT REJECTED APPLICATION ==================
+
+            $count_failed_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('status', '3')->orWhere('status', '4')->count();
+
+            if (isset($count_failed_application)) {
+                $count_failed_application = $count_failed_application + $count_failed_application_gurdwara;
+            } else {
+                $count_failed_application = $count_failed_application_gurdwara;
+            }
+
+            //================== PERMOHONAN TERKINI LIST ==================
+
+            $new_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+            if (isset($new_application)) {
+                $new_application = $new_application + $new_application_gurdwara;
+            } else {
+                $new_application = $new_application_gurdwara;
+            }
+        }
+
+
+        //==================================== DASHBOARD COUNTER GEREJA ====================================
+
+
+
+        if (auth()->user()->user_role->gereja == 1) {
+
+            //================== COUNT NEW APPLICATION ==================
+
+            $count_new_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->count();
+
+            if (isset($count_new_application)) {
+                $count_new_application = $count_new_application + $count_new_application_gereja;
+            } else {
+                $processing_application = $count_new_application_gereja;
+            }
+
+            //================== COUNT PROCESSING APPLICATION ==================
+
+            $count_processing_application_gereja = Permohonan::whereHas('rumah_ibadat',function ($q) {
+                    $q->where('category', 'GEREJA');
+                }
+            )->where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->count();
+
+            if (isset($count_processing_application)) {
+                $count_processing_application = $count_processing_application + $count_processing_application_gereja;
+            } else {
+                $count_processing_application = $count_processing_application_gereja;
+            }
+
+            //================== COUNT PASSED APPLICATION ==================
+
+            $count_passed_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('status', '2')->count();
+
+            if (isset($count_passed_application)) {
+                $count_passed_application = $count_passed_application + $count_passed_application_gereja;
+            } else {
+                $count_passed_application = $count_passed_application_gereja;
+            }
+
+            //================== COUNT REJECTED APPLICATION ==================
+
+            $count_failed_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('status', '3')->orWhere('status', '4')->count();
+
+            if (isset($count_failed_application)) {
+                $count_failed_application = $count_failed_application + $count_failed_application_gereja;
+            } else {
+                $count_failed_application = $count_failed_application_gereja;
+            }
+
+            //================== PERMOHONAN TERKINI LIST ==================
+
+            $new_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+
+            if (isset($new_application)) {
+                $new_application = $new_application + $new_application_gereja;
+            } else {
+                $new_application = $new_application_gereja;
+            }
+        }
 
         return view('ybs.dashboard', compact('count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application'));
     }
@@ -213,6 +450,7 @@ class YbController extends Controller
         $current_date = date('Y-m-d H:i:s'); //get current date
         $permohonan = Permohonan::findorfail($request->permohonan_id); //look current permohonan
         $total_fund = 0.00;
+        $batch = Batch::first();
 
         
 
@@ -258,6 +496,56 @@ class YbController extends Controller
                 //count total fund
                 $total_fund = $total_fund + $request->peruntukan_5;
             }
+        }
+
+        //assign batching
+        
+        if($permohonan->rumah_ibadat->category == "TOKONG"){
+            $permohonan->batch = $batch->tokong; //assign permohonan batch
+
+            $batch->tokong_counter = $batch->tokong_counter + 1;
+            
+            if($batch->tokong_counter == 10){
+                $batch->tokong = $batch->tokong + 1; // add new batch
+                $batch->tokong_counter = 0; // reset counter
+            }
+            $batch->save();
+        }
+
+        if ($permohonan->rumah_ibadat->category == "KUIL") {
+            $permohonan->batch = $batch->kuil;
+
+            $batch->kuil_counter = $batch->kuil_counter + 1;
+
+            if ($batch->kuil_counter == 10) {
+                $batch->kuil = $batch->kuil + 1; // add new batch
+                $batch->kuil_counter = 0; // reset counter
+            }
+            $batch->save();
+        }
+
+        if ($permohonan->rumah_ibadat->category == "GURDWARA") {
+            $permohonan->batch = $batch->gurdwara;
+
+            $batch->gurdwara_counter = $batch->gurdwara_counter + 1;
+
+            if ($batch->gurdwara_counter == 10) {
+                $batch->gurdwara = $batch->gurdwara + 1; // add new batch
+                $batch->gurdwara_counter = 0; // reset counter
+            }
+            $batch->save();
+        }
+
+        if ($permohonan->rumah_ibadat->category == "GEREJA") {
+            $permohonan->batch = $batch->gereja;
+
+            $batch->gereja_counter = $batch->gereja_counter + 1;
+
+            if ($batch->gereja_counter == 10) {
+                $batch->gereja = $batch->gereja + 1; // add new batch
+                $batch->gereja_counter = 0; // reset counter
+            }
+            $batch->save();
         }
 
         //update permohonan
@@ -458,13 +746,13 @@ class YbController extends Controller
         if (auth()->user()->user_role->tokong == 1) {
             $rejected_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'TOKONG');
-            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '3')->get();
+            })->where('status', '3')->orWhere('status', '4')->get();
         }
 
         if (auth()->user()->user_role->kuil == 1) {
             $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'KUIL');
-            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '3')->get();
+            })->where('status', '3')->orWhere('status', '4')->get();
 
             if (isset($rejected_application)) {
                 $rejected_application = $rejected_application->merge($kuil);
@@ -476,7 +764,7 @@ class YbController extends Controller
         if (auth()->user()->user_role->gurdwara == 1) {
             $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GURDWARA');
-            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '3')->get();
+            })->where('status', '3')->orWhere('status', '4')->get();
 
             if (isset($rejected_application)) {
                 $rejected_application = $rejected_application->merge($gurdwara);
@@ -488,7 +776,7 @@ class YbController extends Controller
         if (auth()->user()->user_role->gereja == 1) {
             $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GEREJA');
-            })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '3')->get();
+            })->where('status', '3')->orWhere('status', '4')->get();
 
             if (isset($rejected_application)) {
                 $rejected_application = $rejected_application->merge($gereja);

@@ -681,7 +681,7 @@ class ExcoController extends Controller
             if (isset($permohonan)) {
                 $permohonan = $permohonan->merge($kuil);
             } else {
-                $permohonan = $kuil;
+                $permohonan = $kuil; 
             }
         }
 

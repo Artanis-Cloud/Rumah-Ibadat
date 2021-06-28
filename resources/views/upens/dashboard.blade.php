@@ -11,11 +11,11 @@
 <!-- ============================================================== -->
 <div class="row">
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-info">
+        <a class="card bg-info" href="{{ route('upens.permohonan.baru') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>120</h2>
+                        <h2>{{ $count_new_application }}</h2>
                         <h6>Permohonan <br>Baru</h6>
                     </div>
                     <div class="ml-auto">
@@ -23,18 +23,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
         <div class="card bg-warning">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>150</h2>
-                        <h6>Permohonan <br>Sedang Diproses</h6>
+                        <h2>{{ $count_review_application }}</h2>
+                        <h6>Permohonan <br>Semak Semula</h6>
                     </div>
                     <div class="ml-auto">
-                        <span class="text-white display-6"><i class="fas fa-sync-alt"></i></span>
+                        <span class="text-white display-6"><i class="fas fa-undo"></i></span>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>450</h2>
+                        <h2>{{ $count_passed_application }}</h2>
                         <h6>Permohonan <br>Lulus</h6>
                     </div>
                     <div class="ml-auto">
@@ -60,7 +60,7 @@
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>100</h2>
+                        <h2>{{ $count_failed_application }}</h2>
                         <h6>Permohonan <br>Tidak Lulus</h6>
                     </div>
                     <div class="ml-auto">
@@ -253,53 +253,42 @@
                 <h4 class="card-title">Permohonan Terkini</h4>
             </div>
             <div class="comment-widgets scrollable" style="height:490px;">
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Mr Choo</h6>
-                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Irsan</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">April 13, 2021</span>
-                            <span class="label label-success label-primary">Sedang Diproses</span>
+                @foreach($new_application as $data)
+                    <form action="{{ route('upens.permohonan.papar') }}" onclick="javascript:$(this).submit();">
+                        <div class="flex-row d-flex comment-row">   
+                            <div class="comment-text active w-100">
+                                <h6 class="font-medium">{{ $data->rumah_ibadat->name_association }}</h6>
+                                <span class="m-b-15 d-block">{{ $data->user->name }}</span>
+                                <span class="m-b-15 d-block">{{ $data->getPermohonanID() }}</span>
+                                {{-- <span class="m-b-15 d-block">
+                                    @if($data->rumah_ibadat->category == "TOKONG")
+                                    <span class="label label-success label-primary" style="font-size: 13px;">Tokong</span>
+                                    @elseif($data->rumah_ibadat->category == "KUIL")
+                                    <span class="label label-success label-primary" style="font-size: 13px;">Kuil</span>
+                                    @elseif($data->rumah_ibadat->category == "GURDWARA")
+                                    <span class="label label-success label-primary" style="font-size: 13px;">Gurdwara</span>
+                                    @elseif($data->rumah_ibadat->category == "GEREJA")
+                                    <span class="label label-success label-primary" style="font-size: 13px;">Gereja</span>
+                                    @endif
+                                </span> --}}
+                                <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                <div class="comment-footer ">
+                                    <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }} | {{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
+                                    {{-- <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span> --}}
+                                    @if($data->rumah_ibadat->category == "TOKONG")
+                                    <span class="label label-info" style="font-size: 13px;">Tokong</span>
+                                    @elseif($data->rumah_ibadat->category == "KUIL")
+                                    <span class="label label-info" style="font-size: 13px;">Kuil</span>
+                                    @elseif($data->rumah_ibadat->category == "GURDWARA")
+                                    <span class="label label-info" style="font-size: 13px;">Gurdwara</span>
+                                    @elseif($data->rumah_ibadat->category == "GEREJA")
+                                    <span class="label label-info" style="font-size: 13px;">Gereja</span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row m-t-0">
-                    {{-- <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/1.jpg')}}" alt="user" width="50" class="rounded-circle">
-                    </div> --}}
-                    <div class="comment-text w-100">
-                        <h6 class="font-medium">Toh Khim Hwa</h6>
-                        <span class="m-b-15 d-block">Permohonan Bantuan Kewangan Persatuan Rumah Ibadat Kaum Tionghoa</span>
-                        <div class="comment-footer">
-                            <span class="float-right text-muted">April 10, 2021</span>
-                            <span class="label label-success label-rounded">Diluluskan</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Lim Thian Ser</h6>
-                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Tin Hong See</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">Mac 15, 2021</span>
-                            <span class="label label-success label-rounded">Diluluskan</span>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Comment Row -->
-                 <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Kiang Chew Choy</h6>
-                        <span class="m-b-15 d-block">Permohonan Naiktaraf Temple Dewa Kuan Yin Ting</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">Februari 22, 2021</span>
-                            <span class="label label-success label-rounded">Diluluskan</span>
-                        </div>
-                    </div>
-                </div>
+                    </form>
+                @endforeach
             </div>
         </div>
     </div>
@@ -307,56 +296,6 @@
 <!-- ============================================================== -->
 <!-- Ravenue - page-view-bounce rate -->
 <!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Recent comment and chats -->
-<!-- ============================================================== -->
-<div class="row">
-    <!-- column -->
-    <div class="col-lg">
-      <div class="card">
-        <div class="table-responsive" style="padding: 1%;">
-            <table id="tablestatus" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>Sijil ROS</th>
-                        <th>Tokong</th>
-                        <th>Nama Pemohon</th>
-                        <th>Tarikh</th>
-                        <th>Tujuan Permohonan</th>
-                        <th>Kelulusan</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>1862-04-5</th>
-                        <th>Persatuan Pendidikan Buddha Jing XinPersatuan Pendidikan Buddha Jing Xin</th>
-                        <th>Toh Khim Hwa</th>
-                        <th>25.10.18</th>
-                        <th>Pembaikan</th>
-                        <th>RM 5000</th>
-                        <th>Diluluskan</th>
-                    </tr>
-                    <tr>
-                        <th>PPM-018-10-06062017</th>
-                        <th>Persatuan Penganut Na Du Gong Kwan Tong</th>
-                        <th>Liam Thian Ser</th>
-                        <th>01.10.18</th>
-                        <th>Aktiviti Keagamaan</th>
-                        <th>RM 3000</th>
-                        <th>Diluluskan</th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-      </div>
-    </div>
-
-</div>
-<!-- ============================================================== -->
-<!-- Recent comment and chats -->
-<!-- ============================================================== -->
-
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
