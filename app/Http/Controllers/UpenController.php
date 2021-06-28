@@ -8,27 +8,30 @@ use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
 use App\Models\PermohonanKhas;
-
-
-
+use App\Models\Peruntukan;
 use Illuminate\Http\Request;
 
 class UpenController extends Controller
 {
     public function dashboard()
     {
+        //counter
         $count_new_application = Permohonan::where('yb_id','!=', null)->where('exco_id', '!=', null)->where('status', '1')->count();
-
         $count_review_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '0')->count();
-
         $count_passed_application = Permohonan::where('status', '2')->count();
-
         $count_failed_application = Permohonan::where('status', '3')->orWhere('status', '4')->count();
 
+        //laporan perbelanjaan
+        $current_year = date('Y'); //get current date
+        $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
+        // dd($annual_report);
+
+
+        //permohonan terkini
         $new_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->orderBy('created_at', 'asc')->get();
 
 
-        return view('upens.dashboard', compact('count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'new_application')); 
+        return view('upens.dashboard', compact('count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report', 'new_application')); 
     }
 
     public function permohonan()
@@ -191,11 +194,54 @@ class UpenController extends Controller
         //update permohonan
         $permohonan->upen_id = $user_id;
         $permohonan->upen_date_time = $current_date;
-        $permohonan->status = 2;
+        $permohonan->status = 2; //approve application
 
         $permohonan->save();
 
+        //fund calculation
+        $current_year = date('Y'); //get current date
+        $peruntukan = Peruntukan::whereYear('created_at', $current_year)->first();
+        $peruntukan->current_fund = $peruntukan->current_fund + $permohonan->total_fund;
+        $peruntukan->balance_fund = $peruntukan->total_fund - $peruntukan->current_fund;
+
+
+        if($permohonan->rumah_ibadat->category == "TOKONG"){
+
+            $peruntukan->current_tokong = $peruntukan->current_tokong + $permohonan->total_fund;
+            $peruntukan->balance_tokong = $peruntukan->total_tokong - $peruntukan->current_tokong;
+
+        } elseif($permohonan->rumah_ibadat->category == "KUIL"){
+
+            $peruntukan->current_kuil = $peruntukan->current_kuil + $permohonan->total_fund;
+            $peruntukan->balance_kuil = $peruntukan->total_kuil - $peruntukan->current_kuil;
+
+        } elseif ($permohonan->rumah_ibadat->category == "GURDWARA") {
+
+            $peruntukan->current_gurdwara = $peruntukan->current_gurdwara + $permohonan->total_fund;
+            $peruntukan->balance_gurdwara = $peruntukan->total_gurdwara- $peruntukan->current_gurdwara;
+
+        } elseif ($permohonan->rumah_ibadat->category == "GEREJA") {
+
+            $peruntukan->current_gereja = $peruntukan->current_gereja + $permohonan->total_fund;
+            $peruntukan->balance_gereja = $peruntukan->total_gereja - $peruntukan->current_gereja;
+
+        }
+
+        $peruntukan->save();
+        
+
         //redirect
         return redirect()->route('upens.permohonan.baru')->with('success', 'Status permohonan telah diluluskan.');
+    }
+
+    public function permohonan_semak_semula_list()
+    {
+        $review_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '0')->get();
+        return view('upens.permohonan.semak-semula', compact('review_application'));
+    }   
+
+    public function permohonan_khas()
+    {
+        return view('upens.permohonan.permohonan-khas.baru');
     }
 }

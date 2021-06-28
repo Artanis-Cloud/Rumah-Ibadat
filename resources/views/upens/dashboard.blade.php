@@ -189,33 +189,39 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h4 class="mb-0 card-title">Laporan Perbelanjaan Rumah Ibadat</h4>
+                        <h4 class="mb-0 card-title">Laporan Peruntukan Rumah Ibadat</h4>
                     </div>
-                    <div class="ml-auto">
+                    {{-- <div class="ml-auto">
                         <select class="border-0 custom-select text-muted">
                             <option value="0" selected="">Mei 2021</option>
-                            {{-- <option value="1">May 2018</option>
-                            <option value="2">March 2018</option>
-                            <option value="3">June 2018</option> --}}
+                            
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="card-body bg-light">
                 <div class="row align-items-center">
                     <div class="col-xs-12 col-md-6">
-                        <h3 class="font-light m-b-0">Mei 2021</h3>
-                        <span class="font-14 text-muted">Laporan</span>
+                        <h3 class="font-light m-b-0">Jumlah Peruntukan</h3>
+                        {{-- <span class="font-14 text-muted">Laporan</span> --}}
                     </div>
-                    <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-info">RM 50000</div>
+                    <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-info">RM {{ number_format($annual_report->total_fund,2) }}</div>
                 </div>
             </div>
-            <div class="table-responsive" style="overflow-y: scroll;height: 395px;">
+            <div class="card-body"> 
+                <div class="row align-items-center">
+                    <div class="col-xs-12 col-md-6">
+                        <h3 class="font-light m-b-0">Peruntukan Yang Telah Diluluskan</h3>
+                        {{-- <span class="font-14 text-muted">Laporan</span> --}}
+                    </div>
+                    <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-info">RM {{ number_format($annual_report->current_fund,2) }}</div>
+                </div>
+            </div>
+            {{-- <div class="table-responsive" style="overflow-y: scroll;height: 395px;">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th class="border-top-0">NAMA RUMAH IBADAT</th>
-                            {{-- <th class="border-top-0">STATUS</th> --}}
                             <th class="border-top-0">TARIKH</th>
                             <th class="border-top-0">JUMLAH</th>
                         </tr>
@@ -224,31 +230,28 @@
                         <tr>
 
                             <td class="txt-oflo">Persatuan Pendidikan Buddha Jing Xin</td>
-                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
                             <td class="txt-oflo">April 10, 2021</td>
                             <td><span class="font-medium">RM 20000</span></td>
                         </tr>
                         <tr>
 
                             <td class="txt-oflo">Persatuan Penganut Na Du Gong Kwan Tong</td>
-                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
                             <td class="txt-oflo">Mac 15, 2021</td>
                             <td><span class="font-medium">RM 10000</span></td>
                         </tr>
                         <tr>
 
                             <td class="txt-oflo">Persatuan Penganut Dewa Fatt Goon Ten</td>
-                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
                             <td class="txt-oflo">Februari 22, 2021</td>
                             <td><span class="font-medium">RM 20000</span></td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div class="col-lg-6 col-md-12">
-        <div class="card">
+        <div class="card border border-dark">
             <div class="card-body">
                 <h4 class="card-title">Permohonan Terkini</h4>
             </div>
@@ -274,16 +277,16 @@
                                 <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                 <div class="comment-footer ">
                                     <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }} | {{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
-                                    {{-- <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span> --}}
                                     @if($data->rumah_ibadat->category == "TOKONG")
-                                    <span class="label label-info" style="font-size: 13px;">Tokong</span>
+                                    <span class="label label-primary" style="font-size: 13px;">Tokong</span>
                                     @elseif($data->rumah_ibadat->category == "KUIL")
-                                    <span class="label label-info" style="font-size: 13px;">Kuil</span>
+                                    <span class="label label-primary" style="font-size: 13px;">Kuil</span>
                                     @elseif($data->rumah_ibadat->category == "GURDWARA")
-                                    <span class="label label-info" style="font-size: 13px;">Gurdwara</span>
+                                    <span class="label label-primary" style="font-size: 13px;">Gurdwara</span>
                                     @elseif($data->rumah_ibadat->category == "GEREJA")
-                                    <span class="label label-info" style="font-size: 13px;">Gereja</span>
+                                    <span class="label label-primary" style="font-size: 13px;">Gereja</span>
                                     @endif
+                                    <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span>
                                 </div>
                             </div>
                         </div>

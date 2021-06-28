@@ -23,9 +23,9 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
-                                {{-- <th class="all">BATCH</th> --}}
+                                <th class="all">KATEGORI</th>
+                                <th class="all">BATCH</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                <th class="all">KATEGORI RUMAH IBADAT </th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
@@ -40,12 +40,6 @@
 
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
-
-                                  {{-- BATCH --}}
-                                  {{-- <td>{{ $data->batch }}</td> --}}
-
-                                  {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
 
                                   {{-- KATEGORI--}}
                                   <td>
@@ -67,6 +61,12 @@
 
                                     @endif
                                   </td>
+
+                                  {{-- BATCH --}}
+                                  <td><span class="badge badge-primary" style="font-size: 13px;">Batch {{ $data->batch }}</span></td>
+
+                                  {{-- TARIKH PERMOHONAN DIBUAT--}}
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->rumah_ibadat->name_association }}</td>

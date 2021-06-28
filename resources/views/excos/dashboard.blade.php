@@ -247,7 +247,7 @@
     <div class="col-lg-6 col-md-12">
         <div class="card border border-dark">
             <div class="card-body">
-                <h4 class="card-title">Permohonan Terkini</h4>
+                <h4 class="card-title">Permohonan Terkini [{{ $count_new_application }}]</h4>
             </div>
             <div class="comment-widgets scrollable" style="height:490px;">
 
@@ -261,6 +261,15 @@
                             <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                             <div class="comment-footer ">
                                 <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }} | {{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
+                                @if($data->rumah_ibadat->category == "TOKONG")
+                                <span class="label label-primary" style="font-size: 13px;">Tokong</span>
+                                @elseif($data->rumah_ibadat->category == "KUIL")
+                                <span class="label label-primary" style="font-size: 13px;">Kuil</span>
+                                @elseif($data->rumah_ibadat->category == "GURDWARA")
+                                <span class="label label-primary" style="font-size: 13px;">Gurdwara</span>
+                                @elseif($data->rumah_ibadat->category == "GEREJA")
+                                <span class="label label-primary" style="font-size: 13px;">Gereja</span>
+                                @endif
                                 <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span>
                             </div>
                         </div>
