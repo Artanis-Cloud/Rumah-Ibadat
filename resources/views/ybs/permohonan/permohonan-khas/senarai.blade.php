@@ -67,8 +67,8 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="#">
-                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                    <form action="{{ route('ybs.permohonan.khas.papar') }}">
+                                      <input type="hidden" name="permohonan_khas_id" value="{{ $data->id }}" readonly>
                                       <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                     </form>
                                   </td>

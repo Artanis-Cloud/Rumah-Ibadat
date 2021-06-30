@@ -252,13 +252,13 @@
             <div class="comment-widgets scrollable" style="height:490px;">
 
                 @foreach($special_application as $data)
-                    <form action="#" onclick="javascript:$(this).submit();">
+                    <form action="{{ route('ybs.permohonan.khas.papar') }}" onclick="javascript:$(this).submit();">
                         <div class="flex-row d-flex comment-row">   
                             <div class="comment-text active w-100">
                                 <h6 class="font-medium">Permohonan Khas</h6>
                                 <span class="m-b-15 d-block">{{ $data->user->name }}</span>
                                 <span class="m-b-15 d-block">{{ $data->getPermohonanID() }}</span>
-                                <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                <input type="hidden" name="permohonan_khas_id" value="{{ $data->id }}" readonly>
                                 <div class="comment-footer ">
                                     <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }} | {{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
                                     @if($data->category == "TOKONG")
