@@ -112,6 +112,8 @@ Route::middleware([Exco::class])->group(function () {
     
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-lulus', [App\Http\Controllers\ExcoController::class, 'permohonan_lulus'])->name('excos.permohonan.lulus');
 
+    Route::get('/dashboard-pejabat-exco/permohonan/permohonan-lulus/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan_lulus'])->name('excos.permohonan.lulus.papar');
+
     
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\ExcoController::class, 'permohonan_tidak_lulus'])->name('excos.permohonan.tidak-lulus');
 
@@ -152,17 +154,36 @@ Route::middleware([Yb::class])->group(function () {
    
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-semakan-semula', [App\Http\Controllers\YbController::class, 'permohonan_semakan_semula'])->name('ybs.permohonan.semak-semula');
 
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-semakan-semula/maklumat-permohonan', [App\Http\Controllers\YbController::class, 'papar_permohonan_semakan_semula'])->name('ybs.permohonan.semakan-semula.papar');
+
     
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-lulus', [App\Http\Controllers\YbController::class, 'permohonan_lulus'])->name('ybs.permohonan.lulus');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-lulus/maklumat-permohonan', [App\Http\Controllers\YbController::class, 'papar_permohonan_lulus'])->name('ybs.permohonan.lulus.papar');
 
    
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\YbController::class, 'permohonan_tidak_lulus'])->name('ybs.permohonan.tidak-lulus');
 
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\YbController::class, 'papar_permohonan_tidak_lulus'])->name('ybs.permohonan.tidak-lulus.papar');
+
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-khas', [App\Http\Controllers\YbController::class, 'permohonan_khas'])->name('ybs.permohonan.khas');
+
+
+    //rumah ibadat
+    Route::get('/dashboard-pejabat-yb-pengerusi/rumah-ibadat', [App\Http\Controllers\YbController::class, 'rumah_ibadat'])->name('ybs.rumah-ibadat');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/rumah-ibadat/senarai-rumah-ibadat', [App\Http\Controllers\YbController::class, 'senarai_rumah_ibadat'])->name('ybs.rumah-ibadat.senarai');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/rumah-ibadat/senarai-rumah-ibadat/maklumat-rumah-ibadat', [App\Http\Controllers\YbController::class, 'papar_rumah_ibadat'])->name('ybs.rumah-ibadat.senarai.papar');
 });
 
 //UPEN ROUTE
 Route::middleware([Upen::class])->group(function () {
     Route::get('/dashboard-pejabat-upen', [App\Http\Controllers\UpenController::class, 'dashboard'])->name('upens.dashboard');
+
+
+
 
     Route::get('/dashboard-pejabat-upen/permohonan', [App\Http\Controllers\UpenController::class, 'permohonan'])->name('upens.permohonan.pilih');
 
@@ -176,9 +197,27 @@ Route::middleware([Upen::class])->group(function () {
 
     Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/sahkan', [App\Http\Controllers\UpenController::class, 'permohonan_pengesahan'])->name('upens.permohonan.papar.sahkan');
 
+
     Route::get('/dashboard-pejabat-upen/permohonan/permohonan-semak-semula', [App\Http\Controllers\UpenController::class, 'permohonan_semak_semula_list'])->name('upens.permohonan.semak-semula');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-khas', [App\Http\Controllers\UpenController::class, 'permohonan_khas'])->name('upens.permohonan.khas');
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-semakan-semula/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_semakan_semula'])->name('upens.permohonan.semakan-semula.papar');
+
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-lulus', [App\Http\Controllers\UpenController::class, 'permohonan_lulus'])->name('upens.permohonan.lulus');
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-lulus/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_lulus'])->name('upens.permohonan.lulus.papar');
+
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\UpenController::class, 'permohonan_tidak_lulus'])->name('upens.permohonan.tidak-lulus');
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_tidak_lulus'])->name('upens.permohonan.tidak-lulus.papar');
+
+
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-khas', [App\Http\Controllers\UpenController::class, 'permohonan_khas'])->name('upens.permohonan-khas.baru');
+
+    Route::post('/dashboard-pejabat-upen/permohonan/permohonan-khas/hantar', [App\Http\Controllers\UpenController::class, 'permohonan_khas_hantar'])->name('upens.permohonan-khas.hantar');
+
+    Route::get('/dashboard-pejabat-upen/permohonan/senarai-permohonan-khas', [App\Http\Controllers\UpenController::class, 'permohonan_khas_senarai'])->name('upens.permohonan-khas.senarai');
 
 });
 

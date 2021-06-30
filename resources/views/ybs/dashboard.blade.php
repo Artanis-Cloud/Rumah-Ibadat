@@ -251,6 +251,33 @@
             </div>
             <div class="comment-widgets scrollable" style="height:490px;">
 
+                @foreach($special_application as $data)
+                    <form action="#" onclick="javascript:$(this).submit();">
+                        <div class="flex-row d-flex comment-row">   
+                            <div class="comment-text active w-100">
+                                <h6 class="font-medium">Permohonan Khas</h6>
+                                <span class="m-b-15 d-block">{{ $data->user->name }}</span>
+                                <span class="m-b-15 d-block">{{ $data->getPermohonanID() }}</span>
+                                <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                <div class="comment-footer ">
+                                    <span class="float-right text-muted">{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }} | {{ Carbon\Carbon::parse($data->created_at)->format('d M Y') }}</span>
+                                    @if($data->category == "TOKONG")
+                                    <span class="label label-primary" style="font-size: 13px;">Tokong</span>
+                                    @elseif($data->category == "KUIL")
+                                    <span class="label label-primary" style="font-size: 13px;">Kuil</span>
+                                    @elseif($data->category == "GURDWARA")
+                                    <span class="label label-primary" style="font-size: 13px;">Gurdwara</span>
+                                    @elseif($data->category == "GEREJA")
+                                    <span class="label label-primary" style="font-size: 13px;">Gereja</span>
+                                    @endif
+                                    <span class="label label-success label-info" style="font-size: 13px;">Sedang Diproses</span>
+                                    <span class="label label-success label-warning text-dark" style="font-size: 13px;">Khas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                @endforeach
+
                 @foreach($new_application as $data)
                     <form action="{{ route('ybs.permohonan.papar') }}" onclick="javascript:$(this).submit();">
                         <div class="flex-row d-flex comment-row">   

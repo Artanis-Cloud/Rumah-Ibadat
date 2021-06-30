@@ -1,4 +1,4 @@
-@extends('layouts.layout-yb')
+@extends('layouts.layout-upen')
 
 @section('content')
 
@@ -23,18 +23,18 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
+                                <th class="all">KATEGORI</th>
+                                <th class="all">STATUS</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                <th class="all">TARIKH PERMOHONAN TIDAK DILULUSKAN</th>
-                                <th class="all">STATUS PERMOHONAN</th>
-                                <th class="all">NAMA RUMAH IBADAT</th>
                                 <th class="all">NAMA PEMOHON</th>
+                                <th class="all">JUMLAH PERUNTUKAN</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            @foreach( $rejected_application as $data)
+                            @foreach( $permohonan_khas as $data)
                               <tr>
                                   {{-- BIL --}}
                                   <td></td>
@@ -42,30 +42,32 @@
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
 
-                                  {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                  {{-- KATEGORI --}}
+                                  <td><span class="badge badge-info" style="font-size: 13px;">{{ $data->category}}</span></td>
 
-                                  {{-- WAKTU PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-Y') }}</td>
-
-                                  {{-- STATUS PERMOHONAN --}}
+                                  {{-- STATUS --}}
                                   <td>
-                                    @if($data->status == 3)
+                                    @if($data->status == 0)
                                     <span class="badge badge-danger" style="font-size: 13px;">Tidak Lulus</span>
-                                    @elseif($data->status == 4)
-                                    <span class="badge badge-danger" style="font-size: 13px;">Dibatalkan</span>
+                                    @elseif($data->status == 1)
+                                    <span class="badge badge-warning" style="font-size: 13px;">Sedang Diproses</span>
+                                    @elseif($data->status == 2)
+                                    <span class="badge badge-success" style="font-size: 13px;">Lulus</span>
                                     @endif
                                   </td>
 
-                                  {{-- NAMA RUMAH IBADAT --}}
-                                  <td>{{ $data->rumah_ibadat->name_association }}</td>
+                                  {{-- TARIKH PERMOHONAN DIBUAT--}}
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
 
                                   {{-- NAMA RUMAH PEMOHON --}}
                                   <td>{{ $data->user->name}}</td>
 
+                                  {{-- JUMLAH PERUNTUKAN --}}
+                                  <td>RM {{ number_format($data->requested_amount, 2)}}</td>
+
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('ybs.permohonan.tidak-lulus.papar') }}">
+                                    <form action="#">
                                       <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                       <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                     </form>
@@ -109,13 +111,13 @@ var t = $(tablelaporan).DataTable({
           extend: 'pdfHtml5',
           orientation: 'landscape',
           pageSize: 'A4',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Senarai Permohonan Khas',
       },
       {
           extend: 'print',
           text: 'Cetak',
           pageSize: 'LEGAL',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Senarai Permohonan Khas',
           customize: function(win)
           {
 

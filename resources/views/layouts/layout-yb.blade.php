@@ -265,6 +265,8 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Lulus</span></a>
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.tidak-lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a>
                                 
                             </ul>
                         </li>
@@ -272,7 +274,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.rumah-ibadat.senarai') }}" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
 
                             </ul>
                         </li>

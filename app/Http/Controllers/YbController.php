@@ -9,7 +9,7 @@ use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
 use App\Models\Batch;
-
+use App\Models\SpecialApplication;
 use Illuminate\Http\Request;
 
 class YbController extends Controller
@@ -52,6 +52,8 @@ class YbController extends Controller
             $new_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'TOKONG');
             })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->orderBy('created_at', 'asc')->get();
+
+            $special_application = SpecialApplication::where('category', 'TOKONG')->where('status','1')->get();
         }
 
 
@@ -120,6 +122,14 @@ class YbController extends Controller
                 $new_application = $new_application + $new_application_kuil;
             } else {
                 $new_application = $new_application_kuil;
+            }
+
+            $special_application_kuil = SpecialApplication::where('category', 'KUIL')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_kuil;
+            } else {
+                $special_application = $special_application_kuil;
             }
         }
 
@@ -191,6 +201,14 @@ class YbController extends Controller
             } else {
                 $new_application = $new_application_gurdwara;
             }
+
+            $special_application_gurdwara = SpecialApplication::where('category', 'GURDWARA')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_gurdwara;
+            } else {
+                $special_application = $special_application_gurdwara;
+            }
         }
 
 
@@ -260,9 +278,17 @@ class YbController extends Controller
             } else {
                 $new_application = $new_application_gereja;
             }
+
+            $special_application_gereja = SpecialApplication::where('category', 'GEREJA')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_gereja;
+            } else {
+                $special_application = $special_application_gereja;
+            }
         }
 
-        return view('ybs.dashboard', compact('count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application'));
+        return view('ybs.dashboard', compact('count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
     }
 
     public function permohonan()
@@ -689,6 +715,15 @@ class YbController extends Controller
         return view('ybs.permohonan.semak-semula', compact('review_application'));
     }
 
+    public function papar_permohonan_semakan_semula(Request $request)
+    {
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $user_in_charge = User::findorfail($permohonan->review_to_applicant_id);
+
+        return view('ybs.permohonan.papar-semak-semula', compact('permohonan', 'user_in_charge'));
+    }
+
     public function permohonan_lulus()
     {
         // dd("masuk");
@@ -739,6 +774,19 @@ class YbController extends Controller
         return view('ybs.permohonan.lulus', compact('approved_application'));
     }
 
+    public function papar_permohonan_lulus(Request $request)
+    {
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $exco = User::findorfail($permohonan->exco_id);
+
+        $yb = User::findorfail($permohonan->yb_id);
+
+        $upen = User::findorfail($permohonan->upen_id);
+
+        return view('ybs.permohonan.papar-lulus', compact('permohonan', 'exco', 'yb', 'upen'));
+    }
+
     public function permohonan_tidak_lulus()
     {
         // dd("masuk");
@@ -787,5 +835,111 @@ class YbController extends Controller
 
 
         return view('ybs.permohonan.tidak-lulus', compact('rejected_application'));
+    }
+
+    public function papar_permohonan_tidak_lulus(Request $request)
+    {
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $exco = null;
+        if ($permohonan->status == 3) {
+            $exco = User::findorfail($permohonan->not_approved_id);
+        }
+
+        return view('ybs.permohonan.papar-tidak-lulus', compact('permohonan', 'exco'));
+    }
+
+    public function permohonan_khas()
+    {
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $special_application = SpecialApplication::where('category', 'TOKONG')->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $special_application_kuil = SpecialApplication::where('category', 'KUIL')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_kuil;
+            } else {
+                $special_application = $special_application_kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $special_application_gurdwara = SpecialApplication::where('category', 'GURDWARA')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_gurdwara;
+            } else {
+                $special_application = $special_application_gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $special_application_gereja = SpecialApplication::where('category', 'GEREJA')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_gereja;
+            } else {
+                $special_application = $special_application_gereja;
+            }
+        }
+
+
+        return view('ybs.permohonan.permohonan-khas.senarai', compact('special_application'));
+    }
+
+    public function rumah_ibadat()
+    {
+        return view('ybs.rumah-ibadat.pilih');
+    }
+
+    public function senarai_rumah_ibadat()
+    {
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $rumah_ibadat = RumahIbadat::where('category', 'TOKONG')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $kuil = RumahIbadat::where('category', 'KUIL')->get();
+
+            if (isset($rumah_ibadat)) {
+                $rumah_ibadat = $rumah_ibadat->merge($kuil);
+            } else {
+                $rumah_ibadat = $kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $gurdwara = RumahIbadat::where('category', 'GURDWARA')->get();
+
+            if (isset($rumah_ibadat)) {
+                $rumah_ibadat = $rumah_ibadat->merge($gurdwara);
+            } else {
+                $rumah_ibadat = $gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $gereja = RumahIbadat::where('category', 'GEREJA')->get();
+
+            if (isset($rumah_ibadat)) {
+                $rumah_ibadat = $rumah_ibadat->merge($gereja);
+            } else {
+                $rumah_ibadat = $gereja;
+            }
+        }
+
+        return view('ybs.rumah-ibadat.senarai', compact('rumah_ibadat'));
+    }
+
+    public function papar_rumah_ibadat(Request $request)
+    {
+
+        $rumah_ibadat = RumahIbadat::findorfail($request->rumah_ibadat_id);
+
+        return view('ybs.rumah-ibadat.papar', compact('rumah_ibadat'));
     }
 }

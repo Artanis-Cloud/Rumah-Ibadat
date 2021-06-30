@@ -26,7 +26,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-warning">
+        <a class="card bg-warning" href="{{ route('upens.permohonan.semak-semula') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
@@ -38,10 +38,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-success">
+        <a class="card bg-success" href="{{ route('upens.permohonan.lulus') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
@@ -53,10 +53,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-danger">
+        <a class="card bg-danger" href="{{ route('upens.permohonan.tidak-lulus') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 <!-- ============================================================== -->

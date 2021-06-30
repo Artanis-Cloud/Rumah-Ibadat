@@ -38,7 +38,7 @@
                                   <td></td>
 
                                   {{-- KETEGORI --}}
-                                  <td>{{ $data->category}}</td>
+                                  <td><span class="label label-info" style="font-size: 13px;">{{ $data->category}}</span></td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->name_association }}</td>
