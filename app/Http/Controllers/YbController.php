@@ -890,6 +890,46 @@ class YbController extends Controller
         return view('ybs.permohonan.permohonan-khas.senarai', compact('special_application'));
     }
 
+    public function papar_permohonan_khas(Request $request){
+        // dd("papar permohonan khas");
+        $special_application = SpecialApplication::findorfail($request->permohonan_khas_id);
+        // dd($special_application);
+
+        return view('ybs.permohonan.permohonan-khas.papar', compact('special_application'));
+    }
+
+    public function papar_permohonan_khas_lulus(Request $request)
+    {
+        // dd($request->all());
+        $current_date = date('Y-m-d H:i:s'); //get current date
+
+        $special_application = SpecialApplication::findorfail($request->permohonan_id);
+
+        $special_application->status = 2;
+        $special_application->yb_id = auth()->user()->id;
+        $special_application->yb_date_time = $current_date;
+
+        $special_application->save();
+
+        return redirect()->route('ybs.permohonan.khas')->with('success', 'Permohonan diluluskan.');
+    }
+
+    public function papar_permohonan_khas_tidak_lulus(Request $request)
+    {
+        // dd($request->all());
+        $current_date = date('Y-m-d H:i:s'); //get current date
+
+        $special_application = SpecialApplication::findorfail($request->permohonan_id);
+
+        $special_application->status = 0;
+        $special_application->yb_id = auth()->user()->id;
+        $special_application->yb_date_time = $current_date;
+
+        $special_application->save();
+
+        return redirect()->route('ybs.permohonan.khas')->with('success', 'Permohonan tidak diluluskan.');
+    }
+
     public function rumah_ibadat()
     {
         return view('ybs.rumah-ibadat.pilih');

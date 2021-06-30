@@ -169,6 +169,12 @@ Route::middleware([Yb::class])->group(function () {
 
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-khas', [App\Http\Controllers\YbController::class, 'permohonan_khas'])->name('ybs.permohonan.khas');
 
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-khas/maklumat-permohonan', [App\Http\Controllers\YbController::class, 'papar_permohonan_khas'])->name('ybs.permohonan.khas.papar');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-khas/maklumat-permohonan/lulus', [App\Http\Controllers\YbController::class, 'papar_permohonan_khas_lulus'])->name('ybs.permohonan.khas.lulus');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-khas/maklumat-permohonan/tidak-lulus', [App\Http\Controllers\YbController::class, 'papar_permohonan_khas_tidak_lulus'])->name('ybs.permohonan.khas.tidak-lulus');
+
 
     //rumah ibadat
     Route::get('/dashboard-pejabat-yb-pengerusi/rumah-ibadat', [App\Http\Controllers\YbController::class, 'rumah_ibadat'])->name('ybs.rumah-ibadat');
