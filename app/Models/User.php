@@ -63,9 +63,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\UserRole');
     }
 
-    public function permohonan_khas()
+    public function special_application()
     {
-        return $this->hasMany('App\Models\PermohonanKhas');
+        return $this->hasMany('App\Models\SpecialApplication');
     }
 
     //forget password email custom

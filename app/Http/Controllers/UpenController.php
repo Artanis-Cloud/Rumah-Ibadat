@@ -7,8 +7,8 @@ use App\Models\RumahIbadat;
 use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
-use App\Models\PermohonanKhas;
 use App\Models\Peruntukan;
+use App\Models\SpecialApplication;
 use Illuminate\Http\Request;
 
 class UpenController extends Controller
@@ -238,10 +238,116 @@ class UpenController extends Controller
     {
         $review_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '0')->get();
         return view('upens.permohonan.semak-semula', compact('review_application'));
-    }   
+    }
+
+    public function papar_permohonan_semakan_semula(Request $request)
+    {
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $user_in_charge = User::findorfail($permohonan->review_to_applicant_id);
+
+        return view('upens.permohonan.papar-semak-semula', compact('permohonan', 'user_in_charge'));
+    }
+
+    public function permohonan_lulus(){
+        $approved_application = Permohonan::where('status', '2')->get();
+
+        return view('upens.permohonan.lulus', compact('approved_application'));
+    }
+
+    public function papar_permohonan_lulus(Request $request)
+    {
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $exco = User::findorfail($permohonan->exco_id);
+
+        $yb = User::findorfail($permohonan->yb_id);
+
+        $upen = User::findorfail($permohonan->upen_id);
+
+        return view('upens.permohonan.papar-lulus', compact('permohonan', 'exco', 'yb', 'upen'));
+    }
+
+    public function permohonan_tidak_lulus(){
+        $rejected_application = Permohonan::where('status', '3')->orWhere('status', '4')->get();
+
+        return view('upens.permohonan.tidak-lulus', compact('rejected_application'));
+    }
+
+    public function papar_permohonan_tidak_lulus(Request $request)
+    {
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $exco = null;
+        if ($permohonan->status == 3) {
+            $exco = User::findorfail($permohonan->not_approved_id);
+        }
+
+        return view('upens.permohonan.papar-tidak-lulus', compact('permohonan', 'exco'));
+    }
 
     public function permohonan_khas()
     {
         return view('upens.permohonan.permohonan-khas.baru');
+    }
+
+    public function reference_number()
+    {
+        $year = substr(date('Y'), -2);
+        $month = date('m');
+        $date = date('d');
+        $random = mt_rand(0, 9999); // better than rand()
+        $reference_number = $year . $month . $date . $random;
+
+        //CHECK EITHER EXIST OR NOT
+        $reference_number_checker = SpecialApplication::where('reference_number', $reference_number)->count();
+        if ($reference_number_checker != 0) {
+            return $this->reference_number();
+        }
+
+        return $reference_number;
+    }
+
+    public function permohonan_khas_hantar(Request $request){
+        // dd($request->all());
+        $user_id = auth()->user()->id;  //find user id
+        $current_date = date('d-m-Y'); //get current date
+
+        $lampiran_1 = null;
+        if ($request->file('lampiran_1') != null) { //not required
+            $lampiran_1 = $request->file('lampiran_1')->store('public/muat-naik/permohonan-khas/' . $current_date);
+        }
+
+        $lampiran_2 = null;
+        if ($request->file('lampiran_2') != null) { //not required
+            $lampiran_2 = $request->file('lampiran_2')->store('public/muat-naik/permohonan-khas/' . $current_date);
+        }
+
+        $permohonan = SpecialApplication::create([
+            'user_id' => $user_id,
+
+            'reference_number' => $this->reference_number(),
+            'status' => 1,
+            'category' => $request->category,
+
+            'purpose' => $request->purpose,
+            'supported_document_1' => $lampiran_1,
+            'supported_document_2' => $lampiran_2,
+            'requested_amount' => $request->requested_amount,
+        ]);
+
+        // return redirect()->route('upens.dashboard')->with('success', 'Permohonan Khas berjaya dihantar.');
+        return redirect()->route('upens.permohonan-khas.senarai')->with('success', 'Permohonan Khas berjaya dihantar.');
+
+    }
+
+    public function permohonan_khas_senarai()
+    {
+        // dd("masuk");
+
+        $permohonan_khas = SpecialApplication::get();
+        // dd($permohonan_khas);
+
+        return view('upens.permohonan.permohonan-khas.senarai', compact('permohonan_khas'));
     }
 }

@@ -664,6 +664,19 @@ class ExcoController extends Controller
         return view('excos.permohonan.lulus', compact('permohonan'));
     }
 
+    public function papar_permohonan_lulus(Request $request)
+    {
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $exco = User::findorfail($permohonan->exco_id);
+
+        $yb = User::findorfail($permohonan->yb_id);
+
+        $upen = User::findorfail($permohonan->upen_id);
+
+        return view('excos.permohonan.papar-lulus', compact('permohonan', 'exco', 'yb', 'upen'));
+    }
+
     public function permohonan_tidak_lulus(Request $request)
     {
 

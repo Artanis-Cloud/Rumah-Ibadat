@@ -1,4 +1,4 @@
-@extends('layouts.layout-yb')
+@extends('layouts.layout-upen')
 
 @section('content')
 
@@ -65,7 +65,7 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('ybs.permohonan.tidak-lulus.papar') }}">
+                                    <form action="{{ route('upens.permohonan.tidak-lulus.papar') }}">
                                       <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                       <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                     </form>

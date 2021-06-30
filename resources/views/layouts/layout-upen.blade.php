@@ -239,7 +239,9 @@
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan-khas.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan-khas.senarai') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Khas</span></a>
                                 
                             </ul>
                         </li>
