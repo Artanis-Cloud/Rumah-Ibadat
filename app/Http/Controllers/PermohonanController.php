@@ -14,6 +14,8 @@ use App\Models\Tujuan;
 
 use App\Models\Lampiran;
 
+use App\Models\Batch;
+
 use Illuminate\Http\Request;
 
 class PermohonanController extends Controller
@@ -25,7 +27,13 @@ class PermohonanController extends Controller
     }
 
     public function permohonan_baru()
-    {   
+    {
+        $batch = Batch::first();
+
+        if($batch->allow_permohonan == 0){
+            return redirect()->back()->with('error', 'Maaf, permohonan telah ditutup');   
+        }
+
         $user_id = auth()->user()->id;
         $rumah_ibadat = RumahIbadat::where('user_id', $user_id )->get()->first();
 

@@ -239,6 +239,8 @@
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
 
+                                    <hr>
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan-khas.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan-khas.senarai') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Khas</span></a>
@@ -250,6 +252,14 @@
                             <ul aria-expanded="false" class="collapse first-level">
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="#" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
+
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-cogs"></i><span class="hide-menu" style="padding-left: 10px;">Tetapan</span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.tetapan.permohonan') }}" aria-expanded="false"><span class="hide-menu">Tetapan Permohonan</span></a>
 
                             </ul>
                         </li>

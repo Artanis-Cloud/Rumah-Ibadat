@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use App\Models\User;
 use App\Models\RumahIbadat;
 use App\Models\Permohonan;
@@ -361,5 +362,62 @@ class UpenController extends Controller
         }
 
         return view('upens.permohonan.permohonan-khas.papar', compact('special_application', 'yb'));
+    }
+
+    public function tetapan()
+    {
+
+        return view('upens.tetapan.pilih');
+    }
+
+    public function tetapan_permohonan()
+    {
+        $batch = Batch::first();
+
+        $user = null;
+        if($batch->allowed_user_id != null){
+            $user = User::findorfail($batch->allowed_user_id);
+        }
+
+        return view('upens.tetapan.permohonan', compact('batch', 'user'));
+    }
+
+    public function allow_permohonan(){
+        $batch = Batch::first();
+
+        if($batch->allow_permohonan == 1){
+            $batch->allow_permohonan = 0;
+            $batch->allowed_user_id = auth()->user()->id;
+            $batch->save();
+            return redirect()->route('upens.tetapan.permohonan')->with('success', 'Permohonan telah ditutup.');
+        }else{
+            $batch->allow_permohonan = 1;
+            $batch->allowed_user_id = auth()->user()->id;
+            $batch->save();
+            return redirect()->route('upens.tetapan.permohonan')->with('success', 'Permohonan telah dibuka.');
+        }
+    }
+
+    public function reset_batch(){
+        $batch = Batch::first();
+
+        $batch->allow_permohonan = 0; //tutup permohonan
+        $batch->allowed_user_id = auth()->user()->id;
+
+        $batch->tokong_counter = 0;
+        $batch->tokong = 1;
+
+        $batch->kuil_counter = 0;
+        $batch->kuil = 1;
+
+        $batch->gurdwara_counter = 0;
+        $batch->gurdwara = 1;
+
+        $batch->gereja_counter = 0;
+        $batch->gereja = 1;
+
+        $batch->save();
+
+        return redirect()->route('upens.tetapan.permohonan')->with('success', 'Batch telah ditetapkan semula');
     }
 }

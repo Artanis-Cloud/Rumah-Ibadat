@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $current_date = date('Y-m-d H:i:s'); //get current date
 
         DB::table('batches')->insert(
             [
@@ -30,11 +31,12 @@ class UserSeeder extends Seeder
 
                 'gereja_counter' => '0',
                 'gereja' => '1',
-                
+
+                'created_at' => $current_date,
+                'updated_at' => $current_date,
             ]
         );
 
-        $current_date = date('Y-m-d H:i:s'); //get current date
 
         DB::table('peruntukans')->insert(
             [
@@ -89,7 +91,7 @@ class UserSeeder extends Seeder
                 'status' => '1',
                 'is_firstime' => '0',
                 'is_rumah_ibadat' => '0',
-                'name' => 'Staff@Upen',
+                'name' => 'Muhammad Shahid',
                 'email' => 'upen@selangor.gov.my',
                 'ic_number' => '333333333333',
                 'mobile_phone' => '0123456789',
@@ -104,7 +106,7 @@ class UserSeeder extends Seeder
                 'status' => '1',
                 'is_firstime' => '0',
                 'is_rumah_ibadat' => '0',
-                'name' => 'YB',
+                'name' => 'Dato Luqman',
                 'email' => 'yb@selangor.gov.my',
                 'ic_number' => '222222222222',
                 'mobile_phone' => '0123456789',
@@ -130,7 +132,7 @@ class UserSeeder extends Seeder
                 'status' => '1',
                 'is_firstime' => '0',
                 'is_rumah_ibadat' => '0',
-                'name' => 'Exco',
+                'name' => 'Syahdan',
                 'email' => 'exco@selangor.gov.my',
                 'ic_number' => '111111111111',
                 'mobile_phone' => '0123456789',

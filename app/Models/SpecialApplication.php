@@ -22,6 +22,9 @@ class SpecialApplication extends Model
         'supported_document_2',     //attachment
         'requested_amount',         //money
 
+        'exco_id',                    //flag_exco
+        'exco_date_time',             //date-time
+
         'yb_id',                    //flag_yb
         'yb_date_time',             //date-time
     ];

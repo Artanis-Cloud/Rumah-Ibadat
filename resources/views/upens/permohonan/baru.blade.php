@@ -6,6 +6,7 @@
 <!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
+
 <div class="container-fluid">
   
   <div class="row">
@@ -14,6 +15,16 @@
           <div class="card">
             
               <div class="card-body border border-dark">
+
+                  <div class="row">
+                    <div class="col-md">
+                      <button type="button" class="btn waves-effect waves-light btn-info">Tetapan Semula Batch</button>
+                    </div>
+                  </div>
+
+                  
+
+                  <hr>
 
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md">
