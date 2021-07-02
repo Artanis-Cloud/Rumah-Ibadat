@@ -350,4 +350,16 @@ class UpenController extends Controller
 
         return view('upens.permohonan.permohonan-khas.senarai', compact('permohonan_khas'));
     }
+
+    public function permohonan_khas_papar(Request $request){
+
+        $special_application = SpecialApplication::findorfail($request->permohonan_khas_id);
+
+        $yb = null;
+        if($special_application->yb_id != null){
+            $yb = User::findorfail($special_application->yb_id);
+        }
+
+        return view('upens.permohonan.permohonan-khas.papar', compact('special_application', 'yb'));
+    }
 }

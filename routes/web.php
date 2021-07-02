@@ -225,6 +225,8 @@ Route::middleware([Upen::class])->group(function () {
 
     Route::get('/dashboard-pejabat-upen/permohonan/senarai-permohonan-khas', [App\Http\Controllers\UpenController::class, 'permohonan_khas_senarai'])->name('upens.permohonan-khas.senarai');
 
+    Route::get('/dashboard-pejabat-upen/permohonan/senarai-permohonan-khas/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'permohonan_khas_papar'])->name('upens.permohonan-khas.papar');
+
 });
 
 
