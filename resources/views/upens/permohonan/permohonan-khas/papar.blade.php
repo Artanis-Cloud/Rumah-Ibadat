@@ -126,56 +126,106 @@
                                     <input class="form-control text-uppercase @error('status') is-invalid @else border-dark @enderror" id="status" name="status" type="text" value="{{ $special_application->status == 0 ? "Tidak Lulus" : ($special_application->status == 1 ? "Sedang Diproses" : ($special_application->status == 2 ? "Lulus" : "") ) }}" disabled>
                                   </div>
                                 </div>
-                                @if($special_application->yb_id != null )
-                                <div class="col-md-6">
-                                  <label>
-                                    @if($special_application->status == 0) 
-                                    Tidak Diluluskan Oleh
-                                    @elseif($special_application->status == 2)
-                                    Diluluskan Oleh
-                                    @endif
-                                    
-                                  </label>
-                                  <div class="mb-3 input-group">
-                                    <input class="form-control text-uppercase @error('yb_name') is-invalid @else border-dark @enderror" id="yb_name" name="yb_name" type="text" value="{{ $yb->name }}" disabled>
-                                  </div>
-                                </div>
-                                @endif
                               </div>
 
-                              @if($special_application->yb_id != null )
+                              <hr>
+
+                              @if($special_application->exco_id != null && $special_application->status != 0)
+
+                              <div class="row">
+                                <div class="col-md">
+                                  <label>Disahkan Oleh</label>
+                                  <div class="mb-3 input-group">
+                                    <input class="form-control text-uppercase @error('exco_name') is-invalid @else border-dark @enderror" id="exco_name" name="exco_name" type="text" value="{{ $exco->name }}" disabled>
+                                  </div>
+                                </div>
+                              </div>
 
                               <div class="row">
                                 
                                 <div class="col-md-6">
-                                  <label>
-                                    @if($special_application->status == 0) 
-                                    Tarikh Tidak Diluluskan
-                                    @elseif($special_application->status == 2)
-                                    Tarikh Diluluskan
-                                    @endif
-                                    
-                                  </label>
+                                  <label>Tarikh Disahkan</label>
+                                  <div class="mb-3 input-group">
+                                    <input class="form-control text-uppercase @error('exco_date') is-invalid @else border-dark @enderror" id="exco_date" name="exco_date" type="text" value="{{ Carbon\Carbon::parse($special_application->exco_date_time)->format('d-m-Y') }}" disabled>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <label>Waktu Disahkan</label>
+                                  <div class="mb-3 input-group">
+                                    <input class="form-control text-uppercase @error('exco_time') is-invalid @else border-dark @enderror" id="exco_time" name="exco_time" type="text" value="{{ Carbon\Carbon::parse($special_application->exco_date_time)->format('g:i a') }}" disabled>
+                                  </div>
+                                </div>
+                                
+                              </div>
+
+                              <hr>
+
+                              @endif
+
+                              @if($special_application->yb_id != null && $special_application->status != 0)
+
+                              <div class="row">
+                                <div class="col-md">
+                                  <label>Diluluskan Oleh</label>
+                                  <div class="mb-3 input-group">
+                                    <input class="form-control text-uppercase @error('yb_name') is-invalid @else border-dark @enderror" id="yb_name" name="yb_name" type="text" value="{{ $yb->name }}" disabled>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                
+                                <div class="col-md-6">
+                                  <label>Tarikh Diluluskan</label>
                                   <div class="mb-3 input-group">
                                     <input class="form-control text-uppercase @error('yb_date') is-invalid @else border-dark @enderror" id="yb_date" name="yb_date" type="text" value="{{ Carbon\Carbon::parse($special_application->yb_date_time)->format('d-m-Y') }}" disabled>
                                   </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                  <label>
-                                    @if($special_application->status == 0) 
-                                    Waktu Tidak Diluluskan
-                                    @elseif($special_application->status == 2)
-                                    Waktu Diluluskan
-                                    @endif
-                                    
-                                  </label>
+                                  <label>Waktu Diluluskan</label>
                                   <div class="mb-3 input-group">
                                     <input class="form-control text-uppercase @error('yb_time') is-invalid @else border-dark @enderror" id="yb_time" name="yb_time" type="text" value="{{ Carbon\Carbon::parse($special_application->yb_date_time)->format('g:i a') }}" disabled>
                                   </div>
                                 </div>
                                 
                               </div>
+
+                              <hr>
+
+                              @endif
+
+                              @if($special_application->not_approved_id != null && $special_application->status == 0)
+
+                              <div class="row">
+                                <div class="col-md">
+                                  <label>Tidak Diluluskan Oleh</label>
+                                  <div class="mb-3 input-group">
+                                    <input class="form-control text-uppercase @error('cancel_name') is-invalid @else border-dark @enderror" id="cancel_name" name="cancel_name" type="text" value="{{ $cancel->name }}" disabled>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                
+                                <div class="col-md-6">
+                                  <label>Tarikh Tidak Diluluskan</label>
+                                  <div class="mb-3 input-group">
+                                    <input class="form-control text-uppercase @error('cancel_date') is-invalid @else border-dark @enderror" id="cancel_date" name="cancel_date" type="text" value="{{ Carbon\Carbon::parse($special_application->updated_at)->format('d-m-Y') }}" disabled>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <label>Waktu Tidak Diluluskan</label>
+                                  <div class="mb-3 input-group">
+                                    <input class="form-control text-uppercase @error('cancel_time') is-invalid @else border-dark @enderror" id="cancel_time" name="cancel_time" type="text" value="{{ Carbon\Carbon::parse($special_application->updated_at)->format('g:i a') }}" disabled>
+                                  </div>
+                                </div>
+                                
+                              </div>
+
+                              <hr>
 
                               @endif
 

@@ -28,11 +28,16 @@ class CreateSpecialApplicationsTable extends Migration
             $table->string('supported_document_2')->nullable();;            //attachment
             $table->string('requested_amount')->default('0.00');            //money
 
-            $table->string('exco_id')->nullable();                            //flag_exco
-            $table->string('exco_date_time')->nullable();                     //date-time
+            //tidak-lulus
+            $table->string('not_approved_id')->nullable();                  //to identify user who give this status "Tidak Lullus"   
+
+            $table->string('exco_id')->nullable();                          //flag_exco
+            $table->string('exco_date_time')->nullable();                   //date-time
 
             $table->string('yb_id')->nullable();                            //flag_yb
             $table->string('yb_date_time')->nullable();                     //date-time
+
+
 
             $table->timestamps();//default
         });

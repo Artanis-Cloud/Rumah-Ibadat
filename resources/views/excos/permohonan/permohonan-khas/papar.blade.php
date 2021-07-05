@@ -1,4 +1,4 @@
-@extends('layouts.layout-yb')
+@extends('layouts.layout-exco')
 
 @section('content')
 
@@ -121,47 +121,15 @@
 
                               <hr>
 
-                              <div class="row" style="padding-top: 15px;">
-                                <div class="col-md">
-
-                                  <label>Disahkan oleh</label>
-                                  <div class="mb-3 input-group">
-                                    <input class="form-control text-uppercase @error('exco_name') is-invalid @else border-dark @enderror" id="exco_name" name="exco_name" type="text" value="{{ $exco->name }}" disabled>
-                                  </div>
-
-                                </div>
-                              </div>
-
-                              <div class="row" style="padding-top: 15px;">
-                                <div class="col-md-6">
-
-                                  <label>Tarikh pengesahan</label>
-                                  <div class="mb-3 input-group">
-                                    <input class="form-control text-uppercase @error('date_exco') is-invalid @else border-dark @enderror" id="date_exco" name="date_exco" type="text" value="{{ Carbon\Carbon::parse($special_application->exco_date_time)->format('d-m-Y') }}" disabled>
-                                  </div>
-
-                                </div>
-                                <div class="col-md-6">
-
-                                  <label>Waktu pengesahan</label>
-                                  <div class="mb-3 input-group">
-                                    <input class="form-control text-uppercase @error('time_exco') is-invalid @else border-dark @enderror" id="time_exco" name="time_exco" type="text" value="RM {{ Carbon\Carbon::parse($special_application->exco_date_time)->format('g:i a') }}" disabled>
-                                  </div>
-
-                                </div>
-                              </div>
-
-                              <hr>
-
                               <h3 style="text-align: center; padding-bottom: 15px;">Keputusan Permohonan</h3> 
 
                               <div class="row">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-4" style="padding-top: 15px;">
-                                  <button type="button" class="btn waves-effect waves-light btn-danger btn-block" id="batal_button" data-toggle="modal" data-target="#confirmation_batal_permohonan">Tidak Lulus</button>
+                                  <button type="button" class="btn waves-effect waves-light btn-danger btn-block" id="batal_button" data-toggle="modal" data-target="#confirmation_batal_permohonan">Tidak Mengesahkan</button>
                                 </div>
                                 <div class="col-md-4" style="padding-top: 15px;">
-                                  <button type="button" class="btn waves-effect waves-light btn-success btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_lulus_permohonan">Lulus</button>
+                                  <button type="button" class="btn waves-effect waves-light btn-success btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_lulus_permohonan">Mengesahkan</button>
                                 </div>
                                 <div class="col-md-2"></div>
                               </div>
@@ -191,16 +159,16 @@
                               </button>
                             </div>
 
-                            <form action="{{ route('ybs.permohonan.khas.lulus') }}">
+                            <form action="{{ route('excos.permohonan.khas.lulus') }}">
 
                             <div class="modal-body">
-                              Anda pasti mahu meluluskan permohonan ini?
+                              Anda pasti mahu mengesahkan permohonan ini?
 
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                               <input type="hidden" name="permohonan_id" value="{{ $special_application->id }}">
-                              <button type="submit" class="btn btn-success">Permohonan Lulus</button>
+                              <button type="submit" class="btn btn-success">Mengesahkan</button>
                             </div>
 
                             </form>
@@ -220,16 +188,16 @@
                               </button>
                             </div>
 
-                            <form action="{{ route('ybs.permohonan.khas.tidak-lulus') }}">
+                            <form action="{{ route('excos.permohonan.khas.tidak-lulus') }}">
 
                             <div class="modal-body">
-                              Anda pasti tidak meluluskan permohonan ini?
+                              Anda pasti tidak mengesahkan permohonan ini?
 
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                               <input type="hidden" name="permohonan_id" value="{{ $special_application->id }}">
-                              <button type="submit" class="btn btn-success">Permohonan Tidak Lulus</button>
+                              <button type="submit" class="btn btn-success">Tidak Mengesahkan</button>
                             </div>
 
                             </form>

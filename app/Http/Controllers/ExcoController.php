@@ -10,6 +10,7 @@ use App\Models\RumahIbadat;
 use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
+use App\Models\SpecialApplication;
 use PDF;
 use Carbon\Carbon;
 
@@ -58,6 +59,8 @@ class ExcoController extends Controller
             $new_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'TOKONG');
             })->where('exco_id', null)->where('status', '1')->get();
+
+            $special_application = SpecialApplication::where('exco_id', null)->where('category', 'TOKONG')->where('status', '1')->get();
 
         }
 
@@ -127,6 +130,14 @@ class ExcoController extends Controller
                 $new_application = $new_application + $new_application_kuil;
             } else {
                 $new_application = $new_application_kuil;
+            }
+
+            $special_application_kuil = SpecialApplication::where('exco_id', null)->where('category', 'KUIL')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_kuil;
+            } else {
+                $special_application = $special_application_kuil;
             }
         }
 
@@ -198,6 +209,14 @@ class ExcoController extends Controller
             } else {
                 $new_application = $new_application_gurdwara;
             }
+
+            $special_application_gurdwara = SpecialApplication::where('exco_id', null)->where('category', 'GURDWARA')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_gurdwara;
+            } else {
+                $special_application = $special_application_gurdwara;
+            }
         }
 
 
@@ -268,9 +287,17 @@ class ExcoController extends Controller
             } else {
                 $new_application = $new_application_gereja;
             }
+
+            $special_application_gereja = SpecialApplication::where('exco_id', null)->where('category', 'GEREJA')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_gereja;
+            } else {
+                $special_application = $special_application_gereja;
+            }
         }
         
-        return view('excos.dashboard', compact('count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application'));
+        return view('excos.dashboard', compact('count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
     }
 
     public function permohonan()
@@ -735,6 +762,84 @@ class ExcoController extends Controller
         }
 
         return view('excos.permohonan.papar-tidak-lulus', compact('permohonan','exco'));
+    }
+
+    public function permohonan_khas(){
+        if (auth()->user()->user_role->tokong == 1) {
+            $special_application = SpecialApplication::where('exco_id', null)->where('category', 'TOKONG')->where('status', '1')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $special_application_kuil = SpecialApplication::where('exco_id', null)->where('category', 'KUIL')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_kuil;
+            } else {
+                $special_application = $special_application_kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $special_application_gurdwara = SpecialApplication::where('exco_id', null)->where('category', 'GURDWARA')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_gurdwara;
+            } else {
+                $special_application = $special_application_gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $special_application_gereja = SpecialApplication::where('exco_id', null)->where('category', 'GEREJA')->where('status', '1')->get();
+
+            if (isset($special_application)) {
+                $special_application = $special_application + $special_application_gereja;
+            } else {
+                $special_application = $special_application_gereja;
+            }
+        }
+
+
+        return view('excos.permohonan.permohonan-khas.senarai', compact('special_application'));
+    }
+
+    public function papar_permohonan_khas(Request $request)
+    {
+        // dd("papar permohonan khas");
+        $special_application = SpecialApplication::findorfail($request->permohonan_khas_id);
+        // dd($special_application);
+
+        return view('excos.permohonan.permohonan-khas.papar', compact('special_application'));
+    }
+
+    public function papar_permohonan_khas_lulus(Request $request)
+    {
+        // dd($request->all());
+        $current_date = date('Y-m-d H:i:s'); //get current date
+
+        $special_application = SpecialApplication::findorfail($request->permohonan_id);
+
+        $special_application->exco_id = auth()->user()->id;
+        $special_application->exco_date_time = $current_date;
+
+        $special_application->save();
+
+        return redirect()->route('excos.permohonan.khas')->with('success', 'Permohonan ini telah disahkan.');
+    }
+
+    public function papar_permohonan_khas_tidak_lulus(Request $request)
+    {
+        // dd($request->all());
+        $current_date = date('Y-m-d H:i:s'); //get current date
+
+        $special_application = SpecialApplication::findorfail($request->permohonan_id);
+
+        $special_application->status = 0;
+        $special_application->not_approved_id = auth()->user()->id;
+
+        $special_application->save();
+
+        return redirect()->route('excos.permohonan.khas')->with('success', 'Permohonan tidak disahkan.');
     }
 
     public function download_permohonan(Request $request){
