@@ -9,6 +9,7 @@ use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
 use App\Models\Batch;
+use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
 use Illuminate\Http\Request;
 
@@ -53,7 +54,7 @@ class YbController extends Controller
                 $q->where('category', 'TOKONG');
             })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->orderBy('created_at', 'asc')->get();
 
-            $special_application = SpecialApplication::where('category', 'TOKONG')->where('status','1')->get();
+            $special_application = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'TOKONG')->where('status','1')->get();
         }
 
 
@@ -853,11 +854,11 @@ class YbController extends Controller
     {
 
         if (auth()->user()->user_role->tokong == 1) {
-            $special_application = SpecialApplication::where('category', 'TOKONG')->where('status', '1')->get();
+            $special_application = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'TOKONG')->where('status', '1')->get();
         }
 
         if (auth()->user()->user_role->kuil == 1) {
-            $special_application_kuil = SpecialApplication::where('category', 'KUIL')->where('status', '1')->get();
+            $special_application_kuil = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'KUIL')->where('status', '1')->get();
 
             if (isset($special_application)) {
                 $special_application = $special_application + $special_application_kuil;
@@ -867,7 +868,7 @@ class YbController extends Controller
         }
 
         if (auth()->user()->user_role->gurdwara == 1) {
-            $special_application_gurdwara = SpecialApplication::where('category', 'GURDWARA')->where('status', '1')->get();
+            $special_application_gurdwara = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'GURDWARA')->where('status', '1')->get();
 
             if (isset($special_application)) {
                 $special_application = $special_application + $special_application_gurdwara;
@@ -877,7 +878,7 @@ class YbController extends Controller
         }
 
         if (auth()->user()->user_role->gereja == 1) {
-            $special_application_gereja = SpecialApplication::where('category', 'GEREJA')->where('status', '1')->get();
+            $special_application_gereja = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'GEREJA')->where('status', '1')->get();
 
             if (isset($special_application)) {
                 $special_application = $special_application + $special_application_gereja;
@@ -894,8 +895,9 @@ class YbController extends Controller
         // dd("papar permohonan khas");
         $special_application = SpecialApplication::findorfail($request->permohonan_khas_id);
         // dd($special_application);
+        $exco = User::findorfail($special_application->exco_id);
 
-        return view('ybs.permohonan.permohonan-khas.papar', compact('special_application'));
+        return view('ybs.permohonan.permohonan-khas.papar', compact('special_application', 'exco'));
     }
 
     public function papar_permohonan_khas_lulus(Request $request)
@@ -911,6 +913,32 @@ class YbController extends Controller
 
         $special_application->save();
 
+        //fund calculation
+        $current_year = date('Y'); //get current date
+        $peruntukan = Peruntukan::whereYear('created_at', $current_year)->first();
+        $peruntukan->current_fund = $peruntukan->current_fund + $special_application->requested_amount;
+        $peruntukan->balance_fund = $peruntukan->total_fund - $peruntukan->current_fund;
+
+        if($special_application->category == "TOKONG"){
+            $peruntukan->current_tokong = $peruntukan->current_tokong + $special_application->requested_amount;
+            $peruntukan->balance_tokong = $peruntukan->total_tokong - $peruntukan->current_tokong;
+
+        } elseif($special_application->category == "KUIL"){
+            $peruntukan->current_kuil = $peruntukan->current_kuil + $special_application->requested_amount;
+            $peruntukan->balance_kuil = $peruntukan->total_kuil - $peruntukan->current_kuil;
+
+        } elseif ($special_application->category == "GURDWARA") {
+            $peruntukan->current_gurdwara = $peruntukan->current_gurdwara + $special_application->requested_amount;
+            $peruntukan->balance_gurdwara = $peruntukan->total_gurdwara - $peruntukan->current_gurdwara;
+
+        } elseif ($special_application->category == "GEREJA") {
+            $peruntukan->current_gereja = $peruntukan->current_gereja + $special_application->requested_amount;
+            $peruntukan->balance_gereja = $peruntukan->total_gereja - $peruntukan->current_gereja;
+
+        }
+
+        $peruntukan->save();
+
         return redirect()->route('ybs.permohonan.khas')->with('success', 'Permohonan diluluskan.');
     }
 
@@ -922,8 +950,7 @@ class YbController extends Controller
         $special_application = SpecialApplication::findorfail($request->permohonan_id);
 
         $special_application->status = 0;
-        $special_application->yb_id = auth()->user()->id;
-        $special_application->yb_date_time = $current_date;
+        $special_application->not_approved_id = auth()->user()->id;
 
         $special_application->save();
 

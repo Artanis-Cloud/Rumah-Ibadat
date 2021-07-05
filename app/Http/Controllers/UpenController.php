@@ -356,12 +356,22 @@ class UpenController extends Controller
 
         $special_application = SpecialApplication::findorfail($request->permohonan_khas_id);
 
+        $exco = null;
+        if ($special_application->exco_id != null) {
+            $exco = User::findorfail($special_application->exco_id);
+        }
+
         $yb = null;
         if($special_application->yb_id != null){
             $yb = User::findorfail($special_application->yb_id);
         }
 
-        return view('upens.permohonan.permohonan-khas.papar', compact('special_application', 'yb'));
+        $cancel = null;
+        if ($special_application->not_approved_id != null) {
+            $cancel = User::findorfail($special_application->not_approved_id);
+        }
+
+        return view('upens.permohonan.permohonan-khas.papar', compact('special_application', 'exco', 'yb', 'cancel'));
     }
 
     public function tetapan()

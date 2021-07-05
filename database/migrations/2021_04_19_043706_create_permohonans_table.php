@@ -42,11 +42,11 @@ class CreatePermohonansTable extends Migration
             $table->string('invitation_letter')->nullable();                                //attachment
 
             //semak semula
-            $table->text('review_to_applicant_id')->nullable();                             //to identify user who give this status "Semak Semula"                           
+            $table->string('review_to_applicant_id')->nullable();                             //to identify user who give this status "Semak Semula"                           
             $table->text('review_to_applicant')->nullable();
 
             //tidak-lulus
-            $table->text('not_approved_id')->nullable();                                    //to identify user who give this status "Tidak Lullus"   
+            $table->string('not_approved_id')->nullable();                                    //to identify user who give this status "Tidak Lullus"   
 
             //after exco
             $table->string('exco_id')->nullable();                                          //flag_exco
