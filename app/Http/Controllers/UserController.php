@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permohonan;
+use App\Models\RumahIbadat;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
@@ -13,9 +15,20 @@ class UserController extends Controller
 {
     public function index_user()
     {
-        // dd( Auth::user()->name );
-        // return view('users.halaman-utama-nicepage');
-        return view('users.halaman-utama');
+        $user_id = auth()->user()->id;
+        $rumah_ibadat = RumahIbadat::where('user_id', $user_id)->first();
+
+        //count jumlah permohonan
+        $count_permohonan = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->count();
+
+        //count jumlah permohonan lulus
+        $count_permohonan_lulus = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->count();
+
+        //count jumlah peruntukan diterima
+        $permohonan = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->get();
+        $count_total_fund = collect($permohonan)->sum('total_fund');
+
+        return view('users.halaman-utama', compact('count_permohonan', 'count_permohonan_lulus', 'count_total_fund'));
     }
 
     public function update_profile_pengguna()
