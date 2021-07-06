@@ -111,21 +111,21 @@
                     <div class="navbar-brand">
                         <a href="{{ route('user.halaman-utama') }}" class="logo">
                             <!-- Logo icon -->
-                            <span class="logo-icon">
+                            {{-- <span class="logo-icon"> --}}
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
-                                <img src="https://upload.wikimedia.org/wikipedia/ms/archive/9/93/20090423144020%21Coat_of_arms_of_Malaysia.png" style="height: 50px;" alt="homepage" class="dark-logo" />
+                                {{-- <img src="https://upload.wikimedia.org/wikipedia/ms/archive/9/93/20090423144020%21Coat_of_arms_of_Malaysia.png" style="height: 50px;" alt="homepage" class="dark-logo" /> --}}
                                 <!-- Light Logo text -->
-                                <img src="{{asset('nice-admin/assets/images/logo-light-text.png')}}" class="light-logo" alt="homepage" />
+                                {{-- <img src="{{asset('nice-admin/assets/images/logo-light-text.png')}}" class="light-logo" alt="homepage" /> --}}
 
-                            </span>
+                            {{-- </span> --}}
                             <!--End Logo icon -->
                             <!-- Logo text -->
-                            <span class="logo-text">
+                            <span class="logo-icon" style="padding-left: 10%;">
                                 <!-- dark Logo text -->
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="height: 50px; padding-left: 20%;" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo icon -->
-                                <img src="{{asset('nice-admin/assets/images/logo-light-icon.png')}}" alt="homepage" class="light-logo" />
+                                {{-- <img src="{{asset('nice-admin/assets/images/logo-light-icon.png')}}" alt="homepage" class="light-logo" /> --}}
                             </span>
                         </a>
                     </div>
@@ -149,9 +149,9 @@
                     <!-- ============================================================== -->
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="mr-auto navbar-nav" style="padding-left: 5%;">
+                    <ul class="mr-auto navbar-nav" style="padding-left: 2%;">
                         
-                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Rumah Ibadat </h1>
+                        <h3 class="" style="text-align: center;color: #000">Sistem Bantuan Kewangan Rumah Ibadat </h3>
 
                     </ul>
 

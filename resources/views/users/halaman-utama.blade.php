@@ -69,9 +69,34 @@
 
       <hr>
 
+      {{-- <div class="row">
+        <div class="col-md-5">
+          <h4>
+            <i class="fas fa-user-friends"></i>  
+            Statistik Pengguna
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4>
+            <i class="fas fa-bullhorn"></i>  
+            Pengumuman
+          </h4>
+        </div>
+        <div class="col-md-2">
+          <h4>
+            <i class="fas fa-chart-bar"></i> 
+            Statistik Sistem
+          </h4>
+        </div>
+      </div> --}}
+
       <div class="row">
 
         <div class="col-md-5">
+          <h4>
+            <i class="fas fa-user-friends"></i>  
+            Statistik Pengguna
+          </h4>
 
           <div class="row">
             <div class="col-md-12">
@@ -95,7 +120,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <div class="card bg-success">
+              <div class="card bg-success shadow">
                   <div class="card-body text-white">
                       <div class="d-flex flex-row">
                           <div class="display-6 align-self-center"><i class="fas fa-clipboard-check"></i></div>
@@ -115,7 +140,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <div class="card bg-info">
+              <div class="card bg-info shadow">
                   <div class="card-body text-white">
                       <div class="d-flex flex-row">
                           <div class="display-6 align-self-center"><i class="fas fa-hand-holding-usd"></i></div>
@@ -135,12 +160,16 @@
         </div>
 
         <div class="col-md-5">
+          <h4>
+            <i class="fas fa-bullhorn"></i>  
+            Pengumuman
+          </h4>
           <div class="card shadow-sm">
-              <div class="card-header bg-primary">
+              {{-- <div class="card-header bg-primary">
                   <h4 class="m-b-0 text-center text-white"><i class="fas fa-bullhorn"></i> &nbsp&nbsp Pengumuman</h4>
-              </div>
+              </div> --}}
               <div class="card-body border border-primary border-bottom">
-                  <div class="list-group" style="overflow:auto;height:255px;width:100%;border:1px solid #ccc">
+                  <div class="list-group" style="overflow:auto;height:305px;width:100%;border:1px solid #ccc">
                       <div class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                         <h6 class="mb-1 card-title" style="font-size: 20px; font-weight: bold;">Amaran!</h6>
@@ -178,38 +207,42 @@
         </div>
 
         <div class="col-md-2">
-
+          <h4>
+            <i class="fas fa-chart-bar"></i> 
+            Statistik Sistem
+          </h4>
+          
           <div class="card">
               <div class="card-body border border-info">
-                  <div class="d-flex flex-row">
+                  <div class="d-flex flex-row" data-toggle="tooltip" data-placement="bottom" title="Jumlah Pengguna Berdaftar">
                       <div class="round align-self-center round-info"><i class="ti-user"></i></div>
                       <div class="align-self-center" style="padding-left: 10px; text-align: center;">
-                          <h3 class="text-center">2690</h3>
-                          <span class="text-muted">Pengguna</span>
+                          <h3 class="text-center">{{ $count_user }}</h3>
+                          <span class="text-dark">Pengguna</span>
                       </div>
                   </div>
               </div>
           </div>
 
           <div class="card">
-              <div class="card-body border border-info">
-                  <div class="d-flex flex-row">
-                      <div class="round align-self-center round-info"><i class="fas fa-place-of-worship"></i></div>
+              <div class="card-body border border-warning">
+                  <div class="d-flex flex-row" data-toggle="tooltip" data-placement="bottom" title="Jumlah Persatuan Berdaftar">
+                      <div class="round align-self-center round-warning"><i class="fas fa-place-of-worship"></i></div>
                       <div class="align-self-center" style="padding-left: 10px; text-align: center;">
-                          <h3 class="text-center">2690</h3>
-                          <span class="text-muted">Persatuan</span>
+                          <h3 class="text-center">{{ $count_persatuan }}</h3>
+                          <span class="text-dark">Persatuan</span>
                       </div>
                   </div>
               </div>
           </div>
 
           <div class="card">
-              <div class="card-body border border-info">
-                  <div class="d-flex flex-row">
-                      <div class="round align-self-center round-info"><i class="fas fa-clipboard-list"></i></div>
+              <div class="card-body border border-danger">
+                  <div class="d-flex flex-row" data-toggle="tooltip" data-placement="bottom" title="Jumlah Permohonan Dihantar">
+                      <div class="round align-self-center round-danger"><i class="fas fa-clipboard-list"></i></div>
                       <div class="align-self-center" style="padding-left: 10px; text-align: center;">
-                          <h3 class="text-center">2690</h3>
-                          <span class="text-muted font-12">Permohonan</span>
+                          <h3 class="text-center">{{ $count_permohonan }}</h3>
+                          <span class="text-dark font-12">Permohonan</span>
                       </div>
                   </div>
               </div>

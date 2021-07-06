@@ -28,7 +28,16 @@ class UserController extends Controller
         $permohonan = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->get();
         $count_total_fund = collect($permohonan)->sum('total_fund');
 
-        return view('users.halaman-utama', compact('count_permohonan', 'count_permohonan_lulus', 'count_total_fund'));
+        //count jumlah pemohon
+        $count_user = User::where('role', '0')->count();
+
+        //count jumkah persatuan
+        $count_persatuan = RumahIbadat::count();
+
+        //count jumlah permohonan
+        $count_permohonan = Permohonan::count();
+
+        return view('users.halaman-utama', compact('count_permohonan', 'count_permohonan_lulus', 'count_total_fund', 'count_user', 'count_persatuan', 'count_permohonan'));
     }
 
     public function update_profile_pengguna()
