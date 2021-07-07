@@ -26,7 +26,7 @@ class UpenController extends Controller
         $current_year = date('Y'); //get current date
         $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
         // dd($annual_report);
-
+ 
 
         //permohonan terkini
         $new_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->orderBy('created_at', 'asc')->get();
