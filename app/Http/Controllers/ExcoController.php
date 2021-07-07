@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Storage;
 
 use App\Models\User;
@@ -10,6 +11,7 @@ use App\Models\RumahIbadat;
 use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
+use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
 use PDF;
 use Carbon\Carbon;
@@ -21,10 +23,14 @@ class ExcoController extends Controller
     public function dashboard()
     {
 
-
-
         //==================================== DASHBOARD COUNTER TOKONG ====================================
+        $current_year = date('Y'); //get current date
+        $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
 
+        $laporan_tokong = null;
+        $laporan_kuil = null;
+        $laporan_gurdwara = null;
+        $laporan_gereja = null;
 
 
         if (auth()->user()->user_role->tokong == 1) {
@@ -62,6 +68,16 @@ class ExcoController extends Controller
 
             $special_application = SpecialApplication::where('exco_id', null)->where('category', 'TOKONG')->where('status', '1')->get();
 
+
+            //================== LAPORAN PERBELANJAAN ==================
+
+            $laporan_tokong = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 GROUP BY t.tujuan"));
+            
+            $special_application_pass = SpecialApplication::where('category', 'TOKONG')->where('status', '2')->get();
+
+            $khas_tokong = collect($special_application_pass)->sum('requested_amount');
+
+            $khas_count = $special_application_pass->count();
         }
 
 
@@ -296,8 +312,10 @@ class ExcoController extends Controller
                 $special_application = $special_application_gereja;
             }
         }
+
+        // dd($laporan_tokong);
         
-        return view('excos.dashboard', compact('count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+        return view('excos.dashboard', compact('current_year','annual_report', 'laporan_tokong', 'khas_tokong', 'khas_count', 'laporan_kuil', 'laporan_gurdwara', 'laporan_gurdwara', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
     }
 
     public function permohonan()

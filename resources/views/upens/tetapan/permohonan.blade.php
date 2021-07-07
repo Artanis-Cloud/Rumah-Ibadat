@@ -64,9 +64,9 @@
                   </div>
                   <div class="col-md-3">
                     @if($batch->allow_permohonan == 1)
-                    <label>Tarikh Permohonan Dibuka</label>
+                    <label>Waktu Permohonan Dibuka</label>
                     @elseif($batch->allow_permohonan == 0)
-                    <label>Tarikh Permohonan Ditutup</label>
+                    <label>Waktu Permohonan Ditutup</label>
                     @endif
                     <div class="mb-3 input-group">
                       <input class="form-control text-uppercase border-dark" id="time_allow" name="time_allow" type="text" value="{{ Carbon\Carbon::parse($batch->created_at)->format('g:i a') }}" disabled>
@@ -103,8 +103,8 @@
                         <table style="width: 100%; table-layout: fixed;">
                           <thead style="text-align: center; border: 1px solid black;">
                             <tr>
-                              <th>Bil</th>
-                              <th>Rumah Ibadat</th>
+                              <th>#</th>
+                              <th class="text-left">Rumah Ibadat</th>
                               <th>Batch Terkini</th>
                               <th>Index Batch</th>
                             </tr>
@@ -114,28 +114,28 @@
 
                             <tr>
                               <td>1</td>
-                              <td>Tokong</td>
+                              <td class="text-left">Tokong</td>
                               <td>{{ $batch->tokong }}</td>
                               <td>{{ $batch->tokong_counter }}</td>
                             </tr>
 
                             <tr>
                               <td>2</td>
-                              <td>Kuil</td>
+                              <td class="text-left">Kuil</td>
                               <td>{{ $batch->kuil }}</td>
                               <td>{{ $batch->kuil_counter }}</td>
                             </tr>
 
                             <tr>
                               <td>3</td>
-                              <td>Gurdwara</td>
+                              <td class="text-left">Gurdwara</td>
                               <td>{{ $batch->gurdwara }}</td>
                               <td>{{ $batch->gurdwara_counter }}</td>
                             </tr>
 
                             <tr>
                               <td>4</td>
-                              <td>Gereja</td>
+                              <td class="text-left">Gereja</td>
                               <td>{{ $batch->gereja }}</td>
                               <td>{{ $batch->gereja_counter }}</td>
                             </tr>

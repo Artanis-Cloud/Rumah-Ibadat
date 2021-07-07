@@ -145,7 +145,7 @@
 
                                   <label>Waktu pengesahan</label>
                                   <div class="mb-3 input-group">
-                                    <input class="form-control text-uppercase @error('time_exco') is-invalid @else border-dark @enderror" id="time_exco" name="time_exco" type="text" value="RM {{ Carbon\Carbon::parse($special_application->exco_date_time)->format('g:i a') }}" disabled>
+                                    <input class="form-control text-uppercase @error('time_exco') is-invalid @else border-dark @enderror" id="time_exco" name="time_exco" type="text" value="{{ Carbon\Carbon::parse($special_application->exco_date_time)->format('g:i a') }}" disabled>
                                   </div>
 
                                 </div>
