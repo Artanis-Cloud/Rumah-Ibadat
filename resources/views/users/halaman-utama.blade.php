@@ -20,7 +20,15 @@
                     <div class="d-flex no-block align-items-center">
                         <div class="row">
                           <div class="col-4" style="text-align: center;">
-                            <i class="far fa-file fa-5x text-info"></i>
+                            {{-- <i class="far fa-file fa-5x text-info"></i> --}}
+                            <lord-icon
+                                src="https://cdn.lordicon.com/nocovwne.json"
+                                trigger="loop"
+                                colors="primary:#121331,secondary:#137eff"
+                                scale="66"
+                                style="width:auto;height:70px">
+                            </lord-icon>
+
                           </div>
                           <div class="col-8">
                             <h3 class="text-info">Permohonan Baru</h3>
