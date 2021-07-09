@@ -14,6 +14,9 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('nice-admin/assets/images/favicon.png')}}">
 
+    <!-- Lord icon -->
+    <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+
     <!-- font-awesome icon -->
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/all.css')}}">
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/fontawesome.css')}}">
