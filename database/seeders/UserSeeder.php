@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
                 'updated_at' => $current_date,
             ]
         );
-
+ 
 
         DB::table('peruntukans')->insert(
             [
@@ -150,6 +150,21 @@ class UserSeeder extends Seeder
                 'gereja' => '0',
             ]
         );
+
+        // \App\Models\User::factory(20)
+        // ->create();
+
+        // \App\Models\RumahIbadat::factory(20)
+        // ->create();
+
+        // \App\Models\Permohonan::factory(20)
+        // ->create();
+
+        // \App\Models\Tujuan::factory(20)
+        // ->create();
+
+        \App\Models\Lampiran::factory(20)
+        ->create();
         
     }
 }

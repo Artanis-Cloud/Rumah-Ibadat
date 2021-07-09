@@ -1,0 +1,46 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Permohonan;
+use App\Models\RumahIbadat;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class PermohonanFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Permohonan::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        // public/dummy/dummy.jpg
+
+        $rumah_ibadat = RumahIbadat::factory()->create();
+
+        return [
+            'reference_number' => $this->faker->unique()->numerify('############'),
+
+            'rumah_ibadat_id' => $rumah_ibadat->id,
+
+            'user_id' => $rumah_ibadat->user_id,
+
+            'status' => '1',
+
+            'application_letter' => 'public/dummy/dummy.jpg',
+            'registration_certificate' => 'public/dummy/dummy.jpg',
+            'account_statement' => 'public/dummy/dummy.jpg',
+
+            'payment_method' => '0',
+            'total_fund' => '0',
+        ];
+    }
+}
