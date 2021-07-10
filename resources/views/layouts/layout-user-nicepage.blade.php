@@ -355,7 +355,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="text-center footer">
-                Hakcipta Terpelihara 2021 © Unit Perancang Ekonomi Negeri Selangor. Designed and Developed by
+                Hakcipta Terpelihara 2021 © Unit Perancang Ekonomi Negeri Selangor. Direka dan Dibangunkan oleh
                 <a href="https://www.artaniscloud.com/">Artanis Cloud Sdn. Bhd.</a>
             </footer>
             <!-- ============================================================== -->

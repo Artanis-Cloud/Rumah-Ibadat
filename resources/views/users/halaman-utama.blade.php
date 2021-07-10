@@ -117,7 +117,7 @@
                               <h4 >Permohonan Dihantar</h4>
                           </div>
                           <div class="ml-auto align-self-center">
-                              <h2 class="font-medium m-b-0 text-center">{{ $count_permohonan }}</h2>
+                              <h2 class="font-medium m-b-0 text-center">{{ $count_permohonan_current }}</h2>
                               <span class="m-t-0">Permohonan</span>
                           </div>
                       </div>
