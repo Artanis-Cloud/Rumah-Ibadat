@@ -349,7 +349,7 @@
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.audit-trail.proses') }}" aria-expanded="false"><span class="hide-menu">Audit Trail Proses</span></a>
 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Audit Trail Log Akses</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.audit-trail.log-user') }}" aria-expanded="false"><span class="hide-menu">Audit Trail Log Akses</span></a>
                                     
                             </ul>
                         </li>
