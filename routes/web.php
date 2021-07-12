@@ -272,6 +272,8 @@ Route::middleware([Admin::class])->group(function () {
 
     Route::get('/dashboard-admin/audit-trail/audit-trail-proses', [App\Http\Controllers\AdminController::class, 'audit_trail_process'])->name('admins.audit-trail.proses');
 
+    Route::get('/dashboard-admin/audit-trail/audit-trail-log-pengguna', [App\Http\Controllers\AdminController::class, 'audit_trail_log_user'])->name('admins.audit-trail.log-user');
+
 });
 
 

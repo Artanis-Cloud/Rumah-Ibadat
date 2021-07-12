@@ -64,4 +64,11 @@ class AdminController extends Controller
 
         return view('admins.audit-trail.proses', compact('audit_process'));
     }
+
+    public function audit_trail_log_user(){
+        $audit_log_user = Audit::where('event', 'Log Masuk')->orWhere('event', 'Log Keluar')->get();
+
+
+        return view('admins.audit-trail.log-user', compact('audit_log_user'));
+    }
 }

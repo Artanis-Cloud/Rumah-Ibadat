@@ -163,7 +163,7 @@ class UserSeeder extends Seeder
         // \App\Models\Tujuan::factory(20)
         // ->create();
 
-        \App\Models\Lampiran::factory(100)
+        \App\Models\Lampiran::factory(50)
         ->create();
         
     }
