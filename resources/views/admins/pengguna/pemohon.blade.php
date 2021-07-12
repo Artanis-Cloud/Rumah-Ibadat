@@ -15,17 +15,6 @@
             
               <div class="card-body border border-dark">
 
-                  {{-- Flash Message --}}
-                  @if ($message = Session::get('success'))
-                    <div class="alert alert-success border border-success" style="text-align: center;">{{$message}}</div>
-                  @elseif ($message = Session::get('error'))
-                    <div class="alert alert-danger border border-danger" style="text-align: center;">{{$message}}</div>
-                  @else
-                    {{-- Hidden Gap - Just Ignore --}}
-                    <div class="alert alert-white" style="text-align: center;"></div>
-                    {{-- <div style="padding: 23px;"></div> --}}
-                  @endif
-
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md">
                       <div class="table-responsive">
@@ -35,7 +24,6 @@
                                 <th class="all">BIL</th>
                                 <th class="all">NAMA PENGGUNA</th>
                                 <th class="all">KAD PENGENALAN</th>
-                                <th class="all">EMAIL</th>
                                 <th class="all">DAFTAR RUMAH IBADAT</th>
                                 <th class="all">STATUS AKAUN</th>
                                 <th class="all">TINDAKAN</th>
@@ -49,7 +37,6 @@
                               <td></td>
                               <td>{{ $data->name }}</td>
                               <td>{{ $data->ic_number }}</td>
-                              <td>{{ $data->email }}</td>
 
                               <td>
                                 @if($data->is_rumah_ibadat == '0')
@@ -71,11 +58,11 @@
 
                               <td class="p-3">
                                 <div class="d-flex flex-row justify-content-around align-items-center">
-                                    {{-- <a href="" class="btn btn-success mr-1"><i class="fas fa-pencil-alt"></i></a> --}}
-
-                                    {{-- <a href="" class="btn btn-success"><i class="fa fa-check-circle"></i></a> --}}
-
-                                    <a href="" class="btn btn-danger"><i class="far fa-times-circle"></i></a>
+                                    @if($data->status == '0')
+                                    <button class="btn btn-success" onclick="enable_user({{ $data->id }})"><i class="fa fa-check-circle"></i></button>
+                                    @elseif($data->status == '1')
+                                    <button class="btn btn-danger" onclick="disable_user({{ $data->id }})"><i class="far fa-times-circle"></i></button>
+                                    @endif
                                 </div>
                               </td>
                             </tr>
@@ -88,9 +75,54 @@
                   </div>
                   
 
-                  {{-- Hidden Gap - Just Ignore --}}
-                  <div class="alert alert-white" style="text-align: center;"></div>
-                  {{-- <div style="padding: 25px;"></div> --}}
+                  <!-- Modal Disable Permohonan -->
+                  <div class="modal fade" id="disable_user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Anda pasti mahu nyahaktif pengguna ini?
+                        </div>
+                        <div class="modal-footer">
+                          <form action="{{ route('admins.pengguna.pemohon.tukar-status') }}">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+                            <input type="hidden" name="user_id_disable" id="user_id_disable" readonly>
+                            <button type="submit" class="btn btn-success">Nyahaktif Pengguna</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+
+                  <!-- Modal Enable Permohonan -->
+                  <div class="modal fade" id="enable_user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Anda pasti mahu aktifkan pengguna ini?
+                        </div>
+                        <div class="modal-footer">
+                          <form action="{{ route('admins.pengguna.pemohon.tukar-status') }}">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+                            <input type="hidden" name="user_id_enable" id="user_id_enable" readonly>
+                            <button type="submit" class="btn btn-success">Aktifkan Pengguna</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+
               </div>
 
           </div>
@@ -110,6 +142,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
 <script type="text/javascript">
+function disable_user(user_id){
+    $( "#user_id_disable" ).val(user_id);
+    $("#disable_user_modal").modal();
+}
+
+function enable_user(user_id){
+    $( "#user_id_enable" ).val(user_id);
+    $("#enable_user_modal").modal();
+}
+
 // Responsive Data Table
 let tablelaporan = $("#table-laporan")
 var t = $(tablelaporan).DataTable({

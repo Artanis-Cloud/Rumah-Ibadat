@@ -185,7 +185,7 @@
                       </form>
                     </div>
                   </div>
-                </div>
+                </div> 
 
                 <!-- Modal Enable-Disable Permohonan -->
                 <div class="modal fade" id="reset_batch" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
