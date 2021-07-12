@@ -4,24 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use OwenIt\Auditing\Contracts\Auditable;
 
-
-class UserRole extends Model implements Auditable
+class Audit extends Model
 {
     use HasFactory;
-    use \OwenIt\Auditing\Auditable;
-
 
     protected $fillable = [
-
-        'user_id',//user id
-
-        'tokong', //cina
-        'kuil_h', //hindu
-        'kuil_g', //gurdwara
-        'gereja',//kristian
+        'role', 'user_id', 'event', 'old_values', 'new_values', 'url', 'ip_address', 'user_agent', 'tags', 'auditable_type', 'auditable_id'
     ];
+
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function user()
     {

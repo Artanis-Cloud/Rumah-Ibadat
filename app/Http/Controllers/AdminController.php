@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Audit;
 use App\Models\User;
+
 
 use Illuminate\Http\Request;
 
@@ -56,6 +58,10 @@ class AdminController extends Controller
     }
 
     public function audit_trail_process(){
-        dd("papar audit trail proses");
+        // dd("papar audit trail proses");
+
+        $audit_process = Audit::where('event', '!=', 'Log Masuk')->where('event', '!=', 'Log Keluar')->get();
+
+        return view('admins.audit-trail.proses', compact('audit_process'));
     }
 }
