@@ -26,11 +26,36 @@ class AdminController extends Controller
         return view('admins.pengguna.pemohon', compact('pengguna'));
     }
 
+    public function pemohon_change_status(Request $request){
+
+        if($request->has('user_id_disable')){
+            $user_id = $request->user_id_disable;
+        }else{
+            $user_id = $request->user_id_enable;
+        }
+
+        $user = User::findorfail($user_id);
+
+        if($user->status == 0){
+            $user->status = 1;
+            $user->save();
+            return redirect()->route('admins.pengguna.pemohon')->with('success', 'Pengguna telah diaktifkan.');
+        }else{
+            $user->status = 0;
+            $user->save();
+            return redirect()->route('admins.pengguna.pemohon')->with('success', 'Pengguna telah dinyaktif.');
+        }
+    }
+
     public function pengguna_dalaman()
     {
         //get user that canot apply rumah ibadat
         $pengguna = User::where('role' , '!=', '0')->get();
 
         return view('admins.pengguna.pengguna-dalaman', compact('pengguna'));
+    }
+
+    public function audit_trail_process(){
+        dd("papar audit trail proses");
     }
 }

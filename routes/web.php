@@ -266,7 +266,12 @@ Route::middleware([Admin::class])->group(function () {
 
     Route::get('/dashboard-admin/pengguna/senarai-pemohon', [App\Http\Controllers\AdminController::class, 'pemohon'])->name('admins.pengguna.pemohon');
 
+    Route::get('/dashboard-admin/pengguna/senarai-pemohon/tukar-status', [App\Http\Controllers\AdminController::class, 'pemohon_change_status'])->name('admins.pengguna.pemohon.tukar-status');
+
     Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman', [App\Http\Controllers\AdminController::class, 'pengguna_dalaman'])->name('admins.pengguna.pengguna-dalaman');
+
+    Route::get('/dashboard-admin/audit-trail/audit-trail-proses', [App\Http\Controllers\AdminController::class, 'audit_trail_process'])->name('admins.audit-trail.proses');
+
 });
 
 
