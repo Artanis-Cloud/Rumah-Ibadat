@@ -18,8 +18,8 @@ class UserRole extends Model implements Auditable
         'user_id',//user id
 
         'tokong', //cina
-        'kuil_h', //hindu
-        'kuil_g', //gurdwara
+        'kuil', //hindu
+        'gurdwara', //gurdwara
         'gereja',//kristian
     ];
 

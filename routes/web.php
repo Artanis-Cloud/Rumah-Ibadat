@@ -261,15 +261,32 @@ Route::middleware([Admin::class])->group(function () {
 
     Route::get('/dashboard-admin', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admins.dashboard');
 
+
+
     // Pengguna
     Route::get('/dashboard-admin/pengguna', [App\Http\Controllers\AdminController::class, 'pengguna'])->name('admins.pengguna.pilih');
 
+    // Pengguna : Pemohon
     Route::get('/dashboard-admin/pengguna/senarai-pemohon', [App\Http\Controllers\AdminController::class, 'pemohon'])->name('admins.pengguna.pemohon');
 
     Route::get('/dashboard-admin/pengguna/senarai-pemohon/tukar-status', [App\Http\Controllers\AdminController::class, 'pemohon_change_status'])->name('admins.pengguna.pemohon.tukar-status');
 
+    // Pengguna : Pengguna Dalaman
     Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman', [App\Http\Controllers\AdminController::class, 'pengguna_dalaman'])->name('admins.pengguna.pengguna-dalaman');
 
+    Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman/tukar-status', [App\Http\Controllers\AdminController::class, 'pengguna_dalaman_change_status'])->name('admins.pengguna.pengguna-dalaman.tukar-status');
+
+    Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman/daftar-pengguna-dalaman', [App\Http\Controllers\AdminController::class, 'pengguna_dalaman_daftar'])->name('admins.pengguna.pengguna-dalaman.daftar');
+
+    Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman/daftar-pengguna-dalaman/daftar', [App\Http\Controllers\AdminController::class, 'pengguna_dalaman_daftar_submit'])->name('admins.pengguna.pengguna-dalaman.daftar.submit');
+
+    Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman/kemaskini-maklumat-pengguna', [App\Http\Controllers\AdminController::class, 'kemaskini_maklumat'])->name('admins.pengguna.pengguna-dalaman.kemaskini-maklumat-pengguna');
+
+    Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman/kemaskini-maklumat-pengguna/kemaskini', [App\Http\Controllers\AdminController::class, 'kemaskini_maklumat_update'])->name('admins.pengguna.pengguna-dalaman.kemaskini-maklumat-pengguna.kemaskini');
+    
+
+
+    // Audit Trail
     Route::get('/dashboard-admin/audit-trail/audit-trail-proses', [App\Http\Controllers\AdminController::class, 'audit_trail_process'])->name('admins.audit-trail.proses');
 
     Route::get('/dashboard-admin/audit-trail/audit-trail-log-pengguna', [App\Http\Controllers\AdminController::class, 'audit_trail_log_user'])->name('admins.audit-trail.log-user');
