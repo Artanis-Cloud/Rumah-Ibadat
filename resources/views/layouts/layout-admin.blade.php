@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/brands.css')}}">
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/solid.css')}}">
 
+    {{-- lord icon --}}
+    <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+
     <!-- Toaster CSS -->
     <link href="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.css')}}" rel="stylesheet">
 
@@ -339,7 +342,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.rumah-ibadat.senarai') }}" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Permohonan Menukar Wakil<br>Rumah Ibadat</span></a>
                                 
