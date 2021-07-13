@@ -283,10 +283,24 @@ Route::middleware([Admin::class])->group(function () {
     Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman/kemaskini-maklumat-pengguna', [App\Http\Controllers\AdminController::class, 'kemaskini_maklumat'])->name('admins.pengguna.pengguna-dalaman.kemaskini-maklumat-pengguna');
 
     Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman/kemaskini-maklumat-pengguna/kemaskini', [App\Http\Controllers\AdminController::class, 'kemaskini_maklumat_update'])->name('admins.pengguna.pengguna-dalaman.kemaskini-maklumat-pengguna.kemaskini');
-    
+
+
+
+    // Pengguna
+    Route::get('/dashboard-admin/rumah-ibadat', [App\Http\Controllers\AdminController::class, 'rumah_ibadat'])->name('admins.rumah-ibadat.pilih');
+
+    Route::get('/dashboard-admin/rumah-ibadat/senarai-rumah-ibadat', [App\Http\Controllers\AdminController::class, 'senarai_rumah_ibadat'])->name('admins.rumah-ibadat.senarai');
+
+    Route::get('/dashboard-admin/rumah-ibadat/senarai-rumah-ibadat/kemaskini-rumah-ibadat', [App\Http\Controllers\AdminController::class, 'senarai_rumah_ibadat_papar'])->name('admins.rumah-ibadat.senarai.papar');
+
+    Route::get('/dashboard-admin/rumah-ibadat/senarai-rumah-ibadat/kemaskini-rumah-ibadat/update', [App\Http\Controllers\AdminController::class, 'update_rumah_ibadat'])->name('admins.rumah-ibadat.senarai.update');
+
+
 
 
     // Audit Trail
+    Route::get('/dashboard-admin/audit-trail', [App\Http\Controllers\AdminController::class, 'audit_trail'])->name('admins.audit-trail.pilih');
+
     Route::get('/dashboard-admin/audit-trail/audit-trail-proses', [App\Http\Controllers\AdminController::class, 'audit_trail_process'])->name('admins.audit-trail.proses');
 
     Route::get('/dashboard-admin/audit-trail/audit-trail-log-pengguna', [App\Http\Controllers\AdminController::class, 'audit_trail_log_user'])->name('admins.audit-trail.log-user');
