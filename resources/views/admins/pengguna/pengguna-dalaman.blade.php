@@ -15,20 +15,9 @@
             
               <div class="card-body border border-dark">
 
-                  {{-- Flash Message --}}
-                  @if ($message = Session::get('success'))
-                    <div class="alert alert-success border border-success" style="text-align: center;">{{$message}}</div>
-                  @elseif ($message = Session::get('error'))
-                    <div class="alert alert-danger border border-danger" style="text-align: center;">{{$message}}</div>
-                  @else
-                    {{-- Hidden Gap - Just Ignore --}}
-                    <div class="alert alert-white" style="text-align: center;"></div>
-                    {{-- <div style="padding: 23px;"></div> --}}
-                  @endif
-
                   <div class="row">
                     <div class="col-md-2">
-                      <a href="" class="btn btn-info">Daftar Pengguna Dalaman</a>
+                      <a href="{{ route('admins.pengguna.pengguna-dalaman.daftar') }}" class="btn btn-info">Daftar Pengguna Baru</a>
                     </div>
                   </div>
 
@@ -42,6 +31,7 @@
                               <th class="all">NAMA PENGGUNA</th>
                               <th class="all">EMAIL</th>
                               <th class="all">PERANAN</th>
+                              <th class="all">Rumah Ibadat</th>
                               <th class="all">STATUS AKAUN</th>
                               <th class="all">TINDAKAN</th>
                             </tr>
@@ -57,31 +47,64 @@
 
                             <td>
                               @if($data->role == '0')
-                                <span class="badge badge-pill badge-info" style="font-size: 13px;">Pemohon</span>
+                                <span class="label label-success label-purple" style="font-size: 11px;">Pemohon</span>
                               @elseif($data->role == '1')
-                                <span class="badge badge-pill badge-info" style="font-size: 13px;">Exco</span>
+                                <span class="label label-success label-purple" style="font-size: 11px;">Pejabat Exco</span>
                               @elseif($data->role == '2')
-                                <span class="badge badge-pill badge-info" style="font-size: 13px;">YB</span>
+                                <span class="label label-success label-purple" style="font-size: 11px;">YB Pengerusi</span>
                               @elseif($data->role == '3')
-                                <span class="badge badge-pill badge-info" style="font-size: 13px;">Kakitangan UPEN</span>
+                                <span class="label label-success label-purple" style="font-size: 11px;">Pejabat UPEN</span>
                               @elseif($data->role == '4')
-                                <span class="badge badge-pill badge-info" style="font-size: 13px;">Admin Sistem</span>
+                                <span class="label label-success label-purple" style="font-size: 11px;">Admin Sistem</span>
+                              @endif
+                            </td>
+
+                            <td>
+                              @if($data->role == '1' || $data->role == '2')
+                                @if($data->user_role->tokong == 1)
+                                <span class="label label-success label-info border border-dark" style="font-size: 10px;">Tokong</span><br>
+                                @endif
+
+                                 @if($data->user_role->kuil == 1)
+                                <span class="label label-success label-info border border-dark" style="font-size: 10px;">Kuil</span><br>
+                                @endif
+
+                                 @if($data->user_role->gurdwara == 1)
+                                <span class="label label-success label-info border border-dark" style="font-size: 10px;">Gurdwara</span><br>
+                                @endif
+
+                                 @if($data->user_role->gereja == 1)
+                                <span class="label label-success label-info border border-dark" style="font-size: 10px;">Gereja</span><br>
+                                @endif
+                              @else 
+                              -
                               @endif
                             </td>
 
                             <td>
                               @if($data->status == '0')
-                                <span class="badge badge-pill badge-danger" style="font-size: 13px;">Tidak Aktif</span>
+                                <span class="label label-success label-danger" style="font-size: 13px;">Tidak Aktif</span>
                               @elseif($data->status == '1')
-                                <span class="badge badge-pill badge-success" style="font-size: 13px;">Aktif</span>
+                                <span class="label label-success label-success" style="font-size: 13px;">Aktif</span>
                               @endif
                             </td>
 
                             <td class="p-3">
                               <div class="d-flex flex-row justify-content-around align-items-center">
-                                  <a href="" class="btn btn-success mr-1"><i class="fas fa-pencil-alt"></i></a>
+                                @if($data->id == auth()->user()->id)
+                                  <button class="btn btn-dark"><i class="fa fa-times-circle"></i></button>
+                                @else
+                                  @if($data->status == '0')
+                                  <button class="btn btn-success" onclick="enable_user({{ $data->id }})"><i class="fa fa-check-circle"></i></button>
+                                  @elseif($data->status == '1')
+                                  <button class="btn btn-danger" onclick="disable_user({{ $data->id }})"><i class="far fa-times-circle"></i></button>
+                                  @endif
 
-                                  <a href="" class="btn btn-success"><i class="fa fa-check-circle"></i></a>
+                                  <form action="{{  route('admins.pengguna.pengguna-dalaman.kemaskini-maklumat-pengguna') }}">
+                                    <input type="hidden" name="user_id" value="{{ $data->id }}" readonly>
+                                    <button class="btn btn-info" type="submit"><i class="fas fa-user-edit"></i></button>
+                                  </form>
+                                @endif
                               </div>
                             </td>
                           </tr>
@@ -93,10 +116,53 @@
                     </div>
                   </div>
                   
+                  <!-- Modal Disable Permohonan -->
+                  <div class="modal fade" id="disable_user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Anda pasti mahu nyahaktif pengguna ini?
+                        </div>
+                        <div class="modal-footer">
+                          <form action="{{ route('admins.pengguna.pengguna-dalaman.tukar-status') }}">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+                            <input type="hidden" name="user_id_disable" id="user_id_disable" readonly>
+                            <button type="submit" class="btn btn-success">Nyahaktif Pengguna</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
 
-                  {{-- Hidden Gap - Just Ignore --}}
-                  <div class="alert alert-white" style="text-align: center;"></div>
-                  {{-- <div style="padding: 25px;"></div> --}}
+                  <!-- Modal Enable Permohonan -->
+                  <div class="modal fade" id="enable_user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Anda pasti mahu aktifkan pengguna ini?
+                        </div>
+                        <div class="modal-footer">
+                          <form action="{{ route('admins.pengguna.pengguna-dalaman.tukar-status') }}">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+                            <input type="hidden" name="user_id_enable" id="user_id_enable" readonly>
+                            <button type="submit" class="btn btn-success">Aktifkan Pengguna</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
               </div>
 
           </div>
@@ -116,6 +182,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
 <script type="text/javascript">
+function disable_user(user_id){
+    $( "#user_id_disable" ).val(user_id);
+    $("#disable_user_modal").modal();
+}
+
+function enable_user(user_id){
+    $( "#user_id_enable" ).val(user_id);
+    $("#enable_user_modal").modal();
+}
+
 // Responsive Data Table
 let tablelaporan = $("#table-laporan")
 var t = $(tablelaporan).DataTable({

@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/brands.css')}}">
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/solid.css')}}">
 
+    <!-- Toaster CSS -->
+    <link href="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{asset('nice-admin/assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
@@ -565,8 +567,12 @@
     <script src="{{asset('nice-admin/icon/js/brands.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/solid.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/fontawesome.js')}}"></script>
+
+    {{-- toaster --}}
+    <script src="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.js')}}"></script>
+    <script src="{{asset('nice-admin/assets/extra-libs/toastr/toastr-init.js')}}"></script>
     
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $("document").ready(function(){
             setTimeout(function(){
                 // $("div.alert").remove();
@@ -577,6 +583,14 @@
                 $("div.alert").addClass("alert-white");
             }, 5000 ); // 5 secs  (1 sec = 1000)
         });
+    </script> --}}
+
+    <script>
+        @if (Session::get('success'))
+            toastr.success('{{ session('success') }}', 'Berjaya', { "progressBar": true });
+        @elseif ($message = Session::get('error'))
+            toastr.error('{{ session('error') }}', 'Ralat', { "progressBar": true });
+        @endif
     </script>
     <!-- ============================================================== -->
     <!-- END Jquery NICE PAGE -->
