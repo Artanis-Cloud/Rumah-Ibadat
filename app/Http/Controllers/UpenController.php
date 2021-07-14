@@ -35,6 +35,13 @@ class UpenController extends Controller
         return view('upens.dashboard', compact('count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report', 'new_application')); 
     }
 
+    public function print_permohonan(Request $request)
+    {
+        // dd($request->all());
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+        return view('upens.permohonan.print', compact('permohonan'));
+    }
+
     public function permohonan()
     {
         return view('upens.permohonan.pilih');

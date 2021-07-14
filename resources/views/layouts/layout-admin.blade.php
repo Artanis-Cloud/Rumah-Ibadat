@@ -359,9 +359,8 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-table"></i><span class="hide-menu" style="padding-left: 10px;">Laporan</span></a>
+                        {{-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-table"></i><span class="hide-menu" style="padding-left: 10px;">Laporan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.daftar') }}" aria-expanded="false"><span class="hide-menu">Pendaftaran</span></a> --}}
                                     
                                 </li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Laporan Bilangan Keseluruhan<br>Permohonan</span></a>
@@ -369,7 +368,7 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Laporan Bilangan Mengikut<br>Kategori Rumah Ibadat</span></a>
                                     
                             </ul>
-                        </li>
+                        </li> --}}
 
                         
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Sample Pages</span></li>
@@ -574,20 +573,11 @@
     {{-- toaster --}}
     <script src="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.js')}}"></script>
     <script src="{{asset('nice-admin/assets/extra-libs/toastr/toastr-init.js')}}"></script>
-    
-    {{-- <script type="text/javascript">
-        $("document").ready(function(){
-            setTimeout(function(){
-                // $("div.alert").remove();
-                $("div.alert").removeClass("alert-success border border-success");
-                $("div.alert").removeClass("alert-danger border border-danger");
-                // $("div.alert").empty();
-                $("div.alert").css({ 'color': 'white'});
-                $("div.alert").addClass("alert-white");
-            }, 5000 ); // 5 secs  (1 sec = 1000)
-        });
-    </script> --}}
 
+    {{-- print --}}
+    <script src="{{asset('nice-admin/dist/js/pages/samplepages/jquery.PrintArea.js')}}"></script>
+
+    {{-- toaster display --}}
     <script>
         @if (Session::get('success'))
             toastr.success('{{ session('success') }}', 'Berjaya', { "progressBar": true });

@@ -205,7 +205,11 @@ Route::middleware([Upen::class])->group(function () {
 
 
 
+    //API
+    Route::get('/dashboard-pejabat-upen/cetak-permohonan', [App\Http\Controllers\UpenController::class, 'print_permohonan'])->name('upens.permohonan.print');
 
+
+    //PERMOHONAN BARU
     Route::get('/dashboard-pejabat-upen/permohonan', [App\Http\Controllers\UpenController::class, 'permohonan'])->name('upens.permohonan.pilih');
 
     //PERMOHONAN BARU
