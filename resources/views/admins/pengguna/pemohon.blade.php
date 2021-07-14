@@ -40,19 +40,17 @@
 
                               <td>
                                 @if($data->is_rumah_ibadat == '0')
-                                  {{-- <i class="fas fa-times-circle fa-2x" style="color: red;"></i> --}}
-                                  <span class="badge badge-pill badge-danger" style="font-size: 13px;">Tidak Berdaftar</span>
+                                  <span class="label label-success label-warning" style="font-size: 13px;"> Tidak Berdaftar</span>
                                 @elseif($data->is_rumah_ibadat == '1')
-                                  {{-- <i class="fas fa-check-circle fa-2x" style="color: green;"></i> --}}
-                                  <span class="badge badge-pill badge-success" style="font-size: 13px;">Berdaftar</span>
+                                  <span class="label label-success label-success" style="font-size: 13px;">Berdaftar</span>
                                 @endif
                               </td>
 
                               <td>
                                 @if($data->status == '0')
-                                  <span class="badge badge-pill badge-danger" style="font-size: 13px;">Tidak Aktif</span>
+                                  <span class="label label-success label-danger" style="font-size: 13px;"> Tidak Aktif</span>
                                 @elseif($data->status == '1')
-                                  <span class="badge badge-pill badge-success" style="font-size: 13px;">Aktif</span>
+                                  <span class="label label-success label-success" style="font-size: 13px;">Aktif</span>
                                 @endif
                               </td>
 
@@ -63,6 +61,12 @@
                                     @elseif($data->status == '1')
                                     <button class="btn btn-danger" onclick="disable_user({{ $data->id }})"><i class="far fa-times-circle"></i></button>
                                     @endif
+
+                                    <form action="{{ route('admins.pengguna.pemohon.papar') }}">
+                                      <input type="hidden" name="user_id" value="{{ $data->id }}">
+                                      <button class="btn btn-info"><i class="fas fa-user-edit"></i></button>
+                                    </form>
+
                                 </div>
                               </td>
                             </tr>

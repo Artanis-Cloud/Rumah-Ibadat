@@ -1246,6 +1246,17 @@
 
                         <div class="row">
                           <div class="col-md-2"></div>
+                          <div class="col-md">
+                            <form action="{{ route('upens.permohonan.print') }}">
+                            <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                            <button type="submit" class="btn waves-effect waves-light btn-info btn-block"><i class="fas fa-print"></i> &nbsp&nbsp Cetak Permohonan</button>
+                            </form>
+                          </div>
+                          <div class="col-md-2"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-2"></div>
                           <div class="col-md-4" style="padding-top: 15px;">
                             <button type="button" class="btn waves-effect waves-light btn-warning text-dark btn-block" id="semak_semula_button" data-toggle="modal" data-target="#confirmation_review_application">Semak Semula</button>
                           </div>

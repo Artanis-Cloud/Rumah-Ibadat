@@ -9,29 +9,33 @@
 <div class="container-fluid">
   
   <div class="row">
-      {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
             <form action="{{ route('admins.rumah-ibadat.senarai.update') }}">
-            {{-- {{ csrf_field() }} --}}
 
               <div class="card-body border border-dark">
 
-                  {{-- <div class="row" style="padding-bottom: 35px;">
-                    <div class="col-md-2">
+                  
 
-                    </div>
+                  <div class="row">
+                    <div class="col-md-2"></div>
                     <div class="col-md">
-                      <div class="card-header" style="text-align: justify; text-justify: inter-word; border: 2px solid black;">
-                      <h5>Arahan:</h5>
-                      <span>- Bahagian yang bertanda (<label class="required"></label>) wajib di isi oleh pengguna.</span>
+                      <label>ID Rumah Ibadat</label>
+                      <div class="mb-3 input-group">
+                          <input class="form-control text-uppercase border-dark "  type="text" id="rumah_ibadat_id" name="rumah_ibadat_id" value="{{ $rumah_ibadat->id }}" readonly>
                       </div>
                     </div>
-                    <div class="col-md-2">
 
+                    <div class="col-md">
+                      <label>Tarikh / Waktu Pendaftaran</label>
+                      <div class="mb-3 input-group">
+                          <input class="form-control text-uppercase border-dark "  type="text" value="{{ Carbon\Carbon::parse($rumah_ibadat->created_at)->format('d-m-y | g:i a') }}" disabled>
+                      </div>
                     </div>
-                  </div> --}}
-                  <input type="hidden" name="rumah_ibadat_id" value="{{ $rumah_ibadat->id }}">
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <hr>
 
                   <div class="row"> 
                     <div class="col-md-2"></div>

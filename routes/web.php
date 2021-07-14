@@ -205,7 +205,11 @@ Route::middleware([Upen::class])->group(function () {
 
 
 
+    //API
+    Route::get('/dashboard-pejabat-upen/cetak-permohonan', [App\Http\Controllers\UpenController::class, 'print_permohonan'])->name('upens.permohonan.print');
 
+
+    //PERMOHONAN BARU
     Route::get('/dashboard-pejabat-upen/permohonan', [App\Http\Controllers\UpenController::class, 'permohonan'])->name('upens.permohonan.pilih');
 
     //PERMOHONAN BARU
@@ -271,6 +275,10 @@ Route::middleware([Admin::class])->group(function () {
 
     Route::get('/dashboard-admin/pengguna/senarai-pemohon/tukar-status', [App\Http\Controllers\AdminController::class, 'pemohon_change_status'])->name('admins.pengguna.pemohon.tukar-status');
 
+    Route::get('/dashboard-admin/pengguna/senarai-pemohon/kemaskini-maklumat-pemohon', [App\Http\Controllers\AdminController::class, 'kemaskini_pemohon'])->name('admins.pengguna.pemohon.papar');
+
+    Route::get('/dashboard-admin/pengguna/senarai-pemohon/kemaskini-maklumat-pemohon/update', [App\Http\Controllers\AdminController::class, 'kemaskini_pemohon_update'])->name('admins.pengguna.pemohon.papar.update');
+
     // Pengguna : Pengguna Dalaman
     Route::get('/dashboard-admin/pengguna/senarai-pengguna-dalaman', [App\Http\Controllers\AdminController::class, 'pengguna_dalaman'])->name('admins.pengguna.pengguna-dalaman');
 
@@ -286,7 +294,7 @@ Route::middleware([Admin::class])->group(function () {
 
 
 
-    // Pengguna
+    // Rumah Ibadat
     Route::get('/dashboard-admin/rumah-ibadat', [App\Http\Controllers\AdminController::class, 'rumah_ibadat'])->name('admins.rumah-ibadat.pilih');
 
     Route::get('/dashboard-admin/rumah-ibadat/senarai-rumah-ibadat', [App\Http\Controllers\AdminController::class, 'senarai_rumah_ibadat'])->name('admins.rumah-ibadat.senarai');

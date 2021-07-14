@@ -52,6 +52,53 @@ class AdminController extends Controller
         }
     }
 
+    public function kemaskini_pemohon(Request $request){
+
+        $user = User::findorfail($request->user_id);
+
+        return view('admins.pengguna.kemaskini-pemohon', compact('user'));
+    }
+
+    public function kemaskini_pemohon_update(Request $request){
+        // dd($request->all());
+
+        // Validate change password form
+        
+        $this->validator($request->all())->validate();
+
+        $user = User::findOrFail($request->user_id);
+
+        if($request->ic_number != $user->ic_number){
+            $checking_ic_number = User::where('ic_number', $request->ic_number)->count();
+
+            if($checking_ic_number > 0){
+                return redirect()->back()->with("error", "Kad pengenalan ini telah didaftarkan.");
+            }
+        }
+
+        $user->name = $request->name;
+
+        $user->email = $request->email;
+
+        $user->ic_number = $request->ic_number;
+
+        $user->mobile_phone = $request->mobile_phone;
+
+        $user->save();
+
+        return redirect()->back()->with("success", "Profil pemohon berjaya dikemaskini.");
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'ic_number' => ['required', 'string', 'min:12', 'max:12'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'mobile_phone' => ['required', 'string', 'max:11', 'min:10'],
+        ]);
+    }
+
     public function pengguna_dalaman()
     {
         //get user that canot apply rumah ibadat
@@ -317,7 +364,8 @@ class AdminController extends Controller
         //save information
         $rumah_ibadat->save();
 
-        return redirect()->route('admins.rumah-ibadat.senarai')->with('success', 'Maklumat rumah ibadat telah dikemaskini.');
+        return redirect()->back()->with("success", "Maklumat rumah ibadat pemohon berjaya dikemaskini.");
+
     }
 
     protected function validatorUpdate(array $data)

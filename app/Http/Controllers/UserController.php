@@ -76,7 +76,7 @@ class UserController extends Controller
 
         $user->mobile_phone = $request->mobile_phone;
 
-        $user->save();
+        $user->save(); 
 
         return redirect()->back()->with("success", "Profil anda berjaya dikemaskini.");
     }

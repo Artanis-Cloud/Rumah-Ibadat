@@ -407,8 +407,20 @@
     <script src="{{asset('nice-admin/icon/js/brands.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/solid.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/fontawesome.js')}}"></script>
+
+    {{-- print --}}
+    <script src="{{asset('nice-admin/dist/js/pages/samplepages/jquery.PrintArea.js')}}"></script>
+
+    {{-- toaster display --}}
+    <script>
+        @if (Session::get('success'))
+            toastr.success('{{ session('success') }}', 'Berjaya', { "progressBar": true });
+        @elseif ($message = Session::get('error'))
+            toastr.error('{{ session('error') }}', 'Ralat', { "progressBar": true });
+        @endif
+    </script>
     
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $("document").ready(function(){
             setTimeout(function(){
                 // $("div.alert").remove();
@@ -419,7 +431,7 @@
                 $("div.alert").addClass("alert-white");
             }, 5000 ); // 5 secs  (1 sec = 1000)
         });
-    </script>
+    </script> --}}
     <!-- ============================================================== -->
     <!-- END Jquery NICE PAGE -->
     <!-- ============================================================== -->
