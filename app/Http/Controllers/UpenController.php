@@ -39,7 +39,28 @@ class UpenController extends Controller
     {
         // dd($request->all());
         $permohonan = Permohonan::findorfail($request->permohonan_id);
-        return view('upens.permohonan.print', compact('permohonan'));
+
+        $exco = null;
+        if($permohonan->exco_id != null){
+            $exco = User::findorfail($permohonan->exco_id);
+        }
+
+        $yb = null;
+        if ($permohonan->yb_id != null) {
+            $yb = User::findorfail($permohonan->yb_id);
+        }
+
+        $upen = null;
+        if ($permohonan->upen_id != null) {
+            $upen = User::findorfail($permohonan->upen_id);
+        }
+
+        $review_to_applicant_id = null;
+        if ($permohonan->review_to_applicant_id != null) {
+            $review_to_applicant_id = User::findorfail($permohonan->review_to_applicant_id);
+        }
+
+        return view('upens.permohonan.print', compact('permohonan', 'exco','yb', 'upen', 'review_to_applicant_id'));
     }
 
     public function permohonan()

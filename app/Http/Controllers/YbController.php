@@ -74,7 +74,7 @@ class YbController extends Controller
             if (isset($count_new_application)) {
                 $count_new_application = $count_new_application + $count_new_application_kuil;
             } else {
-                $processing_application = $count_new_application_kuil;
+                $count_new_application = $count_new_application_kuil;
             }
 
             //================== COUNT PROCESSING APPLICATION ==================
