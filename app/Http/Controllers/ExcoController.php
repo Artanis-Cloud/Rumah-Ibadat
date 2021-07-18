@@ -28,6 +28,10 @@ class ExcoController extends Controller
         $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
 
         $laporan_tokong = null;
+        $khas_tokong = null;
+        $khas_count = null;
+
+
         $laporan_kuil = null;
         $laporan_gurdwara = null;
         $laporan_gereja = null;
@@ -97,7 +101,7 @@ class ExcoController extends Controller
             if (isset($count_new_application)) {
                 $count_new_application = $count_new_application + $count_new_application_kuil;
             } else {
-                $processing_application = $count_new_application_kuil;
+                $count_new_application = $count_new_application_kuil;
             }
 
             //================== COUNT PROCESSING APPLICATION ==================

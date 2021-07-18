@@ -36,7 +36,7 @@
 
                             <label>Kategori Rumah Ibadat</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('category') is-invalid @else border-dark @enderror" id="category" name="category" type="text" value="{{ $permohonan->rumah_ibadat->category == "TOKONG" ? "TOKONG (BUDDHA & TAO)" : ( $permohonan->rumah_ibadat->category == "KUIL_H" ? "KUIL (HINDU)" : ( $permohonan->rumah_ibadat->category == "KUIL_G" ? "KUIL (GURDWARA)" : ( $permohonan->rumah_ibadat->category == "GEREJA" ? "GEREJA (KRISTIAN)" : "ERROR DATA" ) ) ) }}" disabled>
+                              <input class="form-control text-uppercase @error('category') is-invalid @else border-dark @enderror" id="category" name="category" type="text" value="{{ $permohonan->rumah_ibadat->category == "TOKONG" ? "TOKONG (BUDDHA & TAO)" : ( $permohonan->rumah_ibadat->category == "KUIL" ? "KUIL (HINDU)" : ( $permohonan->rumah_ibadat->category == "GURDWARA" ? "KUIL (GURDWARA)" : ( $permohonan->rumah_ibadat->category == "GEREJA" ? "GEREJA (KRISTIAN)" : "ERROR DATA" ) ) ) }}" disabled>
                             </div>
 
                           </div>
@@ -328,7 +328,7 @@
                                       <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                       <input type="hidden" name="file_type" value="application_letter" readonly>
                                       <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
-                                        @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                        @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                         Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                         @else 
                                         Surat Permohonan Kepada Pengurusi Limas
@@ -337,7 +337,7 @@
                                       
                                     </form> --}}
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" target="_blank">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                       @else 
                                       Surat Permohonan Kepada Pengurusi Limas
@@ -350,7 +350,7 @@
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="registration_certificate" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil Pendaftaran (Akta Pertubuhan 1966)
                                       @else 
                                       Sijil Pendaftaran ROS
@@ -358,7 +358,7 @@
                                     </button>
                                   </form> --}}
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->registration_certificate)) }}" target="_blank">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil Pendaftaran (Akta Pertubuhan 1966)
                                       @else 
                                       Sijil Pendaftaran ROS
@@ -440,18 +440,18 @@
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="certificate_or_letter_temple" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL")
                                       Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
-                                      @elseIf($permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @elseIf($permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil/Surat Sokongan Majlis Gudwara Malaysia
                                       @endif
                                     </button>
                                   </form> --}}
 
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->certificate_or_letter_temple)) }}" target="_blank">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL")
                                       Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
-                                      @elseIf($permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @elseIf($permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil/Surat Sokongan Majlis Gudwara Malaysia
                                       @endif
                                   </a>
@@ -1384,7 +1384,7 @@
                           <fieldset class="checkbox">
                               <label>
                                   <input type="checkbox" value="application_letter" id="review_2" name="review[]" onclick="semak_semula_validation()"> 
-                                  @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                  @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                   Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                   @else
                                   Surat Permohonan Kepada Pengurusi Limas
@@ -1395,7 +1395,7 @@
                           <fieldset class="checkbox">
                               <label>
                                   <input type="checkbox" value="registration_certificate" id="review_3" name="review[]" onclick="semak_semula_validation()"> 
-                                  @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                  @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                   Sijil Pendaftaran (Akta Pertubuhan 1966)
                                   @else
                                   Sijil Pendaftaran ROS
@@ -1410,7 +1410,7 @@
                               </label>
                           </fieldset>
 
-                          @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                          @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                             <fieldset class="checkbox">
                                 <label>
                                     <input type="checkbox" value="spending_statement" id="review_5" name="review[]" onclick="semak_semula_validation()"> 

@@ -199,7 +199,7 @@
                                             @endif
 
                                             @if(Auth::user()->user_role->kuil == "1")
-                                                    <span class="badge badge-info">HINDU</span>
+                                                    <span class="badge badge-info">KUIL</span>
                                             @endif
 
                                             @if(Auth::user()->user_role->gurdwara == "1")
