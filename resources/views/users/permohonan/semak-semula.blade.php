@@ -87,7 +87,7 @@
                   <div class="row" style="padding-top: 5px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                       <label class="required" >Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga</label>
                       @else
                       <label class="required" >Surat Permohonan Kepada Pengurusi Limas</label>
@@ -106,7 +106,7 @@
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                       @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                       @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                       <label class="required" >Sijil Pendaftaran (Akta Pertubuhan 1966)</label>
                       @else
                       <label class="required" >Sijil Pendaftaran ROS</label>
@@ -133,7 +133,7 @@
                       </div>
                     @endif
 
-                    @if($permohonan->spending_statement == "x" && ($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G") )  
+                    @if($permohonan->spending_statement == "x" && ($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA") )
                       <div class="col-md">
                         <label class="required">Penyata Perbelanjaan</label>
                         <div class="custom-file">
@@ -145,7 +145,7 @@
                     <div class="col-md-2"></div>
                   </div>
 
-                @if($permohonan->support_letter == "x" && ($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G") )  
+                @if($permohonan->support_letter == "x" && ($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA") )
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
@@ -487,18 +487,18 @@
                       </div>
 
                   @endif
- 
+
                 @endforeach
 
                 {{-- Submit Button --}}
-                <div class="row" style="padding-top: 25px;"> 
+                <div class="row" style="padding-top: 25px;">
                   <div class="col-md-3"></div>
                   <div class="col-md-6" style="text-align: center;">
                     <button type="button" id="validation_button" class="btn waves-effect waves-light btn-info btn-block">Hantar Semula Permohonan</button>
                   </div>
                   <div class="col-md-3"></div>
                 </div>
-                  
+
               </div>
 
               <!-- Modal Confirmation -->
@@ -580,7 +580,7 @@
     //---------- FILE SIZE CHECKER ----------
     var numb = $(this)[0].files[0].size/1024 /1024 ;
     numb = numb.toFixed(2);
-    
+
     if(numb > 5.0){  //change file limit HERE!!! (MB)
     //change border color to black
     $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
@@ -617,46 +617,46 @@ $(document).ready(function(){
     var number_of_image = 5 //Input fields increment limitation
 
     var maxField_option1 = number_of_image;
-    var maxField_option3 = number_of_image; 
+    var maxField_option3 = number_of_image;
     var maxField_option4 = number_of_image;
-    var maxField_option4_2 = number_of_image;  
-    var maxField_option5 = number_of_image; 
+    var maxField_option4_2 = number_of_image;
+    var maxField_option5 = number_of_image;
 
     //Add button selector
     var addButton_option1 = $("#add_input_opt_1");
-    var addButton_option3 = $("#add_input_opt_3"); 
-    var addButton_option4 = $("#add_input_opt_4"); 
-    var addButton_option4_2 = $("#add_input_opt_4_2"); 
-    var addButton_option5 = $("#add_input_opt_5"); 
+    var addButton_option3 = $("#add_input_opt_3");
+    var addButton_option4 = $("#add_input_opt_4");
+    var addButton_option4_2 = $("#add_input_opt_4_2");
+    var addButton_option5 = $("#add_input_opt_5");
 
     //Input field wrapper
     var wrapper_option1 = $('.field_wrapper_option_1');
-    var wrapper_option3 = $('.field_wrapper_option_3'); 
-    var wrapper_option4 = $('.field_wrapper_option_4'); 
-    var wrapper_option4_2 = $('.field_wrapper_option_4_2'); 
-    var wrapper_option5 = $('.field_wrapper_option_5'); 
+    var wrapper_option3 = $('.field_wrapper_option_3');
+    var wrapper_option4 = $('.field_wrapper_option_4');
+    var wrapper_option4_2 = $('.field_wrapper_option_4_2');
+    var wrapper_option5 = $('.field_wrapper_option_5');
     var wrapper_general = $('.field_wrapper_option_1, .field_wrapper_option_3, .field_wrapper_option_4, .field_wrapper_option_4_2, .field_wrapper_option_5');
 
     //increment
     var x_opt1 = 1;
-    var x_opt3 = 1; 
-    var x_opt4 = 1; 
-    var x_opt4_2 = 1; 
-    var x_opt5 = 1; 
+    var x_opt3 = 1;
+    var x_opt4 = 1;
+    var x_opt4_2 = 1;
+    var x_opt5 = 1;
 
     //Initial field counter is 1
-    var y_opt1 = 1; 
-    var y_opt3 = 1; 
-    var y_opt4 = 1; 
-    var y_opt4_2 = 1; 
-    var y_opt5 = 1; 
+    var y_opt1 = 1;
+    var y_opt3 = 1;
+    var y_opt4 = 1;
+    var y_opt4_2 = 1;
+    var y_opt5 = 1;
 
     //***************************************** OPTION 1 *****************************************
-    
+
     //Once add button is clicked
     $(addButton_option1).click(function(){
         //Check maximum number of input fields
-        if(y_opt1 < maxField_option1){ 
+        if(y_opt1 < maxField_option1){
             x_opt1++;
             y_opt1++; //Increment field counter
             $('#total_opt_1_photo').val(x_opt1); //display counter
@@ -678,11 +678,11 @@ $(document).ready(function(){
     //***************************************** END OF OPTION 1 *****************************************
 
     //***************************************** OPTION 3 *****************************************
-    
+
     //Once add button is clicked
     $(addButton_option3).click(function(){
         //Check maximum number of input fields
-        if(y_opt3 < maxField_option3){ 
+        if(y_opt3 < maxField_option3){
             x_opt3++;
             y_opt3++; //Increment field counter
             $('#total_opt_3_photo').val(x_opt3); //display counter
@@ -704,11 +704,11 @@ $(document).ready(function(){
     //***************************************** END OF OPTION 3 *****************************************
 
     //***************************************** OPTION 4 *****************************************
-    
+
     //Once add button is clicked
     $(addButton_option4).click(function(){
         //Check maximum number of input fields
-        if(y_opt4 < maxField_option4){ 
+        if(y_opt4 < maxField_option4){
             x_opt4++;
             y_opt4++; //Increment field counter
             $('#total_opt_4_photo').val(x_opt4); //display counter
@@ -732,7 +732,7 @@ $(document).ready(function(){
     //Once add button is clicked
     $(addButton_option4_2).click(function(){
         //Check maximum number of input fields
-        if(y_opt4_2 < maxField_option4_2){ 
+        if(y_opt4_2 < maxField_option4_2){
             x_opt4_2++;
             y_opt4_2++; //Increment field counter
             $('#total_opt_4_2_photo').val(x_opt4_2); //display counter
@@ -754,11 +754,11 @@ $(document).ready(function(){
     //***************************************** END OF OPTION 4 *****************************************
 
     //***************************************** OPTION 5 *****************************************
-    
+
     //Once add button is clicked
     $(addButton_option5).click(function(){
         //Check maximum number of input fields
-        if(y_opt5 < maxField_option5){ 
+        if(y_opt5 < maxField_option5){
             x_opt5++;
             y_opt5++; //Increment field counter
             $('#total_opt_5_photo').val(x_opt5); //display counter
@@ -833,7 +833,7 @@ $(document).ready(function(){
         // output.onload = function() {
         //   URL.revokeObjectURL(output.src) // free memory
         // }
-        
+
 
         //file name display
         var fileName = $(this).val().split("\\").pop();
@@ -850,7 +850,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $("#validation_button").click(function(){
-    
+
     //fetch data - GENERAL
     var category = $('#category').val();
     var application_letter = $('#application_letter').val();
@@ -861,7 +861,7 @@ $(document).ready(function(){
     var spending_statement = $('#spending_statement').val();
     var support_letter = $('#support_letter').val();
 
-    //fetch data - TUJUAN 1 
+    //fetch data - TUJUAN 1
     var total_opt_1_photo =  $('#total_opt_1_photo').val(); //image
 
     //fetch data - TUJUAN 2
@@ -880,7 +880,7 @@ $(document).ready(function(){
     var opt_5_file_1 = $('#opt_5_file_1').val(); //file
     var opt_5_file_3 = $('#opt_5_file_3').val(); //file
     var total_opt_5_photo =  $('#total_opt_5_photo').val(); //image
-    
+
     //validation surat permohonan
     if(application_letter == ""){
 
@@ -914,14 +914,14 @@ $(document).ready(function(){
     }
 
     //validation penyata perbelanjaan terkini
-    if(spending_statement == "" && (category == "KUIL_H" || category == "KUIL_G")){
+    if(spending_statement == "" && (category == "KUIL" || category == "GURDWARA")){
       $('#note_message').html('Sila muat naik <b>Penyata Perbelanjaan</b>');
       $("#validation_submit_permohonan").modal();
       return false;
     }
 
     //validation surat sokongan
-    if(support_letter == "" && (category == "KUIL_H" || category == "KUIL_G")){
+    if(support_letter == "" && (category == "KUIL" || category == "GURDWARA")){
       $('#note_message').html('Sila muat naik <b>Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India</b>');
       $("#validation_submit_permohonan").modal();
       return false;
@@ -933,7 +933,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_1_photo; i++){
         if($('#opt_1_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_1_photo' + i).val() != ""){// check the image is null or not
             total_opt1_uploaded++ //increment total uploaded file
           }
@@ -969,7 +969,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_3_photo; i++){
         if($('#opt_3_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_3_photo' + i).val() != ""){// check the image is null or not
             total_opt3_uploaded++ //increment total uploaded file
           }
@@ -999,7 +999,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_4_photo; i++){
         if($('#opt_4_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_4_photo' + i).val() != ""){// check the image is null or not
             total_opt4_uploaded++ //increment total uploaded file
           }
@@ -1009,7 +1009,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_4_2_photo; i++){
         if($('#opt_4_2_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_4_2_photo' + i).val() != ""){// check the image is null or not
             total_opt4_2_uploaded++ //increment total uploaded file
           }
@@ -1048,7 +1048,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_5_photo; i++){
         if($('#opt_5_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_5_photo' + i).val() != ""){// check the image is null or not
             total_opt5_uploaded++ //increment total uploaded file
           }
@@ -1062,7 +1062,7 @@ $(document).ready(function(){
         return false;
       }
 
-      
+
     }
 
     //display c5nfirmartion input

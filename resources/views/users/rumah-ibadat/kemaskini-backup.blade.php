@@ -7,7 +7,7 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
@@ -17,7 +17,7 @@
 
               <div class="card-body border border-dark">
 
-                  <div class="row"> 
+                  <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
@@ -25,8 +25,8 @@
                           <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ old('category') }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
                               <option value="TOKONG" {{ $rumah_ibadat->category == "TOKONG"    ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
-                              <option value="KUIL_H" {{ $rumah_ibadat->category == "KUIL_H"    ? 'selected' : '' }} >KUIL (HINDU)</option>
-                              <option value="KUIL_G" {{ $rumah_ibadat->category == "KUIL_G"    ? 'selected' : '' }} >KUIL (GURDWARA)</option>
+                              <option value="KUIL" {{ $rumah_ibadat->category == "KUIL"    ? 'selected' : '' }} >KUIL (HINDU)</option>
+                              <option value="GURDWARA" {{ $rumah_ibadat->category == "GURDWARA"    ? 'selected' : '' }} >KUIL (GURDWARA)</option>
                               <option value="GEREJA" {{ $rumah_ibadat->category == "GEREJA"    ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
                           </select>
                           @error('category')
@@ -103,7 +103,7 @@
                           @enderror
                       </div>
                     </div>
-                    
+
                     <div class="col-md-2"></div>
                   </div>
 
@@ -244,7 +244,7 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-                  
+
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
@@ -354,7 +354,7 @@
                   </div>
 
                   {{-- Submit Button --}}
-                  <div class="row" style="padding-top: 15px;"> 
+                  <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md" style="text-align: center;">
                       <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation_submit">Kemaskini Profil Rumah Ibadat</button>
