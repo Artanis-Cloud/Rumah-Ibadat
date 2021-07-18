@@ -86,7 +86,7 @@ class PermohonanController extends Controller
         $certificate_or_letter_temple = null;
         $invitation_letter = null;
 
-        if($request->category == "KUIL_H" || $request->category == "KUIL_G"){
+        if($request->category == "KUIL" || $request->category == "GURDWARA"){
             $spending_statement = $request->file('spending_statement')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
             $support_letter = $request->file('support_letter')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
 
@@ -380,7 +380,7 @@ class PermohonanController extends Controller
             $permohonan->account_statement = $account_statement;
         }
 
-        if ($request->category == "KUIL_H" || $request->category == "KUIL_G") {
+        if ($request->category == "KUIL" || $request->category == "GURDWARA") {
 
             if ($request->spending_statement) {
                 $spending_statement = $request->file('spending_statement')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);

@@ -6,7 +6,7 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
@@ -17,7 +17,7 @@
               <div class="col-md">
 
                 <div id="accordionTwo">
-                  
+
                   <div class="card">
                     <a href="" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="headingTwo" style="color: white;">
                     {{-- <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> --}}
@@ -30,7 +30,7 @@
 
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionTwo">
                       <div class="card-body border border-primary">
-                        
+
                         <div class="row">
                           <div class="col-md">
 
@@ -60,14 +60,14 @@
                             </div>
 
                           </div>
-                          
+
                         </div>
 
                         <hr>
 
                         @if($permohonan->rumah_ibadat->registration_type == "SENDIRI")
                         <div class="row">
-                          
+
                           <div class="col-md">
                             <label>Nombor Sijil Pendaftaran / Nombor ROS</label>
                             <div class="mb-3 input-group">
@@ -77,7 +77,7 @@
                         </div>
                         @elseif($permohonan->rumah_ibadat->registration_type == "INDUK")
                         <div class="row">
-                          
+
                           <div class="col-md">
                             <label>Nama Persatuan Rumah Ibadat Induk</label>
                             <div class="mb-3 input-group">
@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="row">
-                          
+
                           <div class="col-md">
                             <label>Nombor Pendaftaran Induk</label>
                             <div class="mb-3 input-group">
@@ -203,7 +203,7 @@
 
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                       <div class="card-body border border-warning">
-                        
+
                         <div class="row">
                           <div class="col-md">
 
@@ -311,7 +311,7 @@
                         </div>
 
                         <hr>
-                        
+
                         <h3 style="text-align: center; padding-bottom: 15px;">Dokumen-dokumen lampiran</h3>
 
                         <div class="row">
@@ -323,18 +323,18 @@
                                       <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                       <input type="hidden" name="file_type" value="application_letter" readonly>
                                       <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
-                                        @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                        @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                         Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
-                                        @else 
+                                        @else
                                         Surat Permohonan Kepada Pengurusi Limas
                                         @endif
                                       </button>
-                                      
+
                                     </form> --}}
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" target="_blank">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
-                                      @else 
+                                      @else
                                       Surat Permohonan Kepada Pengurusi Limas
                                       @endif
                                   </a>
@@ -345,17 +345,17 @@
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="registration_certificate" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil Pendaftaran (Akta Pertubuhan 1966)
-                                      @else 
+                                      @else
                                       Sijil Pendaftaran ROS
                                       @endif
                                     </button>
                                   </form> --}}
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->registration_certificate)) }}" target="_blank">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H" || $permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil Pendaftaran (Akta Pertubuhan 1966)
-                                      @else 
+                                      @else
                                       Sijil Pendaftaran ROS
                                       @endif
                                   </a>
@@ -389,8 +389,8 @@
                                       Penyata Perbelanjaan
                                   </a>
                                 </li>
-                                
-                                @endif 
+
+                                @endif
 
                                 @if($permohonan->support_letter != null)
 
@@ -407,8 +407,8 @@
                                       Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen <br> / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
                                   </a>
                                 </li>
-                                
-                                @endif 
+
+                                @endif
 
                                 @if($permohonan->committee_member != null)
 
@@ -425,7 +425,7 @@
                                       Senarai Ahli Jawatan Kuasa Rumah Ibadat
                                   </a>
                                 </li>
-                                
+
                                 @endif
 
                                 @if($permohonan->certificate_or_letter_temple != null)
@@ -435,23 +435,23 @@
                                     <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
                                     <input type="hidden" name="file_type" value="certificate_or_letter_temple" readonly>
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL")
                                       Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
-                                      @elseIf($permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @elseIf($permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil/Surat Sokongan Majlis Gudwara Malaysia
                                       @endif
                                     </button>
                                   </form> --}}
 
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->certificate_or_letter_temple)) }}" target="_blank">
-                                      @if($permohonan->rumah_ibadat->category == "KUIL_H")
+                                      @if($permohonan->rumah_ibadat->category == "KUIL")
                                       Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
-                                      @elseIf($permohonan->rumah_ibadat->category == "KUIL_G")
+                                      @elseIf($permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil/Surat Sokongan Majlis Gudwara Malaysia
                                       @endif
                                   </a>
                                 </li>
-                                
+
                                 @endif
 
                                 @if($permohonan->invitation_letter != null)
@@ -469,7 +469,7 @@
                                       Surat Jemputan
                                   </a>
                                 </li>
-                                
+
                                 @endif
 
                             </ul>
@@ -513,7 +513,7 @@
                                         <div class="carousel-item active">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                         </div>
-                                        @else 
+                                        @else
                                         <div class="carousel-item">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                       </div>
@@ -531,7 +531,7 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
@@ -582,7 +582,7 @@
                                 @if($data2->description == "opt_3_file_1")
                                 <li class="list-group-item border border-dark" style="text-align: center;">
                                       <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
-                                          Salinan sebutharga daripada pembekal 
+                                          Salinan sebutharga daripada pembekal
                                       </a>
                                 </li>
                                 @endif
@@ -651,12 +651,12 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
 
-                            
+
                         @endif
 
                         {{-- ================================== END OF PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN ==================================--}}
@@ -672,13 +672,13 @@
                           <div class="col-md-1"></div>
                           <div class="col-md">
                             <ul class="list-group">
-                              
+
                               @foreach ( $data->lampiran as $key => $data2)
 
                                 @if($data2->description == "opt_4_file_1")
                                 <li class="list-group-item border border-dark" style="text-align: center;">
                                       <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
-                                          Salinan sebutharga daripada pembekal 
+                                          Salinan sebutharga daripada pembekal
                                       </a>
                                 </li>
                                 @endif
@@ -698,8 +698,8 @@
                               <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
                                   <ol class="carousel-indicators">
 
-                                      <?php $flag_C = 0; ?> 
-                                      <?php $counter_C = 1; ?> 
+                                      <?php $flag_C = 0; ?>
+                                      <?php $counter_C = 1; ?>
                                       @foreach ( $data->lampiran as $key => $data2)
                                         @if($data2->description != "opt_4_photo")
                                           @continue
@@ -707,17 +707,17 @@
 
                                         @if($flag_C == 0)
                                         <li data-target="#carouselExampleIndicators3" data-slide-to="{{ $counter_C }}" class="active"></li>
-                                        <?php $flag_C++; ?> 
-                                        <?php $counter_C++; ?> 
+                                        <?php $flag_C++; ?>
+                                        <?php $counter_C++; ?>
                                         @else
                                         <li data-target="#carouselExampleIndicators3" data-slide-to="{{ $counter_C }}"></li>
-                                        <?php $counter_C++; ?> 
+                                        <?php $counter_C++; ?>
                                         @endif
                                       @endforeach
                                   </ol>
                                   <div class="carousel-inner" role="listbox">
 
-                                    <?php $flag_D = 0; ?> 
+                                    <?php $flag_D = 0; ?>
                                     @foreach ( $data->lampiran as $key => $data2)
 
                                         @if($data2->description != "opt_4_photo")
@@ -728,7 +728,7 @@
                                         <div class="carousel-item active">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                         </div>
-                                        <?php $flag_D++; ?> 
+                                        <?php $flag_D++; ?>
                                         @else
                                         <div class="carousel-item">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
@@ -747,7 +747,7 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
@@ -762,7 +762,7 @@
                                   <ol class="carousel-indicators">
 
                                       <?php $flag_E = 0; ?>
-                                      <?php $counter_E = 1; ?> 
+                                      <?php $counter_E = 1; ?>
                                       @foreach ( $data->lampiran as $key => $data2)
                                         @if($data2->description != "opt_4_2_photo")
                                           @continue
@@ -770,17 +770,17 @@
 
                                         @if($flag_E == 0)
                                         <li data-target="#carouselExampleIndicators4" data-slide-to="{{ $counter_E }}" class="active"></li>
-                                        <?php $flag_E++; ?> 
-                                        <?php $counter_E++; ?> 
+                                        <?php $flag_E++; ?>
+                                        <?php $counter_E++; ?>
                                         @else
                                         <li data-target="#carouselExampleIndicators4" data-slide-to="{{ $counter_E }}"></li>
-                                        <?php $counter_E++; ?> 
+                                        <?php $counter_E++; ?>
                                         @endif
                                       @endforeach
                                   </ol>
                                   <div class="carousel-inner" role="listbox">
 
-                                    <?php $flag_F = 0; ?> 
+                                    <?php $flag_F = 0; ?>
                                     @foreach ( $data->lampiran as $key => $data2)
 
                                         @if($data2->description != "opt_4_2_photo")
@@ -791,7 +791,7 @@
                                         <div class="carousel-item active">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                         </div>
-                                        <?php $flag_F++; ?> 
+                                        <?php $flag_F++; ?>
                                         @else
                                         <div class="carousel-item">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
@@ -810,7 +810,7 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
@@ -830,7 +830,7 @@
                           <div class="col-md-1"></div>
                           <div class="col-md">
                             <ul class="list-group">
-                              
+
                               @foreach ( $data->lampiran as $key => $data2)
 
                                 @if($data2->description == "opt_5_file_1")
@@ -868,8 +868,8 @@
                               <div id="carouselExampleIndicators5" class="carousel slide" data-ride="carousel">
                                   <ol class="carousel-indicators">
 
-                                      <?php $flag_G = 0; ?> 
-                                      <?php $counter_G = 1; ?> 
+                                      <?php $flag_G = 0; ?>
+                                      <?php $counter_G = 1; ?>
                                       @foreach ( $data->lampiran as $key => $data2)
                                         @if($data2->description != "opt_5_photo")
                                           @continue
@@ -877,17 +877,17 @@
 
                                         @if($flag_G == 0)
                                         <li data-target="#carouselExampleIndicators5" data-slide-to="{{ $counter_G }}" class="active"></li>
-                                        <?php $flag_G++; ?> 
-                                        <?php $counter_G++; ?> 
+                                        <?php $flag_G++; ?>
+                                        <?php $counter_G++; ?>
                                         @else
                                         <li data-target="#carouselExampleIndicators5" data-slide-to="{{ $counter_G }}"></li>
-                                        <?php $counter_G++; ?> 
+                                        <?php $counter_G++; ?>
                                         @endif
                                       @endforeach
                                   </ol>
                                   <div class="carousel-inner" role="listbox">
 
-                                    <?php $flag_H = 0; ?> 
+                                    <?php $flag_H = 0; ?>
                                     @foreach ( $data->lampiran as $key => $data2)
 
                                         @if($data2->description != "opt_5_photo")
@@ -898,7 +898,7 @@
                                         <div class="carousel-item active">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                         </div>
-                                        <?php $flag_H++; ?> 
+                                        <?php $flag_H++; ?>
                                         @else
                                         <div class="carousel-item">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
@@ -917,7 +917,7 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
@@ -1016,7 +1016,7 @@
               </div>
               <div class="col-md-4"></div>
             </div>
-            
+
           </div>
       </div>
   </div>
