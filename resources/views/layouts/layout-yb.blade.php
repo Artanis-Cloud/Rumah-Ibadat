@@ -253,7 +253,7 @@
                         
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.dashboard') }}" aria-expanded="false"><i class="fas fa-tachometer-alt"></i><span class="hide-menu" style="padding-left: 10px;">Dashboard </span></a></li>
                         
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="far fa-list-alt"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
@@ -266,8 +266,16 @@
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.tidak-lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a>
+                                {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a> --}}
                                 
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-file-alt"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan Khas</span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Khas</span></a>
+
                             </ul>
                         </li>
 

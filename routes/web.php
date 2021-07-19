@@ -203,6 +203,8 @@ Route::middleware([Yb::class])->group(function () {
 Route::middleware([Upen::class])->group(function () {
     Route::get('/dashboard-pejabat-upen', [App\Http\Controllers\UpenController::class, 'dashboard'])->name('upens.dashboard');
 
+    Route::get('/dashboard-pejabat-upen/kemaskini-peruntukan', [App\Http\Controllers\UpenController::class, 'update_peruntukan'])->name('upens.peruntukan.update');
+
 
 
     //API

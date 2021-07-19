@@ -186,17 +186,116 @@
     <!-- column -->
     <div class="col-lg-6 col-md-12">
         <div class="card">
+            <div class="modal fade" id="update_fund" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><i class="fas fa-coins"></i> &nbsp Kemaskini Peruntukan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form action="{{ route('upens.peruntukan.update') }}">
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-md">
+                                
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th width="150">Rumah Ibadat</th>
+                                                <th>Peruntukan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Tokong</td>
+                                                <td>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">RM</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="tokong" name="tokong" oninput="sum_fund()" value="{{ $annual_report->total_tokong }}" required>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kuil</td>
+                                                <td>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">RM</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="kuil" name="kuil" value="{{ $annual_report->total_kuil }}" required>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gurdwara</td>
+                                                <td>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">RM</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="gurdwara" name="gurdwara" value="{{ $annual_report->total_gurdwara }}" required>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gereja</td>
+                                                <td>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">RM</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="gereja" name="gereja" value="{{ $annual_report->total_gereja }}" required>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Jumlah Peruntukan</th>
+                                                <th>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">RM</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="jumlah_peruntukan" name="jumlah_peruntukan" value="{{ $annual_report->total_fund }}" readonly>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Kemaskini Peruntukan</button>
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
                         <h4 class="mb-0 card-title">Laporan Peruntukan Rumah Ibadat</h4>
                     </div>
-                    {{-- <div class="ml-auto">
-                        <select class="border-0 custom-select text-muted">
+                    <div class="ml-auto">
+                        {{-- <select class="border-0 custom-select text-muted">
                             <option value="0" selected="">Mei 2021</option>
                             
-                        </select>
-                    </div> --}}
+                        </select> --}}
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_fund"><i class="fas fa-coins"></i> Kemaskini Peruntukan</button>
+
+                    </div>
                 </div>
             </div>
             <div class="card-body bg-light">
@@ -304,25 +403,34 @@
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
 <script>
-    $(document).ready( function () {
-    $('#tablestatus').DataTable({
-        "language": {
-            "lengthMenu": "Memaparkan _MENU_ rekod per halaman",
-            "zeroRecords": "Maaf, tiada rekod.",
-            "info": "Memaparkan halaman _PAGE_ dari _PAGES_",
-            "infoEmpty": "Tidak ada rekod yang tersedia",
-            "infoFiltered": "(Ditapis dari _MAX_ jumlah rekod)",
-            "search": "Carian",
-            "previous": "Sebelum",
-            "paginate": {
-                "first":      "Pertama",
-                "last":       "Terakhir",
-                "next":       "Seterusnya",
-                "previous":   "Sebelumnya"
-            },
-        },
-    });
-}
-);
+    window.addEventListener('load', sum_fund);
+
+    function sum_fund(){
+        var tokong =  Number(document.getElementById("tokong").value);
+        var kuil = Number(document.getElementById("kuil").value);
+        var gurdwara = Number(document.getElementById("gurdwara").value);
+        var gereja = Number(document.getElementById("gereja").value);
+
+        var sum = tokong + kuil + gurdwara + gereja;
+
+        // tokong = tokong.toFixed(2);
+        // kuil = kuil.toFixed(2);
+        // gurdwara = gurdwara.toFixed(2);
+        // gereja = gereja.toFixed(2);
+
+        sum = sum.toFixed(2);
+
+
+        
+
+        var jumlah_peruntukan = $('#jumlah_peruntukan').val(sum);
+
+        // tokong = $('#tokong').val(tokong);
+        // kuil = $('#kuil').val(kuil);
+        // gurdwara = $('#gurdwara').val(gurdwara);
+        // gereja = $('#gereja').val(gereja);
+
+        return false;
+    }
 </script>
 @endsection

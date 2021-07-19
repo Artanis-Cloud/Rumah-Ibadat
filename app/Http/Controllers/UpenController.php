@@ -35,6 +35,32 @@ class UpenController extends Controller
         return view('upens.dashboard', compact('count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report', 'new_application')); 
     }
 
+    public function update_peruntukan(Request $request){
+
+        $total_fund = $request->tokong + $request->kuil + $request->gurdwara + $request->gereja;
+
+        $peruntukan = Peruntukan::whereYear('created_at', date('Y'))->first();
+
+        $peruntukan->total_fund = $total_fund;
+        $peruntukan->balance_fund = $total_fund - $peruntukan->current_fund;
+
+        $peruntukan->total_tokong = $request->tokong;
+        $peruntukan->balance_tokong = $request->tokong - $peruntukan->current_tokong;
+
+        $peruntukan->total_kuil = $request->kuil;
+        $peruntukan->balance_kuil = $request->kuil - $peruntukan->current_kuil;
+        
+        $peruntukan->total_gurdwara = $request->gurdwara;
+        $peruntukan->balance_gurdwara = $request->gurdwara - $peruntukan->current_gurdwara;
+
+        $peruntukan->total_gereja = $request->gereja;
+        $peruntukan->balance_gereja = $request->gereja - $peruntukan->current_gereja;
+
+        $peruntukan->save();
+
+        return redirect()->route('upens.dashboard')->with('success', 'Peruntukan dana telah dikemaskini.');
+    }
+
     public function print_permohonan(Request $request)
     {
         // dd($request->all());

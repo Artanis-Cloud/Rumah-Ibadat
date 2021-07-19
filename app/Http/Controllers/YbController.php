@@ -120,7 +120,7 @@ class YbController extends Controller
             })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
 
             if (isset($new_application)) {
-                $new_application = $new_application + $new_application_kuil;
+                $new_application = $new_application->merge($new_application_kuil);
             } else {
                 $new_application = $new_application_kuil;
             }
@@ -128,7 +128,7 @@ class YbController extends Controller
             $special_application_kuil = SpecialApplication::where('category', 'KUIL')->where('status', '1')->get();
 
             if (isset($special_application)) {
-                $special_application = $special_application + $special_application_kuil;
+                $special_application = $special_application->merge($special_application_kuil);
             } else {
                 $special_application = $special_application_kuil;
             }
@@ -198,7 +198,7 @@ class YbController extends Controller
             })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
 
             if (isset($new_application)) {
-                $new_application = $new_application + $new_application_gurdwara;
+                $new_application = $new_application->merge($new_application_gurdwara);
             } else {
                 $new_application = $new_application_gurdwara;
             }
@@ -206,7 +206,8 @@ class YbController extends Controller
             $special_application_gurdwara = SpecialApplication::where('category', 'GURDWARA')->where('status', '1')->get();
 
             if (isset($special_application)) {
-                $special_application = $special_application + $special_application_gurdwara;
+                $special_application = $special_application->merge($special_application_gurdwara);
+
             } else {
                 $special_application = $special_application_gurdwara;
             }
@@ -275,7 +276,7 @@ class YbController extends Controller
             })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
 
             if (isset($new_application)) {
-                $new_application = $new_application + $new_application_gereja;
+                $new_application = $new_application->merge($new_application_gereja);
             } else {
                 $new_application = $new_application_gereja;
             }
@@ -283,7 +284,7 @@ class YbController extends Controller
             $special_application_gereja = SpecialApplication::where('category', 'GEREJA')->where('status', '1')->get();
 
             if (isset($special_application)) {
-                $special_application = $special_application + $special_application_gereja;
+                $special_application = $special_application->merge($special_application_gereja);
             } else {
                 $special_application = $special_application_gereja;
             }
@@ -861,7 +862,7 @@ class YbController extends Controller
             $special_application_kuil = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'KUIL')->where('status', '1')->get();
 
             if (isset($special_application)) {
-                $special_application = $special_application + $special_application_kuil;
+                $special_application = $special_application->merge($special_application_kuil);
             } else {
                 $special_application = $special_application_kuil;
             }
@@ -871,7 +872,7 @@ class YbController extends Controller
             $special_application_gurdwara = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'GURDWARA')->where('status', '1')->get();
 
             if (isset($special_application)) {
-                $special_application = $special_application + $special_application_gurdwara;
+                $special_application = $special_application->merge($special_application_gurdwara);
             } else {
                 $special_application = $special_application_gurdwara;
             }
@@ -881,7 +882,8 @@ class YbController extends Controller
             $special_application_gereja = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'GEREJA')->where('status', '1')->get();
 
             if (isset($special_application)) {
-                $special_application = $special_application + $special_application_gereja;
+                $special_application = $special_application->merge($special_application_gereja);
+
             } else {
                 $special_application = $special_application_gereja;
             }
