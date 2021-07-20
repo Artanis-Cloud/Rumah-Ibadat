@@ -11,6 +11,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    {{-- Lord icon --}}
+    <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('nice-admin/assets/images/favicon.png')}}">
 

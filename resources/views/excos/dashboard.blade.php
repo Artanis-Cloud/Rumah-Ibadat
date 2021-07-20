@@ -81,7 +81,6 @@
             <div class="card-header border-cyan" style="border-left: solid 8px; border-bottom: solid 1px;">
                 <h4 class="card-title"><i class="fas fa-bell"></i> &nbsp&nbsp Permohonan Terkini</h4>
             </div>
-            {{-- <div class="comment-widgets scrollable" style="height:auto; max-height: 440px !important; min-height: 290px !important;"> --}}
             <div class="comment-widgets scrollable" style="height:350px;">
         
 
@@ -167,7 +166,6 @@
             <div class="card-header border-cyan" style="border-left: solid 8px; border-bottom: solid 1px;">
                 <h4 class="card-title"><i class="fas fa-bullhorn"></i> &nbsp&nbsp Pengumuman</h4>
             </div>
-            {{-- <div class="comment-widgets scrollable" style="height:auto; max-height: 440px !important; min-height: 290px !important;"> --}}
             <div class="comment-widgets scrollable" style="height:350px;">
 
                 <div style="padding-bottom: 5%;"></div>
