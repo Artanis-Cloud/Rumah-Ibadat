@@ -35,6 +35,16 @@ class UpenController extends Controller
 
         //================== LAPORAN PERBELANJAAN - TOKONG ==================
 
+        $laporan_semua = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
+
+        $special_application_pass = SpecialApplication::where('status', '2')->whereYear('created_at', date('Y'))->get();
+
+        $khas_semua = collect($special_application_pass)->sum('requested_amount');
+
+        $count_khas_semua = $special_application_pass->count();
+
+        //================== LAPORAN PERBELANJAAN - TOKONG ==================
+
         $laporan_tokong = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'TOKONG' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
 
         $special_application_pass = SpecialApplication::where('category', 'TOKONG')->where('status', '2')->whereYear('created_at', date('Y'))->get();
@@ -82,7 +92,7 @@ class UpenController extends Controller
 
         $count_khas_gereja = $special_application_pass->count();
 
-        return view('upens.dashboard', compact('current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report','laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application')); 
+        return view('upens.dashboard', compact('current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report','laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application')); 
     }
 
     public function update_peruntukan(Request $request){
@@ -145,10 +155,11 @@ class UpenController extends Controller
     }
 
     public function permohonan_baru(){
+        $batch = Batch::first();
 
         $permohonan = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->get();
 
-        return view('upens.permohonan.baru', compact('permohonan'));
+        return view('upens.permohonan.baru', compact('permohonan', 'batch'));
     }
 
     public function papar_permohonan(Request $request)
@@ -512,11 +523,40 @@ class UpenController extends Controller
         }
     }
 
-    public function reset_batch(){
+    public function new_batch(Request $request){
+
         $batch = Batch::first();
 
-        $batch->allow_permohonan = 0; //tutup permohonan
-        $batch->allowed_user_id = auth()->user()->id;
+        if($request->batch == "tokong"){
+            $batch->tokong_counter = 0;
+            $batch->tokong = $batch->tokong + 1;
+
+            $batch->save();
+            return redirect()->route('upens.permohonan.baru')->with('success', 'Batch tokong telah dibuka.');
+
+        } elseif($request->batch == "kuil"){
+            $batch->kuil_counter = 0;
+            $batch->kuil = $batch->kuil + 1;
+
+            $batch->save();
+            return redirect()->route('upens.permohonan.baru')->with('success', 'Batch kuil telah dibuka.');
+        } elseif ($request->batch == "gurdwara") {
+            $batch->gurdwara_counter = 0;
+            $batch->gurdwara = $batch->gurdwara + 1;
+
+            $batch->save();
+            return redirect()->route('upens.permohonan.baru')->with('success', 'Batch gurdwara telah dibuka.');
+        } elseif ($request->batch == "gereja") {
+            $batch->gereja_counter = 0;
+            $batch->gereja = 1;
+
+            $batch->save();
+            return redirect()->route('upens.permohonan.baru')->with('success', 'Batch gereja telah dibuka.');
+        }
+    }
+
+    public function reset_batch(){
+        $batch = Batch::first();
 
         $batch->tokong_counter = 0;
         $batch->tokong = 1;

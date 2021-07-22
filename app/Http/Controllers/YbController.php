@@ -653,6 +653,8 @@ class YbController extends Controller
 
         if ($request->payment == "EFT") {
             $permohonan->payment_method = 2;
+        }else{
+            $permohonan->payment_method = 1;
         }
         
         $permohonan->total_fund = $total_fund;

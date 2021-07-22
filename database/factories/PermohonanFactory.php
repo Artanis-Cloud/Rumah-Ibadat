@@ -39,7 +39,7 @@ class PermohonanFactory extends Factory
             'registration_certificate' => 'public/dummy/dummy.jpg',
             'account_statement' => 'public/dummy/dummy.jpg',
 
-            'payment_method' => '0',
+            'payment_method' => '1',
             'total_fund' => '0',
         ];
     }

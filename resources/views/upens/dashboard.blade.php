@@ -261,7 +261,7 @@
             <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
                 <div class="row">
                     <div class="col-md">
-                        <h4 class="card-title"><i class="fas fa-chart-bar"></i> &nbsp&nbsp Laporan Perbelanjaan Rumah Ibadat - Keseluruhan</h4>
+                        <h3 class="card-title"><i class="fas fa-chart-bar"></i> &nbsp&nbsp Laporan Perbelanjaan Rumah Ibadat - Keseluruhan</h3>
                     </div>
                     <div class="ml-auto">
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_fund"><i class="fas fa-coins"></i> Kemaskini Peruntukan</button>
@@ -275,44 +275,44 @@
                             <h2 class="font-light m-b-0">Tahun {{ $current_year }}</h2>
                             <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
                         </div>
-                        <div class="text-right col-xs-12 col-md-6 align-self-center display-4 text-purple">RM {{ number_format($annual_report->total_tokong, 2) }}</div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-4 text-purple">RM {{ number_format($annual_report->total_fund, 2) }}</div>
                     </div>
 
                     <hr>
 
                     <div class="row">
                         <div class="col-12">
-                            <h3><b>RM {{ number_format($annual_report->balance_tokong, 2) }}</b> / RM {{ number_format($annual_report->total_tokong, 2) }}</h3>
+                            <h3><b>RM {{ number_format($annual_report->balance_fund, 2) }}</b> / RM {{ number_format($annual_report->total_fund, 2) }}</h3>
                             <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Tokong</h6>
                         </div>
 
                         <div class="col-12" >
                             <div class="progress">
                                 <?php 
-                                $percentage_tokong = 100;
+                                $percentage_semua = 100;
                                 if( $annual_report->total_tokong != 0){
-                                    $percentage_tokong = ($annual_report->balance_tokong / $annual_report->total_tokong) * 100;
-                                    $percentage_tokong = number_format($percentage_tokong);
-                                    if($percentage_tokong > 100){
-                                        $percentage_tokong = 100;
+                                    $percentage_semua = ($annual_report->balance_tokong / $annual_report->total_tokong) * 100;
+                                    $percentage_semua = number_format($percentage_semua);
+                                    if($percentage_semua > 100){
+                                        $percentage_semua = 100;
                                     }
                                 }
                                 ?>
-                                <div class="progress-bar bg-purple" role="progressbar" style="width: {{ $percentage_tokong }}%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-purple" role="progressbar" style="width: {{ $percentage_semua }}%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    @if($laporan_tokong != null || $khas_tokong != null)
+                    @if($laporan_semua != null || $khas_semua != null)
                     <div class="table-responsive m-t-40" style="clear: both; padding-top: 20px;">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center">#</th>
                                     <th>Tujuan Permohonan</th>
-                                    <th class="text-center">Permohonan</th>
-                                    <th class="text-right">Jumlah</th>
+                                    <th width="100" class="text-center">Permohonan</th>
+                                    <th width="180" class="text-right">Jumlah</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -320,16 +320,16 @@
                                 <tr>
                                     <td class="text-center">1</td>
                                     <td>PERMOHONAN KHAS</td>
-                                    <td class="text-center">{{ $count_khas_tokong }}</td>
-                                    <td class="text-right">RM {{ number_format($khas_tokong, 2) }}</td>
+                                    <td class="text-center">{{ $count_khas_semua }}</td>
+                                    <td class="text-right">RM {{ number_format($khas_semua, 2) }}</td>
                                 </tr>
 
-                                @foreach($laporan_tokong as $key => $tokong)
+                                @foreach($laporan_semua as $key => $semua)
                                 <tr>
                                     <td class="text-center">{{ ($key + 2) }}</td>
-                                    <td>{{ $tokong->tujuan }}</td>
-                                    <td class="text-center"> {{ $tokong->bilangan }} </td>
-                                    <td class="text-right"> RM {{ number_format($tokong->peruntukan, 2) }} </td>
+                                    <td>{{ $semua->tujuan }}</td>
+                                    <td class="text-center"> {{ $semua->bilangan }} </td>
+                                    <td class="text-right"> RM {{ number_format($semua->peruntukan, 2) }} </td>
                                 </tr>
                                 @endforeach
 
@@ -337,7 +337,7 @@
                                 
                                 <tr>
                                     <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
-                                    <th class="text-right font-13">RM {{ number_format($annual_report->current_tokong, 2) }}</th>
+                                    <th class="text-right font-13">RM {{ number_format($annual_report->current_fund, 2) }}</th>
                                 </tr>
                             </tbody>
                         </table>

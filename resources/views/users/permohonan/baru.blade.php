@@ -671,7 +671,7 @@
 
     //alert message
     // alert('Sila muatnaik file dalam format .pdf, .jpeg , .jpg dan .png sahaja.');
-    $('#note_message').html('Sila muatnaik file dalam format <b>.pdf</b> , <b>.jpeg</b> , <b>.jpg</b> dan <b>.png</b> sahaja.');
+    $('#note_message').html('Sila muatnaik file dalam format <b>.pdf</b> , <b>.jpeg</b> , <b>.jpg</b> dan <b>.png</b> sahaja.');  
     $("#validation_submit_permohonan").modal();
 
     //reset file value
