@@ -210,7 +210,7 @@
     </section><!-- End About Section -->
 
     <!-- ======= Facts Section ======= -->
-    <section id="facts">
+    {{-- <section id="facts">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h3 class="section-title">Perutusan Dewan Negeri Selangor</h3>
@@ -223,7 +223,6 @@
           </div>
 
           <div class="text-center col-lg-9 col-6">
-            {{-- <span data-purecounter-start="0" data-purecounter-end="534" data-purecounter-duration="1" class="purecounter"></span> --}}
             <p>"Alamat: Pusat Khidmat Dun Bandar Baru Klang LG-4, 1E Jalan Pekan Baru 34, 41010 Klang, Selangor
 
                 Portfolio: Pengerusi Jawatankuasa Tetap Pelaburan, Perdagangan & Perindustrian dan Industri Kecil Dan Sederhana (IKS)
@@ -239,7 +238,7 @@
         </div>
 
       </div>
-    </section><!-- End Facts Section -->
+    </section><!-- End Facts Section --> --}}
 
     <!-- ======= Services Section ======= -->
     <section id="services" style="background: #a7a7a7;">
@@ -253,10 +252,10 @@
               <circle class="fill"></circle>
               <circle class="progress"></circle>
             </svg>
-            <div class="orb_value count">306</div>
+            <div class="orb_value count"> 50</div>
           </div>
           <div class="orb_label">
-             Rumah Ibadat
+             Pengguna
           </div>
         </article>
 
@@ -266,7 +265,7 @@
               <circle class="fill"></circle>
               <circle class="progress"></circle>
             </svg>
-            <div class="orb_value count">136</div>
+            <div class="orb_value count">50</div>
           </div>
           <div class="orb_label">
             Rumah Ibadat
@@ -279,14 +278,14 @@
               <circle class="fill"></circle>
               <circle class="progress"></circle>
             </svg>
-            <div class="orb_value count">41</div>
+            <div class="orb_value count">53</div>
           </div>
           <div class="orb_label">
-            Rumah Ibadat
+            Permohonan
           </div>
         </article>
 
-        <article class="orb">
+        {{-- <article class="orb">
           <div class="orb_graphic">
             <svg>
               <circle class="fill"></circle>
@@ -297,9 +296,9 @@
           <div class="orb_label">
             Rumah Ibadat
           </div>
-        </article>
+        </article> --}}
 
-        <article class="orb">
+        {{-- <article class="orb">
           <div class="orb_graphic">
             <svg>
               <circle class="fill"></circle>
@@ -310,7 +309,7 @@
           <div class="orb_label">
             Rumah Ibadat
           </div>
-        </article>
+        </article> --}}
       </section>
     </section><!-- End Services Section -->
 

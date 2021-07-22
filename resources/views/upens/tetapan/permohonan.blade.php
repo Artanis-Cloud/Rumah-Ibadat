@@ -156,6 +156,8 @@
                 </div>
 
                 
+
+                
                 <!-- Modal Enable-Disable Permohonan -->
                 <div class="modal fade" id="allow_permohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -199,7 +201,7 @@
                       </div>
                       <form action="{{ route('upens.tetapan.permohonan.reset-batch') }}">
                       <div class="modal-body">
-                        Permohonan akan automatik ditutup sekiranya anda melakukan tetapan semula batch. Anda pasti mahu melakukan tetapan semula batch?
+                        Anda pasti mahu melakukan tetapan semula batch?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>

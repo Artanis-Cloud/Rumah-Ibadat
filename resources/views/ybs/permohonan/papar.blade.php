@@ -1115,7 +1115,7 @@
                             <button type="button" class="btn waves-effect waves-light btn-warning text-dark btn-block" id="semak_semula_button" data-toggle="modal" data-target="#confirmation_review_application">Semak Semula</button>
                           </div>
                           <div class="col-md-4" style="padding-top: 15px;">
-                            <button type="button" class="btn waves-effect waves-light btn-danger btn-block" id="batal_button" data-toggle="modal" data-target="#confirmation_batal_permohonan">Tidak Disokong</button>
+                            <button type="button" class="btn waves-effect waves-light btn-danger btn-block" id="batal_button" data-toggle="modal" data-target="#confirmation_batal_permohonan">Tidak Lulus</button>
                           </div>
                           <div class="col-md-2"></div>
                         </div>
@@ -1123,7 +1123,7 @@
                         <div class="row" style="padding-top: 10px;">
                           <div class="col-md-2"></div>
                           <div class="col-md" style="padding-top: 5px;">
-                            <button type="button" class="btn waves-effect waves-light btn-success btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_luluskan_permohonan">Disokong</button>
+                            <button type="button" class="btn waves-effect waves-light btn-success btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_luluskan_permohonan">Sokong Permohonan</button>
                           </div>
                           <div class="col-md-2"></div>
                         </div>
@@ -1249,7 +1249,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
                       <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
                       <button type="submit" class="btn btn-success">Permohonan Disokong</button>
                     </div>
@@ -1275,13 +1275,13 @@
                     <form action="{{ route('ybs.permohonan.papar.batalkan') }}">
 
                     <div class="modal-body">
-                      Anda pasti tidak menyokong permohonan ini?
+                      Anda pasti tidak meluluskan permohonan ini?
 
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
                       <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
-                      <button type="submit" class="btn btn-success">Permohonan Tidak Disokong</button>
+                      <button type="submit" class="btn btn-success">Tidak Lulus</button>
                     </div>
 
                     </form>
@@ -1456,7 +1456,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
                       <button type="submit" class="btn btn-success" id="semak_semula_enable" style="display: none">Semak Semula</button>
                       <button type="button" class="btn btn-dark" id="semak_semula_disable" style="display: block" data-toggle="tooltip" data-placement="top" title="Sila tandakan bahagian yang perlu disemak">Semak Semula</button>
                     </div>

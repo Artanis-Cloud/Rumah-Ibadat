@@ -257,6 +257,8 @@ Route::middleware([Upen::class])->group(function () {
 
     Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan/buka-tutup-permohonan', [App\Http\Controllers\UpenController::class, 'allow_permohonan'])->name('upens.tetapan.permohonan.allow');
 
+    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan/batch-baru', [App\Http\Controllers\UpenController::class, 'new_batch'])->name('upens.tetapan.permohonan.batch-baru');
+
     Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan/tetapan-semula-batch', [App\Http\Controllers\UpenController::class, 'reset_batch'])->name('upens.tetapan.permohonan.reset-batch');
 
 });
