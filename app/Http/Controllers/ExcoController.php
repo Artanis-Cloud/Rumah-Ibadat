@@ -71,7 +71,12 @@ class ExcoController extends Controller
 
             $count_failed_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'TOKONG');
-            })->where('status', '3')->orWhere('status', '4')->count();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->count();
 
 
             //================== PERMOHONAN TERKINI LIST ==================
@@ -142,7 +147,12 @@ class ExcoController extends Controller
 
             $count_failed_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'KUIL');
-            })->where('status', '3')->orWhere('status', '4')->count();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->count();
 
             if (isset($count_failed_application)) {
                 $count_failed_application = $count_failed_application + $count_failed_application_kuil;
@@ -235,7 +245,12 @@ class ExcoController extends Controller
 
             $count_failed_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GURDWARA');
-            })->where('status', '3')->orWhere('status', '4')->count();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->count();
 
             if (isset($count_failed_application)) {
                 $count_failed_application = $count_failed_application + $count_failed_application_gurdwara;
@@ -326,7 +341,12 @@ class ExcoController extends Controller
 
             $count_failed_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GEREJA');
-            })->where('status', '3')->orWhere('status', '4')->count();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->count();
 
             if (isset($count_failed_application)) {
                 $count_failed_application = $count_failed_application + $count_failed_application_gereja;
@@ -785,13 +805,23 @@ class ExcoController extends Controller
         if (auth()->user()->user_role->tokong == 1) {
             $permohonan = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'TOKONG');
-            })->where('status', '3')->orWhere('status', '4')->get();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->get();
         }
 
         if (auth()->user()->user_role->kuil == 1) {
             $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'KUIL');
-            })->where('status', '3')->orWhere('status', '4')->get();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->get();
 
             if (isset($permohonan)) {
                 $permohonan = $permohonan->merge($kuil);
@@ -803,7 +833,12 @@ class ExcoController extends Controller
         if (auth()->user()->user_role->gurdwara == 1) {
             $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GURDWARA');
-            })->where('status', '3')->orWhere('status', '4')->get();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->get();
 
             if (isset($permohonan)) {
                 $permohonan = $permohonan->merge($gurdwara);
@@ -815,7 +850,12 @@ class ExcoController extends Controller
         if (auth()->user()->user_role->gereja == 1) {
             $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GEREJA');
-            })->where('status', '3')->orWhere('status', '4')->get();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->get();
 
             if (isset($permohonan)) {
                 $permohonan = $permohonan->merge($gereja);

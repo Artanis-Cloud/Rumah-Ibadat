@@ -91,7 +91,7 @@ class LoginController extends Controller
         // dd(request()->all());
         switch (auth()->user()->role) {
             case 0:
-                if (auth()->user()->is_firstime == 1) {
+                if (auth()->user()->is_firstime == 1 || auth()->user()->is_rumah_ibadat == 0) {
                     $this->redirectTo = '/halaman-utama/rumah-ibadat';
                 } elseif (auth()->user()->is_firstime == 0) {
                     $this->redirectTo = '/halaman-utama';

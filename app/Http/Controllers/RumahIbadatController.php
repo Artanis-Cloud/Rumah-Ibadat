@@ -19,7 +19,8 @@ class RumahIbadatController extends Controller
 {
     public function pilih_rumah_ibadat()
     {
-        return view('users.rumah-ibadat.pilih');
+        $rumah_ibadat = RumahIbadat::get();
+        return view('users.rumah-ibadat.pilih', compact('rumah_ibadat'));
     }
 
     public function daftar_rumah_ibadat()

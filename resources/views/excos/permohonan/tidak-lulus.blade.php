@@ -54,6 +54,8 @@
                                     <span class="badge badge-danger" style="font-size: 13px;">Tidak Lulus</span>
                                     @elseif($data->status == 4)
                                     <span class="badge badge-danger" style="font-size: 13px;">Dibatalkan</span>
+                                    @else 
+                                    <span class="badge badge-warning" style="font-size: 13px;">Error</span>
                                     @endif
                                   </td>
 

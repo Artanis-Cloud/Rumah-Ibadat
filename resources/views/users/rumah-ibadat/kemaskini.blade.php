@@ -36,14 +36,15 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
-                          <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
-                          <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ $rumah_ibadat->category }}">
+                          <label class="mr-sm-2" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
+                          <input class="form-control text-uppercase @error('category') is-invalid @else border-dark @enderror" id="category" name="category" type="text" value="{{ $rumah_ibadat->category }}" readonly>
+                          {{-- <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ $rumah_ibadat->category }}">
                               <option selected disabled hidden>PILIH KATEGORI RUMAH IBADAT</option>
                               <option value="TOKONG"    {{ $rumah_ibadat->category == "TOKONG"    ? 'selected' : '' }} >TOKONG (BUDDHA & TAO)</option>
                               <option value="KUIL"      {{ $rumah_ibadat->category == "KUIL"      ? 'selected' : '' }} >KUIL (HINDU)</option>
                               <option value="GURDWARA"  {{ $rumah_ibadat->category == "GURDWARA"  ? 'selected' : '' }} >GURDWARA (SIKH)</option>
                               <option value="GEREJA"    {{ $rumah_ibadat->category == "GEREJA"    ? 'selected' : '' }} >GEREJA (KRISTIAN)</option>
-                          </select>
+                          </select> --}}
                           @error('category')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>

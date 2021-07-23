@@ -22,7 +22,7 @@
                           <thead>
                               <tr>
                                 <th class="all">BIL</th>
-                                <th class="all">KETEGORI</th>
+                                <th class="all">KATEGORI</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
                                 <th class="all">TARIKH PENDAFTARAN</th>
                                 <th class="all">DAERAH</th>
