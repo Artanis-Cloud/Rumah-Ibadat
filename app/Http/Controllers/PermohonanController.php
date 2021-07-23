@@ -614,7 +614,15 @@ class PermohonanController extends Controller
     public function permohonan_tidak_lulus()
     {
         //GET 'PERMOHONAN TIDAK LULUS' LIST
-        $failed_application = Permohonan::where('user_id', auth()->user()->id)->where('status', '3')->orWhere('status', '4')->get();
+        // $failed_application = Permohonan::where('user_id', auth()->user()->id )->where('status', '4')->orWhere('status', '4')->get();
+
+        $failed_application = Permohonan::
+        where('user_id', auth()->user()->id)->where(
+            function ($query) {
+            $query->where('status', '3')
+            ->orWhere('status', '4');
+        }
+        )->get();
 
         return view('users.permohonan.tidak-lulus', compact('failed_application'));
     }

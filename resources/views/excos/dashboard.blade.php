@@ -139,21 +139,17 @@
 
 
                 @if($new_application->isEmpty() && $special_application->isEmpty())
-                <div style="padding-bottom: 5%;"></div>
-                <div class="flex-row d-flex comment-row">   
-                    <div class="comment-text active w-100">
-                        <div style="width:100%; text-align:center">
-                            {{-- <img src="https://image.flaticon.com/icons/png/512/1380/1380641.png" alt="Empty Box" style="width: 100px;"> --}}
-                            <lord-icon
-                                src="https://cdn.lordicon.com/nlzvfogq.json"
-                                trigger="loop"
-                                delay="15"
-                                colors="primary:#121331,secondary:#3080e8"
-                                style="width:200px;height:auto">
-                            </lord-icon>
-                        </div>
-                        <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
-                    </div>
+                <div style="padding-bottom: 15%;"></div>
+                <div style="width:100%; text-align:center">
+                    <img src="https://image.flaticon.com/icons/png/512/1380/1380641.png" alt="Empty Box" style="width: 150px;">
+                    {{-- <lord-icon
+                        src="https://cdn.lordicon.com/nlzvfogq.json"
+                        trigger="loop"
+                        delay="15"
+                        colors="primary:#121331,secondary:#3080e8"
+                        style="width:200px;height:auto">
+                    </lord-icon> --}}
+                    <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
                 </div>
                 @endif
 
@@ -168,10 +164,10 @@
             </div>
             <div class="comment-widgets scrollable" style="height:350px;">
 
-                <div style="padding-bottom: 5%;"></div>
-                <div class="flex-row d-flex comment-row">   
-                    <div class="comment-text active w-100 text-center">
-                        <lord-icon
+                <div style="padding-bottom: 15%;"></div>
+                <div style="width:100%; text-align:center">
+                    <img src="https://image.flaticon.com/icons/png/512/2487/2487449.png" alt="Empty Box" style="width: 150px;">
+                    {{-- <lord-icon
                             src="https://cdn.lordicon.com/cnbtojmk.json"
                             trigger="loop"
                             delay="15"
@@ -179,9 +175,8 @@
                             stroke="41"
                             style="width:200px;height:auto"
                             >
-                        </lord-icon>
-                        <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Pengumuman</h6>
-                    </div>
+                        </lord-icon> --}}
+                    <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
                 </div>
 
             </div>
@@ -190,9 +185,9 @@
 
 </div>
 
-@if(auth()->user()->user_role->tokong == 1)
 <div class="row">
-    <div class="col-md-8">
+@if(auth()->user()->user_role->tokong == 1)
+    <div class="col-md-6">
 
         <div class="card border shadow">
             <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
@@ -205,7 +200,7 @@
                             <h3 class="font-light m-b-0">Tahun {{ $current_year }}</h3>
                             <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
                         </div>
-                        <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-purple">RM {{ number_format($annual_report->total_tokong, 2) }}</div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-7 text-purple">RM {{ number_format($annual_report->total_tokong, 2) }}</div>
                     </div>
 
                     <hr>
@@ -240,7 +235,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">#</th>
-                                    <th>Tujuan Permohonan</th>
+                                    <th width="250">Tujuan Permohonan</th>
                                     <th class="text-center">Permohonan</th>
                                     <th class="text-right">Jumlah</th>
                                 </tr>
@@ -266,7 +261,7 @@
                                 
                                 
                                 <tr>
-                                    <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
+                                    <th colspan="3" class="text-right font-16">Jumlah Peruntukan Yang Telah Diluluskan</th>
                                     <th class="text-right font-13">RM {{ number_format($annual_report->current_tokong, 2) }}</th>
                                 </tr>
                             </tbody>
@@ -279,12 +274,10 @@
         </div>
 
     </div>
-</div>
 @endif
 
 @if(auth()->user()->user_role->kuil == 1)
-<div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
 
         <div class="card border shadow">
             <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
@@ -297,7 +290,7 @@
                             <h3 class="font-light m-b-0">Tahun {{ $current_year }}</h3>
                             <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
                         </div>
-                        <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-purple">RM {{ number_format($annual_report->total_kuil, 2) }}</div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-7 text-purple">RM {{ number_format($annual_report->total_kuil, 2) }}</div>
                     </div>
 
                     <hr>
@@ -370,12 +363,10 @@
         </div>
 
     </div>
-</div>
 @endif
 
 @if(auth()->user()->user_role->gurdwara == 1)
-<div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
 
         <div class="card border shadow">
             <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
@@ -388,7 +379,7 @@
                             <h3 class="font-light m-b-0">Tahun {{ $current_year }}</h3>
                             <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
                         </div>
-                        <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-purple">RM {{ number_format($annual_report->total_gurdwara, 2) }}</div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-7 text-purple">RM {{ number_format($annual_report->total_gurdwara, 2) }}</div>
                     </div>
 
                     <hr>
@@ -461,12 +452,10 @@
         </div>
 
     </div>
-</div>
 @endif
 
 @if(auth()->user()->user_role->gereja == 1)
-<div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
 
         <div class="card border shadow">
             <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
@@ -479,7 +468,7 @@
                             <h3 class="font-light m-b-0">Tahun {{ $current_year }}</h3>
                             <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
                         </div>
-                        <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-purple">RM {{ number_format($annual_report->total_gereja, 2) }}</div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-7 text-purple">RM {{ number_format($annual_report->total_gereja, 2) }}</div>
                     </div>
 
                     <hr>
@@ -552,8 +541,9 @@
         </div>
 
     </div>
-</div>
 @endif
+</div>
+
 
 </div>
 <!-- ============================================================== -->

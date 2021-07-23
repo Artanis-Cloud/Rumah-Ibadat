@@ -24,6 +24,7 @@
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
                                 <th class="all">TARIKH PERMOHONAN</th>
+                                <th class="all">TARIKH TIDAK LULUS / PEMBATALAN</th>
                                 <th class="all">SEBAB TIDAK LULUS</th>
                               </tr>
                           </thead>
@@ -34,7 +35,8 @@
                                 <tr>
                                     <td></td>
                                     <td>{{ $data->getPermohonanID() }}</td>
-                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-y g:i a') }}</td>
+                                    <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-y g:i a') }}</td>
                                     <td>
                                       @if($data->status == 3)
                                       <span>Tidak Disokong</span>

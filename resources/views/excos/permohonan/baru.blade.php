@@ -27,7 +27,7 @@
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                 <th class="all">WAKTU PERMOHONAN DIBUAT</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
-                                <th class="all">PAPAR</th>
+                                <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
