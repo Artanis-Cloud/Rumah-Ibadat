@@ -86,7 +86,7 @@
                         <label class="label" for="name">Kata Laluan</label>
                         <div class="mb-3 input-group">
                             <div class="mb-3 input-group">
-                                <input name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="1234567890" required placeholder="Kata Laluan">
+                                <input name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="Kata Laluan">
                                 @if($errors->has('password'))
                                     <div class="invalid-feedback">
                                         {{ strtoupper($errors->first('password')) }}
@@ -98,7 +98,7 @@
                         <label class="label" for="name">Sahkan Kata Laluan</label>
                         <div class="mb-3 input-group">
                           <div class="mb-3 input-group">
-                              <input name="password_confirmation" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="1234567890" required placeholder="Sahkan Kata Laluan">
+                              <input name="password_confirmation" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="Sahkan Kata Laluan">
                                       @if($errors->has('password'))
                                           <div class="invalid-feedback">
                                               {{ strtoupper($errors->first('password')) }}
