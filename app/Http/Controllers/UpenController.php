@@ -529,26 +529,30 @@ class UpenController extends Controller
 
         if($request->batch == "tokong"){
             $batch->tokong_counter = 0;
-            $batch->tokong = $batch->tokong + 1;
+            $batch->tokong = $batch->main_batch;
+            $batch->main_batch = $batch->main_batch + 1;
 
             $batch->save();
             return redirect()->route('upens.permohonan.baru')->with('success', 'Batch tokong telah dibuka.');
 
         } elseif($request->batch == "kuil"){
             $batch->kuil_counter = 0;
-            $batch->kuil = $batch->kuil + 1;
+            $batch->kuil = $batch->main_batch;
+            $batch->main_batch = $batch->main_batch + 1;
 
             $batch->save();
             return redirect()->route('upens.permohonan.baru')->with('success', 'Batch kuil telah dibuka.');
         } elseif ($request->batch == "gurdwara") {
             $batch->gurdwara_counter = 0;
-            $batch->gurdwara = $batch->gurdwara + 1;
+            $batch->gurdwara = $batch->main_batch;
+            $batch->main_batch = $batch->main_batch + 1;
 
             $batch->save();
             return redirect()->route('upens.permohonan.baru')->with('success', 'Batch gurdwara telah dibuka.');
         } elseif ($request->batch == "gereja") {
             $batch->gereja_counter = 0;
-            $batch->gereja = 1;
+            $batch->gereja = $batch->main_batch;
+            $batch->main_batch = $batch->main_batch + 1;
 
             $batch->save();
             return redirect()->route('upens.permohonan.baru')->with('success', 'Batch gereja telah dibuka.');
@@ -558,17 +562,19 @@ class UpenController extends Controller
     public function reset_batch(){
         $batch = Batch::first();
 
+        $batch->main_batch = 5;
+
         $batch->tokong_counter = 0;
         $batch->tokong = 1;
 
         $batch->kuil_counter = 0;
-        $batch->kuil = 1;
+        $batch->kuil = 2;
 
         $batch->gurdwara_counter = 0;
-        $batch->gurdwara = 1;
+        $batch->gurdwara = 3;
 
         $batch->gereja_counter = 0;
-        $batch->gereja = 1;
+        $batch->gereja = 4;
 
         $batch->save();
 

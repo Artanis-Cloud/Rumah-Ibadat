@@ -17,16 +17,18 @@ class Batch extends Model implements Auditable
         'allow_permohonan', // enable and disable new permohonan
         'allowed_user_id',  //user record for enabling or disabling the permohonan
 
-        'tokong_counter',   //tokong counter - if more than 10 add 1 to batch
+        'main_batch',       //main batch
+
+        'tokong_counter',   //tokong counter - if more than 10 add 1 to main batch
         'tokong',           //tokong batch
 
-        'kuil_counter',     //kuil counter - if more than 10 add 1 to batch
+        'kuil_counter',     //kuil counter - if more than 10 add 1 to main batch
         'kuil',             //kuil batch
 
-        'gurdwara_counter', //gurdwara counter - if more than 10 add 1 to batch
+        'gurdwara_counter', //gurdwara counter - if more than 10 add 1 to main batch
         'gurdwara',         //gurdwara batch
 
-        'gereja_counter',   //gereja counter - if more than 10 add 1 to batch
+        'gereja_counter',   //gereja counter - if more than 10 add 1 to main batch
         'gereja',           //gereja batch
 
     ];

@@ -6,356 +6,518 @@
 <!-- ============================================================== -->
 <div class="container-fluid">
 
-<!-- ============================================================== -->
-<!-- Sales chart -->
-<!-- ============================================================== -->
 <div class="row">
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-info">
+        <a class="card shadow card-hover bg-info" href="{{ route('admins.pengguna.pemohon') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>120</h2>
-                        <h6>Permohonan <br>Baru</h6>
+                        <h2>{{ $counter_pemohon }}</h2>
+                        <h6>Pemohon <br>Berdaftar</h6> 
                     </div>
                     <div class="ml-auto">
                         <span class="text-white display-6"><i class="fas fa-clipboard"></i></span>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-warning">
+        <a class="card shadow card-hover bg-warning" href="{{ route('admins.pengguna.pengguna-dalaman') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>150</h2>
-                        <h6>Permohonan <br>Sedang Diproses</h6>
+                        <h2>{{ $counter_pengguna }}</h2>
+                        <h6>Pengguna <br>Dalaman</h6> 
                     </div>
                     <div class="ml-auto">
-                        <span class="text-white display-6"><i class="fas fa-sync-alt"></i></span>
+                        <span class="text-white display-6"><i class="fas fa-undo"></i></span>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-success">
+        <a class="card shadow card-hover bg-success" href="{{ route('admins.rumah-ibadat.senarai') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>450</h2>
-                        <h6>Permohonan <br>Lulus</h6>
+                        <h2>{{ $counter_rumah_ibadat }}</h2>
+                        <h6>Rumah Ibadat <br>Berdaftar</h6>
                     </div>
                     <div class="ml-auto">
                         <span class="text-white display-6"><i class="fas fa-clipboard-check"></i></span>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="card bg-danger">
+        <a class="card shadow card-hover bg-danger" href="{{ route('admins.audit-trail.log-user') }}">
             <div class="card-body">
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
-                        <h2>100</h2>
-                        <h6>Permohonan <br>Tidak Lulus</h6>
+                        <h2>{{ $counter_audit_log_access }}</h2>
+                        <h6>Akses <br>Sistem</h6>
                     </div>
                     <div class="ml-auto">
                         <span class="text-white display-6"><i class="fas fa-times-circle"></i></span>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
-<!-- ============================================================== -->
-<!-- Sales chart -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Email campaign chart -->
-<!-- ============================================================== -->
-{{-- Graph --}}
-{{-- <div class="row">
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Campaign</h4>
-                <div id="campaign" style="height: 168px; width: 100%;" class="m-t-10"></div>
-                <!-- row -->
-                <div class="text-center row text-lg-left">
-                    <!-- column -->
-                    <div class="col-4">
-                        <h4 class="font-medium m-b-0">60%</h4>
-                        <span class="text-muted">Open</span>
-                    </div>
-                    <!-- column -->
-                    <div class="col-4">
-                        <h4 class="font-medium m-b-0">26%</h4>
-                        <span class="text-muted">Click</span>
-                    </div>
-                    <!-- column -->
-                    <div class="col-4">
-                        <h4 class="font-medium m-b-0">18%</h4>
-                        <span class="text-muted">Bounce</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title m-b-5">Referral Earnings</h5>
-                <h3 class="font-light">$769.08</h3>
-                <div class="text-center m-t-20">
-                    <div id="earnings"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-12 order-lg-2 order-md-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <h4 class="card-title">Sales Ratio</h4>
-                    </div>
-                    <div class="ml-auto">
-                        <div class="dl m-b-10">
-                            <select class="border-0 custom-select text-muted">
-                                <option value="0" selected="">August 2018</option>
-                                <option value="1">May 2018</option>
-                                <option value="2">March 2018</option>
-                                <option value="3">June 2018</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center no-block">
-                    <div>
-                        <span class="text-muted">This Week</span>
-                        <h3 class="mb-0 font-light text-info">$23.5K <span class="text-muted font-12"><i class="mdi mdi-arrow-up text-success"></i>18.6</span></h3>
-                    </div>
-                    <div class="ml-4">
-                        <span class="text-muted">Last Week</span>
-                        <h3 class="mb-0 font-light text-muted">$945 <span class="text-muted font-12"><i class="mdi mdi-arrow-down text-danger"></i>46.3</span></h3>
-                    </div>
-                </div>
-                <div class="mt-5 sales ct-charts"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 order-lg-3 order-md-2">
-        <div class="card">
-            <div class="card-body m-b-0">
-                <h4 class="card-title">Thursday <span class="font-normal font-14 text-muted">12th April, 2018</span></h4>
-                    <div class="flex-row d-flex align-items-center m-t-30">
-                    <h1 class="font-light"><i class="wi wi-day-sleet"></i> <span>35<sup>°</sup></span></h1>
-                </div>
-            </div>
-            <div class="weather-report" style="height:120px; width:100%;"></div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title m-b-0">Users</h4>
-                <h2 class="font-light">35,658 <span class="font-medium font-16 text-success">+23%</span></h2>
-                <div class="m-t-30">
-                    <div class="text-center row">
-                        <div class="col-6 border-right">
-                            <h4 class="m-b-0">58%</h4>
-                            <span class="font-14 text-muted">New Users</span>
-                        </div>
-                        <div class="col-6">
-                            <h4 class="m-b-0">42%</h4>
-                            <span class="font-14 text-muted">Repeat Users</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-<!-- ============================================================== -->
-<!-- Email campaign chart -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Ravenue - page-view-bounce rate -->
-<!-- ============================================================== -->
+
+<hr>
+
 <div class="row">
-    <!-- column -->
-    <div class="col-lg-6 col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <h4 class="mb-0 card-title">Laporan Perbelanjaan Rumah Ibadat</h4>
-                    </div>
-                    <div class="ml-auto">
-                        <select class="border-0 custom-select text-muted">
-                            <option value="0" selected="">Mei 2021</option>
-                            {{-- <option value="1">May 2018</option>
-                            <option value="2">March 2018</option>
-                            <option value="3">June 2018</option> --}}
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body bg-light">
-                <div class="row align-items-center">
-                    <div class="col-xs-12 col-md-6">
-                        <h3 class="font-light m-b-0">Mei 2021</h3>
-                        <span class="font-14 text-muted">Laporan</span>
-                    </div>
-                    <div class="text-right col-xs-12 col-md-6 align-self-center display-6 text-info">RM 50000</div>
-                </div>
-            </div>
-            <div class="table-responsive" style="overflow-y: scroll;height: 395px;">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="border-top-0">NAMA RUMAH IBADAT</th>
-                            {{-- <th class="border-top-0">STATUS</th> --}}
-                            <th class="border-top-0">TARIKH</th>
-                            <th class="border-top-0">JUMLAH</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
+    <div class="col-md">
 
-                            <td class="txt-oflo">Persatuan Pendidikan Buddha Jing Xin</td>
-                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
-                            <td class="txt-oflo">April 10, 2021</td>
-                            <td><span class="font-medium">RM 20000</span></td>
-                        </tr>
-                        <tr>
-
-                            <td class="txt-oflo">Persatuan Penganut Na Du Gong Kwan Tong</td>
-                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
-                            <td class="txt-oflo">Mac 15, 2021</td>
-                            <td><span class="font-medium">RM 10000</span></td>
-                        </tr>
-                        <tr>
-
-                            <td class="txt-oflo">Persatuan Penganut Dewa Fatt Goon Ten</td>
-                            {{-- <td><span class="label label-success label-rounded">SALE</span> </td> --}}
-                            <td class="txt-oflo">Februari 22, 2021</td>
-                            <td><span class="font-medium">RM 20000</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Permohonan Terkini</h4>
-            </div>
-            <div class="comment-widgets scrollable" style="height:490px;">
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Mr Choo</h6>
-                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Irsan</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">April 13, 2021</span>
-                            <span class="label label-success label-primary">Sedang Diproses</span>
-                        </div>
+        <div class="card border shadow">
+            <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
+                <div class="row">
+                    <div class="col-md">
+                        <h3 class="card-title"><i class="fas fa-chart-bar"></i> &nbsp&nbsp Laporan Perbelanjaan Rumah Ibadat - Keseluruhan</h3>
                     </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row m-t-0">
-                    {{-- <div class="p-2">
-                        <img src="{{asset('nice-admin/assets/images/users/1.jpg')}}" alt="user" width="50" class="rounded-circle">
+                    {{-- <div class="ml-auto">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_fund"><i class="fas fa-coins"></i> Kemaskini Peruntukan</button>
                     </div> --}}
-                    <div class="comment-text w-100">
-                        <h6 class="font-medium">Toh Khim Hwa</h6>
-                        <span class="m-b-15 d-block">Permohonan Bantuan Kewangan Persatuan Rumah Ibadat Kaum Tionghoa</span>
-                        <div class="comment-footer">
-                            <span class="float-right text-muted">April 10, 2021</span>
-                            <span class="label label-success label-rounded">Diluluskan</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comment Row -->
-                <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Lim Thian Ser</h6>
-                        <span class="m-b-15 d-block">Permohonan Rumah Ibadat Tin Hong See</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">Mac 15, 2021</span>
-                            <span class="label label-success label-rounded">Diluluskan</span>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Comment Row -->
-                 <div class="flex-row d-flex comment-row">
-                    <div class="comment-text active w-100">
-                        <h6 class="font-medium">Kiang Chew Choy</h6>
-                        <span class="m-b-15 d-block">Permohonan Naiktaraf Temple Dewa Kuan Yin Ting</span>
-                        <div class="comment-footer ">
-                            <span class="float-right text-muted">Februari 22, 2021</span>
-                            <span class="label label-success label-rounded">Diluluskan</span>
-                        </div>
-                    </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-xs-12 col-md-6">
+                            <h2 class="font-light m-b-0">Tahun {{ $current_year }}</h2>
+                            <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
+                        </div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-4 text-purple">RM {{ number_format($annual_report->total_fund, 2) }}</div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h3><b>RM {{ number_format($annual_report->balance_fund, 2) }}</b> / RM {{ number_format($annual_report->total_fund, 2) }}</h3>
+                            <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Tokong</h6>
+                        </div>
+
+                        <div class="col-12" >
+                            <div class="progress">
+                                <?php 
+                                $percentage_semua = 100;
+                                if( $annual_report->total_tokong != 0){
+                                    $percentage_semua = ($annual_report->balance_tokong / $annual_report->total_tokong) * 100;
+                                    $percentage_semua = number_format($percentage_semua);
+                                    if($percentage_semua > 100){
+                                        $percentage_semua = 100;
+                                    }
+                                }
+                                ?>
+                                <div class="progress-bar bg-purple" role="progressbar" style="width: {{ $percentage_semua }}%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if($laporan_semua != null || $khas_semua != null)
+                    <div class="table-responsive m-t-40" style="clear: both; padding-top: 20px;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Tujuan Permohonan</th>
+                                    <th width="100" class="text-center">Permohonan</th>
+                                    <th width="180" class="text-right">Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>PERMOHONAN KHAS</td>
+                                    <td class="text-center">{{ $count_khas_semua }}</td>
+                                    <td class="text-right">RM {{ number_format($khas_semua, 2) }}</td>
+                                </tr>
+
+                                @foreach($laporan_semua as $key => $semua)
+                                <tr>
+                                    <td class="text-center">{{ ($key + 2) }}</td>
+                                    <td>{{ $semua->tujuan }}</td>
+                                    <td class="text-center"> {{ $semua->bilangan }} </td>
+                                    <td class="text-right"> RM {{ number_format($semua->peruntukan, 2) }} </td>
+                                </tr>
+                                @endforeach
+
+                                
+                                
+                                <tr>
+                                    <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
+                                    <th class="text-right font-13">RM {{ number_format($annual_report->current_fund, 2) }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+                </div>
+            </div>
+
         </div>
+
     </div>
 </div>
-<!-- ============================================================== -->
-<!-- Ravenue - page-view-bounce rate -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Recent comment and chats -->
-<!-- ============================================================== -->
+
 <div class="row">
-    <!-- column -->
-    <div class="col-lg">
-      <div class="card">
-        <div class="table-responsive" style="padding: 1%;">
-            <table id="tablestatus" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>Sijil ROS</th>
-                        <th>Tokong</th>
-                        <th>Nama Pemohon</th>
-                        <th>Tarikh</th>
-                        <th>Tujuan Permohonan</th>
-                        <th>Kelulusan</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>1862-04-5</th>
-                        <th>Persatuan Pendidikan Buddha Jing XinPersatuan Pendidikan Buddha Jing Xin</th>
-                        <th>Toh Khim Hwa</th>
-                        <th>25.10.18</th>
-                        <th>Pembaikan</th>
-                        <th>RM 5000</th>
-                        <th>Diluluskan</th>
-                    </tr>
-                    <tr>
-                        <th>PPM-018-10-06062017</th>
-                        <th>Persatuan Penganut Na Du Gong Kwan Tong</th>
-                        <th>Liam Thian Ser</th>
-                        <th>01.10.18</th>
-                        <th>Aktiviti Keagamaan</th>
-                        <th>RM 3000</th>
-                        <th>Diluluskan</th>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="col-md-6">
+
+        <div class="card border shadow">
+            <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
+                <h4 class="card-title"><i class="fas fa-chart-bar"></i> &nbsp&nbsp Laporan Perbelanjaan Rumah Ibadat - Tokong</h4>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-xs-12 col-md-6">
+                            <h3 class="font-light m-b-0">Tahun {{ $current_year }}</h3>
+                            <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
+                        </div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-7 text-purple">RM {{ number_format($annual_report->total_tokong, 2) }}</div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h3><b>RM {{ number_format($annual_report->balance_tokong, 2) }}</b> / RM {{ number_format($annual_report->total_tokong, 2) }}</h3>
+                            <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Tokong</h6>
+                        </div>
+
+                        <div class="col-12" >
+                            <div class="progress">
+                                <?php 
+                                $percentage_tokong = 100;
+                                if( $annual_report->total_tokong != 0){
+                                    $percentage_tokong = ($annual_report->balance_tokong / $annual_report->total_tokong) * 100;
+                                    $percentage_tokong = number_format($percentage_tokong);
+                                    if($percentage_tokong > 100){
+                                        $percentage_tokong = 100;
+                                    }
+                                }
+                                ?>
+                                <div class="progress-bar bg-purple" role="progressbar" style="width: {{ $percentage_tokong }}%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if($laporan_tokong != null || $khas_tokong != null)
+                    <div class="table-responsive m-t-40" style="clear: both; padding-top: 20px;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Tujuan Permohonan</th>
+                                    <th class="text-center">Permohonan</th>
+                                    <th class="text-right">Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>PERMOHONAN KHAS</td>
+                                    <td class="text-center">{{ $count_khas_tokong }}</td>
+                                    <td class="text-right">RM {{ number_format($khas_tokong, 2) }}</td>
+                                </tr>
+
+                                @foreach($laporan_tokong as $key => $tokong)
+                                <tr>
+                                    <td class="text-center">{{ ($key + 2) }}</td>
+                                    <td>{{ $tokong->tujuan }}</td>
+                                    <td class="text-center"> {{ $tokong->bilangan }} </td>
+                                    <td class="text-right"> RM {{ number_format($tokong->peruntukan, 2) }} </td>
+                                </tr>
+                                @endforeach
+
+                                
+                                
+                                <tr>
+                                    <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
+                                    <th class="text-right font-13">RM {{ number_format($annual_report->current_tokong, 2) }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+                </div>
+            </div>
+
         </div>
-      </div>
+
     </div>
 
+    <div class="col-md-6">
+
+        <div class="card border shadow">
+            <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
+                <h4 class="card-title"><i class="fas fa-chart-bar"></i> &nbsp&nbsp Laporan Perbelanjaan Rumah Ibadat - Kuil</h4>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-xs-12 col-md-6">
+                            <h3 class="font-light m-b-0">Tahun {{ $current_year }}</h3>
+                            <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
+                        </div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-7 text-purple">RM {{ number_format($annual_report->total_kuil, 2) }}</div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h3><b>RM {{ number_format($annual_report->balance_kuil, 2) }}</b> / RM {{ number_format($annual_report->total_kuil, 2) }}</h3>
+                            <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Tokong</h6>
+                        </div>
+
+                        <div class="col-12" >
+                            <div class="progress">
+                                <?php 
+                                $percentage_kuil = 100;
+                                if( $annual_report->total_kuil != 0){
+                                    $percentage_kuil = ($annual_report->balance_kuil / $annual_report->total_kuil) * 100;
+                                    $percentage_kuil = number_format($percentage_kuil);
+                                    if($percentage_kuil > 100){
+                                        $percentage_kuil = 100;
+                                    }
+                                }
+                                ?>
+                                <div class="progress-bar bg-purple" role="progressbar" style="width: {{ $percentage_kuil }}%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if($laporan_kuil != null || $khas_kuil != null)
+                    <div class="table-responsive m-t-40" style="clear: both; padding-top: 20px;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Tujuan Permohonan</th>
+                                    <th class="text-center">Permohonan</th>
+                                    <th class="text-right">Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>PERMOHONAN KHAS</td>
+                                    <td class="text-center">{{ $count_khas_kuil }}</td>
+                                    <td class="text-right">RM {{ number_format($khas_kuil, 2) }}</td>
+                                </tr>
+
+                                @foreach($laporan_kuil as $key => $kuil)
+                                <tr>
+                                    <td class="text-center">{{ ($key + 2) }}</td>
+                                    <td>{{ $kuil->tujuan }}</td>
+                                    <td class="text-center"> {{ $kuil->bilangan }} </td>
+                                    <td class="text-right"> RM {{ number_format($kuil->peruntukan, 2) }} </td>
+                                </tr>
+                                @endforeach
+                                
+                                
+                                <tr>
+                                    <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
+                                    <th class="text-right font-13">RM {{ number_format($annual_report->current_kuil, 2) }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card border shadow">
+            <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
+                <h4 class="card-title"><i class="fas fa-chart-bar"></i> &nbsp&nbsp Laporan Perbelanjaan Rumah Ibadat - Gurdwara</h4>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-xs-12 col-md-6">
+                            <h3 class="font-light m-b-0">Tahun {{ $current_year }}</h3>
+                            <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
+                        </div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-7 text-purple">RM {{ number_format($annual_report->total_gurdwara, 2) }}</div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h3><b>RM {{ number_format($annual_report->balance_gurdwara, 2) }}</b> / RM {{ number_format($annual_report->total_gurdwara, 2) }}</h3>
+                            <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Tokong</h6>
+                        </div>
+
+                        <div class="col-12" >
+                            <div class="progress">
+                                <?php 
+                                $percentage_gurdwara = 100;
+                                if( $annual_report->total_gurdwara != 0){
+                                    $percentage_gurdwara = ($annual_report->balance_gurdwara / $annual_report->total_gurdwara) * 100;
+                                    $percentage_gurdwara = number_format($percentage_gurdwara);
+                                    if($percentage_gurdwara > 100){
+                                        $percentage_gurdwara = 100;
+                                    }
+                                }
+                                ?>
+                                <div class="progress-bar bg-purple" role="progressbar" style="width: {{ $percentage_gurdwara }}%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if($laporan_gurdwara != null || $khas_gurdwara != null)
+                    <div class="table-responsive m-t-40" style="clear: both; padding-top: 20px;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Tujuan Permohonan</th>
+                                    <th class="text-center">Permohonan</th>
+                                    <th class="text-right">Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>PERMOHONAN KHAS</td>
+                                    <td class="text-center">{{ $count_khas_gurdwara }}</td>
+                                    <td class="text-right">RM {{ number_format($khas_gurdwara, 2) }}</td>
+                                </tr>
+
+                                @foreach($laporan_gurdwara as $key => $gurdwara)
+                                <tr>
+                                    <td class="text-center">{{ ($key + 2) }}</td>
+                                    <td>{{ $gurdwara->tujuan }}</td>
+                                    <td class="text-center"> {{ $gurdwara->bilangan }} </td>
+                                    <td class="text-right"> RM {{ number_format($gurdwara->peruntukan, 2) }} </td>
+                                </tr>
+                                @endforeach
+                                
+                                
+                                <tr>
+                                    <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
+                                    <th class="text-right font-13">RM {{ number_format($annual_report->current_gurdwara, 2) }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card border shadow">
+            <div class="card-header border-purple" style="border-left: solid 8px; border-bottom: solid 1px;">
+                <h4 class="card-title"><i class="fas fa-chart-bar"></i> &nbsp&nbsp Laporan Perbelanjaan Rumah Ibadat - Gereja</h4>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-xs-12 col-md-6">
+                            <h3 class="font-light m-b-0">Tahun {{ $current_year }}</h3>
+                            <span class="font-14 text-muted">Jumlah Peruntukan Tahunan</span>
+                        </div>
+                        <div class="text-right col-xs-12 col-md-6 align-self-center display-7 text-purple">RM {{ number_format($annual_report->total_gereja, 2) }}</div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h3><b>RM {{ number_format($annual_report->balance_gereja, 2) }}</b> / RM {{ number_format($annual_report->total_gereja, 2) }}</h3>
+                            <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Tokong</h6>
+                        </div>
+
+                        <div class="col-12" >
+                            <div class="progress">
+                                <?php 
+                                $percentage_gereja = 100;
+                                if( $annual_report->total_gereja != 0){
+                                    $percentage_gereja = ($annual_report->balance_gereja / $annual_report->total_gereja) * 100;
+                                    $percentage_gereja = number_format($percentage_gereja);
+                                    if($percentage_gereja > 100){
+                                        $percentage_gereja = 100;
+                                    }
+                                }
+                                ?>
+                                <div class="progress-bar bg-purple" role="progressbar" style="width: {{ $percentage_gereja }}%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if($laporan_gereja != null || $khas_gereja != null)
+                    <div class="table-responsive m-t-40" style="clear: both; padding-top: 20px;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Tujuan Permohonan</th>
+                                    <th class="text-center">Permohonan</th>
+                                    <th class="text-right">Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>PERMOHONAN KHAS</td>
+                                    <td class="text-center">{{ $count_khas_gereja }}</td>
+                                    <td class="text-right">RM {{ number_format($khas_gereja, 2) }}</td>
+                                </tr>
+
+                                @foreach($laporan_gereja as $key => $gereja)
+                                <tr>
+                                    <td class="text-center">{{ ($key + 2) }}</td>
+                                    <td>{{ $gereja->tujuan }}</td>
+                                    <td class="text-center"> {{ $gereja->bilangan }} </td>
+                                    <td class="text-right"> RM {{ number_format($gereja->peruntukan, 2) }} </td>
+                                </tr>
+                                @endforeach
+                                
+                                
+                                <tr>
+                                    <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
+                                    <th class="text-right font-13">RM {{ number_format($annual_report->current_gereja, 2) }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </div>
-<!-- ============================================================== -->
-<!-- Recent comment and chats -->
-<!-- ============================================================== -->
 
 </div>
 <!-- ============================================================== -->

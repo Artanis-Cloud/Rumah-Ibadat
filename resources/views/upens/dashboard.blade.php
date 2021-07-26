@@ -28,7 +28,7 @@
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
                         <h2>{{ $count_review_application }}</h2>
-                        <h6>Permohonan <br>Semak Semula</h6>
+                        <h6>Permohonan <br>Semak Semula</h6> 
                     </div>
                     <div class="ml-auto">
                         <span class="text-white display-6"><i class="fas fa-undo"></i></span>
@@ -108,17 +108,18 @@
 
 
                 @if($new_application->isEmpty())
-                <div style="padding-bottom: 5%;"></div>
+                <div style="padding-bottom: 15%;"></div>
                 <div style="width:100%; text-align:center">
-                    <lord-icon
+                    <img src="https://image.flaticon.com/icons/png/512/1380/1380641.png" alt="Empty Box" style="width: 150px;">
+                    {{-- <lord-icon
                         src="https://cdn.lordicon.com/nlzvfogq.json"
                         trigger="loop"
-                        delay="30"
+                        delay="15"
                         colors="primary:#121331,secondary:#3080e8"
                         style="width:200px;height:auto">
-                    </lord-icon>
+                    </lord-icon> --}}
+                    <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
                 </div>
-                <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
                 @endif
 
             </div>
@@ -132,18 +133,19 @@
             </div>
             <div class="comment-widgets scrollable" style="height:350px;">
 
-                <div style="padding-bottom: 4%;"></div>
-                <div class="comment-text active w-100 text-center">
-                    <lord-icon
-                        src="https://cdn.lordicon.com/cnbtojmk.json"
-                        trigger="loop"
-                        delay="15"
-                        colors="primary:#121331,secondary:#3080e8"
-                        stroke="41"
-                        style="width:200px;height:auto"
-                        >
-                    </lord-icon>
-                    <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Pengumuman</h6>
+                <div style="padding-bottom: 15%;"></div>
+                <div style="width:100%; text-align:center">
+                    <img src="https://image.flaticon.com/icons/png/512/2487/2487449.png" alt="Empty Box" style="width: 150px;">
+                    {{-- <lord-icon
+                            src="https://cdn.lordicon.com/cnbtojmk.json"
+                            trigger="loop"
+                            delay="15"
+                            colors="primary:#121331,secondary:#3080e8"
+                            stroke="41"
+                            style="width:200px;height:auto"
+                            >
+                        </lord-icon> --}}
+                    <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
                 </div>
 
             </div>
@@ -189,7 +191,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">RM</span>
                                                     </div>
-                                                    <input type="text" class="form-control" id="tokong" name="tokong" oninput="sum_fund()" value="{{ $annual_report->total_tokong }}" required>
+                                                    <input type="text" class="form-control" id="tokong" name="tokong" oninput="sum_fund()" value="{{ $annual_report->total_tokong }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required>
                                                 </div>
                                             </td>
                                         </tr>
@@ -200,7 +202,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">RM</span>
                                                     </div>
-                                                    <input type="text" class="form-control" id="kuil" name="kuil" value="{{ $annual_report->total_kuil }}" required>
+                                                    <input type="text" class="form-control" id="kuil" name="kuil" oninput="sum_fund()" value="{{ $annual_report->total_kuil }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required>
                                                 </div>
                                             </td>
                                         </tr>
@@ -211,7 +213,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">RM</span>
                                                     </div>
-                                                    <input type="text" class="form-control" id="gurdwara" name="gurdwara" value="{{ $annual_report->total_gurdwara }}" required>
+                                                    <input type="text" class="form-control" id="gurdwara" name="gurdwara" oninput="sum_fund()" value="{{ $annual_report->total_gurdwara }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required>
                                                 </div>
                                             </td>
                                         </tr>
@@ -222,7 +224,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">RM</span>
                                                     </div>
-                                                    <input type="text" class="form-control" id="gereja" name="gereja" value="{{ $annual_report->total_gereja }}" required>
+                                                    <input type="text" class="form-control" id="gereja" name="gereja" oninput="sum_fund()" value="{{ $annual_report->total_gereja }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required>
                                                 </div>
                                             </td>
                                         </tr>
@@ -737,5 +739,70 @@
 
         return false;
     }
+
+    //================================== INPUT NUMBER AND DOTS ONLY ==================================
+
+  function fun_AllowOnlyAmountAndDot(txt)
+  {
+      if(event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 46)
+      {
+          var txtbx=document.getElementById(txt);
+          var amount = document.getElementById(txt).value;
+          var present=0;
+          var count=0;
+
+          if(amount.indexOf(".",present)||amount.indexOf(".",present+1));
+          {
+        // alert('0');
+          }
+
+        /*if(amount.length==2)
+        {
+          if(event.keyCode != 46)
+          return false;
+        }*/
+          do
+          {
+          present=amount.indexOf(".",present);
+          if(present!=-1)
+          {
+            count++;
+            present++;
+            }
+          }
+          while(present!=-1);
+          if(present==-1 && amount.length==0 && event.keyCode == 46)
+          {
+              event.keyCode=0;
+              //alert("Wrong position of decimal point not  allowed !!");
+              return false;
+          }
+
+          if(count>=1 && event.keyCode == 46)
+          {
+
+              event.keyCode=0;
+              //alert("Only one decimal point is allowed !!");
+              return false;
+          }
+          if(count==1)
+          {
+          var lastdigits=amount.substring(amount.indexOf(".")+1,amount.length);
+          if(lastdigits.length>=2)
+                      {
+                        //alert("Two decimal places only allowed");
+                        event.keyCode=0;
+                        return false;
+                        }
+          }
+              return true;
+      }
+      else
+      {
+              event.keyCode=0;
+              //alert("Only Numbers with dot allowed !!");
+              return false;
+      }
+  }
 </script>
 @endsection

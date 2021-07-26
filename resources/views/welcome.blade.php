@@ -252,7 +252,7 @@
               <circle class="fill"></circle>
               <circle class="progress"></circle>
             </svg>
-            <div class="orb_value count"> 50</div>
+            <div class="orb_value count">{{ $count_pemohon }}</div>
           </div>
           <div class="orb_label">
              Pengguna
@@ -265,7 +265,7 @@
               <circle class="fill"></circle>
               <circle class="progress"></circle>
             </svg>
-            <div class="orb_value count">50</div>
+            <div class="orb_value count">{{ $count_rumah_ibadat }}</div>
           </div>
           <div class="orb_label">
             Rumah Ibadat
@@ -278,7 +278,7 @@
               <circle class="fill"></circle>
               <circle class="progress"></circle>
             </svg>
-            <div class="orb_value count">53</div>
+            <div class="orb_value count">{{ $count_permohonan }}</div>
           </div>
           <div class="orb_label">
             Permohonan
@@ -311,6 +311,12 @@
           </div>
         </article> --}}
       </section>
+
+      <div class="row">
+        <div class="col-md">
+
+        </div>
+      </div>
     </section><!-- End Services Section -->
 
     <!-- ======= Call To Action Section ======= -->
@@ -524,12 +530,12 @@
 
       <!-- Uncomment below if you wan to use dynamic maps -->
       {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe> --}}
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1408.5708968627134!2d101.51493494527995!3d3.083964365674007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc527b95eee3a1%3A0x24e4c8f62b39ec0f!2sSUK%20Selangor!5e0!3m2!1sms!2smy!4v1616987474576!5m2!1sms!2smy" width="100%" height="380" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1408.5708968627134!2d101.51493494527995!3d3.083964365674007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc527b95eee3a1%3A0x24e4c8f62b39ec0f!2sSUK%20Selangor!5e0!3m2!1sms!2smy!4v1616987474576!5m2!1sms!2smy" width="100%" height="380" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
 
       <div class="container mt-5">
         <div class="row justify-content-center">
 
-          <div class="col-lg-3 col-md-4">
+          <div class="col-lg-3 col-md-6">
 
             <div class="info">
               <div>
@@ -540,7 +546,7 @@
                     Selangor Darul Ehsan.</p>
               </div>
 
-              <div>
+              {{-- <div>
                 <i class="bi bi-envelope"></i>
                 <p>info@example.com</p>
               </div>
@@ -549,20 +555,37 @@
                 <i class="bi bi-phone"></i>
                 <p>(6)03-55447000
                 </p>
-              </div>
+              </div> --}}
             </div>
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              {{-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> --}}
-            </div>
+            
 
           </div>
 
-          <div class="col-lg-5 col-md-8">
+          <div class="col-lg-3 col-md-6">
+            <div class="info">
+              {{-- <div>
+                <i class="bi bi-geo-alt"></i>
+                <p>Pejabat Setiausaha Kerajaan Negeri Selangor,
+                    Bangunan Sultan Salahuddin Abdul Aziz Shah,
+                    40503 Shah Alam,
+                    Selangor Darul Ehsan.</p>
+              </div> --}}
+
+              <div>
+                <i class="bi bi-envelope"></i>
+                <p>info@selangor.gov.my</p>
+              </div>
+
+              <div>
+                <i class="bi bi-phone"></i>
+                <p>(6)03-55447000
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {{-- <div class="col-lg-5 col-md-8">
             <div class="form">
               <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                 <div class="form-group">
@@ -585,10 +608,25 @@
                 <div class="text-center"><button type="submit">Hantar</button></div>
               </form>
             </div>
-          </div>
+          </div> --}}
 
         </div>
 
+      </div>
+
+      <div class="row">
+        <div class="col-md text-center">
+          <div class="social-links">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-whatsapp"></i></a>
+              {{-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> --}}
+            </div>
+        </div>
       </div>
     </section><!-- End Contact Section -->
 

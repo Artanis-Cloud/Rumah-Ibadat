@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+
 use App\Models\Audit;
 use App\Models\RumahIbadat;
 use App\Models\User;
 use App\Models\UserRole;
+use App\Models\Permohonan;
+use App\Models\Peruntukan;
+use App\Models\SpecialApplication;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +21,83 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admins.dashboard');
+        $counter_pemohon = User::where('role', '0')->count();
+        $counter_pengguna = User::where('role','!=', '0')->count();
+        $counter_rumah_ibadat = RumahIbadat::count();
+        $counter_audit_log_access = Audit::where('event', 'Log Masuk')->orWhere('event', 'Log Keluar')->count();
+
+
+        //laporan perbelanjaan
+        $current_year = date('Y'); //get current date
+        $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
+        // dd($annual_report);
+
+
+        //permohonan terkini
+        $new_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->orderBy('created_at', 'asc')->get();
+
+        //================== LAPORAN PERBELANJAAN - TOKONG ==================
+
+        $laporan_semua = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
+
+        $special_application_pass = SpecialApplication::where('status', '2')->whereYear('created_at', date('Y'))->get();
+
+        $khas_semua = collect($special_application_pass)->sum('requested_amount');
+
+        $count_khas_semua = $special_application_pass->count();
+
+        //================== LAPORAN PERBELANJAAN - TOKONG ==================
+
+        $laporan_tokong = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'TOKONG' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
+
+        $special_application_pass = SpecialApplication::where('category', 'TOKONG')->where('status', '2')->whereYear('created_at', date('Y'))->get();
+
+        $khas_tokong = collect($special_application_pass)->sum('requested_amount');
+
+        $count_khas_tokong = $special_application_pass->count();
+
+        //================== LAPORAN PERBELANJAAN - KUIL ==================
+
+        $laporan_kuil = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'KUIL' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
+
+        $special_application_pass = SpecialApplication::where(
+            'category',
+            'KUIL'
+        )->where('status', '2')->whereYear('created_at', date('Y'))->get();
+
+        $khas_kuil = collect($special_application_pass)->sum('requested_amount');
+
+        $count_khas_kuil = $special_application_pass->count();
+
+        //================== LAPORAN PERBELANJAAN - GURDWARA ==================
+
+        $laporan_gurdwara = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'GURDWARA' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
+
+        $special_application_pass = SpecialApplication::where(
+            'category',
+            'GURDWARA'
+        )->where('status', '2')->whereYear('created_at', date('Y'))->get();
+
+        $khas_gurdwara = collect($special_application_pass)->sum('requested_amount');
+
+        $count_khas_gurdwara = $special_application_pass->count();
+
+        //================== LAPORAN PERBELANJAAN - GEREJA ==================
+
+        $laporan_gereja = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'GEREJA' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
+
+        $special_application_pass = SpecialApplication::where(
+            'category',
+            'GEREJA'
+        )->where('status', '2')->whereYear('created_at', date('Y'))->get();
+
+        $khas_gereja = collect($special_application_pass)->sum('requested_amount');
+
+        $count_khas_gereja = $special_application_pass->count();
+
+
+
+        return view('admins.dashboard', compact('counter_pemohon', 'counter_pengguna', 'counter_rumah_ibadat', 'counter_audit_log_access','current_year', 'annual_report', 'laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application'));
     }
 
     public function pengguna()

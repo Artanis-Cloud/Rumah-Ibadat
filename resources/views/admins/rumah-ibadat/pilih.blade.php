@@ -14,7 +14,7 @@
 
                   <div class="row">
                     {{-- <div class="col-md-1"></div> --}}
-                    <div class="col-md" style="padding-top: 20px;">
+                    <div class="col-md-6" style="padding-top: 20px;">
                       <div class="border card border-info h-100">
                         <div class="card-body">
                             <h4 class="card-title" style="font-weight: bold;">Senarai Rumah Ibadat</h4>
@@ -25,7 +25,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-md" style="padding-top: 20px;">
+                    {{-- <div class="col-md-6" style="padding-top: 20px;">
                       <div class="border card border-info h-100">
                         <div class="card-body">
                             <h4 class="card-title" style="font-weight: bold;">Permohonan Menukar Wakil Rumah Ibadat</h4>
@@ -37,7 +37,7 @@
                           <a href="{{ route('admins.pengguna.pengguna-dalaman') }}" class="btn btn-info">Permohonan Menukar Wakil Rumah Ibadat</a>
                         </div>
                       </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="col-md-1"></div> --}}
                   </div>
 

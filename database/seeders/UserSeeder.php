@@ -19,18 +19,19 @@ class UserSeeder extends Seeder
 
         DB::table('batches')->insert(
             [
+                'main_batch' => '5',
 
                 'tokong_counter' => '0',
                 'tokong' => '1',
 
                 'kuil_counter' => '0',
-                'kuil' => '1',
+                'kuil' => '2',
 
                 'gurdwara_counter' => '0',
-                'gurdwara' => '1',
+                'gurdwara' => '3',
 
                 'gereja_counter' => '0',
-                'gereja' => '1',
+                'gereja' => '4',
 
                 'created_at' => $current_date,
                 'updated_at' => $current_date,
@@ -160,7 +161,7 @@ class UserSeeder extends Seeder
         // \App\Models\Permohonan::factory(20)
         // ->create();
 
-        \App\Models\Tujuan::factory(50)
+        \App\Models\Tujuan::factory(100)
         ->create();
 
         // 

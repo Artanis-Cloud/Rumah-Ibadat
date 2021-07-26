@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 //landing page
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('welcome');
+
+    // return view('welcome');
 });
 Route::get('/selamat-datang', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 
