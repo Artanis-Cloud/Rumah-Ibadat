@@ -44,7 +44,7 @@
 							</div>
 						<div class="mb-3 form-group">
 							<label class="label" for="password">Kata Laluan</label>
-						<input type="password" name="password" class="form-control" placeholder="Kata Laluan" value="1234567890" required>
+						<input type="password" name="password" class="form-control" placeholder="Kata Laluan" required>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="px-3 form-control btn btn-primary submit">Log Masuk</button>
