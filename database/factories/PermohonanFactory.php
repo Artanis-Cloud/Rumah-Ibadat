@@ -33,7 +33,8 @@ class PermohonanFactory extends Factory
 
             'user_id' => $rumah_ibadat->user_id,
 
-            'status' => $this->faker->randomElement(['1', '4']),
+            // 'status' => $this->faker->randomElement(['1', '4']),
+            'status' => '1',
 
             'application_letter' => 'public/dummy/dummy.jpg',
             'registration_certificate' => 'public/dummy/dummy.jpg',
