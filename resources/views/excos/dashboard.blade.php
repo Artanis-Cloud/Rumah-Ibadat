@@ -137,7 +137,7 @@
                     </form>
                 @endforeach
 
-
+ 
                 @if($new_application->isEmpty() && $special_application->isEmpty())
                 <div style="padding-bottom: 15%;"></div>
                 <div style="width:100%; text-align:center">

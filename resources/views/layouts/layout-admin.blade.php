@@ -344,7 +344,7 @@
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.rumah-ibadat.senarai') }}" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
                                 
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Permohonan Menukar Wakil<br>Rumah Ibadat</span></a>
+                                {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Permohonan Menukar Wakil<br>Rumah Ibadat</span></a> --}}
                                 
                             </ul>
                         </li>

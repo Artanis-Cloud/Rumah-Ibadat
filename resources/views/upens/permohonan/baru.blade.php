@@ -66,6 +66,13 @@
                               <td>{{ $batch->gereja_counter }}</td>
                             </tr>
 
+                            <tr class="bg-light">
+                              <td>5</td>
+                              <td class="text-left"><b>Batch seterusnya</b></td>
+                              <td><b>{{ $batch->main_batch }}</b></td>
+                              <td>-</td>
+                            </tr>
+
                           </tbody>
                         </table>
                       </div>
@@ -167,7 +174,7 @@
                                   </td>
 
                                   {{-- BATCH --}}
-                                  <td><span class="badge badge-primary" style="font-size: 13px;">Batch {{ $data->batch }}</span></td>
+                                  <td><span class="badge badge-primary" style="font-size: 13px;">Batch {{ $data->batch }} | {{ $data->rumah_ibadat->category }}</span></td>
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
                                   <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>

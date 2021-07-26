@@ -19,17 +19,19 @@ class CreateBatchesTable extends Migration
             $table->string('allow_permohonan')->default('1');   // enable and disable new permohonan
             $table->string('allowed_user_id')->nullable();      //user record for enabling or disabling the permohonan
 
-            $table->string('tokong_counter')->default('1');     //tokong counter - if more than 10 add 1 to batch
-            $table->string('tokong')->default('1');             //tokong batch
+            $table->string('main_batch')->default('1');         //main batch 
 
-            $table->string('kuil_counter')->default('1');       //kuil counter - if more than 10 add 1 to batch
-            $table->string('kuil')->default('1');               //kuil batch
+            $table->string('tokong_counter')->default('0');     //tokong counter - if more than 10 add 1 to batch_main
+            $table->string('tokong')->default('0');             //tokong batch
 
-            $table->string('gurdwara_counter')->default('1');   //gurdwara counter - if more than 10 add 1 to batch
-            $table->string('gurdwara')->default('1');           //gurdwara batch
+            $table->string('kuil_counter')->default('0');       //kuil counter - if more than 10 add 1 to batch_main
+            $table->string('kuil')->default('0');               //kuil batch
 
-            $table->string('gereja_counter')->default('1');     //gereja counter - if more than 10 add 1 to batch
-            $table->string('gereja')->default('1');             //gereja batch
+            $table->string('gurdwara_counter')->default('0');   //gurdwara counter - if more than 10 add 1 to batch_main
+            $table->string('gurdwara')->default('0');           //gurdwara batch
+
+            $table->string('gereja_counter')->default('0');     //gereja counter - if more than 10 add 1 to batch_main
+            $table->string('gereja')->default('0');             //gereja batch
 
             $table->timestamps();//default
         });

@@ -66,7 +66,12 @@ class YbController extends Controller
 
             $count_failed_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'TOKONG');
-            })->where('status', '3')->orWhere('status', '4')->count();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->count();
 
 
             //================== PERMOHONAN TERKINI LIST ==================
@@ -136,7 +141,12 @@ class YbController extends Controller
 
             $count_failed_application_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'KUIL');
-            })->where('status', '3')->orWhere('status', '4')->count();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->count();
 
             if (isset($count_failed_application)) {
                 $count_failed_application = $count_failed_application + $count_failed_application_kuil;
@@ -227,7 +237,12 @@ class YbController extends Controller
 
             $count_failed_application_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GURDWARA');
-            })->where('status', '3')->orWhere('status', '4')->count();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->count();
 
             if (isset($count_failed_application)) {
                 $count_failed_application = $count_failed_application + $count_failed_application_gurdwara;
@@ -318,7 +333,12 @@ class YbController extends Controller
 
             $count_failed_application_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GEREJA');
-            })->where('status', '3')->orWhere('status', '4')->count();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->count();
 
             if (isset($count_failed_application)) {
                 $count_failed_application = $count_failed_application + $count_failed_application_gereja;
@@ -604,7 +624,10 @@ class YbController extends Controller
             $batch->tokong_counter = $batch->tokong_counter + 1;
             
             if($batch->tokong_counter == 10){
-                $batch->tokong = $batch->tokong + 1; // add new batch
+                //declare new batch
+                $batch->tokong = $batch->main_batch;
+                $batch->main_batch = $batch->main_batch + 1;
+
                 $batch->tokong_counter = 0; // reset counter
             }
             $batch->save();
@@ -616,7 +639,10 @@ class YbController extends Controller
             $batch->kuil_counter = $batch->kuil_counter + 1;
 
             if ($batch->kuil_counter == 10) {
-                $batch->kuil = $batch->kuil + 1; // add new batch
+                //declare new batch
+                $batch->kuil = $batch->main_batch;
+                $batch->main_batch = $batch->main_batch + 1;
+
                 $batch->kuil_counter = 0; // reset counter
             }
             $batch->save();
@@ -628,7 +654,10 @@ class YbController extends Controller
             $batch->gurdwara_counter = $batch->gurdwara_counter + 1;
 
             if ($batch->gurdwara_counter == 10) {
-                $batch->gurdwara = $batch->gurdwara + 1; // add new batch
+                //declare new batch
+                $batch->gurdwara = $batch->main_batch;
+                $batch->main_batch = $batch->main_batch + 1;
+
                 $batch->gurdwara_counter = 0; // reset counter
             }
             $batch->save();
@@ -640,7 +669,10 @@ class YbController extends Controller
             $batch->gereja_counter = $batch->gereja_counter + 1;
 
             if ($batch->gereja_counter == 10) {
-                $batch->gereja = $batch->gereja + 1; // add new batch
+                //declare new batch
+                $batch->gereja = $batch->main_batch;
+                $batch->main_batch = $batch->main_batch + 1;
+
                 $batch->gereja_counter = 0; // reset counter
             }
             $batch->save();
@@ -868,13 +900,23 @@ class YbController extends Controller
         if (auth()->user()->user_role->tokong == 1) {
             $rejected_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'TOKONG');
-            })->where('status', '3')->orWhere('status', '4')->get();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->get();
         }
 
         if (auth()->user()->user_role->kuil == 1) {
             $kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'KUIL');
-            })->where('status', '3')->orWhere('status', '4')->get();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->get();
 
             if (isset($rejected_application)) {
                 $rejected_application = $rejected_application->merge($kuil);
@@ -886,7 +928,12 @@ class YbController extends Controller
         if (auth()->user()->user_role->gurdwara == 1) {
             $gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GURDWARA');
-            })->where('status', '3')->orWhere('status', '4')->get();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->get();
 
             if (isset($rejected_application)) {
                 $rejected_application = $rejected_application->merge($gurdwara);
@@ -898,7 +945,12 @@ class YbController extends Controller
         if (auth()->user()->user_role->gereja == 1) {
             $gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'GEREJA');
-            })->where('status', '3')->orWhere('status', '4')->get();
+            })->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->get();
 
             if (isset($rejected_application)) {
                 $rejected_application = $rejected_application->merge($gereja);

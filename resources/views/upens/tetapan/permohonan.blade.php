@@ -140,6 +140,13 @@
                               <td>{{ $batch->gereja_counter }}</td>
                             </tr>
 
+                            <tr class="bg-light">
+                              <td>5</td>
+                              <td class="text-left"><b>Batch seterusnya</b></td>
+                              <td><b>{{ $batch->main_batch }}</b></td>
+                              <td>-</td>
+                            </tr>
+
                           </tbody>
                         </table>
                       </div>
