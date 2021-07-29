@@ -34,6 +34,27 @@ class PermohonanController extends Controller
             return redirect()->back()->with('error', 'Maaf, permohonan telah ditutup');   
         }
 
+
+
+        //============================== 1 year 1 application checker ===========================================
+        $current_year = date('Y'); //get current date
+
+        $rumah_ibadat = RumahIbadat::where('user_id', auth()->user()->id )->first();
+
+        $lulus_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id )->where('status','2')->whereYear('created_at', date('Y'))->count();
+
+        $sedang_diproses_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '1')->whereYear('created_at', date('Y'))->count();
+
+        $semak_semula_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '0')->whereYear('created_at', date('Y'))->count();
+
+        if($lulus_checker > 0 || $sedang_diproses_checker > 0|| $semak_semula_checker > 0){
+            return redirect()->back()->with('error', 'Maaf, anda telah membuat permohonan untuk tahun ini.'); 
+        }
+
+        //============================== 1 year 1 application checker ===========================================
+
+
+
         $user_id = auth()->user()->id;
         $rumah_ibadat = RumahIbadat::where('user_id', $user_id )->get()->first();
 
