@@ -267,6 +267,7 @@
                             <ul aria-expanded="false" class="collapse first-level">
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.tetapan.permohonan') }}" aria-expanded="false"><span class="hide-menu">Tetapan Permohonan</span></a>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.tetapan.pengumuman') }}" aria-expanded="false"><span class="hide-menu">Tetapan Pengumuman</span></a>
 
                             </ul>
                         </li>

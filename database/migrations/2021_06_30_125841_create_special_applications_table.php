@@ -23,9 +23,9 @@ class CreateSpecialApplicationsTable extends Migration
             $table->string('status')->default('0');                         //(0-Tidak Lulus)(1-Sedang Diproses)(2-Lulus)
             $table->string('category');                                     //(Gereja)(Tokong)(Kuil)(Gurdwara)
 
-            $table->text('purpose')->nullable();;
-            $table->string('supported_document_1')->nullable();;            //attachment
-            $table->string('supported_document_2')->nullable();;            //attachment
+            $table->text('purpose')->nullable();
+            $table->string('supported_document_1')->nullable();             //attachment
+            $table->string('supported_document_2')->nullable();             //attachment
             $table->string('requested_amount')->default('0.00');            //money
 
             //tidak-lulus

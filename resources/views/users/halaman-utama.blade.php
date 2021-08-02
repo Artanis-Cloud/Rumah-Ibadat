@@ -31,7 +31,7 @@
 
                           </div>
                           <div class="col-8">
-                            <h3 class="text-info">Permohonan Baru</h3>
+                            <h3 class="text-info">Permohonan Baru Tahun {{ $current_year }}</h3>
                           </div>
                         </div>
                     </div>
@@ -178,37 +178,17 @@
               </div> --}}
               <div class="card-body border border-primary border-bottom">
                   <div class="list-group" style="overflow:auto;height:305px;width:100%;border:1px solid #ccc">
-                      <div class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1 card-title" style="font-size: 20px; font-weight: bold;">Amaran!</h6>
-                        <small class="text-muted" style="font-size: 110%;">26-01-2021</small>
-                        </div>
-                        <p class="my-1" style="font-size: 15px; text-align:justify;">Sekiranya ada percubaan untuk membuat permohonan palsu akan didakwa!</p>
-                      </div>
 
-                      <div class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1 card-title" style="font-size: 20px; font-weight: bold;">Permohonan Ditutup</h6>
-                        <small class="text-muted" style="font-size: 110%;">26-01-2021</small>
-                        </div>
-                        <p class="my-1" style="font-size: 15px; text-align:justify;">Permohonan dana permohonan akan ditutup buat sementara waktu sehingga minggu hadapan untuk naik taraf sistem.</p>
-                      </div>
-
-                      <div class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1 card-title" style="font-size: 20px; font-weight: bold;">Permohonan Baru</h6>
-                        <small class="text-muted" style="font-size: 110%;">05-01-2021</small>
-                        </div>
-                        <p class="my-1" style="font-size: 15px; text-align:justify;">Pengguna hendaklah mendaftarkan permohonan untuk membuat permohonan baru.</p>
-                      </div>
-
-                      <div class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1 card-title" style="font-size: 20px; font-weight: bold;">Selamat Datang</h6>
-                        <small class="text-muted" style="font-size: 110%;">01-01-2021</small>
-                        </div>
-                        <p class="my-1" style="font-size: 15px; text-align:justify;">Selamat Datang ke Sistem Permohonan Dana Permohonan.</p>
-                      </div>
+                      @foreach ($pengumuman as $data)
+                          <div class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 card-title" style="font-size: 20px; font-weight: bold;">{{ $data->title }}</h6>
+                            <small class="text-muted" style="font-size: 110%;">{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</small>
+                            </div>
+                            <p class="my-1" style="font-size: 15px; text-align:justify;">{{ $data->content }}</p>
+                          </div>
+                      @endforeach
+                      
                   </div>
               </div>
           </div>

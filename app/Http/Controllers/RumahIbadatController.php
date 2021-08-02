@@ -8,7 +8,7 @@ use Auth;
 use App\Models\User;
 
 use App\Models\RumahIbadat;
-
+use App\Models\TukarRumahIbadat;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Input;
@@ -19,6 +19,12 @@ class RumahIbadatController extends Controller
 {
     public function pilih_rumah_ibadat()
     {
+        $checker = TukarRumahIbadat::where('user_id', auth()->user()->id)->where('status','1')->count();
+
+        if($checker > 0){
+            return redirect()->route('users.rumah-ibadat.status');
+        }
+        
         $rumah_ibadat = RumahIbadat::get();
         return view('users.rumah-ibadat.pilih', compact('rumah_ibadat'));
     }
@@ -33,14 +39,69 @@ class RumahIbadatController extends Controller
         return view('users.rumah-ibadat.daftar');
     }
 
-    public function menukar_rumah_ibadat()
+    public function menukar_rumah_ibadat(Request $request)
     {
         //check if user has register rumah ibadat
         if (auth()->user()->is_rumah_ibadat == 1) {
             return redirect()->back()->with('error', 'Anda telah mendaftar rumah ibadat');
         }
+        $checker = RumahIbadat::where('id', $request->rumah_ibadat_id)->count();
 
-        return view('users.rumah-ibadat.menukar');
+        if($checker == 0){
+            return redirect()->back()->with('error', 'Maaf, rumah ibadat tidak wujud.');
+        }
+
+        $rumah_ibadat = RumahIbadat::findorfail($request->rumah_ibadat_id);
+        return view('users.rumah-ibadat.menukar', compact('rumah_ibadat'));
+    }
+
+    public function reference_number_tukar_rumah_ibadat()
+    {
+        $year = substr(date('Y'), -2);
+        $month = date('m');
+        $date = date('d');
+        $random = mt_rand(1000, 9999); // better than rand()
+        $reference_number = $year . $month . $date . $random;
+
+        //CHECK EITHER EXIST OR NOT
+        $reference_number_checker = TukarRumahIbadat::where('reference_number', $reference_number)->count();
+        if ($reference_number_checker != 0) {
+            return $this->reference_number_tukar_rumah_ibadat();
+        }
+
+        return $reference_number;
+    }
+
+    public function menukar_rumah_ibadat_submit(Request $request){
+
+        $current_date = date('d-m-Y'); //get current date
+
+        $supported_document = null;
+        if ($request->file('supported_document') != null) { //not required
+            $supported_document = $request->file('supported_document')->store('public/muat-naik/permohonan-tukar-rumah-ibadat/' . $current_date);
+        }
+
+        $permohonan = TukarRumahIbadat::create([
+            'user_id' => auth()->user()->id,
+
+            'reference_number' => $this->reference_number_tukar_rumah_ibadat(),
+            'status' => '1',
+            'category' => $request->category,
+            'rumah_ibadat_id' => $request->rumah_ibadat_id,
+            'comment' => $request->comment,
+            'supported_document' => $supported_document,
+
+        ]);
+
+        return redirect()->route('users.rumah-ibadat.pilih')->with('success', 'Permohonan Menukar Wakil Rumah Ibadat berjaya dihantar.');
+    }
+
+    public function status_tukar(){
+        $permohonan = TukarRumahIbadat::where('user_id', auth()->user()->id)->where('status','1')->first();
+
+        $rumah_ibadat = RumahIbadat::findorfail($permohonan->rumah_ibadat_id);
+
+        return view('users.rumah-ibadat.status-tukar-wakil', compact('permohonan', 'rumah_ibadat'));
     }
 
     public function tambah_rumah_ibadat(Request $request)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Permohonan;
 use App\Models\RumahIbadat;
 use Illuminate\Http\Request;
@@ -15,6 +16,8 @@ class UserController extends Controller
 {
     public function index_user()
     {
+        $current_year = date('Y'); //get current date
+
         $user_id = auth()->user()->id;
         $rumah_ibadat = RumahIbadat::where('user_id', $user_id)->first();
 
@@ -29,6 +32,9 @@ class UserController extends Controller
         $permohonan = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->get();
         $count_total_fund = collect($permohonan)->sum('total_fund');
 
+        //pengumuman
+        $pengumuman = Announcement::where('status','1')->where('pemohon','1')->get();
+
         //count jumlah pemohon
         $count_user = User::where('role', '0')->count();
 
@@ -38,7 +44,7 @@ class UserController extends Controller
         //count jumlah permohonan
         $count_permohonan = Permohonan::count();
 
-        return view('users.halaman-utama', compact('count_permohonan_current', 'count_permohonan_lulus', 'count_total_fund', 'count_user', 'count_persatuan', 'count_permohonan'));
+        return view('users.halaman-utama', compact('current_year', 'count_permohonan_current', 'count_permohonan_lulus', 'count_total_fund', 'pengumuman', 'count_user', 'count_persatuan', 'count_permohonan'));
     }
 
     public function update_profile_pengguna()

@@ -14,6 +14,7 @@ use App\Models\Lampiran;
 use App\Models\Batch;
 use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 
 class YbController extends Controller
@@ -21,6 +22,8 @@ class YbController extends Controller
     public function dashboard()
     {
         //==================================== DASHBOARD COUNTER TOKONG ====================================
+        $pengumuman = Announcement::where('status', '1')->where('yb', '1')->get();
+
         $current_year = date('Y'); //get current date
         $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
 
@@ -380,7 +383,7 @@ class YbController extends Controller
             $count_khas_gereja = $special_application_pass->count();
         }
 
-        return view('ybs.dashboard', compact('current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+        return view('ybs.dashboard', compact('pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
     }
 
     public function permohonan()
