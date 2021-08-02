@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use DB;
 
 use App\Models\Batch;
@@ -10,6 +11,7 @@ use App\Models\RumahIbadat;
 use App\Models\Permohonan;
 use App\Models\Tujuan;
 use App\Models\Lampiran;
+use App\Models\Pengumuman;
 use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
 use Illuminate\Http\Request;
@@ -18,6 +20,8 @@ class UpenController extends Controller
 {
     public function dashboard()
     {
+        $pengumuman = Announcement::where('status', '1')->where('upen', '1')->get();
+
         //counter
         $count_new_application = Permohonan::where('yb_id','!=', null)->where('exco_id', '!=', null)->where('status', '1')->count();
         $count_review_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '0')->count();
@@ -92,7 +96,7 @@ class UpenController extends Controller
 
         $count_khas_gereja = $special_application_pass->count();
 
-        return view('upens.dashboard', compact('current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report','laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application')); 
+        return view('upens.dashboard', compact('pengumuman', 'current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report','laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application')); 
     }
 
     public function update_peruntukan(Request $request){
@@ -579,5 +583,65 @@ class UpenController extends Controller
         $batch->save();
 
         return redirect()->route('upens.tetapan.permohonan')->with('success', 'Batch telah ditetapkan semula');
+    }
+
+    public function tetapan_pengumuman(){
+
+        $annoucement = Announcement::where('status', '1')->get();
+        return view('upens.tetapan.pengumuman', compact('annoucement'));
+    }
+
+    public function pengumuman_baru(){
+
+        return view('upens.tetapan.pengumuman-baru');
+    }
+
+    public function pengumuman_baru_submit(Request $request){
+
+        $admin = "0";
+        $upen = "0";
+        $yb = "0";
+        $exco = "0";
+        $pemohon = "0";
+
+        foreach($request->peranan as $peranan){
+            if($peranan == "admin"){
+                $admin = "1";
+            }
+
+            if ($peranan == "upen") {
+                $upen = "1";
+            }
+
+            if ($peranan == "yb") {
+                $yb = "1";
+            }
+
+            if ($peranan == "exco") {
+                $exco = "1";
+            }
+
+            if ($peranan == "pemohon") {
+                $pemohon = "1";
+            }
+        }
+
+
+        $pengumuman = Announcement::create([
+            'user_id' => auth()->user()->id,
+
+            'status' => '1',
+
+            'admin' => $admin,
+            'upen' => $upen,
+            'yb' => $yb,
+            'exco' => $exco,
+            'pemohon' => $pemohon,
+
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('upens.tetapan.pengumuman')->with('success', 'Pengumuman berjaya dipapar.');
     }
 }

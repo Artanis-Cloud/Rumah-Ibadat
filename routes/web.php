@@ -50,7 +50,14 @@ Route::middleware([User::class])->group(function(){
 
     Route::post('/halaman-utama/rumah-ibadat/daftar-rumah-ibadat/daftar', [App\Http\Controllers\RumahIbadatController::class, 'tambah_rumah_ibadat'])->name('users.rumah-ibadat.daftar.tambah');
 
+    //Rumah Ibadat - Menukar Hak Milik
     Route::get('/halaman-utama/rumah-ibadat/permohonan-tukar-hak-milik-rumah-ibadat', [App\Http\Controllers\RumahIbadatController::class, 'menukar_rumah_ibadat'])->name('users.rumah-ibadat.menukar');
+
+    Route::post('/halaman-utama/rumah-ibadat/permohonan-tukar-hak-milik-rumah-ibadat/hantar', [App\Http\Controllers\RumahIbadatController::class, 'menukar_rumah_ibadat_submit'])->name('users.rumah-ibadat.menukar.submit');
+
+    Route::get('/status-permohonan-menukar-wakil-rumah-ibadat', [App\Http\Controllers\RumahIbadatController::class, 'status_tukar'])->name('users.rumah-ibadat.status');
+
+
 
     Route::get('/halaman-utama/rumah-ibadat/kemaskini-profil-rumah-ibadat', [App\Http\Controllers\RumahIbadatController::class, 'profil_rumah_ibadat'])->name('users.rumah-ibadat.kemaskini');
 
@@ -255,6 +262,7 @@ Route::middleware([Upen::class])->group(function () {
     //TETAPAN
     Route::get('/dashboard-pejabat-upen/tetapan', [App\Http\Controllers\UpenController::class, 'tetapan'])->name('upens.tetapan.pilih');
 
+
     Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan', [App\Http\Controllers\UpenController::class, 'tetapan_permohonan'])->name('upens.tetapan.permohonan');
 
     Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan/buka-tutup-permohonan', [App\Http\Controllers\UpenController::class, 'allow_permohonan'])->name('upens.tetapan.permohonan.allow');
@@ -262,6 +270,13 @@ Route::middleware([Upen::class])->group(function () {
     Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan/batch-baru', [App\Http\Controllers\UpenController::class, 'new_batch'])->name('upens.tetapan.permohonan.batch-baru');
 
     Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan/tetapan-semula-batch', [App\Http\Controllers\UpenController::class, 'reset_batch'])->name('upens.tetapan.permohonan.reset-batch');
+
+
+    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-pengumuman', [App\Http\Controllers\UpenController::class, 'tetapan_pengumuman'])->name('upens.tetapan.pengumuman');
+
+    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-pengumuman/pengumuman-baru', [App\Http\Controllers\UpenController::class, 'pengumuman_baru'])->name('upens.tetapan.pengumuman.baru');
+
+    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-pengumuman/pengumuman-submit', [App\Http\Controllers\UpenController::class, 'pengumuman_baru_submit'])->name('upens.tetapan.pengumuman.baru.submit');
 
 });
 

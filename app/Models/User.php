@@ -71,6 +71,16 @@ class User extends Authenticatable implements Auditable
         return $this->hasMany('App\Models\SpecialApplication');
     }
 
+    public function annoucement()
+    {
+        return $this->hasMany('App\Models\Annoucement');
+    }
+
+    public function tukar_rumah_ibadat()
+    {
+        return $this->hasMany('App\Models\TukarRumahIbadat');
+    }
+
     //forget password email custom
     public function sendPasswordResetNotification($token)
     {

@@ -164,20 +164,37 @@
             </div>
             <div class="comment-widgets scrollable" style="height:350px;">
 
-                <div style="padding-bottom: 15%;"></div>
-                <div style="width:100%; text-align:center">
-                    <img src="https://image.flaticon.com/icons/png/512/2487/2487449.png" alt="Empty Box" style="width: 150px;">
-                    {{-- <lord-icon
-                            src="https://cdn.lordicon.com/cnbtojmk.json"
-                            trigger="loop"
-                            delay="15"
-                            colors="primary:#121331,secondary:#3080e8"
-                            stroke="41"
-                            style="width:200px;height:auto"
-                            >
-                        </lord-icon> --}}
-                    <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
-                </div>
+
+
+                @if($pengumuman->isEmpty())
+                
+                        <div style="padding-bottom: 15%;"></div>
+                        <div style="width:100%; text-align:center">
+                            <img src="https://image.flaticon.com/icons/png/512/2487/2487449.png" alt="Empty Box" style="width: 150px;">
+                            {{-- <lord-icon
+                                    src="https://cdn.lordicon.com/cnbtojmk.json"
+                                    trigger="loop"
+                                    delay="15"
+                                    colors="primary:#121331,secondary:#3080e8"
+                                    stroke="41"
+                                    style="width:200px;height:auto"
+                                    >
+                                </lord-icon> --}}
+                            <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
+                        </div>
+                @else 
+
+                        @foreach ($pengumuman as $data)
+                            <div class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 card-title" style="font-size: 14px; font-weight: bold;">{{ $data->title }}</h6>
+                            <small class="text-muted" style="font-size: 110%;">{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</small>
+                            </div>
+                            <p class="my-1" style="font-size: 15px; text-align:justify;">{{ $data->content }}</p>
+                            </div>
+                        @endforeach
+
+                @endif
 
             </div>
         </div>
