@@ -46,7 +46,6 @@ class RumahIbadatController extends Controller
             return redirect()->back()->with('error', 'Anda telah mendaftar rumah ibadat');
         }
         $checker = RumahIbadat::where('id', $request->rumah_ibadat_id)->count();
-
         if($checker == 0){
             return redirect()->back()->with('error', 'Maaf, rumah ibadat tidak wujud.');
         }
@@ -73,7 +72,6 @@ class RumahIbadatController extends Controller
     }
 
     public function menukar_rumah_ibadat_submit(Request $request){
-
         $current_date = date('d-m-Y'); //get current date
 
         $supported_document = null;
@@ -97,6 +95,12 @@ class RumahIbadatController extends Controller
     }
 
     public function status_tukar(){
+
+        if(auth()->user()->is_rumah_ibadat == '1'){
+            return redirect()->route('user.halaman-utama');
+        }
+
+
         $permohonan = TukarRumahIbadat::where('user_id', auth()->user()->id)->where('status','1')->first();
 
         $rumah_ibadat = RumahIbadat::findorfail($permohonan->rumah_ibadat_id);

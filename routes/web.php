@@ -259,6 +259,19 @@ Route::middleware([Upen::class])->group(function () {
 
     Route::get('/dashboard-pejabat-upen/permohonan/senarai-permohonan-khas/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'permohonan_khas_papar'])->name('upens.permohonan-khas.papar');
 
+    //RUMAH IBADAT  
+    Route::get('/dashboard-pejabat-upen/rumah-ibadat', [App\Http\Controllers\UpenController::class, 'rumah_ibadat'])->name('upens.rumah-ibadat.pilih');
+
+    Route::get('/dashboard-pejabat-upen/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat', [App\Http\Controllers\UpenController::class, 'tukar_wakil'])->name('upens.rumah-ibadat.permohonan');
+
+    Route::get('/dashboard-pejabat-upen/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'tukar_wakil_papar'])->name('upens.rumah-ibadat.permohonan.papar');
+
+    Route::get('/dashboard-pejabat-upen/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan/tidak-lulus', [App\Http\Controllers\UpenController::class, 'tukar_wakil_tidak_lulus'])->name('upens.rumah-ibadat.permohonan.tidak-lulus');
+
+    Route::get('/dashboard-pejabat-upen/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan/lulus', [App\Http\Controllers\UpenController::class, 'tukar_wakil_lulus'])->name('upens.rumah-ibadat.permohonan.lulus');
+
+
+
     //TETAPAN
     Route::get('/dashboard-pejabat-upen/tetapan', [App\Http\Controllers\UpenController::class, 'tetapan'])->name('upens.tetapan.pilih');
 
