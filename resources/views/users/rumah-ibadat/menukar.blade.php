@@ -212,7 +212,7 @@
     $(this).removeClass("is-valid");
 
     //alert message
-    // alert('Ralat! Fail anda melebihi 5mb. Saiz fail anda adalah: ' + numb +' MB');
+    // alert('Ralat! Fail anda melebihi 1mb. Saiz fail anda adalah: ' + numb +' MB');
     $('#note_message').html('Ralat! Fail anda melebihi <b>1mb</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
     $("#validation_submit_permohonan").modal();
 

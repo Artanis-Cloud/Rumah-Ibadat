@@ -7,7 +7,7 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
@@ -25,8 +25,8 @@
                       <div class="card-header" style="text-align: justify; text-justify: inter-word; border: 2px solid black;">
                       <h5>Arahan:</h5>
                       <span>1. Bahagian yang bertanda (<label class="required"></label>) wajib di isi oleh pemohon.</span><br>
-                      <span>2. Format fail untuk <b>'Muat Naik Fail'</b> adalah <b>.pdf</b>, <b>.jpg</b>, <b>.jpeg</b> dan <b>.png</b> sahaja dan tidak melebihi <b>5MB</b>.</span><br>
-                      <span>3. Format fail untuk <b>'Muat Naik Gambar'</b> adalah <b>.jpg</b>, <b>.jpeg</b> dan <b>.png</b> sahaja dan tidak melebihi <b>5MB</b>.</span><br>
+                      <span>2. Format fail untuk <b>'Muat Naik Fail'</b> adalah <b>.pdf</b>, <b>.jpg</b>, <b>.jpeg</b> dan <b>.png</b> sahaja dan tidak melebihi <b>1mb</b>.</span><br>
+                      <span>3. Format fail untuk <b>'Muat Naik Gambar'</b> adalah <b>.jpg</b>, <b>.jpeg</b> dan <b>.png</b> sahaja dan tidak melebihi <b>1mb</b>.</span><br>
                       <span>4. Dokumen yang dimuatnaik haruslah jelas dan boleh dibaca.</span><br>
                       </div>
                     </div>
@@ -65,7 +65,7 @@
                               <input type="checkbox" value="PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN" id="tujuan_3" name="tujuan[]"> Pembelian Peralatan Untuk Kelas Keagamaan
                           </label>
                       </fieldset>
-                      
+
                     </div>
                     <div class="col-md-4">
                       <label style="padding-bottom: 10px;">&nbsp</label>
@@ -116,7 +116,7 @@
                     <div class="col-md-2"></div>
                   </div>
 
-                  <div class="row" style="padding-top: 15px;">  
+                  <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       @if($rumah_ibadat->category == "KUIL" || $rumah_ibadat->category == "GURDWARA")
@@ -152,12 +152,12 @@
                         </div>
                       </div>
                     @endif
-                      
+
                     <div class="col-md-2"></div>
                   </div>
 
                   @if($rumah_ibadat->category == "KUIL" || $rumah_ibadat->category == "GURDWARA")
-                  
+
                     <div class="row" style="padding-top: 15px;">
                       <div class="col-md-2"></div>
                       <div class="col-md">
@@ -187,7 +187,7 @@
                       <div class="col-md">
                         @if($rumah_ibadat->category == "KUIL")
                         <label>Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram</label>
-                        @else 
+                        @else
                         <label>Sijil/Surat Sokongan Majlis Gudwara Malaysia</label>
                         @endif
                         <div class="custom-file">
@@ -256,7 +256,7 @@
                                   <label class="custom-file-label border-dark" for="opt_1_photo1">Muat Naik Gambar</label>
                               </div>
                           </div>
-                          
+
                           {{-- display upload image --}}
                           {{-- <br><img id="output" style="width: 400px; margin-left: auto; margin-right: auto; display: block;"/> --}}
                         </div>
@@ -452,7 +452,7 @@
 
                   </div>
 
-                  
+
 
                   <div id="tujuan_5_div" style="display: none;">
 
@@ -534,9 +534,9 @@
                       </div>
 
                   </div>
-                  
+
                   {{-- Submit Button --}}
-                  <div class="row" style="padding-top: 25px;"> 
+                  <div class="row" style="padding-top: 25px;">
                     <div class="col-md-3"></div>
                     <div class="col-md-6" style="text-align: center;">
                       <button type="button" id="validation_button" class="btn waves-effect waves-light btn-info btn-block">Hantar Permohonan</button>
@@ -671,7 +671,7 @@
 
     //alert message
     // alert('Sila muatnaik file dalam format .pdf, .jpeg , .jpg dan .png sahaja.');
-    $('#note_message').html('Sila muatnaik file dalam format <b>.pdf</b> , <b>.jpeg</b> , <b>.jpg</b> dan <b>.png</b> sahaja.');  
+    $('#note_message').html('Sila muatnaik file dalam format <b>.pdf</b> , <b>.jpeg</b> , <b>.jpg</b> dan <b>.png</b> sahaja.');
     $("#validation_submit_permohonan").modal();
 
     //reset file value
@@ -687,15 +687,15 @@
     //---------- FILE SIZE CHECKER ----------
     var numb = $(this)[0].files[0].size/1024 /1024 ;
     numb = numb.toFixed(2);
-    
-    if(numb > 5.0){  //change file limit HERE!!! (MB)
+
+    if(numb > 1.0){  //change file limit HERE!!! (MB)
     //change border color to black
     $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
     $(this).removeClass("is-valid");
 
     //alert message
-    // alert('Ralat! Fail anda melebihi 5mb. Saiz fail anda adalah: ' + numb +' MB');
-    $('#note_message').html('Ralat! Fail anda melebihi <b>5mb</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
+    // alert('Ralat! Fail anda melebihi 1mb. Saiz fail anda adalah: ' + numb +' MB');
+    $('#note_message').html('Ralat! Fail anda melebihi <b>1mb</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
     $("#validation_submit_permohonan").modal();
 
     //reset file value
@@ -745,17 +745,17 @@
 
   //   return false;
   //   }
-    
+
   //   //---------- FILE SIZE CHECKER ----------
   //   var numb = $(this)[0].files[0].size/1024 /1024 ;
   //   numb = numb.toFixed(2);
-  //   if(numb > 5.0){ //change file limit here (MB)
+  //   if(numb > 1.0){ //change file limit here (MB)
   //   //change border color to black
   //   $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
   //   $(this).removeClass("is-valid");
 
   //   //alert message
-  //   alert('Ralat! Fail anda melebihi 5mb. Saiz fail anda adalah: ' + numb +' MB');
+  //   alert('Ralat! Fail anda melebihi 1mb. Saiz fail anda adalah: ' + numb +' MB');
 
   //   //reset file value
   //   $(this).val(null);
@@ -766,7 +766,7 @@
 
   //   return false;
   //   }
-    
+
   //   //file name display
   //   var fileName = $(this).val().split("\\").pop();
 
@@ -786,46 +786,46 @@ $(document).ready(function(){
     var number_of_image = 5 //Input fields increment limitation
 
     var maxField_option1 = number_of_image;
-    var maxField_option3 = number_of_image; 
+    var maxField_option3 = number_of_image;
     var maxField_option4 = number_of_image;
-    var maxField_option4_2 = number_of_image;  
-    var maxField_option5 = number_of_image; 
+    var maxField_option4_2 = number_of_image;
+    var maxField_option5 = number_of_image;
 
     //Add button selector
     var addButton_option1 = $("#add_input_opt_1");
-    var addButton_option3 = $("#add_input_opt_3"); 
-    var addButton_option4 = $("#add_input_opt_4"); 
-    var addButton_option4_2 = $("#add_input_opt_4_2"); 
-    var addButton_option5 = $("#add_input_opt_5"); 
+    var addButton_option3 = $("#add_input_opt_3");
+    var addButton_option4 = $("#add_input_opt_4");
+    var addButton_option4_2 = $("#add_input_opt_4_2");
+    var addButton_option5 = $("#add_input_opt_5");
 
     //Input field wrapper
     var wrapper_option1 = $('.field_wrapper_option_1');
-    var wrapper_option3 = $('.field_wrapper_option_3'); 
-    var wrapper_option4 = $('.field_wrapper_option_4'); 
-    var wrapper_option4_2 = $('.field_wrapper_option_4_2'); 
-    var wrapper_option5 = $('.field_wrapper_option_5'); 
+    var wrapper_option3 = $('.field_wrapper_option_3');
+    var wrapper_option4 = $('.field_wrapper_option_4');
+    var wrapper_option4_2 = $('.field_wrapper_option_4_2');
+    var wrapper_option5 = $('.field_wrapper_option_5');
     var wrapper_general = $('.field_wrapper_option_1, .field_wrapper_option_3, .field_wrapper_option_4, .field_wrapper_option_4_2, .field_wrapper_option_5');
 
     //increment
     var x_opt1 = 1;
-    var x_opt3 = 1; 
-    var x_opt4 = 1; 
-    var x_opt4_2 = 1; 
-    var x_opt5 = 1; 
+    var x_opt3 = 1;
+    var x_opt4 = 1;
+    var x_opt4_2 = 1;
+    var x_opt5 = 1;
 
     //Initial field counter is 1
-    var y_opt1 = 1; 
-    var y_opt3 = 1; 
-    var y_opt4 = 1; 
-    var y_opt4_2 = 1; 
-    var y_opt5 = 1; 
+    var y_opt1 = 1;
+    var y_opt3 = 1;
+    var y_opt4 = 1;
+    var y_opt4_2 = 1;
+    var y_opt5 = 1;
 
     //***************************************** OPTION 1 *****************************************
-    
+
     //Once add button is clicked
     $(addButton_option1).click(function(){
         //Check maximum number of input fields
-        if(y_opt1 < maxField_option1){ 
+        if(y_opt1 < maxField_option1){
             x_opt1++;
             y_opt1++; //Increment field counter
             $('#total_opt_1_photo').val(x_opt1); //display counter
@@ -847,11 +847,11 @@ $(document).ready(function(){
     //***************************************** END OF OPTION 1 *****************************************
 
     //***************************************** OPTION 3 *****************************************
-    
+
     //Once add button is clicked
     $(addButton_option3).click(function(){
         //Check maximum number of input fields
-        if(y_opt3 < maxField_option3){ 
+        if(y_opt3 < maxField_option3){
             x_opt3++;
             y_opt3++; //Increment field counter
             $('#total_opt_3_photo').val(x_opt3); //display counter
@@ -873,11 +873,11 @@ $(document).ready(function(){
     //***************************************** END OF OPTION 3 *****************************************
 
     //***************************************** OPTION 4 *****************************************
-    
+
     //Once add button is clicked
     $(addButton_option4).click(function(){
         //Check maximum number of input fields
-        if(y_opt4 < maxField_option4){ 
+        if(y_opt4 < maxField_option4){
             x_opt4++;
             y_opt4++; //Increment field counter
             $('#total_opt_4_photo').val(x_opt4); //display counter
@@ -901,7 +901,7 @@ $(document).ready(function(){
     //Once add button is clicked
     $(addButton_option4_2).click(function(){
         //Check maximum number of input fields
-        if(y_opt4_2 < maxField_option4_2){ 
+        if(y_opt4_2 < maxField_option4_2){
             x_opt4_2++;
             y_opt4_2++; //Increment field counter
             $('#total_opt_4_2_photo').val(x_opt4_2); //display counter
@@ -923,11 +923,11 @@ $(document).ready(function(){
     //***************************************** END OF OPTION 4 *****************************************
 
     //***************************************** OPTION 5 *****************************************
-    
+
     //Once add button is clicked
     $(addButton_option5).click(function(){
         //Check maximum number of input fields
-        if(y_opt5 < maxField_option5){ 
+        if(y_opt5 < maxField_option5){
             x_opt5++;
             y_opt5++; //Increment field counter
             $('#total_opt_5_photo').val(x_opt5); //display counter
@@ -976,14 +976,14 @@ $(document).ready(function(){
         //---------- FILE SIZE CHECKER ----------
         var numb = $(this)[0].files[0].size/1024 /1024 ;
         numb = numb.toFixed(2);
-        if(numb > 5.0){ //change file limit here (MB)
+        if(numb > 1.0){ //change file limit here (MB)
         //change border color to black
         $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
         $(this).removeClass("is-valid");
 
         //alert message
-        // alert('Ralat! Fail anda melebihi 5mb. Saiz fail anda adalah: ' + numb +' MB');
-        $('#note_message').html('Ralat! Fail anda melebihi <b>5mb</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
+        // alert('Ralat! Fail anda melebihi 1mb. Saiz fail anda adalah: ' + numb +' MB');
+        $('#note_message').html('Ralat! Fail anda melebihi <b>1mb</b>. Saiz fail anda adalah: <b>' + numb +' MB</b>');
         $("#validation_submit_permohonan").modal();
 
         //reset file value
@@ -1002,7 +1002,7 @@ $(document).ready(function(){
         // output.onload = function() {
         //   URL.revokeObjectURL(output.src) // free memory
         // }
-        
+
 
         //file name display
         var fileName = $(this).val().split("\\").pop();
@@ -1019,7 +1019,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $("#validation_button").click(function(){
-    
+
     //fetch data - GENERAL
     var category = $('#category').val();
     var application_letter = $('#application_letter').val();
@@ -1035,7 +1035,7 @@ $(document).ready(function(){
 
 
 
-    //fetch data - TUJUAN 1 
+    //fetch data - TUJUAN 1
     var total_opt_1_photo =  $('#total_opt_1_photo').val(); //image
 
     //fetch data - TUJUAN 2
@@ -1055,7 +1055,7 @@ $(document).ready(function(){
     var opt_5_file_3 = $('#opt_5_file_3').val(); //file
     var total_opt_5_photo =  $('#total_opt_5_photo').val(); //image
 
-    
+
     // var application_letter = $('#application_letter').val();
     // var application_letter = $('#application_letter').val();
     // var application_letter = $('#application_letter').val();
@@ -1071,7 +1071,7 @@ $(document).ready(function(){
       $("#validation_submit_permohonan").modal();
       return false;
     }
-    
+
     //validation surat permohonan
     if(application_letter == ""){
 
@@ -1124,7 +1124,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_1_photo; i++){
         if($('#opt_1_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_1_photo' + i).val() != ""){// check the image is null or not
             total_opt1_uploaded++ //increment total uploaded file
           }
@@ -1160,7 +1160,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_3_photo; i++){
         if($('#opt_3_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_3_photo' + i).val() != ""){// check the image is null or not
             total_opt3_uploaded++ //increment total uploaded file
           }
@@ -1190,7 +1190,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_4_photo; i++){
         if($('#opt_4_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_4_photo' + i).val() != ""){// check the image is null or not
             total_opt4_uploaded++ //increment total uploaded file
           }
@@ -1200,7 +1200,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_4_2_photo; i++){
         if($('#opt_4_2_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_4_2_photo' + i).val() != ""){// check the image is null or not
             total_opt4_2_uploaded++ //increment total uploaded file
           }
@@ -1239,7 +1239,7 @@ $(document).ready(function(){
 
       for( var i = 1; i <= total_opt_5_photo; i++){
         if($('#opt_5_photo' + i).length){ //check id exist or not
-        
+
           if($('#opt_5_photo' + i).val() != ""){// check the image is null or not
             total_opt5_uploaded++ //increment total uploaded file
           }
@@ -1253,7 +1253,7 @@ $(document).ready(function(){
         return false;
       }
 
-      
+
     }
 
     //display c5nfirmartion input
