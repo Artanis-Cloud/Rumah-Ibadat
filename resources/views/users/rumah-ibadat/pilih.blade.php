@@ -48,7 +48,7 @@
                               </div>
                               <div class="ml-auto">
                                 <div class="form-group mb-3" style="padding-bottom: 0px;">
-                                    <input class="form-control text-uppercase  border-dark " id="rumah_ibadat_id" name="rumah_ibadat_id" type="text" placeholder="ID RUMAH IBADAT" required>
+                                    <input class="form-control text-uppercase  border-dark " id="rumah_ibadat_id" name="rumah_ibadat_id" type="text" placeholder="ID RUMAH IBADAT" onkeypress="return onlyNumberKey(event)" required>
                                 </div>
                               </div>
                             </div>
@@ -178,6 +178,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
 <script type="text/javascript">
+function onlyNumberKey(evt) {
+
+        // Only ASCII charactar in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+  }
 // Responsive Data Table
 let tablelaporan = $("#table-laporan")
 var t = $(tablelaporan).DataTable({

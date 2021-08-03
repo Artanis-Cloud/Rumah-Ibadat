@@ -14,6 +14,7 @@ use App\Models\Lampiran;
 use App\Models\Pengumuman;
 use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
+use App\Models\TukarRumahIbadat;
 use Illuminate\Http\Request;
 
 class UpenController extends Controller
@@ -491,6 +492,74 @@ class UpenController extends Controller
         }
 
         return view('upens.permohonan.permohonan-khas.papar', compact('special_application', 'exco', 'yb', 'cancel'));
+    }
+
+    public function rumah_ibadat(){
+        echo "masuk pilih rumah ibadat";
+    }
+
+    public function tukar_wakil(){
+        $permohonan = TukarRumahIbadat::get();
+
+        return view('upens.rumah-ibadat.tukar-wakil', compact('permohonan'));
+    }
+
+    public function tukar_wakil_papar(Request $request){
+
+        $permohonan = TukarRumahIbadat::findorfail($request->permohonan_id);
+
+        $rumah_ibadat = RumahIbadat::findorfail($permohonan->rumah_ibadat_id);
+
+        return view('upens.rumah-ibadat.papar', compact('permohonan', 'rumah_ibadat'));
+    }
+
+    public function tukar_wakil_tidak_lulus(Request $request){
+
+        $permohonan = TukarRumahIbadat::findorfail($request->permohonan_id);
+
+        $permohonan->status = '0';
+
+        $permohonan->save();
+
+        return redirect()->route('upens.rumah-ibadat.permohonan')->with('success', 'Permohonan tidak diluluskan.');
+    }
+
+    public function tukar_wakil_lulus(Request $request){
+
+        //update permohonan
+        $permohonan = TukarRumahIbadat::findorfail($request->permohonan_id);
+
+        $permohonan->status = '2';
+
+        $permohonan->save();
+
+
+        $rumah_ibadat = RumahIbadat::findorfail($permohonan->rumah_ibadat_id);
+
+        //update old user info
+        $old_user = User::findorfail($rumah_ibadat->user->id);
+
+        $old_user->is_firstime = '1';
+
+        $old_user->is_rumah_ibadat = '0';
+
+        $old_user->save(); 
+
+        //assign new representative to rumah_ibadat
+        $rumah_ibadat->user_id = $permohonan->user->id;
+
+        $rumah_ibadat->save();
+
+        //update applicant info
+        $user = User::findorfail($permohonan->user->id);
+
+        $user->is_firstime = '0';
+
+        $user->is_rumah_ibadat = '1';
+
+        $user->save();
+
+        return redirect()->route('upens.rumah-ibadat.permohonan')->with('success', 'Permohonan telah diluluskan.');
     }
 
     public function tetapan()

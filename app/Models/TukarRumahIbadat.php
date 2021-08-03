@@ -19,8 +19,8 @@ class TukarRumahIbadat extends Model
         'category',                 //(Gereja (Kristian))(Tokong (Budha & Tao))(Kuil (Hindu & Gurdwara))
         'rumah_ibadat_id',
 
-        'category',
-        'rumah_ibadat_id',
+        'comment',
+        'supported_document',
     ];
 
     public function getPermohonanID()
