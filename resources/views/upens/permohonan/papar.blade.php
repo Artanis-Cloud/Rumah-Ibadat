@@ -1200,6 +1200,14 @@
 
                         <div class="row">
                           <div class="col-md-1"></div>
+                          <div class="ml-auto">
+                            <button type="button" class="btn waves-effect waves-light btn-info" id="sahkan_button" data-toggle="modal" data-target="#kemaskini_peruntukan_modal">Kemaskini Peruntukan</button>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row" style="padding-top: 15px;">
+                          <div class="col-md-1"></div>
                           <div class="col-md-5">
                             <label>Kaedah Pembayaran</label>
                             <div class="mb-3 input-group">
@@ -1281,6 +1289,142 @@
                 </div>
 
                 {{-- ========================================================= MODAL ========================================================= --}} 
+                  <!-- Modal Confirmation -->
+              <div class="modal fade" id="kemaskini_peruntukan_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                  <form action="{{ route('upens.permohonan.kemaskini-peruntukan') }}">
+
+                    <div class="modal-body">
+                      
+                      <h4>Peruntukan Dana</h4>
+
+                      @if($permohonan->rumah_ibadat->category == "TOKONG")
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Baki Peruntukan Kategori Rumah Ibadat - Tokong</label>
+                          <div class="mb-3 input-group">
+                            <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_tokong - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+                      @elseIf($permohonan->rumah_ibadat->category == "KUIL")
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Baki Peruntukan Kategori Rumah Ibadat - Kuil</label>
+                          <div class="mb-3 input-group">
+                            <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_kuil - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+                      @elseIf($permohonan->rumah_ibadat->category == "GURDWARA")
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Baki Peruntukan Kategori Rumah Ibadat - Gurdwara</label>
+                          <div class="mb-3 input-group">
+                            <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_kuil - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+                      @elseIf($permohonan->rumah_ibadat->category == "GEREJA")
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Baki Peruntukan Kategori Rumah Ibadat - Gereja</label>
+                          <div class="mb-3 input-group">
+                            <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_gereja - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      @endif
+                          
+
+                      <div class="table-responsive m-t-20">
+                        <table class="table table-bordered table-responsive-lg">
+
+                              <thead style="text-align: center;">
+                                <tr>
+                                  <th>Tujuan Permohonan</th>
+                                  <th>Sumbangan Dana (RM)</th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+
+                                  @foreach ($permohonan->tujuan as  $key => $tujuan)
+
+
+
+                                  @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
+                                    <tr>
+                                        <td>AKTIVITI KEAGAMAAN</td>
+                                        <td><input type="text" id="peruntukan_1" name="peruntukan_1" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
+                                    </tr>
+                                  @endif
+
+                                  @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN")
+                                    <tr>
+                                        <td>PENDIDIKAN KEAGAMAAN</td>
+                                        <td><input type="text" id="peruntukan_2" name="peruntukan_2" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
+                                    </tr>
+                                  @endif
+
+                                  @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
+                                    <tr>
+                                        <td>PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN</td>
+                                        <td><input type="text" id="peruntukan_3" name="peruntukan_3" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
+                                    </tr>
+                                  @endif
+
+                                  @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
+                                    <tr>
+                                        <td>BAIK PULIH/PENYELENGGARAAN BANGUNAN</td>
+                                        <td><input type="text" id="peruntukan_4" name="peruntukan_4" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
+                                    </tr>
+                                  @endif
+
+                                  @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
+                                    <tr>
+                                        <td>PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT</td>
+                                        <td><input type="text" id="peruntukan_5" name="peruntukan_5" class="form-control form-control-sm" placeholder="Masukkan Nilai" value="{{ $tujuan->peruntukan }}" onkeypress="return fun_AllowOnlyAmountAndDot(this.id);" required></td>
+                                    </tr>
+                                  @endif
+
+                                  @endforeach
+
+
+
+                              </tbody>
+                          </table>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+                      <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
+                      <button type="submit" class="btn btn-success">Kemaskini Peruntukan</button>
+                    </div>
+
+                  </form>
+
+                  </div>
+                </div>
+              </div>
 
                 <!-- Modal Confirmation -->
               <div class="modal fade" id="confirmation_luluskan_permohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

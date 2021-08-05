@@ -228,6 +228,8 @@ Route::middleware([Upen::class])->group(function () {
 
     Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan'])->name('upens.permohonan.papar');
 
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/kemaskini-peruntukan', [App\Http\Controllers\UpenController::class, 'permohonan_kemaskini_peruntukan'])->name('upens.permohonan.kemaskini-peruntukan');
+
     Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/semak-semula', [App\Http\Controllers\UpenController::class, 'permohonan_semak_semula'])->name('upens.permohonan.papar.semak-semula');
 
     Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/batalkan', [App\Http\Controllers\UpenController::class, 'permohonan_pembatalan'])->name('upens.permohonan.papar.batalkan');
