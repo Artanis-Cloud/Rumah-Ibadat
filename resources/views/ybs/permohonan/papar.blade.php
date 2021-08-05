@@ -1156,6 +1156,58 @@
 
                       <h4>Peruntukan Dana</h4>
 
+                      
+
+                      @if($permohonan->rumah_ibadat->category == "TOKONG")
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Baki Peruntukan Kategori Rumah Ibadat - Tokong</label>
+                          <div class="mb-3 input-group">
+                            <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_tokong - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+                      @elseIf($permohonan->rumah_ibadat->category == "KUIL")
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Baki Peruntukan Kategori Rumah Ibadat - Kuil</label>
+                          <div class="mb-3 input-group">
+                            <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_kuil - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+                      @elseIf($permohonan->rumah_ibadat->category == "GURDWARA")
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Baki Peruntukan Kategori Rumah Ibadat - Gurdwara</label>
+                          <div class="mb-3 input-group">
+                            <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_kuil - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+                      @elseIf($permohonan->rumah_ibadat->category == "GEREJA")
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Baki Peruntukan Kategori Rumah Ibadat - Gereja</label>
+                          <div class="mb-3 input-group">
+                            <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_gereja - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      @endif
+
+
+                          
+
                       <div class="table-responsive m-t-20">
                         <table class="table table-bordered table-responsive-lg">
 

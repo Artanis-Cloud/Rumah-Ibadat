@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/brands.css')}}">
     <link rel="stylesheet" href="{{asset('nice-admin/icon/css/solid.css')}}">
 
+    <!-- Toaster CSS -->
+    <link href="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.css')}}" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link href="{{asset('nice-admin/assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
@@ -418,6 +421,10 @@
 
     {{-- print --}}
     <script src="{{asset('nice-admin/dist/js/pages/samplepages/jquery.PrintArea.js')}}"></script>
+
+    {{-- toaster --}}
+    <script src="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.js')}}"></script>
+    <script src="{{asset('nice-admin/assets/extra-libs/toastr/toastr-init.js')}}"></script>
 
     {{-- toaster display --}}
     <script>

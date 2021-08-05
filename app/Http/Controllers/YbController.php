@@ -446,7 +446,13 @@ class YbController extends Controller
 
         $exco = User::findorfail($permohonan->exco_id);
 
-        return view('ybs.permohonan.papar', compact('permohonan', 'exco'));
+        $current_fund = Peruntukan::whereYear('created_at', date('Y'))->first();
+        
+        $category = $permohonan->rumah_ibadat->category;
+
+        $yb_approved_fund = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = '$category' AND p.yb_id IS NOT NULL"));
+
+        return view('ybs.permohonan.papar', compact('current_fund', 'yb_approved_fund', 'permohonan', 'exco'));
     }
 
     public function permohonan_semak_semula(Request $request)
@@ -573,7 +579,69 @@ class YbController extends Controller
         $total_fund = 0.00;
         $batch = Batch::first();
 
+        //=========================== checker is fund in correct ===========================
+        $current_fund = Peruntukan::whereYear('created_at', date('Y'))->first();
+
+        $yb_approved_fund = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p WHERE p.status = '1' AND p.yb_id IS NOT NULL"));
+
+        $total_fund_checker = 0.00;
+
+        foreach ($permohonan->tujuan as $tujuan) {
+            if ($tujuan->tujuan == "AKTIVITI KEAGAMAAN") {
+                $total_fund_checker = $total_fund + $request->peruntukan_1;
+            }
+
+            if ($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN") {
+                $total_fund_checker = $total_fund + $request->peruntukan_2;
+            }
+
+            if ($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") {
+                $total_fund_checker = $total_fund + $request->peruntukan_3;
+            }
+
+            if ($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") {
+                $total_fund_checker = $total_fund + $request->peruntukan_4;
+            }
+
+            if ($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") {
+                $total_fund_checker = $total_fund + $request->peruntukan_5;
+            }
+        }
+
         
+
+        if ($permohonan->rumah_ibadat->category == "TOKONG") {
+            $total_fund_checker = ($current_fund->balance_tokong - $yb_approved_fund[0]->peruntukan) - $total_fund_checker;
+
+            if($total_fund_checker < 0){
+                return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');   
+            }
+        }
+
+        if ($permohonan->rumah_ibadat->category == "KUIL") {
+            $total_fund_checker = ($current_fund->balance_kuil - $yb_approved_fund[0]->peruntukan) - $total_fund_checker;
+
+            if ($total_fund_checker < 0) {
+                return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');
+            }
+        }
+
+        if ($permohonan->rumah_ibadat->category == "GURDWARA") {
+            $total_fund_checker = ($current_fund->balance_gurdwara - $yb_approved_fund[0]->peruntukan) - $total_fund_checker;
+
+            if ($total_fund_checker < 0) {
+                return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');
+            }
+        }
+
+        if ($permohonan->rumah_ibadat->category == "GEREJA") {
+            $total_fund_checker = ($current_fund->balance_gereja - $yb_approved_fund[0]->peruntukan) - $total_fund_checker;
+
+            if ($total_fund_checker < 0) {
+                return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');
+            }
+        }
+        //=========================== checker is fund in correct ===========================
 
         //save peruntukan value
         foreach ($permohonan->tujuan as $tujuan) {
