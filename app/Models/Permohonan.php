@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
-
+use Illuminate\Notifications\Notifiable;
 
 class Permohonan extends Model implements Auditable
 {
     use HasFactory;
+    use Notifiable;
     use \OwenIt\Auditing\Auditable;
 
 
@@ -38,16 +39,16 @@ class Permohonan extends Model implements Auditable
         'review_to_applicant_id',           //to identify user who give this status "Semak Semula"
         'review_to_applicant',
 
-        'not_approved_id',                  //to identify user who give this status "Tidak Lullus"                         
+        'not_approved_id',                  //to identify user who give this status "Tidak Lullus"
 
         'exco_id',                          //flag_exco
         'exco_date_time',                   //date-time
-        'review_exco',                          
+        'review_exco',
 
 
         'yb_id',                            //flag_yb
         'yb_date_time',                     //date-time
-        'review_yb',                          
+        'review_yb',
         'payment_method',                   //(1-Check)(2-EFT)
         'total_fund',                       //total fund apporved
 
