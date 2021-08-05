@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/get-message', [App\Http\Controllers\ApiController::class, 'index'])->name('index');
+
+Route::get('/send-message', [App\Http\Controllers\ApiController::class, 'sendMessage'])->name('send');

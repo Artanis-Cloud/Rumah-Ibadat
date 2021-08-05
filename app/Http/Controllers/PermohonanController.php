@@ -15,7 +15,7 @@ use App\Models\Tujuan;
 use App\Models\Lampiran;
 
 use App\Models\Batch;
-
+use App\Notifications\Permohonan\PermohonanCreated;
 use Illuminate\Http\Request;
 
 class PermohonanController extends Controller
@@ -30,8 +30,8 @@ class PermohonanController extends Controller
     {
         $batch = Batch::first();
 
-        if($batch->allow_permohonan == 0){
-            return redirect()->back()->with('error', 'Maaf, permohonan telah ditutup');   
+        if ($batch->allow_permohonan == 0) {
+            return redirect()->back()->with('error', 'Maaf, permohonan telah ditutup');
         }
 
 
@@ -39,16 +39,16 @@ class PermohonanController extends Controller
         //============================== 1 year 1 application checker ===========================================
         $current_year = date('Y'); //get current date
 
-        $rumah_ibadat = RumahIbadat::where('user_id', auth()->user()->id )->first();
+        $rumah_ibadat = RumahIbadat::where('user_id', auth()->user()->id)->first();
 
-        $lulus_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id )->where('status','2')->whereYear('created_at', date('Y'))->count();
+        $lulus_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->whereYear('created_at', date('Y'))->count();
 
         $sedang_diproses_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '1')->whereYear('created_at', date('Y'))->count();
 
         $semak_semula_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '0')->whereYear('created_at', date('Y'))->count();
 
-        if($lulus_checker > 0 || $sedang_diproses_checker > 0|| $semak_semula_checker > 0){
-            return redirect()->back()->with('error', 'Maaf, anda telah membuat permohonan untuk tahun ini.'); 
+        if ($lulus_checker > 0 || $sedang_diproses_checker > 0 || $semak_semula_checker > 0) {
+            return redirect()->back()->with('error', 'Maaf, anda telah membuat permohonan untuk tahun ini.');
         }
 
         //============================== 1 year 1 application checker ===========================================
@@ -56,17 +56,18 @@ class PermohonanController extends Controller
 
 
         $user_id = auth()->user()->id;
-        $rumah_ibadat = RumahIbadat::where('user_id', $user_id )->get()->first();
+        $rumah_ibadat = RumahIbadat::where('user_id', $user_id)->get()->first();
 
         $rumah_ibadat_checker = RumahIbadat::where('user_id', $user_id)->count();
 
-        if($rumah_ibadat_checker == 0){
+        if ($rumah_ibadat_checker == 0) {
             return redirect()->back()->with('error', 'Sila daftar rumah ibadat untuk membuat permohonan');
         }
         return view('users.permohonan.baru', compact('rumah_ibadat'));
     }
 
-    public function reference_number(){
+    public function reference_number()
+    {
         $year = substr(date('Y'), -2);
         $month = date('m');
         $date = date('d');
@@ -75,14 +76,15 @@ class PermohonanController extends Controller
 
         //CHECK EITHER EXIST OR NOT
         $reference_number_checker = Permohonan::where('reference_number', $reference_number)->count();
-        if($reference_number_checker != 0){
+        if ($reference_number_checker != 0) {
             return $this->reference_number();
         }
 
         return $reference_number;
     }
 
-    public function permohonan_hantar(Request $request){
+    public function permohonan_hantar(Request $request)
+    {
 
         // dd($request->all());
 
@@ -107,7 +109,7 @@ class PermohonanController extends Controller
         $certificate_or_letter_temple = null;
         $invitation_letter = null;
 
-        if($request->category == "KUIL" || $request->category == "GURDWARA"){
+        if ($request->category == "KUIL" || $request->category == "GURDWARA") {
             $spending_statement = $request->file('spending_statement')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
             $support_letter = $request->file('support_letter')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
 
@@ -158,10 +160,10 @@ class PermohonanController extends Controller
                 'tujuan' => $data,
             ]);
 
-            if($data == "AKTIVITI KEAGAMAAN"){  //-------------------- OPTION 1 --------------------
+            if ($data == "AKTIVITI KEAGAMAAN") {  //-------------------- OPTION 1 --------------------
 
                 $files_opt_1_photo = $request->file('opt_1_photo');
-                foreach($files_opt_1_photo as $opt_1_photo){
+                foreach ($files_opt_1_photo as $opt_1_photo) {
 
                     $file_type = $opt_1_photo->extension();
                     $saved_photo_url = $opt_1_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
@@ -174,8 +176,7 @@ class PermohonanController extends Controller
                         'description' => $descripton,
                     ]);
                 }
-
-            } elseif($data == "PENDIDIKAN KEAGAMAAN"){ //-------------------- OPTION 2 --------------------
+            } elseif ($data == "PENDIDIKAN KEAGAMAAN") { //-------------------- OPTION 2 --------------------
 
                 $saved_photo_url = $request->file('opt_2_file_1')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
                 $file_type = $request->file('opt_2_file_1')->extension();
@@ -187,7 +188,6 @@ class PermohonanController extends Controller
                     'url' => $saved_photo_url,
                     'description' => $descripton,
                 ]);
-
             } elseif ($data == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN") { //-------------------- OPTION 3 --------------------
 
                 //save file
@@ -207,7 +207,7 @@ class PermohonanController extends Controller
                 $files_opt_3_photo = $request->file('opt_3_photo');
                 foreach ($files_opt_3_photo as $opt_3_photo) {
 
-                    // dd($opt_3_photo);    
+                    // dd($opt_3_photo);
                     $file_type = $opt_3_photo->extension();
                     $saved_photo_url = $opt_3_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_3_photo";
@@ -219,7 +219,6 @@ class PermohonanController extends Controller
                         'description' => $descripton,
                     ]);
                 }
-
             } elseif ($data == "BAIK PULIH/PENYELENGGARAAN BANGUNAN") { //-------------------- OPTION 4 --------------------
 
                 //save file
@@ -238,7 +237,7 @@ class PermohonanController extends Controller
                 $files_opt_4_photo = $request->file('opt_4_photo');
                 foreach ($files_opt_4_photo as $opt_4_photo) {
 
-                    // dd($opt_3_photo);    
+                    // dd($opt_3_photo);
                     $file_type = $opt_4_photo->extension();
                     $saved_photo_url = $opt_4_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_4_photo";
@@ -255,7 +254,7 @@ class PermohonanController extends Controller
                 $files_opt_4_2_photo = $request->file('opt_4_2_photo');
                 foreach ($files_opt_4_2_photo as $opt_4_2_photo) {
 
-                    // dd($opt_3_photo);    
+                    // dd($opt_3_photo);
                     $file_type = $opt_4_2_photo->extension();
                     $saved_photo_url = $opt_4_2_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_4_2_photo";
@@ -266,8 +265,7 @@ class PermohonanController extends Controller
                         'url' => $saved_photo_url,
                         'description' => $descripton,
                     ]);
-                }   
-
+                }
             } elseif ($data == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT") { //-------------------- OPTION 5 --------------------
 
                 //save file 1
@@ -314,7 +312,7 @@ class PermohonanController extends Controller
                     $files_opt_5_photo = $request->file('opt_5_photo');
                     foreach ($files_opt_5_photo as $opt_5_photo) {
 
-                        // dd($opt_3_photo);    
+                        // dd($opt_3_photo);
                         $file_type = $opt_5_photo->extension();
                         $saved_photo_url = $opt_5_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                         $descripton = "opt_5_photo";
@@ -327,11 +325,19 @@ class PermohonanController extends Controller
                         ]);
                     }
                 }
-
             }
         }
 
         //======================================================= END OF CREATE TUJUAN AND LAMPIRAN =======================================================
+
+
+        //======================================================= SEND NOTIFICATION EMAIL =======================================================
+
+
+        $permohonan->notify(new PermohonanCreated());
+
+
+        //======================================================= END OF SEND NOTIFICATION EMAIL =======================================================
 
 
         //======================================================= SUCCESSFULL AND REDIRECT =======================================================
@@ -349,16 +355,18 @@ class PermohonanController extends Controller
         return view('users.permohonan.sedang-diproses', compact('prosessing_application'));
     }
 
-    public function batal_permohonan(Request $request){
+    public function batal_permohonan(Request $request)
+    {
 
         $permohonan = Permohonan::findorfail($request->permohonan_id_batal);
-        $permohonan->status = 4; 
+        $permohonan->status = 4;
         $permohonan->save();
 
         return redirect()->route('users.permohonan.tidak-lulus')->with('success', 'Permohonan anda berjaya dibatalkan.');
     }
 
-    public function papar_permohonan_sedang_diproses(Request $request){
+    public function papar_permohonan_sedang_diproses(Request $request)
+    {
         // dd($request->all());
 
         $permohonan = Permohonan::findorfail($request->permohonan_id);
@@ -379,14 +387,14 @@ class PermohonanController extends Controller
     {
         // dd($request->all());
 
-        $permohonan = Permohonan::findorfail($request->permohonan_id);// find current permohonan
+        $permohonan = Permohonan::findorfail($request->permohonan_id); // find current permohonan
         $user_id = auth()->user()->id;  //find user id
         $rumah_ibadat = RumahIbadat::where('user_id', $user_id)->get()->first(); //find current user rumah ibadat
         $current_date = date('d-m-Y'); //get current date
 
         //======================================================= UPLOAD DOCUMENT LAMPIRAN AND UPDATE PERMOHONAN =======================================================
 
-        if($request->application_letter){
+        if ($request->application_letter) {
             $application_letter = $request->file('application_letter')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
             $permohonan->application_letter = $application_letter;
         }
@@ -485,7 +493,7 @@ class PermohonanController extends Controller
                 $files_opt_3_photo = $request->file('opt_3_photo');
                 foreach ($files_opt_3_photo as $opt_3_photo) {
 
-                    // dd($opt_3_photo);    
+                    // dd($opt_3_photo);
                     $file_type = $opt_3_photo->extension();
                     $saved_photo_url = $opt_3_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_3_photo";
@@ -519,7 +527,7 @@ class PermohonanController extends Controller
                 $files_opt_4_photo = $request->file('opt_4_photo');
                 foreach ($files_opt_4_photo as $opt_4_photo) {
 
-                    // dd($opt_3_photo);    
+                    // dd($opt_3_photo);
                     $file_type = $opt_4_photo->extension();
                     $saved_photo_url = $opt_4_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_4_photo";
@@ -536,7 +544,7 @@ class PermohonanController extends Controller
                 $files_opt_4_2_photo = $request->file('opt_4_2_photo');
                 foreach ($files_opt_4_2_photo as $opt_4_2_photo) {
 
-                    // dd($opt_3_photo);    
+                    // dd($opt_3_photo);
                     $file_type = $opt_4_2_photo->extension();
                     $saved_photo_url = $opt_4_2_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                     $descripton = "opt_4_2_photo";
@@ -598,7 +606,7 @@ class PermohonanController extends Controller
                     $files_opt_5_photo = $request->file('opt_5_photo');
                     foreach ($files_opt_5_photo as $opt_5_photo) {
 
-                        // dd($opt_3_photo);    
+                        // dd($opt_3_photo);
                         $file_type = $opt_5_photo->extension();
                         $saved_photo_url = $opt_5_photo->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);    // required
                         $descripton = "opt_5_photo";
@@ -637,13 +645,12 @@ class PermohonanController extends Controller
         //GET 'PERMOHONAN TIDAK LULUS' LIST
         // $failed_application = Permohonan::where('user_id', auth()->user()->id )->where('status', '4')->orWhere('status', '4')->get();
 
-        $failed_application = Permohonan::
-        where('user_id', auth()->user()->id)->where(
-            function ($query) {
-            $query->where('status', '3')
-            ->orWhere('status', '4');
-        }
-        )->get();
+        $failed_application = Permohonan::where('user_id', auth()->user()->id)->where(
+                function ($query) {
+                    $query->where('status', '3')
+                        ->orWhere('status', '4');
+                }
+            )->get();
 
         return view('users.permohonan.tidak-lulus', compact('failed_application'));
     }
