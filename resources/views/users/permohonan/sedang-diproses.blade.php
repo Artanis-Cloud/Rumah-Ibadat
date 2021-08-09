@@ -125,7 +125,7 @@
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
                   <input type="hidden" id="permohonan_id_batal" name="permohonan_id_batal" >
                   <button type="submit" class="btn btn-success">Batal Permohonan</button>
                 </div>

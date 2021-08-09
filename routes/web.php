@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 //landing page
 Route::get('/', function () {
     return redirect()->route('welcome');
-
-    // return view('welcome');
 });
 Route::get('/selamat-datang', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 
@@ -98,8 +96,12 @@ Route::middleware([Exco::class])->group(function () {
     //download API
     Route::get('/dashboard-pejabat-exco/muat-turun/permohonan', [App\Http\Controllers\ExcoController::class, 'download_permohonan'])->name('muat-turun.permohonan');
 
+    Route::get('/dashboard-pejabat-exco/cetak-permohonan', [App\Http\Controllers\ExcoController::class, 'print_permohonan'])->name('excos.permohonan.print');
+
+
     // Permohonan
     Route::get('/dashboard-pejabat-exco/permohonan', [App\Http\Controllers\ExcoController::class, 'permohonan'])->name('excos.permohonan.pilih');
+
 
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-baru', [App\Http\Controllers\ExcoController::class, 'permohonan_baru'])->name('excos.permohonan.baru');
@@ -222,6 +224,8 @@ Route::middleware([Upen::class])->group(function () {
 
     //PERMOHONAN BARU
     Route::get('/dashboard-pejabat-upen/permohonan', [App\Http\Controllers\UpenController::class, 'permohonan'])->name('upens.permohonan.pilih');
+
+    Route::get('/dashboard-pejabat-upen/permohonan/status-permohonan-keseluruhan', [App\Http\Controllers\UpenController::class, 'permohonan_status'])->name('upens.permohonan.status-permohonan');
 
     //PERMOHONAN BARU
     Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru', [App\Http\Controllers\UpenController::class, 'permohonan_baru'])->name('upens.permohonan.baru');

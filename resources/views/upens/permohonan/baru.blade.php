@@ -184,10 +184,23 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('upens.permohonan.papar') }}">
-                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
-                                    </form>
+                                    <div class="row">
+                                      <div class="col-md">
+                                        <form action="{{ route('upens.permohonan.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                      </div>
+                                      <div class="col-md">
+                                        <form action="{{ route('upens.permohonan.print') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
+                                        </form>
+                                      </div>
+                                    </div>
+                                    
+
+                                    
                                   </td>
                               </tr>
                             @endforeach

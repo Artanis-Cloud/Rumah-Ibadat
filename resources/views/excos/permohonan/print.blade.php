@@ -1,4 +1,4 @@
-@extends('layouts.layout-upen')
+@extends('layouts.layout-exco')
 
 @section('content')
 

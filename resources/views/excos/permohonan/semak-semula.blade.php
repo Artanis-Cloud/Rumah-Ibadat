@@ -23,6 +23,7 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
+                                <th class="all">KATEGORI</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                 <th class="all">TARIKH STATUS SEMAKAN SEMULA</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
@@ -41,11 +42,24 @@
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
 
+                                  {{-- KATEGORI --}}
+                                  <td>
+                                    @if($data->rumah_ibadat->category == "TOKONG")
+                                    <span class="label label-primary" style="font-size: 13px;">Tokong</span>
+                                    @elseif($data->rumah_ibadat->category == "KUIL")
+                                    <span class="label label-primary" style="font-size: 13px;">Kuil</span>
+                                    @elseif($data->rumah_ibadat->category == "GURDWARA")
+                                    <span class="label label-primary" style="font-size: 13px;">Gurdwara</span>
+                                    @elseif($data->rumah_ibadat->category == "GEREJA")
+                                    <span class="label label-primary" style="font-size: 13px;">Gereja</span>
+                                    @endif
+                                  </td>
+
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}]</td>
 
                                   {{-- WAKTU PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-Y') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->updated_at)->format('g:i a') }}]</td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->rumah_ibadat->name_association }}</td>
@@ -55,10 +69,22 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('excos.permohonan.semakan-semula.papar') }}">
-                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
-                                    </form>
+
+                                    <div class="row">
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('excos.permohonan.semakan-semula.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                      </div>
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('excos.permohonan.print') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
+                                        </form>
+                                      </div>
+                                    </div>
+
                                   </td>
                               </tr>
                             @endforeach
