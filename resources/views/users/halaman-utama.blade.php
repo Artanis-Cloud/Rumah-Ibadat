@@ -189,6 +189,25 @@
                           </div>
                       @endforeach
                       
+
+                      @if($pengumuman->isEmpty())
+
+                          <div style="padding-bottom: 5%;"></div>
+                          <div style="width:100%; text-align:center">
+                              {{-- <img src="https://image.flaticon.com/icons/png/512/2487/2487449.png" alt="Empty Box" style="width: 150px;"> --}}
+                              <lord-icon
+                                      src="https://cdn.lordicon.com/cnbtojmk.json"
+                                      trigger="loop"
+                                      delay="15"
+                                      colors="primary:#121331,secondary:#3080e8"
+                                      stroke="41"
+                                      style="width:200px;height:auto"
+                                      >
+                                  </lord-icon>
+                              <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Pengumuman Baru</h6>
+                          </div>
+
+                      @endif
                   </div>
               </div>
           </div>

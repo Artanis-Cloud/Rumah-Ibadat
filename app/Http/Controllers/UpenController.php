@@ -159,6 +159,13 @@ class UpenController extends Controller
         return view('upens.permohonan.pilih');
     }
 
+    public function permohonan_status(){
+
+        $permohonan = Permohonan::get();
+        
+        return view('upens.permohonan.status-permohonan', compact('permohonan'));
+    }
+
     public function permohonan_baru(){
         $batch = Batch::first();
 

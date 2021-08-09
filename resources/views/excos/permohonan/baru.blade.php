@@ -25,8 +25,9 @@
                                 <th class="all">PERMOHONAN ID</th>
                                 <th class="all">KATEGORI</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                <th class="all">WAKTU PERMOHONAN DIBUAT</th>
+                                {{-- <th class="all">WAKTU PERMOHONAN DIBUAT</th> --}}
                                 <th class="all">NAMA RUMAH IBADAT</th>
+                                <th class="all">NAMA PEMOHON</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
@@ -55,20 +56,33 @@
                                   </td>
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} [ {{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }} ]</td>
 
                                   {{-- WAKTU PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}</td>
+                                  {{-- <td></td> --}}
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->rumah_ibadat->name_association }}</td>
 
+                                  {{-- NAMA RUMAH PEMOHON --}}
+                                  <td>{{ $data->user->name}}</td>
+
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('excos.permohonan.papar') }}">
-                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
-                                    </form>
+                                    <div class="row">
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('excos.permohonan.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                      </div>
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('excos.permohonan.print') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
+                                        </form>
+                                      </div>
+                                    </div>
                                   </td>
                               </tr>
                             @endforeach

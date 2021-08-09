@@ -1,4 +1,4 @@
-@extends('layouts.layout-exco')
+@extends('layouts.layout-upen')
 
 @section('content')
 
@@ -23,18 +23,19 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
-                                <th class="all">KATEGORI</th>
+                                <th class="all">BATCH</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                {{-- <th class="all">WAKTU PERMOHONAN DIBUAT</th> --}}
-                                <th class="all">NAMA RUMAH IBADAT</th>
-                                <th class="all">NAMA PEMOHON</th>
+                                <th class="all">PEJABAT EXCO</th>
+                                <th class="all">PEJABAT YB PENGERUSI</th>
+                                <th class="all">PEJABAT UPEN</th>
+                                <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            @foreach( $processing_application as $data)
+                            @foreach( $permohonan as $data)
                               <tr>
                                   {{-- BIL --}}
                                   <td></td>
@@ -42,50 +43,70 @@
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
 
-                                  {{-- KATEGORI --}}
                                   <td>
-                                    @if($data->rumah_ibadat->category == "TOKONG")
-                                    <span class="label label-primary" style="font-size: 13px;">Tokong</span>
-                                    @elseif($data->rumah_ibadat->category == "KUIL")
-                                    <span class="label label-primary" style="font-size: 13px;">Kuil</span>
-                                    @elseif($data->rumah_ibadat->category == "GURDWARA")
-                                    <span class="label label-primary" style="font-size: 13px;">Gurdwara</span>
-                                    @elseif($data->rumah_ibadat->category == "GEREJA")
-                                    <span class="label label-primary" style="font-size: 13px;">Gereja</span>
+                                    @if($data->yb_id != null)
+                                    Batch {{ $data->batch }} - {{ $data->rumah_ibadat->category }}
+                                    @else 
+                                    -
                                     @endif
                                   </td>
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} [ {{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }} ]</td>
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
 
-                                  {{-- WAKTU PERMOHONAN DIBUAT--}}
-                                  {{-- <td></td> --}}
-
-                                  {{-- NAMA RUMAH IBADAT --}}
-                                  <td>{{ $data->rumah_ibadat->name_association }}</td>
-
-                                  {{-- NAMA RUMAH PEMOHON --}}
-                                  <td>{{ $data->user->name}}</td>
-
-                                  {{-- TINDAKAN --}}
                                   <td>
-                                    
-                                    <div class="row">
-                                      <div class="col-md" style="padding: 5px;">
-                                        <form action="{{ route('excos.permohonan.sedang-diproses.papar') }}" target="_blank">
-                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
-                                        </form>
-                                      </div>
-                                      <div class="col-md" style="padding: 5px;">
-                                        <form action="{{ route('excos.permohonan.print') }}" target="_blank">
-                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                          <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
-                                        </form>
-                                      </div>
-                                    </div>
-
+                                    @if($data->exco_id != null)
+                                    <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
+                                    @else 
+                                    -
+                                    @endif
                                   </td>
+
+                                  <td>
+                                    @if($data->yb_id != null)
+                                    <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
+                                    @else 
+                                    -
+                                    @endif
+                                  </td>
+
+                                  <td>
+                                    @if($data->upen_id != null)
+                                    <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
+                                    @else 
+                                    -
+                                    @endif
+                                  </td>
+
+                                  <td>
+                                    @if($data->status == 0)
+                                    <span class="badge badge-warning" style="font-size: 13px;">Dibatalkan</span>
+                                    @elseIf($data->status == 1)
+                                    <span class="badge badge-info" style="font-size: 13px;">Sedang Diproses</span>
+                                    @elseIf($data->status == 2)
+                                    <span class="badge badge-success" style="font-size: 13px;">Lulus</span>
+                                    @elseIf($data->status == 3)
+                                    <span class="badge badge-danger" style="font-size: 13px;">Tidak Lulus</span>
+                                    @elseIf($data->status == 4)
+                                    <span class="badge badge-danger" style="font-size: 13px;">Batal</span>
+                                    @endif
+                                  </td>
+
+                                  <td>
+                                    {{-- @if($data->status == 3 || $data->status == 4)
+                                    <form action="{{ route('upens.permohonan.tidak-lulus.papar') }}">
+                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                      <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                    </form>
+                                    @else 
+                                    -
+                                    @endif --}}
+                                    <form action="{{ route('upens.permohonan.print') }}" target="_blank">
+                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                      <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
+                                    </form>
+                                  </td>
+
                               </tr>
                             @endforeach
 
@@ -125,13 +146,13 @@ var t = $(tablelaporan).DataTable({
           extend: 'pdfHtml5',
           orientation: 'landscape',
           pageSize: 'A4',
-          title: 'Senarai Permohonan Sedang Diproses',
+          title: 'Senarai Permohonan Baru Diterima',
       },
       {
           extend: 'print',
           text: 'Cetak',
           pageSize: 'LEGAL',
-          title: 'Senarai Permohonan Sedang Diproses',
+          title: 'Senarai Permohonan Baru Diterima',
           customize: function(win)
           {
 

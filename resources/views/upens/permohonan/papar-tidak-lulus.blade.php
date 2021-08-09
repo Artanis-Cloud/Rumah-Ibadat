@@ -1017,7 +1017,7 @@
             <div class="row" style="padding-bottom: 25px; padding-top: 25px;">
               <div class="col-md-4"></div>
               <div class="col-md">
-                <a href="{{ route('upens.permohonan.tidak-lulus') }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
+                <a href="{{ url()->previous() }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
               </div>
               <div class="col-md-4"></div>
             </div>

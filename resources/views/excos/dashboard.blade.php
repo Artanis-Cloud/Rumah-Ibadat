@@ -180,7 +180,7 @@
                                     style="width:200px;height:auto"
                                     >
                                 </lord-icon> --}}
-                            <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
+                            <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Pengumuman Baru</h6>
                         </div>
                 @else 
 
