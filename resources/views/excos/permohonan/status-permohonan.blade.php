@@ -1,4 +1,4 @@
-@extends('layouts.layout-upen')
+@extends('layouts.layout-exco')
 
 @section('content')
 
@@ -23,7 +23,7 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
-                                <th class="all">BATCH</th>
+                                {{-- <th class="all">BATCH</th> --}}
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                 <th class="all">PEJABAT EXCO</th>
                                 <th class="all">PEJABAT YB PENGERUSI</th>
@@ -43,13 +43,13 @@
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
 
-                                  <td>
+                                  {{-- <td>
                                     @if($data->yb_id != null)
                                     Batch {{ $data->batch }} - {{ $data->rumah_ibadat->category }}
                                     @else 
                                     -
                                     @endif
-                                  </td>
+                                  </td> --}}
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
                                   <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
@@ -80,7 +80,7 @@
 
                                   <td>
                                     @if($data->status == 0)
-                                    <span class="badge badge-warning" style="font-size: 13px;">Dibatalkan</span>
+                                    <span class="badge badge-warning" style="font-size: 13px;">Semak Semula</span>
                                     @elseIf($data->status == 1)
                                     <span class="badge badge-info" style="font-size: 13px;">Sedang Diproses</span>
                                     @elseIf($data->status == 2)
@@ -93,18 +93,47 @@
                                   </td>
 
                                   <td>
-                                    {{-- @if($data->status == 3 || $data->status == 4)
-                                    <form action="{{ route('upens.permohonan.tidak-lulus.papar') }}">
-                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
-                                    </form>
-                                    @else 
-                                    -
-                                    @endif --}}
-                                    <form action="{{ route('upens.permohonan.print') }}" target="_blank">
-                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
-                                    </form>
+                                    <div class="row">
+                                      <div class="col-md" style="padding: 5px;">
+                                        @if ($data->status == 0)
+                                        <form action="{{ route('excos.permohonan.semakan-semula.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @elseif ($data->status == 1 && $data->exco_id == null)
+                                        <form action="{{ route('excos.permohonan.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @elseif ($data->status == 1 && $data->exco_id != null)
+                                        <form action="{{ route('excos.permohonan.sedang-diproses.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @elseif ($data->status == 2)
+                                        <form action="{{ route('excos.permohonan.lulus.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+
+                                        @elseif($data->status == 3 || $data->status == 4)
+                                        <form action="{{ route('excos.permohonan.tidak-lulus.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @else 
+                                        -
+                                        @endif
+                                      </div>
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('excos.permohonan.print') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
+                                        </form>
+                                      </div>
+                                    </div>
+                                    
+                                    
                                     
                                   </td>
 

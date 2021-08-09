@@ -271,7 +271,10 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.lulus') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Lulus</span></a>
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.tidak-lulus') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Tidak Lulus</span></a>
-                                
+
+                                <hr>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.status-permohonan') }}" aria-expanded="false"><span class="hide-menu">Status Permohonan Keseluruhan</span></a>
                                 
                             </ul>
                         </li>

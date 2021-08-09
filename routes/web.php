@@ -102,6 +102,7 @@ Route::middleware([Exco::class])->group(function () {
     // Permohonan
     Route::get('/dashboard-pejabat-exco/permohonan', [App\Http\Controllers\ExcoController::class, 'permohonan'])->name('excos.permohonan.pilih');
 
+    Route::get('/dashboard-pejabat-exco/permohonan/status-permohonan-keseluruhan', [App\Http\Controllers\ExcoController::class, 'permohonan_status'])->name('excos.permohonan.status-permohonan');
 
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-baru', [App\Http\Controllers\ExcoController::class, 'permohonan_baru'])->name('excos.permohonan.baru');

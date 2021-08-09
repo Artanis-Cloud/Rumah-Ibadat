@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Models\HistoryApplication;
 use DB;
 use Storage;
 
@@ -403,6 +404,53 @@ class ExcoController extends Controller
         return view('excos.permohonan.pilih');
     }
 
+    public function permohonan_status(){
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $permohonan = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->orderBy('created_at', 'asc')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $permohonan_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->orderBy('created_at', 'asc')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_kuil);
+            } else {
+                $permohonan = $permohonan_kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $permohonan_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->orderBy('created_at', 'asc')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_gurdwara);
+            } else {
+                $permohonan = $permohonan_gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $permohonan_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->orderBy('created_at', 'asc')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_gereja);
+            } else {
+                $permohonan = $permohonan_gereja;
+            }
+        }
+
+        return view('excos.permohonan.status-permohonan', compact('permohonan'));
+    }
+
     public function print_permohonan(Request $request)
     {
         // dd($request->all());
@@ -482,7 +530,27 @@ class ExcoController extends Controller
     {
         $permohonan = Permohonan::findOrFail($request->permohonan_id);
 
-        return view('excos.permohonan.papar', compact('permohonan'));
+        $nama_rumah_ibadat = $permohonan->rumah_ibadat->name_association;
+
+        $nombor_bank_akaun = $permohonan->rumah_ibadat->bank_account;
+
+        // $nombor_bank_akaun = "8009898040"; //testing for dummy sejarah permohonan
+
+        $nombor_pendaftaran = null;
+
+        if($permohonan->rumah_ibadat->registration_type == "SENDIRI"){
+            $nombor_pendaftaran = $permohonan->rumah_ibadat->registration_number;
+        } else{
+            $nombor_pendaftaran = explode("%", $permohonan->rumah_ibadat->registration_number, 2)[1];
+        }
+
+        $sejarah_permohonan = DB::select(DB::raw("SELECT * FROM `history_applications` WHERE rumah_ibadat LIKE '$nama_rumah_ibadat' OR no_pendaftaran LIKE '$nombor_pendaftaran' OR no_akaun LIKE '$nombor_bank_akaun'"));
+
+        $history_application_system = Permohonan::where('rumah_ibadat_id', $permohonan->rumah_ibadat->id)->where('status','2')->get();
+
+        // dd($sejarah_permohonan == null);
+
+        return view('excos.permohonan.papar', compact('permohonan', 'sejarah_permohonan', 'history_application_system'));
     }
 
     public function permohonan_semak_semula(Request $request){

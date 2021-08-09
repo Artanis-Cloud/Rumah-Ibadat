@@ -71,7 +71,7 @@
                                   <td>
                                     <div class="row">
                                       <div class="col-md" style="padding: 5px;">
-                                        <form action="{{ route('excos.permohonan.papar') }}" target="_blank">
+                                        <form action="{{ route('excos.permohonan.papar') }}">
                                           <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                           <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                         </form>
