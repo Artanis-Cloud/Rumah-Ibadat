@@ -24,17 +24,18 @@
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
                                 <th class="all">KATEGORI</th>
-                                <th class="all">STATUS</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                <th class="all">NAMA PEMOHON</th>
                                 <th class="all">JUMLAH PERUNTUKAN</th>
+                                <th class="all">PEJABAT EXCO</th>
+                                <th class="all">PEJABAT YB PENGERUSI</th>
+                                <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            @foreach( $special_application as $data)
+                            @foreach( $permohonan as $data)
                               <tr>
                                   {{-- BIL --}}
                                   <td></td>
@@ -42,39 +43,72 @@
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
 
-                                  {{-- KATEGORI --}}
                                   <td><span class="badge badge-info" style="font-size: 13px;">{{ $data->category}}</span></td>
 
-                                  {{-- STATUS --}}
+                                  {{-- <td>
+                                    @if($data->yb_id != null)
+                                    Batch {{ $data->batch }} - {{ $data->rumah_ibadat->category }}
+                                    @else 
+                                    -
+                                    @endif
+                                  </td> --}}
+
+                                  {{-- TARIKH PERMOHONAN DIBUAT--}}
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                  
+                                  <td>RM {{ number_format($data->requested_amount , 2) }}</td>
+
+                                  <td>
+                                    @if($data->exco_id != null)
+                                    <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
+                                    @else 
+                                    -
+                                    @endif
+                                  </td>
+
+                                  <td>
+                                    @if($data->yb_id != null)
+                                    <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
+                                    @else 
+                                    -
+                                    @endif
+                                  </td>
+
                                   <td>
                                     @if($data->status == 0)
                                     <span class="badge badge-danger" style="font-size: 13px;">Tidak Lulus</span>
-                                    @elseif($data->status == 1)
+                                    @elseIf($data->status == 1)
                                     <span class="badge badge-warning" style="font-size: 13px;">Sedang Diproses</span>
-                                    @elseif($data->status == 2)
+                                    @elseIf($data->status == 2)
                                     <span class="badge badge-success" style="font-size: 13px;">Lulus</span>
                                     @endif
                                   </td>
 
-                                  {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
-
-                                  {{-- NAMA RUMAH PEMOHON --}}
-                                  <td>{{ $data->user->name}}</td>
-
-                                  {{-- JUMLAH PERUNTUKAN --}}
-                                  <td>RM {{ number_format($data->requested_amount, 2)}}</td>
-
-                                  {{-- TINDAKAN --}}
                                   <td>
-
                                     <div class="row">
-                                      <div class="col-md" style="padding: 5px;">
-                                        <form action="{{ route('excos.permohonan.khas.papar') }}">
-                                          <input type="hidden" name="permohonan_khas_id" value="{{ $data->id }}" readonly>
+                                      {{-- <div class="col-md" style="padding: 5px;">
+                                        @if ($data->status == 0)
+                                        <form action="{{ route('excos.permohonan.semakan-semula.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                           <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
-                                        </form> 
-                                      </div>
+                                        </form>
+                                        @elseif ($data->status == 1 && $data->exco_id == null)
+                                        <form action="{{ route('excos.permohonan.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @elseif ($data->status == 1 && $data->exco_id != null)
+                                        <form action="{{ route('excos.permohonan.sedang-diproses.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @elseif ($data->status == 2)
+                                        <form action="{{ route('excos.permohonan.lulus.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @endif
+                                      </div> --}}
                                       <div class="col-md" style="padding: 5px;">
                                         <form action="{{ route('excos.permohonan-khas.print') }}" target="_blank">
                                           <input type="hidden" name="permohonan_khas_id" value="{{ $data->id }}" readonly>
@@ -82,7 +116,11 @@
                                         </form>
                                       </div>
                                     </div>
+                                    
+                                    
+                                    
                                   </td>
+
                               </tr>
                             @endforeach
 
@@ -122,13 +160,13 @@ var t = $(tablelaporan).DataTable({
           extend: 'pdfHtml5',
           orientation: 'landscape',
           pageSize: 'A4',
-          title: 'Senarai Permohonan Khas',
+          title: 'Senarai Permohonan Baru Diterima',
       },
       {
           extend: 'print',
           text: 'Cetak',
           pageSize: 'LEGAL',
-          title: 'Senarai Permohonan Khas',
+          title: 'Senarai Permohonan Baru Diterima',
           customize: function(win)
           {
 
