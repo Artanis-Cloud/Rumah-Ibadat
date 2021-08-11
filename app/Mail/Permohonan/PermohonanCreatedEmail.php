@@ -2,6 +2,7 @@
 
 namespace App\Mail\Permohonan;
 
+use App\Models\RumahIbadat;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -20,6 +21,7 @@ class PermohonanCreatedEmail extends Mailable
     public function __construct($permohonan)
     {
         $this->permohonan = $permohonan;
+        $this->rumah_ibadat = RumahIbadat::findorfail($this->permohonan->rumah_ibadat_id);
         $this->user = User::findOrFail($this->permohonan->user_id);
     }
 
@@ -30,9 +32,12 @@ class PermohonanCreatedEmail extends Mailable
      */
     public function build()
     {
+        $permohonan = $this->permohonan;
+        $rumah_ibadat = $this->rumah_ibadat;
+        $user = $this->user;
         return $this->to($this->user->email, $this->user->name)
             ->from(env('MAIL_FROM_ADDRESS'))
             ->subject('Permohonan '. $this->permohonan->getPermohonanID())
-            ->view('email.permohonan-created');
+            ->view('email.permohonan-created', compact('permohonan', 'rumah_ibadat', 'user'));
     }
 }

@@ -334,8 +334,9 @@ class PermohonanController extends Controller
         //======================================================= SEND NOTIFICATION EMAIL =======================================================
 
 
-        $permohonan->notify(new PermohonanCreated());
+        $permohonan->notify(new PermohonanCreated()); // send email notification to pemohon 
 
+        $user = User::get();
 
         //======================================================= END OF SEND NOTIFICATION EMAIL =======================================================
 

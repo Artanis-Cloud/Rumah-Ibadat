@@ -2,6 +2,7 @@
 
 namespace App\Notifications\Permohonan;
 
+use App\Models\User;
 use App\Mail\Permohonan\PermohonanCreatedEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -42,7 +43,6 @@ class PermohonanCreated extends Notification
      */
     public function toMail($permohonan)
     {
-        // dd($permohonan);
         return Mail::send(new PermohonanCreatedEmail($permohonan));
     }
 
