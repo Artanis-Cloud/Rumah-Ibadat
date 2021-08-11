@@ -57,7 +57,7 @@
                                   </td>
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}]</td>
 
                                   {{-- NAMA RUMAH PEMOHON --}}
                                   <td>{{ $data->user->name}}</td>

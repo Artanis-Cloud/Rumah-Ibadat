@@ -391,6 +391,39 @@ class YbController extends Controller
         return view('ybs.permohonan.pilih');
     }
 
+    public function print_permohonan(Request $request)
+    {
+        // dd($request->all());
+        $permohonan = Permohonan::findorfail($request->permohonan_id);
+
+        $exco = null;
+        if ($permohonan->exco_id != null) {
+            $exco = User::findorfail($permohonan->exco_id);
+        }
+
+        $yb = null;
+        if ($permohonan->yb_id != null) {
+            $yb = User::findorfail($permohonan->yb_id);
+        }
+
+        $upen = null;
+        if ($permohonan->upen_id != null) {
+            $upen = User::findorfail($permohonan->upen_id);
+        }
+
+        $review_to_applicant_id = null;
+        if ($permohonan->review_to_applicant_id != null) {
+            $review_to_applicant_id = User::findorfail($permohonan->review_to_applicant_id);
+        }
+
+        $not_approved_id = null;
+        if ($permohonan->not_approved_id != null) {
+            $not_approved_id = User::findorfail($permohonan->not_approved_id);
+        }
+
+        return view('ybs.permohonan.print', compact('permohonan', 'exco', 'yb', 'upen', 'review_to_applicant_id', 'not_approved_id'));
+    }
+
     public function permohonan_baru()
     {
 

@@ -166,6 +166,9 @@ Route::middleware([Yb::class])->group(function () {
     //PERMOHONAN
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan', [App\Http\Controllers\YbController::class, 'permohonan'])->name('ybs.permohonan.pilih');
 
+    Route::get('/dashboard-pejabat-yb-pengerusi/cetak-permohonan', [App\Http\Controllers\YbController::class, 'print_permohonan'])->name('ybs.permohonan.print');
+
+
     //PERMOHONAN BARU
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-baru', [App\Http\Controllers\YbController::class, 'permohonan_baru'])->name('ybs.permohonan.baru');
 
