@@ -54,7 +54,7 @@
                                   </td> --}}
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}]</td>
                                   
                                   <td>RM {{ number_format($data->requested_amount , 2) }}</td>
 

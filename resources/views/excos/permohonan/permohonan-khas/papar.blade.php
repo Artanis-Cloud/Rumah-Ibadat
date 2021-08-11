@@ -125,22 +125,33 @@
 
                               <div class="row">
                                 <div class="col-md-2"></div>
-                                <div class="col-md-4" style="padding-top: 15px;">
-                                  <button type="button" class="btn waves-effect waves-light btn-danger btn-block" id="batal_button" data-toggle="modal" data-target="#confirmation_batal_permohonan">Tidak Mengesahkan</button>
-                                </div>
-                                <div class="col-md-4" style="padding-top: 15px;">
-                                  <button type="button" class="btn waves-effect waves-light btn-success btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_lulus_permohonan">Mengesahkan</button>
+                                <div class="col-md" style="padding-top: 15px;">
+                                  <form action="{{ route('excos.permohonan-khas.print') }}" target="_blank">
+                                    <input type="hidden" name="permohonan_khas_id" value="{{ $special_application->id }}" readonly>
+                                    <button type="submit" class="btn waves-effect waves-light btn-info btn-block"><i class="fas fa-print"></i> &nbsp&nbsp&nbsp Cetak Permohonan</button>
+                                  </form>
                                 </div>
                                 <div class="col-md-2"></div>
                               </div>
 
-                              <div class="row" style="padding-bottom: 25px; padding-top: 25px;">
+                              <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4" style="padding-top: 15px;">
+                                  <button type="button" class="btn waves-effect waves-light btn-danger btn-block" id="batal_button" data-toggle="modal" data-target="#confirmation_batal_permohonan">Tidak Lulus</button>
+                                </div>
+                                <div class="col-md-4" style="padding-top: 15px;">
+                                  <button type="button" class="btn waves-effect waves-light btn-success btn-block" id="sahkan_button" data-toggle="modal" data-target="#confirmation_lulus_permohonan">Mengesahkan Permohonan</button>
+                                </div>
+                                <div class="col-md-2"></div>
+                              </div>
+
+                              {{-- <div class="row" style="padding-bottom: 25px; padding-top: 25px;">
                                 <div class="col-md-3"></div>
                                 <div class="col-md">
                                   <a href="{{ URL::previous() }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
                                 </div>
                                 <div class="col-md-3"></div>
-                              </div>
+                              </div> --}}
 
                             </div>
                           </div>
@@ -166,9 +177,9 @@
 
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
                               <input type="hidden" name="permohonan_id" value="{{ $special_application->id }}">
-                              <button type="submit" class="btn btn-success">Mengesahkan</button>
+                              <button type="submit" class="btn btn-success">Mengesahkan Permohonan</button>
                             </div>
 
                             </form>
@@ -191,13 +202,13 @@
                             <form action="{{ route('excos.permohonan.khas.tidak-lulus') }}">
 
                             <div class="modal-body">
-                              Anda pasti tidak mengesahkan permohonan ini?
+                              Anda pasti tidak meluluskan permohonan ini?
 
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
                               <input type="hidden" name="permohonan_id" value="{{ $special_application->id }}">
-                              <button type="submit" class="btn btn-success">Tidak Mengesahkan</button>
+                              <button type="submit" class="btn btn-success">Permohonan Tidak Lulus</button>
                             </div>
 
                             </form>
