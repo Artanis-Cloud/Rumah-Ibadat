@@ -98,6 +98,8 @@ Route::middleware([Exco::class])->group(function () {
 
     Route::get('/dashboard-pejabat-exco/cetak-permohonan', [App\Http\Controllers\ExcoController::class, 'print_permohonan'])->name('excos.permohonan.print');
 
+    Route::get('/dashboard-pejabat-exco/cetak-permohonan-khas', [App\Http\Controllers\ExcoController::class, 'print_permohonan_khas'])->name('excos.permohonan-khas.print');
+
 
     // Permohonan
     Route::get('/dashboard-pejabat-exco/permohonan', [App\Http\Controllers\ExcoController::class, 'permohonan'])->name('excos.permohonan.pilih');
@@ -136,6 +138,9 @@ Route::middleware([Exco::class])->group(function () {
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan_tidak_lulus'])->name('excos.permohonan.tidak-lulus.papar');
 
     //PERMOHONAN KHAS
+    Route::get('/dashboard-pejabat-exco/permohonan/permohonan-khas/status-permohonan-keseluruhan', [App\Http\Controllers\ExcoController::class, 'permohonan_khas_status'])->name('excos.permohonan.khas.status-permohonan');
+
+
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-khas', [App\Http\Controllers\ExcoController::class, 'permohonan_khas'])->name('excos.permohonan.khas');
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-khas/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan_khas'])->name('excos.permohonan.khas.papar');

@@ -156,7 +156,7 @@
         </td>
     </tr>
     <!-- SUPPORT CALLOUT -->
-    <tr>
+    {{-- <tr>
         <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
             <table border="0" cellpadding="0" cellspacing="0" width="480" >
                 <!-- HEADLINE -->
@@ -168,7 +168,7 @@
                 </tr>
             </table>
         </td>
-    </tr>
+    </tr> --}}
     <!-- FOOTER -->
     <tr>
         <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
@@ -185,8 +185,8 @@
               <tr>
                 <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;" >
                   <p style="margin: 0;text-align: center;">Unit Perancang Ekonomi Negeri Selangor, Level 4, SSAAS Building, 40503 Shah Alam, Selangor Darul Ehsan.</p>
-                  <p style="margin: 0;text-align: center;">No. Tel: 603-*********</p>
-                  <p style="margin: 0;text-align: center;">No. Faks: 603-********</p>
+                  <p style="margin: 0;text-align: center;">No. Tel: 603-55447100</p>
+                  <p style="margin: 0;text-align: center;">No. Faks: 603-55101748</p>
                 </td>
               </tr>
             </table>

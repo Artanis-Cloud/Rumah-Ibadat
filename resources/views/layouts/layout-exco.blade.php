@@ -283,6 +283,11 @@
                             <ul aria-expanded="false" class="collapse first-level">
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Khas</span></a>
+                                
+                                <hr>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('excos.permohonan.khas.status-permohonan') }}" aria-expanded="false"><span class="hide-menu">Status Permohonan Keseluruhan</span></a>
+
 
                             </ul>
                         </li>

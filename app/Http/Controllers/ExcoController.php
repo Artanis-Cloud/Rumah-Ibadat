@@ -476,7 +476,34 @@ class ExcoController extends Controller
             $review_to_applicant_id = User::findorfail($permohonan->review_to_applicant_id);
         }
 
-        return view('excos.permohonan.print', compact('permohonan', 'exco', 'yb', 'upen', 'review_to_applicant_id'));
+        $not_approved_id = null;
+        if ($permohonan->not_approved_id != null) {
+            $not_approved_id = User::findorfail($permohonan->not_approved_id);
+        }
+        
+
+        return view('excos.permohonan.print', compact('permohonan', 'exco', 'yb', 'upen', 'review_to_applicant_id', 'not_approved_id'));
+    }
+
+    public function print_permohonan_khas(Request $request){
+        $permohonan = SpecialApplication::findorfail($request->permohonan_khas_id);
+
+        $exco = null;
+        if($permohonan->exco_id != null){
+            $exco = User::findorfail($permohonan->exco_id);
+        }
+
+        $yb = null;
+        if ($permohonan->yb_id != null) {
+            $yb = User::findorfail($permohonan->yb_id);
+        }
+
+        $not_approved_by = null;
+        if($permohonan->not_approved_id){
+            $not_approved_by = User::findorfail($permohonan->not_approved_id);
+        }
+        // dd($permohonan);
+        return view('excos.permohonan.permohonan-khas.print', compact('permohonan', 'exco', 'yb', 'not_approved_by'));
     }
 
     public function permohonan_baru()
@@ -976,6 +1003,51 @@ class ExcoController extends Controller
         }
 
         return view('excos.permohonan.papar-tidak-lulus', compact('permohonan','exco'));
+    }
+
+    public function permohonan_khas_status(){
+
+        if (auth()->user()->user_role->tokong == 1) {
+
+            $permohonan = SpecialApplication::where('category','TOKONG')->orderBy('created_at', 'asc')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+
+            $permohonan_kuil = SpecialApplication::where('category', 'KUIL')->orderBy('created_at', 'asc')->get();
+
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_kuil);
+            } else {
+                $permohonan = $permohonan_kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+
+            $permohonan_gurdwara = SpecialApplication::where('category', 'GURDWARA')->orderBy('created_at', 'asc')->get();
+
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_gurdwara);
+            } else {
+                $permohonan = $permohonan_gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+
+            $permohonan_gereja = SpecialApplication::where('category', 'GEREJA')->orderBy('created_at', 'asc')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_gereja);
+            } else {
+                $permohonan = $permohonan_gereja;
+            }
+        }
+
+        return view('excos.permohonan.permohonan-khas.status-permohonan', compact('permohonan'));
     }
 
     public function permohonan_khas(){
