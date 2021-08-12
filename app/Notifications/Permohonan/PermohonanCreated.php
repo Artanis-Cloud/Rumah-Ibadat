@@ -4,6 +4,7 @@ namespace App\Notifications\Permohonan;
 
 use App\Models\User;
 use App\Mail\Permohonan\PermohonanCreatedEmail;
+use App\Mail\Permohonan\PermohonanBaruExco;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -43,7 +44,32 @@ class PermohonanCreated extends Notification
      */
     public function toMail($permohonan)
     {
-        return Mail::send(new PermohonanCreatedEmail($permohonan));
+        $data = $permohonan;
+        Mail::send(new PermohonanCreatedEmail($permohonan));
+
+        if($permohonan->rumah_ibadat->category == "TOKONG"){
+            $user = User::whereHas('user_role', function ($q) {
+                $q->where('tokong', '1');
+            })->where('role', '1')->get();
+        }elseif($permohonan->rumah_ibadat->category == "KUIL"){
+            $user = User::whereHas('user_role', function ($q) {
+                $q->where('kuil', '1');
+            })->where('role', '1')->get();
+        } elseif ($permohonan->rumah_ibadat->category == "GURDWARA") {
+            $user = User::whereHas('user_role', function ($q) {
+                $q->where('gurdwara', '1');
+            })->where('role', '1')->get();
+        } elseif ($permohonan->rumah_ibadat->category == "GEREJA") {
+            $user = User::whereHas('user_role', function ($q) {
+                $q->where('gereja', '1');
+            })->where('role', '1')->get();
+        }
+
+
+        foreach($user as $exco){
+             Mail::send(new PermohonanBaruExco($permohonan, $exco));
+        }
+        
     }
 
     /**
