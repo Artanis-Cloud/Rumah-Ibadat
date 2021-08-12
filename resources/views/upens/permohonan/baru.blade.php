@@ -134,7 +134,7 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
-                                <th class="all">KATEGORI</th>
+                                {{-- <th class="all">KATEGORI</th> --}}
                                 <th class="all">BATCH</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
@@ -153,7 +153,7 @@
                                   <td>{{ $data->getPermohonanID() }}</td>
 
                                   {{-- KATEGORI--}}
-                                  <td>
+                                  {{-- <td>
                                     @if($data->rumah_ibadat->category == "TOKONG")
 
                                     <span class="badge badge-info" style="font-size: 13px;">Tokong</span>
@@ -171,22 +171,23 @@
                                     <span class="badge badge-info" style="font-size: 13px;">Gereja</span>
 
                                     @endif
-                                  </td>
+                                  </td> --}}
 
                                   {{-- BATCH --}}
                                   <td><span class="badge badge-primary" style="font-size: 13px;">Batch {{ $data->batch }} | {{ $data->rumah_ibadat->category }}</span></td>
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}]</td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->rumah_ibadat->name_association }}</td>
+
 
                                   {{-- TINDAKAN --}}
                                   <td>
                                     <div class="row">
                                       <div class="col-md">
-                                        <form action="{{ route('upens.permohonan.papar') }}" target="_blank">
+                                        <form action="{{ route('upens.permohonan.papar') }}">
                                           <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                           <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                         </form>

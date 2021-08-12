@@ -1,4 +1,4 @@
-@extends('layouts.layout-upen')
+@extends('layouts.layout-yb')
 
 @section('content')
 
@@ -22,19 +22,20 @@
                           <thead>
                               <tr>
                                 <th class="all">BIL</th>
-                                <th class="all">PERMOHONAN ID</th> 
-                                <th class="all">BATCH</th>
+                                <th class="all">PERMOHONAN ID</th>
+                                {{-- <th class="all">BATCH</th> --}}
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                <th class="all">TARIKH PERMOHONAN DILULUSKAN</th>
-                                <th class="all">NAMA RUMAH IBADAT</th>
-                                <th class="all">NAMA PEMOHON</th>
+                                <th class="all">PEJABAT EXCO</th>
+                                <th class="all">PEJABAT YB PENGERUSI</th>
+                                <th class="all">PEJABAT UPEN</th>
+                                <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
 
                           <tbody>
 
-                            @foreach( $approved_application as $data)
+                            @foreach( $permohonan as $data)
                               <tr>
                                   {{-- BIL --}}
                                   <td></td>
@@ -42,40 +43,100 @@
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
 
-                                  {{-- BATCH --}}
-                                  <td><span class="badge badge-primary" style="font-size: 13px;">Batch {{ $data->batch }} <br> [{{ $data->rumah_ibadat->category }}]</span></td>
+                                  {{-- <td>
+                                    @if($data->yb_id != null)
+                                    Batch {{ $data->batch }} - {{ $data->rumah_ibadat->category }}
+                                    @else 
+                                    -
+                                    @endif
+                                  </td> --}}
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}]</td>
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
 
-                                  {{-- WAKTU PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->upen_date_time)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->upen_date_time)->format('g:i a') }}]</td>
-
-                                  {{-- NAMA RUMAH IBADAT --}}
-                                  <td>{{ $data->rumah_ibadat->name_association }}</td>
-
-                                  {{-- NAMA RUMAH PEMOHON --}}
-                                  <td>{{ $data->user->name}}</td>
-
-                                  {{-- TINDAKAN --}}
                                   <td>
-                                    
+                                    @if($data->exco_id != null)
+                                    <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
+                                    @else 
+                                    -
+                                    @endif
+                                  </td>
 
+                                  <td>
+                                    @if($data->yb_id != null)
+                                    <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
+                                    @else 
+                                    -
+                                    @endif
+                                  </td>
+
+                                  <td>
+                                    @if($data->upen_id != null)
+                                    <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
+                                    @else 
+                                    -
+                                    @endif
+                                  </td>
+
+                                  <td>
+                                    @if($data->status == 0)
+                                    <span class="badge badge-warning" style="font-size: 13px;">Semak Semula</span>
+                                    @elseIf($data->status == 1)
+                                    <span class="badge badge-info" style="font-size: 13px;">Sedang Diproses</span>
+                                    @elseIf($data->status == 2)
+                                    <span class="badge badge-success" style="font-size: 13px;">Lulus</span>
+                                    @elseIf($data->status == 3)
+                                    <span class="badge badge-danger" style="font-size: 13px;">Tidak Lulus</span>
+                                    @elseIf($data->status == 4)
+                                    <span class="badge badge-danger" style="font-size: 13px;">Batal</span>
+                                    @endif
+                                  </td>
+
+                                  <td>
                                     <div class="row">
                                       <div class="col-md" style="padding: 5px;">
-                                        <form action="{{ route('upens.permohonan.lulus.papar') }}" target="_blank">
+                                        @if ($data->status == 0)
+                                        <form action="{{ route('ybs.permohonan.semakan-semula.papar') }}" target="_blank">
                                           <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                           <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                         </form>
+                                        @elseif ($data->status == 1 && $data->exco_id != null && $data->yb_id == null)
+                                        <form action="{{ route('ybs.permohonan.papar') }}">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @elseif ($data->status == 1 && (($data->exco_id == null && $data->yb_id == null) || ($data->exco_id != null && $data->yb_id != null)))
+                                        <form action="{{ route('ybs.permohonan.sedang-diproses.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @elseif ($data->status == 2)
+                                        <form action="{{ route('ybs.permohonan.lulus.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+
+                                        @elseif($data->status == 3 || $data->status == 4)
+                                        <form action="{{ route('ybs.permohonan.tidak-lulus.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                        @else 
+                                        -
+                                        @endif
                                       </div>
                                       <div class="col-md" style="padding: 5px;">
-                                        <form action="{{ route('upens.permohonan.print') }}" target="_blank">
+                                        <form action="{{ route('ybs.permohonan.print') }}" target="_blank">
                                           <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                           <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
                                         </form>
                                       </div>
                                     </div>
+                                    
+                                    
+                                    
                                   </td>
+
                               </tr>
                             @endforeach
 
@@ -115,13 +176,13 @@ var t = $(tablelaporan).DataTable({
           extend: 'pdfHtml5',
           orientation: 'landscape',
           pageSize: 'A4',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Status Permohonan Keseluruhan',
       },
       {
           extend: 'print',
           text: 'Cetak',
           pageSize: 'LEGAL',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Status Permohonan Keseluruhan',
           customize: function(win)
           {
 

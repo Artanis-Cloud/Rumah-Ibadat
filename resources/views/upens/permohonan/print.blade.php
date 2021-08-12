@@ -289,7 +289,7 @@
                                     </tr>
                                     @endif
 
-                                    @if($permohonan->review_to_applicant_id != null)
+                                    @if($permohonan->review_to_applicant_id != null && $permohonan->status == 0)
                                     <tr class="bg-light">
                                         <td colspan="2"><b>Semakan Semula</b></td>
                                     </tr>
@@ -303,6 +303,24 @@
                                     </tr>
                                     <tr>
                                         <td>Waktu Status Semakan Semula</td>
+                                        <td>{{ Carbon\Carbon::parse($permohonan->updated_at)->format('g:i a') }}</td>
+                                    </tr>
+                                    @endif
+
+                                    @if($permohonan->not_approved_id != null && $permohonan->status == 3)
+                                    <tr class="bg-light">
+                                        <td colspan="2"><b>Tidak Lulus</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="390">Status disahkan oleh</td>
+                                        <td>{{ $not_approved_id->name }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tarikh Status Tidak Lulus</td>
+                                        <td>{{ Carbon\Carbon::parse($permohonan->updated_at)->format('d-m-Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Waktu Status Tidak Lulus</td>
                                         <td>{{ Carbon\Carbon::parse($permohonan->updated_at)->format('g:i a') }}</td>
                                     </tr>
                                     @endif

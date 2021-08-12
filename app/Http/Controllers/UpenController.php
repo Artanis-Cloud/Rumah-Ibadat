@@ -151,7 +151,33 @@ class UpenController extends Controller
             $review_to_applicant_id = User::findorfail($permohonan->review_to_applicant_id);
         }
 
-        return view('upens.permohonan.print', compact('permohonan', 'exco','yb', 'upen', 'review_to_applicant_id'));
+        $not_approved_id = null;
+        if ($permohonan->not_approved_id != null) {
+            $not_approved_id = User::findorfail($permohonan->not_approved_id);
+        }
+
+        return view('upens.permohonan.print', compact('permohonan', 'exco','yb', 'upen', 'review_to_applicant_id', 'not_approved_id'));
+    }
+
+    public function print_permohonan_khas(Request $request)
+    {
+        $permohonan = SpecialApplication::findorfail($request->permohonan_khas_id);
+
+        $exco = null;
+        if ($permohonan->exco_id != null) {
+            $exco = User::findorfail($permohonan->exco_id);
+        }
+
+        $yb = null;
+        if ($permohonan->yb_id != null) {
+            $yb = User::findorfail($permohonan->yb_id);
+        }
+
+        $not_approved_by = null;
+        if ($permohonan->not_approved_id) {
+            $not_approved_by = User::findorfail($permohonan->not_approved_id);
+        }
+        return view('upens.permohonan.permohonan-khas.print', compact('permohonan', 'exco', 'yb', 'not_approved_by'));
     }
 
     public function permohonan()
@@ -190,7 +216,29 @@ class UpenController extends Controller
 
         $yb_approved_fund = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = '$category' AND p.yb_id IS NOT NULL"));
 
-        return view('upens.permohonan.papar', compact('current_fund','yb_approved_fund', 'permohonan', 'exco','yb'));
+        //=============== SEJARAH PERMOHONAN =============================
+
+        $nama_rumah_ibadat = $permohonan->rumah_ibadat->name_association;
+
+        $nombor_bank_akaun = $permohonan->rumah_ibadat->bank_account;
+
+        // $nombor_bank_akaun = "8009898040"; //testing for dummy sejarah permohonan
+
+        $nombor_pendaftaran = null;
+
+        if ($permohonan->rumah_ibadat->registration_type == "SENDIRI") {
+            $nombor_pendaftaran = $permohonan->rumah_ibadat->registration_number;
+        } else {
+            $nombor_pendaftaran = explode("%", $permohonan->rumah_ibadat->registration_number, 2)[1];
+        }
+
+        $sejarah_permohonan = DB::select(DB::raw("SELECT * FROM `history_applications` WHERE rumah_ibadat LIKE '$nama_rumah_ibadat' OR no_pendaftaran LIKE '$nombor_pendaftaran' OR no_akaun LIKE '$nombor_bank_akaun'"));
+
+        $history_application_system = Permohonan::where('rumah_ibadat_id', $permohonan->rumah_ibadat->id)->where('status', '2')->get();
+
+        //=============== SEJARAH PERMOHONAN =============================
+
+        return view('upens.permohonan.papar', compact('current_fund','yb_approved_fund', 'permohonan', 'exco','yb', 'sejarah_permohonan', 'history_application_system'));
     }
 
     public function permohonan_kemaskini_peruntukan(Request $request){
@@ -540,6 +588,14 @@ class UpenController extends Controller
         }
 
         return view('upens.permohonan.papar-tidak-lulus', compact('permohonan', 'exco'));
+    }
+
+    public function permohonan_khas_status()
+    {
+
+        $permohonan = SpecialApplication::orderBy('created_at', 'asc')->get();
+
+        return view('upens.permohonan.permohonan-khas.status-permohonan', compact('permohonan'));
     }
 
     public function permohonan_khas()

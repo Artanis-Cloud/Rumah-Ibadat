@@ -391,6 +391,54 @@ class YbController extends Controller
         return view('ybs.permohonan.pilih');
     }
 
+    public function permohonan_status()
+    {
+
+        if (auth()->user()->user_role->tokong == 1) {
+            $permohonan = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'TOKONG');
+            })->orderBy('created_at', 'asc')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+            $permohonan_kuil = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'KUIL');
+            })->orderBy('created_at', 'asc')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_kuil);
+            } else {
+                $permohonan = $permohonan_kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+            $permohonan_gurdwara = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GURDWARA');
+            })->orderBy('created_at', 'asc')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_gurdwara);
+            } else {
+                $permohonan = $permohonan_gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+            $permohonan_gereja = Permohonan::whereHas('rumah_ibadat', function ($q) {
+                $q->where('category', 'GEREJA');
+            })->orderBy('created_at', 'asc')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_gereja);
+            } else {
+                $permohonan = $permohonan_gereja;
+            }
+        }
+
+        return view('ybs.permohonan.status-permohonan', compact('permohonan'));
+    }
+
     public function print_permohonan(Request $request)
     {
         // dd($request->all());
@@ -422,6 +470,28 @@ class YbController extends Controller
         }
 
         return view('ybs.permohonan.print', compact('permohonan', 'exco', 'yb', 'upen', 'review_to_applicant_id', 'not_approved_id'));
+    }
+
+    public function print_permohonan_khas(Request $request)
+    {
+        $permohonan = SpecialApplication::findorfail($request->permohonan_khas_id);
+
+        $exco = null;
+        if ($permohonan->exco_id != null) {
+            $exco = User::findorfail($permohonan->exco_id);
+        }
+
+        $yb = null;
+        if ($permohonan->yb_id != null) {
+            $yb = User::findorfail($permohonan->yb_id);
+        }
+
+        $not_approved_by = null;
+        if ($permohonan->not_approved_id) {
+            $not_approved_by = User::findorfail($permohonan->not_approved_id);
+        }
+        // dd($permohonan);
+        return view('ybs.permohonan.permohonan-khas.print', compact('permohonan', 'exco', 'yb', 'not_approved_by'));
     }
 
     public function permohonan_baru()
@@ -485,7 +555,29 @@ class YbController extends Controller
 
         $yb_approved_fund = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = '$category' AND p.yb_id IS NOT NULL"));
 
-        return view('ybs.permohonan.papar', compact('current_fund', 'yb_approved_fund', 'permohonan', 'exco'));
+        //=============== SEJARAH PERMOHONAN =============================
+
+        $nama_rumah_ibadat = $permohonan->rumah_ibadat->name_association;
+
+        $nombor_bank_akaun = $permohonan->rumah_ibadat->bank_account;
+
+        // $nombor_bank_akaun = "8009898040"; //testing for dummy sejarah permohonan
+
+        $nombor_pendaftaran = null;
+
+        if ($permohonan->rumah_ibadat->registration_type == "SENDIRI") {
+            $nombor_pendaftaran = $permohonan->rumah_ibadat->registration_number;
+        } else {
+            $nombor_pendaftaran = explode("%", $permohonan->rumah_ibadat->registration_number, 2)[1];
+        }
+
+        $sejarah_permohonan = DB::select(DB::raw("SELECT * FROM `history_applications` WHERE rumah_ibadat LIKE '$nama_rumah_ibadat' OR no_pendaftaran LIKE '$nombor_pendaftaran' OR no_akaun LIKE '$nombor_bank_akaun'"));
+
+        $history_application_system = Permohonan::where('rumah_ibadat_id', $permohonan->rumah_ibadat->id)->where('status', '2')->get();
+
+        //=============== SEJARAH PERMOHONAN =============================
+
+        return view('ybs.permohonan.papar', compact('current_fund', 'yb_approved_fund', 'permohonan', 'exco', 'sejarah_permohonan', 'history_application_system'));
     }
 
     public function permohonan_semak_semula(Request $request)
@@ -868,9 +960,17 @@ class YbController extends Controller
     {
         $permohonan = Permohonan::findOrFail($request->permohonan_id);
 
-        $exco = User::findorfail($permohonan->exco_id);
+        $exco = null;
 
-        $yb = User::findorfail($permohonan->yb_id);
+        if($permohonan->exco_id != null){
+            $exco = User::findorfail($permohonan->exco_id);
+        }
+        
+        $yb = null;     
+
+        if($permohonan->yb_id != null){
+            $yb = User::findorfail($permohonan->yb_id);
+        }
 
         return view('ybs.permohonan.papar-sedang-diproses', compact('permohonan', 'exco', 'yb'));
     }
@@ -1077,6 +1177,52 @@ class YbController extends Controller
         }
 
         return view('ybs.permohonan.papar-tidak-lulus', compact('permohonan', 'exco'));
+    }
+
+    public function permohonan_khas_status()
+    {
+
+        if (auth()->user()->user_role->tokong == 1) {
+
+            $permohonan = SpecialApplication::where('category', 'TOKONG')->orderBy('created_at', 'asc')->get();
+        }
+
+        if (auth()->user()->user_role->kuil == 1) {
+
+            $permohonan_kuil = SpecialApplication::where('category', 'KUIL')->orderBy('created_at', 'asc')->get();
+
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_kuil);
+            } else {
+                $permohonan = $permohonan_kuil;
+            }
+        }
+
+        if (auth()->user()->user_role->gurdwara == 1) {
+
+            $permohonan_gurdwara = SpecialApplication::where('category', 'GURDWARA')->orderBy('created_at', 'asc')->get();
+
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_gurdwara);
+            } else {
+                $permohonan = $permohonan_gurdwara;
+            }
+        }
+
+        if (auth()->user()->user_role->gereja == 1) {
+
+            $permohonan_gereja = SpecialApplication::where('category', 'GEREJA')->orderBy('created_at', 'asc')->get();
+
+            if (isset($permohonan)) {
+                $permohonan = $permohonan->merge($permohonan_gereja);
+            } else {
+                $permohonan = $permohonan_gereja;
+            }
+        }
+
+        return view('ybs.permohonan.permohonan-khas.status-permohonan', compact('permohonan'));
     }
 
     public function permohonan_khas()

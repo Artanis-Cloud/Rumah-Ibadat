@@ -964,46 +964,49 @@
                         <table class="table table-bordered">
                           <thead style="text-align: center;">
                             <tr>
-                              <th scope="col">BIL</th>
+                              {{-- <th scope="col">BIL</th> --}}
+                              <th scope="col">PERMOHONAN MELALUI SISTEM</th>
                               <th scope="col">TAHUN</th>
                               <th scope="col">NAMA RUMAH IBADAT</th>
-                              <th scope="col">TUJUAN</th>
-                              <th scope="col">JUMLAH KELULUSAN (RM)</th>
+                              <th scope="col">JUMLAH KELULUSAN</th>
                             </tr>
                           </thead>
                           <tbody style="text-align: center;">
 
+                            @foreach (  $sejarah_permohonan as $key => $data)
+                            
                             <tr>
-                              <th scope="row">1</th>
-                              <td>2020</td>
-                              <td>Persatuan A</td>
-                              <td>Aktiviti Keagamaan</td>
-                              <td>5,000.00</td>
+                              <td><i class="far fa-times-circle" style="color: red;"></i></td>
+                              <td>{{ $data->tahun }}</td>
+                              <td>{{ $data->rumah_ibadat }}</td>
+                              <td>RM {{ $data->jumlah_kelulusan }}</td>
+
                             </tr>
+                                
+                            @endforeach
+
+                            @foreach (  $history_application_system as $key => $data)
+                            
+                            <tr>
+                              <td><i class="far fa-check-circle" style="color: green;"></i></td>
+                              <td>{{ Carbon\Carbon::parse($data->created_at)->format('Y') }}</td>
+                              <td>{{ $data->rumah_ibadat->name_association }}</td>
+                              <td>RM {{ number_format( $data->total_fund, 2) }}</td>
+                            </tr>
+                                
+                            @endforeach
+
+                            @if($history_application_system->isEmpty() && $sejarah_permohonan == null)
 
                             <tr>
-                              <th scope="row">2</th>
-                              <td>2019</td>
-                              <td>Persatuan A</td>
-                              <td>Baik Pulih dan Aktivi Keagamaan</td>
-                              <td>25,000.00</td>
+                              <td colspan="4" class="text-center">
+                                <img src="https://image.flaticon.com/icons/png/128/1376/1376786.png" alt="" width="100px">
+                                <br>
+                                <b>Maaf, rumah ibadat ini tiada sejarah permohonan</b>
+                              </td>
                             </tr>
 
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>2018</td>
-                              <td>Persatuan A</td>
-                              <td>Aktiviti Keagamaan</td>
-                              <td>3,500.00</td>
-                            </tr>
-
-                            <tr>
-                              <th scope="row">4</th>
-                              <td>2017</td>
-                              <td>Persatuan A</td>
-                              <td>Aktiviti Keagamaan</td>
-                              <td>2,000.00</td>
-                            </tr>
+                            @endif 
                             
                           </tbody>
                         </table>
