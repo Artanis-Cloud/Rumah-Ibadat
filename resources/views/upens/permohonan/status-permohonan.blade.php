@@ -23,7 +23,7 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
-                                <th class="all">BATCH</th>
+                                <th class="all">BATCH / KATEGORI</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                 <th class="all">PEJABAT EXCO</th>
                                 <th class="all">PEJABAT YB PENGERUSI</th>
@@ -47,7 +47,7 @@
                                     @if($data->yb_id != null)
                                     Batch {{ $data->batch }} - {{ $data->rumah_ibadat->category }}
                                     @else 
-                                    -
+                                    
                                     @endif
                                   </td>
 
@@ -147,13 +147,13 @@ var t = $(tablelaporan).DataTable({
           extend: 'pdfHtml5',
           orientation: 'landscape',
           pageSize: 'A4',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Status Permohonan Keseluruhan',
       },
       {
           extend: 'print',
           text: 'Cetak',
           pageSize: 'LEGAL',
-          title: 'Senarai Permohonan Baru Diterima',
+          title: 'Status Permohonan Keseluruhan',
           customize: function(win)
           {
 

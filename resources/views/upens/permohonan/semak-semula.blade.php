@@ -23,10 +23,11 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
+                                <th class="all">BATCH</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                 <th class="all">TARIKH STATUS SEMAKAN SEMULA</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
-                                {{-- <th class="all">NAMA PEMOHON</th> --}}
+                                <th class="all">NAMA PEMOHON</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
@@ -41,25 +42,40 @@
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
 
+                                  {{-- BATCH --}}
+                                  <td><span class="badge badge-primary" style="font-size: 13px;">Batch {{ $data->batch }} <br> [{{ $data->rumah_ibadat->category }}]</span></td>
+
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}]</td>
 
                                   {{-- WAKTU PERMOHONAN DIBUAT--}}
-                                  <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-Y') }}</td>
+                                  <td>{{ Carbon\Carbon::parse($data->updated_at)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->updated_at)->format('g:i a') }}]</td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->rumah_ibadat->name_association }}</td>
 
                                   {{-- NAMA RUMAH PEMOHON --}}
-                                  {{-- <td>{{ $data->user->name}}</td> --}}
+                                  <td>{{ $data->user->name}}</td>
 
                                   {{-- TINDAKAN --}}
-                                  <td>
-                                    <form action="{{ route('upens.permohonan.semakan-semula.papar') }}">
-                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
-                                    </form>
-                                  </td>
+                                  <td> 
+                                    
+
+                                    <div class="row">
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('upens.permohonan.semakan-semula.papar') }}" target="_blank" >
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                      </div>
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('upens.permohonan.print') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </td> 
                               </tr>
                             @endforeach
 

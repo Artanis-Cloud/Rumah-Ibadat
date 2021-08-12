@@ -444,6 +444,9 @@
     <script src="{{asset('nice-admin/icon/js/solid.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/fontawesome.js')}}"></script>
 
+    {{-- print --}}
+    <script src="{{asset('nice-admin/dist/js/pages/samplepages/jquery.PrintArea.js')}}"></script>
+
     {{-- toaster --}}
     <script src="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.js')}}"></script>
     <script src="{{asset('nice-admin/assets/extra-libs/toastr/toastr-init.js')}}"></script>

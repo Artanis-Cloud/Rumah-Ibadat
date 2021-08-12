@@ -269,7 +269,9 @@
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.tidak-lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
 
-                                {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Permohonan Khas</span></a> --}}
+                                    <hr>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.status-permohonan') }}" aria-expanded="false"><span class="hide-menu">Status Permohonan Keseluruhan</span></a>
                                 
                             </ul>
                         </li>
@@ -279,6 +281,9 @@
                                 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Khas</span></a>
 
+                                <hr>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.khas.status-permohonan') }}" aria-expanded="false"><span class="hide-menu">Status Permohonan Keseluruhan</span></a>
                             </ul>
                         </li>
 
@@ -433,6 +438,9 @@
     <script src="{{asset('nice-admin/icon/js/brands.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/solid.js')}}"></script>
     <script src="{{asset('nice-admin/icon/js/fontawesome.js')}}"></script>
+
+    {{-- print --}}
+    <script src="{{asset('nice-admin/dist/js/pages/samplepages/jquery.PrintArea.js')}}"></script>
 
     {{-- toaster --}}
     <script src="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.js')}}"></script>

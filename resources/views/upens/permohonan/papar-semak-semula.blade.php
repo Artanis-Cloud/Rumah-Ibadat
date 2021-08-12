@@ -1009,12 +1009,20 @@
               <div class="col-md-2"></div>
             </div>
 
+
+
             <div class="row" style="padding-bottom: 25px; padding-top: 25px;">
-              <div class="col-md-4"></div>
+              <div class="col-md-2"></div>
               <div class="col-md">
-                <a href="{{ route('upens.permohonan.semak-semula') }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
+                <form action="{{ route('upens.permohonan.print') }}" target="_blank">
+                <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}" readonly>
+                <button type="submit" class="btn waves-effect waves-light btn-info btn-block"><i class="fas fa-print"></i> &nbsp&nbsp Cetak Permohonan</button>
+                </form>
               </div>
-              <div class="col-md-4"></div>
+              <div class="col-md">
+                <a href="{{ url()->previous() }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
+              </div>
+              <div class="col-md-2"></div>
             </div>
 
           </div>

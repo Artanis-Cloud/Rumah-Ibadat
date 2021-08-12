@@ -955,6 +955,7 @@
 
                         <h3 style="text-align: center; padding-bottom: 15px;">Bahagian Ulasan</h3>
 
+                        @if($permohonan->exco_id != null)
                         <div class="row">
                           <div class="col-md-1"></div>
                           <div class="col-md">
@@ -997,7 +998,9 @@
                           </div>
                           <div class="col-md-1"></div>
                         </div>
+                        @endif
 
+                        @if($permohonan->yb_id != null)
                         <hr>
 
                         <div class="row">
@@ -1119,6 +1122,7 @@
                             </div>
                           </div>
                         </div>
+                        @endif
 
 
 

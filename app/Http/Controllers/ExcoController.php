@@ -557,6 +557,8 @@ class ExcoController extends Controller
     {
         $permohonan = Permohonan::findOrFail($request->permohonan_id);
 
+        //=============== SEJARAH PERMOHONAN =============================
+
         $nama_rumah_ibadat = $permohonan->rumah_ibadat->name_association;
 
         $nombor_bank_akaun = $permohonan->rumah_ibadat->bank_account;
@@ -575,7 +577,7 @@ class ExcoController extends Controller
 
         $history_application_system = Permohonan::where('rumah_ibadat_id', $permohonan->rumah_ibadat->id)->where('status','2')->get();
 
-        // dd($sejarah_permohonan == null);
+        //=============== SEJARAH PERMOHONAN =============================
 
         return view('excos.permohonan.papar', compact('permohonan', 'sejarah_permohonan', 'history_application_system'));
     }
@@ -806,7 +808,13 @@ class ExcoController extends Controller
 
         $exco = User::findorfail($permohonan->exco_id);
 
-        return view('excos.permohonan.papar-sedang-diproses', compact('permohonan', 'exco'));
+        $yb = null; 
+
+        if($permohonan->yb_id != null){
+            $yb = User::findorfail($permohonan->yb_id);
+        }
+
+        return view('excos.permohonan.papar-sedang-diproses', compact('permohonan', 'exco', 'yb'));
     }
 
     public function permohonan_semakan_semula()

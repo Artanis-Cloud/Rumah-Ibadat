@@ -259,6 +259,10 @@
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan-khas.senarai') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Khas</span></a>
 
+                                <hr>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan.khas.status-permohonan') }}" aria-expanded="false"><span class="hide-menu">Status Permohonan Keseluruhan</span></a>
+
                             </ul>
                         </li>
 

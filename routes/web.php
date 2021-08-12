@@ -163,10 +163,16 @@ Route::middleware([Exco::class])->group(function () {
 Route::middleware([Yb::class])->group(function () {
     Route::get('/dashboard-pejabat-yb-pengerusi', [App\Http\Controllers\YbController::class, 'dashboard'])->name('ybs.dashboard');
 
+    Route::get('/dashboard-pejabat-yb-pengerusi/cetak-permohonan', [App\Http\Controllers\YbController::class, 'print_permohonan'])->name('ybs.permohonan.print');
+
+    Route::get('/dashboard-pejabat-yb-pengerusi/cetak-permohonan-khas', [App\Http\Controllers\YbController::class, 'print_permohonan_khas'])->name('ybs.permohonan-khas.print');
+
+
     //PERMOHONAN
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan', [App\Http\Controllers\YbController::class, 'permohonan'])->name('ybs.permohonan.pilih');
 
-    Route::get('/dashboard-pejabat-yb-pengerusi/cetak-permohonan', [App\Http\Controllers\YbController::class, 'print_permohonan'])->name('ybs.permohonan.print');
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/status-permohonan-keseluruhan', [App\Http\Controllers\YbController   ::class, 'permohonan_status'])->name('ybs.permohonan.status-permohonan');
+
 
 
     //PERMOHONAN BARU
@@ -202,6 +208,10 @@ Route::middleware([Yb::class])->group(function () {
 
 
     //PERMOHONAN KHAS
+    Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-khas/status-permohonan-keseluruhan', [App\Http\Controllers\YbController::class, 'permohonan_khas_status'])->name('ybs.permohonan.khas.status-permohonan');
+
+
+
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-khas', [App\Http\Controllers\YbController::class, 'permohonan_khas'])->name('ybs.permohonan.khas');
 
     Route::get('/dashboard-pejabat-yb-pengerusi/permohonan/permohonan-khas/maklumat-permohonan', [App\Http\Controllers\YbController::class, 'papar_permohonan_khas'])->name('ybs.permohonan.khas.papar');
@@ -229,6 +239,8 @@ Route::middleware([Upen::class])->group(function () {
 
     //API
     Route::get('/dashboard-pejabat-upen/cetak-permohonan', [App\Http\Controllers\UpenController::class, 'print_permohonan'])->name('upens.permohonan.print');
+
+    Route::get('/dashboard-pejabat-upen/cetak-permohonan-khas', [App\Http\Controllers\UpenController::class, 'print_permohonan_khas'])->name('upens.permohonan-khas.print');
 
 
     //PERMOHONAN BARU
@@ -265,7 +277,12 @@ Route::middleware([Upen::class])->group(function () {
 
     Route::get('/dashboard-pejabat-upen/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_tidak_lulus'])->name('upens.permohonan.tidak-lulus.papar');
 
+
+
     //PERMOHONAN KHAS
+    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-khas/status-permohonan-keseluruhan', [App\Http\Controllers\UpenController::class, 'permohonan_khas_status'])->name('upens.permohonan.khas.status-permohonan');
+
+
     Route::get('/dashboard-pejabat-upen/permohonan/permohonan-khas', [App\Http\Controllers\UpenController::class, 'permohonan_khas'])->name('upens.permohonan-khas.baru');
 
     Route::post('/dashboard-pejabat-upen/permohonan/permohonan-khas/hantar', [App\Http\Controllers\UpenController::class, 'permohonan_khas_hantar'])->name('upens.permohonan-khas.hantar');

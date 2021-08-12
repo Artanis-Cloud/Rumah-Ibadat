@@ -998,6 +998,53 @@
                           <div class="col-md-1"></div>
                         </div>
 
+                        @if($permohonan->yb_id != null)
+                        <hr>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <label>Disokong oleh:</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('exco_name') is-invalid @else border-dark @enderror" id="yb_name" name="yb_name" type="text" value="{{ $yb->name }}" disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <label>Tarikh Disokong:</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('yb_date') is-invalid @else border-dark @enderror" id="yb_date" name="yb_date" type="text" value="{{ Carbon\Carbon::parse($permohonan->yb_date_time)->format('d-m-Y') }}" disabled>
+                            </div>
+                          </div>
+
+                          <div class="col-md">
+                            <label>Waktu Disokong:</label>
+                            <div class="mb-3 input-group">
+                              <input class="form-control text-uppercase @error('yb_time') is-invalid @else border-dark @enderror" id="yb_time" name="yb_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->yb_date_time)->format('g:i a') }}" disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="col-md">
+                            <div class="card text-white">
+                                <div class="card-header bg-dark">
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil Pejabat YB Pengerusi</h4></div>
+                                <div class="card-body border border-dark">
+                                    <textarea class="form-control text-uppercase  border-dark " id="review_yb" name="review_yb" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_yb }}</textarea>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-1"></div>
+                        </div>
+                        @endif
+
 
                       </div>
                     </div>

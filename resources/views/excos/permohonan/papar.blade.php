@@ -1008,21 +1008,7 @@
                               </td>
                             </tr>
 
-                            @endif
-
-                            {{-- <tr>
-                              <td><i class="far fa-check-circle" style="color: green;"></i></td>
-                              <td>1996</td>
-                              <td class="text-left">Persatuan abc</td>
-                              <td>RM 1000.00</td>
-                            </tr>
-
-                            <tr>
-                              <td><i class="far fa-times-circle" style="color: red;"></i></td>
-                              <td>1996</td>
-                              <td class="text-left">Persatuan def</td>
-                              <td>RM 354355.00</td>
-                            </tr> --}}
+                            @endif 
                             
                           </tbody>
                         </table>

@@ -23,8 +23,9 @@
                               <tr>
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
+                                <th class="all">BATCH / KATEGORI</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
-                                <th class="all">TARIKH PERMOHONAN TIDAK DILULUSKAN</th>
+                                <th class="all">TARIKH PERMOHONAN TIDAK DILULUSKAN / DIBATALKAN</th>
                                 <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
                                 <th class="all">NAMA PEMOHON</th>
@@ -41,6 +42,15 @@
 
                                   {{-- PERMOHONAN ID --}}
                                   <td>{{ $data->getPermohonanID() }}</td>
+
+                                  <td>
+                                    @if($data->yb_id != null)
+                                    <span class="badge badge-primary" style="font-size: 13px;">Batch {{ $data->batch }} <br> [{{ $data->rumah_ibadat->category }}]</span>
+                                    @else 
+                                    <span class="badge badge-primary" style="font-size: 13px;">{{ $data->rumah_ibadat->category }}</span>
+                                    @endif
+                                  </td>
+
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
                                   <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
@@ -65,10 +75,21 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('upens.permohonan.tidak-lulus.papar') }}">
-                                      <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
-                                    </form>
+
+                                    <div class="row">
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('upens.permohonan.tidak-lulus.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                      </div>
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('upens.permohonan.print') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
+                                        </form>
+                                      </div>
+                                    </div>
                                   </td>
                               </tr>
                             @endforeach

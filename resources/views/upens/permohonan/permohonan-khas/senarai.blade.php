@@ -67,10 +67,22 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="{{ route('upens.permohonan-khas.papar') }}">
-                                      <input type="hidden" name="permohonan_khas_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
-                                    </form>
+                                    
+
+                                    <div class="row">
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('upens.permohonan-khas.papar') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_khas_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
+                                        </form>
+                                      </div>
+                                      <div class="col-md" style="padding: 5px;">
+                                        <form action="{{ route('upens.permohonan-khas.print') }}" target="_blank">
+                                          <input type="hidden" name="permohonan_khas_id" value="{{ $data->id }}" readonly>
+                                          <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
+                                        </form>
+                                      </div>
+                                    </div>
                                   </td>
                               </tr>
                             @endforeach
