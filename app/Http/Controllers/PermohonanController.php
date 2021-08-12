@@ -37,19 +37,19 @@ class PermohonanController extends Controller
 
 
         //============================== 1 year 1 application checker ===========================================
-        $current_year = date('Y'); //get current date
+        // $current_year = date('Y'); //get current date
 
-        $rumah_ibadat = RumahIbadat::where('user_id', auth()->user()->id)->first();
+        // $rumah_ibadat = RumahIbadat::where('user_id', auth()->user()->id)->first();
 
-        $lulus_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->whereYear('created_at', date('Y'))->count();
+        // $lulus_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->whereYear('created_at', date('Y'))->count();
 
-        $sedang_diproses_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '1')->whereYear('created_at', date('Y'))->count();
+        // $sedang_diproses_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '1')->whereYear('created_at', date('Y'))->count();
 
-        $semak_semula_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '0')->whereYear('created_at', date('Y'))->count();
+        // $semak_semula_checker = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '0')->whereYear('created_at', date('Y'))->count();
 
-        if ($lulus_checker > 0 || $sedang_diproses_checker > 0 || $semak_semula_checker > 0) {
-            return redirect()->back()->with('error', 'Maaf, anda telah membuat permohonan untuk tahun ini.');
-        }
+        // if ($lulus_checker > 0 || $sedang_diproses_checker > 0 || $semak_semula_checker > 0) {
+        //     return redirect()->back()->with('error', 'Maaf, anda telah membuat permohonan untuk tahun ini.');
+        // }
 
         //============================== 1 year 1 application checker ===========================================
 
@@ -335,8 +335,6 @@ class PermohonanController extends Controller
 
 
         $permohonan->notify(new PermohonanCreated()); // send email notification to pemohon 
-
-        $user = User::get();
 
         //======================================================= END OF SEND NOTIFICATION EMAIL =======================================================
 
