@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Notifications\Notifiable;
+
 
 
 class RumahIbadat extends Model implements Auditable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
     use \OwenIt\Auditing\Auditable;
 
 
