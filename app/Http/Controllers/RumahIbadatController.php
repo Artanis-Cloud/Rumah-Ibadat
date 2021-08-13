@@ -9,6 +9,11 @@ use App\Models\User;
 
 use App\Models\RumahIbadat;
 use App\Models\TukarRumahIbadat;
+
+//notification
+use App\Notifications\RumahIbadat\PendaftaranBaru;
+use App\Notifications\RumahIbadat\PermohonanTukarWakil;
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Input;
@@ -91,6 +96,8 @@ class RumahIbadatController extends Controller
 
         ]);
 
+        $permohonan->notify(new PermohonanTukarWakil());
+
         return redirect()->route('users.rumah-ibadat.pilih')->with('success', 'Permohonan Menukar Wakil Rumah Ibadat berjaya dihantar.');
     }
 
@@ -144,6 +151,8 @@ class RumahIbadatController extends Controller
         $user->is_firstime = "0";
         $user->is_rumah_ibadat = "1";
         $user->update();
+
+        $rumah_ibadat->notify(new PendaftaranBaru());
 
         // return redirect()->route('users.rumah-ibadat.kemaskini')->with('success', 'Rumah Ibadat berjaya didaftar.');
         return redirect()->route('user.halaman-utama')->with('success', 'Rumah Ibadat berjaya didaftar.');
