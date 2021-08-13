@@ -15,6 +15,7 @@ use App\Models\Tujuan;
 use App\Models\Lampiran;
 use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
+use App\Notifications\Permohonan\ExcoApproved;
 use PDF;
 use Carbon\Carbon;
 
@@ -737,6 +738,8 @@ class ExcoController extends Controller
                 $tujuan->save();
             }
         }
+
+        $permohonan->notify(new ExcoApproved()); // send email notification to yb 
 
         //redirect
         return redirect()->route('excos.permohonan.baru')->with('success', 'Status permohonan telah disahkan.');

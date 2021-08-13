@@ -88,7 +88,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="480" >
                 <tr>
                     <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                      <h1 style="font-size: 32px; font-weight: 400; margin: 0;">Permohonan Baru</h1>
+                      <h1 style="font-size: 32px; font-weight: 400; margin: 0;">Permohonan Lulus</h1>
                     </td>
                 </tr>
             </table>
@@ -109,13 +109,6 @@
                   <p><b>Nombor Rujukan:</b> {{ $permohonan->getPermohonanID() }}</p>
                 </td>
               </tr>
-              @if($permohonan->yb_id != null)
-              <tr>
-                <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p><b>Batch:</b> Batch {{ $permohonan->batch }} [{{ $rumah_ibadat->category  }}]</p>
-                </td>
-              </tr>
-              @endif
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
                   <p><b>Nama Rumah Ibadat:</b> {{ $rumah_ibadat->name_association  }}</p>
@@ -128,7 +121,22 @@
               </tr>
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p><b>Kad Pengenalan Pemohon:</b> {{ $user->ic_number }}</p>
+                  <p><b>Peruntukan Yang Diluluskan:</b> RM {{ number_format($permohonan->total_fund, 2) }}</p>
+                </td>  
+              </tr>
+              <tr>
+                <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                  <p><b>Jenis Pembayaran:</b> {{ $permohonan->payment_method == 1 ? "Check" : "EFT" }}</p>
+                </td>  
+              </tr>
+              <tr>
+                <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                  <p><b>Nama bank:</b> {{ $rumah_ibadat->bank_name }}</p>
+                </td>  
+              </tr>
+              <tr>
+                <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                  <p><b>Nombor Akaun:</b> {{ $rumah_ibadat->bank_account  }}</p>
                 </td>  
               </tr>
               <!-- BULLETPROOF BUTTON -->

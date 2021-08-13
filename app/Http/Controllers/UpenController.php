@@ -15,6 +15,7 @@ use App\Models\Pengumuman;
 use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
 use App\Models\TukarRumahIbadat;
+use App\Notifications\Permohonan\UpenApproved;
 use Illuminate\Http\Request;
 
 class UpenController extends Controller
@@ -532,10 +533,11 @@ class UpenController extends Controller
         }
 
         $peruntukan->save();
-        
+
+        $permohonan->notify(new UpenApproved()); // send email notification to upen 
 
         //redirect
-        return redirect()->route('upens.permohonan.baru')->with('success', 'Status permohonan telah diluluskan.');
+        return redirect()->route('upens.permohonan.baru')->with('success', 'Permohonan telah diluluskan.');
     }
 
     public function permohonan_semak_semula_list()

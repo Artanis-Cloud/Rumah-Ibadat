@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Pendaftaran\NewRegistration;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Mail\Pendaftaran\DaftarPenggunaEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -25,6 +27,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
 
     /**
      * Where to redirect users after registration.
@@ -85,9 +88,15 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
+
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
+
+        // dispatch(new DaftarPenggunaEmail($user)); // send email notification to user 
+
+        // $emailJob = (new NewRegistration($user))->delay(now()->addSeconds(5));
+        // dispatch($emailJob);
 
         return redirect($this->redirectPath())->with('success', 'Pendaftaran Berjaya! Sila log masuk.');
     }

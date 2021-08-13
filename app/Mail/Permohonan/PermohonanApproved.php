@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PermohonanCreatedEmail extends Mailable
+class PermohonanApproved extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -38,7 +38,7 @@ class PermohonanCreatedEmail extends Mailable
         $user = $this->user;
         return $this->to($this->user->email, $this->user->name)
             ->from(env('MAIL_FROM_ADDRESS'))
-            ->subject('Permohonan '. $this->permohonan->getPermohonanID())
-            ->view('email.permohonan-created', compact('permohonan', 'rumah_ibadat', 'user'));
+            ->subject('Permohonan Lulus ' . $this->permohonan->getPermohonanID())
+            ->view('email.permohonan-lulus', compact('permohonan', 'rumah_ibadat', 'user'));
     }
 }

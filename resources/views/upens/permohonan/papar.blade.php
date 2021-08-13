@@ -1448,7 +1448,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                       <input type="hidden" name="permohonan_id" value="{{ $permohonan->id }}">
-                      <button type="submit" class="btn btn-success">Permohonan Disokong</button>
+                      <button type="submit" class="btn btn-success">Permohonan Diluluskan</button>
                     </div>
 
                     </form>

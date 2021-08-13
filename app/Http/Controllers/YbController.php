@@ -17,6 +17,9 @@ use App\Models\SpecialApplication;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 
+use App\Notifications\Permohonan\YbApproved;
+
+
 class YbController extends Controller
 {
     public function dashboard()
@@ -889,6 +892,8 @@ class YbController extends Controller
 
 
         $permohonan->save();
+
+        $permohonan->notify(new YbApproved()); // send email notification to upen 
 
         //redirect
         return redirect()->route('ybs.permohonan.baru')->with('success', 'Status permohonan telah disokong.');
