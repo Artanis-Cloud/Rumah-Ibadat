@@ -3,7 +3,6 @@
 namespace App\Notifications\Permohonan;
 
 use App\Models\User;
-use App\Mail\Permohonan\PermohonanCreatedEmail;
 use App\Mail\Permohonan\PermohonanBaruExco;
 
 use Illuminate\Bus\Queueable;
@@ -13,7 +12,8 @@ use Illuminate\Notifications\Notification;
 
 use Illuminate\Support\Facades\Mail;
 
-class PermohonanCreated extends Notification
+
+class ExcoApproved extends Notification
 {
     use Queueable;
 
@@ -33,7 +33,7 @@ class PermohonanCreated extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($permohonan)
+    public function via($notifiable)
     {
         return ['mail'];
     }
@@ -46,32 +46,27 @@ class PermohonanCreated extends Notification
      */
     public function toMail($permohonan)
     {
-        $data = $permohonan;
-        Mail::send(new PermohonanCreatedEmail($permohonan));
-
-        if($permohonan->rumah_ibadat->category == "TOKONG"){
+        if ($permohonan->rumah_ibadat->category == "TOKONG") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('tokong', '1');
-            })->where('role', '1')->get();
-        }elseif($permohonan->rumah_ibadat->category == "KUIL"){
+            })->where('role', '2')->get();
+        } elseif ($permohonan->rumah_ibadat->category == "KUIL") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('kuil', '1');
-            })->where('role', '1')->get();
+            })->where('role', '2')->get();
         } elseif ($permohonan->rumah_ibadat->category == "GURDWARA") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('gurdwara', '1');
-            })->where('role', '1')->get();
+            })->where('role', '2')->get();
         } elseif ($permohonan->rumah_ibadat->category == "GEREJA") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('gereja', '1');
-            })->where('role', '1')->get();
+            })->where('role', '2')->get();
         }
 
-
-        foreach($user as $exco){
-             Mail::send(new PermohonanBaruExco($permohonan, $exco));
+        foreach ($user as $exco) {
+            Mail::send(new PermohonanBaruExco($permohonan, $exco));
         }
-        
     }
 
     /**
@@ -80,7 +75,7 @@ class PermohonanCreated extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($permohonan)
+    public function toArray($notifiable)
     {
         return [
             //
