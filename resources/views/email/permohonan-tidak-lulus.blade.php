@@ -88,7 +88,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="480" >
                 <tr>
                     <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                      <h1 style="font-size: 32px; font-weight: 400; margin: 0;">Permohonan Menukar Wakil Rumah Ibadat Baru</h1>
+                      <h1 style="font-size: 32px; font-weight: 400; margin: 0;">Permohonan Tidak Diluluskan</h1>
                     </td>
                 </tr>
             </table>
@@ -99,11 +99,11 @@
         <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
             <table border="0" cellpadding="0" cellspacing="0" width="480" >
               <!-- COPY -->
-              {{-- <tr>
+              <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p style="margin: 0; text-align: justify; text-justify: inter-word;">Permohonan Penukaran Wakil Rumah Ibadat telah diterima dan sedang diproses.</p>
+                  <p style="margin: 0; text-align: justify; text-justify: inter-word;">Harap Maaf. Permohonan anda tidak diluluskan. Sila buat permohonan semula.</p>
                 </td>
-              </tr> --}}
+              </tr>
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
                   <p><b>Nombor Rujukan:</b> {{ $permohonan->getPermohonanID() }}</p>
@@ -111,7 +111,7 @@
               </tr>
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p><b>Nama Rumah Ibadat Yang Dipohon:</b> {{ $rumah_ibadat->name_association  }}</p>
+                  <p><b>Nama Rumah Ibadat:</b> {{ $rumah_ibadat->name_association  }}</p>
                 </td>
               </tr>
               <tr>
@@ -121,8 +121,8 @@
               </tr>
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p><b>Kad Pengenalan Pemohon:</b> {{ $user->ic_number }}</p>
-                </td>  
+                  <p><b>Status Permohonan:</b> Tidak Lulus</p>
+                </td>
               </tr>
               <!-- BULLETPROOF BUTTON -->
               <tr>

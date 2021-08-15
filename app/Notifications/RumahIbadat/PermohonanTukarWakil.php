@@ -3,6 +3,9 @@
 namespace App\Notifications\RumahIbadat;
 
 use App\Mail\RumahIbadat\PermohonanTukarWakilUserMail;
+use App\Mail\RumahIbadat\PermohonanTukarWakilUpenMail;
+
+use App\Models\User;
 
 use Illuminate\Support\Facades\Mail;
 
@@ -44,7 +47,15 @@ class PermohonanTukarWakil extends Notification
      */
     public function toMail($permohonan)
     {
-        Mail::send(new PermohonanTukarWakilUserMail($permohonan));
+        //sent mail to user
+        Mail::send(new PermohonanTukarWakilUserMail($permohonan)); 
+
+        //sent mail to all UPEN user
+        $user = User::where('role', '3')->get();
+
+        foreach($user as $upen){
+            Mail::send(new PermohonanTukarWakilUpenMail($permohonan, $upen)); 
+        }
     }
 
     /**

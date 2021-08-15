@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Announcement;
 use DB;
 
+use App\Notifications\Permohonan\NotApproved;
+
 use App\Models\Batch;
 use App\Models\User;
 use App\Models\RumahIbadat;
@@ -486,6 +488,8 @@ class UpenController extends Controller
         $permohonan->not_approved_id = auth()->user()->id;
         $permohonan->status = 3;
         $permohonan->save();
+
+        $permohonan->notify(new NotApproved());
 
         return redirect()->route('upens.permohonan.baru')->with('success', 'Permohonan telah tidak diluluskan.');
     }

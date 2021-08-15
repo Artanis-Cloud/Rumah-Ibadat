@@ -2,9 +2,10 @@
 
 namespace App\Notifications\Permohonan;
 
+use App\Mail\Permohonan\CancelApplicationMail;
+use App\Mail\Permohonan\CancelApplicationExcoMail;
+
 use App\Models\User;
-use App\Mail\Permohonan\PermohonanCreatedEmail;
-use App\Mail\Permohonan\PermohonanBaruExco;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,7 +14,7 @@ use Illuminate\Notifications\Notification;
 
 use Illuminate\Support\Facades\Mail;
 
-class PermohonanCreated extends Notification
+class CancelApplication extends Notification
 {
     use Queueable;
 
@@ -33,7 +34,7 @@ class PermohonanCreated extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($permohonan)
+    public function via($notifiable)
     {
         return ['mail'];
     }
@@ -46,13 +47,13 @@ class PermohonanCreated extends Notification
      */
     public function toMail($permohonan)
     {
-        Mail::send(new PermohonanCreatedEmail($permohonan));
+        Mail::send(new CancelApplicationMail($permohonan));
 
-        if($permohonan->rumah_ibadat->category == "TOKONG"){
+        if ($permohonan->rumah_ibadat->category == "TOKONG") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('tokong', '1');
             })->where('role', '1')->get();
-        }elseif($permohonan->rumah_ibadat->category == "KUIL"){
+        } elseif ($permohonan->rumah_ibadat->category == "KUIL") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('kuil', '1');
             })->where('role', '1')->get();
@@ -66,11 +67,9 @@ class PermohonanCreated extends Notification
             })->where('role', '1')->get();
         }
 
-
-        foreach($user as $exco){
-             Mail::send(new PermohonanBaruExco($permohonan, $exco));
+        foreach ($user as $exco) {
+            Mail::send(new CancelApplicationExcoMail($permohonan, $exco));
         }
-        
     }
 
     /**
@@ -79,7 +78,7 @@ class PermohonanCreated extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($permohonan)
+    public function toArray($notifiable)
     {
         return [
             //

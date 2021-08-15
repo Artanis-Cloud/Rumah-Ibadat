@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use DB;
 use Storage;
 
+use App\Notifications\Permohonan\NotApproved;
+
 use App\Models\User;
 use App\Models\UserRole;
 use App\Models\RumahIbadat;
@@ -908,6 +910,8 @@ class YbController extends Controller
         $permohonan->not_approved_id = auth()->user()->id;
         $permohonan->status = 3;
         $permohonan->save();
+
+        $permohonan->notify(new NotApproved());
 
         return redirect()->route('ybs.permohonan.baru')->with('success', 'Permohonan telah dibatalkan.');
     }

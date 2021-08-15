@@ -16,6 +16,8 @@ use App\Models\Lampiran;
 
 use App\Models\Batch;
 use App\Notifications\Permohonan\PermohonanCreated;
+use App\Notifications\Permohonan\CancelApplication;
+
 use Illuminate\Http\Request;
 
 class PermohonanController extends Controller
@@ -360,6 +362,8 @@ class PermohonanController extends Controller
         $permohonan = Permohonan::findorfail($request->permohonan_id_batal);
         $permohonan->status = 4;
         $permohonan->save();
+
+        $permohonan->notify(new CancelApplication());
 
         return redirect()->route('users.permohonan.tidak-lulus')->with('success', 'Permohonan anda berjaya dibatalkan.');
     }
