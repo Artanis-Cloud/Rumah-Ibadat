@@ -2,18 +2,16 @@
 
 namespace App\Notifications\Permohonan;
 
-use App\Mail\Permohonan\PermohonanApproved;
+use App\Mail\Permohonan\NotApprovedMail;
 
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-use Illuminate\Support\Facades\Mail;
-
-
-class YbApproved extends Notification
+class NotApproved extends Notification
 {
     use Queueable;
 
@@ -46,7 +44,7 @@ class YbApproved extends Notification
      */
     public function toMail($permohonan)
     {
-        return Mail::send(new PermohonanApproved($permohonan));
+        return Mail::send(new NotApprovedMail($permohonan));
     }
 
     /**
