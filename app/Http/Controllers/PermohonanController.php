@@ -17,6 +17,7 @@ use App\Models\Lampiran;
 use App\Models\Batch;
 use App\Notifications\Permohonan\PermohonanCreated;
 use App\Notifications\Permohonan\CancelApplication;
+use App\Notifications\Permohonan\SubmitSemakSemula;
 
 use Illuminate\Http\Request;
 
@@ -392,6 +393,9 @@ class PermohonanController extends Controller
 
         $permohonan = Permohonan::findorfail($request->permohonan_id); // find current permohonan
         $user_id = auth()->user()->id;  //find user id
+
+        $permohonan->notify(new SubmitSemakSemula());
+
         $rumah_ibadat = RumahIbadat::where('user_id', $user_id)->get()->first(); //find current user rumah ibadat
         $current_date = date('d-m-Y'); //get current date
 
@@ -626,7 +630,7 @@ class PermohonanController extends Controller
         }
 
         //======================================================= END OF CREATE TUJUAN AND LAMPIRAN =======================================================
-
+        
 
         //======================================================= SUCCESSFULL AND REDIRECT =======================================================
 

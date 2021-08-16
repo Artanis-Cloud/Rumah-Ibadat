@@ -4,12 +4,13 @@ namespace App\Mail\Permohonan;
 
 use App\Models\RumahIbadat;
 use App\Models\User;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PermohonanBaruExco extends Mailable
+class SubmitSemakSemulaMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,13 +19,13 @@ class PermohonanBaruExco extends Mailable
      *
      * @return void
      */
-    public function __construct($permohonan, $exco)
+    public function __construct($permohonan, $reviewer_user)
     {
         $this->permohonan = $permohonan;
         $this->rumah_ibadat = RumahIbadat::findorfail($this->permohonan->rumah_ibadat_id);
         $this->user = User::findOrFail($this->permohonan->user_id);
 
-        $this->exco = $exco;
+        $this->reviewer_user = $reviewer_user;
     }
 
     /**
@@ -38,11 +39,11 @@ class PermohonanBaruExco extends Mailable
         $rumah_ibadat = $this->rumah_ibadat;
         $user = $this->user;
 
-        $exco = $this->exco;
+        $reviewer_user = $this->reviewer_user;
 
-        return $this->to($exco->email, $exco->name)
+        return $this->to($reviewer_user->email, $reviewer_user->name)
             ->from(env('MAIL_FROM_ADDRESS'))
-            ->subject('Permohonan Semakan Semula ' . $this->permohonan->getPermohonanID())
-            ->view('email.permohonan-baru-exco', compact('permohonan', 'rumah_ibadat', 'user'));
+            ->subject('Semakan Semula Permohonan ' . $this->permohonan->getPermohonanID())
+            ->view('email.permohonan-submit-semak-semula', compact('permohonan', 'rumah_ibadat', 'user'));
     }
 }
