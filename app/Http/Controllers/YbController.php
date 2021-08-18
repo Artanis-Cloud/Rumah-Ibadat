@@ -20,6 +20,11 @@ use App\Models\Announcement;
 use Illuminate\Http\Request;
 
 use App\Notifications\Permohonan\YbApproved;
+use App\Notifications\Permohonan\SemakSemula;
+use App\Notifications\PermohonanKhas\PermohonanKhasLulus;
+use App\Notifications\PermohonanKhas\TidakLulus;
+
+
 
 
 class YbController extends Controller
@@ -696,6 +701,8 @@ class YbController extends Controller
 
         $permohonan->save();
 
+        $permohonan->notify(new SemakSemula());
+
         //redirect
         return redirect()->route('ybs.permohonan.baru')->with('success', 'Status permohonan telah dikemaskini.');
     }
@@ -1324,6 +1331,8 @@ class YbController extends Controller
 
         $peruntukan->save();
 
+        $special_application->notify(new PermohonanKhasLulus());
+
         return redirect()->route('ybs.permohonan.khas')->with('success', 'Permohonan diluluskan.');
     }
 
@@ -1338,6 +1347,8 @@ class YbController extends Controller
         $special_application->not_approved_id = auth()->user()->id;
 
         $special_application->save();
+
+        $special_application->notify(new TidakLulus());
 
         return redirect()->route('ybs.permohonan.khas')->with('success', 'Permohonan tidak diluluskan.');
     }

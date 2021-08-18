@@ -18,6 +18,9 @@ use App\Models\Lampiran;
 use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
 use App\Notifications\Permohonan\ExcoApproved;
+use App\Notifications\Permohonan\SemakSemula;
+use App\Notifications\PermohonanKhas\SahkanPermohonan;
+use App\Notifications\PermohonanKhas\TidakLulus;
 use PDF;
 use Carbon\Carbon;
 
@@ -695,6 +698,7 @@ class ExcoController extends Controller
 
         $permohonan->save();
 
+        $permohonan->notify(new SemakSemula());
         //redirect
         return redirect()->route('excos.permohonan.baru')->with('success', 'Status permohonan telah dikemaskini.');
     }
@@ -1128,6 +1132,8 @@ class ExcoController extends Controller
 
         $special_application->save();
 
+        $special_application->notify(new SahkanPermohonan());
+
         return redirect()->route('excos.permohonan.khas')->with('success', 'Permohonan ini telah disahkan.');
     }
 
@@ -1143,7 +1149,9 @@ class ExcoController extends Controller
 
         $special_application->save();
 
-        return redirect()->route('excos.permohonan.khas')->with('success', 'Permohonan tidak disahkan.');
+        $special_application->notify(new TidakLulus());
+
+        return redirect()->route('excos.permohonan.khas')->with('success', 'Permohonan tidak diluluskan.');
     }
 
     public function download_permohonan(Request $request){
