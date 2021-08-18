@@ -21,6 +21,9 @@ use App\Models\TukarRumahIbadat;
 use App\Notifications\Permohonan\UpenApproved;
 use App\Notifications\Permohonan\SemakSemula;
 use App\Notifications\PermohonanKhas\PermohonanBaru;
+use App\Notifications\RumahIbadat\TukarWakilBerjaya;
+use App\Notifications\RumahIbadat\TukarWakilGagal;
+use App\Notifications\TetapanPermohonan\SwitchPermohonan;
 
 use Illuminate\Http\Request;
 
@@ -726,6 +729,8 @@ class UpenController extends Controller
 
         $permohonan->save();
 
+        $permohonan->notify(new TukarWakilGagal());
+
         return redirect()->route('upens.rumah-ibadat.permohonan')->with('success', 'Permohonan tidak diluluskan.');
     }
 
@@ -764,6 +769,8 @@ class UpenController extends Controller
 
         $user->save();
 
+        $permohonan->notify(new TukarWakilBerjaya());
+
         return redirect()->route('upens.rumah-ibadat.permohonan')->with('success', 'Permohonan telah diluluskan.');
     }
 
@@ -792,11 +799,17 @@ class UpenController extends Controller
             $batch->allow_permohonan = 0;
             $batch->allowed_user_id = auth()->user()->id;
             $batch->save();
+
+            $batch->notify(new SwitchPermohonan());
+
             return redirect()->route('upens.tetapan.permohonan')->with('success', 'Permohonan telah ditutup.');
         }else{
             $batch->allow_permohonan = 1;
             $batch->allowed_user_id = auth()->user()->id;
             $batch->save();
+
+            $batch->notify(new SwitchPermohonan());
+
             return redirect()->route('upens.tetapan.permohonan')->with('success', 'Permohonan telah dibuka.');
         }
     }
