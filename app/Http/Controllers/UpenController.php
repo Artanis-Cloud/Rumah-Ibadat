@@ -17,7 +17,11 @@ use App\Models\Pengumuman;
 use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
 use App\Models\TukarRumahIbadat;
+
 use App\Notifications\Permohonan\UpenApproved;
+use App\Notifications\Permohonan\SemakSemula;
+use App\Notifications\PermohonanKhas\PermohonanBaru;
+
 use Illuminate\Http\Request;
 
 class UpenController extends Controller
@@ -475,6 +479,8 @@ class UpenController extends Controller
 
         $permohonan->save();
 
+        $permohonan->notify(new SemakSemula());
+
         //redirect
         return redirect()->route('upens.permohonan.baru')->with('success', 'Status permohonan telah dikemaskini.');
     }
@@ -653,6 +659,8 @@ class UpenController extends Controller
             'supported_document_2' => $lampiran_2,
             'requested_amount' => $request->requested_amount,
         ]);
+
+        $permohonan->notify(new PermohonanBaru());
 
         // return redirect()->route('upens.dashboard')->with('success', 'Permohonan Khas berjaya dihantar.');
         return redirect()->route('upens.permohonan-khas.senarai')->with('success', 'Permohonan Khas berjaya dihantar.');
