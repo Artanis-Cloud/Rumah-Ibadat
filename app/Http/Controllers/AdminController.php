@@ -12,9 +12,15 @@ use App\Models\Permohonan;
 use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
 
+// use App\Notifications\Pengguna\PenggunaBaru;
+
+use App\Jobs\Pengguna\PenggunaBaru;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Str;
 
 
 class AdminController extends Controller
@@ -212,7 +218,6 @@ class AdminController extends Controller
 
     public function pengguna_dalaman_daftar()
     {
-
         return view('admins.pengguna.daftar');
     }
 
@@ -226,7 +231,11 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Kad pengenalan telah didaftarkan.');
         }
 
-        $hashed_random_password = Hash::make("1234567890");
+        // $hashed_random_password = Hash::make("1234567890");
+
+        $password = Str::random(10);
+
+        $hashed_random_password = Hash::make($password) ;
 
         $user = User::create([
             'role' => $request->role,
@@ -270,7 +279,7 @@ class AdminController extends Controller
 
             if($checking_user_role == 0){ //create new user_role
 
-                $user = UserRole::create([
+                $user_role = UserRole::create([
                     'user_id' => $user->id,
 
                     'tokong' => $tokong,
@@ -280,7 +289,13 @@ class AdminController extends Controller
                 ]);
             }
 
+
+
         }
+
+        // $user->notify(new PenggunaBaru($hashed_random_password));
+        $emailJob = (new PenggunaBaru($user, $password))->delay(now()->addSeconds(1));
+        dispatch($emailJob);
 
         return redirect()->route('admins.pengguna.pengguna-dalaman')->with('success', 'Pengguna berjaya didaftar.');
     }
