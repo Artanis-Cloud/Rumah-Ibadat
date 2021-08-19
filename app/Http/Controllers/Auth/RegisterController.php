@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use App\Jobs\Pengguna\PemohonBaruJob;
+
 class RegisterController extends Controller
 {
     /*
@@ -95,8 +97,8 @@ class RegisterController extends Controller
 
         // dispatch(new DaftarPenggunaEmail($user)); // send email notification to user 
 
-        // $emailJob = (new NewRegistration($user))->delay(now()->addSeconds(5));
-        // dispatch($emailJob);
+        $emailJob = (new PemohonBaruJob($user))->delay(now()->addSeconds(1));
+        dispatch($emailJob);
 
         return redirect($this->redirectPath())->with('success', 'Pendaftaran Berjaya! Sila log masuk.');
     }
