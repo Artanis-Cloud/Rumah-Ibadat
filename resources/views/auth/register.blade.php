@@ -38,7 +38,7 @@
                             <h3 class="mb-4">Log Masuk</h3>
                         </div>
                     </div> --}}
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" id="register_form" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
                         <label class="label" for="name">Nama</label>
@@ -109,7 +109,7 @@
 
                       <div class="col-md" style="text-align: center;">
                         <div class="form-group">
-                            <button type="submit" class="px-3 form-control btn btn-primary submit">Daftar</button>
+                            <button type="submit" class="px-3 form-control btn btn-primary submit" id="roll_submit">Daftar</button>
                         </div>
                         <div class="form-group d-md-flex">
                             <div class="w-100 text-md-center">
@@ -128,6 +128,15 @@
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on('submit', '#register_form', function() {
+            $('#roll_submit').html('<i class="fa fa-spinner fa-spin"></i>');
+            $('#roll_submit').attr('disabled', 'disabled');
+        });
+    });
+</script>
 <script>
   function onlyNumberKey(evt) {
 
