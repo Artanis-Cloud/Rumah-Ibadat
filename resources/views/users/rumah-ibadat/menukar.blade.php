@@ -11,7 +11,7 @@
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            <form method="POST" action="{{ route('users.rumah-ibadat.menukar.submit') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('users.rumah-ibadat.menukar.submit') }}" enctype="multipart/form-data" id="submit_form">
             {{ csrf_field() }}
 
               <div class="border card-body border-dark">
@@ -142,7 +142,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
-                      <button type="submit" class="btn btn-success">Hantar Permohonan</button>
+                      <button type="submit" class="btn btn-success" id="roll_submit">Hantar Permohonan</button>
                     </div>
                   </div>
                 </div>
@@ -174,6 +174,14 @@
   </div>
 
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on('submit', '#submit_form', function() {
+            $('#roll_submit').html('<i class="fa fa-spinner fa-spin"></i>');
+            $('#roll_submit').attr('disabled', 'disabled');
+        });
+    });
+</script>
 
 <script>
   // ================= UPLOAD INPUT FILE CHECKER =================

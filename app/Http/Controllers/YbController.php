@@ -35,6 +35,37 @@ class YbController extends Controller
         $pengumuman = Announcement::where('status', '1')->where('yb', '1')->get();
 
         $current_year = date('Y'); //get current date
+        //checker peruntukan
+        $current_date = date('Y-m-d H:i:s'); //get current date
+        $annual_report_counter = Peruntukan::whereYear('created_at', $current_year)->count();
+
+        if ($annual_report_counter == 0) {
+            $peruntukan = Peruntukan::create([
+                'total_fund' => '0.00',
+                'current_fund' => '0.00',
+                'balance_fund' => '0.00',
+
+
+                'total_tokong' => '0.00',
+                'current_tokong' => '0.00',
+                'balance_tokong' => '0.00',
+
+                'total_kuil' => '0.00',
+                'current_kuil' => '0.00',
+                'balance_kuil' => '0.00',
+
+                'total_gurdwara' => '0.00',
+                'current_gurdwara' => '0.00',
+                'balance_gurdwara' => '0.00',
+
+                'total_gereja' => '0.00',
+                'current_gereja' => '0.00',
+                'balance_gereja' => '0.00',
+
+                'created_at' => $current_date,
+                'updated_at' => $current_date,
+            ]);
+        }
         $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
 
         $laporan_tokong = null;
