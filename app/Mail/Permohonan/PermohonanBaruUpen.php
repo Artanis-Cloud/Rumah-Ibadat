@@ -4,12 +4,13 @@ namespace App\Mail\Permohonan;
 
 use App\Models\RumahIbadat;
 use App\Models\User;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PermohonanBaruExco extends Mailable
+class PermohonanBaruUpen extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,13 +19,13 @@ class PermohonanBaruExco extends Mailable
      *
      * @return void
      */
-    public function __construct($permohonan, $exco)
+    public function __construct($permohonan, $upen)
     {
         $this->permohonan = $permohonan;
         $this->rumah_ibadat = RumahIbadat::findorfail($this->permohonan->rumah_ibadat_id);
         $this->user = User::findOrFail($this->permohonan->user_id);
 
-        $this->exco = $exco;
+        $this->upen = $upen;
     }
 
     /**
@@ -38,9 +39,9 @@ class PermohonanBaruExco extends Mailable
         $rumah_ibadat = $this->rumah_ibadat;
         $user = $this->user;
 
-        $exco = $this->exco;
+        $upen = $this->upen;
 
-        return $this->to($exco->email, $exco->name)
+        return $this->to($upen->email, $upen->name)
             ->from(env('MAIL_FROM_ADDRESS'))
             ->subject('Permohonan Baru ' . $this->permohonan->getPermohonanID())
             ->view('email.permohonan-baru-exco', compact('permohonan', 'rumah_ibadat', 'user'));

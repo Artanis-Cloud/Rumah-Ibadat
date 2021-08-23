@@ -7,13 +7,15 @@ use App\Models\RumahIbadat;
 use App\Models\Peruntukan;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class WelcomeController extends Controller
 {
     // landing page
     public function welcome()
     {
+
         $count_pemohon = User::where('role', '0')->count();
 
         $count_rumah_ibadat = RumahIbadat::count();

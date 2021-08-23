@@ -68,6 +68,11 @@
                                           <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                         </form>
                                       </div>
+                                      @if($data->surat_kelulusan != null)
+                                      <div class="col-md" style="padding: 5px;">
+                                        <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data->surat_kelulusan)) }}" class="btn btn-info" target="_blank"><i class="far fa-envelope"></i></a>
+                                      </div>
+                                      @endif
                                       <div class="col-md" style="padding: 5px;">
                                         <form action="{{ route('upens.permohonan.print') }}" target="_blank">
                                           <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
