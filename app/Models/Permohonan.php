@@ -51,11 +51,10 @@ class Permohonan extends Model implements Auditable
         'review_yb',
         'payment_method',                   //(1-Check)(2-EFT)
         'total_fund',                       //total fund apporved
+        'surat_kelulusan',                  //attachment
 
         'upen_id',                          //flag_upen
         'upen_date_time',                   //date-time
-
-
     ];
 
     public function getPermohonanID()

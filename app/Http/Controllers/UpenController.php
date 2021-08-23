@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Announcement;
 use DB;
+use Illuminate\Support\Facades\Storage;
+use PDF;
 
 use App\Notifications\Permohonan\NotApproved;
 
@@ -24,7 +26,7 @@ use App\Notifications\PermohonanKhas\PermohonanBaru;
 use App\Notifications\RumahIbadat\TukarWakilBerjaya;
 use App\Notifications\RumahIbadat\TukarWakilGagal;
 use App\Notifications\TetapanPermohonan\SwitchPermohonan;
-
+// use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 
 class UpenController extends Controller
@@ -540,10 +542,25 @@ class UpenController extends Controller
         $current_date = date('Y-m-d H:i:s'); //get current date
         $permohonan = Permohonan::findorfail($request->permohonan_id); //look current permohonan
 
+        $address = explode(',', $permohonan->rumah_ibadat->address);
+
+        $date = now()->toDateString();
         //update permohonan
         $permohonan->upen_id = $user_id;
         $permohonan->upen_date_time = $current_date;
         $permohonan->status = 2; //approve application
+
+        //================= generate surat kelulusan ======================
+        $pdf = PDF::loadView('surat.pdf', compact('permohonan', 'address'));
+
+        $content = $pdf->download()->getOriginalContent();
+        $file_name = '_surat-kelulusan.pdf';
+        $file_path = 'public/muat-naik/permohonan/' . $date . '/rumah_ibadat_' . $permohonan->rumah_ibadat->id;
+        Storage::put($file_path.$file_name, $content);
+        // dd($file_path . $file_name);
+        // return $pdf->stream(); // preview surat
+        //================= generate surat kelulusan ======================
+        $permohonan->surat_kelulusan = $file_path . $file_name;
 
         $permohonan->save();
 

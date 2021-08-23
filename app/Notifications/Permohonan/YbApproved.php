@@ -2,8 +2,9 @@
 
 namespace App\Notifications\Permohonan;
 
-use App\Mail\Permohonan\PermohonanApproved;
+use App\Mail\Permohonan\PermohonanBaruUpen;
 
+use App\Models\User;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -46,7 +47,12 @@ class YbApproved extends Notification
      */
     public function toMail($permohonan)
     {
-        return Mail::send(new PermohonanApproved($permohonan));
+        $user = User::where('role','3')->get();
+
+        foreach($user as $upen){
+            Mail::send(new PermohonanBaruUpen($permohonan, $upen));
+        }
+        // return Mail::send(new PermohonanBaruUpen($permohonan));
     }
 
     /**

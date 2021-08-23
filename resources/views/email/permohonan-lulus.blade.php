@@ -59,6 +59,7 @@
     /* ANDROID CENTER FIX */
     div[style*="margin: 16px 0;"] { margin: 0 !important; }
 </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
 
@@ -139,6 +140,11 @@
                   <p><b>Nombor Akaun:</b> {{ $rumah_ibadat->bank_account  }}</p>
                 </td>  
               </tr>
+              {{-- <tr>
+                <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
+                  <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->surat_kelulusan)) }}" target="_blank" class="btn btn-primary btn-block">Muat Turun Surat Kelulusan</a>
+                </td>
+              </tr> --}}
               <!-- BULLETPROOF BUTTON -->
               <tr>
                 <td bgcolor="#ffffff" align="left">
@@ -147,9 +153,7 @@
                       <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                            {{-- <td align="center" style="border-radius: 3px;" bgcolor="#137eff"><a href="{{ url('password/resets/'.$token.'/'.$user->email) }}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #137eff; display: inline-block;">Klik Di Sini</a></td> --}}
-                            
-                            {{-- <td align="center" style="border-radius: 3px;" bgcolor="#137eff"><a href="{{ url('password/resets/'.$token.'/'.$user->ic_number) }}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #137eff; display: inline-block;">Tetapan Semula Kata Laluan</a></td> --}}
+                              <td align="center" style="border-radius: 3px;" bgcolor="#003E61"><a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->surat_kelulusan)) }}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid rgb(19, 126, 255); display: inline-block;">Muat Turun Surat Kelulusan</a></td>
                           </tr>
                         </table>
                       </td>
