@@ -102,10 +102,10 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div id="logo">
-        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="width: 50px; height: 50px; margin-top: -50%;" alt="Kerajaan Selangor"></a>
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="width: auto; height: 60px; margin-top: -50%;" alt="Kerajaan Selangor"></a>
       </div>
-        <span style="color: #fff;">Portal Rasmi
-            <h5 style="color: #fff;">KERAJAAN NEGERI SELANGOR</h5>
+        <span style="color: #fff;">
+            <h5 style="color: #fff;">Sistem Bantuan <br> Rumah Ibadat Selain Islam</h5>
         </span>
     <br>
       <div>
@@ -116,9 +116,16 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          {{-- <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li> --}}
-          <li><a class="nav-link scrollto active" href="#about">Laman Utama</a></li>
-          <li><a class="nav-link scrollto" href="#services">Tentang Kami</a></li>
+          <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
+          <li><a class="nav-link scrollto" href="#about">Pengumuman</a></li>
+          <li><a class="nav-link scrollto" href="#services">Statistik</a></li>
+          {{-- <li><a class="nav-link scrollto" href="#services">Manual Pengguna</a></li> --}}
+          <li><a class="nav-link scrollto" href="#contact">Hubungi</a></li>
+
+
+
+
+
           {{-- <li><a class="nav-link scrollto" href="#services">Services</a></li> --}}
           {{-- <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li> --}}
           {{-- <li><a class="nav-link scrollto" href="#team">Team</a></li> --}}
@@ -139,8 +146,7 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li> --}}
-          <li><a class="nav-link scrollto" href="#contact">Hubungi</a></li>
-          <li>
+          {{-- <li>
             @auth
             <a href="#" class="nav-link scrollto" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"> LOG KELUAR </a>
             <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -150,7 +156,7 @@
             @guest
                 <a href="{{ route('login') }}" class="nav-link scrollto"> LOG MASUK </a>
             @endguest
-          </li>
+          </li> --}}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -162,8 +168,23 @@
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="10">
       <h2>Selamat Datang ke</h2>
-      <h1>Sistem Bantuan Kewangan Rumah Ibadat</h1>
-      <a href="#about" class="btn-get-started">Layari</a>
+      <h1>Sistem Bantuan Kewangan Rumah Ibadat <br>Selain Islam (RISI)</h1>
+      @auth
+        <a href="#" class="btn-get-started" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Log Keluar</a>
+        <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
+      @endauth
+      @guest
+          <div class="row">
+            <div class="col-md-6">
+              <a href="{{ route('login') }}" class="btn-get-started btn-block">Log&nbspMasuk</a>
+            </div>
+            <div class="col-md-6">
+              <a href="{{ route('register') }}" class="btn-get-started btn-block">Daftar&nbspMasuk</a>
+            </div>
+          </div>
+      @endguest
     </div>
   </section><!-- End Hero Section -->
 
@@ -171,8 +192,13 @@
 
     <!-- ======= About Section ======= -->
     <section id="about">
+      <div class="section-header">
+        <h3 class="section-title" style="padding-bottom: 15px;">Pengumuman</h3>
+      </div>
       <div class="container" data-aos="fade-up">
-            {{-- <h2>Carousel Example</h2> --}}
+            
+        <div class="row">
+          <div class="col-md-8">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
               <ol class="carousel-indicators">
@@ -207,6 +233,50 @@
               </a>
             </div>
           </div>
+          <div class="col-md">
+              <div class="card shadow-sm">
+                  {{-- <div class="card-header bg-primary">
+                      <h4 class="m-b-0 text-center text-white"><i class="fas fa-bullhorn"></i> &nbsp&nbsp Pengumuman</h4>
+                  </div> --}}
+                  <div class="card-body border border-primary border-bottom">
+                      <div class="list-group" style="overflow:auto;height:400px;width:100%;border:1px solid #ccc">
+
+                          @foreach ($pengumuman as $data)
+                              <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1 card-title" style="font-size: 20px; font-weight: bold;">{{ $data->title }}</h6>
+                                <small class="text-muted" style="font-size: 110%;">{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</small>
+                                </div>
+                                <p class="my-1" style="font-size: 15px; text-align:justify;">{{ $data->content }}</p>
+                              </div>
+                          @endforeach
+                          
+
+                          @if($pengumuman->isEmpty())
+
+                              <div style="padding-bottom: 30%;"></div>
+                              <div style="width:100%; text-align:center">
+                                  <img src="https://image.flaticon.com/icons/png/512/2487/2487449.png" alt="Empty Box" style="width: 150px;">
+                                  {{-- <lord-icon
+                                      src="https://cdn.lordicon.com/cnbtojmk.json"
+                                      trigger="loop"
+                                      delay="15"
+                                      colors="primary:#121331,secondary:#3080e8"
+                                      stroke="41"
+                                      style="width:200px;height:auto"
+                                      >
+                                  </lord-icon> --}}
+                                  <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Pengumuman Baru</h6>
+                              </div>
+
+                          @endif
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+            
+      </div>
     </section><!-- End About Section -->
 
     <!-- ======= Facts Section ======= -->
@@ -612,21 +682,6 @@
 
         </div>
 
-      </div>
-
-      <div class="row">
-        <div class="col-md text-center">
-          <div class="social-links">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-linkedin"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-whatsapp"></i></a>
-              {{-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> --}}
-            </div>
-        </div>
       </div>
     </section><!-- End Contact Section -->
 
