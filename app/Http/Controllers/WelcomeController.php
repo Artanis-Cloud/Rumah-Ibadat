@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permohonan;
+use App\Models\Announcement;
 use App\Models\RumahIbadat;
 use App\Models\Peruntukan;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class WelcomeController extends Controller
     // landing page
     public function welcome()
     {
+        $pengumuman = Announcement::where('status', '1')->where('pemohon', '1')->get();
 
         $count_pemohon = User::where('role', '0')->count();
 
@@ -57,6 +59,6 @@ class WelcomeController extends Controller
         }
         //+++++++++++++++++++++++ checking peruntukan +++++++++++++++++++++++
 
-        return view('welcome', compact('count_pemohon', 'count_rumah_ibadat', 'count_permohonan'));
+        return view('welcome', compact('pengumuman', 'count_pemohon', 'count_rumah_ibadat', 'count_permohonan'));
     }
 }

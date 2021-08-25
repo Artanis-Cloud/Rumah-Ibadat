@@ -108,13 +108,47 @@
       margin-top: 5px;
       margin-bottom: 9.448818898px;
   }
-  /* table, th, td {
-  border: 1px solid black;
-} */
+  table, th, td {
+  /* border: 1px solid black; */
+  /* width: 100%; */
+}
 </style>
   
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <div class="information">
+  {{-- <img src="{{ public_path('img/letterhead.png') }}" width="700px" style="!important"><br> --}}
+
+  <table style="width: 100%;">
+    <tr>
+      <td rowspan="3" width="95" style="text-align: center;"><img src="{{ public_path('img/logo.png') }}" width="90px"></td>
+      <td colspan="2">
+        <b style="font-size: 9pt !important;">
+          PEJABAT SETIAUSAHA KERAJAAN <br>NEGERI SELANGOR DARUL EHSAN,<br> UNIT PERANCANG NEGERI EKONOMI NEGERI,<br> SEKSYEN PIHAK BERKUASA TEMPATAN,
+        </b>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="2" width="250">
+        <span style="font-size: 9pt !important;">
+          TINGKAT 4,<br>BANGUNAN SULTAN SALAHUDDIN ABDUL AZIZ SHAH,<br> 40503 SHAH ALAM,<br> SELANGOR DARUL EHSAN.
+        </span>
+      </td>
+      <td ></td>
+    </tr>
+    <tr>
+      <td>
+        <span style="font-size: 6pt !important;">
+          Tel: 603-5544 7100 <br>
+          Faks: 603-5510 1748 <br>
+          Laman web: http://upen.selangor.gov.my/
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3"><hr style="border: black; margin-top: 0px;"></td>
+    </tr>
+  </table>
+
   <table>
         <tr>
           <td></td>
