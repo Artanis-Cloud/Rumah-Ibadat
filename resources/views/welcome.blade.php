@@ -9,6 +9,9 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  {{-- w3school --}}
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
   <!-- Favicons -->
   <link href="{{ asset('Regna/assets/img/selangor-icon.png') }}" rel="icon">
   <link href="{{ asset('Regna/assets/img/selangor-touch-icon.png') }}" rel="apple-touch-icon">
@@ -117,7 +120,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
-          <li><a class="nav-link scrollto" href="#about">Pengumuman</a></li>
+          <li><a class="nav-link scrollto" href="#about">Pengenalan Sistem</a></li>
           <li><a class="nav-link scrollto" href="#services">Statistik</a></li>
           {{-- <li><a class="nav-link scrollto" href="#services">Manual Pengguna</a></li> --}}
           <li><a class="nav-link scrollto" href="#contact">Hubungi</a></li>
@@ -186,6 +189,13 @@
           </div>
       @endguest
     </div>
+    <div style="position: absolute; bottom: 0px; background:#f9ec2b; height: 40px; width: 100%;" >
+      <marquee direction="left" scrollamount="10" style="padding-top: 5px; color: black;">
+      @foreach ($pengumuman as $data)
+          <span style="font-size: 15pt;"><b>[</b>  <b>{{ $data->title }} &nbsp&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp&nbsp</b>{{ $data->content }} <b>]</b> &nbsp&nbsp&nbsp&nbsp</span>
+      @endforeach
+      </marquee>
+    </div>
   </section><!-- End Hero Section -->
 
   <main id="main">
@@ -193,11 +203,18 @@
     <!-- ======= About Section ======= -->
     <section id="about">
       <div class="section-header">
-        <h3 class="section-title" style="padding-bottom: 15px;">Pengumuman</h3>
+        <h3 class="section-title" style="padding-bottom: 15px;">Pengenalan Sistem</h3>
       </div>
       <div class="container" data-aos="fade-up">
             
         <div class="row">
+          <div class="col-md">
+            <h2 class="title">Sistem Permohonan Dana Rumah Ibadat Selain Islam (RISI)</h2>
+            <p style="text-align: justify;">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+
+          </div>
           <div class="col-md-8">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
@@ -233,47 +250,7 @@
               </a>
             </div>
           </div>
-          <div class="col-md">
-              <div class="card shadow-sm">
-                  {{-- <div class="card-header bg-primary">
-                      <h4 class="m-b-0 text-center text-white"><i class="fas fa-bullhorn"></i> &nbsp&nbsp Pengumuman</h4>
-                  </div> --}}
-                  <div class="card-body border border-primary border-bottom">
-                      <div class="list-group" style="overflow:auto;height:400px;width:100%;border:1px solid #ccc">
-
-                          @foreach ($pengumuman as $data)
-                              <div class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1 card-title" style="font-size: 20px; font-weight: bold;">{{ $data->title }}</h6>
-                                <small class="text-muted" style="font-size: 110%;">{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</small>
-                                </div>
-                                <p class="my-1" style="font-size: 15px; text-align:justify;">{{ $data->content }}</p>
-                              </div>
-                          @endforeach
-                          
-
-                          @if($pengumuman->isEmpty())
-
-                              <div style="padding-bottom: 30%;"></div>
-                              <div style="width:100%; text-align:center">
-                                  <img src="https://image.flaticon.com/icons/png/512/2487/2487449.png" alt="Empty Box" style="width: 150px;">
-                                  {{-- <lord-icon
-                                      src="https://cdn.lordicon.com/cnbtojmk.json"
-                                      trigger="loop"
-                                      delay="15"
-                                      colors="primary:#121331,secondary:#3080e8"
-                                      stroke="41"
-                                      style="width:200px;height:auto"
-                                      >
-                                  </lord-icon> --}}
-                                  <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Pengumuman Baru</h6>
-                              </div>
-
-                          @endif
-                      </div>
-                  </div>
-              </div>
-            </div>
+          
         </div>
             
       </div>
@@ -311,11 +288,11 @@
     </section><!-- End Facts Section --> --}}
 
     <!-- ======= Services Section ======= -->
-    <section id="services" style="background: #a7a7a7;">
+    <section id="services" style="background: #f9ec2b;">
       <div class="section-header">
         <h3 class="section-title">Statistik</h3>
       </div>
-      <section class="charts_orb">
+      {{-- <section class="charts_orb">
         <article class="orb">
           <div class="orb_graphic">
             <svg>
@@ -355,35 +332,51 @@
           </div>
         </article>
 
-        {{-- <article class="orb">
-          <div class="orb_graphic">
-            <svg>
-              <circle class="fill"></circle>
-              <circle class="progress"></circle>
-            </svg>
-            <div class="orb_value count">52</div>
-          </div>
-          <div class="orb_label">
-            Rumah Ibadat
-          </div>
-        </article> --}}
-
-        {{-- <article class="orb">
-          <div class="orb_graphic">
-            <svg>
-              <circle class="fill"></circle>
-              <circle class="progress"></circle>
-            </svg>
-            <div class="orb_value count">72</div>
-          </div>
-          <div class="orb_label">
-            Rumah Ibadat
-          </div>
-        </article> --}}
-      </section>
+      </section> --}}
+      <table>
+        <tr>
+          <td></td>
+        </tr>
+      </table>
 
       <div class="row">
         <div class="col-md">
+          <div id="donutchart" style=" width: 900px; height: 500px;"></div>
+        </div>
+        <div class="col-md">
+
+          <div class="row">
+            <div class="col-md">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+
+          <div class="row">
+            <div class="col-md">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -740,4 +733,111 @@
 });
 </script>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Peruntukan', 'Peratus'],
+      ['Telah Digunakan',     9],
+      ['Belum Digunakan',      1],
+    ]);
+
+    var options = {
+      title: 'Peruntukan Tahun 2021',
+      pieHole: 0.4,
+      backgroundColor: { fill:'transparent' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    chart.draw(data, options);
+  }
+</script>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Peruntukan', 'Peratus'],
+      ['Telah Digunakan',     9],
+      ['Belum Digunakan',      1],
+    ]);
+
+    var options = {
+      title: 'Peruntukan Kategori Tokong Tahun 2021',
+      pieHole: 0.4,
+      backgroundColor: { fill:'transparent' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart2'));
+    chart.draw(data, options);
+  }
+</script>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Peruntukan', 'Peratus'],
+      ['Telah Digunakan',     9],
+      ['Belum Digunakan',      1],
+    ]);
+
+    var options = {
+      title: 'Peruntukan Kategori Kuil Tahun 2021',
+      pieHole: 0.4,
+      backgroundColor: { fill:'transparent' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart3'));
+    chart.draw(data, options);
+  }
+</script>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Peruntukan', 'Peratus'],
+      ['Telah Digunakan',     9],
+      ['Belum Digunakan',      1],
+    ]);
+
+    var options = {
+      title: 'Peruntukan Kategori Gurdwara Tahun 2021',
+      pieHole: 0.4,
+      backgroundColor: { fill:'transparent' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart4'));
+    chart.draw(data, options);
+  }
+</script>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Peruntukan', 'Peratus'],
+      ['Telah Digunakan',     9],
+      ['Belum Digunakan',      1],
+    ]);
+
+    var options = {
+      title: 'Peruntukan Kategori Gereja Tahun 2021',
+      pieHole: 0.4,
+      backgroundColor: { fill:'transparent' },
+      width: '100%',
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart5'));
+    chart.draw(data, options);
+  }
+</script>
 </html>
