@@ -122,7 +122,6 @@
           <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
           <li><a class="nav-link scrollto" href="#about">Pengenalan Sistem</a></li>
           <li><a class="nav-link scrollto" href="#services">Statistik</a></li>
-          {{-- <li><a class="nav-link scrollto" href="#services">Manual Pengguna</a></li> --}}
           <li><a class="nav-link scrollto" href="#contact">Hubungi</a></li>
 
 
@@ -202,16 +201,16 @@
 
     <!-- ======= About Section ======= -->
     <section id="about">
-      <div class="section-header">
+      {{-- <div class="section-header">
         <h3 class="section-title" style="padding-bottom: 15px;">Pengenalan Sistem</h3>
-      </div>
+      </div> --}}
       <div class="container" data-aos="fade-up">
             
         <div class="row">
           <div class="col-md">
-            <h2 class="title">Sistem Permohonan Dana Rumah Ibadat Selain Islam (RISI)</h2>
+            <h2 class="title">{{ $csm->intro_title }}</h2>
             <p style="text-align: justify;">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              {{ $csm->intro_content }}
             </p>
 
           </div>
@@ -333,53 +332,90 @@
         </article>
 
       </section> --}}
-      <table>
+      {{-- <table>
+        <tr>
+          <td rowspan="2">
+            <div id="donutchart" style=" width: 900px; height: 500px;"></div>
+          </td>
+          <td>
+            <div class="col">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+            </div>
+          </td>
+          <td>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+            </div>
+          </td>
+        </tr>
         <tr>
           <td></td>
+          <td></td>
         </tr>
-      </table>
+      </table> --}}
 
       <div class="row">
-        <div class="col-md">
-          <div id="donutchart" style=" width: 900px; height: 500px;"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-body">
+              <div id="donutchart" style=" width: auto; height: auto;"></div>
+            </div>
+          </div>
         </div>
-        <div class="col-md">
-
-          <div class="row">
-            <div class="col-md">
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3">
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-              </div>
-            </div>
-          </div>
+        <div class="col-md-5">
 
         </div>
-        <div class="col-md-3">
-
-          <div class="row">
-            <div class="col-md">
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md">
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <div class="col-md-1"></div>
       </div>
+
+      {{-- <div class="row">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6">
+  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              
+            </div>
+          </div>
+
+
+        </div>
+      </div> --}}
+
     </section><!-- End Services Section -->
 
     <!-- ======= Call To Action Section ======= -->
@@ -603,10 +639,7 @@
             <div class="info">
               <div>
                 <i class="bi bi-geo-alt"></i>
-                <p>Pejabat Setiausaha Kerajaan Negeri Selangor,
-                    Bangunan Sultan Salahuddin Abdul Aziz Shah,
-                    40503 Shah Alam,
-                    Selangor Darul Ehsan.</p>
+                <p>{{ $csm->address }}</p>
               </div>
 
               {{-- <div>
@@ -637,12 +670,12 @@
 
               <div>
                 <i class="bi bi-envelope"></i>
-                <p>info@selangor.gov.my</p>
+                <p>{{ $csm->email }}</p>
               </div>
 
               <div>
                 <i class="bi bi-phone"></i>
-                <p>(6)03-55447000
+                <p>{{ $csm->contact }}
                 </p>
               </div>
             </div>
@@ -729,6 +762,14 @@
         step: function (now) {
             $(this).text(Math.ceil(now));
         }
+    });
+});
+</script>
+
+<script>
+  $(document).ready(function () {
+    $(window).resize(function(){
+        drawChart();
     });
 });
 </script>
