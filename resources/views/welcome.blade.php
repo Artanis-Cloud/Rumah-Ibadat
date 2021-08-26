@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('Regna/assets/css/style.css') }}" rel="stylesheet">
@@ -40,62 +42,322 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
   <style>
-    .charts_orb {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap;
-  font-family: arial;
-  color: white;
-}
-.charts_orb .orb {
-  padding: 20px;
-}
-.charts_orb .orb .orb_graphic {
-  position: relative;
-}
-.charts_orb .orb .orb_graphic .orb_value {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5em;
-  font-weight: bold;
-}
-.charts_orb .orb .orb_label {
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: 1em;
-}
-.charts_orb svg {
-  width: 110px;
-  height: 110px;
-}
-.charts_orb svg circle {
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-  stroke-dasharray: 314.16, 314.16;
-  stroke-width: 2;
-  fill: transparent;
-  r: 50;
-  cx: 55;
-  cy: 55;
-}
-.charts_orb svg circle.fill {
-  stroke: #D3D3D3;
-}
-.charts_orb svg circle.progress {
-  stroke: #ff0000;
-  transition: stroke-dashoffset 0.35s;
-  stroke-dashoffset: 214.16;
-  -webkit-animation: NAME-YOUR-ANIMATION 1.5s forwards;
-  -webkit-animation-timing-function: linear;
-}
+    section {
+      margin-top: 50px;
+    }
+
+    .pieID {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .pie {
+      height: 200px;
+      width: 200px;
+      position: relative;
+      margin: 0 30px 30px 0;
+    }
+
+    .pie::before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      width: 100px;
+      height: 100px;
+      background: #EEE;
+      border-radius: 50%;
+      top: 50px;
+      left: 50px;
+    }
+
+    .pie::after {
+      content: "";
+      display: block;
+      width: 120px;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
+      margin: 220px auto;
+    }
+
+    .slice {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      clip: rect(0px, 200px, 200px, 100px);
+      animation: bake-pie 1s;
+    }
+
+    .slice span {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: black;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      clip: rect(0px, 200px, 200px, 100px);
+    }
+
+    .legend {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      background: #FFF;
+      padding: 15px;
+      font-size: 13px;
+      box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB;
+    }
+
+    .legend li {
+      width: 110px;
+      height: 1.25em;
+      margin-bottom: 0.7em;
+      padding-left: 0.5em;
+      border-left: 1.25em solid black;
+    }
+
+    .legend em {
+      font-style: normal;
+    }
+
+    .legend span {
+      float: right;
+    }
   </style>
+
+  <style media="screen">
+
+    .skills-bar-container {
+    position: relative;
+    width: 80%;
+    min-width: 300px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    list-style: none;
+    }
+    .skills-bar-container li {
+    position: relative;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    }
+    .skills-bar-container li .progressbar-title {
+    color: #000000;
+    }
+    .skills-bar-container li .progressbar-title h3 {
+    display: inline-block;
+    }
+    .skills-bar-container li .progressbar-title .percent {
+    position: absolute;
+    right: 5px;
+    font-size: 15px;
+    }
+    .skills-bar-container li .bar-container {
+    background: #555;
+    position: relative;
+    width: 100%;
+    height: 10px;
+    margin-top: 5px;
+    display: block;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    }
+    .skills-bar-container li .bar-container .progressbar {
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    }
+    .skills-bar-container li .bar-container #progress-html {
+    -webkit-animation-name: progress-html;
+    animation-name: progress-html;
+    -webkit-animation-delay: 0.7s;
+    animation-delay: 0.7s;
+    }
+    .skills-bar-container li .bar-container #progress-css {
+    -webkit-animation-name: progress-css;
+    animation-name: progress-css;
+    -webkit-animation-delay: 1.4s;
+    animation-delay: 1.4s;
+    }
+    .skills-bar-container li .bar-container #progress-javascript {
+    -webkit-animation-name: progress-javascript;
+    animation-name: progress-javascript;
+    -webkit-animation-delay: 2.1s;
+    animation-delay: 2.1s;
+    }
+    .skills-bar-container li .bar-container #progress-php {
+    -webkit-animation-name: progress-php;
+    animation-name: progress-php;
+    -webkit-animation-delay: 2.8s;
+    animation-delay: 2.8s;
+    }
+    .skills-bar-container li .bar-container #progress-angular {
+    -webkit-animation-name: progress-angular;
+    animation-name: progress-angular;
+    -webkit-animation-delay: 3.5s;
+    animation-delay: 3.5s;
+    }
+
+    .progressred {
+    background-color: #c0392b;
+    }
+
+    .progressblue {
+    background-color: #1199ff;
+    }
+
+    .progresspurple {
+    background-color: #9b59b6;
+    }
+
+    .progressorange {
+    background-color: #ffa500;
+    }
+
+    .progressgreen {
+    background-color: #27ae60;
+    }
+
+    @-webkit-keyframes progress-html {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+    }
+    @-webkit-keyframes progress-css {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 90%;
+    }
+    }
+    @-webkit-keyframes progress-javascript {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 70%;
+    }
+    }
+    @-webkit-keyframes progress-php {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 55%;
+    }
+    }
+    @-webkit-keyframes progress-angular {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 65%;
+    }
+    }
+    @-moz-keyframes progress-html {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+    }
+    @-moz-keyframes progress-css {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 90%;
+    }
+    }
+    @-moz-keyframes progress-javascript {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 70%;
+    }
+    }
+    @-moz-keyframes progress-php {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 55%;
+    }
+    }
+    @-moz-keyframes progress-angular {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 65%;
+    }
+    }
+    @keyframes progress-html {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+    }
+    @keyframes progress-css {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 90%;
+    }
+    }
+    @keyframes progress-javascript {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 70%;
+    }
+    }
+    @keyframes progress-php {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 55%;
+    }
+    }
+    @keyframes progress-angular {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 65%;
+    }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -189,7 +451,7 @@
           </div>
       @endguest
     </div>
-    <div style="position: absolute; bottom: 0px; background:#f9ec2b; height: 40px; width: 100%;" >
+    <div style="position: absolute; bottom: 0px; width: 100%;" >
       <marquee direction="left" scrollamount="10" style="padding-top: 5px; color: black;">
       @foreach ($pengumuman as $data)
           <span style="font-size: 15pt;"><b>[</b>  <b>{{ $data->title }} &nbsp&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp&nbsp</b>{{ $data->content }} <b>]</b> &nbsp&nbsp&nbsp&nbsp</span>
@@ -206,7 +468,7 @@
         <h3 class="section-title" style="padding-bottom: 15px;">Pengenalan Sistem</h3>
       </div>
       <div class="container" data-aos="fade-up">
-            
+
         <div class="row">
           <div class="col-md">
             <h2 class="title">Sistem Permohonan Dana Rumah Ibadat Selain Islam (RISI)</h2>
@@ -250,9 +512,9 @@
               </a>
             </div>
           </div>
-          
+
         </div>
-            
+
       </div>
     </section><!-- End About Section -->
 
@@ -288,7 +550,7 @@
     </section><!-- End Facts Section --> --}}
 
     <!-- ======= Services Section ======= -->
-    <section id="services" style="background: #f9ec2b;">
+    <section id="services" style=" background-image: url('/img/bg-statistik.png');background-blend-mode: luminosity;">
       <div class="section-header">
         <h3 class="section-title">Statistik</h3>
       </div>
@@ -340,45 +602,82 @@
       </table>
 
       <div class="row">
-        <div class="col-md">
-          <div id="donutchart" style=" width: 900px; height: 500px;"></div>
+        <div class="col-md" style="text-align: center;">
+          <section>
+            <div class="pieID pie">
+
+            </div>
+            <ul class="pieID legend">
+              <li>
+                <em>Humans</em>
+                <span>9000</span>
+              </li>
+              <li>
+                <em>Dogs</em>
+                <span>531</span>
+              </li>
+              <li>
+                <em>Cats</em>
+                <span>868</span>
+              </li>
+              <li>
+                <em>Slugs</em>
+                <span>344</span>
+              </li>
+              <li>
+                <em>Aliens</em>
+                <span>1145</span>
+              </li>
+            </ul>
+          </section>
         </div>
         <div class="col-md">
 
-          <div class="row">
-            <div class="col-md">
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-              </div>
+          <ul class="skills-bar-container">
+
+          <li>
+            <div class="progressbar-title">
+              <h3>HTML5</h3>
+              <span class="percent" id="html-pourcent"></span>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3">
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-              </div>
+            <div class="bar-container">
+              <span class="progressbar progressred" id="progress-html"></span>
             </div>
-          </div>
+          </li>
+          <li>
+            <div class="progressbar-title">
+              <h3>CSS / SASS</h3>
+              <span class="percent" id="css-pourcent"></span>
+            </div>
+            <div class="bar-container">
+              <span class="progressbar progressblue" id="progress-css"></span>
+            </div>
+          </li>
+
+          <li>
+            <div class="progressbar-title">
+              <h3>JavaScript / jQuery</h3>
+              <span class="percent" id="javascript-pourcent"></span>
+            </div>
+            <div class="bar-container">
+              <span class="progressbar progresspurple" id="progress-javascript"></span>
+            </div>
+          </li>
+
+          <li>
+            <div class="progressbar-title">
+              <h3>PHP</h3>
+              <span class="percent" id="php-pourcent"></span>
+            </div>
+            <div class="bar-container">
+              <span class="progressbar progressorange" id="progress-php"></span>
+            </div>
+          </li>
+
+        </ul>
 
         </div>
-        <div class="col-md-3">
 
-          <div class="row">
-            <div class="col-md">
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md">
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
       </div>
     </section><!-- End Services Section -->
 
@@ -621,7 +920,7 @@
               </div> --}}
             </div>
 
-            
+
 
           </div>
 
@@ -840,4 +1139,88 @@
     chart.draw(data, options);
   }
 </script>
+
+<!-- Progress Bar -->
+  <script>
+      var lang = {
+    "html": "100%",
+    "css": "90%",
+    "javascript": "70%",
+    "php": "55%",
+    "angular": "65%"
+    };
+
+    var multiply = 4;
+
+    $.each( lang, function( language, pourcent) {
+
+    var delay = 700;
+
+    setTimeout(function() {
+      $('#'+language+'-pourcent').html(pourcent);
+    },delay*multiply);
+
+    multiply++;
+
+    });
+  </script>
+
+  <!-- Chart -->
+  <script>
+    function sliceSize(dataNum, dataTotal) {
+    return (dataNum / dataTotal) * 360;
+    }
+    function addSlice(sliceSize, pieElement, offset, sliceID, color) {
+    $(pieElement).append("<div class='slice "+sliceID+"'><span></span></div>");
+    var offset = offset - 1;
+    var sizeRotation = -179 + sliceSize;
+    $("."+sliceID).css({
+      "transform": "rotate("+offset+"deg) translate3d(0,0,0)"
+    });
+    $("."+sliceID+" span").css({
+      "transform"       : "rotate("+sizeRotation+"deg) translate3d(0,0,0)",
+      "background-color": color
+    });
+    }
+    function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+    var sliceID = "s"+dataCount+"-"+sliceCount;
+    var maxSize = 179;
+    if(sliceSize<=maxSize) {
+      addSlice(sliceSize, pieElement, offset, sliceID, color);
+    } else {
+      addSlice(maxSize, pieElement, offset, sliceID, color);
+      iterateSlices(sliceSize-maxSize, pieElement, offset+maxSize, dataCount, sliceCount+1, color);
+    }
+    }
+    function createPie(dataElement, pieElement) {
+    var listData = [];
+    $(dataElement+" span").each(function() {
+      listData.push(Number($(this).html()));
+    });
+    var listTotal = 0;
+    for(var i=0; i<listData.length; i++) {
+      listTotal += listData[i];
+    }
+    var offset = 0;
+    var color = [
+      "cornflowerblue",
+      "olivedrab",
+      "orange",
+      "tomato",
+      "crimson",
+      "purple",
+      "turquoise",
+      "forestgreen",
+      "navy",
+      "gray"
+    ];
+    for(var i=0; i<listData.length; i++) {
+      var size = sliceSize(listData[i], listTotal);
+      iterateSlices(size, pieElement, offset, i, 0, color[i]);
+      $(dataElement+" li:nth-child("+(i+1)+")").css("border-color", color[i]);
+      offset += size;
+    }
+    }
+    createPie(".pieID.legend", ".pieID.pie");
+  </script>
 </html>
