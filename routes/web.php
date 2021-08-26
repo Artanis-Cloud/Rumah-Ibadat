@@ -370,6 +370,12 @@ Route::middleware([Admin::class])->group(function () {
     Route::get('/dashboard-admin/rumah-ibadat/senarai-rumah-ibadat/kemaskini-rumah-ibadat/update', [App\Http\Controllers\AdminController::class, 'update_rumah_ibadat'])->name('admins.rumah-ibadat.senarai.update');
 
 
+    //Tetapan
+    Route::get('/dashboard-admin/tetapan', [App\Http\Controllers\AdminController::class, 'tetapan'])->name('admins.tetapan.pilih');
+
+    Route::get('/dashboard-admin/tetapan/tetapan-halaman-utama', [App\Http\Controllers\AdminController::class, 'halaman_utama'])->name('admins.tetapan.halaman-utama');
+
+    Route::get('/dashboard-admin/tetapan/tetapan-halaman-utama/submit', [App\Http\Controllers\AdminController::class, 'halaman_utama_submit'])->name('admins.tetapan.halaman-utama.submit');
 
 
     // Audit Trail

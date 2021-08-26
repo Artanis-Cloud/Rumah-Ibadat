@@ -349,6 +349,14 @@
                             </ul>
                         </li>
 
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-cogs"></i><span class="hide-menu" style="padding-left: 10px;">Tetapan</span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.tetapan.halaman-utama') }}" aria-expanded="false"><span class="hide-menu">Tetapan Halaman Utama</span></a>
+                                    
+                            </ul>
+                        </li>
+
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu" style="padding-left: 10px;">Audit Trail</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 
