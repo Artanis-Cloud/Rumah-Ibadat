@@ -31,7 +31,7 @@
                               <th class="all">NAMA PENGGUNA</th>
                               <th class="all">EMAIL</th>
                               <th class="all">PERANAN</th>
-                              <th class="all">Rumah Ibadat</th>
+                              <th class="all">RUMAH IBADAT</th>
                               <th class="all">STATUS AKAUN</th>
                               <th class="all">TINDAKAN</th>
                             </tr>

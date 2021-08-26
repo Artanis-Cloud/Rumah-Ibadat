@@ -15,6 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('csms')->insert(
+            [
+                'intro_title' => 'Sistem Permohonan Dana Rumah Ibadat Selain Islam (RISI)',
+                'intro_content' => 'content lorum ipsum',
+                'address' => 'Pejabat Setiausaha Kerajaan Negeri Selangor, Bangunan Sultan Salahuddin Abdul Aziz Shah, 40503 Shah Alam, Selangor Darul Ehsan.',
+                'email' => 'info@selangor.gov.my',
+                'contact' => '0355447000',
+            ]
+        );
+
         $current_date = date('Y-m-d H:i:s'); //get current date
 
         DB::table('batches')->insert(
