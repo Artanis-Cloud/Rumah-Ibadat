@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Notifications\Notifiable;
 
-class Csm extends Model implements Auditable
+class Banner extends Model
 {
     use HasFactory;
     use Notifiable;
     use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
-        'intro_title',
-        'intro_content',
-        'address',
-        'email',
-        'contact',
+        'name_file',
+        'comment',
+        'url',
+        'status',
     ];
+
 }
