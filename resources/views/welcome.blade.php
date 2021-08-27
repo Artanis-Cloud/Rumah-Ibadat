@@ -108,7 +108,7 @@
         <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png" style="width: auto; height: 60px; margin-top: -50%;" alt="Kerajaan Selangor"></a>
       </div>
         <span style="color: #fff;">
-            <h5 style="color: #fff;">Sistem Bantuan <br> Rumah Ibadat Selain Islam</h5>
+            <h4 style="color: #fff;">Sistem Bantuan Kewangan <br> Rumah Ibadat Selain Islam</h4>
         </span>
     <br>
       <div>
@@ -122,7 +122,7 @@
           <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
           <li><a class="nav-link scrollto" href="#about">Pengenalan Sistem</a></li>
           <li><a class="nav-link scrollto" href="#services">Statistik</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Hubungi</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Hubungi Kami</a></li>
 
 
 
@@ -639,7 +639,18 @@
             <div class="info">
               <div>
                 <i class="bi bi-geo-alt"></i>
-                <p>{{ $csm->address }}</p>
+                <p>
+                  @php
+                      $address = explode(',', $csm->address);
+                  @endphp
+                  @foreach ($address as $key => $data)
+                    @if($loop->last)
+                    {{ $data }}
+                    @else
+                    {{ $data }},<br>
+                    @endif
+                  @endforeach
+                </p>
               </div>
 
               {{-- <div>
@@ -723,7 +734,8 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Hak Cipta Terpelihara.
+        {{-- &copy; --}}
+         Hakcipta Terpelihara 2021 © Unit Perancang Ekonomi Negeri Selangor.
       </div>
       <div class="credits">
         <!--
