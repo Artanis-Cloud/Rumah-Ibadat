@@ -432,7 +432,7 @@
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="10">
       <h2>Selamat Datang ke</h2>
-      <h1>Sistem Bantuan Kewangan Rumah Ibadat <br>Selain Islam (RISI)</h1>
+      <h1>Sistem Bantuan Kewangan Rumah Ibadat <br>Selain Islam</h1>
       @auth
         <a href="#" class="btn-get-started" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Log Keluar</a>
         <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">

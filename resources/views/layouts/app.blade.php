@@ -38,7 +38,8 @@
 <style>
     html, body {
         /* background-color: #000; */
-        background-image: url({{url('https://www.selangor.gov.my/index/resources/tempfile%2029082017/kota-darul-ehsan-selangor-malaysia.jpg')}});
+        /* background-image: url({{url('https://www.selangor.gov.my/index/resources/tempfile%2029082017/kota-darul-ehsan-selangor-malaysia.jpg')}}); */
+        background-image: url('https://headtopics.com/images/2021/4/23/fmtoday/buku-pendedahan-agenda-kristian-kerajaan-selangor-serah-pada-mais-untuk-jawab-1385526943995482115.webp');
         /* background-image: linear-gradient(to right top, #fa1c2d, #ff660f, #ff9900, #ffc700, #f6f234); */
         background-repeat: no-repeat;
         background-attachment: fixed;
