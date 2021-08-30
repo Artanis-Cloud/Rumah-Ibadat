@@ -43,7 +43,7 @@
   ======================================================== -->
   <style>
     section {
-      margin-top: 50px;
+      /* margin-top: 50px; */
     }
 
     .pieID {
@@ -55,7 +55,7 @@
       height: 200px;
       width: 200px;
       position: relative;
-      margin: 0 30px 30px 0;
+      margin: 0 0px 30px 0;
     }
 
     .pie::before {
@@ -602,7 +602,7 @@
       </table>
 
       <div class="row">
-        <div class="col-md" style="text-align: center;">
+        <div class="col-md" style="text-align: center; padding-top: 30px;">
           <section>
             <div class="pieID pie">
 
