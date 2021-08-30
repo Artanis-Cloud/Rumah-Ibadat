@@ -375,7 +375,7 @@ Route::middleware([Admin::class])->group(function () {
 
     Route::get('/dashboard-admin/tetapan/tetapan-halaman-utama', [App\Http\Controllers\AdminController::class, 'halaman_utama'])->name('admins.tetapan.halaman-utama');
 
-    Route::get('/dashboard-admin/tetapan/tetapan-halaman-utama/submit', [App\Http\Controllers\AdminController::class, 'halaman_utama_submit'])->name('admins.tetapan.halaman-utama.submit');
+    Route::post('/dashboard-admin/tetapan/tetapan-halaman-utama/submit', [App\Http\Controllers\AdminController::class, 'halaman_utama_submit'])->name('admins.tetapan.halaman-utama.submit');
 
 
     // Audit Trail

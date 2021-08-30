@@ -16,7 +16,7 @@ use App\Models\SpecialApplication;
 // use App\Notifications\Pengguna\PenggunaBaru;
 
 use App\Jobs\Pengguna\PenggunaBaru;
-
+use App\Models\Banner;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -532,11 +532,45 @@ class AdminController extends Controller
 
     public function halaman_utama(){
         $csm = Csm::get()->first();
-        return view('admins.tetapan.kemaskini-halaman-utama', compact('csm'));
+        $banner = Banner::where('status', '1')->get();
+        // $banner = $banner->order_by('created_at', 'desc');
+        return view('admins.tetapan.kemaskini-halaman-utama', compact('csm', 'banner'));
     }
 
     public function halaman_utama_submit(Request $request){
         // dd($request->all());
+
+        //remove image
+        if ($request->remove_image != null) {
+
+            foreach($request->remove_image as $id){
+                $banner = Banner::findorfail($id);
+                $banner->status = 0;
+                $banner->save();
+            }
+
+        }
+        //upload gambar
+        if($request->photos != null){
+
+            $allowedfileExtension = ['jpeg', 'jpg', 'png'];
+
+            $filename = $request->photos->getClientOriginalName();
+            $extension = $request->photos->getClientOriginalExtension();
+            $check = in_array($extension, $allowedfileExtension);
+
+            if($check){
+                //upload photo
+                $banner_uploaded = $request->file('photos')->store('public/muat-naik/banner/');
+                Banner::create([
+                    'name_file' => $filename,
+                    'comment' => null,
+                    'url' => $banner_uploaded,
+                    'status' => 1,
+                ]);
+            }
+
+        }
 
         $content = Csm::get()->first();
 
@@ -547,7 +581,7 @@ class AdminController extends Controller
         $content->address = $request->address;
 
         $content->save();
-
+        
         return redirect()->back()->with("success", "Halaman Utama berjaya dikemaskini.");
     }
 

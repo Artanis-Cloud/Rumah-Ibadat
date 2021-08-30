@@ -12,7 +12,8 @@
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            <form action="{{ route('admins.tetapan.halaman-utama.submit') }}">
+            <form method="POST" action="{{ route('admins.tetapan.halaman-utama.submit') }}" enctype="multipart/form-data">
+              {{ csrf_field() }}
               <div class="card-body border border-dark">
                 
                 <div class="row">
@@ -55,6 +56,140 @@
                   <div class="col-md">
                     <h3 class="text-center">Gambar Banner</h3>
                   </div>
+                </div>
+
+                {{-- <div class="row">
+                  <div class="col-md">
+                    <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            @foreach ( $data->lampiran as $key => $data2)
+                              @if ($loop->first)
+                              <li data-target="#carouselExampleIndicators1" data-slide-to="{{ $key }}" class="active"></li>
+                              @else
+                              <li data-target="#carouselExampleIndicators1" data-slide-to="{{ $key }}"></li>
+                              @endif
+                            @endforeach
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+
+                          @foreach ($data->lampiran as $key => $data2)
+
+                              @if ($loop->first)
+                              <div class="carousel-item active">
+                                <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                              </div>
+                              @else
+                              <div class="carousel-item">
+                                <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                            </div>
+                              @endif
+
+                          @endforeach
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                  </div>
+                </div> --}}
+                @if($banner->count() != 0)
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md">
+                    <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            @foreach ( $banner as $key => $data2)
+                              @if ($loop->first)
+                              <li data-target="#carouselExampleIndicators1" data-slide-to="{{ $key }}" class="active"></li>
+                              @else
+                              <li data-target="#carouselExampleIndicators1" data-slide-to="{{ $key }}"></li>
+                              @endif
+                            @endforeach
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+
+                          @foreach ($banner as $key => $data2)
+
+                              @if ($loop->first)
+                              <div class="carousel-item active">
+                                <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                <div class="text-center"><span class="badge badge-secondary" style="font-size: 13px;">{{ $data2->name_file }}</span></div>
+                              </div>
+                              @else 
+                              <div class="carousel-item">
+                                <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
+                                <div class="text-center"><span class="badge badge-secondary" style="font-size: 13px;">{{ $data2->name_file }}</span></div>
+                              </div>
+                              @endif
+                          @endforeach
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>
+                @endif
+
+                <div class="row" style="padding-top: 30px;">
+                  <div class="col-md-2"></div>
+                  <div class="col-md">
+                    <table style="border: 1px solid black; width: 100%;">
+                      <thead class="text-center" style="border: 1px solid black;">
+                        <tr>
+                          <th>Bil</th>
+                          <th>Nama Fail</th>
+                          <th>Tindakan</th>
+                        </tr>
+                      </thead>
+                      <tbody class="text-center" style="border: 1px solid black;">
+                        @if($banner->count() > 0)
+                          @foreach ($banner as $key => $image)
+                              <tr>
+                                <td>{{ ($key + 1) }}</td>
+                                <td>{{ $image->name_file }}</td>
+                                <td>
+                                  <div class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input" id="remove_image{{ $key  }}" name="remove_image[]" value="{{ $image->id }}">
+                                      <label class="custom-control-label" for="remove_image{{ $key  }}"><i class="fas fa-trash"></i> Padam</label>
+                                  </div>
+                                </td>
+                              </tr>
+                          @endforeach
+                        @else 
+                        <tr class="text-center">
+                          <td colspan="3">
+                            <b>Tiada Gambar</b>
+                          </td>
+                        </tr>
+                        @endif
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>
+
+                <div class="row" style="padding-top: 15px;">
+                  <div class="col-md-2"></div>
+                  <div class="col-md">
+                    <label>Muat Naik Gambar</label>
+                    {{-- <input type="file" class="form-control border border-dark" name="photos[]" multiple /> --}}
+                    <input type="file" class="form-control border border-dark" name="photos"/>
+                  </div>
+                  <div class="col-md-2"></div>
                 </div>
 
                 <div class="row" style="padding-top: 15px;">

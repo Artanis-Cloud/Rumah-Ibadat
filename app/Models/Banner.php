@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Notifications\Notifiable;
 
-class Banner extends Model
+class Banner extends Model implements Auditable
 {
     use HasFactory;
     use Notifiable;

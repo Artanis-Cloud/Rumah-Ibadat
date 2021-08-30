@@ -480,25 +480,32 @@
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
               <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
+                @foreach ( $banner as $key => $data2)
+                  @if ($loop->first)
+                  <li data-target="#myCarousel" data-slide-to="{{ $key }}" class="active"></li>
+                  @else
+                <li data-target="#myCarousel" data-slide-to="{{ $key }}"></li>
+                  @endif
+                @endforeach
               </ol>
 
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
-                <div class="item active">
-                  <img src="https://www.selangor.gov.my/index/modules_resources/images_contents/cad8d97e15d1cd95dc8bf2c04fd93ee6.png" alt="Los Angeles" style="width:100%;">
-                </div>
-
-                <div class="item">
-                  <img src="https://www.selangor.gov.my/index/modules_resources/images_contents/be562e77669a5ab06f2400f583ae18fd.png" alt="Chicago" style="width:100%;">
-                </div>
-
-                <div class="item">
-                  <img src="https://www.selangor.gov.my/index/modules_resources/images_contents/8a3215c30e5f33302b9bfd59a511646e.jpg" alt="New york" style="width:100%;">
-                </div>
+              
+                @foreach ($banner as $key => $data2)
+                    @if ($loop->first)
+                    <div class="item active">
+                      <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="width:100%; height: 300px !important;">
+                    </div>
+                    @else 
+                    <div class="item">
+                      <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" alt="New york" style="width:100%; height: 300px !important;">
+                    </div>
+                    @endif
+                @endforeach
               </div>
+
+              
 
               <!-- Left and right controls -->
               <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -510,6 +517,7 @@
                 <span class="sr-only">Next</span>
               </a>
             </div>
+
           </div>
 
         </div>
