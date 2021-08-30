@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserRole;
 use App\Models\Permohonan;
 use App\Models\Peruntukan;
+use App\Models\Csm;
 use App\Models\SpecialApplication;
 
 // use App\Notifications\Pengguna\PenggunaBaru;
@@ -523,6 +524,31 @@ class AdminController extends Controller
         return Validator::make($data, [
             'registration_number_main' => ['required', 'string', 'max:255'],
         ]);
+    }
+
+    public function tetapan(){
+        echo "halaman pilih tetapan";
+    }
+
+    public function halaman_utama(){
+        $csm = Csm::get()->first();
+        return view('admins.tetapan.kemaskini-halaman-utama', compact('csm'));
+    }
+
+    public function halaman_utama_submit(Request $request){
+        // dd($request->all());
+
+        $content = Csm::get()->first();
+
+        $content->intro_title = $request->intro_title;
+        $content->intro_content = $request->intro_content;
+        $content->email = $request->email;
+        $content->contact = $request->contact;
+        $content->address = $request->address;
+
+        $content->save();
+
+        return redirect()->back()->with("success", "Halaman Utama berjaya dikemaskini.");
     }
 
     public function audit_trail()
