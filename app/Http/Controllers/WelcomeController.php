@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Permohonan;
 use App\Models\Announcement;
+use App\Models\Banner;
 use App\Models\Csm;
 use App\Models\RumahIbadat;
 use App\Models\Peruntukan;
@@ -18,6 +19,8 @@ class WelcomeController extends Controller
     public function welcome()
     {
         $csm = Csm::get()->first();
+
+        $banner = Banner::where('status', '1')->get();
         
         $pengumuman = Announcement::where('status', '1')->where('pemohon', '1')->get();
 
@@ -62,6 +65,6 @@ class WelcomeController extends Controller
         }
         //+++++++++++++++++++++++ checking peruntukan +++++++++++++++++++++++
 
-        return view('welcome', compact('csm', 'pengumuman', 'count_pemohon', 'count_rumah_ibadat', 'count_permohonan'));
+        return view('welcome', compact('csm', 'banner', 'pengumuman', 'count_pemohon', 'count_rumah_ibadat', 'count_permohonan'));
     }
 }
