@@ -105,9 +105,9 @@
     .legend {
       list-style-type: none;
       padding: 0;
-      margin: 0;
+      /* margin: 0; */
       background: #FFF;
-      padding: 15px;
+      padding: 30px;
       font-size: 13px;
       box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB;
     }
@@ -450,6 +450,7 @@
           </div>
       @endguest
     </div>
+    @if($pengumuman->count() != 0)
     <div style="position: absolute; bottom: 0px; width: 100%;background-color: #d5fc00;" >
       <marquee direction="left" scrollamount="10" style="padding-top: 5px; color: black;">
       @foreach ($pengumuman as $data)
@@ -457,6 +458,7 @@
       @endforeach
       </marquee>
     </div>
+    @endif
   </section><!-- End Hero Section -->
 
   <main id="main">
@@ -476,6 +478,7 @@
             </p>
 
           </div>
+          @if($banner->count() != 0)
           <div class="col-md-8">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
@@ -519,6 +522,7 @@
             </div>
 
           </div>
+          @endif
 
         </div>
 
@@ -646,14 +650,14 @@
             </div>
             <ul class="pieID legend">
               <li>
-                <em>Humans</em>
-                <span>9000</span>
+                <em>Diberi <b>[{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }} %]</b> </em>
+                <span style="display: none;">{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }}</span>
               </li>
               <li>
-                <em>Dogs</em>
-                <span>531</span>
+                <em>Baki <b>[{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }} %]</b></em>
+                <span style="display: none;">{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }}</span>
               </li>
-              <li>
+              {{-- <li>
                 <em>Cats</em>
                 <span>868</span>
               </li>
@@ -664,7 +668,7 @@
               <li>
                 <em>Aliens</em>
                 <span>1145</span>
-              </li>
+              </li> --}}
             </ul>
           </section>
 
@@ -676,7 +680,7 @@
 
           <li>
             <div class="progressbar-title">
-              <h3>HTML5</h3>
+              <h3>Tokong</h3>
               <span class="percent" id="html-pourcent"></span>
             </div>
             <div class="bar-container">
@@ -686,7 +690,7 @@
           </li>
           <li>
             <div class="progressbar-title">
-              <h3>CSS / SASS</h3>
+              <h3>Kuil</h3>
               <span class="percent" id="css-pourcent"></span>
             </div>
             <div class="bar-container">
@@ -697,7 +701,7 @@
 
           <li>
             <div class="progressbar-title">
-              <h3>JavaScript / jQuery</h3>
+              <h3>Gurdwara</h3>
               <span class="percent" id="javascript-pourcent"></span>
             </div>
             <div class="bar-container">
@@ -707,7 +711,7 @@
 
           <li>
             <div class="progressbar-title">
-              <h3>PHP</h3>
+              <h3>Gereja</h3>
               <span class="percent" id="php-pourcent"></span>
             </div>
             <div class="bar-container">
@@ -1265,16 +1269,16 @@
     }
     var offset = 0;
     var color = [
-      "cornflowerblue",
-      "olivedrab",
+      // "cornflowerblue",
+      // "olivedrab",
       "orange",
       "tomato",
-      "crimson",
-      "purple",
-      "turquoise",
-      "forestgreen",
-      "navy",
-      "gray"
+      // "crimson",
+      // "purple",
+      // "turquoise",
+      // "forestgreen",
+      // "navy",
+      // "gray"
     ];
     for(var i=0; i<listData.length; i++) {
       var size = sliceSize(listData[i], listTotal);

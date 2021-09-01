@@ -24,11 +24,13 @@ class WelcomeController extends Controller
         
         $pengumuman = Announcement::where('status', '1')->where('pemohon', '1')->get();
 
-        $count_pemohon = User::where('role', '0')->count();
+        // dd($annual_report);
 
-        $count_rumah_ibadat = RumahIbadat::count();
+        // $count_pemohon = User::where('role', '0')->count();
 
-        $count_permohonan = Permohonan::count();
+        // $count_rumah_ibadat = RumahIbadat::count();
+
+        // $count_permohonan = Permohonan::count();
 
         //+++++++++++++++++++++++ checking peruntukan +++++++++++++++++++++++
         $current_date = date('Y-m-d H:i:s'); //get current date
@@ -65,6 +67,8 @@ class WelcomeController extends Controller
         }
         //+++++++++++++++++++++++ checking peruntukan +++++++++++++++++++++++
 
-        return view('welcome', compact('csm', 'banner', 'pengumuman', 'count_pemohon', 'count_rumah_ibadat', 'count_permohonan'));
+        $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
+
+        return view('welcome', compact('csm', 'banner', 'pengumuman', 'annual_report'));
     }
 }
