@@ -106,14 +106,15 @@
       list-style-type: none;
       padding: 0;
       /* margin: 0; */
-      background: #FFF;
+      background: #ffd700;
       padding: 30px;
       font-size: 13px;
-      box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB;
+      border: 2px solid #000;
+      /* box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB; */
     }
 
     .legend li {
-      width: 110px;
+      /* width: 110px; */
       height: 1.25em;
       margin-bottom: 0.7em;
       padding-left: 0.5em;
@@ -157,6 +158,8 @@
     position: absolute;
     right: 5px;
     font-size: 15px;
+    color: #fff;
+    font-weight: bold;
     }
     .skills-bar-container li .bar-container {
     background: #555;
@@ -451,7 +454,7 @@
       @endguest
     </div>
     @if($pengumuman->count() != 0)
-    <div style="position: absolute; bottom: 0px; width: 100%;background-color: #d5fc00;" >
+    <div style="position: absolute; bottom: 0px; width: 100%;background-color: #FFD700;" >
       <marquee direction="left" scrollamount="10" style="padding-top: 5px; color: black;">
       @foreach ($pengumuman as $data)
           <span style="font-size: 15pt;"><b>[</b>  <b>{{ $data->title }} &nbsp&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp&nbsp</b>{{ $data->content }} <b>]</b> &nbsp&nbsp&nbsp&nbsp</span>
@@ -494,13 +497,13 @@
 
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
-              
+
                 @foreach ($banner as $key => $data2)
                     @if ($loop->first)
                     <div class="item active">
                       <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="width:100%; height: 300px !important;">
                     </div>
-                    @else 
+                    @else
                     <div class="item">
                       <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" alt="New york" style="width:100%; height: 300px !important;">
                     </div>
@@ -508,7 +511,7 @@
                 @endforeach
               </div>
 
-              
+
 
               <!-- Left and right controls -->
               <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -650,11 +653,11 @@
             </div>
             <ul class="pieID legend">
               <li>
-                <em>Diberi <b>[{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }} %]</b> </em>
+                <em>Peruntukan yang telah Diberi <b>[{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }} %]</b> </em>
                 <span style="display: none;">{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }}</span>
               </li>
-              <li>
-                <em>Baki <b>[{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }} %]</b></em>
+              <li style="text-align: left">
+                <em>Baki Peruntukan <b>[{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }} %]</b></em>
                 <span style="display: none;">{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }}</span>
               </li>
               {{-- <li>
