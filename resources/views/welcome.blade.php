@@ -324,7 +324,7 @@
       width: 0%;
     }
     100% {
-      width: 100%;
+      width: {{ (($annual_report->balance_tokong / $annual_report->total_tokong) * 100) }}%;
     }
     }
     @keyframes progress-css {
@@ -332,7 +332,7 @@
       width: 0%;
     }
     100% {
-      width: 90%;
+      width: {{ (($annual_report->balance_kuil / $annual_report->total_kuil) * 100) }}%;
     }
     }
     @keyframes progress-javascript {
@@ -340,7 +340,7 @@
       width: 0%;
     }
     100% {
-      width: 70%;
+      width: {{ (($annual_report->balance_gurdwara / $annual_report->total_gurdwara) * 100) }}%;
     }
     }
     @keyframes progress-php {
@@ -348,7 +348,7 @@
       width: 0%;
     }
     100% {
-      width: 55%;
+      width: {{ (($annual_report->balance_gereja / $annual_report->total_gereja) * 100) }}%;
     }
     }
     @keyframes progress-angular {
@@ -481,8 +481,8 @@
             </p>
 
           </div>
-          @if($banner->count() != 0)
           <div class="col-md-8">
+          @if($banner->count() != 0)
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
               <ol class="carousel-indicators">
@@ -523,9 +523,8 @@
                 <span class="sr-only">Next</span>
               </a>
             </div>
-
-          </div>
           @endif
+          </div>
 
         </div>
 
@@ -564,9 +563,9 @@
     </section><!-- End Facts Section --> --}}
 
     <!-- ======= Services Section ======= -->
-    <section id="services" style=" background-image: url('/img/bg-statistik.png');background-blend-mode: luminosity;">
+    <section id="services" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/bg-je.png');">
       <div class="section-header">
-        <h3 class="section-title">Statistik</h3>
+        <h3 class="section-title" style="color: white;">Statistik</h3>
       </div>
       {{-- <section class="charts_orb">
         <article class="orb">
@@ -646,18 +645,20 @@
       </table> --}}
 
       <div class="row">
-        <div class="col-md" style="text-align: center; padding-top: 30px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-5" style="text-align: center; padding-top: 30px;">
+          <h3 style="color: white;">Peruntukan Tahun {{ date('Y') }}</h3>
           <section>
             <div class="pieID pie">
 
             </div>
             <ul class="pieID legend">
               <li>
-                <em>Peruntukan yang telah Diberi <b>[{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }} %]</b> </em>
+                <em>Peruntukan yang telah diluluskan <b>[{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }} %]</b> </em>
                 <span style="display: none;">{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }}</span>
               </li>
               <li style="text-align: left">
-                <em>Baki Peruntukan <b>[{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }} %]</b></em>
+                <em>Baki peruntukan  <b>[{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }} %]</b></em>
                 <span style="display: none;">{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }}</span>
               </li>
               {{-- <li>
@@ -678,12 +679,14 @@
         </div>
         <div class="col-md-5">
 
+          <h3 style="color: white; text-align: center;">Baki Peruntukan Mengikut Kategori Rumah Ibadat <br> Tahun {{ date('Y') }}</h3>
 
           <ul class="skills-bar-container">
 
           <li>
             <div class="progressbar-title">
-              <h3>Tokong</h3>
+              <h3 style="color: white;">Tokong</h3>
+              <input type="hidden" id="percent_tokong" value="{{ (($annual_report->balance_tokong / $annual_report->total_tokong) * 100) }}">
               <span class="percent" id="html-pourcent"></span>
             </div>
             <div class="bar-container">
@@ -693,7 +696,8 @@
           </li>
           <li>
             <div class="progressbar-title">
-              <h3>Kuil</h3>
+              <h3 style="color: white;">Kuil</h3>
+              <input type="hidden" id="percent_kuil" value="{{ (($annual_report->balance_kuil / $annual_report->total_kuil) * 100) }}">
               <span class="percent" id="css-pourcent"></span>
             </div>
             <div class="bar-container">
@@ -704,7 +708,8 @@
 
           <li>
             <div class="progressbar-title">
-              <h3>Gurdwara</h3>
+              <h3 style="color: white;">Gurdwara</h3>
+              <input type="hidden" id="percent_gurdwara" value="{{ (($annual_report->balance_gurdwara / $annual_report->total_gurdwara) * 100) }}">
               <span class="percent" id="javascript-pourcent"></span>
             </div>
             <div class="bar-container">
@@ -714,7 +719,8 @@
 
           <li>
             <div class="progressbar-title">
-              <h3>Gereja</h3>
+              <h3 style="color: white;">Gereja</h3>
+              <input type="hidden" id="percent_gereja" value="{{ (($annual_report->balance_gereja / $annual_report->total_gereja) * 100) }}">
               <span class="percent" id="php-pourcent"></span>
             </div>
             <div class="bar-container">
@@ -723,11 +729,11 @@
             </div>
           </li>
 
-        </ul>
+          </ul>
 
 
         </div>
-
+        <div class="col-md-1"></div>
 
       </div>
 
@@ -1211,11 +1217,16 @@
 
 <!-- Progress Bar -->
   <script>
+    var tokong = $('#percent_tokong').val() + "%";
+    var kuil = $('#percent_kuil').val() + "%";
+    var gurdwara = $('#percent_gurdwara').val() + "%";
+    var gereja = $('#percent_gereja').val() + "%";
+
       var lang = {
-    "html": "100%",
-    "css": "90%",
-    "javascript": "70%",
-    "php": "55%",
+    "html": tokong,
+    "css": kuil,
+    "javascript": gurdwara,
+    "php": gereja,
     "angular": "65%"
     };
 
