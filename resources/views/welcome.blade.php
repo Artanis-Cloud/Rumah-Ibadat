@@ -48,14 +48,14 @@
 
     .pieID {
       display: inline-block;
-      vertical-align: top;
+      vertical-align: middle;
     }
 
     .pie {
-      height: 200px;
-      width: 200px;
+      height: 225px;
+      width: 225px;
       position: relative;
-      margin: 0 0px 30px 0;
+      /* margin: 0 0px 30px 0; */
     }
 
     .pie::before {
@@ -123,6 +123,7 @@
 
     .legend em {
       font-style: normal;
+      color: #000;
     }
 
     .legend span {
@@ -474,7 +475,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="col-md">
+          <div class="col-md-4" style="color: #000;">
             <h2 class="title">{{ $csm->intro_title }}</h2>
             <p style="text-align: justify;">
               {{ $csm->intro_content }}
@@ -644,10 +645,10 @@
         </tr>
       </table> --}}
 
-      <div class="row">
+      <div class="row" style="padding-top: 5px;">
         <div class="col-md-1"></div>
         <div class="col-md-5" style="text-align: center; padding-top: 30px;">
-          <h3 style="color: white;">Peruntukan Tahun {{ date('Y') }}</h3>
+          <h4 style="color: white;">Peruntukan Tahun {{ date('Y') }}</h4>
           <section>
             <div class="pieID pie">
 
@@ -679,7 +680,7 @@
         </div>
         <div class="col-md-5">
 
-          <h3 style="color: white; text-align: center;">Baki Peruntukan Mengikut Kategori Rumah Ibadat <br> Tahun {{ date('Y') }}</h3>
+          <h4 style="color: white; text-align: center;">Baki Peruntukan Mengikut Kategori Rumah Ibadat <br> Tahun {{ date('Y') }}</h4>
 
           <ul class="skills-bar-container">
 

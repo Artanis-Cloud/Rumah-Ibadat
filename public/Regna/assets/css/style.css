@@ -467,7 +467,7 @@ section {
   text-transform: uppercase;
   text-align: center;
   font-weight: 700;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
 
 .section-header .section-description {
