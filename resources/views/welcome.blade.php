@@ -106,7 +106,7 @@
       list-style-type: none;
       padding: 0;
       /* margin: 0; */
-      background: #ffd700;
+      background: #f2ef96;
       padding: 30px;
       font-size: 13px;
       border: 2px solid #000;
@@ -647,34 +647,46 @@
 
       <div class="row" style="padding-top: 5px;">
         <div class="col-md-1"></div>
-        <div class="col-md-5" style="text-align: center; padding-top: 30px;">
+        <div class="col-md-5" style="text-align: center;">
           <h4 style="color: white;">Peruntukan Tahun {{ date('Y') }}</h4>
           <section>
-            <div class="pieID pie">
 
+            <div class="row">
+              <div class="col-md">
+                <div class="pieID pie">
+
+                </div>
+              </div>
             </div>
-            <ul class="pieID legend">
-              <li>
-                <em>Peruntukan yang telah diluluskan <b>[{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }} %]</b> </em>
-                <span style="display: none;">{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }}</span>
-              </li>
-              <li style="text-align: left">
-                <em>Baki peruntukan  <b>[{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }} %]</b></em>
-                <span style="display: none;">{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }}</span>
-              </li>
-              {{-- <li>
-                <em>Cats</em>
-                <span>868</span>
-              </li>
-              <li>
-                <em>Slugs</em>
-                <span>344</span>
-              </li>
-              <li>
-                <em>Aliens</em>
-                <span>1145</span>
-              </li> --}}
-            </ul>
+
+            <div class="row">
+              <div class="col-md">
+                <ul class="pieID legend">
+                  <li>
+                    <em>Peruntukan yang telah diluluskan <b>[{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }} %]</b> </em>
+                    <span style="display: none;">{{ (($annual_report->current_fund / $annual_report->total_fund) * 100) }}</span>
+                  </li>
+                  <li style="text-align: left">
+                    <em>Baki peruntukan  <b>[{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }} %]</b></em>
+                    <span style="display: none;">{{ (($annual_report->balance_fund / $annual_report->total_fund) * 100) }}</span>
+                  </li>
+                  {{-- <li>
+                    <em>Cats</em>
+                    <span>868</span>
+                  </li>
+                  <li>
+                    <em>Slugs</em>
+                    <span>344</span>
+                  </li>
+                  <li>
+                    <em>Aliens</em>
+                    <span>1145</span>
+                  </li> --}}
+                </ul>
+              </div>
+            </div>
+
+
           </section>
 
         </div>
