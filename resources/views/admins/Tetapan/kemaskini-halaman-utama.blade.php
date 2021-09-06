@@ -213,10 +213,20 @@
 
                 <div class="row">
                   <div class="col-md-2"></div>
+
+                  <div class="col-md">
+                      <h4 class="text-center">Pejabat YB Tokong</h4>
+                  </div>
+
+                  <div class="col-md-2"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2"></div>
                   <div class="col-md">
                     <label class="required">Nama Pejabat YB</label>
                     <div class="mb-3 form-group">
-                        <input class="form-control border-dark " id="yb1_name" name="yb1_name" type="email" value="{{ $csm->yb1_name }}">
+                        <input class="form-control border-dark " id="yb1_name" name="yb1_name" type="text" value="{{ $csm->yb1_name }}">
                     </div>
                   </div>
                   <div class="col-md-2"></div>
@@ -251,10 +261,20 @@
 
                 <div class="row">
                   <div class="col-md-2"></div>
+
+                  <div class="col-md">
+                      <h4 class="text-center">Pejabat YB Kuil & Gurdwara</h4>
+                  </div>
+
+                  <div class="col-md-2"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2"></div>
                   <div class="col-md">
                     <label class="required">Nama Pejabat YB</label>
                     <div class="mb-3 form-group">
-                        <input class="form-control border-dark " id="yb2_name" name="yb2_name" type="email" value="{{ $csm->yb2_name }}">
+                        <input class="form-control border-dark " id="yb2_name" name="yb2_name" type="text" value="{{ $csm->yb2_name }}">
                     </div>
                   </div>
                   <div class="col-md-2"></div>
@@ -289,10 +309,20 @@
 
                 <div class="row">
                   <div class="col-md-2"></div>
+
+                  <div class="col-md">
+                      <h4 class="text-center">Pejabat YB Gereja</h4>
+                  </div>
+
+                  <div class="col-md-2"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2"></div>
                   <div class="col-md">
                     <label class="required">Nama Pejabat YB</label>
                     <div class="mb-3 form-group">
-                        <input class="form-control border-dark " id="yb3_name" name="yb3_name" type="email" value="{{ $csm->yb3_name }}">
+                        <input class="form-control border-dark " id="yb3_name" name="yb3_name" type="text" value="{{ $csm->yb3_name }}">
                     </div>
                   </div>
                   <div class="col-md-2"></div>
@@ -399,9 +429,22 @@
 
     var intro_title = $('#intro_title').val();
     var intro_content = $('#intro_content').val();
-    var email = $('#email').val();
-    var contact = $('#contact').val();
-    var address = $('#address').val();
+
+    var email = $('#upen_email').val();
+    var contact = $('#upen_contact').val();
+    var address = $('#upen_address').val();
+
+    var yb1_name = $('#yb1_name').val();
+    var yb1_email = $('#yb1_email').val();
+    var yb1_contact = $('#yb1_contact').val();
+
+    var yb2_name = $('#yb2_name').val();
+    var yb2_email = $('#yb2_email').val();
+    var yb2_contact = $('#yb2_contact').val();
+
+    var yb3_name = $('#yb3_name').val();
+    var yb3_email = $('#yb3_email').val();
+    var yb3_contact = $('#yb3_contact').val();
 
     if(intro_title == ""){
         $('#note_message').html('Sila isi <b>Tajuk Pengenalan</b>.');
@@ -414,6 +457,8 @@
         $("#validation_submit_permohonan").modal();
         return false;
     }
+
+
 
     if(email == ""){
         $('#note_message').html('Sila isi <b>Emel</b>.');
@@ -433,7 +478,68 @@
       return false;
     }
 
-    $("#confirmation_submit_permohonan").modal();
+
+
+    if(yb1_name == ""){
+      $('#note_message').html('Sila pilih <b>Pejabat Tokong : Nama Pejabat YB</b>.');
+      $("#validation_submit_permohonan").modal();
+      return false;
+    }
+
+    if(yb1_email == ""){
+        $('#note_message').html('Sila isi <b>Pejabat Tokong : Emel</b>.');
+        $("#validation_submit_permohonan").modal();
+        return false;
+    }
+
+    if(yb1_contact == ""){
+        $('#note_message').html('Sila isi <b>Pejabat Tokong: Nombor Telefon</b>.');
+        $("#validation_submit_permohonan").modal();
+        return false;
+    }
+
+
+
+
+    if(yb2_name == ""){
+      $('#note_message').html('Sila pilih <b>Pejabat Kuil & Gurdwara : Nama Pejabat YB</b>.');
+      $("#validation_submit_permohonan").modal();
+      return false;
+    }
+
+    if(yb2_email == ""){
+        $('#note_message').html('Sila isi <b>Pejabat Kuil & Gurdwara : Emel</b>.');
+        $("#validation_submit_permohonan").modal();
+        return false;
+    }
+
+    if(yb2_contact == ""){
+        $('#note_message').html('Sila isi <b>Pejabat Kuil & Gurdwara: Nombor Telefon</b>.');
+        $("#validation_submit_permohonan").modal();
+        return false;
+    }
+
+
+    if(yb3_name == ""){
+      $('#note_message').html('Sila pilih <b>Pejabat Gereja : Nama Pejabat YB</b>.');
+      $("#validation_submit_permohonan").modal();
+      return false;
+    }
+
+    if(yb3_email == ""){
+        $('#note_message').html('Sila isi <b>Pejabat Gereja : Emel</b>.');
+        $("#validation_submit_permohonan").modal();
+        return false;
+    }
+
+    if(yb3_contact == ""){
+        $('#note_message').html('Sila isi <b>Pejabat Gereja: Nombor Telefon</b>.');
+        $("#validation_submit_permohonan").modal();
+        return false;
+    }
+
+
+    $("#confirmation_submit_permohonan").modal(); //open modal confirmation
     });
   });
 </script>
