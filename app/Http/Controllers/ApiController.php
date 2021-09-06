@@ -37,7 +37,17 @@ class ApiController extends Controller
     public function sendMessage(Request $request)
     {
         $api_key = config('app.MYSMS_KEY');
-        $response = Http::withToken($api_key)->post($this->url, [
+        // $api_key = 'FOLV76N0t0lfIUGQoXiljyjXid/CGAmxn2fSmfHEgsY=';
+        // dd($api_key);
+        // $response = Http::withToken($api_key)->post($this->url, [
+        //     'keyword' => 'UPEN',
+        //     "message" => $request->message ?? 'Test',
+        //     "msisdn" => $request->no_tel ?? '01110613736'
+        // ]);
+        $response = Http::withHeaders([
+            'authorization' => $api_key,
+            'Content-Type' => 'application/json',
+        ])->post($this->url, [
             'keyword' => 'UPEN',
             "message" => $request->message ?? 'Test',
             "msisdn" => $request->no_tel ?? '01110613736'
