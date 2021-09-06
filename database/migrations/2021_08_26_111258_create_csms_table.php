@@ -18,9 +18,31 @@ class CreateCsmsTable extends Migration
 
             $table->string('intro_title')->nullable();
             $table->text('intro_content')->nullable();
-            $table->string('address')->nullable();
-            $table->string('email')->nullable();
-            $table->string('contact')->nullable();
+
+
+            $table->string('upen_address')->nullable();
+            $table->string('upen_email')->nullable();
+            $table->string('upen_contact')->nullable();
+
+            $table->string('yb1_name')->nullable();
+            $table->string('yb1_address')->nullable();
+            $table->string('yb1_email')->nullable();
+            $table->string('yb1_contact')->nullable();
+
+            $table->string('yb2_name')->nullable();
+            $table->string('yb2_address')->nullable();
+            $table->string('yb2_email')->nullable();
+            $table->string('yb2_contact')->nullable();
+
+            $table->string('yb3_name')->nullable();
+            $table->string('yb3_address')->nullable();
+            $table->string('yb3_email')->nullable();
+            $table->string('yb3_contact')->nullable();
+
+            $table->string('yb4_name')->nullable();
+            $table->string('yb4_address')->nullable();
+            $table->string('yb4_email')->nullable();
+            $table->string('yb4_contact')->nullable();
 
             $table->timestamps();
         });
