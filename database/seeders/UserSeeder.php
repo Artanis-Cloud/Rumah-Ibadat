@@ -19,9 +19,30 @@ class UserSeeder extends Seeder
             [
                 'intro_title' => 'Sistem Permohonan Dana Rumah Ibadat Selain Islam (RISI)',
                 'intro_content' => 'content lorum ipsum',
-                'address' => 'Pejabat Setiausaha Kerajaan Negeri Selangor, Bangunan Sultan Salahuddin Abdul Aziz Shah, 40503 Shah Alam, Selangor Darul Ehsan.',
-                'email' => 'info@selangor.gov.my',
-                'contact' => '0355447000',
+
+                'upen_address' => 'Pejabat Setiausaha Kerajaan Negeri Selangor, Bangunan Sultan Salahuddin Abdul Aziz Shah, 40503 Shah Alam, Selangor Darul Ehsan.',
+                'upen_email' => 'info@selangor.gov.my',
+                'upen_contact' => '0355447000',
+
+                'yb1_name' => 'Pejabat YB 1',
+                'yb1_address' => 'Alamat YB1, 40503 Shah Alam, Selangor.',
+                'yb1_email' => 'yb1@selangor.gov.my',
+                'yb1_contact' => '0123456789',
+
+                'yb2_name' => 'Pejabat YB 2',
+                'yb2_address' => 'Alamat YB2, 40503 Shah Alam, Selangor.',
+                'yb2_email' => 'yb2@selangor.gov.my',
+                'yb2_contact' => '0123456789',
+
+                'yb3_name' => 'Pejabat YB 3',
+                'yb3_address' => 'Alamat YB3, 40503 Shah Alam, Selangor.',
+                'yb3_email' => 'yb3@selangor.gov.my',
+                'yb3_contact' => '0123456789',
+
+                'yb4_name' => 'Pejabat YB 4',
+                'yb4_address' => 'Alamat YB4, 40503 Shah Alam, Selangor.',
+                'yb4_email' => 'yb4@selangor.gov.my',
+                'yb4_contact' => '0123456789',
             ]
         );
 
@@ -47,7 +68,7 @@ class UserSeeder extends Seeder
                 'updated_at' => $current_date,
             ]
         );
- 
+
 
         DB::table('peruntukans')->insert(
             [
@@ -174,7 +195,7 @@ class UserSeeder extends Seeder
         \App\Models\Tujuan::factory(50)
         ->create();
 
-        // 
-        
+        //
+
     }
 }
