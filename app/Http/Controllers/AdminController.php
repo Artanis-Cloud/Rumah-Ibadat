@@ -67,7 +67,7 @@ class AdminController extends Controller
                 'updated_at' => $current_date,
             ]);
         }
-        
+
         $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
         // dd($annual_report);
 
@@ -184,7 +184,7 @@ class AdminController extends Controller
         // dd($request->all());
 
         // Validate change password form
-        
+
         $this->validator($request->all())->validate();
 
         $user = User::findOrFail($request->user_id);
@@ -576,12 +576,25 @@ class AdminController extends Controller
 
         $content->intro_title = $request->intro_title;
         $content->intro_content = $request->intro_content;
-        $content->email = $request->email;
-        $content->contact = $request->contact;
-        $content->address = $request->address;
+
+        $content->upen_email = $request->upen_email;
+        $content->upen_contact = $request->upen_contact;
+        $content->upen_address = $request->upen_address;
+
+        $content->yb1_name = $request->yb1_name;
+        $content->yb1_email = $request->yb1_email;
+        $content->yb1_contact = $request->yb1_contact;
+
+        $content->yb2_name = $request->yb2_name;
+        $content->yb2_email = $request->yb2_email;
+        $content->yb2_contact = $request->yb2_contact;
+
+        $content->yb3_name = $request->yb3_name;
+        $content->yb3_email = $request->yb3_email;
+        $content->yb3_contact = $request->yb3_contact;
 
         $content->save();
-        
+
         return redirect()->back()->with("success", "Halaman Utama berjaya dikemaskini.");
     }
 
