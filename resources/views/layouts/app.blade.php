@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Rumah Ibadat') }}</title>
-
+    <link rel="icon" href="https://www.selangor.gov.my/selangor/modules_resources/settings/e026c76b5b3efce816eb5f1d0dfe1cc1.png" type="image/x-icon">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 

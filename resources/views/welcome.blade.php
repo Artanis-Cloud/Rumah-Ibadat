@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>{{ config('app.name', 'Rumah Ibadat') }}</title>
+    <link rel="icon" href="https://www.selangor.gov.my/selangor/modules_resources/settings/e026c76b5b3efce816eb5f1d0dfe1cc1.png" type="image/x-icon">
+
     <meta content="" name="description">
     <meta content="" name="keywords">
 
