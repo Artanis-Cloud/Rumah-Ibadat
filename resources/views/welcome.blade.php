@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>{{ config('app.name', 'Rumah Ibadat') }}</title>
-    <link rel="icon" href="https://www.selangor.gov.my/selangor/modules_resources/settings/e026c76b5b3efce816eb5f1d0dfe1cc1.png" type="image/x-icon">
+    <link rel="icon"
+        href="https://www.selangor.gov.my/selangor/modules_resources/settings/e026c76b5b3efce816eb5f1d0dfe1cc1.png"
+        type="image/x-icon">
 
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -446,8 +448,16 @@
             <h2>Selamat Datang ke</h2>
             <h1>Sistem Bantuan Kewangan Rumah Ibadat <br>Selain Islam</h1>
             @auth
-                <a href="#" class="btn-get-started"
-                    onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Log Keluar</a>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{{ route('user.halaman-utama') }}" class="btn-get-started btn-block">Halaman&nbspUtama</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#" class="btn-get-started btn-block"
+                            onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Log&nbspKeluar</a>
+                    </div>
+                </div>
+
                 <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
