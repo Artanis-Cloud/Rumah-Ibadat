@@ -34,7 +34,7 @@ class ApiController extends Controller
         }
     }
 
-    public function sendMessage(Request $request)
+    public function sendMessage($permohonan, $message)
     {
         $api_key = config('app.MYSMS_KEY');
         // $api_key = 'FOLV76N0t0lfIUGQoXiljyjXid/CGAmxn2fSmfHEgsY=';
@@ -49,8 +49,8 @@ class ApiController extends Controller
             'Content-Type' => 'application/json',
         ])->post($this->url, [
             'keyword' => 'UPEN',
-            "message" => $request->message ?? 'Test',
-            "msisdn" => $request->no_tel ?? '01110613736'
+            "message" => $message ?? 'Ralat, Tiada mesej ditemui.',
+            "msisdn" => $permohonan->user->mobile_phone ?? '01110613736'
         ]);
         // dd($api_key);
         // dd($response->json());
