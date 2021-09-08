@@ -108,7 +108,7 @@ Route::middleware([Exco::class])->group(function () {
 
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-baru', [App\Http\Controllers\ExcoController::class, 'permohonan_baru'])->name('excos.permohonan.baru');
-    
+
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan'])->name('excos.permohonan.papar');
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-baru/maklumat-permohonan/semak-semula', [App\Http\Controllers\ExcoController::class, 'permohonan_semak_semula'])->name('excos.permohonan.papar.semak-semula');
@@ -117,22 +117,22 @@ Route::middleware([Exco::class])->group(function () {
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-baru/maklumat-permohonan/batalkan', [App\Http\Controllers\ExcoController::class, 'permohonan_pembatalan'])->name('excos.permohonan.papar.batalkan');
 
-    
+
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-sedang-diproses', [App\Http\Controllers\ExcoController::class, 'permohonan_sedang_diproses'])->name('excos.permohonan.sedang-diproses');
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-sedang-diproses/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan_sedang_diproses'])->name('excos.permohonan.sedang-diproses.papar');
 
-    
+
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-semakan-semula', [App\Http\Controllers\ExcoController::class, 'permohonan_semakan_semula'])->name('excos.permohonan.semakan-semula');
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-semakan-semula/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan_semakan_semula'])->name('excos.permohonan.semakan-semula.papar');
 
-    
+
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-lulus', [App\Http\Controllers\ExcoController::class, 'permohonan_lulus'])->name('excos.permohonan.lulus');
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-lulus/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan_lulus'])->name('excos.permohonan.lulus.papar');
 
-    
+
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\ExcoController::class, 'permohonan_tidak_lulus'])->name('excos.permohonan.tidak-lulus');
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan_tidak_lulus'])->name('excos.permohonan.tidak-lulus.papar');
@@ -291,7 +291,7 @@ Route::middleware([Upen::class])->group(function () {
 
     Route::get('/dashboard-pejabat-upen/permohonan/senarai-permohonan-khas/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'permohonan_khas_papar'])->name('upens.permohonan-khas.papar');
 
-    //RUMAH IBADAT  
+    //RUMAH IBADAT
     Route::get('/dashboard-pejabat-upen/rumah-ibadat', [App\Http\Controllers\UpenController::class, 'rumah_ibadat'])->name('upens.rumah-ibadat.pilih');
 
     Route::get('/dashboard-pejabat-upen/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat', [App\Http\Controllers\UpenController::class, 'tukar_wakil'])->name('upens.rumah-ibadat.permohonan');

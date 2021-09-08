@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\Pendaftaran\NewRegistration;
+use App\Jobs\Pengguna\PemohonBaruJob;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Mail\Pendaftaran\DaftarPenggunaEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-use App\Jobs\Pengguna\PemohonBaruJob;
+use App\Jobs\Pengguna\PenggunaBaru;
 
 class RegisterController extends Controller
 {
@@ -95,7 +94,7 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        // dispatch(new DaftarPenggunaEmail($user)); // send email notification to user 
+        // dispatch(new DaftarPenggunaEmail($user)); // send email notification to user
 
         $emailJob = (new PemohonBaruJob($user))->delay(now()->addSeconds(1));
         dispatch($emailJob);
