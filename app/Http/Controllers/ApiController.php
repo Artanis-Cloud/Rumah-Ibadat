@@ -53,7 +53,7 @@ class ApiController extends Controller
             "msisdn" => $permohonan->user->mobile_phone ?? '01110613736'
         ]);
         // dd($api_key);
-        dd($response->json());
+        // dd($response->json());
         if($response->failed()){
             abort(403, 'Failed response ');
         }else{
