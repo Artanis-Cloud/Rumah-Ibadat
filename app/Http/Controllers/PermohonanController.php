@@ -339,7 +339,7 @@ class PermohonanController extends Controller
 
         $permohonan->notify(new PermohonanCreated()); // send email notification to pemohon
 
-        $message = "Permohonan berjaya dihantar. Sila lawati https://limas.selangor.gov.my/ untuk semak permohonan anda.";
+        $message = "Permohonan berjaya dihantar.";
 
         app('App\Http\Controllers\ApiController')->sendMessage($permohonan, $message);
 
