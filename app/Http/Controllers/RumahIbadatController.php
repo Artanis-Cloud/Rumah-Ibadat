@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Pengguna\RumahIbadatBaruJob;
 use Toastr;
 use Auth;
 
@@ -29,7 +30,7 @@ class RumahIbadatController extends Controller
         if($checker > 0){
             return redirect()->route('users.rumah-ibadat.status');
         }
-        
+
         $rumah_ibadat = RumahIbadat::get();
         return view('users.rumah-ibadat.pilih', compact('rumah_ibadat'));
     }
@@ -116,7 +117,7 @@ class RumahIbadatController extends Controller
     }
 
     public function tambah_rumah_ibadat(Request $request)
-    {   
+    {
         // validate rumah ibadat registration
         $this->validator($request->all())->validate();
 
@@ -152,9 +153,12 @@ class RumahIbadatController extends Controller
         $user->is_rumah_ibadat = "1";
         $user->update();
 
+        //job
+        // $email_job = (new RumahIbadatBaruJob($rumah_ibadat))->delay(now()->addSeconds(1));
+        // dispatch($email_job);
+
         $rumah_ibadat->notify(new PendaftaranBaru());
 
-        // return redirect()->route('users.rumah-ibadat.kemaskini')->with('success', 'Rumah Ibadat berjaya didaftar.');
         return redirect()->route('user.halaman-utama')->with('success', 'Rumah Ibadat berjaya didaftar.');
     }
 
@@ -263,7 +267,7 @@ class RumahIbadatController extends Controller
         //redirect to
         return redirect()->route('users.rumah-ibadat.kemaskini')->with('success', 'Maklumat rumah ibadat berjaya dikemaskini.');
     }
-    
+
     protected function validatorUpdate(array $data)
     {
         return Validator::make($data, [
