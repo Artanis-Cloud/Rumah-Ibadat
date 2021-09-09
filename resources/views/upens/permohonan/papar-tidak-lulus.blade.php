@@ -311,7 +311,7 @@
                         </div>
 
                         <hr>
-                        
+
                         <h3 style="text-align: center; padding-bottom: 15px;">Dokumen-dokumen lampiran</h3>
 
                         <div class="row">
@@ -326,7 +326,7 @@
                                         @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                         Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                         @else
-                                        Surat Permohonan Kepada Pengurusi Limas
+                                        Surat Permohonan Kepada Pengerusi Limas
                                         @endif
                                       </button>
 
@@ -335,7 +335,7 @@
                                       @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                       @else
-                                      Surat Permohonan Kepada Pengurusi Limas
+                                      Surat Permohonan Kepada Pengerusi Limas
                                       @endif
                                   </a>
                                 </li>

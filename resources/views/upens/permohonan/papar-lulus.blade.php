@@ -326,7 +326,7 @@
                                         @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                         Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                         @else
-                                        Surat Permohonan Kepada Pengurusi Limas
+                                        Surat Permohonan Kepada Pengerusi Limas
                                         @endif
                                       </button>
 
@@ -335,7 +335,7 @@
                                       @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                       @else
-                                      Surat Permohonan Kepada Pengurusi Limas
+                                      Surat Permohonan Kepada Pengerusi Limas
                                       @endif
                                   </a>
                                 </li>
@@ -1183,7 +1183,7 @@
                 </form>
               </div>
               <div class="col-md">
-                <a href="{{ url()->previous() }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a> 
+                <a href="{{ url()->previous() }}" class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
               </div>
               <div class="col-md-2"></div>
             </div>

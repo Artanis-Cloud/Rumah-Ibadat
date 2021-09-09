@@ -24,7 +24,7 @@
                         <div class="card-footer">
                           @if(Auth()->user()->is_rumah_ibadat == 0)
                             <a href="{{ route('users.rumah-ibadat.daftar') }}" class="btn btn-info">Daftar Baharu</a>
-                          @else 
+                          @else
                             <button class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Daftar Baharu</button>
                           @endif
                         </div>
@@ -54,9 +54,9 @@
                             </div>
                           </form>
                             {{-- <a href="{{ route('users.rumah-ibadat.menukar') }}" class="btn btn-info">Mohon Tukar Wakil</a> --}}
-                              
+
                             {{-- <a href="#" class="btn btn-dark">Mohon Tukar Wakil</a> --}}
-                          @else 
+                          @else
                             <button class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anda telah mendaftar rumah ibadat.">Mohon Tukar Wakil</button>
                           @endif
                         </div>
@@ -95,8 +95,8 @@
                                   <table class="table table-striped table-bordered" id="table-laporan" style="width: 100%;">
                                     <thead>
                                         <tr>
-                                          <th class="all">BIL</th>  
-                                          <th class="all">KETEGORI</th>
+                                          <th class="all">BIL</th>
+                                          <th class="all">KATEGORI</th>
                                           <th class="all">JENIS PENDAFTARAN</th>
                                           <th class="all">NOMBOR PENDAFTARAN</th>
                                           <th class="all">NAMA RUMAH IBADAT</th>
@@ -113,7 +113,7 @@
                                             {{-- BIL --}}
                                             <td></td>
 
-                                            {{-- KETEGORI --}}
+                                            {{-- KATEGORI --}}
                                             <td><span class="label label-info" style="font-size: 13px;">{{ $data->category}}</span></td>
 
                                             <td>{{ $data->registration_type }}</td>
@@ -121,7 +121,7 @@
                                             <td>
                                               @if($data->registration_type == "SENDIRI")
                                                 {{ $data->registration_number }}
-                                              @else 
+                                              @else
                                                 {{ $data->registration_type == "INDUK" ? explode("%", $data->registration_number, 2)[1] : '' }}
                                               @endif
                                             </td>
@@ -140,7 +140,7 @@
                                             {{-- DAERAH --}}
                                             {{-- <td>{{ $data->district}}</td> --}}
 
-                                            
+
                                         </tr>
                                       @endforeach
 

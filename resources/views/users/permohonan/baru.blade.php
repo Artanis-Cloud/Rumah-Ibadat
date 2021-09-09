@@ -119,7 +119,7 @@
                                         <label class="required">Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa
                                             Dan Sebut Harga</label>
                                     @else
-                                        <label class="required">Surat Permohonan Kepada Pengurusi LIMAS</label>
+                                        <label class="required">Surat Permohonan Kepada Pengerusi LIMAS</label>
                                     @endif
 
                                     <div class="custom-file">
@@ -1267,7 +1267,7 @@
 
                     if (category == "TOKONG" || category == "GEREJA") {
                         $('#note_message').html(
-                            'Sila muat naik <b>Surat Permohonan Kepada Pengurusi LIMAS</b>');
+                            'Sila muat naik <b>Surat Permohonan Kepada Pengerusi LIMAS</b>');
                     } else {
                         $('#note_message').html(
                             'Sila muat naik <b>Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga</b>'

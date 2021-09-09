@@ -331,7 +331,7 @@
                                         @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                         Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                         @else
-                                        Surat Permohonan Kepada Pengurusi Limas
+                                        Surat Permohonan Kepada Pengerusi Limas
                                         @endif
                                       </button>
 
@@ -340,7 +340,7 @@
                                       @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                       @else
-                                      Surat Permohonan Kepada Pengurusi Limas
+                                      Surat Permohonan Kepada Pengerusi Limas
                                       @endif
                                   </a>
                                 </li>
@@ -974,7 +974,7 @@
                           <tbody style="text-align: center;">
 
                             @foreach (  $sejarah_permohonan as $key => $data)
-                            
+
                             <tr>
                               <td><i class="far fa-times-circle" style="color: red;"></i></td>
                               <td>{{ $data->tahun }}</td>
@@ -982,18 +982,18 @@
                               <td>RM {{ $data->jumlah_kelulusan }}</td>
 
                             </tr>
-                                
+
                             @endforeach
 
                             @foreach (  $history_application_system as $key => $data)
-                            
+
                             <tr>
                               <td><i class="far fa-check-circle" style="color: green;"></i></td>
                               <td>{{ Carbon\Carbon::parse($data->created_at)->format('Y') }}</td>
                               <td>{{ $data->rumah_ibadat->name_association }}</td>
                               <td>RM {{ number_format( $data->total_fund, 2) }}</td>
                             </tr>
-                                
+
                             @endforeach
 
                             @if($history_application_system->isEmpty() && $sejarah_permohonan == null)
@@ -1006,8 +1006,8 @@
                               </td>
                             </tr>
 
-                            @endif 
-                            
+                            @endif
+
                           </tbody>
                         </table>
                       </div>
@@ -1169,7 +1169,7 @@
 
                       <h4>Peruntukan Dana</h4>
 
-                      
+
 
                       @if($permohonan->rumah_ibadat->category == "TOKONG")
 
@@ -1219,7 +1219,7 @@
                       @endif
 
 
-                          
+
 
                       <div class="table-responsive m-t-20">
                         <table class="table table-bordered table-responsive-lg">
@@ -1402,7 +1402,7 @@
                                   @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                   Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                   @else
-                                  Surat Permohonan Kepada Pengurusi Limas
+                                  Surat Permohonan Kepada Pengerusi Limas
                                   @endif
                               </label>
                           </fieldset>

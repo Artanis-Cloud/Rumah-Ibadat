@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="printableArea">
 
         <div class="card" id="maklumat_permohonan" style="display:block; page-break-after: auto;">
@@ -97,7 +97,7 @@
                                     </tr>
                                     <tr>
                                         <td>Status Permohonan</td>
-                                        <td> 
+                                        <td>
                                         @if($permohonan->status == 0)
                                         Semak Semula
                                         @elseif($permohonan->status == 1)
@@ -111,7 +111,7 @@
                                         @endif
                                         </td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <td>Kategori Permohonan</td>
                                         <td> {{ ucfirst(strtolower($permohonan->rumah_ibadat->category))}} </td>
@@ -160,10 +160,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             @foreach ($permohonan->tujuan as  $key => $tujuan)
-                                    
-                                
+
+
 
                                 @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
                                 <tr>
@@ -248,7 +248,7 @@
                                         <td>{{ $permohonan->review_exco }} </td>
                                     </tr>
                                     @endif
-                                    
+
                                     @if($permohonan->yb_id != null)
                                     <tr class="bg-light">
                                         <td colspan="2"><b>Pejabat YB Pengerusi</b></td>
@@ -346,7 +346,7 @@
                                         <td width="390">Kategori Rumah Ibadat</td>
                                         <td> {{ ucfirst(strtolower($permohonan->rumah_ibadat->category))}} </td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <td width="390">Nama Penuh Persatuan Rumah Ibadat Mengikut Sijil</td>
                                         <td>{{ ucfirst(strtolower($permohonan->rumah_ibadat->name_association ))}}</td>
@@ -450,7 +450,7 @@
 
                                     <tr>
                                         <td>Kad Pengenalan</td>
-                                        <td>{{ 
+                                        <td>{{
                                         sprintf("%s-%s-%s",
                                         substr($permohonan->user->ic_number, 0, 6),
                                         substr($permohonan->user->ic_number, 6, 2),
@@ -467,13 +467,13 @@
                                         <td>Email</td>
                                         <td>{{ $permohonan->user->email}}</td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>{{-- end card of maklumat_pemohon --}}
 
@@ -494,8 +494,8 @@
                                             @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                             Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                             @else
-                                            Surat Permohonan Kepada Pengurusi Limas
-                                            @endif 
+                                            Surat Permohonan Kepada Pengerusi Limas
+                                            @endif
                                         </td>
                                         <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                     </tr>
@@ -505,8 +505,8 @@
                                             @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                             Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                             @else
-                                            Surat Permohonan Kepada Pengurusi Limas
-                                            @endif 
+                                            Surat Permohonan Kepada Pengerusi Limas
+                                            @endif
                                         </td>
                                         <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
                                     </tr>
@@ -517,18 +517,18 @@
                                         <td width="390">
                                             @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                             Sijil Pendaftaran (Akta Pertubuhan 1966)
-                                            @else 
+                                            @else
                                             Sijil Pendaftaran ROS
                                             @endif
                                         </td>
                                         <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->registration_certificate)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                     </tr>
-                                    @else 
+                                    @else
                                     <tr>
                                         <td width="390">
                                             @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                             Sijil Pendaftaran (Akta Pertubuhan 1966)
-                                            @else 
+                                            @else
                                             Sijil Pendaftaran ROS
                                             @endif
                                         </td>
@@ -543,7 +543,7 @@
                                         </td>
                                         <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->account_statement)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                     </tr>
-                                    @else 
+                                    @else
                                     <tr>
                                         <td width="390">
                                             Penyata Bank
@@ -561,7 +561,7 @@
                                             </td>
                                             <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->spending_statement)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                         </tr>
-                                        @else 
+                                        @else
                                         <tr>
                                             <td width="390">
                                                 Penyata Perbelanjaan
@@ -581,7 +581,7 @@
                                             </td>
                                             <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->support_letter)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                         </tr>
-                                        @else 
+                                        @else
                                         <tr>
                                             <td width="390">
                                                 Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
@@ -601,7 +601,7 @@
                                             </td>
                                             <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->committee_member)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                         </tr>
-                                        @else 
+                                        @else
                                         <tr>
                                             <td width="390">
                                                 Senarai Ahli Jawatan Kuasa Rumah Ibadat
@@ -622,7 +622,7 @@
                                             </td>
                                             <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->certificate_or_letter_temple)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                         </tr>
-                                        @else 
+                                        @else
                                         <tr>
                                             <td width="390">
                                                 Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
@@ -642,7 +642,7 @@
                                             </td>
                                             <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->invitation_letter)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                         </tr>
-                                        @else 
+                                        @else
                                         <tr>
                                             <td width="390">
                                                 Surat Jemputan
@@ -679,8 +679,8 @@
                                             @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                             Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                             @else
-                                            Surat Permohonan Kepada Pengurusi Limas
-                                            @endif 
+                                            Surat Permohonan Kepada Pengerusi Limas
+                                            @endif
                                         </td>
                                         <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                     </tr>
@@ -697,7 +697,7 @@
                                                 <td width="390">
                                                     Foto Bangunan atau Aktiviti Persatuan Agama
                                                 </td>
-                                                <td> 
+                                                <td>
                                                     @foreach ( $data->lampiran as $key => $data2)
                                                         <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;"> <br>
                                                     @endforeach
@@ -724,8 +724,8 @@
                                                         <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                                     </tr>
 
-                                                @else 
-                                            
+                                                @else
+
                                                     <tr>
                                                         <td width="390">
                                                             Senarai Nama Murid, Kad Pengenalan, Jantina dan Umur Murid
@@ -737,12 +737,12 @@
                                                 @endif
 
                                             @endforeach
-                                            
+
 
                                         @endif
 
                                         @if($data->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
-                                        
+
                                             <tr class="bg-light text-center">
                                                 <td colspan="2"><b>Pembelian Peralatan Untuk Kelas Keagamaan</b></td>
                                             </tr>
@@ -758,7 +758,7 @@
                                                             </td>
                                                             <td> <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;"> </td>
                                                         </tr>
-                                                    @else 
+                                                    @else
                                                         <tr>
                                                             <td width="390">
                                                                 Salinan Sebutharga Daripada Pembekal
@@ -770,12 +770,12 @@
                                                 @endif
 
                                             @endforeach
-                                            
+
                                             <tr>
                                                 <td width="390">
                                                     Foto Lampiran
                                                 </td>
-                                                <td> 
+                                                <td>
                                                     @foreach ( $data->lampiran as $key => $data2)
 
                                                         @if($data2->description == "opt_3_file_1")
@@ -800,14 +800,14 @@
                                                 <td width="390">
                                                     Salinan Sebutharga Daripada Pembekal
                                                 </td>
-                                                <td> 
+                                                <td>
                                                     @foreach ( $data->lampiran as $key => $data2)
 
                                                         @if($data2->description == "opt_4_file_1")
 
                                                             @if(pathinfo($data2->url, PATHINFO_EXTENSION) == "jpg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "jpeg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "png")
                                                                 <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;">
-                                                            @else 
+                                                            @else
                                                                 <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b>
                                                             @endif
 
@@ -821,7 +821,7 @@
                                                 <td width="390">
                                                     Foto Keseluruhan Rumah Ibadat
                                                 </td>
-                                                <td> 
+                                                <td>
                                                     @foreach ( $data->lampiran as $key => $data2)
 
                                                         @if($data2->description != "opt_4_photo")
@@ -838,7 +838,7 @@
                                                 <td width="390">
                                                     Foto Pembaikan dan Penyelenggaraan
                                                 </td>
-                                                <td> 
+                                                <td>
                                                     @foreach ( $data->lampiran as $key => $data2)
 
                                                         @if($data2->description != "opt_4_2_photo")
@@ -868,11 +868,11 @@
                                                         <td width="390">
                                                             Sebutharga Pembekal
                                                         </td>
-                                                        <td> 
-                                                            
+                                                        <td>
+
                                                             @if(pathinfo($data2->url, PATHINFO_EXTENSION) == "jpg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "jpeg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "png")
                                                                 <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;">
-                                                            @else 
+                                                            @else
                                                                 <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b>
                                                             @endif
 
@@ -885,11 +885,11 @@
                                                         <td width="390">
                                                             Salinan Kebenaran Merancang daripada PBT
                                                         </td>
-                                                        <td> 
-                                                            
+                                                        <td>
+
                                                             @if(pathinfo($data2->url, PATHINFO_EXTENSION) == "jpg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "jpeg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "png")
                                                                 <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;">
-                                                            @else 
+                                                            @else
                                                                 <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b>
                                                             @endif
 
@@ -902,11 +902,11 @@
                                                         <td width="390">
                                                             Foto Semasa Tapak Rumah Ibadat
                                                         </td>
-                                                        <td> 
-                                                            
+                                                        <td>
+
                                                             @if(pathinfo($data2->url, PATHINFO_EXTENSION) == "jpg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "jpeg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "png")
                                                                 <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;">
-                                                            @else 
+                                                            @else
                                                                 <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b>
                                                             @endif
 
@@ -921,7 +921,7 @@
                                                 <td width="390">
                                                     Foto Semasa Tapak Rumah Ibadat
                                                 </td>
-                                                <td> 
+                                                <td>
                                                     @foreach ( $data->lampiran as $key => $data2)
 
                                                         @if($data2->description != "opt_5_photo")
@@ -950,8 +950,8 @@
 
 
     </div>{{-- end of printablearea --}}
-  
-</div>{{-- end of container-fluid --}}  
+
+</div>{{-- end of container-fluid --}}
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->

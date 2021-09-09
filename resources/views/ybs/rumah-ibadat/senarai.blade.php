@@ -7,12 +7,12 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            
+
               <div class="card-body border border-dark">
 
                   <div class="row" style="padding-top: 15px;">
@@ -37,7 +37,7 @@
                                   {{-- BIL --}}
                                   <td></td>
 
-                                  {{-- KETEGORI --}}
+                                  {{-- KATEGORI --}}
                                   <td><span class="label label-info" style="font-size: 13px;">{{ $data->category}}</span></td>
 
                                   {{-- NAMA RUMAH IBADAT --}}
@@ -64,7 +64,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
               </div>
 
           </div>

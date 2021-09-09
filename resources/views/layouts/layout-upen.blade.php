@@ -77,7 +77,7 @@
     color: red;
     }
     </style>
-    
+
 </head>
 <body>
     <!-- ============================================================== -->
@@ -171,7 +171,7 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown p-2">
                             <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tetapan">
+                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Profil">
                                     <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
                                 </a>
                             </span>
@@ -231,24 +231,24 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.dashboard') }}" aria-expanded="false"><i class="fas fa-tachometer-alt"></i><span class="hide-menu" style="padding-left: 10px;">Dashboard </span></a></li>
-                        
+
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan.semak-semula') }}" aria-expanded="false"><span class="hide-menu">Permohonan Semakan Semula</span></a>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan.lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Lulus</span></a>
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan.tidak-lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
 
                                 <hr>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.permohonan.status-permohonan') }}" aria-expanded="false"><span class="hide-menu">Status Permohonan Keseluruhan</span></a>
-                                
+
                             </ul>
                         </li>
 
@@ -268,7 +268,7 @@
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.rumah-ibadat.permohonan') }}" aria-expanded="false"><span class="hide-menu">Permohonan Menukar Wakil <br>Rumah Ibadat</span></a>
 
                             </ul>
@@ -276,7 +276,7 @@
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-cogs"></i><span class="hide-menu" style="padding-left: 10px;">Tetapan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.tetapan.permohonan') }}" aria-expanded="false"><span class="hide-menu">Tetapan Permohonan</span></a>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('upens.tetapan.pengumuman') }}" aria-expanded="false"><span class="hide-menu">Tetapan Pengumuman</span></a>
 
@@ -317,9 +317,9 @@
                             @else
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    
+
                                     {{-- <a href="{{ route('excos.dashboard') }}">Dashboard</a> &nbsp>&nbsp --}}
-                                    
+
                                     <?php $link = "" ?>
                                     @for($i = 1; $i <= count(Request::segments()); $i++)
                                         @if($i < count(Request::segments()) & $i > 0)
@@ -442,7 +442,7 @@
             toastr.error('{{ session('error') }}', 'Ralat', { "progressBar": true });
         @endif
     </script>
-    
+
     {{-- <script type="text/javascript">
         $("document").ready(function(){
             setTimeout(function(){

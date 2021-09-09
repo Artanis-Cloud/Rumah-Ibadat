@@ -169,7 +169,7 @@
 
                         <li class="nav-item dropdown">
                             <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tetapan">
+                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Profil">
                                     {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
                                     {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i></span> --}}
                                     <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
