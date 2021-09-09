@@ -153,8 +153,8 @@
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="mr-auto navbar-nav" style="padding-left: 2%;">
-                        
-                        <h3 class="" style="text-align: center;color: #000">Sistem Bantuan Kewangan Rumah Ibadat </h3>
+
+                        <h3 class="" style="text-align: center;color: #000">Sistem Bantuan Kewangan Rumah Ibadat Selain Islam</h3>
 
                     </ul>
 
@@ -162,7 +162,7 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="float-right navbar-nav">
-                        
+
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -182,7 +182,7 @@
                                     <span class="bg-primary"></span>
                                 </span>
                                 <div class="text-white d-flex no-block align-items-center p-15 bg-dark m-b-10" style="padding: 15px;">
-                                    
+
                                     <div class="m-l-10">
                                         <h5 style="margin-bottom: 0px !important;">{{ Auth::user()->name }}</h5>
                                         <p style="margin-bottom: 0px !important;"><i class="fas fa-envelope"></i>&nbsp&nbsp&nbsp{{ Auth::user()->email }}</p>
@@ -190,7 +190,7 @@
                                     </div>
                                 </div>
                                 <a class="dropdown-item" href="{{ route('users.kemaskini-profil') }}">
-                                    <i class="ti-user m-r-5 m-l-5"></i> Kemaskini Profil Pengguna</a>
+                                    <i class="ti-user m-r-5 m-l-5"></i> Kemaskini Profil</a>
 
                                 <div class="dropdown-divider"></div>
 
@@ -249,11 +249,11 @@
 
                                 </li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Lulus</span></a>
-                                    
+
                                 </li>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.permohonan.tidak-lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
-                                    
+
                                 </li>
 
                             </ul>
@@ -421,7 +421,7 @@
             }, 5000 ); // 5 secs  (1 sec = 1000)
         });
     </script> --}}
-    
+
     <script>
         @if (Session::get('success'))
             toastr.success('{{ session('success') }}', 'Berjaya', { "progressBar": true });

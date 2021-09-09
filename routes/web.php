@@ -49,9 +49,9 @@ Route::middleware([User::class])->group(function(){
     Route::post('/halaman-utama/rumah-ibadat/daftar-rumah-ibadat/daftar', [App\Http\Controllers\RumahIbadatController::class, 'tambah_rumah_ibadat'])->name('users.rumah-ibadat.daftar.tambah');
 
     //Rumah Ibadat - Menukar Hak Milik
-    Route::get('/halaman-utama/rumah-ibadat/permohonan-tukar-hak-milik-rumah-ibadat', [App\Http\Controllers\RumahIbadatController::class, 'menukar_rumah_ibadat'])->name('users.rumah-ibadat.menukar');
+    Route::get('/halaman-utama/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat', [App\Http\Controllers\RumahIbadatController::class, 'menukar_rumah_ibadat'])->name('users.rumah-ibadat.menukar');
 
-    Route::post('/halaman-utama/rumah-ibadat/permohonan-tukar-hak-milik-rumah-ibadat/hantar', [App\Http\Controllers\RumahIbadatController::class, 'menukar_rumah_ibadat_submit'])->name('users.rumah-ibadat.menukar.submit');
+    Route::post('/halaman-utama/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/hantar', [App\Http\Controllers\RumahIbadatController::class, 'menukar_rumah_ibadat_submit'])->name('users.rumah-ibadat.menukar.submit');
 
     Route::get('/status-permohonan-menukar-wakil-rumah-ibadat', [App\Http\Controllers\RumahIbadatController::class, 'status_tukar'])->name('users.rumah-ibadat.status');
 
@@ -383,7 +383,7 @@ Route::middleware([Admin::class])->group(function () {
 
     Route::get('/dashboard-admin/audit-trail/audit-trail-proses', [App\Http\Controllers\AdminController::class, 'audit_trail_process'])->name('admins.audit-trail.proses');
 
-    Route::get('/dashboard-admin/audit-trail/audit-trail-log-pengguna', [App\Http\Controllers\AdminController::class, 'audit_trail_log_user'])->name('admins.audit-trail.log-user');
+    Route::get('/dashboard-admin/audit-trail/audit-trail-log-akses', [App\Http\Controllers\AdminController::class, 'audit_trail_log_user'])->name('admins.audit-trail.log-user');
 
 });
 

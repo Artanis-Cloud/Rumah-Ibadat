@@ -18,7 +18,7 @@
 
                 <input type="hidden" name="rumah_ibadat_id" id="rumah_ibadat_id" value="{{ $rumah_ibadat->id }}" readonly>
 
-                  <div class="row"> 
+                  <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
@@ -74,7 +74,7 @@
                     <div class="col-md">
                       @if($rumah_ibadat->registration_type == "SENDIRI")
                       <label class="mr-sm-2" for="inlineFormCustomSelect">Nombor Sijil Pendaftaran / Nombor ROS</label>
-                      @else 
+                      @else
                       <label class="mr-sm-2" for="inlineFormCustomSelect">Nombor Pendaftaran Cawangan</label>
                       @endif
                       <input class="form-control text-uppercase @error('name_asregistration_typesociation') is-invalid @else border-dark @enderror" id="registration_type" name="registration_type" type="text" value="{{ $rumah_ibadat->registration_type == "SENDIRI" ? $rumah_ibadat->registration_number : explode("%", $rumah_ibadat->registration_number, 2)[1]}}" disabled>
@@ -105,7 +105,7 @@
                   <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
-                      <label class="required">Ulasan</label> 
+                      <label class="required">Ulasan</label>
                       <div class="form-group">
                           <textarea class="form-control text-uppercase  border-dark " id="comment" name="comment" rows="4" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
                                                   </div>
@@ -138,7 +138,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      Anda pasti maklumat ini sah?
+                      Adakah anda pasti maklumat ini benar?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
@@ -213,7 +213,7 @@
     //---------- FILE SIZE CHECKER ----------
     var numb = $(this)[0].files[0].size/1024 /1024 ;
     numb = numb.toFixed(2);
-    
+
     if(numb > 1.0){  //change file limit HERE!!! (MB)
     //change border color to black
     $(this).next('.custom-file-label').removeClass( "border-success" ).addClass("border-dark");
@@ -249,8 +249,8 @@
 
 <script type="text/javascript">
  function fun_AllowOnlyAmountAndDot(txt)
-{ 
-  
+{
+
     if(event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 46)
     {
         var txtbx=document.getElementById(txt);
@@ -258,7 +258,7 @@
         var present=0;
         var count=0;
 
-        
+
 
         if(amount.indexOf(".",present)||amount.indexOf(".",present+1));
         {
@@ -320,7 +320,7 @@
     var comment = $('#comment').val();
     var supported_document = $('#supported_document').val();
 
-    
+
 
     if(supported_document == ""){
       $('#note_message').html('Sila muat naik <b>Dokumen Sokongan</b>');

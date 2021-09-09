@@ -41,7 +41,7 @@
                                 {{-- <a href="#">
                                     {{ env('APP_NAME', 'Permissions Manager') }}
                                 </a> --}}
-                                Set Semula Kata Laluan
+                                Tetapan Semula Kata Laluan
                             </div>
                         </h1>
                         {{-- <p class="text-muted">Sila masukkan email yang berdaftar</p> --}}
@@ -57,7 +57,7 @@
                             </div> --}}
 
                             <div class="form-group has-feedback">
-                                <input type="email" name="email" class="form-control" required="autofocus" placeholder="Email">
+                                <input type="email" name="email" class="form-control" required="autofocus" placeholder="Emel">
                                 @if($errors->has('email'))
                                     <em class="invalid-feedback">
                                         {{ $errors->first('email') }}
@@ -68,7 +68,7 @@
                         <div class="row">
                             <div class="col-md">
                                 <button type="submit" class="btn btn-primary px-4" style="width: 50%;">
-                                    Set Semula Kata Laluan
+                                    Tetapan Semula Kata Laluan
                                 </button>
                             </div>
                         </div>

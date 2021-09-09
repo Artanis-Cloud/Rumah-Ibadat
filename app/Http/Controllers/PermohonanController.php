@@ -341,7 +341,7 @@ class PermohonanController extends Controller
 
         $message = "Permohonan berjaya dihantar.";
 
-        app('App\Http\Controllers\ApiController')->sendMessage($permohonan, $message);
+        // app('App\Http\Controllers\ApiController')->sendMessage($permohonan, $message);
 
         //======================================================= END OF SEND NOTIFICATION EMAIL =======================================================
 

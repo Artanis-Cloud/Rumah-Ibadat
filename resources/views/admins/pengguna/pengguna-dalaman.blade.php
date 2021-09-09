@@ -7,12 +7,12 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            
+
               <div class="card-body border border-dark">
 
                   <div class="row">
@@ -29,7 +29,7 @@
                             <tr>
                               <th class="all">BIL</th>
                               <th class="all">NAMA PENGGUNA</th>
-                              <th class="all">EMAIL</th>
+                              <th class="all">EMEL</th>
                               <th class="all">PERANAN</th>
                               <th class="all">RUMAH IBADAT</th>
                               <th class="all">STATUS AKAUN</th>
@@ -76,7 +76,7 @@
                                  @if($data->user_role->gereja == 1)
                                 <span class="label label-success label-info border border-dark" style="font-size: 10px;">Gereja</span><br>
                                 @endif
-                              @else 
+                              @else
                               -
                               @endif
                             </td>
@@ -115,7 +115,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   <!-- Modal Disable Permohonan -->
                   <div class="modal fade" id="disable_user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -138,7 +138,7 @@
                         </div>
                       </div>
                     </div>
-                  </div> 
+                  </div>
 
                   <!-- Modal Enable Permohonan -->
                   <div class="modal fade" id="enable_user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -162,7 +162,7 @@
                         </div>
                       </div>
                     </div>
-                  </div> 
+                  </div>
               </div>
 
           </div>

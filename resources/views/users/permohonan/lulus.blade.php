@@ -12,7 +12,7 @@
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            
+
               <div class="card-body border border-dark">
 
                   <div class="row" style="padding-top: 15px;">
@@ -26,7 +26,7 @@
                                 <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">TARIKH PERMOHONAN</th>
                                 <th class="all">TARIKH DILULUSKAN</th>
-                                <th class="all">Peruntukan Yang Diluluskan</th>
+                                <th class="all">PERUNTUKAN YANG DILULUSKAN</th>
                                 <th class="all">JENIS PEMBAYARAN</th>
                               </tr>
                           </thead>
@@ -46,7 +46,7 @@
                                     <td>
                                       @if($data->payment_method == 1)
                                       Cek
-                                      @else 
+                                      @else
                                       EFT
                                       @endif
                                     </td>
@@ -59,7 +59,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
               </div>
 
           </div>

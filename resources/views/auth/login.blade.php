@@ -14,7 +14,7 @@
 					<div class="wrap d-md-flex">
 						<div class="p-4 text-center text-wrap p-lg-5 d-flex align-items-center order-md-last" style="background: linear-gradient(135deg, #5cfcff 0%, #4da5e8 100%);">
 							<div class="text w-100">
-								<h2>Selamat Datang Ke Sistem Bantuan Kewangan Rumah Ibadat</h2>
+								<h2>Selamat Datang Ke Sistem Bantuan Kewangan Rumah Ibadat Selain Islam</h2>
 								<p>Tiada Akaun?</p>
 								<a href="{{ route('register') }}" class="btn btn-white btn-outline-white">Daftar Masuk</a>
 							</div>

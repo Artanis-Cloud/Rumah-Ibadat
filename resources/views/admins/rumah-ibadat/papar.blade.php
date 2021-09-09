@@ -7,7 +7,7 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       <div class="col-12">
           <div class="card">
@@ -15,7 +15,7 @@
 
               <div class="card-body border border-dark">
 
-                  
+
 
                   <div class="row">
                     <div class="col-md-2"></div>
@@ -37,7 +37,7 @@
 
                   <hr>
 
-                  <div class="row"> 
+                  <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <div class="form-group">
@@ -84,7 +84,7 @@
                           @enderror
                       </div>
                     </div>
-                    
+
                     <div class="col-md-2"></div>
                   </div>
 
@@ -113,7 +113,7 @@
                           @enderror
                       </div>
                     </div>
-                    
+
                     <div class="col-md-2"></div>
                   </div>
 
@@ -254,7 +254,7 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-                  
+
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
@@ -286,7 +286,7 @@
                               <option value="MAJLIS DAERAH KUALA SELANGOR (MDKS)"     {{ $rumah_ibadat->pbt_area == "MAJLIS DAERAH KUALA SELANGOR (MDKS)"    ? 'selected' : '' }} >MAJLIS DAERAH KUALA SELANGOR (MDKS)</option>
                               <option value="MAJLIS DAERAH HULU SELANGOR (MDHS)"      {{ $rumah_ibadat->pbt_area == "MAJLIS DAERAH HULU SELANGOR (MDHS)"     ? 'selected' : '' }} >MAJLIS DAERAH HULU SELANGOR (MDHS)</option>
                               <option value="MAJLIS DAERAH SABAK BERNAM (MDSB)"       {{ $rumah_ibadat->pbt_area == "MAJLIS DAERAH SABAK BERNAM (MDSB)"      ? 'selected' : '' }} >MAJLIS DAERAH SABAK BERNAM (MDSB)</option>
-                              
+
                           </select>
                           @error('pbt_area')
                           <span class="invalid-feedback" role="alert">
@@ -385,7 +385,7 @@
                   </div>
 
                   {{-- Submit Button --}}
-                  <div class="row" style="padding-top: 15px;"> 
+                  <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md" style="text-align: center;">
                       <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation_submit">Kemaskini Rumah Ibadat</button>
@@ -395,7 +395,7 @@
 
                   @if($rumah_ibadat->user_id != null)
 
-                  <div class="row" style="padding-top: 35px;"> 
+                  <div class="row" style="padding-top: 35px;">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <hr>
@@ -403,7 +403,7 @@
                     <div class="col-md-2"></div>
                   </div>
 
-                  <div class="row" style="padding-top: 35px;"> 
+                  <div class="row" style="padding-top: 35px;">
                     <div class="col-md-2"></div>
                     <div class="col-md" style="text-align: center;">
                       <h3>Maklumat Wakil</h3>
@@ -453,7 +453,7 @@
                     <div class="col-md-2"></div>
                   </div>
 
-                  <div class="row">
+                  {{-- <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
                         <label>Emel</label>
@@ -462,13 +462,13 @@
                         </div>
                     </div>
                     <div class="col-md-2"></div>
-                  </div>
+                  </div> --}}
 
-                  
+
 
                   @else
 
-                  <div class="row" style="padding-top: 35px;"> 
+                  <div class="row" style="padding-top: 35px;">
                     <div class="col-md-2"></div>
                     <div class="col-md text-center">
                       <lord-icon
@@ -483,7 +483,7 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-                  
+
                   @endif
 
               </div>
