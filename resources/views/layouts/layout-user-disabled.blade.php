@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>Halaman Utama Pengguna</title>
+    <title>Sistem Bantuan Dana Rumah Ibadat Selain Islam</title>
     @livewireStyles
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -73,7 +73,7 @@
     color: red;
     }
     </style>
-    
+
 </head>
 <body>
     <!-- ============================================================== -->
@@ -131,7 +131,7 @@
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         {{-- <i class="ti-more"></i> --}}
                         <i class="fas fa-cogs"></i>
-                        
+
                     </a>
                 </div>
                 <!-- ============================================================== -->
@@ -150,7 +150,7 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Rumah Ibadat </h1>
+                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Rumah Ibadat Selain Islam</h1>
                         {{-- <li class="nav-item search-box">
 
 
@@ -166,7 +166,7 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        
+
                         <li class="nav-item dropdown">
                             <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                 <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tetapan">
@@ -192,7 +192,7 @@
                                     </div>
                                 </div>
                                 <a class="dropdown-item" href="#" style="color: grey;">
-                                    <i class="ti-user m-r-5 m-l-5"></i> Kemaskini Profil Pengguna</a>
+                                    <i class="ti-user m-r-5 m-l-5"></i> Kemaskini Profil</a>
 
                                 {{-- <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a> --}}
@@ -239,21 +239,21 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-home"></i><span class="hide-menu">Halaman Utama </span></a></li>
-                        
+
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Rumah Ibadat</span></li> --}}
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
                             {{-- <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.daftar') }}" aria-expanded="false"><span class="hide-menu">Pendaftaran</span></a>
-                                    
+
                                 </li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.kemaskini') }}" aria-expanded="false"><span class="hide-menu">Kemaskini Rumah Ibadat</span></a>
-                                    
+
                                 </li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('users.rumah-ibadat.menukar') }}" aria-expanded="false"><span class="hide-menu">Menukar Hak Milik</span></a>
-                                    
+
                                 </li>
 
                             </ul> --}}
@@ -261,7 +261,7 @@
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Permohonan</span></li> --}}
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
-                            
+
                         </li>
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Sample Pages</span></li>
@@ -343,13 +343,13 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
-                            
+
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    
+
                                     @if(Request::is('halaman-utama/rumah-ibadat'))
 
-                                    @else       
+                                    @else
                                         <?php $link = "" ?>
                                         @for($i = 1; $i <= count(Request::segments()); $i++)
                                             @if($i < count(Request::segments()) & $i > 0)
@@ -357,11 +357,11 @@
                                                 @if($i!=1)
                                                 <a href="<?= $link ?>">&nbsp{{ ucwords(str_replace('-',' ',Request::segment($i)))}}</a> &nbsp>
                                                 @endif
-                                            @else 
+                                            @else
                                                 @if($i == 1)
                                                     {{-- {{ucwords(str_replace('-',' ',Request::segment($i)))}} >&nbsp --}}
-                                                @else 
-                                                    {{ucwords(str_replace('-',' ',Request::segment($i)))}} 
+                                                @else
+                                                    {{ucwords(str_replace('-',' ',Request::segment($i)))}}
                                                 @endif
                                             @endif
                                         @endfor
@@ -369,7 +369,7 @@
                                     @endif
                                 </ol>
                             </nav>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -478,7 +478,7 @@
             toastr.error('{{ session('error') }}', 'Ralat', { "progressBar": true });
         @endif
     </script>
-    
+
     {{-- <script type="text/javascript">
         $("document").ready(function(){
             setTimeout(function(){

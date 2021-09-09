@@ -76,7 +76,7 @@ class UpenController extends Controller
         }
         $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
         // dd($annual_report);
- 
+
 
         //permohonan terkini
         $new_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->orderBy('created_at', 'asc')->get();
@@ -140,7 +140,7 @@ class UpenController extends Controller
 
         $count_khas_gereja = $special_application_pass->count();
 
-        return view('upens.dashboard', compact('pengumuman', 'current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report','laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application')); 
+        return view('upens.dashboard', compact('pengumuman', 'current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report','laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application'));
     }
 
     public function update_peruntukan(Request $request){
@@ -157,7 +157,7 @@ class UpenController extends Controller
 
         $peruntukan->total_kuil = $request->kuil;
         $peruntukan->balance_kuil = $request->kuil - $peruntukan->current_kuil;
-        
+
         $peruntukan->total_gurdwara = $request->gurdwara;
         $peruntukan->balance_gurdwara = $request->gurdwara - $peruntukan->current_gurdwara;
 
@@ -231,7 +231,7 @@ class UpenController extends Controller
     public function permohonan_status(){
 
         $permohonan = Permohonan::get();
-        
+
         return view('upens.permohonan.status-permohonan', compact('permohonan'));
     }
 
@@ -285,7 +285,7 @@ class UpenController extends Controller
     }
 
     public function permohonan_kemaskini_peruntukan(Request $request){
-        
+
         $permohonan = Permohonan::findorfail($request->permohonan_id); //look current permohonan
         $total_fund = 0.00;
 
@@ -595,7 +595,11 @@ class UpenController extends Controller
 
         $peruntukan->save();
 
-        $permohonan->notify(new UpenApproved()); // send email notification to upen 
+        $permohonan->notify(new UpenApproved()); // send email notification to upen
+
+        $message = "Permohonan " . $permohonan->getPermohonanID() . " telah diluluskan.";
+
+        app('App\Http\Controllers\ApiController')->sendMessage($permohonan, $message);
 
         //redirect
         return redirect()->route('upens.permohonan.baru')->with('success', 'Permohonan telah diluluskan.');
@@ -801,7 +805,7 @@ class UpenController extends Controller
 
         $old_user->is_rumah_ibadat = '0';
 
-        $old_user->save(); 
+        $old_user->save();
 
         //assign new representative to rumah_ibadat
         $rumah_ibadat->user_id = $permohonan->user->id;

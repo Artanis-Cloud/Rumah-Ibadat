@@ -15,9 +15,9 @@ return [
 
     'password' => 'Kata laluan mestilah sekurang-kurangnya lapan aksara dan sepadan dengan pengesahannya.',
     'reset' => 'Kata laluan anda telah ditetapkan semula!',
-    'sent' => 'Kami telah menghantar pautan tetapan semula kata laluan anda melalui e-mel!',
+    'sent' => 'Kami telah menghantar pautan tetapan semula kata laluan anda melalui emel!',
     'token' => 'Token tetapan semula kata laluan ini tidak sah.',
-    'user' => "Kami tidak dapat mencari pengguna dengan alamat e-mel itu.",
+    'user' => "Kami tidak dapat mencari pengguna dengan alamat emel itu.",
     'throttled' => 'Sila tunggu sebentar sebelum mencuba lagi.',
 
 ];

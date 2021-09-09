@@ -7,7 +7,7 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
@@ -31,7 +31,7 @@
                     </div>
                   </div>
                   <div class="col-md">
-                    <label class="required">Email</label>
+                    <label class="required">Emel</label>
                     <div class="form-group mb-3">
                         <input class="form-control  border-dark " id="email" name="email" type="text">
                     </div>
@@ -84,7 +84,7 @@
                   <div class="col-md-2"></div>
                 </div>
 
-                
+
 
                 <div class="row" >
                   <div class="col-md-2"></div>
@@ -165,7 +165,7 @@
                     </div>
                   </div>
                 </div>
-                  
+
               </div>
             </form>
           </div>
@@ -245,9 +245,9 @@
         $("#validation_submit_permohonan").modal();
         return false;
       }
-        
+
     }
-    
+
     $("#confirmation_submit_permohonan").modal();
     });
   });
