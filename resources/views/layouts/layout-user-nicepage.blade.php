@@ -168,7 +168,7 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                <button class="btn btn-light" style="border: solid black 1px;" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tetapan">
+                                <button class="btn btn-light" style="border: solid black 1px;" data-toggle="tooltip" data-placement="left" title="" data-original-title="Profil">
                                     <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
                                 </button>
                             </span>

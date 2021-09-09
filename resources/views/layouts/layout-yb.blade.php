@@ -76,7 +76,7 @@
     color: red;
     }
     </style>
-    
+
 </head>
 <body>
     <!-- ============================================================== -->
@@ -170,7 +170,7 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown p-2">
                             <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tetapan">
+                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Profil">
                                     <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
                                 </a>
                             </span>
@@ -186,9 +186,9 @@
                                 <div class="text-white d-flex no-block align-items-center p-15 bg-dark m-b-10" style="padding: 15px;">
                                     <div class="m-l-10">
                                         <h5 style="margin-bottom: 0px !important;">{{ Auth::user()->name }}</h5>
-                                        
+
                                         <p style="margin-bottom: 0px !important;"><i class="fas fa-envelope"></i>&nbsp&nbsp&nbsp&nbsp{{ Auth::user()->email }}</p>
-                                        
+
                                         <p style="margin-bottom: 0px !important;"><i class="fas fa-crown"></i>&nbsp&nbsp&nbspPejabat YB Pengerusi</p>
 
                                         <p style="margin-bottom: 0px !important;">
@@ -209,7 +209,7 @@
                                             @if(Auth::user()->user_role->gereja == "1")
                                                     <span class="badge badge-info">GEREJA</span>
                                             @endif
-                                            
+
                                         </p>
                                     </div>
                                 </div>
@@ -253,12 +253,12 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.dashboard') }}" aria-expanded="false"><i class="fas fa-tachometer-alt"></i><span class="hide-menu" style="padding-left: 10px;">Dashboard </span></a></li>
-                        
+
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="far fa-list-alt"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.baru') }}" aria-expanded="false"><span class="hide-menu">Permohonan Baru</span></a>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.sedang-diproses') }}" aria-expanded="false"><span class="hide-menu">Permohonan Sedang Diproses</span></a>
@@ -266,19 +266,19 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.semak-semula') }}" aria-expanded="false"><span class="hide-menu">Permohonan Semakan Semula</span></a>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Lulus</span></a>
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.tidak-lulus') }}" aria-expanded="false"><span class="hide-menu">Permohonan Tidak Lulus</span></a>
 
                                     <hr>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.status-permohonan') }}" aria-expanded="false"><span class="hide-menu">Status Permohonan Keseluruhan</span></a>
-                                
+
                             </ul>
                         </li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-file-alt"></i><span class="hide-menu" style="padding-left: 10px;">Permohonan Khas</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.permohonan.khas') }}" aria-expanded="false"><span class="hide-menu">Senarai Permohonan Khas</span></a>
 
                                 <hr>
@@ -289,7 +289,7 @@
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('ybs.rumah-ibadat.senarai') }}" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
 
                             </ul>
@@ -329,9 +329,9 @@
                             @else
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    
+
                                     {{-- <a href="{{ route('ybs.dashboard') }}">Dashboard</a> &nbsp>&nbsp --}}
-                                    
+
                                     <?php $link = "" ?>
                                     @for($i = 1; $i <= count(Request::segments()); $i++)
                                         @if($i < count(Request::segments()) & $i > 0)
@@ -445,7 +445,7 @@
     {{-- toaster --}}
     <script src="{{asset('nice-admin/assets/libs/toastr/build/toastr.min.js')}}"></script>
     <script src="{{asset('nice-admin/assets/extra-libs/toastr/toastr-init.js')}}"></script>
-    
+
     {{-- <script type="text/javascript">
         $("document").ready(function(){
             setTimeout(function(){
@@ -466,7 +466,7 @@
             toastr.error('{{ session('error') }}', 'Ralat', { "progressBar": true });
         @endif
     </script>
-    
+
     <!-- ============================================================== -->
     <!-- END Jquery NICE PAGE -->
     <!-- ============================================================== -->

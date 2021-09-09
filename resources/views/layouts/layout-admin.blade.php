@@ -76,7 +76,7 @@
     color: red;
     }
     </style>
-    
+
 </head>
 <body>
     <!-- ============================================================== -->
@@ -249,7 +249,7 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown p-2">
                             <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tetapan">
+                                <a class="btn btn-light" href="#" style="border: solid black 1px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Profil">
                                     {{-- <img src="{{asset('nice-admin/assets/images/users/2.jpg')}}" alt="user" class="rounded-circle" width="40"> --}}
                                     {{-- <span class="font-medium m-l-5 d-none d-sm-inline-block">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i></span> --}}
                                     <i class="fas fa-user-cog fa-2x" style="color: black;"></i>
@@ -324,61 +324,61 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.dashboard') }}" aria-expanded="false"><i class="fas fa-tachometer-alt"></i><span class="hide-menu" style="padding-left: 10px;">Dashboard </span></a></li>
-                        
+
 
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Rumah Ibadat</span></li> --}}
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu" style="padding-left: 10px;">Pengguna</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.pengguna.pemohon') }}" aria-expanded="false"><span class="hide-menu">Senarai Pemohon</span></a>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.pengguna.pengguna-dalaman') }}" aria-expanded="false"><span class="hide-menu">Senarai Pengguna Dalaman</span></a>
-                                
+
                             </ul>
                         </li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-place-of-worship"></i><span class="hide-menu" style="padding-left: 10px;">Rumah Ibadat</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.rumah-ibadat.senarai') }}" aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a>
-                                
+
                                 {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Permohonan Menukar Wakil<br>Rumah Ibadat</span></a> --}}
-                                
+
                             </ul>
                         </li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-cogs"></i><span class="hide-menu" style="padding-left: 10px;">Tetapan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.tetapan.halaman-utama') }}" aria-expanded="false"><span class="hide-menu">Tetapan Halaman Utama</span></a>
-                                    
+
                             </ul>
                         </li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu" style="padding-left: 10px;">Audit Trail</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                
+
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.audit-trail.proses') }}" aria-expanded="false"><span class="hide-menu">Audit Trail Proses</span></a>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('admins.audit-trail.log-user') }}" aria-expanded="false"><span class="hide-menu">Audit Trail Log Akses</span></a>
-                                    
+
                             </ul>
                         </li>
 
                         {{-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-table"></i><span class="hide-menu" style="padding-left: 10px;">Laporan</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                    
+
                                 </li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Laporan Bilangan Keseluruhan<br>Permohonan</span></a>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="" aria-expanded="false"><span class="hide-menu">Laporan Bilangan Mengikut<br>Kategori Rumah Ibadat</span></a>
-                                    
+
                             </ul>
                         </li> --}}
 
-                        
+
                         {{-- <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Sample Pages</span></li>
                         <li class="sidebar-item mega-dropdown"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Pages </span></a>
                             <ul aria-expanded="false" class="collapse first-level">
@@ -468,9 +468,9 @@
                                     </li>
                                     <li class="breadcrumb-item"> Profil </li>
                                     <li class="breadcrumb-item active" aria-current="page">Tukar Kata Laluan</li> --}}
-                                    
+
                                     {{-- <a href="{{ route('admins.dashboard') }}">Dashboard Admin</a> &nbsp>&nbsp --}}
-                                    
+
                                     <?php $link = "" ?>
                                     @for($i = 1; $i <= count(Request::segments()); $i++)
                                         @if($i < count(Request::segments()) & $i > 0)

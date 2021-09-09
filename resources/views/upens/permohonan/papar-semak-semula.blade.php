@@ -326,7 +326,7 @@
                                         @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                         Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                         @else
-                                        Surat Permohonan Kepada Pengurusi Limas
+                                        Surat Permohonan Kepada Pengerusi Limas
                                         @endif
                                       </button>
 
@@ -335,7 +335,7 @@
                                       @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                       @else
-                                      Surat Permohonan Kepada Pengurusi Limas
+                                      Surat Permohonan Kepada Pengerusi Limas
                                       @endif
                                   </a>
                                 </li>

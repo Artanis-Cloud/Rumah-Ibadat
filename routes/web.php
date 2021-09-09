@@ -152,7 +152,7 @@ Route::middleware([Exco::class])->group(function () {
 
     //  Rumah Ibadat
     Route::get('/dashboard-pejabat-exco/rumah-ibadat', [App\Http\Controllers\ExcoController::class, 'rumah_ibadat'])->name('excos.rumah-ibadat');
-
+ee
     Route::get('/dashboard-pejabat-exco/rumah-ibadat/senarai-rumah-ibadat', [App\Http\Controllers\ExcoController::class, 'senarai_rumah_ibadat'])->name('excos.rumah-ibadat.senarai');
 
     Route::get('/dashboard-pejabat-exco/rumah-ibadat/senarai-rumah-ibadat/maklumat-rumah-ibadat', [App\Http\Controllers\ExcoController::class, 'papar_rumah_ibadat'])->name('excos.rumah-ibadat.senarai.papar');

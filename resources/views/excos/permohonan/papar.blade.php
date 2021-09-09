@@ -6,7 +6,7 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
@@ -17,7 +17,7 @@
               <div class="col-md">
 
                 <div id="accordionTwo">
-                  
+
                   <div class="card">
                     <a href="" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="headingTwo" style="color: white;">
                     {{-- <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> --}}
@@ -30,7 +30,7 @@
 
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionTwo">
                       <div class="card-body border border-primary">
-                        
+
                         <div class="row">
                           <div class="col-md">
 
@@ -60,14 +60,14 @@
                             </div>
 
                           </div>
-                          
+
                         </div>
 
                         <hr>
 
                         @if($permohonan->rumah_ibadat->registration_type == "SENDIRI")
                         <div class="row">
-                          
+
                           <div class="col-md">
                             <label>Nombor Sijil Pendaftaran / Nombor ROS</label>
                             <div class="mb-3 input-group">
@@ -77,7 +77,7 @@
                         </div>
                         @elseif($permohonan->rumah_ibadat->registration_type == "INDUK")
                         <div class="row">
-                          
+
                           <div class="col-md">
                             <label>Nama Persatuan Rumah Ibadat Induk</label>
                             <div class="mb-3 input-group">
@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="row">
-                          
+
                           <div class="col-md">
                             <label>Nombor Pendaftaran Induk</label>
                             <div class="mb-3 input-group">
@@ -203,7 +203,7 @@
 
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                       <div class="card-body border border-warning">
-                        
+
                         <div class="row">
                           <div class="col-md">
 
@@ -311,7 +311,7 @@
                         </div>
 
                         <hr>
-                        
+
                         <h3 style="text-align: center; padding-bottom: 15px;">Dokumen-dokumen lampiran</h3>
 
                           {{-- <div class="row">
@@ -332,17 +332,17 @@
                                       <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
                                         @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                         Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
-                                        @else 
-                                        Surat Permohonan Kepada Pengurusi Limas
+                                        @else
+                                        Surat Permohonan Kepada Pengerusi Limas
                                         @endif
                                       </button>
-                                      
+
                                     </form> --}}
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" target="_blank">
                                       @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
-                                      @else 
-                                      Surat Permohonan Kepada Pengurusi Limas
+                                      @else
+                                      Surat Permohonan Kepada Pengerusi Limas
                                       @endif
                                   </a>
                                 </li>
@@ -354,7 +354,7 @@
                                     <button type="submit" class="btn btn-white bg-white text-info border-0" data-toggle="tooltip" data-placement="bottom" data-original-title="Klik sini untuk muat-turun dokumen">
                                       @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil Pendaftaran (Akta Pertubuhan 1966)
-                                      @else 
+                                      @else
                                       Sijil Pendaftaran ROS
                                       @endif
                                     </button>
@@ -362,7 +362,7 @@
                                   <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->registration_certificate)) }}" target="_blank">
                                       @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                       Sijil Pendaftaran (Akta Pertubuhan 1966)
-                                      @else 
+                                      @else
                                       Sijil Pendaftaran ROS
                                       @endif
                                   </a>
@@ -396,8 +396,8 @@
                                       Penyata Perbelanjaan
                                   </a>
                                 </li>
-                                
-                                @endif 
+
+                                @endif
 
                                 @if($permohonan->support_letter != null)
 
@@ -414,8 +414,8 @@
                                       Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen <br> / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
                                   </a>
                                 </li>
-                                
-                                @endif 
+
+                                @endif
 
                                 @if($permohonan->committee_member != null)
 
@@ -432,7 +432,7 @@
                                       Senarai Ahli Jawatan Kuasa Rumah Ibadat
                                   </a>
                                 </li>
-                                
+
                                 @endif
 
                                 @if($permohonan->certificate_or_letter_temple != null)
@@ -458,7 +458,7 @@
                                       @endif
                                   </a>
                                 </li>
-                                
+
                                 @endif
 
                                 @if($permohonan->invitation_letter != null)
@@ -476,7 +476,7 @@
                                       Surat Jemputan
                                   </a>
                                 </li>
-                                
+
                                 @endif
 
                             </ul>
@@ -520,7 +520,7 @@
                                         <div class="carousel-item active">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                         </div>
-                                        @else 
+                                        @else
                                         <div class="carousel-item">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                       </div>
@@ -538,7 +538,7 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
@@ -589,7 +589,7 @@
                                 @if($data2->description == "opt_3_file_1")
                                 <li class="list-group-item border border-dark" style="text-align: center;">
                                       <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
-                                          Salinan sebutharga daripada pembekal 
+                                          Salinan sebutharga daripada pembekal
                                       </a>
                                 </li>
                                 @endif
@@ -658,12 +658,12 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
 
-                            
+
                         @endif
 
                         {{-- ================================== END OF PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN ==================================--}}
@@ -679,13 +679,13 @@
                           <div class="col-md-1"></div>
                           <div class="col-md">
                             <ul class="list-group">
-                              
+
                               @foreach ( $data->lampiran as $key => $data2)
 
                                 @if($data2->description == "opt_4_file_1")
                                 <li class="list-group-item border border-dark" style="text-align: center;">
                                       <a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">
-                                          Salinan sebutharga daripada pembekal 
+                                          Salinan sebutharga daripada pembekal
                                       </a>
                                 </li>
                                 @endif
@@ -705,8 +705,8 @@
                               <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
                                   <ol class="carousel-indicators">
 
-                                      <?php $flag_C = 0; ?> 
-                                      <?php $counter_C = 1; ?> 
+                                      <?php $flag_C = 0; ?>
+                                      <?php $counter_C = 1; ?>
                                       @foreach ( $data->lampiran as $key => $data2)
                                         @if($data2->description != "opt_4_photo")
                                           @continue
@@ -714,17 +714,17 @@
 
                                         @if($flag_C == 0)
                                         <li data-target="#carouselExampleIndicators3" data-slide-to="{{ $counter_C }}" class="active"></li>
-                                        <?php $flag_C++; ?> 
-                                        <?php $counter_C++; ?> 
+                                        <?php $flag_C++; ?>
+                                        <?php $counter_C++; ?>
                                         @else
                                         <li data-target="#carouselExampleIndicators3" data-slide-to="{{ $counter_C }}"></li>
-                                        <?php $counter_C++; ?> 
+                                        <?php $counter_C++; ?>
                                         @endif
                                       @endforeach
                                   </ol>
                                   <div class="carousel-inner" role="listbox">
 
-                                    <?php $flag_D = 0; ?> 
+                                    <?php $flag_D = 0; ?>
                                     @foreach ( $data->lampiran as $key => $data2)
 
                                         @if($data2->description != "opt_4_photo")
@@ -735,7 +735,7 @@
                                         <div class="carousel-item active">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                         </div>
-                                        <?php $flag_D++; ?> 
+                                        <?php $flag_D++; ?>
                                         @else
                                         <div class="carousel-item">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
@@ -754,7 +754,7 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
@@ -769,7 +769,7 @@
                                   <ol class="carousel-indicators">
 
                                       <?php $flag_E = 0; ?>
-                                      <?php $counter_E = 1; ?> 
+                                      <?php $counter_E = 1; ?>
                                       @foreach ( $data->lampiran as $key => $data2)
                                         @if($data2->description != "opt_4_2_photo")
                                           @continue
@@ -777,17 +777,17 @@
 
                                         @if($flag_E == 0)
                                         <li data-target="#carouselExampleIndicators4" data-slide-to="{{ $counter_E }}" class="active"></li>
-                                        <?php $flag_E++; ?> 
-                                        <?php $counter_E++; ?> 
+                                        <?php $flag_E++; ?>
+                                        <?php $counter_E++; ?>
                                         @else
                                         <li data-target="#carouselExampleIndicators4" data-slide-to="{{ $counter_E }}"></li>
-                                        <?php $counter_E++; ?> 
+                                        <?php $counter_E++; ?>
                                         @endif
                                       @endforeach
                                   </ol>
                                   <div class="carousel-inner" role="listbox">
 
-                                    <?php $flag_F = 0; ?> 
+                                    <?php $flag_F = 0; ?>
                                     @foreach ( $data->lampiran as $key => $data2)
 
                                         @if($data2->description != "opt_4_2_photo")
@@ -798,7 +798,7 @@
                                         <div class="carousel-item active">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                         </div>
-                                        <?php $flag_F++; ?> 
+                                        <?php $flag_F++; ?>
                                         @else
                                         <div class="carousel-item">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
@@ -817,7 +817,7 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
@@ -837,7 +837,7 @@
                           <div class="col-md-1"></div>
                           <div class="col-md">
                             <ul class="list-group">
-                              
+
                               @foreach ( $data->lampiran as $key => $data2)
 
                                 @if($data2->description == "opt_5_file_1")
@@ -875,8 +875,8 @@
                               <div id="carouselExampleIndicators5" class="carousel slide" data-ride="carousel">
                                   <ol class="carousel-indicators">
 
-                                      <?php $flag_G = 0; ?> 
-                                      <?php $counter_G = 1; ?> 
+                                      <?php $flag_G = 0; ?>
+                                      <?php $counter_G = 1; ?>
                                       @foreach ( $data->lampiran as $key => $data2)
                                         @if($data2->description != "opt_5_photo")
                                           @continue
@@ -884,17 +884,17 @@
 
                                         @if($flag_G == 0)
                                         <li data-target="#carouselExampleIndicators5" data-slide-to="{{ $counter_G }}" class="active"></li>
-                                        <?php $flag_G++; ?> 
-                                        <?php $counter_G++; ?> 
+                                        <?php $flag_G++; ?>
+                                        <?php $counter_G++; ?>
                                         @else
                                         <li data-target="#carouselExampleIndicators5" data-slide-to="{{ $counter_G }}"></li>
-                                        <?php $counter_G++; ?> 
+                                        <?php $counter_G++; ?>
                                         @endif
                                       @endforeach
                                   </ol>
                                   <div class="carousel-inner" role="listbox">
 
-                                    <?php $flag_H = 0; ?> 
+                                    <?php $flag_H = 0; ?>
                                     @foreach ( $data->lampiran as $key => $data2)
 
                                         @if($data2->description != "opt_5_photo")
@@ -905,7 +905,7 @@
                                         <div class="carousel-item active">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
                                         </div>
-                                        <?php $flag_H++; ?> 
+                                        <?php $flag_H++; ?>
                                         @else
                                         <div class="carousel-item">
                                           <img class="img-fluid" src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}">
@@ -924,7 +924,7 @@
                                       <span class="sr-only">Next</span>
                                   </a>
                               </div>
-                            
+
                           </div>
                           <div class="col-md-1"></div>
                         </div>
@@ -976,7 +976,7 @@
                           <tbody style="text-align: center;">
 
                             @foreach (  $sejarah_permohonan as $key => $data)
-                            
+
                             <tr>
                               <td><i class="far fa-times-circle" style="color: red;"></i></td>
                               <td>{{ $data->tahun }}</td>
@@ -984,18 +984,18 @@
                               <td>RM {{ $data->jumlah_kelulusan }}</td>
 
                             </tr>
-                                
+
                             @endforeach
 
                             @foreach (  $history_application_system as $key => $data)
-                            
+
                             <tr>
                               <td><i class="far fa-check-circle" style="color: green;"></i></td>
                               <td>{{ Carbon\Carbon::parse($data->created_at)->format('Y') }}</td>
                               <td>{{ $data->rumah_ibadat->name_association }}</td>
                               <td>RM {{ number_format( $data->total_fund, 2) }}</td>
                             </tr>
-                                
+
                             @endforeach
 
                             @if($history_application_system->isEmpty() && $sejarah_permohonan == null)
@@ -1008,14 +1008,14 @@
                               </td>
                             </tr>
 
-                            @endif 
-                            
+                            @endif
+
                           </tbody>
                         </table>
                       </div>
                     </div>
                   </div>
-                        
+
                       </div>
                     </div>
                   </div>
@@ -1052,7 +1052,7 @@
 
                         <hr> --}}
 
-                        <h3 style="text-align: center; padding-bottom: 15px;">Keputusan Permohonan</h3> 
+                        <h3 style="text-align: center; padding-bottom: 15px;">Keputusan Permohonan</h3>
 
                         {{-- <div class="row">
                           <div class="col-md-2"></div>
@@ -1106,7 +1106,7 @@
                           </div>
                           <div class="col-md-2"></div>
                         </div>
-                        
+
                         <div class="row" style="padding-top: 10px;">
                           <div class="col-md-2"></div>
                           <div class="col-md" style="padding-top: 5px;">
@@ -1121,7 +1121,7 @@
 
                 </div>
 
-                {{-- ========================================================= MODAL ========================================================= --}} 
+                {{-- ========================================================= MODAL ========================================================= --}}
 
                 <!-- Modal Confirmation -->
               <div class="modal fade" id="confirmation_luluskan_permohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1151,12 +1151,12 @@
                                   <th>Sumbangan Dana (RM)</th>
                                 </tr>
                               </thead>
-                              
+
                               <tbody>
 
                                   @foreach ($permohonan->tujuan as  $key => $tujuan)
-                                      
-                                  
+
+
 
                                   @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
                                     <tr>
@@ -1194,9 +1194,9 @@
                                   @endif
 
                                   @endforeach
-                                  
-                                  
-                                  
+
+
+
                               </tbody>
                           </table>
                       </div>
@@ -1287,7 +1287,7 @@
                           <label style="padding-bottom: 10px;">Rumah ibadat</label>
                           <fieldset class="checkbox">
                               <label>
-                                  <input type="checkbox" value="rumah_ibadat" id="review_1" name="review[]" onclick="semak_semula_validation()"> 
+                                  <input type="checkbox" value="rumah_ibadat" id="review_1" name="review[]" onclick="semak_semula_validation()">
                                   Maklumat Rumah Ibadat Tidak Sah
                               </label>
                           </fieldset>
@@ -1301,29 +1301,29 @@
                           <label style="padding-bottom: 10px;">Dokumen-dokumen lampiran</label>
                           <fieldset class="checkbox">
                               <label>
-                                  <input type="checkbox" value="application_letter" id="review_2" name="review[]" onclick="semak_semula_validation()"> 
+                                  <input type="checkbox" value="application_letter" id="review_2" name="review[]" onclick="semak_semula_validation()">
                                   @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                   Kertas Kerja Permohonan Peruntukan Bagi Tahun Semasa Dan Sebut Harga
                                   @else
-                                  Surat Permohonan Kepada Pengurusi Limas
-                                  @endif 
+                                  Surat Permohonan Kepada Pengerusi Limas
+                                  @endif
                               </label>
                           </fieldset>
 
                           <fieldset class="checkbox">
                               <label>
-                                  <input type="checkbox" value="registration_certificate" id="review_3" name="review[]" onclick="semak_semula_validation()"> 
+                                  <input type="checkbox" value="registration_certificate" id="review_3" name="review[]" onclick="semak_semula_validation()">
                                   @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                                   Sijil Pendaftaran (Akta Pertubuhan 1966)
                                   @else
                                   Sijil Pendaftaran ROS
-                                  @endif 
+                                  @endif
                               </label>
                           </fieldset>
 
                           <fieldset class="checkbox">
                               <label>
-                                  <input type="checkbox" value="account_statement" id="review_4" name="review[]" onclick="semak_semula_validation()"> 
+                                  <input type="checkbox" value="account_statement" id="review_4" name="review[]" onclick="semak_semula_validation()">
                                   Penyata Bank
                               </label>
                           </fieldset>
@@ -1331,14 +1331,14 @@
                           @if($permohonan->rumah_ibadat->category == "KUIL" || $permohonan->rumah_ibadat->category == "GURDWARA")
                             <fieldset class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="spending_statement" id="review_5" name="review[]" onclick="semak_semula_validation()"> 
+                                    <input type="checkbox" value="spending_statement" id="review_5" name="review[]" onclick="semak_semula_validation()">
                                     Penyata Perbelanjaan
                                 </label>
                             </fieldset>
 
                             <fieldset class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="support_letter" id="review_6" name="review[]" onclick="semak_semula_validation()"> 
+                                    <input type="checkbox" value="support_letter" id="review_6" name="review[]" onclick="semak_semula_validation()">
                                     Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
                                 </label>
                             </fieldset>
@@ -1353,11 +1353,11 @@
                           <label style="padding-bottom: 10px;">Tujuan Permohonan</label>
 
                           @foreach ( $permohonan->tujuan as  $key => $tujuan)
-                          
+
                           @if($tujuan->tujuan == "AKTIVITI KEAGAMAAN")
                           <fieldset class="checkbox">
                               <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_7" name="review[]" onclick="semak_semula_validation()"> 
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_7" name="review[]" onclick="semak_semula_validation()">
                                   {{ $tujuan->tujuan }}
                               </label>
                           </fieldset>
@@ -1366,7 +1366,7 @@
                           @if($tujuan->tujuan == "PENDIDIKAN KEAGAMAAN")
                           <fieldset class="checkbox">
                               <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_8" name="review[]" onclick="semak_semula_validation()"> 
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_8" name="review[]" onclick="semak_semula_validation()">
                                   {{ $tujuan->tujuan }}
                               </label>
                           </fieldset>
@@ -1375,7 +1375,7 @@
                           @if($tujuan->tujuan == "PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN")
                           <fieldset class="checkbox">
                               <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_9" name="review[]" onclick="semak_semula_validation()"> 
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_9" name="review[]" onclick="semak_semula_validation()">
                                   {{ $tujuan->tujuan }}
                               </label>
                           </fieldset>
@@ -1384,7 +1384,7 @@
                           @if($tujuan->tujuan == "BAIK PULIH/PENYELENGGARAAN BANGUNAN")
                           <fieldset class="checkbox">
                               <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_10" name="review[]" onclick="semak_semula_validation()"> 
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_10" name="review[]" onclick="semak_semula_validation()">
                                   {{ $tujuan->tujuan }}
                               </label>
                           </fieldset>
@@ -1393,14 +1393,14 @@
                           @if($tujuan->tujuan == "PEMINDAHAN/PEMBINAAN BARU RUMAH IBADAT")
                           <fieldset class="checkbox">
                               <label>
-                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_11" name="review[]" onclick="semak_semula_validation()"> 
+                                  <input type="checkbox" value="{{ $tujuan->tujuan }}" id="review_11" name="review[]" onclick="semak_semula_validation()">
                                   {{ $tujuan->tujuan }}
                               </label>
                           </fieldset>
                           @endif
 
 
-                              
+
                           @endforeach
 
                         </div>
@@ -1420,7 +1420,7 @@
                         </div>
                       </div>
 
-                      
+
 
                     </div>
                     <div class="modal-footer">
@@ -1441,7 +1441,7 @@
               </div>
               <div class="col-md-2"></div>
             </div>
-            
+
           </div>
       </div>
   </div>
@@ -1453,7 +1453,7 @@
 
 <script>
   function semak_semula_validation() {
-    // var checkBox1 = document.getElementById("review_1");  
+    // var checkBox1 = document.getElementById("review_1");
     var checkBox2 = document.getElementById("review_2");
     var checkBox3 = document.getElementById("review_3");
     var checkBox4 = document.getElementById("review_4");
@@ -1636,8 +1636,8 @@ function onBlur(e){
       style                 : "currency",
       currencyDisplay       : "symbol"
   }
-  
-  e.target.value = (value || value === 0) 
+
+  e.target.value = (value || value === 0)
     ? localStringToNumber(value).toLocaleString(undefined, options)
     : ''
 }
