@@ -63,10 +63,10 @@ class UserController extends Controller
             'mobile_phone' => ['required', 'string', 'max:11', 'min:10'],
         ]);
     }
-    
+
     public function update_profile(Request $request){
         // dd($request->all());
-        
+
 
         // Validate change password form
         $this->validator($request->all())->validate();
@@ -82,7 +82,7 @@ class UserController extends Controller
 
         $user->mobile_phone = $request->mobile_phone;
 
-        $user->save(); 
+        $user->save();
 
         return redirect()->back()->with("success", "Profil anda berjaya dikemaskini.");
     }
