@@ -39,12 +39,6 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('Regna/assets/css/style.css') }}" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: Regna - v4.1.0
-  * Template URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
     <style>
         section {
             /* margin-top: 50px; */
@@ -450,7 +444,8 @@
             @auth
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="{{ route('user.halaman-utama') }}" class="btn-get-started btn-block">Halaman&nbspUtama</a>
+                        <a href="{{ route('user.halaman-utama') }}"
+                            class="btn-get-started btn-block">Halaman&nbspUtama</a>
                     </div>
                     <div class="col-md-6">
                         <a href="#" class="btn-get-started btn-block"
@@ -495,9 +490,9 @@
 
                 <div class="row">
                     <div class="col-md-4" style="color: #000;">
-                        <h2 class="title">{{ $csm->intro_title }}</h2>
+                        <h2 class="title">{{ $csm->intro_title ?? 'SISTEM BANTUAN KEWANGAN RUMAH IBADAT' }}</h2>
                         <p style="text-align: justify;">
-                            {{ $csm->intro_content }}
+                            {{ $csm->intro_content ?? '=== PENERANGAN SISTEM ===' }}
                         </p>
 
                     </div>
@@ -546,6 +541,9 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
+                        @else
+                            <img src="https://www.selangor.gov.my/selangor/modules_resources/images_contents/de97bd80bcc8acfff39f2530972ddddf.jpg"
+                                alt="Default Poster" style="width:100%; height: 300px !important;">
                         @endif
                     </div>
 
@@ -679,49 +677,53 @@
             </div>
 
             <div class="container mt-5">
-                <div class="row justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
 
-                    <h3 class="text-center text-dark">Pejabat UPEN</h3>
+                            <h3 class="text-center text-dark">Pejabat UPEN</h3>
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="info">
-                            <div>
-                                <i class="bi bi-geo-alt"></i>
-                                <p>
-                                    @php
-                                        $address = explode(',', $csm->upen_address);
-                                    @endphp
-                                    @foreach ($address as $key => $data)
-                                        @if ($loop->last)
-                                            {{ $data }}
-                                        @else
-                                            {{ $data }},<br>
-                                        @endif
-                                    @endforeach
-                                </p>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="info">
+                                    <div>
+                                        <i class="bi bi-geo-alt"></i>
+                                        <p>
+                                            @php
+                                                $address = explode(',', $csm->upen_address ?? 'Pejabat Setiausaha Kerajaan Negeri Selangor, Bangunan Sultan Salahuddin Abdul Aziz Shah, 40503 Shah Alam, Selangor Darul Ehsan.');
+                                            @endphp
+                                            @foreach ($address as $key => $data)
+                                                @if ($loop->last)
+                                                    {{ $data }}
+                                                @else
+                                                    {{ $data }},<br>
+                                                @endif
+                                            @endforeach
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+                                <div class="info">
+
+                                    <div>
+                                        <i class="bi bi-envelope"></i>
+                                        <p>{{ $csm->upen_email ?? '' }}</p>
+                                    </div>
+
+                                    <div>
+                                        <i class="bi bi-phone"></i>
+                                        <p>{{ $csm->upen_contact ?? '' }}
+                                        </p>
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>
-
                     </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="info">
-
-                            <div>
-                                <i class="bi bi-envelope"></i>
-                                <p>{{ $csm->upen_email }}</p>
-                            </div>
-
-                            <div>
-                                <i class="bi bi-phone"></i>
-                                <p>{{ $csm->upen_contact }}
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
@@ -731,57 +733,69 @@
 
                     <div class="col-lg-3 col-md-6">
 
-                        <h4 class="text-center">{{ $csm->yb1_name }}</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="text-center">{{ $csm->yb1_name ?? '' }}</h4>
 
-                        <div class="info">
+                                <div class="info">
 
-                            <div>
-                                <i class="bi bi-envelope"></i>
-                                <p>{{ $csm->yb1_email }}</p>
-                            </div>
+                                    <div>
+                                        <i class="bi bi-envelope"></i>
+                                        <p>{{ $csm->yb1_email ?? '' }}</p>
+                                    </div>
 
-                            <div>
-                                <i class="bi bi-phone"></i>
-                                <p>{{ $csm->yb1_contact }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-
-                        <h4 class="text-center">{{ $csm->yb2_name }}</h4>
-
-                        <div class="info">
-
-                            <div>
-                                <i class="bi bi-envelope"></i>
-                                <p>{{ $csm->yb2_email }}</p>
-                            </div>
-
-                            <div>
-                                <i class="bi bi-phone"></i>
-                                <p>{{ $csm->yb2_contact }}
-                                </p>
+                                    <div>
+                                        <i class="bi bi-phone"></i>
+                                        <p>{{ $csm->yb1_contact ?? '' }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6">
 
-                        <h4 class="text-center">{{ $csm->yb3_name }}</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="text-center">{{ $csm->yb2_name ?? '' }}</h4>
 
-                        <div class="info">
+                                <div class="info">
 
-                            <div>
-                                <i class="bi bi-envelope"></i>
-                                <p>{{ $csm->yb3_email }}</p>
+                                    <div>
+                                        <i class="bi bi-envelope"></i>
+                                        <p>{{ $csm->yb2_email ?? '' }}</p>
+                                    </div>
+
+                                    <div>
+                                        <i class="bi bi-phone"></i>
+                                        <p>{{ $csm->yb2_contact ?? '' }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div>
-                                <i class="bi bi-phone"></i>
-                                <p>{{ $csm->yb3_contact }}
-                                </p>
+                    <div class="col-lg-3 col-md-6">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="text-center">{{ $csm->yb3_name ?? '' }}</h4>
+
+                                <div class="info">
+
+                                    <div>
+                                        <i class="bi bi-envelope"></i>
+                                        <p>{{ $csm->yb3_email ?? '' }}</p>
+                                    </div>
+
+                                    <div>
+                                        <i class="bi bi-phone"></i>
+                                        <p>{{ $csm->yb3_contact ?? '' }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -837,14 +851,6 @@
             step: function(now) {
                 $(this).text(Math.ceil(now));
             }
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $(window).resize(function() {
-            drawChart();
         });
     });
 </script>

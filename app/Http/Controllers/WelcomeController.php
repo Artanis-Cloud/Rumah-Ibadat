@@ -24,14 +24,6 @@ class WelcomeController extends Controller
 
         $pengumuman = Announcement::where('status', '1')->where('pemohon', '1')->get();
 
-        // dd($annual_report);
-
-        // $count_pemohon = User::where('role', '0')->count();
-
-        // $count_rumah_ibadat = RumahIbadat::count();
-
-        // $count_permohonan = Permohonan::count();
-
         //+++++++++++++++++++++++ checking peruntukan +++++++++++++++++++++++
         $current_date = date('Y-m-d H:i:s'); //get current date
         $current_year = date('Y'); //get current date

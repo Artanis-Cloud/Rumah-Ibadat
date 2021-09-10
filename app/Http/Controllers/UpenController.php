@@ -49,25 +49,25 @@ class UpenController extends Controller
 
         if ($annual_report_counter == 0) {
             $peruntukan = Peruntukan::create([
-                'total_fund' => '0.00',
-                'current_fund' => '0.00',
+                'total_fund' => '1.00',
+                'current_fund' => '1.00',
                 'balance_fund' => '0.00',
 
 
-                'total_tokong' => '0.00',
-                'current_tokong' => '0.00',
+                'total_tokong' => '1.00',
+                'current_tokong' => '1.00',
                 'balance_tokong' => '0.00',
 
-                'total_kuil' => '0.00',
-                'current_kuil' => '0.00',
+                'total_kuil' => '1.00',
+                'current_kuil' => '1.00',
                 'balance_kuil' => '0.00',
 
-                'total_gurdwara' => '0.00',
-                'current_gurdwara' => '0.00',
+                'total_gurdwara' => '1.00',
+                'current_gurdwara' => '1.00',
                 'balance_gurdwara' => '0.00',
 
-                'total_gereja' => '0.00',
-                'current_gereja' => '0.00',
+                'total_gereja' => '1.00',
+                'current_gereja' => '1.00',
                 'balance_gereja' => '0.00',
 
                 'created_at' => $current_date,
