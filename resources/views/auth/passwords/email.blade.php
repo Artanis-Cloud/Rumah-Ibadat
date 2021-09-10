@@ -8,9 +8,6 @@
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </a>
                 <div class="card-body">
-                    {{-- @if (session()->has('status'))
-                    <div class="alert alert-success">{{ session()->get('status') }}</div>
-                    @endif    --}}
 
                     @if (session()->has('status'))
                     <div id="alert">
