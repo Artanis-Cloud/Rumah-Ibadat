@@ -852,7 +852,7 @@ class UpenController extends Controller
             $batch->allowed_user_id = auth()->user()->id;
             $batch->save();
 
-            $batch->notify(new SwitchPermohonan());
+            // $batch->notify(new SwitchPermohonan());
 
             return redirect()->route('upens.tetapan.permohonan')->with('success', 'Permohonan telah ditutup.');
         }else{
@@ -860,7 +860,7 @@ class UpenController extends Controller
             $batch->allowed_user_id = auth()->user()->id;
             $batch->save();
 
-            $batch->notify(new SwitchPermohonan());
+            // $batch->notify(new SwitchPermohonan());
 
             return redirect()->route('upens.tetapan.permohonan')->with('success', 'Permohonan telah dibuka.');
         }

@@ -147,7 +147,7 @@
                   <div class="col-md">
                     <label>Muat Naik Gambar</label>
                     {{-- <input type="file" class="border form-control border-dark" name="photos[]" multiple /> --}}
-                    <input type="file" class="border form-control border-dark" name="photos"/>
+                    <input type="file" class="border form-control border-dark" id="photos" name="photos"/>
                   </div>
                   <div class="col-md-2"></div>
                 </div>
@@ -412,6 +412,71 @@
   </div>
 
 </div>
+
+<script>
+    // ================= UPLOAD INPUT FILE CHECKER =================
+
+    $("#photos").on("change", function() {
+        //---------- FILE TYPE CHECKER ----------
+        var filePath = $(this).val();
+        var allowedExtensions =
+            /(\.jpeg|\.jpg|\.png)$/i; // \.pdf|\.doc|\.docx|\.xls|\.xlsx|\.jpeg|\.jpg|\.png|\.zip|\.rar
+        if (!allowedExtensions.exec(filePath)) {
+            //change border color to black
+            $(this).next('.custom-file-label').removeClass("border-success").addClass("border-dark");
+            $(this).removeClass("is-valid");
+
+            //alert message
+            // alert('Sila muatnaik file dalam format .pdf, .jpeg , .jpg dan .png sahaja.');
+            $('#note_message').html(
+                'Sila muatnaik file dalam format <b>.jpeg</b> , <b>.jpg</b> dan <b>.png</b> sahaja.'
+            );
+            $("#validation_submit_permohonan").modal();
+
+            //reset file value
+            $(this).val(null);
+
+            //reset file name
+            var fileName = "Muat Naik Fail";
+            $(this).next('.custom-file-label').html(fileName);
+
+            return false;
+        }
+
+        //---------- FILE SIZE CHECKER ----------
+        var numb = $(this)[0].files[0].size / 1024 / 1024;
+        numb = numb.toFixed(2);
+
+        if (numb > 50.0) { //change file limit HERE!!! (MB)
+            //change border color to black
+            $(this).next('.custom-file-label').removeClass("border-success").addClass("border-dark");
+            $(this).removeClass("is-valid");
+
+            //alert message
+            // alert('Ralat! Fail anda melebihi 1mb. Saiz fail anda adalah: ' + numb +' MB');
+            $('#note_message').html('Ralat! Fail anda melebihi <b>50mb</b>. Saiz fail anda adalah: <b>' + numb +
+                ' MB</b>');
+            $("#validation_submit_permohonan").modal();
+
+            //reset file value
+            $(this).val(null);
+
+            //reset file name
+            var fileName = "Muat Naik Fail";
+            $(this).next('.custom-file-label').html(fileName);
+
+            return false;
+        }
+
+        //file name display
+        var fileName = $(this).val().split("\\").pop();
+
+        //change border color to green
+        $(this).siblings(".custom-file-label").removeClass("border-dark").addClass("border-success").addClass(
+            "selected").html(fileName);
+        $(this).addClass("is-valid");
+    });
+</script>
 <script>
 
   //function insert number only
