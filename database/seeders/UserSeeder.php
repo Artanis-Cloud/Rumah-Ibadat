@@ -192,10 +192,11 @@ class UserSeeder extends Seeder
         // \App\Models\Permohonan::factory(20)
         // ->create();
 
-        \App\Models\Tujuan::factory(200)
-        ->create();
+        // \App\Models\Tujuan::factory(200)
+        // ->create();
 
-        //
+        \App\Models\Lampiran::factory(200)
+        ->create();
 
     }
 }
