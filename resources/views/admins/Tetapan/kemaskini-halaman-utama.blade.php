@@ -418,6 +418,7 @@
 
     $("#photos").on("change", function() {
         //---------- FILE TYPE CHECKER ----------
+        console.log("JS Success.");
         var filePath = $(this).val();
         var allowedExtensions =
             /(\.jpeg|\.jpg|\.png)$/i; // \.pdf|\.doc|\.docx|\.xls|\.xlsx|\.jpeg|\.jpg|\.png|\.zip|\.rar
