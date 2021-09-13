@@ -346,7 +346,7 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
-                            @if (Request::is('dashboard-pejabat-yb-pengerusi') || Request::is('tukar-kata-laluan'))
+                            @if (Request::is('dashboard-pejabat-YB-pengerusi') || Request::is('tukar-kata-laluan'))
 
                             @else
                                 <nav aria-label="breadcrumb">
