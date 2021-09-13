@@ -29,7 +29,7 @@ class LampiranFactory extends Factory
                 'tujuan_id' => $tujuan->id,
 
                 'file_type' => 'jpg',
-                'url' => 'public/dummy/dummy.jpg',
+                'url' => 'public/img/dummy/dummy.jpg',
 
 
                 'description' => 'opt_1_photo',
@@ -39,12 +39,12 @@ class LampiranFactory extends Factory
                 'tujuan_id' => $tujuan->id,
 
                 'file_type' => 'jpg',
-                'url' => 'public/dummy/dummy.jpg',
+                'url' => 'public/img/dummy/dummy.jpg',
 
 
                 'description' => 'opt_2_file_1',
             ];
         }
-        
+
     }
 }
