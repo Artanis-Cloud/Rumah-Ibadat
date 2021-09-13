@@ -18,7 +18,7 @@
 
                 <div class="row">
                   <div class="col-md">
-                    <h3 class="text-center">Pengenalan Sistem.</h3>
+                    <h3 class="text-center">Pengenalan Sistem</h3>
                   </div>
                 </div>
 
