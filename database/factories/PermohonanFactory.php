@@ -36,9 +36,9 @@ class PermohonanFactory extends Factory
             // 'status' => $this->faker->randomElement(['1', '4']),
             'status' => '1',
 
-            'application_letter' => 'public/dummy/dummy.jpg',
-            'registration_certificate' => 'public/dummy/dummy.jpg',
-            'account_statement' => 'public/dummy/dummy.jpg',
+            'application_letter' => 'public/img/dummy/dummy.jpg',
+            'registration_certificate' => 'public/img/dummy/dummy.jpg',
+            'account_statement' => 'public/img/dummy/dummy.jpg',
 
             'payment_method' => '1',
             'total_fund' => '0',
