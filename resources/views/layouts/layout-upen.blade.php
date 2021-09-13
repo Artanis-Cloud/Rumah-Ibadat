@@ -345,7 +345,7 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
-                            @if (Request::is('dashboard-pejabat-upen'))
+                            @if (Request::is('dashboard-pejabat-UPEN'))
 
                             @else
                                 <nav aria-label="breadcrumb">

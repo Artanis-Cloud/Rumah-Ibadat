@@ -231,97 +231,97 @@ Route::middleware([Yb::class])->group(function () {
 
 //UPEN ROUTE
 Route::middleware([Upen::class])->group(function () {
-    Route::get('/dashboard-pejabat-upen', [App\Http\Controllers\UpenController::class, 'dashboard'])->name('upens.dashboard');
+    Route::get('/dashboard-pejabat-UPEN', [App\Http\Controllers\UpenController::class, 'dashboard'])->name('upens.dashboard');
 
-    Route::get('/dashboard-pejabat-upen/kemaskini-peruntukan', [App\Http\Controllers\UpenController::class, 'update_peruntukan'])->name('upens.peruntukan.update');
+    Route::get('/dashboard-pejabat-UPEN/kemaskini-peruntukan', [App\Http\Controllers\UpenController::class, 'update_peruntukan'])->name('upens.peruntukan.update');
 
 
 
     //API
-    Route::get('/dashboard-pejabat-upen/cetak-permohonan', [App\Http\Controllers\UpenController::class, 'print_permohonan'])->name('upens.permohonan.print');
+    Route::get('/dashboard-pejabat-UPEN/cetak-permohonan', [App\Http\Controllers\UpenController::class, 'print_permohonan'])->name('upens.permohonan.print');
 
-    Route::get('/dashboard-pejabat-upen/cetak-permohonan-khas', [App\Http\Controllers\UpenController::class, 'print_permohonan_khas'])->name('upens.permohonan-khas.print');
+    Route::get('/dashboard-pejabat-UPEN/cetak-permohonan-khas', [App\Http\Controllers\UpenController::class, 'print_permohonan_khas'])->name('upens.permohonan-khas.print');
 
-
-    //PERMOHONAN BARU
-    Route::get('/dashboard-pejabat-upen/permohonan', [App\Http\Controllers\UpenController::class, 'permohonan'])->name('upens.permohonan.pilih');
-
-    Route::get('/dashboard-pejabat-upen/permohonan/status-permohonan-keseluruhan', [App\Http\Controllers\UpenController::class, 'permohonan_status'])->name('upens.permohonan.status-permohonan');
 
     //PERMOHONAN BARU
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru', [App\Http\Controllers\UpenController::class, 'permohonan_baru'])->name('upens.permohonan.baru');
+    Route::get('/dashboard-pejabat-UPEN/permohonan', [App\Http\Controllers\UpenController::class, 'permohonan'])->name('upens.permohonan.pilih');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan'])->name('upens.permohonan.papar');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/status-permohonan-keseluruhan', [App\Http\Controllers\UpenController::class, 'permohonan_status'])->name('upens.permohonan.status-permohonan');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/kemaskini-peruntukan', [App\Http\Controllers\UpenController::class, 'permohonan_kemaskini_peruntukan'])->name('upens.permohonan.kemaskini-peruntukan');
+    //PERMOHONAN BARU
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-baru', [App\Http\Controllers\UpenController::class, 'permohonan_baru'])->name('upens.permohonan.baru');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/semak-semula', [App\Http\Controllers\UpenController::class, 'permohonan_semak_semula'])->name('upens.permohonan.papar.semak-semula');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-baru/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan'])->name('upens.permohonan.papar');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/batalkan', [App\Http\Controllers\UpenController::class, 'permohonan_pembatalan'])->name('upens.permohonan.papar.batalkan');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-baru/maklumat-permohonan/kemaskini-peruntukan', [App\Http\Controllers\UpenController::class, 'permohonan_kemaskini_peruntukan'])->name('upens.permohonan.kemaskini-peruntukan');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-baru/maklumat-permohonan/sahkan', [App\Http\Controllers\UpenController::class, 'permohonan_pengesahan'])->name('upens.permohonan.papar.sahkan');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-baru/maklumat-permohonan/semak-semula', [App\Http\Controllers\UpenController::class, 'permohonan_semak_semula'])->name('upens.permohonan.papar.semak-semula');
+
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-baru/maklumat-permohonan/batalkan', [App\Http\Controllers\UpenController::class, 'permohonan_pembatalan'])->name('upens.permohonan.papar.batalkan');
+
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-baru/maklumat-permohonan/sahkan', [App\Http\Controllers\UpenController::class, 'permohonan_pengesahan'])->name('upens.permohonan.papar.sahkan');
 
     //PERMOHONAN SEMAK SEMULA
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-semak-semula', [App\Http\Controllers\UpenController::class, 'permohonan_semak_semula_list'])->name('upens.permohonan.semak-semula');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-semak-semula', [App\Http\Controllers\UpenController::class, 'permohonan_semak_semula_list'])->name('upens.permohonan.semak-semula');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-semakan-semula/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_semakan_semula'])->name('upens.permohonan.semakan-semula.papar');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-semakan-semula/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_semakan_semula'])->name('upens.permohonan.semakan-semula.papar');
 
 
     //PERMOHONAN LULUS
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-lulus', [App\Http\Controllers\UpenController::class, 'permohonan_lulus'])->name('upens.permohonan.lulus');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-lulus', [App\Http\Controllers\UpenController::class, 'permohonan_lulus'])->name('upens.permohonan.lulus');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-lulus/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_lulus'])->name('upens.permohonan.lulus.papar');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-lulus/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_lulus'])->name('upens.permohonan.lulus.papar');
 
     //PERMOHONAN TIDAK LULUS
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\UpenController::class, 'permohonan_tidak_lulus'])->name('upens.permohonan.tidak-lulus');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-tidak-lulus', [App\Http\Controllers\UpenController::class, 'permohonan_tidak_lulus'])->name('upens.permohonan.tidak-lulus');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_tidak_lulus'])->name('upens.permohonan.tidak-lulus.papar');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_tidak_lulus'])->name('upens.permohonan.tidak-lulus.papar');
 
 
 
     //PERMOHONAN KHAS
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-khas/status-permohonan-keseluruhan', [App\Http\Controllers\UpenController::class, 'permohonan_khas_status'])->name('upens.permohonan.khas.status-permohonan');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-khas/status-permohonan-keseluruhan', [App\Http\Controllers\UpenController::class, 'permohonan_khas_status'])->name('upens.permohonan.khas.status-permohonan');
 
 
-    Route::get('/dashboard-pejabat-upen/permohonan/permohonan-khas', [App\Http\Controllers\UpenController::class, 'permohonan_khas'])->name('upens.permohonan-khas.baru');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-khas', [App\Http\Controllers\UpenController::class, 'permohonan_khas'])->name('upens.permohonan-khas.baru');
 
-    Route::post('/dashboard-pejabat-upen/permohonan/permohonan-khas/hantar', [App\Http\Controllers\UpenController::class, 'permohonan_khas_hantar'])->name('upens.permohonan-khas.hantar');
+    Route::post('/dashboard-pejabat-UPEN/permohonan/permohonan-khas/hantar', [App\Http\Controllers\UpenController::class, 'permohonan_khas_hantar'])->name('upens.permohonan-khas.hantar');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/senarai-permohonan-khas', [App\Http\Controllers\UpenController::class, 'permohonan_khas_senarai'])->name('upens.permohonan-khas.senarai');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/senarai-permohonan-khas', [App\Http\Controllers\UpenController::class, 'permohonan_khas_senarai'])->name('upens.permohonan-khas.senarai');
 
-    Route::get('/dashboard-pejabat-upen/permohonan/senarai-permohonan-khas/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'permohonan_khas_papar'])->name('upens.permohonan-khas.papar');
+    Route::get('/dashboard-pejabat-UPEN/permohonan/senarai-permohonan-khas/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'permohonan_khas_papar'])->name('upens.permohonan-khas.papar');
 
     //RUMAH IBADAT
-    Route::get('/dashboard-pejabat-upen/rumah-ibadat', [App\Http\Controllers\UpenController::class, 'rumah_ibadat'])->name('upens.rumah-ibadat.pilih');
+    Route::get('/dashboard-pejabat-UPEN/rumah-ibadat', [App\Http\Controllers\UpenController::class, 'rumah_ibadat'])->name('upens.rumah-ibadat.pilih');
 
-    Route::get('/dashboard-pejabat-upen/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat', [App\Http\Controllers\UpenController::class, 'tukar_wakil'])->name('upens.rumah-ibadat.permohonan');
+    Route::get('/dashboard-pejabat-UPEN/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat', [App\Http\Controllers\UpenController::class, 'tukar_wakil'])->name('upens.rumah-ibadat.permohonan');
 
-    Route::get('/dashboard-pejabat-upen/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'tukar_wakil_papar'])->name('upens.rumah-ibadat.permohonan.papar');
+    Route::get('/dashboard-pejabat-UPEN/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'tukar_wakil_papar'])->name('upens.rumah-ibadat.permohonan.papar');
 
-    Route::get('/dashboard-pejabat-upen/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan/tidak-lulus', [App\Http\Controllers\UpenController::class, 'tukar_wakil_tidak_lulus'])->name('upens.rumah-ibadat.permohonan.tidak-lulus');
+    Route::get('/dashboard-pejabat-UPEN/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan/tidak-lulus', [App\Http\Controllers\UpenController::class, 'tukar_wakil_tidak_lulus'])->name('upens.rumah-ibadat.permohonan.tidak-lulus');
 
-    Route::get('/dashboard-pejabat-upen/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan/lulus', [App\Http\Controllers\UpenController::class, 'tukar_wakil_lulus'])->name('upens.rumah-ibadat.permohonan.lulus');
+    Route::get('/dashboard-pejabat-UPEN/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan/lulus', [App\Http\Controllers\UpenController::class, 'tukar_wakil_lulus'])->name('upens.rumah-ibadat.permohonan.lulus');
 
 
 
     //TETAPAN
-    Route::get('/dashboard-pejabat-upen/tetapan', [App\Http\Controllers\UpenController::class, 'tetapan'])->name('upens.tetapan.pilih');
+    Route::get('/dashboard-pejabat-UPEN/tetapan', [App\Http\Controllers\UpenController::class, 'tetapan'])->name('upens.tetapan.pilih');
 
 
-    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan', [App\Http\Controllers\UpenController::class, 'tetapan_permohonan'])->name('upens.tetapan.permohonan');
+    Route::get('/dashboard-pejabat-UPEN/tetapan/tetapan-permohonan', [App\Http\Controllers\UpenController::class, 'tetapan_permohonan'])->name('upens.tetapan.permohonan');
 
-    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan/buka-tutup-permohonan', [App\Http\Controllers\UpenController::class, 'allow_permohonan'])->name('upens.tetapan.permohonan.allow');
+    Route::get('/dashboard-pejabat-UPEN/tetapan/tetapan-permohonan/buka-tutup-permohonan', [App\Http\Controllers\UpenController::class, 'allow_permohonan'])->name('upens.tetapan.permohonan.allow');
 
-    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan/batch-baru', [App\Http\Controllers\UpenController::class, 'new_batch'])->name('upens.tetapan.permohonan.batch-baru');
+    Route::get('/dashboard-pejabat-UPEN/tetapan/tetapan-permohonan/batch-baru', [App\Http\Controllers\UpenController::class, 'new_batch'])->name('upens.tetapan.permohonan.batch-baru');
 
-    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-permohonan/tetapan-semula-batch', [App\Http\Controllers\UpenController::class, 'reset_batch'])->name('upens.tetapan.permohonan.reset-batch');
+    Route::get('/dashboard-pejabat-UPEN/tetapan/tetapan-permohonan/tetapan-semula-batch', [App\Http\Controllers\UpenController::class, 'reset_batch'])->name('upens.tetapan.permohonan.reset-batch');
 
 
-    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-pengumuman', [App\Http\Controllers\UpenController::class, 'tetapan_pengumuman'])->name('upens.tetapan.pengumuman');
+    Route::get('/dashboard-pejabat-UPEN/tetapan/tetapan-pengumuman', [App\Http\Controllers\UpenController::class, 'tetapan_pengumuman'])->name('upens.tetapan.pengumuman');
 
-    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-pengumuman/pengumuman-baru', [App\Http\Controllers\UpenController::class, 'pengumuman_baru'])->name('upens.tetapan.pengumuman.baru');
+    Route::get('/dashboard-pejabat-UPEN/tetapan/tetapan-pengumuman/pengumuman-baru', [App\Http\Controllers\UpenController::class, 'pengumuman_baru'])->name('upens.tetapan.pengumuman.baru');
 
-    Route::get('/dashboard-pejabat-upen/tetapan/tetapan-pengumuman/pengumuman-submit', [App\Http\Controllers\UpenController::class, 'pengumuman_baru_submit'])->name('upens.tetapan.pengumuman.baru.submit');
+    Route::get('/dashboard-pejabat-UPEN/tetapan/tetapan-pengumuman/pengumuman-submit', [App\Http\Controllers\UpenController::class, 'pengumuman_baru_submit'])->name('upens.tetapan.pengumuman.baru.submit');
 
 });
 

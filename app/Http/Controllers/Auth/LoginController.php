@@ -107,7 +107,7 @@ class LoginController extends Controller
                 return $this->redirectTo;
                 break;
             case 3:
-                $this->redirectTo = '/dashboard-pejabat-upen';
+                $this->redirectTo = '/dashboard-pejabat-UPEN';
                 return $this->redirectTo;
                 break;
             case 4:
