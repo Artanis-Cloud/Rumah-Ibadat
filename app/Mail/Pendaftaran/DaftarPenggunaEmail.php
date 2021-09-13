@@ -32,7 +32,7 @@ class DaftarPenggunaEmail extends Mailable
     {
         $user = $this->user;
         return $this->to($this->user->email, $this->user->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Pendaftaran Berjaya ')
             ->view('email.pendaftaran-berjaya', compact('user'));
     }

@@ -42,7 +42,7 @@ class SubmitSemakSemulaMail extends Mailable
         $reviewer_user = $this->reviewer_user;
 
         return $this->to($reviewer_user->email, $reviewer_user->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Semakan Semula Permohonan ' . $this->permohonan->getPermohonanID())
             ->view('email.permohonan-submit-semak-semula', compact('permohonan', 'rumah_ibadat', 'user'));
     }

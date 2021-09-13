@@ -42,7 +42,7 @@ class PermohonanBaruUpen extends Mailable
         $upen = $this->upen;
 
         return $this->to($upen->email, $upen->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Permohonan Baru ' . $this->permohonan->getPermohonanID())
             ->view('email.permohonan-baru-exco', compact('permohonan', 'rumah_ibadat', 'user'));
     }

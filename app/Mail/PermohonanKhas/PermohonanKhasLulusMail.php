@@ -37,7 +37,7 @@ class PermohonanKhasLulusMail extends Mailable
         $upen = $this->upen;
 
         return $this->to($this->upen->email, $this->upen->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Permohonan Khas Diluluskan ' . $this->permohonan->getPermohonanID())
             ->view('email.permohonan-khas-lulus', compact('permohonan', 'user'));
     }
