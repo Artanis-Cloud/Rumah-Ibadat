@@ -7,12 +7,12 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            
+
               <div class="card-body border border-dark">
 
                   <div class="row" style="padding-top: 15px;">
@@ -25,7 +25,7 @@
                               <th class="all">Peranan</th>
                               <th class="all">Alamat IP</th>
                               <th class="all">Tarikh / Masa</th>
-                              <th class="all">Pengkalan Data</th>
+                              <th class="all">Pangkalan Data</th>
                               <th class="all">Acara</th>
 
                             </tr>
@@ -68,12 +68,12 @@
                             @endforeach
                           </tbody>
 
-                          
+
                         </table>
                       </div>
                     </div>
                   </div>
-                  
+
               </div>
 
           </div>
