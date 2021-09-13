@@ -527,7 +527,7 @@ class AdminController extends Controller
     }
 
     public function tetapan(){
-        echo "halaman pilih tetapan";
+        return view('admins.tetapan.pilih');
     }
 
     public function halaman_utama(){
