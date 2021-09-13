@@ -50,19 +50,19 @@ class PermohonanBaru extends Notification
         if ($permohonan->category == "TOKONG") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('tokong', '1');
-            })->where('role', '1')->get();
+            })->where('role', '1')->where('status', '1')->get();
         } elseif ($permohonan->category == "KUIL") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('kuil', '1');
-            })->where('role', '1')->get();
+            })->where('role', '1')->where('status', '1')->get();
         } elseif ($permohonan->category == "GURDWARA") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('gurdwara', '1');
-            })->where('role', '1')->get();
+            })->where('role', '1')->where('status', '1')->get();
         } elseif ($permohonan->category == "GEREJA") {
             $user = User::whereHas('user_role', function ($q) {
                 $q->where('gereja', '1');
-            })->where('role', '1')->get();
+            })->where('role', '1')->where('status', '1')->get();
         }
 
 

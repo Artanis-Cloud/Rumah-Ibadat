@@ -48,10 +48,10 @@ class SwitchPermohonan extends Notification
      */
     public function toMail($batch)
     {
-        $user = User::where('role', '!=', '4')->get();
+        $user = User::where('role', '!=', '4')->where('status', '1')->get();
 
         // $user = User::where('role', '4')->get(); //testing phase
-        
+
         if($batch->allow_permohonan == '0'){ //tutup permohonan
             foreach($user as $current_user){
                 Mail::send(new TutupPermohonan($current_user));

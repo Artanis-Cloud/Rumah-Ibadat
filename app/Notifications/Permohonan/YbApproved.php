@@ -47,7 +47,7 @@ class YbApproved extends Notification
      */
     public function toMail($permohonan)
     {
-        $user = User::where('role','3')->get();
+        $user = User::where('role','3')->where('status', '1')->get();
 
         foreach($user as $upen){
             Mail::send(new PermohonanBaruUpen($permohonan, $upen));
