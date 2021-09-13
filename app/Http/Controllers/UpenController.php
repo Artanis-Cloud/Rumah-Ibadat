@@ -755,7 +755,9 @@ class UpenController extends Controller
     }
 
     public function rumah_ibadat(){
-        echo "masuk pilih rumah ibadat";
+        // echo "masuk pilih rumah ibadat";
+        return view('upens.rumah-ibadat.pilih');
+
     }
 
     public function tukar_wakil(){
