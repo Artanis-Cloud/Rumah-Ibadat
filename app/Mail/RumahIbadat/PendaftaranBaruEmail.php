@@ -34,7 +34,7 @@ class PendaftaranBaruEmail extends Mailable
         $rumah_ibadat = $this->rumah_ibadat;
         $user = $this->user;
         return $this->to($this->user->email, $this->user->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Pendaftaran Rumah Ibadat Berjaya')
             ->view('email.pendaftaran-rumah-ibadat-berjaya', compact('rumah_ibadat', 'user'));
     }

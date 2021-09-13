@@ -37,7 +37,7 @@ class PermohonanCreatedEmail extends Mailable
         $rumah_ibadat = $this->rumah_ibadat;
         $user = $this->user;
         return $this->to($this->user->email, $this->user->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Permohonan '. $this->permohonan->getPermohonanID())
             ->view('email.permohonan-created', compact('permohonan', 'rumah_ibadat', 'user'));
     }

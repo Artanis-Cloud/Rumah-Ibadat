@@ -39,7 +39,7 @@ class SemakSemulaMail extends Mailable
         $user = $this->user;
 
         return $this->to($user->email, $user->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Semakan Semula Permohonan ' . $this->permohonan->getPermohonanID())
             ->view('email.permohonan-semak-semula', compact('permohonan', 'rumah_ibadat', 'user'));
     }

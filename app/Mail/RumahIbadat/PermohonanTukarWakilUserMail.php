@@ -37,7 +37,7 @@ class PermohonanTukarWakilUserMail extends Mailable
         $rumah_ibadat = $this->rumah_ibadat;
         $user = $this->user;
         return $this->to($this->user->email, $this->user->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Permohonan Tukar Wakil Rumah Ibadat Berjaya')
             ->view('email.permohonan-tukar-wakil-rumah-ibadat-berjaya', compact('permohonan', 'rumah_ibadat', 'user'));
     }

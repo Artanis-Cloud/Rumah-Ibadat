@@ -29,7 +29,7 @@ class TutupPermohonan extends Mailable
     public function build()
     {
         return $this->to($this->user->email, $this->user->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Permohonan Dana Rumah Ibadat Ditutup')
             ->view('email.permohonan-tutup');
     }

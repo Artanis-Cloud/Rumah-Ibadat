@@ -42,7 +42,7 @@ class CancelApplicationExcoMail extends Mailable
         $exco = $this->exco;
 
         return $this->to($exco->email, $exco->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Pemabatalan Permohonan ' . $this->permohonan->getPermohonanID())
             ->view('email.permohonan-batal-exco', compact('permohonan', 'rumah_ibadat', 'user'));
     }

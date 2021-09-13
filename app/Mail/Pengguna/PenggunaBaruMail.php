@@ -32,7 +32,7 @@ class PenggunaBaruMail extends Mailable
         $user = $this->user;
         $password = $this->password;
         return $this->to($user->email, $user->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Pendaftaran Pengguna Baru')
             ->view('email.pendaftaran-dalaman-berjaya', compact('user', 'password'));
     }

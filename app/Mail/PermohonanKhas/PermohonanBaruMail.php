@@ -37,7 +37,7 @@ class PermohonanBaruMail extends Mailable
         $exco = $this->exco;
 
         return $this->to($this->exco->email, $this->exco->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Permohonan Khas Baru ' . $this->permohonan->getPermohonanID())
             ->view('email.permohonan-khas-baru', compact('permohonan', 'user'));
     }

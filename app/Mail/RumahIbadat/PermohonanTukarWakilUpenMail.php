@@ -39,7 +39,7 @@ class PermohonanTukarWakilUpenMail extends Mailable
         $user = $this->user;
         $upen = $this->upen;
         return $this->to($this->upen->email, $this->upen->name)
-            ->from(env('MAIL_FROM_ADDRESS'))
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME') )
             ->subject('Permohonan Tukar Wakil Rumah Ibadat ' . $permohonan->getPermohonanID())
             ->view('email.permohonan-tukar-wakil-rumah-ibadat-berjaya', compact('permohonan', 'rumah_ibadat', 'user'));
     }
