@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         DB::table('csms')->insert(
             [
                 'intro_title' => 'Sistem Permohonan Dana Rumah Ibadat Selain Islam (RISI)',
-                'intro_content' => 'content lorum ipsum',
+                'intro_content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets.',
 
                 'upen_address' => 'Pejabat Setiausaha Kerajaan Negeri Selangor, Bangunan Sultan Salahuddin Abdul Aziz Shah, 40503 Shah Alam, Selangor Darul Ehsan.',
                 'upen_email' => 'info@selangor.gov.my',

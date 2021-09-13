@@ -41,25 +41,25 @@ class YbController extends Controller
 
         if ($annual_report_counter == 0) {
             $peruntukan = Peruntukan::create([
-                'total_fund' => '0.00',
-                'current_fund' => '0.00',
+                'total_fund' => '1.00',
+                'current_fund' => '1.00',
                 'balance_fund' => '0.00',
 
 
-                'total_tokong' => '0.00',
-                'current_tokong' => '0.00',
+                'total_tokong' => '1.00',
+                'current_tokong' => '1.00',
                 'balance_tokong' => '0.00',
 
-                'total_kuil' => '0.00',
-                'current_kuil' => '0.00',
+                'total_kuil' => '1.00',
+                'current_kuil' => '1.00',
                 'balance_kuil' => '0.00',
 
-                'total_gurdwara' => '0.00',
-                'current_gurdwara' => '0.00',
+                'total_gurdwara' => '1.00',
+                'current_gurdwara' => '1.00',
                 'balance_gurdwara' => '0.00',
 
-                'total_gereja' => '0.00',
-                'current_gereja' => '0.00',
+                'total_gereja' => '1.00',
+                'current_gereja' => '1.00',
                 'balance_gereja' => '0.00',
 
                 'created_at' => $current_date,
@@ -579,7 +579,7 @@ class YbController extends Controller
                 $processing_application = $gereja;
             }
         }
-        
+
 
         return view('ybs.permohonan.baru', compact('processing_application'));
     }
@@ -591,7 +591,7 @@ class YbController extends Controller
         $exco = User::findorfail($permohonan->exco_id);
 
         $current_fund = Peruntukan::whereYear('created_at', date('Y'))->first();
-        
+
         $category = $permohonan->rumah_ibadat->category;
 
         $yb_approved_fund = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = '$category' AND p.yb_id IS NOT NULL"));
@@ -776,13 +776,13 @@ class YbController extends Controller
             }
         }
 
-        
+
 
         if ($permohonan->rumah_ibadat->category == "TOKONG") {
             $total_fund_checker = ($current_fund->balance_tokong - $yb_approved_fund[0]->peruntukan) - $total_fund_checker;
 
             if($total_fund_checker < 0){
-                return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');   
+                return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');
             }
         }
 
@@ -856,12 +856,12 @@ class YbController extends Controller
         }
 
         //assign batching
-        
+
         if($permohonan->rumah_ibadat->category == "TOKONG"){
             $permohonan->batch = $batch->tokong; //assign permohonan batch
 
             $batch->tokong_counter = $batch->tokong_counter + 1;
-            
+
             if($batch->tokong_counter == 10){
                 //declare new batch
                 $batch->tokong = $batch->main_batch;
@@ -927,13 +927,13 @@ class YbController extends Controller
         }else{
             $permohonan->payment_method = 1;
         }
-        
+
         $permohonan->total_fund = $total_fund;
 
 
         $permohonan->save();
 
-        $permohonan->notify(new YbApproved()); // send email notification to upen 
+        $permohonan->notify(new YbApproved()); // send email notification to upen
 
         //redirect
         return redirect()->route('ybs.permohonan.baru')->with('success', 'Status permohonan telah disokong.');
@@ -1012,8 +1012,8 @@ class YbController extends Controller
         if($permohonan->exco_id != null){
             $exco = User::findorfail($permohonan->exco_id);
         }
-        
-        $yb = null;     
+
+        $yb = null;
 
         if($permohonan->yb_id != null){
             $yb = User::findorfail($permohonan->yb_id);

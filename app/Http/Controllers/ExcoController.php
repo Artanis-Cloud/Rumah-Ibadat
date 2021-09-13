@@ -41,25 +41,25 @@ class ExcoController extends Controller
 
         if ($annual_report_counter == 0) {
             $peruntukan = Peruntukan::create([
-                'total_fund' => '0.00',
-                'current_fund' => '0.00',
+                'total_fund' => '1.00',
+                'current_fund' => '1.00',
                 'balance_fund' => '0.00',
 
 
-                'total_tokong' => '0.00',
-                'current_tokong' => '0.00',
+                'total_tokong' => '1.00',
+                'current_tokong' => '1.00',
                 'balance_tokong' => '0.00',
 
-                'total_kuil' => '0.00',
-                'current_kuil' => '0.00',
+                'total_kuil' => '1.00',
+                'current_kuil' => '1.00',
                 'balance_kuil' => '0.00',
 
-                'total_gurdwara' => '0.00',
-                'current_gurdwara' => '0.00',
+                'total_gurdwara' => '1.00',
+                'current_gurdwara' => '1.00',
                 'balance_gurdwara' => '0.00',
 
-                'total_gereja' => '0.00',
-                'current_gereja' => '0.00',
+                'total_gereja' => '1.00',
+                'current_gereja' => '1.00',
                 'balance_gereja' => '0.00',
 
                 'created_at' => $current_date,
@@ -76,7 +76,7 @@ class ExcoController extends Controller
         $laporan_kuil = null;
         $khas_kuil = null;
         $count_khas_kuil = null;
-        
+
         $laporan_gurdwara = null;
         $khas_gurdwara = null;
         $count_khas_gurdwara = null;
@@ -132,7 +132,7 @@ class ExcoController extends Controller
             //================== LAPORAN PERBELANJAAN ==================
 
             $laporan_tokong = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'TOKONG' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
-            
+
             $special_application_pass = SpecialApplication::where('category', 'TOKONG')->where('status', '2')->whereYear('created_at', date('Y'))->get();
 
             $khas_tokong = collect($special_application_pass)->sum('requested_amount');
@@ -251,7 +251,7 @@ class ExcoController extends Controller
                 $q->where('category', 'GURDWARA');
             })->where('exco_id', null)->where('status', '1')->count();
 
-            
+
             if (isset($count_new_application)) {
                 $count_new_application = $count_new_application + $count_new_application_gurdwara;
             } else {
@@ -404,7 +404,7 @@ class ExcoController extends Controller
             if (isset($new_application)) {
                 $new_application = $new_application->merge($new_application_gereja);
 
-                
+
             } else {
                 $new_application = $new_application_gereja;
             }
@@ -432,7 +432,7 @@ class ExcoController extends Controller
         }
 
         // dd($laporan_tokong);
-        
+
         return view('excos.dashboard', compact('pengumuman', 'current_year','annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
     }
 
@@ -517,7 +517,7 @@ class ExcoController extends Controller
         if ($permohonan->not_approved_id != null) {
             $not_approved_id = User::findorfail($permohonan->not_approved_id);
         }
-        
+
 
         return view('excos.permohonan.print', compact('permohonan', 'exco', 'yb', 'upen', 'review_to_applicant_id', 'not_approved_id'));
     }
@@ -586,7 +586,7 @@ class ExcoController extends Controller
                 $processing_application = $gereja;
             }
         }
-        
+
         return view('excos.permohonan.baru', compact('processing_application'));
     }
 
@@ -776,7 +776,7 @@ class ExcoController extends Controller
             }
         }
 
-        $permohonan->notify(new ExcoApproved()); // send email notification to yb 
+        $permohonan->notify(new ExcoApproved()); // send email notification to yb
 
         //redirect
         return redirect()->route('excos.permohonan.baru')->with('success', 'Status permohonan telah disahkan.');
@@ -850,7 +850,7 @@ class ExcoController extends Controller
 
         $exco = User::findorfail($permohonan->exco_id);
 
-        $yb = null; 
+        $yb = null;
 
         if($permohonan->yb_id != null){
             $yb = User::findorfail($permohonan->yb_id);
@@ -1002,7 +1002,7 @@ class ExcoController extends Controller
             if (isset($permohonan)) {
                 $permohonan = $permohonan->merge($kuil);
             } else {
-                $permohonan = $kuil; 
+                $permohonan = $kuil;
             }
         }
 
@@ -1188,7 +1188,7 @@ class ExcoController extends Controller
     public function download_permohonan(Request $request){
 
         $permohonan = Permohonan::findorfail($request->permohonan_id);
-        
+
         if($request->file_type == "application_letter"){
 
             $data["info"] = $permohonan;
@@ -1219,12 +1219,12 @@ class ExcoController extends Controller
             return Storage::download($permohonan->invitation_letter);
 
         } else{
-            return redirect()->back()->with('error', 'file_type not exist!');  
+            return redirect()->back()->with('error', 'file_type not exist!');
         }
     }
 
     public function rumah_ibadat(){
-        
+
         return view('excos.rumah-ibadat.pilih');
     }
 
