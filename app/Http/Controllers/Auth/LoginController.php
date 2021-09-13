@@ -103,7 +103,7 @@ class LoginController extends Controller
                 return $this->redirectTo;
                 break;
             case 2:
-                $this->redirectTo = '/dashboard-pejabat-yb-pengerusi';
+                $this->redirectTo = '/dashboard-pejabat-YB-pengerusi';
                 return $this->redirectTo;
                 break;
             case 3:
