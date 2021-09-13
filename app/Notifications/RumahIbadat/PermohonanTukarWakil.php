@@ -48,13 +48,13 @@ class PermohonanTukarWakil extends Notification
     public function toMail($permohonan)
     {
         //sent mail to user
-        Mail::send(new PermohonanTukarWakilUserMail($permohonan)); 
+        Mail::send(new PermohonanTukarWakilUserMail($permohonan));
 
         //sent mail to all UPEN user
-        $user = User::where('role', '3')->get();
+        $user = User::where('role', '3')->where('status', '1')->get();
 
         foreach($user as $upen){
-            Mail::send(new PermohonanTukarWakilUpenMail($permohonan, $upen)); 
+            Mail::send(new PermohonanTukarWakilUpenMail($permohonan, $upen));
         }
     }
 
