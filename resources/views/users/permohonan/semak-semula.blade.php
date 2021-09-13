@@ -633,33 +633,29 @@
                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle"><i
-                                                class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspAmaran!
-                                        </h5>
-                                    </div>
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="text-center col-md">
-                                                <lord-icon src="https://cdn.lordicon.com/krmfspeu.json" trigger="loop"
-                                                    colors="primary:#121331,secondary:#3080e8"
+                                                <lord-icon src="https://cdn.lordicon.com/xjovhxra.json" trigger="loop"
+                                                    colors="primary:#3080e8,secondary:#08a88a"
                                                     style="width:250px;height:250px">
                                                 </lord-icon>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md textc-center">
-                                                <h3>Sila tunggu sebentar. Permohonan anda sedang dimuat naik. Dilarang
-                                                    menutup browser.</h3>
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md text-center">
+                                                <h4>Sila tunggu sebentar.</h4>
+                                                <h4>Permohonan anda sedang diproses.</h4>
+                                                <h5 style="color: red;">(Sila kekal di halaman ini sehingga selesai)</h5>
                                             </div>
+                                            <div class="col-md-1"></div>
                                         </div>
                                     </div>
-                                    {{-- <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" data-dismiss="modal">Okay</button>
-                                    </div> --}}
                                 </div>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
