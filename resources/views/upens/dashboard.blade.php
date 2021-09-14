@@ -13,7 +13,7 @@
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
                         <h2>{{ $count_new_application }}</h2>
-                        <h6>Permohonan <br>Baru</h6> 
+                        <h6>Permohonan <br>Baru</h6>
                     </div>
                     <div class="ml-auto">
                         <span class="text-white display-6"><i class="fas fa-clipboard"></i></span>
@@ -28,7 +28,7 @@
                 <div class="d-flex no-block align-items-center">
                     <div class="text-white">
                         <h2>{{ $count_review_application }}</h2>
-                        <h6>Permohonan <br>Semak Semula</h6> 
+                        <h6>Permohonan <br>Semak Semula</h6>
                     </div>
                     <div class="ml-auto">
                         <span class="text-white display-6"><i class="fas fa-undo"></i></span>
@@ -78,11 +78,11 @@
                 <h4 class="card-title"><i class="fas fa-bell"></i> &nbsp&nbsp Permohonan Terkini</h4>
             </div>
             <div class="comment-widgets scrollable" style="height:350px;">
-        
+
 
                 @foreach($new_application as $data)
                 <form action="{{ route('upens.permohonan.papar') }}" onclick="javascript:$(this).submit();">
-                    <div class="flex-row d-flex comment-row">   
+                    <div class="flex-row d-flex comment-row">
                         <div class="comment-text active w-100">
                             <h6 class="font-medium">{{ $data->rumah_ibadat->name_association }}</h6>
                             <span class="m-b-15 d-block">{{ $data->user->name }}</span>
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </form>
-                @endforeach 
+                @endforeach
 
 
                 @if($new_application->isEmpty())
@@ -134,7 +134,7 @@
             <div class="comment-widgets scrollable" style="height:350px;">
 
                 @if($pengumuman->isEmpty())
-                
+
                         <div style="padding-bottom: 15%;"></div>
                         <div style="width:100%; text-align:center">
                             <img src="https://image.flaticon.com/icons/png/512/2487/2487449.png" alt="Empty Box" style="width: 150px;">
@@ -147,9 +147,9 @@
                                     style="width:200px;height:auto"
                                     >
                                 </lord-icon> --}}
-                            <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Permohonan Baru</h6>
+                            <h6 class="font-medium text-center" style="padding-top: 25px;">Tiada Pengumuman Baru</h6>
                         </div>
-                @else 
+                @else
 
                         @foreach ($pengumuman as $data)
                             <div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -189,7 +189,7 @@
 
                     <div class="row">
                         <div class="col-md">
-                            
+
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -305,7 +305,7 @@
 
                         <div class="col-12" >
                             <div class="progress">
-                                <?php 
+                                <?php
                                 $percentage_semua = 100;
                                 if( $annual_report->total_tokong != 0){
                                     $percentage_semua = ($annual_report->balance_tokong / $annual_report->total_tokong) * 100;
@@ -350,8 +350,8 @@
                                 </tr>
                                 @endforeach
 
-                                
-                                
+
+
                                 <tr>
                                     <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
                                     <th class="text-right font-13">RM {{ number_format($annual_report->current_fund, 2) }}</th>
@@ -395,7 +395,7 @@
 
                         <div class="col-12" >
                             <div class="progress">
-                                <?php 
+                                <?php
                                 $percentage_tokong = 100;
                                 if( $annual_report->total_tokong != 0){
                                     $percentage_tokong = ($annual_report->balance_tokong / $annual_report->total_tokong) * 100;
@@ -440,8 +440,8 @@
                                 </tr>
                                 @endforeach
 
-                                
-                                
+
+
                                 <tr>
                                     <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
                                     <th class="text-right font-13">RM {{ number_format($annual_report->current_tokong, 2) }}</th>
@@ -483,7 +483,7 @@
 
                         <div class="col-12" >
                             <div class="progress">
-                                <?php 
+                                <?php
                                 $percentage_kuil = 100;
                                 if( $annual_report->total_kuil != 0){
                                     $percentage_kuil = ($annual_report->balance_kuil / $annual_report->total_kuil) * 100;
@@ -527,8 +527,8 @@
                                     <td class="text-right"> RM {{ number_format($kuil->peruntukan, 2) }} </td>
                                 </tr>
                                 @endforeach
-                                
-                                
+
+
                                 <tr>
                                     <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
                                     <th class="text-right font-13">RM {{ number_format($annual_report->current_kuil, 2) }}</th>
@@ -570,7 +570,7 @@
 
                         <div class="col-12" >
                             <div class="progress">
-                                <?php 
+                                <?php
                                 $percentage_gurdwara = 100;
                                 if( $annual_report->total_gurdwara != 0){
                                     $percentage_gurdwara = ($annual_report->balance_gurdwara / $annual_report->total_gurdwara) * 100;
@@ -614,8 +614,8 @@
                                     <td class="text-right"> RM {{ number_format($gurdwara->peruntukan, 2) }} </td>
                                 </tr>
                                 @endforeach
-                                
-                                
+
+
                                 <tr>
                                     <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
                                     <th class="text-right font-13">RM {{ number_format($annual_report->current_gurdwara, 2) }}</th>
@@ -657,7 +657,7 @@
 
                         <div class="col-12" >
                             <div class="progress">
-                                <?php 
+                                <?php
                                 $percentage_gereja = 100;
                                 if( $annual_report->total_gereja != 0){
                                     $percentage_gereja = ($annual_report->balance_gereja / $annual_report->total_gereja) * 100;
@@ -701,8 +701,8 @@
                                     <td class="text-right"> RM {{ number_format($gereja->peruntukan, 2) }} </td>
                                 </tr>
                                 @endforeach
-                                
-                                
+
+
                                 <tr>
                                     <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah Diluluskan</th>
                                     <th class="text-right font-13">RM {{ number_format($annual_report->current_gereja, 2) }}</th>
@@ -743,7 +743,7 @@
         sum = sum.toFixed(2);
 
 
-        
+
 
         var jumlah_peruntukan = $('#jumlah_peruntukan').val(sum);
 
