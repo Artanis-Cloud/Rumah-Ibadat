@@ -243,7 +243,7 @@ class RumahIbadatController extends Controller
         }
 
         //update information
-        $rumah_ibadat->category = $request->category;
+        // $rumah_ibadat->category = $request->category;
         $rumah_ibadat->name_association = $request->name_association;
         $rumah_ibadat->office_phone = $request->office_phone;
         $rumah_ibadat->name_association_bank = $request->name_association_bank;
@@ -255,7 +255,7 @@ class RumahIbadatController extends Controller
         $rumah_ibadat->address = $request->address;
         $rumah_ibadat->postcode = $request->postcode;
         $rumah_ibadat->district = $request->district;
-        $rumah_ibadat->state = $request->state;
+        // $rumah_ibadat->state = $request->state;
         $rumah_ibadat->pbt_area = $request->pbt_area;
 
         $rumah_ibadat->bank_name = $request->bank_name;
