@@ -339,7 +339,7 @@ class PermohonanController extends Controller
 
         $permohonan->notify(new PermohonanCreated()); // send email notification to pemohon
 
-        $message = "Permohonan berjaya dihantar.";
+        $message = "Permohonan berjaya  .";
 
         // app('App\Http\Controllers\ApiController')->sendMessage($permohonan, $message);
 
@@ -355,8 +355,9 @@ class PermohonanController extends Controller
 
     public function permohonan_proses()
     {
+
         //GET 'PERMOHONAN SEDANG DIPROSES' LIST
-        $prosessing_application = Permohonan::where('user_id', auth()->user()->id)->where('status', '1')->orWhere('status', '0')->get();
+        $prosessing_application = Permohonan::where('rumah_ibadat_id', auth()->user()->rumah_ibadat->id )->where('status', '1')->orWhere('status', '0')->get();
 
         return view('users.permohonan.sedang-diproses', compact('prosessing_application'));
     }
