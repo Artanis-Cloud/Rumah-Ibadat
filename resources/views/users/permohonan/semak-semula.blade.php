@@ -706,14 +706,14 @@
             var numb = $(this)[0].files[0].size / 1024 / 1024;
             numb = numb.toFixed(2);
 
-            if (numb > 1.0) { //change file limit HERE!!! (MB)
+            if (numb > 5.0) { //change file limit HERE!!! (MB)
                 //change border color to black
                 $(this).next('.custom-file-label').removeClass("border-success").addClass("border-dark");
                 $(this).removeClass("is-valid");
 
                 //alert message
                 // alert('Ralat! Fail anda melebihi 1mb. Saiz fail anda adalah: ' + numb +' MB');
-                $('#note_message').html('Ralat! Fail anda melebihi <b>1mb</b>. Saiz fail anda adalah: <b>' + numb +
+                $('#note_message').html('Ralat! Fail anda melebihi <b>5mb</b>. Saiz fail anda adalah: <b>' + numb +
                     ' MB</b>');
                 $("#validation_submit_permohonan").modal();
 
@@ -975,7 +975,7 @@
                 //---------- FILE SIZE CHECKER ----------
                 var numb = $(this)[0].files[0].size / 1024 / 1024;
                 numb = numb.toFixed(2);
-                if (numb > 1.0) { //change file limit here (MB)
+                if (numb > 5.0) { //change file limit here (MB)
                     //change border color to black
                     $(this).next('.custom-file-label').removeClass("border-success").addClass(
                     "border-dark");
@@ -984,7 +984,7 @@
                     //alert message
                     // alert('Ralat! Fail anda melebihi 1mb. Saiz fail anda adalah: ' + numb +' MB');
                     $('#note_message').html(
-                        'Ralat! Fail anda melebihi <b>1mb</b>. Saiz fail anda adalah: <b>' + numb +
+                        'Ralat! Fail anda melebihi <b>5mb</b>. Saiz fail anda adalah: <b>' + numb +
                         ' MB</b>');
                     $("#validation_submit_permohonan").modal();
 
