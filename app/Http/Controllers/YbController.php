@@ -750,8 +750,6 @@ class YbController extends Controller
         //=========================== checker is fund in correct ===========================
         $current_fund = Peruntukan::whereYear('created_at', date('Y'))->first();
 
-        $yb_approved_fund = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p WHERE p.status = '1' AND p.yb_id IS NOT NULL"));
-
         $total_fund_checker = 0.00;
 
         foreach ($permohonan->tujuan as $tujuan) {
@@ -777,9 +775,11 @@ class YbController extends Controller
         }
 
 
-
         if ($permohonan->rumah_ibadat->category == "TOKONG") {
-            $total_fund_checker = ($current_fund->balance_tokong - $yb_approved_fund[0]->peruntukan) - $total_fund_checker;
+
+            $yb_approved_fund_tokong = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = 'TOKONG' AND p.yb_id IS NOT NULL"));
+
+            $total_fund_checker = ($current_fund->balance_tokong - $yb_approved_fund_tokong[0]->peruntukan) - $total_fund_checker;
 
             if($total_fund_checker < 0){
                 return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');
@@ -787,15 +787,20 @@ class YbController extends Controller
         }
 
         if ($permohonan->rumah_ibadat->category == "KUIL") {
-            $total_fund_checker = ($current_fund->balance_kuil - $yb_approved_fund[0]->peruntukan) - $total_fund_checker;
 
+            $yb_approved_fund_kuil = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = 'KUIL' AND p.yb_id IS NOT NULL"));
+
+            $total_fund_checker = ($current_fund->balance_kuil - $yb_approved_fund_kuil[0]->peruntukan) - $total_fund_checker;
             if ($total_fund_checker < 0) {
                 return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');
             }
         }
 
         if ($permohonan->rumah_ibadat->category == "GURDWARA") {
-            $total_fund_checker = ($current_fund->balance_gurdwara - $yb_approved_fund[0]->peruntukan) - $total_fund_checker;
+
+            $yb_approved_fund_gurdwara = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = 'GURDWARA' AND p.yb_id IS NOT NULL"));
+
+            $total_fund_checker = ($current_fund->balance_gurdwara - $yb_approved_fund_gurdwara[0]->peruntukan) - $total_fund_checker;
 
             if ($total_fund_checker < 0) {
                 return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');
@@ -803,7 +808,10 @@ class YbController extends Controller
         }
 
         if ($permohonan->rumah_ibadat->category == "GEREJA") {
-            $total_fund_checker = ($current_fund->balance_gereja - $yb_approved_fund[0]->peruntukan) - $total_fund_checker;
+
+            $yb_approved_fund_gereja = DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = 'GEREJA' AND p.yb_id IS NOT NULL"));
+
+            $total_fund_checker = ($current_fund->balance_gereja - $yb_approved_fund_gereja[0]->peruntukan) - $total_fund_checker;
 
             if ($total_fund_checker < 0) {
                 return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');
@@ -1434,6 +1442,8 @@ class YbController extends Controller
 
         $rumah_ibadat = RumahIbadat::findorfail($request->rumah_ibadat_id);
 
-        return view('ybs.rumah-ibadat.papar', compact('rumah_ibadat'));
+        $permohonan = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->get();
+
+        return view('ybs.rumah-ibadat.papar', compact('rumah_ibadat', 'permohonan'));
     }
 }
