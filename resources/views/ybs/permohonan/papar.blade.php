@@ -33,6 +33,15 @@
 
                         <div class="row">
                           <div class="col-md">
+                            <label>Nama Persatuan Rumah Ibadat Mengikut Sijil</label>
+                            <div class="form-group">
+                                <textarea class="form-control text-uppercase  border-dark " id="name_association" name="name_association" rows="3" disabled>{{ $permohonan->rumah_ibadat->name_association }}</textarea>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md">
 
                             <label>Kategori Rumah Ibadat</label>
                             <div class="mb-3 input-group">
@@ -42,17 +51,6 @@
                           </div>
 
                           <div class="col-md">
-
-                            <label>Nama Persatuan Rumah Ibadat</label>
-                            <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror" id="name_association" name="name_association" type="text" value="{{ $permohonan->rumah_ibadat->name_association  }}" disabled>
-                            </div>
-
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-md-6">
 
                             <label>Nombor Telefon Pejabat</label>
                             <div class="mb-3 input-group">
@@ -76,12 +74,12 @@
                           </div>
                         </div>
                         @elseif($permohonan->rumah_ibadat->registration_type == "INDUK")
-                        <div class="row">
 
+                        <div class="row">
                           <div class="col-md">
                             <label>Nama Persatuan Rumah Ibadat Induk</label>
-                            <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('name_association_main') is-invalid @else border-dark @enderror" id="name_association_main" name="name_association_main" type="text" value="{{ $permohonan->rumah_ibadat->name_association_main  }}" disabled>
+                            <div class="form-group">
+                                <textarea class="form-control text-uppercase  border-dark " id="name_association_main" name="name_association_main" rows="3" disabled>{{ $permohonan->rumah_ibadat->name_association_main }}</textarea>
                             </div>
                           </div>
                         </div>
@@ -109,9 +107,9 @@
 
                         <div class="row">
                           <div class="col-md">
-                            <label class="required">Alamat Rumah Ibadat</label>
+                            <label >Alamat Rumah Ibadat</label>
                             <div class="form-group">
-                                <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="2" disabled>{{ $permohonan->rumah_ibadat->address }}</textarea>
+                                <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="4" disabled>{{ $permohonan->rumah_ibadat->address }}</textarea>
                             </div>
                           </div>
                         </div>
@@ -158,12 +156,10 @@
 
                         <div class="row">
                           <div class="col-md">
-
                             <label>Nama Penuh Persatuan Rumah Ibadat Mengikut Pendaftaran Bank</label>
-                            <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" type="text" value="{{ $permohonan->rumah_ibadat->name_association_bank }}" disabled>
+                            <div class="form-group">
+                                <textarea class="form-control text-uppercase  border-dark " id="name_association_bank" name="name_association_bank" rows="3" disabled>{{ $permohonan->rumah_ibadat->name_association_bank }}</textarea>
                             </div>
-
                           </div>
                         </div>
 
@@ -1057,7 +1053,7 @@
                           <div class="col-md">
                             <label>Waktu pengesahan</label>
                             <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('exco_time') is-invalid @else border-dark @enderror" id="exco_time" name="exco_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('h:m:s') }}" disabled>
+                              <input class="form-control text-uppercase @error('exco_time') is-invalid @else border-dark @enderror" id="exco_time" name="exco_time" type="text" value="{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('g:i a') }}" disabled>
                             </div>
                           </div>
                           <div class="col-md-1"></div>
@@ -1070,7 +1066,7 @@
                                 <div class="card-header bg-dark">
                                     <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Pejabat Exco</h4></div>
                                 <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_exco }}</textarea>
+                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_exco ?? "[ Tiada Ulasan ]" }}</textarea>
                                 </div>
                             </div>
                           </div>
@@ -1175,7 +1171,7 @@
 
                       <div class="row">
                         <div class="col-md-12">
-                          <label>Baki Peruntukan Kategori Rumah Ibadat - Tokong</label>
+                          <label>Baki Termasuk Komitment Kategori Rumah Ibadat - Tokong</label>
                           <div class="mb-3 input-group">
                             <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_tokong - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
                           </div>
@@ -1186,7 +1182,7 @@
 
                       <div class="row">
                         <div class="col-md-12">
-                          <label>Baki Peruntukan Kategori Rumah Ibadat - Kuil</label>
+                          <label>Baki Termasuk Komitment Kategori Rumah Ibadat - Kuil</label>
                           <div class="mb-3 input-group">
                             <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_kuil - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
                           </div>
@@ -1197,7 +1193,7 @@
 
                       <div class="row">
                         <div class="col-md-12">
-                          <label>Baki Peruntukan Kategori Rumah Ibadat - Gurdwara</label>
+                          <label>Baki Termasuk Komitment Kategori Rumah Ibadat - Gurdwara</label>
                           <div class="mb-3 input-group">
                             <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_kuil - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
                           </div>
@@ -1208,7 +1204,7 @@
 
                       <div class="row">
                         <div class="col-md-12">
-                          <label>Baki Peruntukan Kategori Rumah Ibadat - Gereja</label>
+                          <label>Baki Termasuk Komitment Kategori Rumah Ibadat - Gereja</label>
                           <div class="mb-3 input-group">
                             <input class="form-control text-uppercase  border-dark " type="text" value="RM {{ number_format(($current_fund->balance_gereja - $yb_approved_fund[0]->peruntukan) , 2) }}" disabled>
                           </div>
@@ -1304,7 +1300,7 @@
                         <div class="col-md">
                           <div class="card text-white">
                                 <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Pejabat Yb Pengerusi</h4></div>
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Yb Pengerusi</h4></div>
                                 <div class="card-body border border-dark">
                                     <textarea class="form-control text-uppercase  border-dark " id="review_yb" name="review_yb" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"></textarea>
                                 </div>

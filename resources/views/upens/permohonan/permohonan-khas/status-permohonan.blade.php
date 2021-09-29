@@ -7,12 +7,12 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            
+
               <div class="card-body border border-dark">
 
                   <div class="row" style="padding-top: 15px;">
@@ -27,7 +27,7 @@
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                 <th class="all">JUMLAH PERUNTUKAN</th>
                                 <th class="all">PEJABAT EXCO</th>
-                                <th class="all">PEJABAT YB PENGERUSI</th>
+                                <th class="all">YB PENGERUSI</th>
                                 <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
@@ -48,20 +48,20 @@
                                   {{-- <td>
                                     @if($data->yb_id != null)
                                     Batch {{ $data->batch }} - {{ $data->rumah_ibadat->category }}
-                                    @else 
+                                    @else
                                     -
                                     @endif
                                   </td> --}}
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}
                                   <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} <br> [{{ Carbon\Carbon::parse($data->created_at)->format('g:i a') }}]</td>
-                                  
+
                                   <td>RM {{ number_format($data->requested_amount , 2) }}</td>
 
                                   <td>
                                     @if($data->exco_id != null)
                                     <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
-                                    @else 
+                                    @else
                                     -
                                     @endif
                                   </td>
@@ -69,7 +69,7 @@
                                   <td>
                                     @if($data->yb_id != null)
                                     <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
-                                    @else 
+                                    @else
                                     -
                                     @endif
                                   </td>
@@ -116,9 +116,9 @@
                                         </form>
                                       </div>
                                     </div>
-                                    
-                                    
-                                    
+
+
+
                                   </td>
 
                               </tr>
@@ -129,7 +129,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
               </div>
 
           </div>

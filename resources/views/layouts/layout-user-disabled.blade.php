@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>Sistem Bantuan Dana Rumah Ibadat Selain Islam</title>
+    <title>Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor</title>
     @livewireStyles
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -154,8 +154,7 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Rumah
-                            Ibadat Selain Islam</h1>
+                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Lima Agama Selangor</h1>
                         {{-- <li class="nav-item search-box">
 
 

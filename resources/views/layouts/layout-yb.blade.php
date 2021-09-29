@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>Dashboard Pejabat YB Pengerusi</title>
+    <title>Dashboard YB Pengerusi</title>
     @livewireStyles
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -151,8 +151,7 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Rumah
-                            Ibadat Selain Islam</h1>
+                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Lima Agama Selangor</h1>
 
                     </ul>
 
@@ -191,7 +190,7 @@
                                         </p>
 
                                         <p style="margin-bottom: 0px !important;"><i
-                                                class="fas fa-crown"></i>&nbsp&nbsp&nbspPejabat YB Pengerusi</p>
+                                                class="fas fa-crown"></i>&nbsp&nbsp&nbspYB Pengerusi</p>
 
                                         <p style="margin-bottom: 0px !important;">
                                             <i class="fas fa-place-of-worship"></i>&nbsp&nbsp
@@ -346,7 +345,7 @@
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
-                            @if (Request::is('dashboard-pejabat-YB-pengerusi') || Request::is('tukar-kata-laluan'))
+                            @if (Request::is('dashboard-YB-pengerusi') || Request::is('tukar-kata-laluan'))
 
                             @else
                                 <nav aria-label="breadcrumb">

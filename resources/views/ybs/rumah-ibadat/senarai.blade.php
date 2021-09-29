@@ -24,8 +24,8 @@
                                 <th class="all">BIL</th>
                                 <th class="all">KATEGORI</th>
                                 <th class="all">NAMA RUMAH IBADAT</th>
-                                <th class="all">TARIKH PENDAFTARAN</th>
-                                <th class="all">DAERAH</th>
+                                <th class="all">WAKIL RUMAH IBADAT</th>
+                                <th class="all">KAD PENGENALAN</th>
                                 <th class="all">TINDAKAN</th>
                               </tr>
                           </thead>
@@ -43,11 +43,17 @@
                                   {{-- NAMA RUMAH IBADAT --}}
                                   <td>{{ $data->name_association }}</td>
 
+                                  {{-- WAKIL RUMAH IBADAT --}}
+                                  <td>{{ $data->user->name }}</td>
+
+                                  {{-- KAD PENGENALAN --}}
+                                  <td>{{ $data->user->ic_number }}</td>
+
                                   {{-- TARIKH PENDAFTARAN --}}
-                                  <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                                  {{-- <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td> --}}
 
                                   {{-- DAERAH --}}
-                                  <td>{{ $data->district}}</td>
+                                  {{-- <td>{{ $data->district}}</td> --}}
 
                                   {{-- TINDAKAN --}}
                                   <td>

@@ -76,7 +76,7 @@
                           <option selected="" disabled="" hidden="">PILIH PERANAN PENGGUNA</option>
                           {{-- <option value="0">Pemohon</option> --}}
                           <option value="1" {{ $user->role == "1"   ? 'selected' : '' }}>PEJABAT EXCO</option>
-                          <option value="2" {{ $user->role == "2"   ? 'selected' : '' }}>PEJABAT YB PENGERUSI</option>
+                          <option value="2" {{ $user->role == "2"   ? 'selected' : '' }}>YB PENGERUSI</option>
                           <option value="3" {{ $user->role == "3"   ? 'selected' : '' }}>PEJABAT UPEN</option>
                           <option value="4" {{ $user->role == "4"   ? 'selected' : '' }}>ADMIN SISTEM</option>
                       </select>

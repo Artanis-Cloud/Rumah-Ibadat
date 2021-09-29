@@ -21,7 +21,7 @@
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png"
                                     style="width: auto; height: 110px;" alt="Kerajaan Selangor">
                                 <h2 style="padding-top: 15px !important;">
-                                    Selamat Datang <br> Ke <br> Sistem Bantuan Kewangan Rumah Ibadat Selain Islam
+                                    Selamat Datang <br> Ke <br> Sistem Bantuan Kewangan <br> Lima Agama <br> Selangor
                                 </h2>
                                 <a href="{{ route('welcome') }}" class="btn btn-white btn-outline-white">
                                     Halaman Utama

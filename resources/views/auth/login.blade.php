@@ -17,7 +17,7 @@
                                 <div class="text w-100">
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png"
                                             style="width: auto; height: 90px;" alt="Kerajaan Selangor">
-                                    <h2 style="padding-top: 15px !important;">Selamat Datang <br> Ke <br> Sistem Bantuan Kewangan Rumah Ibadat Selain Islam</h2>
+                                    <h2 style="padding-top: 15px !important;">Selamat Datang <br> Ke <br> Sistem Bantuan Kewangan <br> Lima Agama <br> Selangor</h2>
                                     <a href="{{ route('register') }}" class="btn btn-white btn-outline-white">Daftar
                                         Masuk</a>
                                 </div>
@@ -44,9 +44,9 @@
                                 <form method="POST" action="{{ route('login') }}">
                                     {{ csrf_field() }}
                                     <div class="mb-3 form-group">
-                                        <label class="label" for="name">Kad Pengenalan</label>
-                                        <input type="text" name="ic_number" class="form-control"
-                                            placeholder="Kad Pengenalan" minlength="12" maxlength="12" required>
+                                        <label class="label" for="name">Emel / Kad Pengenalan</label>
+                                        <input type="text" name="email" class="form-control"
+                                            placeholder="Emel / Kad Pengenalan" required>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label class="label" for="password">Kata Laluan</label>

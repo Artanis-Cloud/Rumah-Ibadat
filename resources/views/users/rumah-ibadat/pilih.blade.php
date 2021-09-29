@@ -18,7 +18,7 @@
                         <div class="border card card-hover border-info h-100">
                             <div class="card-body">
                                 <h4 class="card-title" style="font-weight: bold;">Daftar Baharu Rumah Ibadat</h4>
-                                <p class="card-text">Sekiranya rumah ibadat belum didaftar dalam <b>"Senarai Rumah
+                                <p class="card-text">Sekiranya rumah ibadat belum didaftar dalam <b>"Carian Rumah
                                         Ibadat Berdaftar"</b>, sila pilih bahagian ini.</p>
                             </div>
                             <div class="card-footer">
@@ -43,7 +43,7 @@
                                         Sekiranya rumah ibadat telah didaftarkan dan ingin menukar wakil, sila pilih
                                         bahagian
                                         ini.
-                                        Pengguna boleh membuat semakan rumah ibadat di ruangan <b>"Senarai Rumah Ibadat
+                                        Pengguna boleh membuat semakan rumah ibadat di ruangan <b>"Carian Rumah Ibadat
                                             Berdaftar"</b>.
                                     </p>
                                 </div>
@@ -101,7 +101,7 @@
                         <div class="col-md">
                             <div class="border card border-info">
                                 <div class="card-body">
-                                    <h4 class="card-title" style="font-weight: bold;">Senarai Rumah Ibadat Berdaftar
+                                    <h4 class="card-title" style="font-weight: bold;">Carian Rumah Ibadat Berdaftar
                                     </h4>
 
                                     <div class="row" style="padding-top: 15px;">
@@ -192,9 +192,13 @@
                 return false;
             return true;
         }
+
+        var GARBAGE = "!)!%&-15-85--)!%&%!*9%&";
+
         // Responsive Data Table
         let tablelaporan = $("#table-laporan")
         var t = $(tablelaporan).DataTable({
+            dom: 'l<"custom-search"f>tip',
             "responsive": true,
             "scrollX": true,
             "columnDefs": [{
@@ -226,6 +230,18 @@
                 "className": "text-center",
             }, ],
         });
+
+        t.search(GARBAGE).draw();
+
+        var newSearch = $('<input type="text">');
+        newSearch.on('keyup', function() {
+            if ($(this).val().toString().trim() === "")
+                t.search(GARBAGE).draw();
+            else
+                t.search($(this).val()).draw();
+        });
+
+        $('.custom-search input').replaceWith(newSearch);
 
         t.on('order.dt search.dt', function() {
             t.column(0, {

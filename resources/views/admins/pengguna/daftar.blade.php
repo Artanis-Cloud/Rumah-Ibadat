@@ -75,7 +75,7 @@
                           <option selected="" disabled="" hidden="">PILIH PERANAN PENGGUNA</option>
                           {{-- <option value="0">Pemohon</option> --}}
                           <option value="1">PEJABAT EXCO</option>
-                          <option value="2">PEJABAT YB PENGERUSI</option>
+                          <option value="2">YB PENGERUSI</option>
                           <option value="3">PEJABAT UPEN</option>
                           <option value="4">ADMIN SISTEM</option>
                       </select>

@@ -118,7 +118,7 @@
                     @elseif($user->role == "1")
                     Wakil Pejabat Exco
                     @elseif($user->role == "2")
-                    Wakil Pejabat YB Pengerusi
+                    Wakil YB Pengerusi
                     @elseif($user->role == "3")
                     Pejabat UPEN
                     @elseif($user->role == "4")
@@ -141,7 +141,7 @@
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
                   <p><b>Kata Laluan: </b> {{ $password }} </p>
-                </td>  
+                </td>
               </tr>
               <!-- BULLETPROOF BUTTON -->
               <tr>
@@ -152,7 +152,7 @@
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
                             {{-- <td align="center" style="border-radius: 3px;" bgcolor="#137eff"><a href="{{ url('password/resets/'.$token.'/'.$user->email) }}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #137eff; display: inline-block;">Klik Di Sini</a></td> --}}
-                            
+
                             {{-- <td align="center" style="border-radius: 3px;" bgcolor="#137eff"><a href="{{ url('password/resets/'.$token.'/'.$user->ic_number) }}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #137eff; display: inline-block;">Tetapan Semula Kata Laluan</a></td> --}}
                           </tr>
                         </table>

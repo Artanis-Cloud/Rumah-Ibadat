@@ -31,6 +31,7 @@ class UserFactory extends Factory
             'is_rumah_ibadat' => '1',
 
 
+
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'ic_number' => $this->faker->unique()->numerify('############'),
@@ -39,6 +40,7 @@ class UserFactory extends Factory
 
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'user_id' => User::factory()->create()->id,
         ];
     }
 
