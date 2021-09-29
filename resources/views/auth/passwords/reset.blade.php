@@ -8,7 +8,30 @@
                 <div class="card-header" style="text-align: center;"><b>{{ __('Tetapan Semula Kata Laluan') }}</b></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
+                    @if (session()->has('success'))
+                            <div id="alert">
+
+                                <div class="alert alert-card  alert-success" role="alert">
+                                    <strong>Berjaya! </strong>
+                                    {{ session()->get('status') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        {{-- <span aria-hidden="true">&times;</span> --}}
+                                    </button>
+                                </div>
+                            </div>
+                        @elseif (session()->has('error'))
+                            <div id="alert">
+                                <div class="alert alert-card  alert-danger" role="alert">
+                                    <strong>Ralat! </strong>
+                                    {{ session()->get('error') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        {{-- <span aria-hidden="true">&times;</span> --}}
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
+
+                    <form method="POST" action="{{ route('forget.password.update') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -62,4 +85,13 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        $("document").ready(function() {
+            setTimeout(function() {
+                $("div.alert").remove();
+            }, 5000); // 5 secs
+
+        });
+    </script>
 @endsection

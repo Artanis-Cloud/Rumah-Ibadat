@@ -20,6 +20,18 @@ Route::get('/', function () {
 });
 Route::get('/selamat-datang', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CUSTOM FORGET PASSWORD ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Route::get('/terlupa-kata-laluan', [App\Http\Controllers\ForgetpasswordController::class, 'forgetPasswordPage'])->name('forget.password');
+
+Route::get('/terlupa-kata-laluan/hantar-email', [App\Http\Controllers\ForgetpasswordController::class, 'sendEmail'])->name('forget.password.email');
+
+Route::post('/terlupa-kata-laluan/kemaskini-kata-laluan-baru', [App\Http\Controllers\ForgetpasswordController::class, 'customChangePassword'])->name('forget.password.update');
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++ CUSTOM FORGET PASSWORD ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 Route::get('/password/resets/{token}/{ic_number}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
 Auth::routes();
