@@ -14,16 +14,16 @@
 <body>
     <div style="position: absolute; top: 0px; width: 100%;background-color: #0d6efd;">
         <marquee direction="right" scrollamount="10" style="padding-top: 5px; color: white;">
-            | Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
+            | Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
         </marquee>
     </div>
 
@@ -40,16 +40,16 @@
     </div>
     <div style="position: absolute; bottom: 0px; width: 100%;background-color: #0d6efd;">
         <marquee direction="left" scrollamount="10" style="padding-top: 5px; color: white;">
-            | Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
-            Sistem Bantuan Kewangan Rumah Ibadat Selain Islam |
+            | Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
+            Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu, Sikh, dan Tao) Selangor |
         </marquee>
     </div>
 

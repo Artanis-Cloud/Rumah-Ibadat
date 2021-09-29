@@ -44,19 +44,41 @@ class LoginController extends Controller
 
     protected $redirectTo;
 
-    public function username()
+    // public function username()
+    // {
+    //     return 'ic_number';
+    // }
+
+    protected function credentials(Request $request)
     {
-        return 'ic_number';
+        if (is_numeric($request->get('email'))) {
+            return ['ic_number' => $request->get('email'), 'password' => $request->get('password')];
+        } elseif (filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)) {
+            return ['email' => $request->get('email'), 'password' => $request->get('password')];
+        }
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
 
-        //check either ic number has been registered or not
-        $ic_checker = User::where('ic_number', $request->ic_number)->count();
+        if (is_numeric($request->email)) {
+            // check either ic number has been registered or not
+            $ic_checker = User::where('ic_number', $request->email)->count();
 
-            //return back if ic number not registered
-            return redirect()->back()->with('error', 'Kad pengenalan tidak berdaftar dalam sistem ini.');
+            if($ic_checker == 0){
+                //return back if ic number not registered
+                return redirect()->back()->with('error', 'Kad pengenalan tidak berdaftar dalam sistem ini.');
+            }
+        }else{
+            // check either email has been registered or not
+            $email_checker = User::where('email', $request->email)->count();
+
+            if ($email_checker == 0) {
+                //return back if ic number not registered
+                return redirect()->back()->with('error', 'Emel tidak berdaftar dalam sistem ini.');
+            }
         }
+
 
         $this->validateLogin($request);
 
@@ -82,7 +104,6 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
-
     }
 
     public function redirectTo()
@@ -102,7 +123,7 @@ class LoginController extends Controller
                 return $this->redirectTo;
                 break;
             case 2:
-                $this->redirectTo = '/dashboard-pejabat-YB-pengerusi';
+                $this->redirectTo = '/dashboard-YB-pengerusi';
                 return $this->redirectTo;
                 break;
             case 3:

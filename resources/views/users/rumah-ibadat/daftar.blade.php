@@ -7,7 +7,7 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
@@ -32,9 +32,25 @@
                     </div>
                   </div>
 
-                  <div class="row"> 
+                  <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
+                      <label class="required">Nama Penuh Persatuan Rumah Ibadat Mengikut Sijil</label>
+                      <div class="form-group">
+                          <textarea class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror" id="name_association" name="name_association" rows="3" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ old('name_association') }}</textarea>
+                          @error('name_association')
+                          <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
                       <div class="form-group">
                           <label class="mr-sm-2 required" for="inlineFormCustomSelect">Kategori Rumah Ibadat</label>
                           <select class="custom-select mr-sm-2 @error('category') is-invalid @else border-dark @enderror" id="category" name="category" value="{{ old('category') }}">
@@ -51,22 +67,6 @@
                           @enderror
                       </div>
                     </div>
-                    <div class="col-md">
-                      <label class="required">Nama Penuh Persatuan Rumah Ibadat Mengikut Sijil</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror" id="name_association" name="name_association" type="text" value="{{ old('name_association') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-                          @error('name_association')
-                          <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                      </div>
-                    </div>
-                    <div class="col-md-2"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2"></div>
                     <div class="col-md-4">
                       <label>Nombor Telefon Wakil Rumah Ibadat (Jika Ada)</label>
                       <div class="form-group mb-3">
@@ -79,8 +79,6 @@
                           @enderror
                       </div>
                     </div>
-                    
-                    <div class="col-md-2"></div>
                   </div>
 
                   <div class="row">
@@ -101,6 +99,7 @@
                               <option value="SENDIRI"    {{ old('registration_type') == "SENDIRI"     ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN SENDIRI</option>
                               <option value="INDUK"      {{ old('registration_type') == "INDUK"       ? 'selected' : '' }} >MEMPUNYAI PENDAFTARAN DI BAWAH PERSATUAN INDUK/CAWANGAN</option>
                           </select>
+                          <small class="form-text text-muted">Sila pilih kategori rumah ibadat untuk memilih</small>
                           @error('category')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -108,7 +107,7 @@
                           @enderror
                       </div>
                     </div>
-                    
+
                     <div class="col-md-2"></div>
                   </div>
 
@@ -132,14 +131,14 @@
                     <div class="col-md-2"></div>
                     <div class="col-md" id="branch_div_0" style="display: none;">
                       <label class="required">Nama Persatuan Rumah Ibadat Induk</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name_association_main') is-invalid @else border-dark @enderror" id="name_association_main" name="name_association_main" type="text" value="{{ old('name_association_main') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                      <div class="form-group">
+                          <textarea class="form-control text-uppercase @error('name_association_main') is-invalid @else border-dark @enderror" id="name_association_main" name="name_association_main" rows="3" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ old('name_association_main') }}</textarea>
                           @error('name_association_main')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
                           @enderror
-                      </div>
+                        </div>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -201,7 +200,7 @@
                     <div class="col-md">
                       <label class="required">Alamat Rumah Ibadat</label>
                       <div class="form-group">
-                          <textarea class="form-control text-uppercase @error('address') is-invalid @else border-dark @enderror" id="address" name="address" rows="2" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ old('address') }}</textarea>
+                          <textarea class="form-control text-uppercase @error('address') is-invalid @else border-dark @enderror" id="address" name="address" rows="4    " oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ old('address') }}</textarea>
                           @error('address')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -249,7 +248,7 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-                  
+
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md">
@@ -281,7 +280,7 @@
                               <option value="MAJLIS DAERAH KUALA SELANGOR (MDKS)"     {{ old('pbt_area') == "MAJLIS DAERAH KUALA SELANGOR (MDKS)"    ? 'selected' : '' }} >MAJLIS DAERAH KUALA SELANGOR (MDKS)</option>
                               <option value="MAJLIS DAERAH HULU SELANGOR (MDHS)"      {{ old('pbt_area') == "MAJLIS DAERAH HULU SELANGOR (MDHS)"     ? 'selected' : '' }} >MAJLIS DAERAH HULU SELANGOR (MDHS)</option>
                               <option value="MAJLIS DAERAH SABAK BERNAM (MDSB)"       {{ old('pbt_area') == "MAJLIS DAERAH SABAK BERNAM (MDSB)"      ? 'selected' : '' }} >MAJLIS DAERAH SABAK BERNAM (MDSB)</option>
-                              
+
                           </select>
                           @error('pbt_area')
                           <span class="invalid-feedback" role="alert">
@@ -305,14 +304,14 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label class="required">Nama Penuh Persatuan Rumah Ibadat Mengikut Pendaftaran Bank</label>
-                      <div class="form-group mb-3">
-                          <input class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" type="text" value="{{ old('name_association_bank') }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                      <div class="form-group">
+                          <textarea class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" rows="3" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">{{ old('name_association_bank') }}</textarea>
                           @error('name_association_bank')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
                           @enderror
-                      </div>
+                        </div>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -380,7 +379,7 @@
                   </div>
 
                   {{-- Submit Button --}}
-                  <div class="row" style="padding-top: 15px;"> 
+                  <div class="row" style="padding-top: 15px;">
                     <div class="col-md-2"></div>
                     <div class="col-md" style="text-align: center;">
                       <button type="button" class="btn waves-effect waves-light btn-info btn-block" data-toggle="modal" data-target="#confirmation_submit">Daftar Rumah Ibadat</button>

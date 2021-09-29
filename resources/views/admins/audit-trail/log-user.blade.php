@@ -47,7 +47,7 @@
                                     @elseif($datas->user->role == 1)
                                     <td> <span class="badge badge-pill badge-success" style="font-size: 13px;">Pejabat Exco</span> </td>
                                     @elseif($datas->user->role == 2)
-                                    <td> <span class="badge badge-pill badge-success" style="font-size: 13px;">Pejabat YB Pengerusi</span> </td>
+                                    <td> <span class="badge badge-pill badge-success" style="font-size: 13px;">YB Pengerusi</span> </td>
                                     @elseif($datas->user->role == 3)
                                     <td> <span class="badge badge-pill badge-success" style="font-size: 13px;">Pejabat UPEN</span> </td>
                                     @elseif($datas->user->role == 4)

@@ -147,8 +147,7 @@
                     <!-- ============================================================== -->
                     <ul class="mr-auto navbar-nav" style="padding-left: 2%;">
 
-                        <h3 class="" style=" text-align: center;color: #000">Sistem Bantuan Kewangan Rumah Ibadat
-                            Selain Islam</h3>
+                        <h3 class="" style=" text-align: center;color: #000">Sistem Bantuan Kewangan Lima Agama Selangor</h3>
 
                     </ul>
 

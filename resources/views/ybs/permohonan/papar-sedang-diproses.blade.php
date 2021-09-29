@@ -33,6 +33,15 @@
 
                         <div class="row">
                           <div class="col-md">
+                            <label>Nama Persatuan Rumah Ibadat Mengikut Sijil</label>
+                            <div class="form-group">
+                                <textarea class="form-control text-uppercase  border-dark " id="name_association" name="name_association" rows="3" disabled>{{ $permohonan->rumah_ibadat->name_association }}</textarea>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md">
 
                             <label>Kategori Rumah Ibadat</label>
                             <div class="mb-3 input-group">
@@ -42,17 +51,6 @@
                           </div>
 
                           <div class="col-md">
-
-                            <label>Nama Persatuan Rumah Ibadat</label>
-                            <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror" id="name_association" name="name_association" type="text" value="{{ $permohonan->rumah_ibadat->name_association  }}" disabled>
-                            </div>
-
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-md-6">
 
                             <label>Nombor Telefon Pejabat</label>
                             <div class="mb-3 input-group">
@@ -77,11 +75,10 @@
                         </div>
                         @elseif($permohonan->rumah_ibadat->registration_type == "INDUK")
                         <div class="row">
-
                           <div class="col-md">
                             <label>Nama Persatuan Rumah Ibadat Induk</label>
-                            <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('name_association_main') is-invalid @else border-dark @enderror" id="name_association_main" name="name_association_main" type="text" value="{{ $permohonan->rumah_ibadat->name_association_main  }}" disabled>
+                            <div class="form-group">
+                                <textarea class="form-control text-uppercase  border-dark " id="name_association_main" name="name_association_main" rows="3" disabled>{{ $permohonan->rumah_ibadat->name_association_main }}</textarea>
                             </div>
                           </div>
                         </div>
@@ -109,9 +106,9 @@
 
                         <div class="row">
                           <div class="col-md">
-                            <label class="required">Alamat Rumah Ibadat</label>
+                            <label>Alamat Rumah Ibadat</label>
                             <div class="form-group">
-                                <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="2" disabled>{{ $permohonan->rumah_ibadat->address }}</textarea>
+                                <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="4" disabled>{{ $permohonan->rumah_ibadat->address }}</textarea>
                             </div>
                           </div>
                         </div>
@@ -158,12 +155,10 @@
 
                         <div class="row">
                           <div class="col-md">
-
                             <label>Nama Penuh Persatuan Rumah Ibadat Mengikut Pendaftaran Bank</label>
-                            <div class="mb-3 input-group">
-                              <input class="form-control text-uppercase @error('name_association_bank') is-invalid @else border-dark @enderror" id="name_association_bank" name="name_association_bank" type="text" value="{{ $permohonan->rumah_ibadat->name_association_bank }}" disabled>
+                            <div class="form-group">
+                                <textarea class="form-control text-uppercase  border-dark " id="name_association_bank" name="name_association_bank" rows="3" disabled>{{ $permohonan->rumah_ibadat->name_association_bank }}</textarea>
                             </div>
-
                           </div>
                         </div>
 
@@ -992,7 +987,7 @@
                                 <div class="card-header bg-dark">
                                     <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil Pejabat Exco</h4></div>
                                 <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_exco }}</textarea>
+                                    <textarea class="form-control text-uppercase  border-dark " id="address" name="address" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_exco ?? "[ Tiada Ulasan ]" }}</textarea>
                                 </div>
                             </div>
                           </div>
@@ -1037,9 +1032,9 @@
                           <div class="col-md">
                             <div class="card text-white">
                                 <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil Pejabat Yb Pengerusi</h4></div>
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil Yb Pengerusi</h4></div>
                                 <div class="card-body border border-dark">
-                                    <textarea class="form-control text-uppercase  border-dark " id="review_yb" name="review_yb" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_yb }}</textarea>
+                                    <textarea class="form-control text-uppercase  border-dark " id="review_yb" name="review_yb" rows="6" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" disabled>{{ $permohonan->review_yb ?? "[ Tiada Ulasan ]" }}</textarea>
                                 </div>
                             </div>
                           </div>

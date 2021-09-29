@@ -7,12 +7,12 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            
+
               <div class="card-body border border-dark">
 
                   <div class="row" style="padding-top: 15px;">
@@ -26,7 +26,7 @@
                                 {{-- <th class="all">BATCH</th> --}}
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                 <th class="all">PEJABAT EXCO</th>
-                                <th class="all">PEJABAT YB PENGERUSI</th>
+                                <th class="all">YB PENGERUSI</th>
                                 <th class="all">PEJABAT UPEN</th>
                                 <th class="all">STATUS PERMOHONAN</th>
                                 <th class="all">TINDAKAN</th>
@@ -46,7 +46,7 @@
                                   {{-- <td>
                                     @if($data->yb_id != null)
                                     Batch {{ $data->batch }} - {{ $data->rumah_ibadat->category }}
-                                    @else 
+                                    @else
                                     -
                                     @endif
                                   </td> --}}
@@ -57,7 +57,7 @@
                                   <td>
                                     @if($data->exco_id != null)
                                     <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
-                                    @else 
+                                    @else
                                     -
                                     @endif
                                   </td>
@@ -65,7 +65,7 @@
                                   <td>
                                     @if($data->yb_id != null)
                                     <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
-                                    @else 
+                                    @else
                                     -
                                     @endif
                                   </td>
@@ -73,7 +73,7 @@
                                   <td>
                                     @if($data->upen_id != null)
                                     <b style="color: rgb(3, 202, 3); font-size: 18px;"> &#10003 </b>
-                                    @else 
+                                    @else
                                     -
                                     @endif
                                   </td>
@@ -121,7 +121,7 @@
                                           <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                           <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                         </form>
-                                        @else 
+                                        @else
                                         -
                                         @endif
                                       </div>
@@ -132,9 +132,9 @@
                                         </form>
                                       </div>
                                     </div>
-                                    
-                                    
-                                    
+
+
+
                                   </td>
 
                               </tr>
@@ -145,7 +145,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
               </div>
 
           </div>

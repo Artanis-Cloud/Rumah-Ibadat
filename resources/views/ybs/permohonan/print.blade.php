@@ -251,7 +251,7 @@
 
                                     @if($permohonan->yb_id != null)
                                     <tr class="bg-light">
-                                        <td colspan="2"><b>Pejabat YB Pengerusi</b></td>
+                                        <td colspan="2"><b>YB Pengerusi</b></td>
                                     </tr>
                                     <tr>
                                         <td width="390">Permohonan Disokong Oleh</td>
@@ -508,7 +508,7 @@
                                             Surat Permohonan Kepada Pengerusi Limas
                                             @endif
                                         </td>
-                                        <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                        <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->application_letter)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                     </tr>
                                     @endif
 
@@ -532,7 +532,8 @@
                                             Sijil Pendaftaran ROS
                                             @endif
                                         </td>
-                                        <td>  <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                        <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->registration_certificate)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
+
                                     </tr>
                                     @endif
 
@@ -548,7 +549,7 @@
                                         <td width="390">
                                             Penyata Bank
                                         </td>
-                                        <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                        <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->account_statement)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                     </tr>
                                     @endif
 
@@ -566,7 +567,7 @@
                                             <td width="390">
                                                 Penyata Perbelanjaan
                                             </td>
-                                            <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                            <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->spending_statement)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                         </tr>
                                         @endif
 
@@ -586,7 +587,7 @@
                                             <td width="390">
                                                 Surat Sokongan Daripada Adun Kawasan / Ahli Parlimen / Penyelaras Dun / Ahli Majlis / Ketua Komuniti India
                                             </td>
-                                            <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                            <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->support_letter)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                         </tr>
                                         @endif
 
@@ -606,7 +607,7 @@
                                             <td width="390">
                                                 Senarai Ahli Jawatan Kuasa Rumah Ibadat
                                             </td>
-                                            <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                            <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->committee_member)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
 
                                         </tr>
                                         @endif
@@ -627,7 +628,7 @@
                                             <td width="390">
                                                 Sijil Malaysia Hindu Sangam / Malaysia Hindudharma Mahmandram
                                             </td>
-                                            <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                            <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->certificate_or_letter_temple)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                         </tr>
                                         @endif
 
@@ -647,7 +648,7 @@
                                             <td width="390">
                                                 Surat Jemputan
                                             </td>
-                                            <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                            <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->invitation_letter)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                         </tr>
                                         @endif
 
@@ -730,7 +731,8 @@
                                                         <td width="390">
                                                             Senarai Nama Murid, Kad Pengenalan, Jantina dan Umur Murid
                                                         </td>
-                                                        <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                                        <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
+
 
                                                     </tr>
 
@@ -763,7 +765,7 @@
                                                             <td width="390">
                                                                 Salinan Sebutharga Daripada Pembekal
                                                             </td>
-                                                            <td> <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b> </td>
+                                                            <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                                         </tr>
                                                     @endif
 
@@ -808,7 +810,7 @@
                                                             @if(pathinfo($data2->url, PATHINFO_EXTENSION) == "jpg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "jpeg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "png")
                                                                 <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;">
                                                             @else
-                                                                <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b>
+                                                                <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                                             @endif
 
                                                         @endif
@@ -873,7 +875,7 @@
                                                             @if(pathinfo($data2->url, PATHINFO_EXTENSION) == "jpg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "jpeg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "png")
                                                                 <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;">
                                                             @else
-                                                                <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b>
+                                                                <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                                             @endif
 
                                                         </td>
@@ -890,7 +892,7 @@
                                                             @if(pathinfo($data2->url, PATHINFO_EXTENSION) == "jpg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "jpeg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "png")
                                                                 <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;">
                                                             @else
-                                                                <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b>
+                                                                <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                                             @endif
 
                                                         </td>
@@ -907,7 +909,7 @@
                                                             @if(pathinfo($data2->url, PATHINFO_EXTENSION) == "jpg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "jpeg" || pathinfo($data2->url, PATHINFO_EXTENSION) == "png")
                                                                 <img src="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" style="max-width: 750px; padding-bottom: 10px;">
                                                             @else
-                                                                <b>[ FORMAT FAIL DALAM BENTUK PDF ]</b>
+                                                                <td><a href="{{ asset( $image_path = str_replace('public', 'storage',  $data2->url)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a></td>
                                                             @endif
 
                                                         </td>

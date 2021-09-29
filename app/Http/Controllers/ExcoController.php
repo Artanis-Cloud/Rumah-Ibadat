@@ -1272,6 +1272,8 @@ class ExcoController extends Controller
 
         $rumah_ibadat = RumahIbadat::findorfail($request->rumah_ibadat_id);
 
-        return view('excos.rumah-ibadat.papar', compact('rumah_ibadat'));
+        $permohonan = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->get();
+
+        return view('excos.rumah-ibadat.papar', compact('rumah_ibadat', 'permohonan'));
     }
 }

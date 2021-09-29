@@ -22,7 +22,7 @@
 
                             <div class="row">
                                 <div class="col-md-2"></div>
-                                <div class="col-md">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="mr-sm-2" for="inlineFormCustomSelect">Kategori Rumah
                                             Ibadat</label>
@@ -38,20 +38,16 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-md-2"></div>
                                 <div class="col-md">
                                     <label>Nama Penuh Persatuan Rumah Ibadat Mengikut Sijil</label>
-                                    <div class="form-group mb-3">
-                                        <input
-                                            class="form-control text-uppercase @error('name_association') is-invalid @else border-dark @enderror"
-                                            id="name_association" name="name_association" type="text"
-                                            value="{{ $rumah_ibadat->name_association }}"
-                                            oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"
-                                            disabled>
-                                        @error('name_association')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                    <div class="form-group">
+                                        <textarea class="form-control text-uppercase  border-dark " id="comment"
+                                            name="comment" rows="4" disabled>{{ $rumah_ibadat->name_association }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-2"></div>
@@ -116,7 +112,7 @@
                             <div class="row" style="padding-top: 15px;">
                                 <div class="col-md-2"></div>
                                 <div class="col-md">
-                                    <label class="required">Ulasan</label>
+                                    <label class="required">Ulasan Pemohon</label>
                                     <div class="form-group">
                                         <textarea class="form-control text-uppercase  border-dark " id="comment"
                                             name="comment" rows="4"
@@ -272,14 +268,14 @@
             var numb = $(this)[0].files[0].size / 1024 / 1024;
             numb = numb.toFixed(2);
 
-            if (numb > 1.0) { //change file limit HERE!!! (MB)
+            if (numb > 5.0) { //change file limit HERE!!! (MB)
                 //change border color to black
                 $(this).next('.custom-file-label').removeClass("border-success").addClass("border-dark");
                 $(this).removeClass("is-valid");
 
                 //alert message
                 // alert('Ralat! Fail anda melebihi 1mb. Saiz fail anda adalah: ' + numb +' MB');
-                $('#note_message').html('Ralat! Fail anda melebihi <b>1mb</b>. Saiz fail anda adalah: <b>' + numb +
+                $('#note_message').html('Ralat! Fail anda melebihi <b>5mb</b>. Saiz fail anda adalah: <b>' + numb +
                     ' MB</b>');
                 $("#validation_submit_permohonan").modal();
 

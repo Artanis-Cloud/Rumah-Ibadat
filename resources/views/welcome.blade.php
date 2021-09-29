@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{{ config('app.name', 'Rumah Ibadat') }}</title>
+    <title>Sistem Bantuan Kewangan Lima Agama (Buddha, Kristian, Hindu,Sikh, dan Tao) Selangor</title>
     <link rel="icon"
         href="https://www.selangor.gov.my/selangor/modules_resources/settings/e026c76b5b3efce816eb5f1d0dfe1cc1.png"
         type="image/x-icon">
@@ -30,9 +30,9 @@
     <link href="{{ asset('Regna/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('Regna/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('Regna/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
@@ -415,7 +415,7 @@
                         style="width: auto; height: 60px; margin-top: -50%;" alt="Kerajaan Selangor"></a>
             </div>
             <span style="color: #fff;">
-                <h4 style="color: #fff;">Sistem Bantuan Kewangan <br> Rumah Ibadat Selain Islam</h4>
+                <h4 style="color: #fff;">Sistem Bantuan Kewangan <br> Rumah Ibadat Lima Agama Selangor</h4>
             </span>
             <br>
             <div>
@@ -440,7 +440,7 @@
     <section id="hero">
         <div class="hero-container" data-aos="zoom-in" data-aos-delay="10">
             <h2>Selamat Datang ke</h2>
-            <h1>Sistem Bantuan Kewangan Rumah Ibadat <br>Selain Islam</h1>
+            <h1>Sistem Bantuan Rumah Ibadat Lima Agama <br> (Buddha, Kristian, Hindu,Sikh, dan Tao) <br> Selangor</h1>
             @auth
                 <div class="row">
                     <div class="col-md-6">
@@ -490,7 +490,7 @@
 
                 <div class="row">
                     <div class="col-md-4" style="color: #000;">
-                        <h2 class="title">{{ $csm->intro_title ?? 'SISTEM BANTUAN KEWANGAN RUMAH IBADAT' }}</h2>
+                        <h2 class="title">{{ $csm->intro_title ?? 'Sistem Bantuan Kewangan Rumah Ibadat Lima Agama Selangor' }}</h2>
                         <p style="text-align: justify;">
                             {{ $csm->intro_content ?? '=== PENERANGAN SISTEM ===' }}
                         </p>
@@ -578,17 +578,17 @@
                                 <ul class="pieID legend">
                                     <li>
                                         <em>Peruntukan yang telah diluluskan
-                                            <b>[{{ ($annual_report->current_fund / $annual_report->total_fund) * 100 }}
+                                            <b>[{{ ( ($annual_report->current_fund + ($yb_approved_fund_tokong[0]->peruntukan ?? 0) + ($yb_approved_fund_kuil[0]->peruntukan ?? 0) + ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) + ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}
                                                 %]</b> </em>
                                         <span
-                                            style="display: none;">{{ ($annual_report->current_fund / $annual_report->total_fund) * 100 }}</span>
+                                            style="display: none;">{{ ( ($annual_report->current_fund + ($yb_approved_fund_tokong[0]->peruntukan ?? 0) + ($yb_approved_fund_kuil[0]->peruntukan ?? 0) + ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) + ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}</span>
                                     </li>
                                     <li style="text-align: left">
                                         <em>Baki peruntukan
-                                            <b>[{{ ($annual_report->balance_fund / $annual_report->total_fund) * 100 }}
+                                            <b>[{{ (($annual_report->balance_fund - ($yb_approved_fund_tokong[0]->peruntukan ?? 0) - ($yb_approved_fund_kuil[0]->peruntukan ?? 0) - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) - ($yb_approved_fund_gereja[0]->peruntukan ?? 0))  / $annual_report->total_fund) * 100 }}
                                                 %]</b></em>
                                         <span
-                                            style="display: none;">{{ ($annual_report->balance_fund / $annual_report->total_fund) * 100 }}</span>
+                                            style="display: none;">{{ (($annual_report->balance_fund - ($yb_approved_fund_tokong[0]->peruntukan ?? 0) - ($yb_approved_fund_kuil[0]->peruntukan ?? 0) - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}</span>
                                     </li>
 
                                 </ul>
@@ -610,7 +610,7 @@
                             <div class="progressbar-title">
                                 <h3 style="color: white;">Tokong</h3>
                                 <input type="hidden" id="percent_tokong"
-                                    value="{{ ($annual_report->balance_tokong / $annual_report->total_tokong) * 100 }}">
+                                    value="{{ (($annual_report->balance_tokong - ($yb_approved_fund_tokong[0]->peruntukan ?? 0)) / $annual_report->total_tokong) * 100 }}">
                                 <span class="percent" id="html-pourcent"></span>
                             </div>
                             <div class="bar-container">
@@ -622,7 +622,7 @@
                             <div class="progressbar-title">
                                 <h3 style="color: white;">Kuil</h3>
                                 <input type="hidden" id="percent_kuil"
-                                    value="{{ ($annual_report->balance_kuil / $annual_report->total_kuil) * 100 }}">
+                                    value="{{ (($annual_report->balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0)) / $annual_report->total_kuil) * 100 }}">
                                 <span class="percent" id="css-pourcent"></span>
                             </div>
                             <div class="bar-container">
@@ -635,7 +635,7 @@
                             <div class="progressbar-title">
                                 <h3 style="color: white;">Gurdwara</h3>
                                 <input type="hidden" id="percent_gurdwara"
-                                    value="{{ ($annual_report->balance_gurdwara / $annual_report->total_gurdwara) * 100 }}">
+                                    value="{{ (($annual_report->balance_gurdwara - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0)) / $annual_report->total_gurdwara) * 100 }}">
                                 <span class="percent" id="javascript-pourcent"></span>
                             </div>
                             <div class="bar-container">
@@ -647,7 +647,7 @@
                             <div class="progressbar-title">
                                 <h3 style="color: white;">Gereja</h3>
                                 <input type="hidden" id="percent_gereja"
-                                    value="{{ ($annual_report->balance_gereja / $annual_report->total_gereja) * 100 }}">
+                                    value="{{ (($annual_report->balance_gereja - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_gereja) * 100 }}">
                                 <span class="percent" id="php-pourcent"></span>
                             </div>
                             <div class="bar-container">
@@ -698,6 +698,7 @@
                                                     {{ $data }},<br>
                                                 @endif
                                             @endforeach
+
                                         </p>
                                     </div>
 

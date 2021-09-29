@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-3"></div> --}}
 
-        
+
         <div class="col-md-12">
             <div class="card border border-info">
                 <div class="card-body">
@@ -64,7 +64,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="printableArea">
 
         <div class="card" id="maklumat_permohonan" style="display:block; page-break-after: auto;">
@@ -81,7 +81,7 @@
                                     </tr>
                                     <tr>
                                         <td>Status Permohonan</td>
-                                        <td> 
+                                        <td>
                                         @if($permohonan->status == 0)
                                         Tidak Lulus
                                         @elseif($permohonan->status == 1)
@@ -91,7 +91,7 @@
                                         @endif
                                         </td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <td>Kategori Permohonan</td>
                                         <td> {{ ucfirst(strtolower($permohonan->category))}} </td>
@@ -115,7 +115,7 @@
                                         <td>
                                             <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->supported_document_1)) }}" style="max-width: 750px; padding-bottom: 10px;">
                                         </td>
-                                        @else 
+                                        @else
                                         <td>
                                             <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->supported_document_1)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a>
                                         </td>
@@ -131,7 +131,7 @@
                                         <td>
                                             <img src="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->supported_document_2)) }}" style="max-width: 750px; padding-bottom: 10px;">
                                         </td>
-                                        @else 
+                                        @else
                                         <td>
                                             <a href="{{ asset( $image_path = str_replace('public', 'storage',  $permohonan->supported_document_2)) }}" target="_blank">[ FORMAT FAIL DALAM BENTUK PDF ]</a>
                                         </td>
@@ -182,10 +182,10 @@
                                         <td>{{ Carbon\Carbon::parse($permohonan->exco_date_time)->format('g:i a') }}</td>
                                     </tr>
                                     @endif
-                                    
+
                                     @if($permohonan->yb_id != null)
                                     <tr class="bg-light">
-                                        <td colspan="2"><b>Pejabat YB Pengerusi</b></td>
+                                        <td colspan="2"><b>YB Pengerusi</b></td>
                                     </tr>
                                     <tr>
                                         <td width="390">Permohonan Disokong Oleh</td>
@@ -244,7 +244,7 @@
 
                                     <tr>
                                         <td>Kad Pengenalan</td>
-                                        <td>{{ 
+                                        <td>{{
                                         sprintf("%s-%s-%s",
                                         substr($permohonan->user->ic_number, 0, 6),
                                         substr($permohonan->user->ic_number, 6, 2),
@@ -261,19 +261,19 @@
                                         <td>Email</td>
                                         <td>{{ $permohonan->user->email}}</td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>{{-- end card of maklumat_pemohon --}}
 
     </div>{{-- end of printablearea --}}
-  
-</div>{{-- end of container-fluid --}}  
+
+</div>{{-- end of container-fluid --}}
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->

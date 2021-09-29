@@ -10,6 +10,7 @@ use App\Models\RumahIbadat;
 use App\Models\Peruntukan;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PDF;
 
@@ -61,6 +62,14 @@ class WelcomeController extends Controller
 
         $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
 
-        return view('welcome', compact('csm', 'banner', 'pengumuman', 'annual_report'));
+        $yb_approved_fund_tokong =      DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = 'TOKONG'      AND p.yb_id IS NOT NULL"));
+
+        $yb_approved_fund_kuil =        DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = 'KUIL'        AND p.yb_id IS NOT NULL"));
+
+        $yb_approved_fund_gurdwara =    DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = 'GURDWARA'    AND p.yb_id IS NOT NULL"));
+
+        $yb_approved_fund_gereja =      DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = 'GEREJA'      AND p.yb_id IS NOT NULL"));
+
+        return view('welcome', compact('csm', 'banner', 'pengumuman', 'annual_report', 'yb_approved_fund_tokong', 'yb_approved_fund_kuil', 'yb_approved_fund_gurdwara', 'yb_approved_fund_gereja'));
     }
 }
