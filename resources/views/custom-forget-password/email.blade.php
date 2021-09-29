@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                         @endif
-                        <form method="POST" action="{{ route('password.email') }}">
+                        <form method="get" action="{{ route('forget.password.email') }}">
                             {{ csrf_field() }}
                             <h1>
                                 <div class="login-logo">
@@ -57,7 +57,7 @@
                                     <button type="submit" class="btn btn-primary px-4" style="width: 50%;" onclick="return loading_modal();">
                                         Tetapan Semula Kata Laluan
                                     </button>
-
+                                    {{-- <button type="button" onclick="return loading_modal();">test modal</button> --}}
                                 </div>
                             </div>
                         </form>
@@ -93,6 +93,8 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script type="text/javascript">
 

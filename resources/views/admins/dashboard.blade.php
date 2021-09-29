@@ -643,6 +643,7 @@
                                             }
                                         }
                                         ?>
+
                                         <div class="progress-bar bg-purple" role="progressbar"
                                             style="width: {{ $percentage_gereja }}%; height: 6px;" aria-valuenow="25"
                                             aria-valuemin="0" aria-valuemax="100">
@@ -679,6 +680,7 @@
                                             }
                                         }
                                         ?>
+
                                         <div class="progress-bar bg-purple" role="progressbar"
                                             style="width: {{ $percentage_gereja }}%; height: 6px;" aria-valuenow="25"
                                             aria-valuemin="0" aria-valuemax="100">

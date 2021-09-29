@@ -61,8 +61,11 @@
                                         <div class="text-left w-50">
                                             <a href="{{ route('welcome') }}">Halaman Utama</a>
                                         </div>
-                                        <div class="w-50 text-md-right">
+                                        {{-- <div class="w-50 text-md-right">
                                             <a href="{{ route('password.request') }}">Terlupa Kata Laluan?</a>
+                                        </div> --}}
+                                        <div class="w-50 text-md-right">
+                                            <a href="{{ route('forget.password') }}">Terlupa Kata Laluan?</a>
                                         </div>
                                         {{-- Hidden Gap - Just Ignore --}}
                                         <div class="alert alert-white" style="text-align: center;"></div>
