@@ -54,7 +54,6 @@ class LoginController extends Controller
         //check either ic number has been registered or not
         $ic_checker = User::where('ic_number', $request->ic_number)->count();
 
-        if($ic_checker == 0){
             //return back if ic number not registered
             return redirect()->back()->with('error', 'Kad pengenalan tidak berdaftar dalam sistem ini.');
         }
