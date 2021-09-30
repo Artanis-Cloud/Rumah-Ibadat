@@ -37,7 +37,7 @@ class ResetPasswordMail extends Mailable
 
         return $this->to($this->user->email, $this->user->name)
             ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-            ->subject('Pendaftaran Berjaya ')
+            ->subject('Permohonan Pertukaran Kata Laluan')
             ->view('senarai-email.notifikasiUserResetPassword', compact('user', 'token'));
     }
 }
