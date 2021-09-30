@@ -427,6 +427,9 @@
                     <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
                     <li><a class="nav-link scrollto" href="#about">Pengenalan Sistem</a></li>
                     <li><a class="nav-link scrollto" href="#services">Statistik</a></li>
+                    @if(count($soalan) != 0)
+                    <li><a class="nav-link scrollto" href="#team">Soalan Lazim</a></li>
+                    @endif
                     <li><a class="nav-link scrollto" href="#contact">Hubungi Kami</a></li>
 
                 </ul>
@@ -490,7 +493,9 @@
 
                 <div class="row">
                     <div class="col-md-4" style="color: #000;">
-                        <h2 class="title">{{ $csm->intro_title ?? 'Sistem Bantuan Kewangan Rumah Ibadat Lima Agama Selangor' }}</h2>
+                        <h2 class="title">
+                            {{ $csm->intro_title ?? 'Sistem Bantuan Kewangan Rumah Ibadat Lima Agama Selangor' }}
+                        </h2>
                         <p style="text-align: justify;">
                             {{ $csm->intro_content ?? '=== PENERANGAN SISTEM ===' }}
                         </p>
@@ -552,6 +557,7 @@
             </div>
         </section><!-- End About Section -->
 
+
         <!-- ======= Services Section ======= -->
         <section id="services"
             style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/bg-je.png');">
@@ -578,14 +584,14 @@
                                 <ul class="pieID legend">
                                     <li>
                                         <em>Peruntukan yang telah diluluskan
-                                            <b>[{{ ( ($annual_report->current_fund + ($yb_approved_fund_tokong[0]->peruntukan ?? 0) + ($yb_approved_fund_kuil[0]->peruntukan ?? 0) + ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) + ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}
+                                            <b>[{{ (($annual_report->current_fund + ($yb_approved_fund_tokong[0]->peruntukan ?? 0) + ($yb_approved_fund_kuil[0]->peruntukan ?? 0) + ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) + ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}
                                                 %]</b> </em>
                                         <span
-                                            style="display: none;">{{ ( ($annual_report->current_fund + ($yb_approved_fund_tokong[0]->peruntukan ?? 0) + ($yb_approved_fund_kuil[0]->peruntukan ?? 0) + ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) + ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}</span>
+                                            style="display: none;">{{ (($annual_report->current_fund + ($yb_approved_fund_tokong[0]->peruntukan ?? 0) + ($yb_approved_fund_kuil[0]->peruntukan ?? 0) + ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) + ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}</span>
                                     </li>
                                     <li style="text-align: left">
                                         <em>Baki peruntukan
-                                            <b>[{{ (($annual_report->balance_fund - ($yb_approved_fund_tokong[0]->peruntukan ?? 0) - ($yb_approved_fund_kuil[0]->peruntukan ?? 0) - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) - ($yb_approved_fund_gereja[0]->peruntukan ?? 0))  / $annual_report->total_fund) * 100 }}
+                                            <b>[{{ (($annual_report->balance_fund - ($yb_approved_fund_tokong[0]->peruntukan ?? 0) - ($yb_approved_fund_kuil[0]->peruntukan ?? 0) - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}
                                                 %]</b></em>
                                         <span
                                             style="display: none;">{{ (($annual_report->balance_fund - ($yb_approved_fund_tokong[0]->peruntukan ?? 0) - ($yb_approved_fund_kuil[0]->peruntukan ?? 0) - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}</span>
@@ -665,6 +671,45 @@
             </div>
 
         </section><!-- End Services Section -->
+
+        @if(count($soalan) != 0)
+
+        <section id="team" class="portfolio">
+            <div class="container" data-aos="fade-up">
+                <div class="section-header">
+                    <h3 class="section-title">Soalan Lazim</h3>
+
+                </div>
+
+                @foreach ( $soalan as $key => $question)
+                    <div class="row" style="padding-top: 15px;">
+                    <div class="col-md-12">
+                        <div class="accordion" id="accordionExample{{ $key }}">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ $key }}">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}">
+                                        <b>Soalan {{ ($key + 1) }} : {{  $question->soalan }}</b>
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ $key }}" class="accordion-collapse collapse"
+                                    aria-labelledby="heading{{ $key }}" data-bs-parent="#accordionExample{{ $key }}">
+                                    <div class="accordion-body">
+                                        {{  $question->jawapan }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+
+            </div>
+        </section>
+
+        @endif
 
         <!-- ======= Contact Section ======= -->
         <section id="contact">

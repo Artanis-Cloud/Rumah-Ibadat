@@ -8,6 +8,7 @@ use App\Models\Banner;
 use App\Models\Csm;
 use App\Models\RumahIbadat;
 use App\Models\Peruntukan;
+use App\Models\SoalanLazim;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -70,6 +71,9 @@ class WelcomeController extends Controller
 
         $yb_approved_fund_gereja =      DB::select(DB::raw("SELECT SUM(p.total_fund) as peruntukan FROM permohonans p, rumah_ibadats r WHERE r.id = p.rumah_ibadat_id AND p.status = '1' AND r.category = 'GEREJA'      AND p.yb_id IS NOT NULL"));
 
-        return view('welcome', compact('csm', 'banner', 'pengumuman', 'annual_report', 'yb_approved_fund_tokong', 'yb_approved_fund_kuil', 'yb_approved_fund_gurdwara', 'yb_approved_fund_gereja'));
+        //soalan lazim
+        $soalan = SoalanLazim::get();
+
+        return view('welcome', compact('csm', 'banner', 'pengumuman', 'annual_report', 'yb_approved_fund_tokong', 'yb_approved_fund_kuil', 'yb_approved_fund_gurdwara', 'yb_approved_fund_gereja', 'soalan'));
     }
 }

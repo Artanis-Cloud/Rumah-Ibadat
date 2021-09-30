@@ -389,6 +389,12 @@ Route::middleware([Admin::class])->group(function () {
 
     Route::post('/dashboard-admin/tetapan/tetapan-halaman-utama/submit', [App\Http\Controllers\AdminController::class, 'halaman_utama_submit'])->name('admins.tetapan.halaman-utama.submit');
 
+    Route::get('/dashboard-admin/tetapan/tetapan-soalan-lazim', [App\Http\Controllers\AdminController::class, 'soalan_lazim'])->name('admins.tetapan.soalan-lazim');
+
+    Route::get('/dashboard-admin/tetapan/tetapan-soalan-lazim/hantar', [App\Http\Controllers\AdminController::class, 'submit_soalan_lazim'])->name('admins.tetapan.soalan-lazim.submit');
+
+    Route::get('/dashboard-admin/tetapan/tetapan-soalan-lazim/padam', [App\Http\Controllers\AdminController::class, 'padam_soalan_lazim'])->name('admins.tetapan.soalan-lazim.padam');
+
 
     // Audit Trail
     Route::get('/dashboard-admin/audit-trail', [App\Http\Controllers\AdminController::class, 'audit_trail'])->name('admins.audit-trail.pilih');
