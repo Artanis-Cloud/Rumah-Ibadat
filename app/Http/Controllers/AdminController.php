@@ -17,6 +17,7 @@ use App\Models\SpecialApplication;
 
 use App\Jobs\Pengguna\PenggunaBaru;
 use App\Models\Banner;
+use App\Models\SoalanLazim;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -596,6 +597,32 @@ class AdminController extends Controller
         $content->save();
 
         return redirect()->back()->with("success", "Halaman Utama berjaya dikemaskini.");
+    }
+
+    public function soalan_lazim(){
+
+        $soalan = SoalanLazim::get();
+
+        return view('admins.tetapan.kemaskini-soalan-lazim', compact('soalan'));
+    }
+
+    public function submit_soalan_lazim(Request $request){
+
+        $soalan = SoalanLazim::create([
+            'soalan' => $request->soalan,
+            'jawapan' => $request->jawapan,
+            'status' => 1,
+        ]);
+
+        return redirect()->back()->with("success", "Soalan lazim berjaya ditambah");
+    }
+
+    public function padam_soalan_lazim(Request $request){
+
+        $soalan = SoalanLazim::findorfail($request->soalan_id);
+        $soalan->delete();
+
+        return redirect()->back()->with("success", "Soalan berjaya dipadam.");
     }
 
     public function audit_trail()

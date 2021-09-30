@@ -274,7 +274,11 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
                                         href="{{ route('admins.tetapan.halaman-utama') }}"
                                         aria-expanded="false"><span class="hide-menu">Tetapan Halaman
-                                            Utama</span></a>
+                                            Utama</span></a></li>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
+                                        href="{{ route('admins.tetapan.soalan-lazim') }}"
+                                        aria-expanded="false"><span class="hide-menu">Soalan Lazim</span></a></li>
 
                             </ul>
                         </li>
