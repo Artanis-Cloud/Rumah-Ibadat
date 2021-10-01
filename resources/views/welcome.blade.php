@@ -420,7 +420,7 @@
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png"
                         style="width: auto; height: 60px; margin-top: -50%;" alt="Kerajaan Selangor"></a>
             </div>
-            <span style="color: #fff; padding-top: 15px !important;"    >
+            <span style="color: #fff; padding-top: 15px !important;">
                 <h5 style="color: #fff;">Sistem Bantuan Kewangan <br> Rumah Ibadat Lima Agama Selangor</h5>
             </span>
             <br>
@@ -902,7 +902,12 @@
 
 <script type="text/javascript">
     document.getElementById("download_manual").onclick = function() {
-        window.location.href = "{{ asset('Regna/assets/img/manual_pemohon.pdf') }}";
+        // window.location.href = "{{ asset('Regna/assets/img/manual_pemohon.pdf') }}";
+
+        window.open(
+            '{{ asset('Regna/assets/img/manual_pemohon.pdf') }}',
+            '_blank' // <- This is what makes it open in a new window.
+        );
     };
 
 
