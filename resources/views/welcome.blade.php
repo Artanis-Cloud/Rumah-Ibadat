@@ -39,6 +39,12 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('Regna/assets/css/style.css') }}" rel="stylesheet">
 
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="{{ asset('nice-admin/icon/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('nice-admin/icon/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('nice-admin/icon/css/brands.css') }}">
+    <link rel="stylesheet" href="{{ asset('nice-admin/icon/css/solid.css') }}">
+
     <style>
         section {
             /* margin-top: 50px; */
@@ -414,8 +420,8 @@
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png"
                         style="width: auto; height: 60px; margin-top: -50%;" alt="Kerajaan Selangor"></a>
             </div>
-            <span style="color: #fff;">
-                <h4 style="color: #fff;">Sistem Bantuan Kewangan <br> Rumah Ibadat Lima Agama Selangor</h4>
+            <span style="color: #fff; padding-top: 15px !important;"    >
+                <h5 style="color: #fff;">Sistem Bantuan Kewangan <br> Rumah Ibadat Lima Agama Selangor</h5>
             </span>
             <br>
             <div>
@@ -427,10 +433,14 @@
                     <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
                     <li><a class="nav-link scrollto" href="#about">Pengenalan Sistem</a></li>
                     <li><a class="nav-link scrollto" href="#services">Statistik</a></li>
-                    @if(count($soalan) != 0)
-                    <li><a class="nav-link scrollto" href="#team">Soalan Lazim</a></li>
+                    @if (count($soalan) != 0)
+                        <li><a class="nav-link scrollto" href="#team">Soalan Lazim</a></li>
                     @endif
                     <li><a class="nav-link scrollto" href="#contact">Hubungi Kami</a></li>
+                    <li>
+                        <button class="btn btn-primary" id="download_manual"><i class="fas fa-book"></i>&nbspManual
+                            Pengguna</button>
+                    </li>
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -672,42 +682,44 @@
 
         </section><!-- End Services Section -->
 
-        @if(count($soalan) != 0)
+        @if (count($soalan) != 0)
 
-        <section id="team" class="portfolio">
-            <div class="container" data-aos="fade-up">
-                <div class="section-header">
-                    <h3 class="section-title">Soalan Lazim</h3>
+            <section id="team" class="portfolio">
+                <div class="container" data-aos="fade-up">
+                    <div class="section-header">
+                        <h3 class="section-title">Soalan Lazim</h3>
 
-                </div>
+                    </div>
 
-                @foreach ( $soalan as $key => $question)
-                    <div class="row" style="padding-top: 15px;">
-                    <div class="col-md-12">
-                        <div class="accordion" id="accordionExample{{ $key }}">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="heading{{ $key }}">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}">
-                                        <b>Soalan {{ ($key + 1) }} : {{  $question->soalan }}</b>
-                                    </button>
-                                </h2>
-                                <div id="collapse{{ $key }}" class="accordion-collapse collapse"
-                                    aria-labelledby="heading{{ $key }}" data-bs-parent="#accordionExample{{ $key }}">
-                                    <div class="accordion-body">
-                                        {{  $question->jawapan }}
+                    @foreach ($soalan as $key => $question)
+                        <div class="row" style="padding-top: 15px;">
+                            <div class="col-md-12">
+                                <div class="accordion" id="accordionExample{{ $key }}">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading{{ $key }}">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapse{{ $key }}" aria-expanded="true"
+                                                aria-controls="collapse{{ $key }}">
+                                                <b>Soalan {{ $key + 1 }} : {{ $question->soalan }}</b>
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{ $key }}" class="accordion-collapse collapse"
+                                            aria-labelledby="heading{{ $key }}"
+                                            data-bs-parent="#accordionExample{{ $key }}">
+                                            <div class="accordion-body">
+                                                {{ $question->jawapan }}
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-
                         </div>
-                    </div>
+                    @endforeach
+
+
                 </div>
-                @endforeach
-
-
-            </div>
-        </section>
+            </section>
 
         @endif
 
@@ -887,7 +899,13 @@
     <script src="{{ asset('Regna/assets/js/main.js') }}"></script>
 
 </body>
-<script>
+
+<script type="text/javascript">
+    document.getElementById("download_manual").onclick = function() {
+        window.location.href = "{{ asset('Regna/assets/img/manual_pemohon.pdf') }}";
+    };
+
+
     $('.count').each(function() {
         $(this).prop('Counter', 0).animate({
             Counter: $(this).text()
