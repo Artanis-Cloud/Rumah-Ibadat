@@ -905,7 +905,7 @@
         // window.location.href = "{{ asset('Regna/assets/img/manual_pemohon.pdf') }}";
 
         window.open(
-            '{{ asset('Regna/assets/img/manual_pemohon.pdf') }}',
+            '{{ asset('Regna/assets/img/user_manual.pdf') }}',
             '_blank' // <- This is what makes it open in a new window.
         );
     };
