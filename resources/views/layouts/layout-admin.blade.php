@@ -157,7 +157,8 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000"> Sistem Bantuan Kewangan Lima Agama Selangor </h1>
+                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000"> Sistem Bantuan Kewangan Lima
+                            Agama Selangor </h1>
 
                     </ul>
 
@@ -277,8 +278,41 @@
                                             Utama</span></a></li>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
-                                        href="{{ route('admins.tetapan.soalan-lazim') }}"
-                                        aria-expanded="false"><span class="hide-menu">Soalan Lazim</span></a></li>
+                                        href="{{ route('admins.tetapan.soalan-lazim') }}" aria-expanded="false"><span
+                                            class="hide-menu">Tetapan Soalan Lazim</span></a></li>
+
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="fas fa-book"></i><span
+                                    class="hide-menu" style="padding-left: 10px;">Manual Sistem</span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" target="_blank"
+                                        href="{{ asset('Regna/assets/img/user_manual.pdf') }}"
+                                        aria-expanded="false"><span class="hide-menu">Manual Pemohon</span></a>
+                                </li>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" target="_blank"
+                                        href="{{ asset('Regna/assets/img/exco_manual.pdf') }}" aria-expanded="false"><span
+                                            class="hide-menu">Manual Pejabat Exco</span></a>
+                                </li>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" target="_blank"
+                                        href="{{ asset('Regna/assets/img/yb_manual.pdf') }}" aria-expanded="false"><span
+                                            class="hide-menu">Manual YB Pengerusi</span></a>
+                                </li>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" target="_blank"
+                                        href="{{ asset('Regna/assets/img/upen_manual.pdf') }}" aria-expanded="false"><span
+                                            class="hide-menu">Manual Pejabat UPEN</span></a>
+                                </li>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" target="_blank"
+                                        href="{{ asset('Regna/assets/img/admin_manual.pdf') }}" aria-expanded="false"><span
+                                            class="hide-menu">Manual Admin Sistem</span></a>
+                                </li>
 
                             </ul>
                         </li>
@@ -321,7 +355,8 @@
                     <div class="col-5 align-self-center">
                         @for ($i = 1; $i <= count(Request::segments()); $i++)
                             @if(!($i < count(Request::segments()) & $i> 0))
-                                <h4 class="page-title">{{ ucwords(str_replace('-', ' ', Request::segment($i))) }}
+                                <h4 class="page-title">
+                                    {{ ucwords(str_replace('-', ' ', Request::segment($i))) }}
                                 </h4>
                         @endif
                         @endfor
@@ -364,8 +399,8 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle"
-                                    aria-hidden="true"></i>&nbspPengesahan!</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle"><i
+                                    class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPengesahan!</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

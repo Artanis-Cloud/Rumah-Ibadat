@@ -39,6 +39,12 @@
         rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
 
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="{{ asset('nice-admin/icon/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('nice-admin/icon/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('nice-admin/icon/css/brands.css') }}">
+    <link rel="stylesheet" href="{{ asset('nice-admin/icon/css/solid.css') }}">
+
 </head>
 <style>
     html,

@@ -20,6 +20,9 @@
                                     <h2 style="padding-top: 15px !important;">Selamat Datang <br> Ke <br> Sistem Bantuan Kewangan <br> Lima Agama <br> Selangor</h2>
                                     <a href="{{ route('register') }}" class="btn btn-white btn-outline-white">Daftar
                                         Masuk</a>
+
+                                    <a href="{{ asset('Regna/assets/img/user_manual.pdf') }}" target="_blank" class="btn btn-white btn-outline-white"><i class="fas fa-book"></i>&nbspManual
+                            Pengguna</button></a>
                                 </div>
                             </div>
                             <div class="p-4 login-wrap p-lg-5">
