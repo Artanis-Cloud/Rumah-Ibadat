@@ -17,6 +17,7 @@ use App\Models\Batch;
 use App\Models\Peruntukan;
 use App\Models\SpecialApplication;
 use App\Models\Announcement;
+use App\Models\HistoryApplication;
 use Illuminate\Http\Request;
 
 use App\Notifications\Permohonan\YbApproved;
@@ -24,6 +25,7 @@ use App\Notifications\Permohonan\SemakSemula;
 use App\Notifications\PermohonanKhas\PermohonanKhasLulus;
 use App\Notifications\PermohonanKhas\TidakLulus;
 
+use Yajra\Datatables\Datatables;
 
 
 
@@ -1232,6 +1234,50 @@ class YbController extends Controller
         }
 
         return view('ybs.permohonan.papar-tidak-lulus', compact('permohonan', 'exco'));
+    }
+
+    public function sejarah_permohonan()
+    {
+        return view('ybs.permohonan.sejarah');
+    }
+
+    public function sejarah_permohonan_ajax(){
+        # code...
+        $sejarah_permohonan = HistoryApplication::get();
+        $sejarah_permohonan = DB::select('select id, rumah_ibadat, no_pendaftaran, sebab_permohonan, jumlah_kelulusan, tahun from history_applications');
+        // dd($sejarah_permohonan);
+
+        return Datatables::of($sejarah_permohonan)
+            ->addIndexColumn()
+            // ->addColumn('action', function ($row) {
+            //     // dd($row);
+            //     $btn = '<a href="' . route('new-inventory-form.show', $row->id) . '" class="btn btn-info">View</a>';
+            //     $btn = $btn . '<a href="' . route('new-inventory-form.show', $row->id) . '" class="btn btn-danger">Delete</a>';
+                // return $btn;
+            // })
+            ->editColumn('no_pendaftaran', function ($row){
+                if($row->no_pendaftaran == ''){
+                    return 'Tiada Data';
+                }else{
+                    return $row->no_pendaftaran;
+                }
+            })
+            ->editColumn('sebab_permohonan', function ($row) {
+                if ($row->sebab_permohonan == '') {
+                    return 'Tiada Data';
+                } else {
+                    return $row->sebab_permohonan;
+                }
+            })
+            ->editColumn('jumlah_kelulusan', function ($row) {
+                if ($row->jumlah_kelulusan == '') {
+                    return 'Tiada Data';
+                } else {
+                    return $row->jumlah_kelulusan;
+                }
+            })
+            // ->rawColumns(['action'])
+            ->make(true);
     }
 
     public function permohonan_khas_status()
