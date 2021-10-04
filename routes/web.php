@@ -218,6 +218,11 @@ Route::middleware([Yb::class])->group(function () {
 
     Route::get('/dashboard-YB-pengerusi/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\YbController::class, 'papar_permohonan_tidak_lulus'])->name('ybs.permohonan.tidak-lulus.papar');
 
+    //SEJARAH PERMOHONAN
+    Route::get('/dashboard-YB-pengerusi/permohonan/sejarah-permohonan', [App\Http\Controllers\YbController::class, 'sejarah_permohonan'])->name('ybs.permohonan.sejarah-permohonan');
+
+    Route::get('/dashboard-YB-pengerusi/permohonan/sejarah-permohonan/ajax', [App\Http\Controllers\YbController::class, 'sejarah_permohonan_ajax'])->name('ybs.permohonan.sejarah-permohonan.ajax');
+
 
     //PERMOHONAN KHAS
     Route::get('/dashboard-YB-pengerusi/permohonan/permohonan-khas/status-permohonan-keseluruhan', [App\Http\Controllers\YbController::class, 'permohonan_khas_status'])->name('ybs.permohonan.khas.status-permohonan');

@@ -281,6 +281,12 @@
                                         aria-expanded="false"><span class="hide-menu">Status Permohonan
                                             Keseluruhan</span></a>
 
+                                            <hr>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
+                                        href="{{ route('ybs.permohonan.sejarah-permohonan') }}"
+                                        aria-expanded="false"><span class="hide-menu">Sejarah Permohonan</span></a>
+
                             </ul>
                         </li>
 
