@@ -570,7 +570,7 @@
 
         <!-- ======= Services Section ======= -->
         <section id="services"
-            style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/bg-je.png');">
+            style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/statistik_bg.png');">
             <div class="section-header">
                 <h3 class="section-title" style="color: white;">Statistik</h3>
             </div>
