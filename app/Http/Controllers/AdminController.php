@@ -534,6 +534,7 @@ class AdminController extends Controller
     public function halaman_utama(){
         $csm = Csm::get()->first();
         $banner = Banner::where('status', '1')->get();
+
         // $banner = $banner->order_by('created_at', 'desc');
         return view('admins.tetapan.kemaskini-halaman-utama', compact('csm', 'banner'));
     }
@@ -580,7 +581,7 @@ class AdminController extends Controller
 
         $content->upen_email = $request->upen_email;
         $content->upen_contact = $request->upen_contact;
-        $content->upen_address = $request->upen_address;
+        $content->upen_address = $request->address;
 
         $content->yb1_name = $request->yb1_name;
         $content->yb1_email = $request->yb1_email;
