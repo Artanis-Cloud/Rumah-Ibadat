@@ -1,4 +1,4 @@
-@extends('layouts.layout-yb')
+@extends('layouts.layout-upen')
 
 @section('content')
 
@@ -329,20 +329,7 @@
                                                                                 style="padding: 5px;">
                                                                                 @if ($data->status == 0)
                                                                                     <form
-                                                                                        action="{{ route('ybs.permohonan.semakan-semula.papar') }}"
-                                                                                        target="_blank">
-                                                                                        <input type="hidden"
-                                                                                            name="permohonan_id"
-                                                                                            value="{{ $data->id }}"
-                                                                                            readonly>
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-info"><i
-                                                                                                class="far fa-eye"></i></button>
-                                                                                    </form>
-                                                                                @elseif ($data->status == 1 && $data->exco_id != null &&
-                                                                                    $data->yb_id == null)
-                                                                                    <form
-                                                                                        action="{{ route('ybs.permohonan.papar') }}"
+                                                                                        action="{{ route('upens.permohonan.semakan-semula.papar') }}"
                                                                                         target="_blank">
                                                                                         <input type="hidden"
                                                                                             name="permohonan_id"
@@ -355,7 +342,7 @@
                                                                                 @elseif ($data->status == 1 &&
                                                                                     $data->exco_id != null && $data->yb_id != null)
                                                                                     <form
-                                                                                        action="{{ route('ybs.permohonan.sedang-diproses.papar') }}"
+                                                                                        action="{{ route('upens.permohonan.papar') }}"
                                                                                         target="_blank">
                                                                                         <input type="hidden"
                                                                                             name="permohonan_id"
@@ -367,7 +354,7 @@
                                                                                     </form>
                                                                                 @elseif ($data->status == 2)
                                                                                     <form
-                                                                                        action="{{ route('ybs.permohonan.lulus.papar') }}"
+                                                                                        action="{{ route('upens.permohonan.lulus.papar') }}"
                                                                                         target="_blank">
                                                                                         <input type="hidden"
                                                                                             name="permohonan_id"
@@ -381,7 +368,7 @@
                                                                                 @elseif($data->status == 3 ||
                                                                                     $data->status == 4)
                                                                                     <form
-                                                                                        action="{{ route('ybs.permohonan.tidak-lulus.papar') }}"
+                                                                                        action="{{ route('upens.permohonan.tidak-lulus.papar') }}"
                                                                                         target="_blank">
                                                                                         <input type="hidden"
                                                                                             name="permohonan_id"
@@ -398,7 +385,7 @@
                                                                             <div class="col-md"
                                                                                 style="padding: 5px;">
                                                                                 <form
-                                                                                    action="{{ route('ybs.permohonan.print') }}"
+                                                                                    action="{{ route('upens.permohonan.print') }}"
                                                                                     target="_blank">
                                                                                     <input type="hidden"
                                                                                         name="permohonan_id"
@@ -427,7 +414,7 @@
                                         <div class="row" style="padding-bottom: 25px; padding-top: 25px;">
                                             <div class="col-md-3"></div>
                                             <div class="col-md">
-                                                <a href="{{ route('ybs.rumah-ibadat.senarai') }}"
+                                                <a href="{{ url()->previous() }}"
                                                     class="btn waves-effect waves-light btn-info btn-block">Kembali</a>
                                             </div>
                                             <div class="col-md-3"></div>

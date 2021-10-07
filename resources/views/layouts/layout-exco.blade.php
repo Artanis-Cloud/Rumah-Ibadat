@@ -283,7 +283,13 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
                                         href="{{ route('excos.permohonan.status-permohonan') }}"
                                         aria-expanded="false"><span class="hide-menu">Status Permohonan
-                                            Keseluruhan</span></a>
+                                            Keseluruhan</span></a></li>
+
+                                    <hr>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
+                                        href="{{ route('excos.permohonan.sejarah-permohonan') }}"
+                                        aria-expanded="false"><span class="hide-menu">Sejarah Permohonan</span></a></li>
 
                             </ul>
                         </li>

@@ -10,6 +10,7 @@ use PDF;
 use App\Notifications\Permohonan\NotApproved;
 
 use App\Models\Batch;
+use App\Models\HistoryApplication;
 use App\Models\User;
 use App\Models\RumahIbadat;
 use App\Models\Permohonan;
@@ -28,6 +29,9 @@ use App\Notifications\RumahIbadat\TukarWakilGagal;
 use App\Notifications\TetapanPermohonan\SwitchPermohonan;
 // use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+
+use Yajra\Datatables\Datatables;
+
 
 class UpenController extends Controller
 {
@@ -657,6 +661,68 @@ class UpenController extends Controller
         return view('upens.permohonan.papar-tidak-lulus', compact('permohonan', 'exco'));
     }
 
+    public function sejarah_permohonan()
+    {
+        return view('upens.permohonan.sejarah');
+    }
+
+    public function sejarah_permohonan_ajax()
+    {
+        # code...
+        $sejarah_permohonan = HistoryApplication::get();
+        $sejarah_permohonan = DB::select('select id, rumah_ibadat, alamat, no_pendaftaran, sebab_permohonan, no_akaun, bank, jumlah_kelulusan, tahun from history_applications');
+        $permohonan = DB::select(DB::raw("select YEAR(tujuans.created_at) as tahun, rumah_ibadats.name_association as rumah_ibadat, rumah_ibadats.address as alamat, tujuans.tujuan as sebab_permohonan, rumah_ibadats.registration_type, rumah_ibadats.registration_number as no_pendaftaran, rumah_ibadats.bank_account as no_akaun, rumah_ibadats.bank_name as bank, permohonans.total_fund as jumlah_kelulusan FROM tujuans, rumah_ibadats, permohonans WHERE tujuans.permohonan_id = permohonans.id AND permohonans.rumah_ibadat_id = rumah_ibadats.id AND permohonans.status = '2'"));
+        $permohonan_list = array_merge($sejarah_permohonan, $permohonan);
+
+        // dd($sejarah_permohonan);
+
+        return Datatables::of($permohonan_list)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                // dd($row);
+                // $btn = '<a href="' . route('new-inventory-form.show', $row->id) . '" class="btn btn-info">View</a>';
+                // $btn = $btn . '<a href="' . route('new-inventory-form.show', $row->id) . '" class="btn btn-danger">Delete</a>';
+
+                if ($row->tahun > 2020) {
+                    $btn = '<i class="far fa-check-circle" style="color: green; font-size: 30px;"></i>';
+                } else {
+                    $btn = '<i class="far fa-times-circle" style="color: red; font-size: 30px;"></i>';
+                }
+
+                return $btn;
+            })
+            ->editColumn('alamat', function ($row) {
+                if ($row->alamat == '') {
+                    return 'Tiada Data';
+                } else {
+                    return $row->alamat;
+                }
+            })
+            ->editColumn('no_pendaftaran', function ($row) {
+                if ($row->no_pendaftaran == '') {
+                    return 'Tiada Data';
+                } else {
+                    return $row->no_pendaftaran;
+                }
+            })
+            ->editColumn('sebab_permohonan', function ($row) {
+                if ($row->sebab_permohonan == '') {
+                    return 'Tiada Data';
+                } else {
+                    return $row->sebab_permohonan;
+                }
+            })
+            ->editColumn('jumlah_kelulusan', function ($row) {
+                if ($row->jumlah_kelulusan == '') {
+                    return 'Tiada Data';
+                } else {
+                    return $row->jumlah_kelulusan;
+                }
+            })
+            // ->rawColumns(['action'])
+            ->make(true);
+    }
+
     public function permohonan_khas_status()
     {
 
@@ -826,6 +892,24 @@ class UpenController extends Controller
         $permohonan->notify(new TukarWakilBerjaya());
 
         return redirect()->route('upens.rumah-ibadat.permohonan')->with('success', 'Permohonan telah diluluskan.');
+    }
+
+    public function senarai_rumah_ibadat()
+    {
+
+        $rumah_ibadat = RumahIbadat::get();
+
+        return view('upens.rumah-ibadat.senarai', compact('rumah_ibadat'));
+    }
+
+    public function papar_rumah_ibadat(Request $request)
+    {
+
+        $rumah_ibadat = RumahIbadat::findorfail($request->rumah_ibadat_id);
+
+        $permohonan = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->get();
+
+        return view('upens.rumah-ibadat.papar-rumah-ibadat', compact('rumah_ibadat', 'permohonan'));
     }
 
     public function tetapan()
