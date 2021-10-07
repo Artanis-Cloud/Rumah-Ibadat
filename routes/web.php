@@ -149,6 +149,12 @@ Route::middleware([Exco::class])->group(function () {
 
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\ExcoController::class, 'papar_permohonan_tidak_lulus'])->name('excos.permohonan.tidak-lulus.papar');
 
+    //SEJARAH PERMOHONAN
+    Route::get('/dashboard-pejabat-exco/permohonan/sejarah-permohonan', [App\Http\Controllers\ExcoController::class, 'sejarah_permohonan'])->name('excos.permohonan.sejarah-permohonan');
+
+    Route::get('/dashboard-pejabat-exco/permohonan/sejarah-permohonan/ajax', [App\Http\Controllers\ExcoController::class, 'sejarah_permohonan_ajax'])->name('excos.permohonan.sejarah-permohonan.ajax');
+
+
     //PERMOHONAN KHAS
     Route::get('/dashboard-pejabat-exco/permohonan/permohonan-khas/status-permohonan-keseluruhan', [App\Http\Controllers\ExcoController::class, 'permohonan_khas_status'])->name('excos.permohonan.khas.status-permohonan');
 
@@ -244,6 +250,7 @@ Route::middleware([Yb::class])->group(function () {
     Route::get('/dashboard-YB-pengerusi/rumah-ibadat/senarai-rumah-ibadat', [App\Http\Controllers\YbController::class, 'senarai_rumah_ibadat'])->name('ybs.rumah-ibadat.senarai');
 
     Route::get('/dashboard-YB-pengerusi/rumah-ibadat/senarai-rumah-ibadat/maklumat-rumah-ibadat', [App\Http\Controllers\YbController::class, 'papar_rumah_ibadat'])->name('ybs.rumah-ibadat.senarai.papar');
+
 });
 
 //UPEN ROUTE
@@ -294,6 +301,12 @@ Route::middleware([Upen::class])->group(function () {
 
     Route::get('/dashboard-pejabat-UPEN/permohonan/permohonan-tidak-lulus/maklumat-permohonan', [App\Http\Controllers\UpenController::class, 'papar_permohonan_tidak_lulus'])->name('upens.permohonan.tidak-lulus.papar');
 
+    //SEJARAH PERMOHONAN
+    Route::get('/dashboard-pejabat-UPEN/permohonan/sejarah-permohonan', [App\Http\Controllers\UpenController::class, 'sejarah_permohonan'])->name('upens.permohonan.sejarah-permohonan');
+
+    Route::get('/dashboard-pejabat-UPEN/permohonan/sejarah-permohonan/ajax', [App\Http\Controllers\UpenController::class, 'sejarah_permohonan_ajax'])->name('upens.permohonan.sejarah-permohonan.ajax');
+
+
 
 
     //PERMOHONAN KHAS
@@ -318,6 +331,11 @@ Route::middleware([Upen::class])->group(function () {
     Route::get('/dashboard-pejabat-UPEN/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan/tidak-lulus', [App\Http\Controllers\UpenController::class, 'tukar_wakil_tidak_lulus'])->name('upens.rumah-ibadat.permohonan.tidak-lulus');
 
     Route::get('/dashboard-pejabat-UPEN/rumah-ibadat/permohonan-menukar-wakil-rumah-ibadat/maklumat-permohonan/lulus', [App\Http\Controllers\UpenController::class, 'tukar_wakil_lulus'])->name('upens.rumah-ibadat.permohonan.lulus');
+
+    //senarai rumah ibadat
+    Route::get('/dashboard-pejabat-UPEN/rumah-ibadat/senarai-rumah-ibadat', [App\Http\Controllers\UpenController::class, 'senarai_rumah_ibadat'])->name('upens.rumah-ibadat.senarai');
+
+    Route::get('/dashboard-pejabat-UPEN/rumah-ibadat/senarai-rumah-ibadat/maklumat-rumah-ibadat', [App\Http\Controllers\UpenController::class, 'papar_rumah_ibadat'])->name('upens.rumah-ibadat.senarai.papar');
 
 
 

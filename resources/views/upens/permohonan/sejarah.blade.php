@@ -1,4 +1,4 @@
-@extends('layouts.layout-yb')
+@extends('layouts.layout-upen')
 
 @section('content')
 
@@ -132,7 +132,7 @@
                 },
             ],
 
-            ajax: "{{ route('ybs.permohonan.sejarah-permohonan.ajax') }}",
+            ajax: "{{ route('upens.permohonan.sejarah-permohonan.ajax') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'id'

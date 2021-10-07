@@ -153,7 +153,8 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Lima Agama Selangor</h1>
+                        <h1 class="font-20 m-b-5" style="text-align: center;color: #000">Sistem Bantuan Kewangan Lima
+                            Agama Selangor</h1>
 
                     </ul>
 
@@ -256,7 +257,14 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
                                         href="{{ route('upens.permohonan.status-permohonan') }}"
                                         aria-expanded="false"><span class="hide-menu">Status Permohonan
-                                            Keseluruhan</span></a>
+                                            Keseluruhan</span></a></li>
+
+                                <hr>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
+                                        href="{{ route('upens.permohonan.sejarah-permohonan') }}"
+                                        aria-expanded="false"><span class="hide-menu">Sejarah Permohonan</span></a>
+                                </li>
 
                             </ul>
                         </li>
@@ -294,7 +302,11 @@
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
                                         href="{{ route('upens.rumah-ibadat.permohonan') }}"
                                         aria-expanded="false"><span class="hide-menu">Permohonan Menukar Wakil
-                                            <br>Rumah Ibadat</span></a>
+                                            <br>Rumah Ibadat</span></a></li>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark"
+                                        href="{{ route('upens.rumah-ibadat.senarai') }}"
+                                        aria-expanded="false"><span class="hide-menu">Senarai Rumah Ibadat</span></a></li>
 
                             </ul>
                         </li>
@@ -337,7 +349,8 @@
                         {{-- <h4 class="page-title">Tukar Kata Laluan</h4> --}}
                         @for ($i = 1; $i <= count(Request::segments()); $i++)
                             @if(!($i < count(Request::segments()) & $i> 0))
-                                <h4 class="page-title">{{ ucwords(str_replace('-', ' ', Request::segment($i))) }}
+                                <h4 class="page-title">
+                                    {{ ucwords(str_replace('-', ' ', Request::segment($i))) }}
                                 </h4>
                         @endif
                         @endfor
