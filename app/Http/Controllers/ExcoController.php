@@ -1097,7 +1097,11 @@ class ExcoController extends Controller
                 if ($row->no_pendaftaran == '') {
                     return 'Tiada Data';
                 } else {
-                    return $row->no_pendaftaran;
+                    if (str_contains($row->no_pendaftaran, '%')) {
+                        return (explode("%", $row->no_pendaftaran, 2)[1]);
+                    } else {
+                        return $row->no_pendaftaran;
+                    }
                 }
             })
             ->editColumn('sebab_permohonan', function ($row) {
@@ -1111,7 +1115,16 @@ class ExcoController extends Controller
                 if ($row->jumlah_kelulusan == '') {
                     return 'Tiada Data';
                 } else {
-                    return $row->jumlah_kelulusan;
+                    if ($row->tahun > 2020){
+                        $jumlah = number_format($row->jumlah_kelulusan, 2);
+                        $jumlah = "RM " .  $jumlah;
+                        return $jumlah;
+
+                    }else{
+
+                        $jumlah = "RM " .  $row->jumlah_kelulusan;
+                        return $jumlah;
+                    }
                 }
             })
             // ->rawColumns(['action'])

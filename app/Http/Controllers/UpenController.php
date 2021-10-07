@@ -40,7 +40,7 @@ class UpenController extends Controller
         $pengumuman = Announcement::where('status', '1')->where('upen', '1')->get();
 
         //counter
-        $count_new_application = Permohonan::where('yb_id','!=', null)->where('exco_id', '!=', null)->where('status', '1')->count();
+        $count_new_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->count();
         $count_review_application = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '0')->count();
         $count_passed_application = Permohonan::where('status', '2')->count();
         $count_failed_application = Permohonan::where('status', '3')->orWhere('status', '4')->count();
@@ -144,10 +144,11 @@ class UpenController extends Controller
 
         $count_khas_gereja = $special_application_pass->count();
 
-        return view('upens.dashboard', compact('pengumuman', 'current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report','laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application'));
+        return view('upens.dashboard', compact('pengumuman', 'current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report', 'laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application'));
     }
 
-    public function update_peruntukan(Request $request){
+    public function update_peruntukan(Request $request)
+    {
 
         $total_fund = $request->tokong + $request->kuil + $request->gurdwara + $request->gereja;
 
@@ -179,7 +180,7 @@ class UpenController extends Controller
         $permohonan = Permohonan::findorfail($request->permohonan_id);
 
         $exco = null;
-        if($permohonan->exco_id != null){
+        if ($permohonan->exco_id != null) {
             $exco = User::findorfail($permohonan->exco_id);
         }
 
@@ -203,7 +204,7 @@ class UpenController extends Controller
             $not_approved_id = User::findorfail($permohonan->not_approved_id);
         }
 
-        return view('upens.permohonan.print', compact('permohonan', 'exco','yb', 'upen', 'review_to_applicant_id', 'not_approved_id'));
+        return view('upens.permohonan.print', compact('permohonan', 'exco', 'yb', 'upen', 'review_to_applicant_id', 'not_approved_id'));
     }
 
     public function print_permohonan_khas(Request $request)
@@ -232,14 +233,16 @@ class UpenController extends Controller
         return view('upens.permohonan.pilih');
     }
 
-    public function permohonan_status(){
+    public function permohonan_status()
+    {
 
         $permohonan = Permohonan::get();
 
         return view('upens.permohonan.status-permohonan', compact('permohonan'));
     }
 
-    public function permohonan_baru(){
+    public function permohonan_baru()
+    {
         $batch = Batch::first();
 
         $permohonan = Permohonan::where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->get();
@@ -285,10 +288,11 @@ class UpenController extends Controller
 
         //=============== SEJARAH PERMOHONAN =============================
 
-        return view('upens.permohonan.papar', compact('current_fund','yb_approved_fund', 'permohonan', 'exco','yb', 'sejarah_permohonan', 'history_application_system'));
+        return view('upens.permohonan.papar', compact('current_fund', 'yb_approved_fund', 'permohonan', 'exco', 'yb', 'sejarah_permohonan', 'history_application_system'));
     }
 
-    public function permohonan_kemaskini_peruntukan(Request $request){
+    public function permohonan_kemaskini_peruntukan(Request $request)
+    {
 
         $permohonan = Permohonan::findorfail($request->permohonan_id); //look current permohonan
         $total_fund = 0.00;
@@ -560,7 +564,7 @@ class UpenController extends Controller
         $content = $pdf->download()->getOriginalContent();
         $file_name = '_surat-kelulusan.pdf';
         $file_path = 'public/muat-naik/permohonan/' . $date . '/rumah_ibadat_' . $permohonan->rumah_ibadat->id;
-        Storage::put($file_path.$file_name, $content);
+        Storage::put($file_path . $file_name, $content);
         // dd($file_path . $file_name);
         // return $pdf->stream(); // preview surat
         //================= generate surat kelulusan ======================
@@ -575,26 +579,22 @@ class UpenController extends Controller
         $peruntukan->balance_fund = $peruntukan->total_fund - $peruntukan->current_fund;
 
 
-        if($permohonan->rumah_ibadat->category == "TOKONG"){
+        if ($permohonan->rumah_ibadat->category == "TOKONG") {
 
             $peruntukan->current_tokong = $peruntukan->current_tokong + $permohonan->total_fund;
             $peruntukan->balance_tokong = $peruntukan->total_tokong - $peruntukan->current_tokong;
-
-        } elseif($permohonan->rumah_ibadat->category == "KUIL"){
+        } elseif ($permohonan->rumah_ibadat->category == "KUIL") {
 
             $peruntukan->current_kuil = $peruntukan->current_kuil + $permohonan->total_fund;
             $peruntukan->balance_kuil = $peruntukan->total_kuil - $peruntukan->current_kuil;
-
         } elseif ($permohonan->rumah_ibadat->category == "GURDWARA") {
 
             $peruntukan->current_gurdwara = $peruntukan->current_gurdwara + $permohonan->total_fund;
-            $peruntukan->balance_gurdwara = $peruntukan->total_gurdwara- $peruntukan->current_gurdwara;
-
+            $peruntukan->balance_gurdwara = $peruntukan->total_gurdwara - $peruntukan->current_gurdwara;
         } elseif ($permohonan->rumah_ibadat->category == "GEREJA") {
 
             $peruntukan->current_gereja = $peruntukan->current_gereja + $permohonan->total_fund;
             $peruntukan->balance_gereja = $peruntukan->total_gereja - $peruntukan->current_gereja;
-
         }
 
         $peruntukan->save();
@@ -624,7 +624,8 @@ class UpenController extends Controller
         return view('upens.permohonan.papar-semak-semula', compact('permohonan', 'user_in_charge'));
     }
 
-    public function permohonan_lulus(){
+    public function permohonan_lulus()
+    {
         $approved_application = Permohonan::where('status', '2')->get();
 
         return view('upens.permohonan.lulus', compact('approved_application'));
@@ -643,7 +644,8 @@ class UpenController extends Controller
         return view('upens.permohonan.papar-lulus', compact('permohonan', 'exco', 'yb', 'upen'));
     }
 
-    public function permohonan_tidak_lulus(){
+    public function permohonan_tidak_lulus()
+    {
         $rejected_application = Permohonan::where('status', '3')->orWhere('status', '4')->get();
 
         return view('upens.permohonan.tidak-lulus', compact('rejected_application'));
@@ -702,7 +704,11 @@ class UpenController extends Controller
                 if ($row->no_pendaftaran == '') {
                     return 'Tiada Data';
                 } else {
-                    return $row->no_pendaftaran;
+                    if (str_contains($row->no_pendaftaran, '%')) {
+                        return (explode("%", $row->no_pendaftaran, 2)[1]);
+                    } else {
+                        return $row->no_pendaftaran;
+                    }
                 }
             })
             ->editColumn('sebab_permohonan', function ($row) {
@@ -716,7 +722,15 @@ class UpenController extends Controller
                 if ($row->jumlah_kelulusan == '') {
                     return 'Tiada Data';
                 } else {
-                    return $row->jumlah_kelulusan;
+                    if ($row->tahun > 2020) {
+                        $jumlah = number_format($row->jumlah_kelulusan, 2);
+                        $jumlah = "RM " .  $jumlah;
+                        return $jumlah;
+                    } else {
+
+                        $jumlah = "RM " .  $row->jumlah_kelulusan;
+                        return $jumlah;
+                    }
                 }
             })
             // ->rawColumns(['action'])
@@ -753,7 +767,8 @@ class UpenController extends Controller
         return $reference_number;
     }
 
-    public function permohonan_khas_hantar(Request $request){
+    public function permohonan_khas_hantar(Request $request)
+    {
         // dd($request->all());
         $user_id = auth()->user()->id;  //find user id
         $current_date = date('d-m-Y'); //get current date
@@ -785,7 +800,6 @@ class UpenController extends Controller
 
         // return redirect()->route('upens.dashboard')->with('success', 'Permohonan Khas berjaya dihantar.');
         return redirect()->route('upens.permohonan-khas.senarai')->with('success', 'Permohonan Khas berjaya dihantar.');
-
     }
 
     public function permohonan_khas_senarai()
@@ -798,7 +812,8 @@ class UpenController extends Controller
         return view('upens.permohonan.permohonan-khas.senarai', compact('permohonan_khas'));
     }
 
-    public function permohonan_khas_papar(Request $request){
+    public function permohonan_khas_papar(Request $request)
+    {
 
         $special_application = SpecialApplication::findorfail($request->permohonan_khas_id);
 
@@ -808,7 +823,7 @@ class UpenController extends Controller
         }
 
         $yb = null;
-        if($special_application->yb_id != null){
+        if ($special_application->yb_id != null) {
             $yb = User::findorfail($special_application->yb_id);
         }
 
@@ -820,19 +835,21 @@ class UpenController extends Controller
         return view('upens.permohonan.permohonan-khas.papar', compact('special_application', 'exco', 'yb', 'cancel'));
     }
 
-    public function rumah_ibadat(){
+    public function rumah_ibadat()
+    {
         // echo "masuk pilih rumah ibadat";
         return view('upens.rumah-ibadat.pilih');
-
     }
 
-    public function tukar_wakil(){
+    public function tukar_wakil()
+    {
         $permohonan = TukarRumahIbadat::get();
 
         return view('upens.rumah-ibadat.tukar-wakil', compact('permohonan'));
     }
 
-    public function tukar_wakil_papar(Request $request){
+    public function tukar_wakil_papar(Request $request)
+    {
 
         $permohonan = TukarRumahIbadat::findorfail($request->permohonan_id);
 
@@ -841,7 +858,8 @@ class UpenController extends Controller
         return view('upens.rumah-ibadat.papar', compact('permohonan', 'rumah_ibadat'));
     }
 
-    public function tukar_wakil_tidak_lulus(Request $request){
+    public function tukar_wakil_tidak_lulus(Request $request)
+    {
 
         $permohonan = TukarRumahIbadat::findorfail($request->permohonan_id);
 
@@ -854,7 +872,8 @@ class UpenController extends Controller
         return redirect()->route('upens.rumah-ibadat.permohonan')->with('success', 'Permohonan tidak diluluskan.');
     }
 
-    public function tukar_wakil_lulus(Request $request){
+    public function tukar_wakil_lulus(Request $request)
+    {
 
         //update permohonan
         $permohonan = TukarRumahIbadat::findorfail($request->permohonan_id);
@@ -923,17 +942,18 @@ class UpenController extends Controller
         $batch = Batch::first();
 
         $user = null;
-        if($batch->allowed_user_id != null){
+        if ($batch->allowed_user_id != null) {
             $user = User::findorfail($batch->allowed_user_id);
         }
 
         return view('upens.tetapan.permohonan', compact('batch', 'user'));
     }
 
-    public function allow_permohonan(){
+    public function allow_permohonan()
+    {
         $batch = Batch::first();
 
-        if($batch->allow_permohonan == 1){
+        if ($batch->allow_permohonan == 1) {
             $batch->allow_permohonan = 0;
             $batch->allowed_user_id = auth()->user()->id;
             $batch->save();
@@ -941,7 +961,7 @@ class UpenController extends Controller
             // $batch->notify(new SwitchPermohonan());
 
             return redirect()->route('upens.tetapan.permohonan')->with('success', 'Permohonan telah ditutup.');
-        }else{
+        } else {
             $batch->allow_permohonan = 1;
             $batch->allowed_user_id = auth()->user()->id;
             $batch->save();
@@ -952,19 +972,19 @@ class UpenController extends Controller
         }
     }
 
-    public function new_batch(Request $request){
+    public function new_batch(Request $request)
+    {
 
         $batch = Batch::first();
 
-        if($request->batch == "tokong"){
+        if ($request->batch == "tokong") {
             $batch->tokong_counter = 0;
             $batch->tokong = $batch->main_batch;
             $batch->main_batch = $batch->main_batch + 1;
 
             $batch->save();
             return redirect()->route('upens.permohonan.baru')->with('success', 'Batch tokong telah dibuka.');
-
-        } elseif($request->batch == "kuil"){
+        } elseif ($request->batch == "kuil") {
             $batch->kuil_counter = 0;
             $batch->kuil = $batch->main_batch;
             $batch->main_batch = $batch->main_batch + 1;
@@ -988,7 +1008,8 @@ class UpenController extends Controller
         }
     }
 
-    public function reset_batch(){
+    public function reset_batch()
+    {
         $batch = Batch::first();
 
         $batch->main_batch = 5;
@@ -1010,18 +1031,21 @@ class UpenController extends Controller
         return redirect()->route('upens.tetapan.permohonan')->with('success', 'Batch telah ditetapkan semula');
     }
 
-    public function tetapan_pengumuman(){
+    public function tetapan_pengumuman()
+    {
 
         $annoucement = Announcement::where('status', '1')->get();
         return view('upens.tetapan.pengumuman', compact('annoucement'));
     }
 
-    public function pengumuman_baru(){
+    public function pengumuman_baru()
+    {
 
         return view('upens.tetapan.pengumuman-baru');
     }
 
-    public function pengumuman_baru_submit(Request $request){
+    public function pengumuman_baru_submit(Request $request)
+    {
 
         $admin = "0";
         $upen = "0";
@@ -1029,8 +1053,8 @@ class UpenController extends Controller
         $exco = "0";
         $pemohon = "0";
 
-        foreach($request->peranan as $peranan){
-            if($peranan == "admin"){
+        foreach ($request->peranan as $peranan) {
+            if ($peranan == "admin") {
                 $admin = "1";
             }
 
