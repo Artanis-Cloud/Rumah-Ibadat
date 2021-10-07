@@ -126,7 +126,7 @@ class YbController extends Controller
                 $q->where('category', 'TOKONG');
             })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->orderBy('created_at', 'asc')->get();
 
-            $special_application = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'TOKONG')->where('status','1')->get();
+            $special_application = SpecialApplication::where('exco_id', '!=', null)->where('yb_id', null)->where('category', 'TOKONG')->where('status', '1')->get();
 
             //================== LAPORAN PERBELANJAAN ==================
 
@@ -312,7 +312,6 @@ class YbController extends Controller
 
             if (isset($special_application)) {
                 $special_application = $special_application->merge($special_application_gurdwara);
-
             } else {
                 $special_application = $special_application_gurdwara;
             }
@@ -352,7 +351,9 @@ class YbController extends Controller
 
             //================== COUNT PROCESSING APPLICATION ==================
 
-            $count_processing_application_gereja = Permohonan::whereHas('rumah_ibadat',function ($q) {
+            $count_processing_application_gereja = Permohonan::whereHas(
+                'rumah_ibadat',
+                function ($q) {
                     $q->where('category', 'GEREJA');
                 }
             )->where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->count();
@@ -551,9 +552,9 @@ class YbController extends Controller
                 $q->where('category', 'KUIL');
             })->where('yb_id', null)->where('exco_id', '!=', null)->where('status', '1')->get();
 
-            if(isset($processing_application)){
+            if (isset($processing_application)) {
                 $processing_application = $processing_application->merge($kuil);
-            }else{
+            } else {
                 $processing_application = $kuil;
             }
         }
@@ -783,7 +784,7 @@ class YbController extends Controller
 
             $total_fund_checker = ($current_fund->balance_tokong - $yb_approved_fund_tokong[0]->peruntukan) - $total_fund_checker;
 
-            if($total_fund_checker < 0){
+            if ($total_fund_checker < 0) {
                 return redirect()->back()->with('error', 'Baki peruntukan tidak mencukupi.');
             }
         }
@@ -867,12 +868,12 @@ class YbController extends Controller
 
         //assign batching
 
-        if($permohonan->rumah_ibadat->category == "TOKONG"){
+        if ($permohonan->rumah_ibadat->category == "TOKONG") {
             $permohonan->batch = $batch->tokong; //assign permohonan batch
 
             $batch->tokong_counter = $batch->tokong_counter + 1;
 
-            if($batch->tokong_counter == 10){
+            if ($batch->tokong_counter == 10) {
                 //declare new batch
                 $batch->tokong = $batch->main_batch;
                 $batch->main_batch = $batch->main_batch + 1;
@@ -934,7 +935,7 @@ class YbController extends Controller
 
         if ($request->payment == "EFT") {
             $permohonan->payment_method = 2;
-        }else{
+        } else {
             $permohonan->payment_method = 1;
         }
 
@@ -949,7 +950,8 @@ class YbController extends Controller
         return redirect()->route('ybs.permohonan.baru')->with('success', 'Status permohonan telah disokong.');
     }
 
-    public function permohonan_pembatalan(Request $request){
+    public function permohonan_pembatalan(Request $request)
+    {
 
         //find current permohonan
         $permohonan = Permohonan::findorfail($request->permohonan_id);
@@ -964,13 +966,14 @@ class YbController extends Controller
         return redirect()->route('ybs.permohonan.baru')->with('success', 'Permohonan telah dibatalkan.');
     }
 
-    public function permohonan_sedang_diproses(){
+    public function permohonan_sedang_diproses()
+    {
         // dd("masuk");
 
         if (auth()->user()->user_role->tokong == 1) {
             $processing_application = Permohonan::whereHas('rumah_ibadat', function ($q) {
                 $q->where('category', 'TOKONG');
-            })->where('yb_id','!=', null)->where('exco_id', '!=', null)->where('status', '1')->get();
+            })->where('yb_id', '!=', null)->where('exco_id', '!=', null)->where('status', '1')->get();
         }
 
         if (auth()->user()->user_role->kuil == 1) {
@@ -1019,13 +1022,13 @@ class YbController extends Controller
 
         $exco = null;
 
-        if($permohonan->exco_id != null){
+        if ($permohonan->exco_id != null) {
             $exco = User::findorfail($permohonan->exco_id);
         }
 
         $yb = null;
 
-        if($permohonan->yb_id != null){
+        if ($permohonan->yb_id != null) {
             $yb = User::findorfail($permohonan->yb_id);
         }
 
@@ -1239,10 +1242,10 @@ class YbController extends Controller
     public function sejarah_permohonan()
     {
         return view('ybs.permohonan.sejarah');
-
     }
 
-    public function sejarah_permohonan_ajax(){
+    public function sejarah_permohonan_ajax()
+    {
         # code...
         $sejarah_permohonan = HistoryApplication::get();
         $sejarah_permohonan = DB::select('select id, rumah_ibadat, alamat, no_pendaftaran, sebab_permohonan, no_akaun, bank, jumlah_kelulusan, tahun from history_applications');
@@ -1258,9 +1261,9 @@ class YbController extends Controller
                 // $btn = '<a href="' . route('new-inventory-form.show', $row->id) . '" class="btn btn-info">View</a>';
                 // $btn = $btn . '<a href="' . route('new-inventory-form.show', $row->id) . '" class="btn btn-danger">Delete</a>';
 
-                if($row->tahun > 2020){
+                if ($row->tahun > 2020) {
                     $btn = '<i class="far fa-check-circle" style="color: green; font-size: 30px;"></i>';
-                }else{
+                } else {
                     $btn = '<i class="far fa-times-circle" style="color: red; font-size: 30px;"></i>';
                 }
 
@@ -1273,11 +1276,15 @@ class YbController extends Controller
                     return $row->alamat;
                 }
             })
-            ->editColumn('no_pendaftaran', function ($row){
-                if($row->no_pendaftaran == ''){
+            ->editColumn('no_pendaftaran', function ($row) {
+                if ($row->no_pendaftaran == '') {
                     return 'Tiada Data';
-                }else{
-                    return $row->no_pendaftaran;
+                } else {
+                    if (str_contains($row->no_pendaftaran, '%')) {
+                        return (explode("%", $row->no_pendaftaran, 2)[1]);
+                    } else {
+                        return $row->no_pendaftaran;
+                    }
                 }
             })
             ->editColumn('sebab_permohonan', function ($row) {
@@ -1291,7 +1298,15 @@ class YbController extends Controller
                 if ($row->jumlah_kelulusan == '') {
                     return 'Tiada Data';
                 } else {
-                    return $row->jumlah_kelulusan;
+                    if ($row->tahun > 2020) {
+                        $jumlah = number_format($row->jumlah_kelulusan, 2);
+                        $jumlah = "RM " .  $jumlah;
+                        return $jumlah;
+                    } else {
+
+                        $jumlah = "RM " .  $row->jumlah_kelulusan;
+                        return $jumlah;
+                    }
                 }
             })
             // ->rawColumns(['action'])
@@ -1376,7 +1391,6 @@ class YbController extends Controller
 
             if (isset($special_application)) {
                 $special_application = $special_application->merge($special_application_gereja);
-
             } else {
                 $special_application = $special_application_gereja;
             }
@@ -1386,7 +1400,8 @@ class YbController extends Controller
         return view('ybs.permohonan.permohonan-khas.senarai', compact('special_application'));
     }
 
-    public function papar_permohonan_khas(Request $request){
+    public function papar_permohonan_khas(Request $request)
+    {
         // dd("papar permohonan khas");
         $special_application = SpecialApplication::findorfail($request->permohonan_khas_id);
         // dd($special_application);
@@ -1414,22 +1429,18 @@ class YbController extends Controller
         $peruntukan->current_fund = $peruntukan->current_fund + $special_application->requested_amount;
         $peruntukan->balance_fund = $peruntukan->total_fund - $peruntukan->current_fund;
 
-        if($special_application->category == "TOKONG"){
+        if ($special_application->category == "TOKONG") {
             $peruntukan->current_tokong = $peruntukan->current_tokong + $special_application->requested_amount;
             $peruntukan->balance_tokong = $peruntukan->total_tokong - $peruntukan->current_tokong;
-
-        } elseif($special_application->category == "KUIL"){
+        } elseif ($special_application->category == "KUIL") {
             $peruntukan->current_kuil = $peruntukan->current_kuil + $special_application->requested_amount;
             $peruntukan->balance_kuil = $peruntukan->total_kuil - $peruntukan->current_kuil;
-
         } elseif ($special_application->category == "GURDWARA") {
             $peruntukan->current_gurdwara = $peruntukan->current_gurdwara + $special_application->requested_amount;
             $peruntukan->balance_gurdwara = $peruntukan->total_gurdwara - $peruntukan->current_gurdwara;
-
         } elseif ($special_application->category == "GEREJA") {
             $peruntukan->current_gereja = $peruntukan->current_gereja + $special_application->requested_amount;
             $peruntukan->balance_gereja = $peruntukan->total_gereja - $peruntukan->current_gereja;
-
         }
 
         $peruntukan->save();
