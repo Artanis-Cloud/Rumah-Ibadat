@@ -195,7 +195,7 @@ class UserSeeder extends Seeder
         // \App\Models\Tujuan::factory(200)
         // ->create();
 
-        \App\Models\Lampiran::factory(200)
+        \App\Models\Lampiran::factory(10)
         ->create();
 
     }
