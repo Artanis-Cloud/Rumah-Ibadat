@@ -100,7 +100,7 @@ class UserSeeder extends Seeder
 
         $hashed_random_password = Hash::make("1234567890");
 
-        DB::table('users')->delete();
+        // DB::table('users')->delete();
         DB::table('users')->insert(
             [
                 'id' => '1',
