@@ -186,8 +186,8 @@ class UserSeeder extends Seeder
         // \App\Models\User::factory(20)
         // ->create();
 
-        // \App\Models\RumahIbadat::factory(100)
-        // ->create();
+        \App\Models\RumahIbadat::factory(50)
+        ->create();
 
         // \App\Models\Permohonan::factory(20)
         // ->create();
@@ -195,8 +195,8 @@ class UserSeeder extends Seeder
         // \App\Models\Tujuan::factory(200)
         // ->create();
 
-        \App\Models\Lampiran::factory(10)
-        ->create();
+        // \App\Models\Lampiran::factory(10)
+        // ->create();
 
     }
 }
