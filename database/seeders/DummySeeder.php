@@ -70,8 +70,8 @@ class DummySeeder extends Seeder
         // \App\Models\User::factory(20)
         // ->create();
 
-        \App\Models\RumahIbadat::factory(20)
-        ->create();
+        // \App\Models\RumahIbadat::factory(20)
+        // ->create();
         // ->each(function () {
         //    \App\Models\RumahIbadat::factory()->create();
         // });
