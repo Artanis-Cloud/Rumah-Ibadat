@@ -186,8 +186,8 @@ class UserSeeder extends Seeder
         // \App\Models\User::factory(20)
         // ->create();
 
-        \App\Models\RumahIbadat::factory(50)
-        ->create();
+        // \App\Models\RumahIbadat::factory(50)
+        // ->create();
 
         // \App\Models\Permohonan::factory(20)
         // ->create();
