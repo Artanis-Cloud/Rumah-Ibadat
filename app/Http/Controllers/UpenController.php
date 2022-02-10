@@ -1093,4 +1093,15 @@ class UpenController extends Controller
 
         return redirect()->route('upens.tetapan.pengumuman')->with('success', 'Pengumuman berjaya dipapar.');
     }
+
+    public function pengumuman_padam(Request $request){
+
+        $pengumuman = Announcement::findorfail($request->id_pengumuman);
+
+        $pengumuman->status = 0;
+
+        $pengumuman->save();
+
+        return redirect()->route('upens.tetapan.pengumuman')->with('success', 'Pengumuman berjaya dipadam.');
+    }
 }

@@ -7,12 +7,12 @@
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            
+
               <div class="card-body border border-dark">
 
                   <div class="row">
@@ -74,7 +74,7 @@
                                     @endif
 
                                     @if($data->pemohon == "1")
-                                      <span class="label label-success label-info border border-dark" style="font-size: 10px;">Pemohon</span><br> 
+                                      <span class="label label-success label-info border border-dark" style="font-size: 10px;">Pemohon</span><br>
                                     @endif
                                   </td>
 
@@ -83,10 +83,9 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
-                                    <form action="#">
-                                      <input type="hidden" name="pengumuman_id" value="{{ $data->id }}" readonly>
-                                      <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </form>
+
+                                      <input type="hidden" name="pengumuman_id" value="" readonly>
+                                      <button type="submit" class="btn btn-danger" onclick="return validation_id('{{ $data->id }}')"><i class="fas fa-trash-alt"></i></button>
                                   </td>
                               </tr>
                             @endforeach
@@ -96,7 +95,33 @@
                       </div>
                     </div>
                   </div>
-                  
+
+                {{-- Modal Validation --}}
+                <div class="modal fade" id="validation_padam_pengumuman" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbspPeringatan!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <form action="{{ route('upens.tetapan.pengumuman.padam') }}">
+
+                            <div class="modal-body">
+                                Anda pasti mahu memadam pengumuman ini?
+                                <input type="hidden" name="id_pengumuman" id="id_pengumuman" readonly>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Padam Pengumuman</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    </div>
+                </div>
+
               </div>
 
           </div>
@@ -199,5 +224,15 @@ t.on('order.dt search.dt', function () {
       });
 }).draw();
 
+</script>
+
+{{-- Confirmation ID for delete annoucenment --}}
+<script>
+    function validation_id(pengumuman_id){
+        console.log(pengumuman_id);
+        $('#id_pengumuman').val(pengumuman_id);
+        $("#validation_padam_pengumuman").modal();
+
+    }
 </script>
 @endsection
