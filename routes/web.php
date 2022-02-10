@@ -358,6 +358,8 @@ Route::middleware([Upen::class])->group(function () {
 
     Route::get('/dashboard-pejabat-UPEN/tetapan/tetapan-pengumuman/pengumuman-submit', [App\Http\Controllers\UpenController::class, 'pengumuman_baru_submit'])->name('upens.tetapan.pengumuman.baru.submit');
 
+    Route::get('/dashboard-pejabat-UPEN/tetapan/tetapan-pengumuman/pengumuman-padam', [App\Http\Controllers\UpenController::class, 'pengumuman_padam'])->name('upens.tetapan.pengumuman.padam');
+
 });
 
 
