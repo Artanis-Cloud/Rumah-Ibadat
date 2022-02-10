@@ -788,14 +788,14 @@
                                 <ul class="pieID legend">
                                     <li>
                                         <em>Peruntukan yang telah diluluskan
-                                            <b>[{{ (($annual_report->current_fund + ($yb_approved_fund_tokong[0]->peruntukan ?? 0) + ($yb_approved_fund_kuil[0]->peruntukan ?? 0) + ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) + ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}
+                                            <b>[{{ number_format(((($annual_report->current_fund + ($yb_approved_fund_tokong[0]->peruntukan ?? 0) + ($yb_approved_fund_kuil[0]->peruntukan ?? 0) + ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) + ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100),0) }}
                                                 %]</b> </em>
                                         <span
                                             style="display: none;">{{ (($annual_report->current_fund + ($yb_approved_fund_tokong[0]->peruntukan ?? 0) + ($yb_approved_fund_kuil[0]->peruntukan ?? 0) + ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) + ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}</span>
                                     </li>
                                     <li style="text-align: left">
                                         <em>Baki peruntukan
-                                            <b>[{{ (($annual_report->balance_fund - ($yb_approved_fund_tokong[0]->peruntukan ?? 0) - ($yb_approved_fund_kuil[0]->peruntukan ?? 0) - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}
+                                            <b>[{{ number_format(((($annual_report->balance_fund - ($yb_approved_fund_tokong[0]->peruntukan ?? 0) - ($yb_approved_fund_kuil[0]->peruntukan ?? 0) - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100),0) }}
                                                 %]</b></em>
                                         <span
                                             style="display: none;">{{ (($annual_report->balance_fund - ($yb_approved_fund_tokong[0]->peruntukan ?? 0) - ($yb_approved_fund_kuil[0]->peruntukan ?? 0) - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0) - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_fund) * 100 }}</span>
@@ -820,7 +820,7 @@
                             <div class="progressbar-title">
                                 <h3 style="color: white;">Tokong</h3>
                                 <input type="hidden" id="percent_tokong"
-                                    value="{{ (($annual_report->balance_tokong - ($yb_approved_fund_tokong[0]->peruntukan ?? 0)) / $annual_report->total_tokong) * 100 }}">
+                                    value="{{ number_format(((($annual_report->balance_tokong - ($yb_approved_fund_tokong[0]->peruntukan ?? 0)) / $annual_report->total_tokong) * 100),0) }}">
                                 <span class="percent" id="html-pourcent"></span>
                             </div>
                             <div class="bar-container">
@@ -832,7 +832,7 @@
                             <div class="progressbar-title">
                                 <h3 style="color: white;">Kuil</h3>
                                 <input type="hidden" id="percent_kuil"
-                                    value="{{ (($annual_report->balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0)) / $annual_report->total_kuil) * 100 }}">
+                                    value="{{ number_format(((($annual_report->balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0)) / $annual_report->total_kuil) * 100),0) }}">
                                 <span class="percent" id="css-pourcent"></span>
                             </div>
                             <div class="bar-container">
@@ -845,7 +845,7 @@
                             <div class="progressbar-title">
                                 <h3 style="color: white;">Gurdwara</h3>
                                 <input type="hidden" id="percent_gurdwara"
-                                    value="{{ (($annual_report->balance_gurdwara - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0)) / $annual_report->total_gurdwara) * 100 }}">
+                                    value="{{ number_format(((($annual_report->balance_gurdwara - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0)) / $annual_report->total_gurdwara) * 100),0) }}">
                                 <span class="percent" id="javascript-pourcent"></span>
                             </div>
                             <div class="bar-container">
@@ -857,7 +857,7 @@
                             <div class="progressbar-title">
                                 <h3 style="color: white;">Gereja</h3>
                                 <input type="hidden" id="percent_gereja"
-                                    value="{{ (($annual_report->balance_gereja - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_gereja) * 100 }}">
+                                    value="{{ number_format(((($annual_report->balance_gereja - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_gereja) * 100),0) }}">
                                 <span class="percent" id="php-pourcent"></span>
                             </div>
                             <div class="bar-container">
