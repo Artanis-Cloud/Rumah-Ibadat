@@ -8,12 +8,12 @@
 <!-- ============================================================== -->
 
 <div class="container-fluid">
-  
+
   <div class="row">
       {{-- <div class="col-2"></div> --}}
       <div class="col-12">
           <div class="card">
-            
+
               <div class="card-body border border-dark">
 
                 <div class="row" style="padding-bottom: 10px;">
@@ -122,8 +122,6 @@
                   </div>
                 </div>
 
-                  
-
                   <hr>
 
                   <div class="row" style="padding-top: 15px;">
@@ -185,23 +183,22 @@
 
                                   {{-- TINDAKAN --}}
                                   <td>
+
                                     <div class="row">
-                                      <div class="col-md">
+                                      <div class="col-md" style="padding: 5px;">
                                         <form action="{{ route('upens.permohonan.papar') }}">
                                           <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                           <button type="submit" class="btn btn-info"><i class="far fa-eye"></i></button>
                                         </form>
                                       </div>
-                                      <div class="col-md">
+                                      <div class="col-md" style="padding: 5px;">
                                         <form action="{{ route('upens.permohonan.print') }}" target="_blank">
                                           <input type="hidden" name="permohonan_id" value="{{ $data->id }}" readonly>
                                           <button type="submit" class="btn waves-effect waves-light btn-info"><i class="fas fa-print"></i></button>
                                         </form>
                                       </div>
                                     </div>
-                                    
 
-                                    
                                   </td>
                               </tr>
                             @endforeach
@@ -211,7 +208,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
               </div>
 
           </div>
@@ -233,23 +230,23 @@
 <script type="text/javascript">
 //id batch
 $('#batch_tokong').click(function(){
-    $('#message_batch').html('Anda pasti mahu membuka batch baru untuk kategori <b>Tokong</b> ?');  
+    $('#message_batch').html('Anda pasti mahu membuka batch baru untuk kategori <b>Tokong</b> ?');
     $('#batch').val("tokong");
-    
+
 });
 
 $('#batch_kuil').click(function(){
-    $('#message_batch').html('Anda pasti mahu membuka batch baru untuk kategori <b>Kuil</b> ?');  
+    $('#message_batch').html('Anda pasti mahu membuka batch baru untuk kategori <b>Kuil</b> ?');
     $('#batch').val("kuil");
 });
 
 $('#batch_gurdwara').click(function(){
-    $('#message_batch').html('Anda pasti mahu membuka batch baru untuk kategori <b>Gurdwara</b> ?');  
+    $('#message_batch').html('Anda pasti mahu membuka batch baru untuk kategori <b>Gurdwara</b> ?');
     $('#batch').val("gurdwara");
 });
 
 $('#batch_gereja').click(function(){
-    $('#message_batch').html('Anda pasti mahu membuka batch baru untuk kategori <b>Gereja</b> ?');  
+    $('#message_batch').html('Anda pasti mahu membuka batch baru untuk kategori <b>Gereja</b> ?');
     $('#batch').val("gereja");
 });
 
