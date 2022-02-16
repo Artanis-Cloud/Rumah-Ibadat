@@ -15,7 +15,7 @@
             <form method="POST" action="{{ route('users.rumah-ibadat.daftar.tambah') }}">
             {{ csrf_field() }}
 
-              <div class="card-body border border-dark">
+              <div class="border card-body border-dark">
 
                   <div class="row" style="padding-bottom: 35px;">
                     <div class="col-md-2">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-md-4">
                       <label>Nombor Telefon Wakil Rumah Ibadat (Jika Ada)</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ old('office_phone') }}" maxlength="11" onkeypress="return onlyNumberKey(event)">
                           <small class="form-text text-muted">Contoh: 0312345678</small>
                           @error('office_phone')
@@ -115,7 +115,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md" id="main_div">
                       <label class="required">Nombor Sijil Pendaftaran / Nombor ROS</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_single" name="registration_number_single" type="text" value="{{ old('registration_number_single') }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_single.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
@@ -147,7 +147,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-4" id="branch_div_1" style="display: none;">
                       <label class="required" id="registration_number_label">Nombor Pendaftaran Induk</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_main" name="registration_number_main" type="text" value="{{ old('registration_number_main') }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
@@ -158,7 +158,7 @@
                     </div>
                     <div class="col-md-4" id="branch_div_2" style="display: none;">
                       <label class="required">Nombor Pendaftaran Cawangan</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_branch" name="registration_number_branch" type="text" value="{{ old('registration_number_branch') }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
@@ -175,7 +175,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label class="required">Nombor Pendaftaran Checker</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number" name="registration_number" type="text" value="{{ old('registration_number') }}" readonly>
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
@@ -215,7 +215,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label class="required">Poskod</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('postcode') is-invalid @else border-dark @enderror" id="postcode" name="postcode" type="text" value="{{ old('postcode') }}" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)">
                           @error('postcode')
                           <span class="invalid-feedback" role="alert">
@@ -268,18 +268,18 @@
                           <select class="custom-select mr-sm-2 @error('pbt_area') is-invalid @else border-dark @enderror" id="pbt_area" name="pbt_area" value="{{ old('pbt_area') }}">
                               <option selected disabled hidden>PILIH KAWASAN PBT</option>
 
-                              <option value="MAJLIS BANDARAYA SHAH ALAM (MBSA)"       {{ old('pbt_area') == "MAJLIS BANDARAYA SHAH ALAM (MBSA)"      ? 'selected' : '' }} >MAJLIS BANDARAYA SHAH ALAM (MBSA)</option>
-                              <option value="MAJLIS BANDARAYA PETALING JAYA (MBPJ)"   {{ old('pbt_area') == "MAJLIS BANDARAYA PETALING JAYA (MBPJ)"  ? 'selected' : '' }} >MAJLIS BANDARAYA PETALING JAYA (MBPJ)</option>
-                              <option value="MAJLIS BANDARAYA SUBANG JAYA (MBSJ)"     {{ old('pbt_area') == "MAJLIS BANDARAYA SUBANG JAYA (MBSJ)"    ? 'selected' : '' }} >MAJLIS BANDARAYA SUBANG JAYA (MBSJ)</option>
-                              <option value="MAJLIS PERBANDARAN KLANG (MPK)"          {{ old('pbt_area') == "MAJLIS PERBANDARAN KLANG (MPK)"         ? 'selected' : '' }} >MAJLIS PERBANDARAN KLANG (MPK)</option>
-                              <option value="MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)"   {{ old('pbt_area') == "MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)"  ? 'selected' : '' }} >MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)</option>
-                              <option value="MAJLIS PERBANDARAN SELAYANG (MPS)"       {{ old('pbt_area') == "MAJLIS PERBANDARAN SELAYANG (MPS)"      ? 'selected' : '' }} >MAJLIS PERBANDARAN SELAYANG (MPS)</option>
-                              <option value="MAJLIS PERBANDARAN KAJANG (MPKj)"        {{ old('pbt_area') == "MAJLIS PERBANDARAN KAJANG (MPKj)"       ? 'selected' : '' }} >MAJLIS PERBANDARAN KAJANG (MPKj)</option>
-                              <option value="MAJLIS PERBANDARAN SEPANG (MPSp)"        {{ old('pbt_area') == "MAJLIS PERBANDARAN SEPANG (MPSp)"       ? 'selected' : '' }} >MAJLIS PERBANDARAN SEPANG (MPSp)</option>
-                              <option value="MAJLIS PERBANDARAN KUALA LANGAT (MPKL)"  {{ old('pbt_area') == "MAJLIS PERBANDARAN KUALA LANGAT (MPKL)" ? 'selected' : '' }} >MAJLIS PERBANDARAN KUALA LANGAT (MPKL)</option>
-                              <option value="MAJLIS DAERAH KUALA SELANGOR (MDKS)"     {{ old('pbt_area') == "MAJLIS DAERAH KUALA SELANGOR (MDKS)"    ? 'selected' : '' }} >MAJLIS DAERAH KUALA SELANGOR (MDKS)</option>
-                              <option value="MAJLIS DAERAH HULU SELANGOR (MDHS)"      {{ old('pbt_area') == "MAJLIS DAERAH HULU SELANGOR (MDHS)"     ? 'selected' : '' }} >MAJLIS DAERAH HULU SELANGOR (MDHS)</option>
-                              <option value="MAJLIS DAERAH SABAK BERNAM (MDSB)"       {{ old('pbt_area') == "MAJLIS DAERAH SABAK BERNAM (MDSB)"      ? 'selected' : '' }} >MAJLIS DAERAH SABAK BERNAM (MDSB)</option>
+                              <option value="MAJLIS BANDARAYA SHAH ALAM (MBSA)"       {{ old('pbt_area') == "MAJLIS BANDARAYA SHAH ALAM (MBSA)"       ? 'selected' : '' }} >MAJLIS BANDARAYA SHAH ALAM (MBSA)</option>
+                              <option value="MAJLIS BANDARAYA PETALING JAYA (MBPJ)"   {{ old('pbt_area') == "MAJLIS BANDARAYA PETALING JAYA (MBPJ)"   ? 'selected' : '' }} >MAJLIS BANDARAYA PETALING JAYA (MBPJ)</option>
+                              <option value="MAJLIS BANDARAYA SUBANG JAYA (MBSJ)"     {{ old('pbt_area') == "MAJLIS BANDARAYA SUBANG JAYA (MBSJ)"     ? 'selected' : '' }} >MAJLIS BANDARAYA SUBANG JAYA (MBSJ)</option>
+                              <option value="MAJLIS PERBANDARAN KLANG (MPK)"          {{ old('pbt_area') == "MAJLIS PERBANDARAN KLANG (MPK)"          ? 'selected' : '' }} >MAJLIS PERBANDARAN KLANG (MPK)</option>
+                              <option value="MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)"   {{ old('pbt_area') == "MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)"   ? 'selected' : '' }} >MAJLIS PERBANDARAN AMPANG JAYA (MPAJ)</option>
+                              <option value="MAJLIS PERBANDARAN SELAYANG (MPS)"       {{ old('pbt_area') == "MAJLIS PERBANDARAN SELAYANG (MPS)"       ? 'selected' : '' }} >MAJLIS PERBANDARAN SELAYANG (MPS)</option>
+                              <option value="MAJLIS PERBANDARAN KAJANG (MPKj)"        {{ old('pbt_area') == "MAJLIS PERBANDARAN KAJANG (MPKj)"        ? 'selected' : '' }} >MAJLIS PERBANDARAN KAJANG (MPKj)</option>
+                              <option value="MAJLIS PERBANDARAN SEPANG (MPSp)"        {{ old('pbt_area') == "MAJLIS PERBANDARAN SEPANG (MPSp)"        ? 'selected' : '' }} >MAJLIS PERBANDARAN SEPANG (MPSp)</option>
+                              <option value="MAJLIS PERBANDARAN KUALA LANGAT (MPKL)"  {{ old('pbt_area') == "MAJLIS PERBANDARAN KUALA LANGAT (MPKL)"  ? 'selected' : '' }} >MAJLIS PERBANDARAN KUALA LANGAT (MPKL)</option>
+                              <option value="MAJLIS PERBANDARAN KUALA SELANGOR (MPKS)"{{ old('pbt_area') == "MAJLIS PERBANDARAN KUALA SELANGOR (MPKS)"? 'selected' : '' }} >MAJLIS PERBANDARAN KUALA SELANGOR (MPKS)</option>
+                              <option value="MAJLIS PERBANDARAN HULU SELANGOR (MpHS)" {{ old('pbt_area') == "MAJLIS PERBANDARAN HULU SELANGOR (MPHS)" ? 'selected' : '' }} >MAJLIS PERBANDARAN HULU SELANGOR (MPHS)</option>
+                              <option value="MAJLIS DAERAH SABAK BERNAM (MDSB)"       {{ old('pbt_area') == "MAJLIS DAERAH SABAK BERNAM (MDSB)"       ? 'selected' : '' }} >MAJLIS DAERAH SABAK BERNAM (MDSB)</option>
 
                           </select>
                           @error('pbt_area')
@@ -366,7 +366,7 @@
                     </div>
                     <div class="col-md">
                       <label class="required">Nombor Akaun</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('bank_account') is-invalid @else border-dark @enderror" id="bank_account" name="bank_account" type="text" value="{{ old('bank_account') }}" onkeypress="return onlyNumberKey(event)">
                           @error('bank_account')
                           <span class="invalid-feedback" role="alert">
