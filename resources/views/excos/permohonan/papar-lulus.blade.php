@@ -1030,7 +1030,7 @@
                           <div class="col-md">
                             <div class="card text-white">
                                 <div class="card-header bg-dark">
-                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil Yb Pengerusi</h4></div>
+                                    <h4 class="m-b-0 text-white" style="text-align: center;">Ulasan Wakil YB Pengerusi</h4></div>
                                 <div class="card-body border border-dark">
                                     <textarea class="form-control text-uppercase  border-dark " id="review_yb" name="review_yb" rows="6" disabled>{{ $permohonan->review_yb ?? "[ Tiada Ulasan ]" }}</textarea>
                                 </div>
