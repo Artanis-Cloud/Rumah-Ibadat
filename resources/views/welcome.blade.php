@@ -927,58 +927,7 @@
                 </div>
             </div>
 
-            <div class="container mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row justify-content-center">
 
-                            <h3 class="text-center text-dark">Pejabat UPEN</h3>
-
-                            <div class="col-lg-3 col-md-6">
-                                <div class="info">
-                                    <div>
-                                        <i class="bi bi-geo-alt"></i>
-                                        <p>
-                                            @php
-                                                $address = explode(',', $csm->upen_address ?? 'Pejabat Setiausaha Kerajaan Negeri Selangor, Bangunan Sultan Salahuddin Abdul Aziz Shah, 40503 Shah Alam, Selangor Darul Ehsan.');
-                                            @endphp
-                                            @foreach ($address as $key => $data)
-                                                @if ($loop->last)
-                                                    {{ $data }}
-                                                @else
-                                                    {{ $data }},<br>
-                                                @endif
-                                            @endforeach
-
-                                        </p>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-lg-3 col-md-6">
-                                <div class="info">
-
-                                    <div>
-                                        <i class="bi bi-envelope"></i>
-                                        <p>{{ $csm->upen_email ?? '' }}</p>
-                                    </div>
-
-                                    <div>
-                                        <i class="bi bi-phone"></i>
-                                        <p>{{ $csm->upen_contact ?? '' }}
-                                        </p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
 
             <div class="container mt-5">
                 <div class="row justify-content-center">
@@ -1055,6 +1004,60 @@
                 </div>
 
             </div>
+
+            <div class="container mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+
+                            <h3 class="text-center text-dark">Pejabat UPEN</h3>
+
+                            <div class="col-lg-3 col-md-6">
+                                <div class="info">
+                                    <div>
+                                        <i class="bi bi-geo-alt"></i>
+                                        <p>
+                                            @php
+                                                $address = explode(',', $csm->upen_address ?? 'Pejabat Setiausaha Kerajaan Negeri Selangor, Bangunan Sultan Salahuddin Abdul Aziz Shah, 40503 Shah Alam, Selangor Darul Ehsan.');
+                                            @endphp
+                                            @foreach ($address as $key => $data)
+                                                @if ($loop->last)
+                                                    {{ $data }}
+                                                @else
+                                                    {{ $data }},<br>
+                                                @endif
+                                            @endforeach
+
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+                                <div class="info">
+
+                                    <div>
+                                        <i class="bi bi-envelope"></i>
+                                        <p>{{ $csm->upen_email ?? '' }}</p>
+                                    </div>
+
+                                    <div>
+                                        <i class="bi bi-phone"></i>
+                                        <p>{{ $csm->upen_contact ?? '' }}
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </section><!-- End Contact Section -->
 
     </main><!-- End #main -->
