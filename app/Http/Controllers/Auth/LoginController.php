@@ -9,6 +9,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 // use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class LoginController extends Controller
 {
@@ -69,6 +71,14 @@ class LoginController extends Controller
                 //return back if ic number not registered
                 return redirect()->back()->with('error', 'Kad pengenalan tidak berdaftar dalam sistem ini.');
             }
+
+            $password_checker = User::where('ic_number', $request->email)->first();
+
+            if(!(Hash::check($request->password, $password_checker->password))){
+                //return back if ic number not registered
+                return redirect()->back()->with('error', 'Kad Pengenalan atau Kata laluan tidak tepat.');
+            }
+
         }else{
             // check either email has been registered or not
             $email_checker = User::where('email', $request->email)->count();
@@ -77,6 +87,14 @@ class LoginController extends Controller
                 //return back if ic number not registered
                 return redirect()->back()->with('error', 'Emel tidak berdaftar dalam sistem ini.');
             }
+
+            $password_checker = User::where('email', $request->email)->first();
+
+            if(!(Hash::check($request->password, $password_checker->password))){
+                //return back if ic number not registered
+                return redirect()->back()->with('error', 'Emel atau Kata laluan tidak tepat.');
+            }
+
         }
 
 
