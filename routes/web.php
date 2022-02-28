@@ -365,6 +365,8 @@ Route::middleware([Upen::class])->group(function () {
 
 //ADMIN ROUTE
 Route::middleware([Admin::class])->group(function () {
+    Route::get('/dashboard-admin/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+
 
     Route::get('/dashboard-admin', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admins.dashboard');
 
