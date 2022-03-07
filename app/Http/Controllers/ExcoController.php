@@ -1069,7 +1069,7 @@ class ExcoController extends Controller
         $permohonan = DB::select(DB::raw("select YEAR(tujuans.created_at) as tahun, rumah_ibadats.name_association as rumah_ibadat, rumah_ibadats.address as alamat, tujuans.tujuan as sebab_permohonan, rumah_ibadats.registration_type, rumah_ibadats.registration_number as no_pendaftaran, rumah_ibadats.bank_account as no_akaun, rumah_ibadats.bank_name as bank, permohonans.total_fund as jumlah_kelulusan FROM tujuans, rumah_ibadats, permohonans WHERE tujuans.permohonan_id = permohonans.id AND permohonans.rumah_ibadat_id = rumah_ibadats.id AND permohonans.status = '2'"));
         $permohonan_list = array_merge($sejarah_permohonan, $permohonan);
 
-        // dd($sejarah_permohonan);
+        // dd($permohonan_list);
 
         return Datatables::of($permohonan_list)
             ->addIndexColumn()
@@ -1078,7 +1078,7 @@ class ExcoController extends Controller
                 // $btn = '<a href="' . route('new-inventory-form.show', $row->id) . '" class="btn btn-info">View</a>';
                 // $btn = $btn . '<a href="' . route('new-inventory-form.show', $row->id) . '" class="btn btn-danger">Delete</a>';
 
-                if ($row->tahun > 2020) {
+                if ($row->tahun > 2021) {
                     $btn = '<i class="far fa-check-circle" style="color: green; font-size: 30px;"></i>';
                 } else {
                     $btn = '<i class="far fa-times-circle" style="color: red; font-size: 30px;"></i>';
@@ -1116,7 +1116,7 @@ class ExcoController extends Controller
                     return 'Tiada Data';
                 } else {
                     if ($row->tahun > 2020){
-                        $jumlah = number_format($row->jumlah_kelulusan, 2);
+                        $jumlah = $row->jumlah_kelulusan;
                         $jumlah = "RM " .  $jumlah;
                         return $jumlah;
 
