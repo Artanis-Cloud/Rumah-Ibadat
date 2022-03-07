@@ -47,7 +47,6 @@ CREATE TABLE `history_applications` (
 --
 
 INSERT INTO `history_applications` (`id`, `tahun`, `rumah_ibadat`, `alamat`, `daerah`, `no_pendaftaran`, `sebab_permohonan`, `no_akaun`, `bank`, `jumlah_kelulusan`, `created_at`, `updated_at`) VALUES
-('id', 'tahun', 'rumah_ibadat', 'alamat', 'daerah', 'no_pendaftaran', 'sebab_permohonan', 'no_akaun', 'bank', 'jumlah_kelulusan', 'created_at', 'updated_at'),
 ('1', '2020', 'JAWATANKUASA PENGURUSAN KUIL SRI SUBRAMANIAR KAMPUNG BUKIT BELIMBING', 'KAMPUNG BUKIT BELIMBING, 45000 KUALA SELANGOR, SELANGOR', 'KUALA SELANGOR', 'PPM-004-10-31031994', 'BAIKPULIH ', '8009898040', 'CIMB', '5,000.00', '5/8/2021 15:43', '5/8/2021 15:43'),
 ('2', '2020', 'JAWATANKUASA PENGURUSAN KUIL SRI MAHA MARIAMMAN, TAMAN KEM PELABUHAN KLANG', 'TAMAN KEM, NO. 51, KAWASAN KTM 111, JALAN KEM, 42000 PELABUHAN KLANG, SELANGOR', 'KLANG', 'PPM-004-10-12031992', 'BAIKPULIH ', '8002113222', 'CIMB', '5,000.00', '5/8/2021 15:43', '5/8/2021 15:43'),
 ('3', '2020', 'PERSATUAN PENGANUT SRI MAHA MARIAMMAN, SUNGAI BUAYA', 'NO. 31, BATU 1 1/3, JALAN JUGRA (SUNGAI BUAYA) 47200 BANTING, SELANGOR', 'KUALA LANGAT', '1196-11-SEL', 'BAIKPULIH ', '3169211902', 'PUBLIC BANK', '5,000.00', '5/8/2021 15:43', '5/8/2021 15:43'),
