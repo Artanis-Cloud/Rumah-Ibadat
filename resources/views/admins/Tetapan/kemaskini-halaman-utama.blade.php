@@ -215,7 +215,7 @@
                   <div class="col-md-2"></div>
 
                   <div class="col-md">
-                      <h4 class="text-center">YB Tokong</h4>
+                      <h4 class="text-center">Pejabat YB Tokong</h4>
                   </div>
 
                   <div class="col-md-2"></div>
@@ -263,7 +263,7 @@
                   <div class="col-md-2"></div>
 
                   <div class="col-md">
-                      <h4 class="text-center">YB Kuil & Gurdwara</h4>
+                      <h4 class="text-center">Pejabat YB Kuil & Gurdwara</h4>
                   </div>
 
                   <div class="col-md-2"></div>
@@ -311,7 +311,7 @@
                   <div class="col-md-2"></div>
 
                   <div class="col-md">
-                      <h4 class="text-center">YB Gereja</h4>
+                      <h4 class="text-center">Pejabat YB Gereja</h4>
                   </div>
 
                   <div class="col-md-2"></div>
