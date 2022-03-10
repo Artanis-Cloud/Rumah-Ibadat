@@ -35,16 +35,6 @@ class RumahIbadatController extends Controller
         return view('users.rumah-ibadat.pilih', compact('rumah_ibadat'));
     }
 
-    public function daftar_rumah_ibadat()
-    {
-        //check if user has register rumah ibadat
-        if(auth()->user()->is_rumah_ibadat == 1){
-            return redirect()->back()->with('error', 'Anda telah mendaftar rumah ibadat');
-        }
-
-        return view('users.rumah-ibadat.daftar');
-    }
-
     public function menukar_rumah_ibadat(Request $request)
     {
         //check if user has register rumah ibadat
@@ -116,10 +106,28 @@ class RumahIbadatController extends Controller
         return view('users.rumah-ibadat.status-tukar-wakil', compact('permohonan', 'rumah_ibadat'));
     }
 
+    public function daftar_rumah_ibadat()
+    {
+        //check if user has register rumah ibadat
+        if(auth()->user()->is_rumah_ibadat == 1){
+            return redirect()->back()->with('error', 'Anda telah mendaftar rumah ibadat');
+        }
+
+        return view('users.rumah-ibadat.daftar');
+    }
+
     public function tambah_rumah_ibadat(Request $request)
     {
+        //validate registration_number_main and registration_number_branch for INDUK or registration_number_single for SENDIRI
+        if($request->registration_type == "SENDIRI"){
+            $this->validatorSendiriRegistration($request->all())->validate();
+        }elseif($request->registration_type == "INDUK"){
+            $this->validatorIndukRegistration($request->all())->validate();
+        }
+        // dd("lancar");
         // validate rumah ibadat registration
         $this->validator($request->all())->validate();
+        // dd($request->all());
 
         //validate the main registration_id
         if($request->category != "GEREJA" && $request->registration_type == "INDUK"){
@@ -186,6 +194,23 @@ class RumahIbadatController extends Controller
         ]);
     }
 
+    protected function validatorIndukRegistration(array $data)
+    {
+        return Validator::make($data, [
+            'registration_number_main' => ['required', 'string', 'max:255'],
+            'registration_number_branch' => ['required', 'string', 'max:255'],
+        ]);
+    }
+
+    protected function validatorSendiriRegistration(array $data)
+    {
+        // dd($data);
+        return Validator::make($data, [
+            'registration_number_single' => ['required'],
+            // 'registration_number' => ['required', 'string', 'unique:rumah_ibadats'],
+        ]);
+    }
+
     public function profil_rumah_ibadat()
     {
         //fetch user's rumah ibadat
@@ -196,6 +221,12 @@ class RumahIbadatController extends Controller
 
 
     public function update_rumah_ibadat(Request $request){
+        if($request->registration_type == "SENDIRI"){
+            $this->validatorSendiriRegistration($request->all())->validate();
+        }elseif($request->registration_type == "INDUK"){
+            $this->validatorIndukRegistration($request->all())->validate();
+        }
+
         // dd($request->all());
         //fetch user's rumah ibadat
         $rumah_ibadat = RumahIbadat::where('user_id', auth()->user()->id)->first();
@@ -236,6 +267,8 @@ class RumahIbadatController extends Controller
 
         //update validator
         $this->validatorUpdate($request->all())->validate();
+
+        // dd("get");
 
         //validate the if user category is gereja and registration type is induk
         if ($request->category != "GEREJA" && $request->registration_type == "INDUK") {
