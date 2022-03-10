@@ -117,11 +117,16 @@
                       <label class="required">Nombor Sijil Pendaftaran / Nombor ROS</label>
                       <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_single" name="registration_number_single" type="text" value="{{ old('registration_number_single') }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_single.value">
+                          @error('registration_number_single')
+                                  <strong style="color:red;">{{ $message }}</strong>
+                          @enderror
+
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
                           @enderror
+
                       </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -154,6 +159,10 @@
                                   <strong>{{ $message }}</strong>
                           </span>
                           @enderror
+
+                          @error('registration_number_main')
+                                  <strong style="color:red;">{{ $message }}</strong>
+                          @enderror
                       </div>
                     </div>
                     <div class="col-md-4" id="branch_div_2" style="display: none;">
@@ -164,6 +173,10 @@
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
+                          @enderror
+
+                          @error('registration_number_branch')
+                                  <strong style="color:red;">{{ $message }}</strong>
                           @enderror
                       </div>
                     </div>

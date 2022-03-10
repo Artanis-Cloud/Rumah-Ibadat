@@ -15,7 +15,7 @@
             <form method="POST" action="{{ route('users.rumah-ibadat.kemaskini.update') }}">
             {{ csrf_field() }}
 
-              <div class="card-body border border-dark">
+              <div class="border card-body border-dark">
 
                   <div class="row" style="padding-bottom: 35px;">
                     <div class="col-md-2">
@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-md-4">
                       <label>Nombor Telefon Wakil Rumah Ibadat (Jika Ada)</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('office_phone') is-invalid @else border-dark @enderror" id="office_phone" name="office_phone" type="text" value="{{ $rumah_ibadat->office_phone }}" maxlength="11" onkeypress="return onlyNumberKey(event)">
                           <small class="form-text text-muted">Contoh: 0312345678</small>
                           @error('office_phone')
@@ -116,12 +116,16 @@
                     <div class="col-md-2"></div>
                     <div class="col-md" id="main_div">
                       <label class="required">Nombor Sijil Pendaftaran / Nombor ROS</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_single" name="registration_number_single" type="text" value="{{ $rumah_ibadat->registration_number }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_single.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
+                          @enderror
+
+                          @error('registration_number_single')
+                                  <strong style="color:red;">{{ $message }}</strong>
                           @enderror
                       </div>
                     </div>
@@ -149,23 +153,31 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-4" id="branch_div_1" style="display: none;">
                       <label class="required" id="registration_number_label">Nombor Pendaftaran Induk</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_main" name="registration_number_main" type="text" value="{{ $rumah_ibadat->registration_type == "INDUK" ? explode("%", $rumah_ibadat->registration_number, 2)[0] : '' }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
                           @enderror
+
+                          @error('registration_number_main')
+                                  <strong style="color:red;">{{ $message }}</strong>
+                          @enderror
                       </div>
                     </div>
                     <div class="col-md-4" id="branch_div_2" style="display: none;">
                       <label class="required">Nombor Pendaftaran Cawangan</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number_branch" name="registration_number_branch" type="text" value="{{ $rumah_ibadat->registration_type == "INDUK" ? explode("%", $rumah_ibadat->registration_number, 2)[1] : '' }}" onkeypress="return event.charCode != 32" oninput="registration_number.value = registration_number_main.value + '%' + registration_number_branch.value">
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                           </span>
+                          @enderror
+
+                          @error('registration_number_branch')
+                                  <strong style="color:red;">{{ $message }}</strong>
                           @enderror
                       </div>
                     </div>
@@ -177,7 +189,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label class="required">Nombor Pendaftaran Checker</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control bg-danger text-white text-uppercase @error('registration_number') is-invalid @else border-dark @enderror" id="registration_number" name="registration_number" type="text" value="{{ $rumah_ibadat->registration_number }}" readonly>
                           @error('registration_number')
                           <span class="invalid-feedback" role="alert">
@@ -217,7 +229,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md">
                       <label class="required">Poskod</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('postcode') is-invalid @else border-dark @enderror" id="postcode" name="postcode" type="text" value="{{ $rumah_ibadat->postcode }}" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)">
                           @error('postcode')
                           <span class="invalid-feedback" role="alert">
@@ -368,7 +380,7 @@
                     </div>
                     <div class="col-md">
                       <label class="required">Nombor Akaun</label>
-                      <div class="form-group mb-3">
+                      <div class="mb-3 form-group">
                           <input class="form-control text-uppercase @error('bank_account') is-invalid @else border-dark @enderror" id="bank_account" name="bank_account" type="text" value="{{ $rumah_ibadat->bank_account }}" onkeypress="return onlyNumberKey(event)">
                           @error('bank_account')
                           <span class="invalid-feedback" role="alert">
@@ -445,6 +457,7 @@
       document.getElementById("registration_number_main").disabled = true;
       document.getElementById("registration_number_branch").disabled = true;
     }else if(registration_type == 'INDUK'){
+
       document.getElementById('main_div').style.display = "none";
       document.getElementById('branch_div_0').style.display = "block";
       document.getElementById('branch_div_1').style.display = "block";
