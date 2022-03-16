@@ -1,4 +1,5 @@
-@extends('errors::errors-layout')
+{{-- @extends('errors::errors-layout') --}}
+@extends('errors::layout')
 
 @section('title', __('Tiada Kebenaran'))
 @section('code', '401')
