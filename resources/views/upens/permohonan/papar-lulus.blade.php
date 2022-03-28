@@ -488,7 +488,7 @@
                           <div class="col-md-1"></div>
 
                           <div class="col-md">
-                              <label>Foto bangunan atau aktiviti persatuan agama</label><br>
+                              <label>Foto Bangunan dan Aktiviti Persatuan Agama</label><br>
 
                               <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
                                   <ol class="carousel-indicators">
