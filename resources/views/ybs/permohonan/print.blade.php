@@ -696,7 +696,7 @@
 
                                             <tr>
                                                 <td width="390">
-                                                    Foto Bangunan atau Aktiviti Persatuan Agama
+                                                    Foto Bangunan dan Aktiviti Persatuan Agama
                                                 </td>
                                                 <td>
                                                     @foreach ( $data->lampiran as $key => $data2)

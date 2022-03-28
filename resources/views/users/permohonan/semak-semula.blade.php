@@ -1121,7 +1121,7 @@
 
                     if (total_opt1_uploaded == 0) { //display alert modal if there is no image uploaded
                         $('#note_message').html(
-                            'Sila muat naik <b>Foto Bangunan atau Aktiviti Persatuan Agama</b>');
+                            'Sila muat naik <b>Foto Bangunan dan Aktiviti Persatuan Agama</b>');
                         $("#validation_submit_permohonan").modal();
                         return false;
                     }

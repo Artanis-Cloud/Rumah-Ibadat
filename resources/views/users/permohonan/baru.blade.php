@@ -280,7 +280,7 @@
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
-                                            <label class="required">Foto Bangunan atau Aktiviti Persatuan Agama
+                                            <label class="required">Foto Bangunan dan Aktiviti Persatuan Agama
                                                 (Maksimum 5 gambar)</label>
                                             <div class="input-group-prepend">
                                                 <div class="input-group-prepend">
@@ -1324,7 +1324,7 @@
 
                     if (total_opt1_uploaded == 0) { //display alert modal if there is no image uploaded
                         $('#note_message').html(
-                            'Sila muat naik <b>Foto Bangunan atau Aktiviti Persatuan Agama</b>');
+                            'Sila muat naik <b>Foto Bangunan dan Aktiviti Persatuan Agama</b>');
                         $("#validation_submit_permohonan").modal();
                         return false;
                     }
