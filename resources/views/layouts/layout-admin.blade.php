@@ -98,7 +98,7 @@
         <!-- ============================================================== -->
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header">
+                {{-- <div class="navbar-header">
                     <!-- This is for the sidebar toggle which is visible on mobile only -->
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
                         <i class="ti-menu ti-close"></i>
@@ -141,8 +141,39 @@
                         data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                         style="border: solid black 1px;">
-                        {{-- <i class="ti-more"></i> --}}
                         <i class="fas fa-cogs fa-2x" style="color: black;"></i>
+                    </a>
+                </div> --}}
+
+                <div class="navbar-header">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <div class="navbar-brand">
+                        <a href="{{ route('admins.dashboard') }}" class="logo">
+                            <span class="logo-icon" style="padding-left: 10%;">
+
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Coat_of_arms_of_Selangor.svg/1200px-Coat_of_arms_of_Selangor.svg.png"
+                                    style="height: 50px; padding-left: 20%;" alt="homepage" class="dark-logo" />
+
+                            </span>
+                        </a>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                        data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-cogs"></i>
+
                     </a>
                 </div>
                 <!-- ============================================================== -->
@@ -170,7 +201,7 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown p-2">
+                        <li class="p-2 nav-item dropdown">
                             <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <a class="btn btn-light" href="#" style="border: solid black 1px;"
                                     data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Profil">
