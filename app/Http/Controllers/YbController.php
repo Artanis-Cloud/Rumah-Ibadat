@@ -1299,7 +1299,7 @@ class YbController extends Controller
                     return 'Tiada Data';
                 } else {
                     if ($row->tahun > 2020) {
-                        $jumlah = number_format($row->jumlah_kelulusan, 2);
+                        $jumlah = number_format(floatval(trim($row->jumlah_kelulusan, ",")), 2);
                         $jumlah = "RM " .  $jumlah;
                         return $jumlah;
                     } else {
