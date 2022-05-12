@@ -433,7 +433,7 @@ class PermohonanController extends Controller
                 $permohonan->spending_statement = $spending_statement;
             }
 
-            if ($request->application_letter) {
+            if ($request->support_letter) {
                 $support_letter = $request->file('support_letter')->store('public/muat-naik/permohonan/' . $current_date . '/rumah_ibadat_' . $rumah_ibadat->id);
                 $permohonan->support_letter = $support_letter;
             }
