@@ -127,7 +127,7 @@
               </tr>
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 5px 30px 5px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p><b>Jenis Pembayaran:</b> {{ $permohonan->payment_method == 1 ? "Check" : "EFT" }}</p>
+                  <p><b>Jenis Pembayaran:</b> {{ $permohonan->payment_method == 1 ? "Cek" : "EFT" }}</p>
                 </td>  
               </tr>
               <tr>
