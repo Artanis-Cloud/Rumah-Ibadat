@@ -22,15 +22,29 @@ class UserController extends Controller
         $rumah_ibadat = RumahIbadat::where('user_id', $user_id)->first();
 
         //count jumlah permohonan
-        $count_permohonan_current = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->count();
-        // dd($count_permohonan);
+        if($rumah_ibadat){
+            $count_permohonan_current = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->count();
+            // dd($count_permohonan);
 
-        //count jumlah permohonan lulus
-        $count_permohonan_lulus = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->count();
+            //count jumlah permohonan lulus
+            $count_permohonan_lulus = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->count();
 
-        //count jumlah peruntukan diterima
-        $permohonan = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->get();
-        $count_total_fund = collect($permohonan)->sum('total_fund');
+            //count jumlah peruntukan diterima
+            $permohonan = Permohonan::where('rumah_ibadat_id', $rumah_ibadat->id)->where('status', '2')->get();
+            $count_total_fund = collect($permohonan)->sum('total_fund');
+        }else{
+            $count_permohonan_current = 0;
+            // dd($count_permohonan);
+
+            //count jumlah permohonan lulus
+            $count_permohonan_lulus = 0;
+
+            //count jumlah peruntukan diterima
+            
+            $count_total_fund = 0;
+
+        }
+        
 
         //pengumuman
         $pengumuman = Announcement::where('status','1')->where('pemohon','1')->get();
