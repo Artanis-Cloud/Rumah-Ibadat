@@ -103,8 +103,8 @@
       color: #000000;
       width: 100%;
       /* margin:113.3858267717px 74.078740157px; */
-      margin-left: 40px;
-      margin-right: 40px;
+      /* margin-left: 40px;
+      margin-right: 10px; */
       margin-top: 5px;
       margin-bottom: 9.448818898px;
   }
@@ -149,7 +149,7 @@
     </tr>
   </table>
 
-  <table>
+  <table style="width: 800">
         <tr>
           <td></td>
           <td class="text-right">

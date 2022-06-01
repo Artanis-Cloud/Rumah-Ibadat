@@ -1377,7 +1377,7 @@
                                                                         <td><input type="text" id="peruntukan_1"
                                                                                 name="peruntukan_1"
                                                                                 class="form-control form-control-sm"
-                                                                                placeholder="Masukkan Nilai" value="0.00"
+                                                                                placeholder="Masukkan Nilai" value="" required="required"
                                                                                 onkeypress="return fun_AllowOnlyAmountAndDot(this.id);">
                                                                         </td>
                                                                     </tr>
@@ -1388,8 +1388,8 @@
                                                                         <td>PENDIDIKAN KEAGAMAAN</td>
                                                                         <td><input type="text" id="peruntukan_2"
                                                                                 name="peruntukan_2"
-                                                                                class="form-control form-control-sm"
-                                                                                placeholder="Masukkan Nilai" value="0.00"
+                                                                                class="form-control form-control-sm" required="required"
+                                                                                placeholder="Masukkan Nilai" value=""
                                                                                 onkeypress="return fun_AllowOnlyAmountAndDot(this.id);">
                                                                         </td>
                                                                     </tr>
@@ -1400,8 +1400,8 @@
                                                                         <td>PEMBELIAN PERALATAN UNTUK KELAS KEAGAMAAN</td>
                                                                         <td><input type="text" id="peruntukan_3"
                                                                                 name="peruntukan_3"
-                                                                                class="form-control form-control-sm"
-                                                                                placeholder="Masukkan Nilai" value="0.00"
+                                                                                class="form-control form-control-sm" required="required"
+                                                                                placeholder="Masukkan Nilai" value=""
                                                                                 onkeypress="return fun_AllowOnlyAmountAndDot(this.id);">
                                                                         </td>
                                                                     </tr>
@@ -1412,8 +1412,8 @@
                                                                         <td>BAIK PULIH/PENYELENGGARAAN BANGUNAN</td>
                                                                         <td><input type="text" id="peruntukan_4"
                                                                                 name="peruntukan_4"
-                                                                                class="form-control form-control-sm"
-                                                                                placeholder="Masukkan Nilai" value="0.00"
+                                                                                class="form-control form-control-sm" required="required"
+                                                                                placeholder="Masukkan Nilai" value=""
                                                                                 onkeypress="return fun_AllowOnlyAmountAndDot(this.id);">
                                                                         </td>
                                                                     </tr>
@@ -1425,7 +1425,7 @@
                                                                         <td><input type="text" id="peruntukan_5"
                                                                                 name="peruntukan_5"
                                                                                 class="form-control form-control-sm"
-                                                                                placeholder="Masukkan Nilai" value="0.00"
+                                                                                placeholder="Masukkan Nilai" value="" required="required"
                                                                                 onkeypress="return fun_AllowOnlyAmountAndDot(this.id);">
                                                                         </td>
                                                                     </tr>
@@ -1883,6 +1883,8 @@
 
         }
     </script>
+
+
 
     {{-- <script>
 //================================== INPUT NUMBER AND DOTS ONLY ==================================
