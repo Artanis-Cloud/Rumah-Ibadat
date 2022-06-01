@@ -31,7 +31,8 @@
                         <div class="d-flex no-block align-items-center">
                             <div class="text-white">
                                 <h2>{{ $count_processing_application }}</h2>
-                                <h6>Permohonan <br>Sedang Diproses</h6>
+                                <h6>Permohonan Lulus <br>
+                                <small>(Sedang Diproses Oleh UPEN)</small></h6>
                             </div>
                             <div class="ml-auto">
                                 <span class="text-white display-6"><i class="fas fa-sync-alt"></i></span>
@@ -46,7 +47,8 @@
                         <div class="d-flex no-block align-items-center">
                             <div class="text-white">
                                 <h2>{{ $count_passed_application }}</h2>
-                                <h6>Permohonan <br>Lulus</h6>
+                                <h6>Permohonan Lulus <br>
+                                    <small>(Telah Diluluskan UPEN)</small></h6>
                             </div>
                             <div class="ml-auto">
                                 <span class="text-white display-6"><i class="fas fa-clipboard-check"></i></span>

@@ -24,6 +24,7 @@
                                 <th class="all">BIL</th>
                                 <th class="all">PERMOHONAN ID</th>
                                 <th class="all">BATCH / KATEGORI</th>
+                                <th class="all">NAMA RUMAH IBADAT</th>
                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                 <th class="all">PEJABAT EXCO</th>
                                 <th class="all">YB PENGERUSI</th>
@@ -49,6 +50,10 @@
                                     @else
 
                                     @endif
+                                  </td>
+                                 
+                                  <td>
+                                    {{ $data->rumah_ibadat->name_association }}
                                   </td>
 
                                   {{-- TARIKH PERMOHONAN DIBUAT--}}

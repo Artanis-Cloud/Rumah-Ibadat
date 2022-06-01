@@ -24,7 +24,7 @@
                                             <tr>
                                                 <th class="all">BIL</th>
                                                 <th class="all">PERMOHONAN ID</th>
-                                                {{-- <th class="all">BATCH</th> --}}
+                                                <th class="all">NAMA RUMAH IBADAT</th>
                                                 <th class="all">TARIKH PERMOHONAN DIBUAT</th>
                                                 <th class="all">PEJABAT EXCO</th>
                                                 <th class="all">YB PENGERUSI</th>
@@ -44,13 +44,10 @@
                                                     {{-- PERMOHONAN ID --}}
                                                     <td>{{ $data->getPermohonanID() }}</td>
 
-                                                    {{-- <td>
-                                    @if ($data->yb_id != null)
-                                    Batch {{ $data->batch }} - {{ $data->rumah_ibadat->category }}
-                                    @else
-                                    -
-                                    @endif
-                                  </td> --}}
+                                                    <td>
+                                                        {{ $data->rumah_ibadat->name_association }}
+                                                    </td>
+                    
 
                                                     {{-- TARIKH PERMOHONAN DIBUAT --}}
                                                     <td>{{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}
