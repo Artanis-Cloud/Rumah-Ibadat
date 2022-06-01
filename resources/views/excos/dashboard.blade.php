@@ -150,7 +150,7 @@
                         @if ($new_application->isEmpty() && $special_application->isEmpty())
                             <div style="padding-bottom: 15%;"></div>
                             <div style="width:100%; text-align:center">
-                                <img src="https://image.flaticon.com/icons/png/512/1380/1380641.png" alt="Empty Box"
+                                <img src="{{ asset('assets/img/warning.gif') }}" alt="Empty Box"
                                     style="width: 150px;">
                                 {{-- <lord-icon
                         src="https://cdn.lordicon.com/nlzvfogq.json"
@@ -180,7 +180,7 @@
 
                             <div style="padding-bottom: 15%;"></div>
                             <div style="width:100%; text-align:center">
-                                <img src="https://image.flaticon.com/icons/png/512/2487/2487449.png" alt="Empty Box"
+                                <img src="{{ asset('assets/img/warning.gif') }}" alt="Empty Box"
                                     style="width: 150px;">
                                 {{-- <lord-icon
                                     src="https://cdn.lordicon.com/cnbtojmk.json"
