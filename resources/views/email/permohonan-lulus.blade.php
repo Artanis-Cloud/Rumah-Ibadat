@@ -92,6 +92,11 @@
                       <h1 style="font-size: 32px; font-weight: 400; margin: 0;">Permohonan Lulus</h1>
                     </td>
                 </tr>
+                <tr>
+                  <td  bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 2px; line-height: 40px;">
+                    <h3 style="font-size: 20px; font-weight: 400; margin: 0;">Permohonan anda sedang di dalam proses penyaluran kewangan</h3>
+                  </td>
+                </tr>
             </table>
         </td>
     </tr>
