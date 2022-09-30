@@ -500,13 +500,11 @@
 
                         <div class="row">
                             <div class="col-12">
-                                {{-- <h3><b>RM
+                                <small class="text-muted">RM
+                                    {{ number_format($annual_report->balance_tokong, 2) }} - {{ number_format(($yb_approved_fund_tokong[0]->peruntukan ?? 0), 2) }}
+                                / RM {{ number_format($annual_report->total_tokong, 2) }}</small>
+                                <h3><b>RM
                                         {{ number_format($annual_report->balance_tokong - ($yb_approved_fund_tokong[0]->peruntukan ?? 0), 2) }}</b>
-                                    / RM {{ number_format($annual_report->total_tokong, 2) }}</h3> --}}
-
-                                    <h3><b>RM
-                                        {{ number_format(($yb_approved_fund_tokong[0]->peruntukan ?? 0), 2) }}</b>
-                                        {{ number_format(($annual_report->balance_tokong ?? 0), 2) }} ,
                                     / RM {{ number_format($annual_report->total_tokong, 2) }}</h3>
                                 <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Tokong Termasuk Komitmen
                                 </h6>
