@@ -365,7 +365,10 @@
                         <div class="row">
                             <div class="col-12">
                                 <h3><b>RM
-                                        {{ number_format($annual_report->balance_fund - ($yb_approved_fund_keseluruhan[0]->peruntukan ?? 0), 2) }}</b>
+                                        {{-- {{ number_format($annual_report->balance_fund - ($yb_approved_fund_keseluruhan[0]->peruntukan ?? 0), 2) }}</b> --}}
+                                        {{ number_format( ($yb_approved_fund_keseluruhan[0]->peruntukan ?? 0), 2) }}</b>
+                                        {{ number_format( ($annual_report->balance_fund ?? 0), 2) }}</b>
+
                                     / RM
                                     {{ number_format($annual_report->total_fund, 2) }}</h3>
                                 <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Keseluruhan Termasuk Komitmen</h6>
