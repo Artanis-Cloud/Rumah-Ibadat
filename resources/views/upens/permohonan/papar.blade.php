@@ -22,7 +22,7 @@
                     <a href="" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="headingTwo" style="color: white;">
                     {{-- <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> --}}
                       <div class="card-header bg-primary" id="headingTwo">
-                        <h4 class="mb-0"><i class="fas fa-place-of-worship"></i>&nbsp&nbsp&nbspMaklumat Rumah Ibadat</h4>
+                        <h4 class="mb-0"><i class="fas fa-place-of-worship"></i>&nbsp&nbsp&nbspMaklumat Rumah Ibadats</h4>
                       </div>
                     {{-- </button> --}}
                     </a>
