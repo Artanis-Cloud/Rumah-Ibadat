@@ -33,7 +33,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 
-class UpenController extends Controller
+class UpenController extends ApiController
 {
     public function dashboard()
     {
@@ -98,6 +98,8 @@ class UpenController extends Controller
         //================== LAPORAN PERBELANJAAN - TOKONG ==================
 
         $laporan_tokong = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'TOKONG' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
+
+        dd($laporan_tokong);
 
         $special_application_pass = SpecialApplication::where('category', 'TOKONG')->where('status', '2')->whereYear('created_at', date('Y'))->get();
 
@@ -603,7 +605,7 @@ class UpenController extends Controller
 
         $message = "Permohonan " . $permohonan->getPermohonanID() . " telah diluluskan.";
 
-        app('App\Http\Controllers\ApiController')->sendMessage($permohonan, $message);
+        $this->sendMessage($permohonan, $message);
 
         //redirect
         return redirect()->route('upens.permohonan.baru')->with('success', 'Permohonan telah diluluskan.');
