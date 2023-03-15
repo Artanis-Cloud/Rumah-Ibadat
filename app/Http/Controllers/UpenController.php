@@ -286,9 +286,9 @@ class UpenController extends ApiController
         }
 
         $sejarah_permohonan = DB::select(DB::raw('SELECT * FROM `history_applications` WHERE rumah_ibadat LIKE "%.$nama_rumah_ibadat.%" OR no_pendaftaran LIKE "%.$nombor_pendaftaran.%" OR no_akaun LIKE "%.$nombor_bank_akaun.%"'));
-
+        dd($sejarah_permohonan);
         $history_application_system = Permohonan::where('rumah_ibadat_id', $permohonan->rumah_ibadat->id)->where('status', '2')->get();
-
+// dd($sejarah_permohonan);
         //=============== SEJARAH PERMOHONAN =============================
 
         return view('upens.permohonan.papar', compact('current_fund', 'yb_approved_fund', 'permohonan', 'exco', 'yb', 'sejarah_permohonan', 'history_application_system'));
