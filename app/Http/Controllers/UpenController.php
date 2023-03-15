@@ -285,7 +285,7 @@ class UpenController extends ApiController
             $nombor_pendaftaran = explode("%", $permohonan->rumah_ibadat->registration_number, 2)[1];
         }
 
-        // dd($nama_rumah_ibadat, $nombor_pendaftaran , $nombor_bank_akaun);
+        dd($nama_rumah_ibadat, $nombor_pendaftaran , $nombor_bank_akaun);
 
         $sejarah_permohonan = DB::select(DB::raw("SELECT * FROM `history_applications` WHERE rumah_ibadat LIKE '.%$nama_rumah_ibadat%.' OR no_pendaftaran LIKE '.%$nombor_pendaftaran%.' OR no_akaun LIKE '.%$nombor_bank_akaun%.'"));
         dd($sejarah_permohonan);
