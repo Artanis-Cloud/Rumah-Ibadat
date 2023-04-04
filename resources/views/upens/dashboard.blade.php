@@ -695,7 +695,7 @@
                                             <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah
                                                 Diluluskan</th>
                                             <th class="text-right font-13">RM
-                                                {{ number_format($annual_report->current_kuil, 2) }}</th>
+                                                {{ number_format($total_peruntukan, 2) }}</th>
                                         </tr>
                                     </tbody>
                                 </table>
