@@ -102,11 +102,22 @@ class UpenController extends ApiController
 
         // dd($laporan_tokong);
 
+        $total_peruntukan_tokong = 0.00;
+        if($laporan_tokong){
+            foreach($laporan_tokong as $data){
+                $total_peruntukan_tokong += $data->peruntukan;
+            }
+        }
+
         $special_application_pass = SpecialApplication::where('category', 'TOKONG')->where('status', '2')->whereYear('created_at', date('Y'))->get();
 
         $khas_tokong = collect($special_application_pass)->sum('requested_amount');
 
+        $total_tokong = $total_peruntukan_tokong + $khas_tokong;
+
         $count_khas_tokong = $special_application_pass->count();
+
+        $balance_tokong = $annual_report->total_kuil - $total_tokong;
 
         //================== LAPORAN PERBELANJAAN - KUIL ==================
 
@@ -127,16 +138,22 @@ class UpenController extends ApiController
 
         $khas_kuil = collect($special_application_pass)->sum('requested_amount');
 
-        $total_peruntukan = $total_peruntukan_kuil + $khas_kuil;
+        $total_kuil = $total_peruntukan_kuil + $khas_kuil;
 
         $count_khas_kuil = $special_application_pass->count();
 
-        $balance_kuil = $annual_report->total_kuil - $total_peruntukan;
+        $balance_kuil = $annual_report->total_kuil - $total_kuil;
 
         //================== LAPORAN PERBELANJAAN - GURDWARA ==================
 
         $laporan_gurdwara = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'GURDWARA' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
 
+        $total_peruntukan_gurdwara = 0.00;
+        if($laporan_gurdwara){
+            foreach($laporan_gurdwara as $data){
+                $total_peruntukan_gurdwara += $data->peruntukan;
+            }
+        }
         $special_application_pass = SpecialApplication::where(
             'category',
             'GURDWARA'
@@ -144,12 +161,22 @@ class UpenController extends ApiController
 
         $khas_gurdwara = collect($special_application_pass)->sum('requested_amount');
 
+        $total_gurdwara = $total_peruntukan_gurdwara + $khas_gurdwara;
+
         $count_khas_gurdwara = $special_application_pass->count();
+
+        $balance_gurdwara = $annual_report->total_gurdwara - $total_gurdwara;
 
         //================== LAPORAN PERBELANJAAN - GEREJA ==================
 
         $laporan_gereja = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'GEREJA' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
 
+        $total_peruntukan_gereja = 0.00;
+        if($laporan_gereja){
+            foreach($laporan_gereja as $data){
+                $total_peruntukan_gereja += $data->peruntukan;
+            }
+        }
         $special_application_pass = SpecialApplication::where(
             'category',
             'GEREJA'
@@ -157,9 +184,13 @@ class UpenController extends ApiController
 
         $khas_gereja = collect($special_application_pass)->sum('requested_amount');
 
+        $total_gereja = $total_peruntukan_gereja + $khas_gereja;
+
         $count_khas_gereja = $special_application_pass->count();
 
-        return view('upens.dashboard', compact('balance_kuil','total_peruntukan','pengumuman', 'current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report', 'laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application'));
+        $balance_gereja = $annual_report->total_gereja - $total_gereja;
+
+        return view('upens.dashboard', compact('balance_tokong','balance_kuil','balance_gurdwara','balance_gereja','total_tokong','total_kuil','total_gurdwara','total_gereja','pengumuman', 'current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report', 'laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application'));
     }
 
     public function update_peruntukan(Request $request)
