@@ -637,7 +637,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h3><b>RM
-                                        {{ number_format($annual_report->balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0), 2) }}</b>
+                                        {{ number_format($balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0), 2) }}</b>
                                     / RM {{ number_format($annual_report->total_kuil, 2) }}</h3>
                                 <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Kuil Termasuk Komitmen</h6>
                             </div>
@@ -647,7 +647,7 @@
                                     <?php
                                     $percentage_kuil = 100;
                                     if ($annual_report->total_kuil != 0) {
-                                        $percentage_kuil = (($annual_report->balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0)) / $annual_report->total_kuil) * 100;
+                                        $percentage_kuil = (($balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0)) / $annual_report->total_kuil) * 100;
                                         $percentage_kuil = number_format($percentage_kuil);
                                         if ($percentage_kuil > 100) {
                                             $percentage_kuil = 100;
