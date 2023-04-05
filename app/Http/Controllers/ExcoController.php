@@ -134,11 +134,25 @@ class ExcoController extends Controller
 
             $laporan_tokong = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'TOKONG' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
 
+            $total_peruntukan_tokong = 0.00;
+            if($laporan_tokong){
+                foreach($laporan_tokong as $data){
+                    $total_peruntukan_tokong += $data->peruntukan;
+                }
+            }
+
             $special_application_pass = SpecialApplication::where('category', 'TOKONG')->where('status', '2')->whereYear('created_at', date('Y'))->get();
 
             $khas_tokong = collect($special_application_pass)->sum('requested_amount');
 
             $count_khas_tokong = $special_application_pass->count();
+
+            $total_tokong = $total_peruntukan_tokong + $khas_tokong;
+
+            $balance_tokong = $annual_report->total_tokong - $total_tokong;
+
+            return view('excos.dashboard', compact('balance_tokong','total_tokong','pengumuman', 'current_year','annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+
         }
 
 
@@ -228,6 +242,13 @@ class ExcoController extends Controller
 
             $laporan_kuil = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'KUIL' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
 
+            $total_peruntukan_kuil = 0.00;
+            if($laporan_kuil){
+                foreach($laporan_kuil as $data){
+                    $total_peruntukan_kuil += $data->peruntukan;
+                }
+            }
+
             $special_application_pass = SpecialApplication::where('category',
                 'KUIL'
             )->where('status', '2')->whereYear('created_at', date('Y'))->get();
@@ -235,6 +256,13 @@ class ExcoController extends Controller
             $khas_kuil = collect($special_application_pass)->sum('requested_amount');
 
             $count_khas_kuil = $special_application_pass->count();
+
+            $total_kuil = $total_peruntukan_kuil + $khas_kuil;
+
+            $balance_kuil = $annual_report->total_kuil - $total_kuil;
+
+            return view('excos.dashboard', compact('balance_kuil','total_kuil','pengumuman', 'current_year','annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+
 
         }
 
@@ -324,6 +352,13 @@ class ExcoController extends Controller
 
             $laporan_gurdwara = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'GURDWARA' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
 
+            $total_peruntukan_gurdwara = 0.00;
+            if($laporan_gurdwara){
+                foreach($laporan_gurdwara as $data){
+                    $total_peruntukan_gurdwara += $data->peruntukan;
+                }
+            }
+
             $special_application_pass = SpecialApplication::where(
                 'category',
                 'GURDWARA'
@@ -332,6 +367,13 @@ class ExcoController extends Controller
             $khas_gurdwara = collect($special_application_pass)->sum('requested_amount');
 
             $count_khas_gurdwara = $special_application_pass->count();
+
+            $total_gurdwara = $total_peruntukan_gurdwara + $khas_gurdwara;
+
+            $balance_gurdwara = $annual_report->total_gurdwara - $total_gurdwara;
+
+            return view('excos.dashboard', compact('balance_gurdwara','total_gurdwara','pengumuman', 'current_year','annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+
         }
 
 
@@ -422,6 +464,13 @@ class ExcoController extends Controller
 
             $laporan_gereja = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'GEREJA' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
 
+            $total_peruntukan_gereja = 0.00;
+            if($laporan_gereja){
+                foreach($laporan_gereja as $data){
+                    $total_peruntukan_gereja += $data->peruntukan;
+                }
+            }
+
             $special_application_pass = SpecialApplication::where(
                 'category',
                 'GEREJA'
@@ -430,11 +479,18 @@ class ExcoController extends Controller
             $khas_gereja = collect($special_application_pass)->sum('requested_amount');
 
             $count_khas_gereja = $special_application_pass->count();
+
+            $total_gereja = $total_peruntukan_gereja + $khas_gereja;
+
+            $balance_gereja = $annual_report->total_gereja - $total_gereja;
+
+            return view('excos.dashboard', compact('balance_gereja','total_gereja','pengumuman', 'current_year','annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+
         }
 
         // dd($laporan_tokong);
 
-        return view('excos.dashboard', compact('pengumuman', 'current_year','annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+        // return view('excos.dashboard', compact('balance_tokong','balance_kuil','balance_gurdwara','balance_gereja','total_tokong','total_kuil','total_gurdwara','total_gereja','pengumuman', 'current_year','annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
     }
 
     public function permohonan()

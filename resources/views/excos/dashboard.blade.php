@@ -242,7 +242,7 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <h3><b>RM {{ number_format($annual_report->balance_tokong, 2) }}</b> / RM
+                                        <h3><b>RM {{ number_format($balance_tokong, 2) }}</b> / RM
                                             {{ number_format($annual_report->total_tokong, 2) }}</h3>
                                         <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Tokong</h6>
                                     </div>
@@ -252,7 +252,7 @@
                                             <?php
                                             $percentage_tokong = 100;
                                             if ($annual_report->total_tokong != 0) {
-                                                $percentage_tokong = ($annual_report->balance_tokong / $annual_report->total_tokong) * 100;
+                                                $percentage_tokong = ($balance_tokong / $annual_report->total_tokong) * 100;
                                                 $percentage_tokong = number_format($percentage_tokong);
                                                 if ($percentage_tokong > 100) {
                                                     $percentage_tokong = 100;
@@ -276,7 +276,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <h3><b>RM
-                                                {{ number_format($annual_report->balance_tokong - ($yb_approved_fund_tokong[0]->peruntukan ?? 0), 2) }}</b>
+                                                {{ number_format($balance_tokong - ($yb_approved_fund_tokong[0]->peruntukan ?? 0), 2) }}</b>
                                             / RM {{ number_format($annual_report->total_tokong, 2) }}</h3>
                                         <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Tokong Termasuk Komitmen
                                         </h6>
@@ -287,7 +287,7 @@
                                             <?php
                                             $percentage_tokong = 100;
                                             if ($annual_report->total_tokong != 0) {
-                                                $percentage_tokong = (($annual_report->balance_tokong - ($yb_approved_fund_tokong[0]->peruntukan ?? 0)) / $annual_report->total_tokong) * 100;
+                                                $percentage_tokong = (($balance_tokong - ($yb_approved_fund_tokong[0]->peruntukan ?? 0)) / $annual_report->total_tokong) * 100;
                                                 $percentage_tokong = number_format($percentage_tokong);
                                                 if ($percentage_tokong > 100) {
                                                     $percentage_tokong = 100;
@@ -339,7 +339,7 @@
                                                     <th colspan="3" class="text-right font-16">Jumlah Peruntukan Yang Telah
                                                         Diluluskan</th>
                                                     <th class="text-right font-13">RM
-                                                        {{ number_format($annual_report->current_tokong, 2) }}</th>
+                                                        {{ number_format($total_tokong, 2) }}</th>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -376,7 +376,7 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <h3><b>RM {{ number_format($annual_report->balance_kuil, 2) }}</b> / RM
+                                        <h3><b>RM {{ number_format($balance_kuil, 2) }}</b> / RM
                                             {{ number_format($annual_report->total_kuil, 2) }}</h3>
                                         <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Kuil</h6>
                                     </div>
@@ -386,7 +386,7 @@
                                             <?php
                                             $percentage_kuil = 100;
                                             if ($annual_report->total_kuil != 0) {
-                                                $percentage_kuil = ($annual_report->balance_kuil / $annual_report->total_kuil) * 100;
+                                                $percentage_kuil = ($balance_kuil / $annual_report->total_kuil) * 100;
                                                 $percentage_kuil = number_format($percentage_kuil);
                                                 if ($percentage_kuil > 100) {
                                                     $percentage_kuil = 100;
@@ -410,7 +410,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <h3><b>RM
-                                                {{ number_format($annual_report->balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0), 2) }}</b>
+                                                {{ number_format($balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0), 2) }}</b>
                                             / RM {{ number_format($annual_report->total_kuil, 2) }}</h3>
                                         <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Kuil Termasuk Komitmen</h6>
                                     </div>
@@ -420,7 +420,7 @@
                                             <?php
                                             $percentage_kuil = 100;
                                             if ($annual_report->total_kuil != 0) {
-                                                $percentage_kuil = (($annual_report->balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0)) / $annual_report->total_kuil) * 100;
+                                                $percentage_kuil = (($balance_kuil - ($yb_approved_fund_kuil[0]->peruntukan ?? 0)) / $annual_report->total_kuil) * 100;
                                                 $percentage_kuil = number_format($percentage_kuil);
                                                 if ($percentage_kuil > 100) {
                                                     $percentage_kuil = 100;
@@ -471,7 +471,7 @@
                                                     <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah
                                                         Diluluskan</th>
                                                     <th class="text-right font-13">RM
-                                                        {{ number_format($annual_report->current_kuil, 2) }}</th>
+                                                        {{ number_format($total_kuil, 2) }}</th>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -508,7 +508,7 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <h3><b>RM {{ number_format($annual_report->balance_gurdwara, 2) }}</b> / RM
+                                        <h3><b>RM {{ number_format($balance_gurdwara, 2) }}</b> / RM
                                             {{ number_format($annual_report->total_gurdwara, 2) }}</h3>
                                         <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Gurdwara</h6>
                                     </div>
@@ -518,7 +518,7 @@
                                             <?php
                                             $percentage_gurdwara = 100;
                                             if ($annual_report->total_gurdwara != 0) {
-                                                $percentage_gurdwara = ($annual_report->balance_gurdwara / $annual_report->total_gurdwara) * 100;
+                                                $percentage_gurdwara = ($balance_gurdwara / $annual_report->total_gurdwara) * 100;
                                                 $percentage_gurdwara = number_format($percentage_gurdwara);
                                                 if ($percentage_gurdwara > 100) {
                                                     $percentage_gurdwara = 100;
@@ -542,7 +542,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <h3><b>RM
-                                                {{ number_format($annual_report->balance_gurdwara - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0), 2) }}</b>
+                                                {{ number_format($balance_gurdwara - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0), 2) }}</b>
                                             / RM {{ number_format($annual_report->total_gurdwara, 2) }}</h3>
                                         <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Gurdwara Termasuk Komitmen
                                         </h6>
@@ -553,7 +553,7 @@
                                             <?php
                                             $percentage_gurdwara = 100;
                                             if ($annual_report->total_gurdwara != 0) {
-                                                $percentage_gurdwara = (($annual_report->balance_gurdwara - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0)) / $annual_report->total_gurdwara) * 100;
+                                                $percentage_gurdwara = (($balance_gurdwara - ($yb_approved_fund_gurdwara[0]->peruntukan ?? 0)) / $annual_report->total_gurdwara) * 100;
                                                 $percentage_gurdwara = number_format($percentage_gurdwara);
                                                 if ($percentage_gurdwara > 100) {
                                                     $percentage_gurdwara = 100;
@@ -604,7 +604,7 @@
                                                     <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah
                                                         Diluluskan</th>
                                                     <th class="text-right font-13">RM
-                                                        {{ number_format($annual_report->current_gurdwara, 2) }}</th>
+                                                        {{ number_format($total_gurdwara, 2) }}</th>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -641,7 +641,7 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <h3><b>RM {{ number_format($annual_report->balance_gereja, 2) }}</b> / RM
+                                        <h3><b>RM {{ number_format($balance_gereja, 2) }}</b> / RM
                                             {{ number_format($annual_report->total_gereja, 2) }}</h3>
                                         <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Gereja</h6>
                                     </div>
@@ -651,7 +651,7 @@
                                             <?php
                                             $percentage_gereja = 100;
                                             if ($annual_report->total_gereja != 0) {
-                                                $percentage_gereja = ($annual_report->balance_gereja / $annual_report->total_gereja) * 100;
+                                                $percentage_gereja = ($balance_gereja / $annual_report->total_gereja) * 100;
                                                 $percentage_gereja = number_format($percentage_gereja);
                                                 if ($percentage_gereja > 100) {
                                                     $percentage_gereja = 100;
@@ -675,7 +675,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <h3><b>RM
-                                                {{ number_format($annual_report->balance_gereja - ($yb_approved_fund_gereja[0]->peruntukan ?? 0), 2) }}</b>
+                                                {{ number_format($balance_gereja - ($yb_approved_fund_gereja[0]->peruntukan ?? 0), 2) }}</b>
                                             / RM
                                             {{ number_format($annual_report->total_gereja, 2) }}</h3>
                                         <h6 class="text-muted">Baki Peruntukan Rumah Ibadat Gereja Termasuk Komitmen
@@ -687,7 +687,7 @@
                                             <?php
                                             $percentage_gereja = 100;
                                             if ($annual_report->total_gereja != 0) {
-                                                $percentage_gereja = (($annual_report->total_gereja - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_gereja) * 100;
+                                                $percentage_gereja = (($balance_gereja - ($yb_approved_fund_gereja[0]->peruntukan ?? 0)) / $annual_report->total_gereja) * 100;
                                                 $percentage_gereja = number_format($percentage_gereja);
                                                 if ($percentage_gereja > 100) {
                                                     $percentage_gereja = 100;
@@ -740,7 +740,7 @@
                                                     <th colspan="3" class="text-right font-18">Jumlah Peruntukan Yang Telah
                                                         Diluluskan</th>
                                                     <th class="text-right font-13">RM
-                                                        {{ number_format($annual_report->current_gereja, 2) }}</th>
+                                                        {{ number_format($total_gereja, 2) }}</th>
                                                 </tr>
                                             </tbody>
                                         </table>
