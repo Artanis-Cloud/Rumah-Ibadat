@@ -117,7 +117,7 @@ class UpenController extends ApiController
 
         $count_khas_tokong = $special_application_pass->count();
 
-        $balance_tokong = $annual_report->total_kuil - $total_tokong;
+        $balance_tokong = $annual_report->total_tokong - $total_tokong;
 
         //================== LAPORAN PERBELANJAAN - KUIL ==================
 
