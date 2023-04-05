@@ -126,10 +126,12 @@ class UpenController extends ApiController
         )->where('status', '2')->whereYear('created_at', date('Y'))->get();
 
         $khas_kuil = collect($special_application_pass)->sum('requested_amount');
-        
+
         $total_peruntukan = $total_peruntukan_kuil + $khas_kuil;
 
         $count_khas_kuil = $special_application_pass->count();
+
+        $balace_kuil = $annual_report->total_kuil - $total_peruntukan;
 
         //================== LAPORAN PERBELANJAAN - GURDWARA ==================
 
@@ -157,7 +159,7 @@ class UpenController extends ApiController
 
         $count_khas_gereja = $special_application_pass->count();
 
-        return view('upens.dashboard', compact('total_peruntukan','pengumuman', 'current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report', 'laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application'));
+        return view('upens.dashboard', compact('balance_kuil','total_peruntukan','pengumuman', 'current_year', 'count_new_application', 'count_review_application', 'count_passed_application', 'count_failed_application', 'annual_report', 'laporan_semua', 'khas_semua', 'count_khas_semua', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'new_application'));
     }
 
     public function update_peruntukan(Request $request)
