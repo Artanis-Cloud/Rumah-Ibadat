@@ -131,7 +131,7 @@ class UpenController extends ApiController
 
         $count_khas_kuil = $special_application_pass->count();
 
-        $balace_kuil = $annual_report->total_kuil - $total_peruntukan;
+        $balance_kuil = $annual_report->total_kuil - $total_peruntukan;
 
         //================== LAPORAN PERBELANJAAN - GURDWARA ==================
 
