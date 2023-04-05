@@ -112,12 +112,13 @@ class UpenController extends ApiController
 
         $laporan_kuil = DB::select(DB::raw("SELECT t.tujuan AS tujuan, COUNT(t.tujuan) AS bilangan, SUM(t.peruntukan) AS peruntukan FROM tujuans t, permohonans p, rumah_ibadats r WHERE p.id = t.permohonan_id AND r.id = p.rumah_ibadat_id AND p.status = 2 AND r.category = 'KUIL' AND YEAR(p.created_at) = '$current_year' GROUP BY t.tujuan"));
 
-        $total_peruntukan = 0.00;
+        $total_peruntukan_kuil = 0.00;
         if($laporan_kuil){
             foreach($laporan_kuil as $data){
-                $total_peruntukan += $data->peruntukan;
+                $total_peruntukan_kuil += $data->peruntukan;
             }
         }
+
 
         $special_application_pass = SpecialApplication::where(
             'category',
@@ -125,6 +126,8 @@ class UpenController extends ApiController
         )->where('status', '2')->whereYear('created_at', date('Y'))->get();
 
         $khas_kuil = collect($special_application_pass)->sum('requested_amount');
+        
+        $total_peruntukan = $total_peruntukan_kuil + $khas_kuil;
 
         $count_khas_kuil = $special_application_pass->count();
 
