@@ -69,6 +69,15 @@ class ExcoController extends Controller
         }
         $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
 
+        $balance_tokong = null;
+        $balance_kuil = null;
+        $balance_gurdwara = null;
+        $balance_gereja = null;
+
+        $total_tokong = null;
+        $total_kuil = null;
+        $total_gurdwara = null;
+        $total_gereja = null;
         $laporan_tokong = null;
         $khas_tokong = null;
         $count_khas_tokong = null;
