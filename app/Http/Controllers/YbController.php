@@ -70,6 +70,16 @@ class YbController extends Controller
         }
         $annual_report = Peruntukan::whereYear('created_at', $current_year)->first();
 
+        $balance_tokong = null;
+        $balance_kuil = null;
+        $balance_gurdwara = null;
+        $balance_gereja = null;
+
+        $total_tokong = null;
+        $total_kuil = null;
+        $total_gurdwara = null;
+        $total_gereja = null;
+
         $laporan_tokong = null;
         $khas_tokong = null;
         $count_khas_tokong = null;
@@ -150,7 +160,7 @@ class YbController extends Controller
 
             $balance_tokong = $annual_report->total_tokong - $total_tokong;
 
-            return view('ybs.dashboard', compact('balance_tokong','total_tokong','pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+            // return view('ybs.dashboard', compact('balance_tokong','balance_kuil','balance_gurdwara','balance_gereja','total_tokong','pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
 
         }
 
@@ -259,7 +269,7 @@ class YbController extends Controller
 
             $balance_kuil = $annual_report->total_kuil - $total_kuil;
 
-            return view('ybs.dashboard', compact('balance_kuil','total_kuil','pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+            // return view('ybs.dashboard', compact('balance_kuil','total_kuil','pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
 
         }
 
@@ -369,7 +379,7 @@ class YbController extends Controller
 
             $balance_gurdwara = $annual_report->total_gurdwara - $total_gurdwara;
 
-            return view('ybs.dashboard', compact('balance_gurdwara','total_gurdwara','pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+            // return view('ybs.dashboard', compact('balance_gurdwara','total_gurdwara','pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
 
         }
 
@@ -480,9 +490,10 @@ class YbController extends Controller
 
             $balance_gereja = $annual_report->total_gereja - $total_gereja;
 
-            return view('ybs.dashboard', compact('balance_gereja','total_gereja','pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
+            // return view('ybs.dashboard', compact('balance_gereja','total_gereja','pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
 
         }
+        return view('ybs.dashboard', compact('balance_tokong','balance_kuil','balance_gurdwara','balance_gereja','total_tokong','total_kuil','total_gereja','total_gurdwara','pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
 
         // return view('ybs.dashboard', compact('pengumuman', 'current_year', 'annual_report', 'laporan_tokong', 'khas_tokong', 'count_khas_tokong', 'laporan_kuil', 'khas_kuil', 'count_khas_kuil', 'laporan_gurdwara', 'khas_gurdwara', 'count_khas_gurdwara', 'laporan_gereja', 'khas_gereja', 'count_khas_gereja', 'count_new_application', 'count_processing_application', 'count_passed_application', 'count_failed_application', 'new_application', 'special_application'));
     }
